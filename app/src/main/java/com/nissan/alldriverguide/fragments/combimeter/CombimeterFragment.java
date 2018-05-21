@@ -278,7 +278,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
 
             try {
                 counter = Integer.parseInt(output[1]);
-                Log.e("loadCombiButtonsinGeneral: ", ""+counter);
+
                 button.setBackgroundDrawable(d);
 
                 button.setLayoutParams(llp2);
