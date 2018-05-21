@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">NISSAN Driver’s Guide</string>
+    <string name="alert_title1">Taalvoorkeur</string>
+    <string name="alert_msg1">Uw systeemtaal is Nederlands welke uw standaardtaal zal zijn in deze app. U kunt de taal wijzigen via het tabblad taalinstellingen.</string>
+    <string name="alert_msg2">Deze app ondersteunt momenteel Engels, Duits, Frans, Italiaans, Spaans, Nederlands, Russisch en Zweeds. Engels zal uw standaardtaal zijn in deze app. U kunt de taal wijzigen via het tabblad taalinstellingen.</string>
+    <string name="alert_title3">Let op!</string>
+    <string name="alert_msg3">U kunt deze app niet gebruiken tijdens het rijden. Zorg ervoor dat uw auto stilstaat wanneer u deze app gebruikt.</string>
+    <string name="alert_title4">Disclaimer!</string>
+    <string name="alert_msg4">Deze app verzamelt geen persoonlijke gegevens op welke wijze dan ook. Deze app is het exclusieve eigendom van NISSAN en het aanbrengen van wijzigingen is niet toegestaan. Copyright 2013, NISSAN.</string>
+    <string name="alert_msg5">Even wachten a.u.b...</string>
+    <string name="alert_msg6">Laden van de gegevens</string>
+    <string name="alert_title7">Kies de gewenste taal.</string>
+    <string name="alert_msg7">De functie zaklamp wordt op uw apparaat niet ondersteund.</string>
+    <string name="alert_msg8">Onvoldoende licht om objecten te detecteren.</string>
+    <string name="alert_msg9">Ja, ik ga akkoord.</string>
+    <string name="alert_msg10">Nee, ik sluit af.</string>
+    <string name="alert_msg11">OK</string>
+    <string name="alert_title8">Laden...</string>
+    <string name="alert_msg12">Taal wijzigen</string>
+    <string name="alert_title9">Let op!</string>
+    <string name="alert_msg13">Wilt u de taalinhoud downloaden?</string>
+    <string name="alert_msg14">Ja</string>
+    <string name="alert_msg15">Maak verbinding met internet om de inhoud te downloaden.</string>
+    <string name="alert_msg16">Annuleren</string>
+    <string name="alert_msg17">Taal selecteren</string>
+    <string name="alert_msg18">Neem een paar seconden de tijd om de INFO-sectie te lezen teneinde uw ervaring met de Toegevoegde Realiteit te optimaliseren.</string>
+    <string name="alert_msg19">Ga naar pagina INFO.</string>
+    <string name="alert_msg20">Wilt u de detectiemodus echt verlaten?</string>
+    <string name="alert_msg21">Draai het apparaat in de Staande modus om toegang te krijgen tot de informatie betreffende dit element.</string>
+    <string name="alert_title10">Bevestigen</string>
+    <string name="alert_title11">Status</string>
+    <string name="alert_msg24">Downloaden...</string>
+    <string name="alert_msg25">Downloaden voltooid</string>
+    <string name="alert_title12">Successvol</string>
+    <string name="alert_msg26">Voertuiginhoud succesvol gedownload.</string>
+    <string name="alert_msg27">Ga naar de Home-pagina</string>
+    <string name="alert_msg28">Voertuig bezichtigen</string>
+    <string name="alert_msg29">Meer voertuigen toevoegen</string>
+    <string name="alert_msg30">Wilt u dit voertuig verwijderen?</string>
+    <string name="alert_msg31">Op deze manier zal de gedownloade inhoud betreffende dit voertuig gewist worden. Bevestigen?</string>
+    <string name="alert_msg32">Voertuiginhoud reeds gedownload.</string>
+    <string name="alert_msg33">Er is nog geen voertuig geïnstalleerd. Ga naar de downloadpagina en kies uw voertuig.</string>
+    <string name="alert_title13">Inhoud opslaan…</string>
+    <string name="alert_msg34">Nee</string>
+    <string name="alert_msg35">U bent momenteel verbonden met een netwerk met lage snelheid. Verbind u met Wifi/4G/3G om het bestand (~100mb) te downloaden.</string>
+    <string name="alert_msg36">Vertaling niet beschikbaar voor deze inhoud!</string>
+    <string name="alert_msg37">Wilt u de inhoud van deze taal verwijderen?</string>
+    <string name="alert_msg38">Op deze manier zal de gedownloade inhoud van deze taal gewist worden. Bevestigen?</string>
+    <string name="alert_msg39">Lees voordat u de reparatieset voor lekke banden gebruikt de instructies in “LEKKE BAND REPAREREN” zorgvuldig door.</string>
+    <string name="alert_msg40">Lezen</string>
+    <string name="alert_msg41">Ik heb het al gelezen</string>
+    <string name="alert_msg42">Lees voordat u een band vervangt de instructies in “LEKKE BAND VERWISSELEN” zorgvuldig door.</string>
+    <string name="alert_msg43">Heeft u uw Qashqai in Rusland gekocht, in januari 2016 of later?\nJA: klik op "Ja".\nNEE: klik op "Nee" en download "Qashqai EUR Specs".</string>
+
+
+    <!--//new msg text only for english-->
+    <string name="alert_msg22">Wilt u de voertuiginhoud downloaden? Het kan mogelijk enkele minuten duren afhankelijk van de snelheid van uw internetverbinding. Het zal slechts eenmaal voor elk voertuig gedownload worden.</string>
+    <string name="alert_msg23">Wilt u verwijderen?</string>
+    <string name="alert_msg_download">Welk voertuig wilt u downloaden?</string>
+    <string name="qashqai_btn_eur">Qashqai EUR Specs</string>
+    <string name="qashqai_btn_rus">Qashqai RUS Specs</string>
+    <string name="xtrail_btn_eur">X-Trail EUR Specs</string>
+    <string name="xtrail_btn_rus">X-Trail RUS Specs</string>
+    <string name="alert_msg_view">Welk voertuig wilt u bezichtigen?</string>
+    <string name="alert_msg_setting">Welk voertuig wilt u instellen?</string>
+    <string name="alert_msg_delete">Welk voertuig wilt u wissen?</string>
+
+    <!--//warranty alert dialog message-->
+     <string name="warranty_alert_message">Voordat u dit hoofdstuk leest,
+moet u het motortype vaststellen.
+Deze informatie wordt aan het
+begin van het Garantieboekje
+geleverd; u kunt het motortype
+rechtsboven op de
+Onderhoudssticker vinden. Het
+motortype wordt aangeduid door
+de code direct na de
+voertuignaam.
+Zie het volgende voorbeeld:</string>
+
+    <!--start language-->
+    <string name="title_activity_video_player">VideoPlayerActivity</string>
+    <string name="back">Terug</string>
+    <string name="download_msg">Wilt u deze gids met EUR- of RUS-specificaties downloaden?</string>
+    <string name="download_lang">Weet u zeker dat u wilt downloaden?</string>
+    <string name="exit_alert">Weet u zeker dat u wilt afsluiten?</string>
+    <string name="internet_connect">"Geen Internetverbinding.
+            Controleer uw WIFI-verbinding of mobiele gegevensnetwerk en probeer opnieuw."
+    </string>
+    <string name="car_msg">Car Already Downloaded</string>
+    <string name="car_msg_download">Download de gids voor uw auto</string>
+    <string name="video_popup_msg">Wilt u meer informatie?</string>
+    <string name="video_watch_again">Kijk opnieuw</string>
+    <string name="video_learn_more">Meer informatie</string>
+
+    <string-array name="car_names">
+        <item>Qashqai EUR Specs</item>
+        <item>Qashqai RUS Specs</item>
+        <item>Juke</item>
+        <item>X-Trail EUR Specs</item>
+        <item>X-Trail RUS Specs</item>
+        <item>Pulsar</item>
+        <item>Micra</item>
+        <item>Note</item>
+        <item>Leaf</item>
+        <item>Navara</item>
+        <item>Gloednieuwe Micra</item>
+        <item>NIEUWE NISSAN QASHQAI </item>
+        <item>NIEUWE NISSAN X-TRAIL </item>
+        <item>Nieuwe Nissan Leaf</item>
+    </string-array>
+    <string-array name="assistance_array">
+        <item>Waarschuwingslampjes</item>
+        <item>Korte gebruikershandleiding</item>
+        <item>Bandeninformatie</item>
+        <item>Motorruimte</item>
+        <item>Garantie</item>
+        <item>Nissan Assistance</item>
+    </string-array>
+    <string-array name="settings_array">
+        <item>Wijzig de taal</item>
+        <item>Auto selecteren</item>
+        <item>Zelfstudie</item>
+        <item>Beoordeel de app</item>
+        <item>Stuur feedback</item>
+    </string-array>
+    <string-array name="tab_names">
+        <item>VERKEN</item>
+        <item>HULP</item>
+        <item>Zoek</item>
+        <item>INSTELLINGEN</item>
+    </string-array>
+
+    <string-array name="video_array_title">
+        <item>RIJBAAN-ASSISTENT</item>
+        <item>INTELLIGENT EMERGENCY BRAKING</item>
+        <item>"INTELLIGENT NISSAN AROUND VIEW MONITOR"</item>
+        <item>AUDIO WEERGEVEN MET CARPLAY</item>
+    </string-array>
+
+    <string name="download_driver_guide">Download Driver\'s Guide</string>
+    <string name="driver_guide">Gids voor de bestuurder</string>
+    <string name="select_language">Selecteer de taal</string>
+
+    <string name="button_OK">OK</string>
+    <string name="button_CANCEL">Annuleren</string>
+    <string name="button_YES">Ja</string>
+    <string name="button_NO">Nee</string>
+    <string name="button_next">Volgende</string>
+
+    <string name="explore">Verken</string>
+    <string name="augmented_reality">Toegevoegde Realiteit</string>
+    <string name="explore_your_car">VERKEN UW AUTO</string>
+    <string name="assistance">Hulp</string>
+    <string name="search">SEARCH</string>
+    <string name="settings">INSTELLINGEN</string>
+    <string name="change_language">Wijzig de taal</string>
+    <string name="add_extra_car">Auto selecteren</string>
+    <string name="warning_lights">Waarschuwingslampjes</string>
+    <string name="quick_reference_guide">Korte gebruikershandleiding</string>
+    <!--string language-->
+    <string name="alert_status">Status</string>
+    <string name="alert_download_complete">Downloaden voltooid..</string>
+    <string name="alert_downloading">Downloaden..</string>
+
+    <string-array name="tutorial_titles">
+        <item>
+            Verken uw auto
+        </item>
+        <item>
+            Waarschuwingslampjes
+        </item>
+        <item>
+            Beknopte handleiding en nog veel meer
+        </item>
+    </string-array>
+    <string-array name="tutorial_details">
+        <item>
+            Leer alle bedieningen kennen die uw Nissan u te bieden heeft met behulp van de Toegevoegde Realiteit.
+            \n Richt eenvoudigweg de camera van uw smartphone op een bediening en klik op de popup om toegang te krijgen tot de informatie.
+        </item>
+        <item>
+            Met een druk op de knop wordt informatie beschikbaar over waarschuwingslampjes die kunnen gaan branden op het dashboard van uw auto.
+            \n Snelle, eenvoudige en gemakkelijke toegang tot alle informatie die u nodig heeft wordt aangeboden.
+        </item>
+        <item>
+            Het is mogelijk om toegang te krijgen tot een elektronisce versie van de Beknopte handleiding om alle kenmerken van uw Nissan te ontdekken.
+            \n Ook wordt belangrijke informatie verstrekt over banden, motoren, garantie, enz..
+        </item>
+    </string-array>
+
+    <string name="registered_country_name">In welk land is uw auto geregistreerd?</string>
+    <string name="telephone_number_for">Telefoonnummers voor</string>
+    <string name="national">Nationaal :</string>
+    <string name="international">Internationaal :</string>
+
+    <string-array name="country_for_call_array">
+        <item>Oostenrijk</item>
+        <item>België</item>
+        <item>Tsjechische Republiek</item>
+        <item>Denemarken</item>
+        <item>Estland</item>
+        <item>Finland</item>
+        <item>Frankrijk</item>
+        <item>Duitsland</item>
+        <item>Griekenland</item>
+        <item>Hongarije</item>
+        <item>Italië</item>
+        <item>Letland</item>
+        <item>Litouwen</item>
+        <item>Nederland</item>
+        <item>Noorwegen</item>
+        <item>Polen</item>
+        <item>Portugal</item>
+        <item>Slowakije</item>
+        <item>Spanje</item>
+        <item>Zweden</item>
+        <item>Zwitserland</item>
+        <item>Verenigd Koninkrijk</item>
+    </string-array>
+
+    <string-array name="nissan_assistance_array">
+        <item>Nissan Assistance Gids</item>
+        <item>Bel Nissan Assistance</item>
+    </string-array>
+
+    <string name="update_msg">Er is een update beschikbaar. Wilt u deze downloaden?</string>
+    <string name="register_push_dialog">&quot;Uw apparaat wordt op de server geregistreerd... Wacht alstublieft.&quot;</string>
+    <string name="no_content_found_url">&quot;Geen inhoud gevonden.&quot;</string>
+    <string name="confirmation_failed">&quot;Bevestiging zendfout.&quot;</string>
+    <string name="device_reg_push">&quot;Zonder registratie kunt u het voertuig niet downloaden.&quot;</string>
+    <string name="unable_to_update">&quot;Onmogelijk om inhoud te updaten. Probeer opnieuw.&quot;</string>
+    <string name="recent_searches">&quot;Recente zoekopdrachten&quot;</string>
+    <string name="no_content_found">&quot;Geen resultaten&quot;</string>
+    <string name="search_box_hint">Zoek</string>
+    <string name="data_syncing">Gegevens synchroniseren...</string>
+    <string name="start_download">Download starten...</string>
+    <string name="start_car_delete">Wissen starten...</string>
+    <string name="no_content_found_top_recent_search">Geen trefwoorden gevonden</string>
+
+    <string name="rate_our_app">Rate This App</string>
+    <string name="rate_our_app_title">Rate My App</string>
+
+    <string name="clear">Wissen</string>
+
+    <string name="great_not_great_text">Hoe is uw ervaring tot nu toe?</string>
+    <string name="great">Geweldig</string>
+    <string name="not_great">Niet geweldig</string>
+
+    <string name="rate_our_app_sub_title">Goed om te weten. Heeft u een minuut om onze app te beoordelen?</string>
+    <string name="rate_no_thanks">Nee, bedankt</string>
+    <string name="rate_ask_me_later">Later opnieuw vragen</string>
+    <string name="rate_our_app_yes">Ja, beoordeel de app</string>
+
+    <string name="feedback_text">Stuur uw feedback direct naar ons. Uw mening is voor ons zeer belangrijk.</string>
+    <string name="send_feedback">Stuur feedback</string>
+
+    <string name="feedback_toast">Bedankt voor uw feedback</string>
+
+    <string name="feedback">Feedback</string>
+    <string name="send_feedback_title">Titel</string>
+    <string name="send_feedback_description">Beschrijving</string>
+    <string name="send_feedback_button">Feedback verzenden</string>
+
+</resources>
+

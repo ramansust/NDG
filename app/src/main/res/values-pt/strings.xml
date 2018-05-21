@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<resources>
+    <string name="app_name">Driver’s Guide da NISSAN</string>
+    <string name="hello_world">Olá mundo!</string>
+    <string name="action_settings">Definições</string>
+    <string name="title_activity_language_selection">LanguageSelectionActivity</string>
+    <string name="title_activity_tutorial">TutorialActivity</string>
+    <string name="title_activity_car_download">CarDownloadActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_details_main">DetailsActivity</string>
+    <string name="title_combimeter_main">CombimeterActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Olá fragmento em branco</string>
+    <string name="title_activity_image_target">ImageTargetActivity</string>
+    <string name="alert_msg39">Antes de utilizar o kit de reparação de emergência para pneu furado, leia cuidadosamente as instruções “REPARAR O PNEU FURADO”.</string>
+    <string name="alert_msg40">Ler</string>
+    <string name="alert_msg41">Já li as instruções</string>
+    <string name="alert_msg42">Antes de mudar um pneu furado, leia cuidadosamente as instruções “MUDAR O PNEU FURADO”.</string>
+    <string name="alert_msg22">Pretende transferir o conteúdo deste veículo? Poderá demorar vários minutos com base na velocidade da sua ligação à internet. É transferido apenas uma vez para cada veículo.</string>
+    <string name="alert_msg23">Pretende eliminar?</string>
+    // vuforia strings
+    <string name="INIT_ERROR">Erro</string>
+    <string name="INIT_ERROR_DEVICE_NOT_SUPPORTED">Falha ao sincronizar o Vuforia. Este dispositivo não é suportado.</string>
+    <string name="INIT_ERROR_NO_CAMERA_ACCESS">Falha ao sincronizar o Vuforia. Câmara não acessível</string>
+    <string name="INIT_LICENSE_ERROR_MISMATCH_KEY">A chave da Vuforia App não é válida para este produto. Obtenha uma chave válida iniciando sessão na sua conta em developer.vuforia.com e escolhendo o tipo de produto adequado durante a criação do projecto.</string>
+    <string name="INIT_LICENSE_ERROR_MISSING_KEY">Chave da Vuforia App em falta. Obtenha uma chave válida iniciando sessão na sua conta em developer.vuforia.com e criando um novo projecto.</string>
+    <string name="INIT_LICENSE_ERROR_INVALID_KEY">Chave inválida utilizada. Certifique-se de que está a utilizar uma chave da Vuforia App válida.</string>
+    <string name="INIT_LICENSE_ERROR_NO_NETWORK_TRANSIENT">Não é possível entrar em contacto com o servidor. Tente novamente mais tarde.</string>
+    <string name="INIT_LICENSE_ERROR_NO_NETWORK_PERMANENT">Nenhuma rede disponível. Certifique-se de que está ligado à internet.</string>
+    <string name="INIT_LICENSE_ERROR_CANCELED_KEY">Esta chave de licença da aplicação foi cancelada e não pode ser mais utilizada. Obtenha uma nova chave de licença.</string>
+    <string name="INIT_LICENSE_ERROR_PRODUCT_TYPE_MISMATCH">A chave da Vuforia App não é válida para este produto. Obtenha uma chave válida iniciando sessão na sua conta em developer.vuforia.com e escolhendo o tipo de produto adequado durante a criação do projecto.</string>
+    <string name="INIT_LICENSE_ERROR_UNKNOWN_ERROR">Falha ao sincronizar o Vuforia.</string>
+    <string name="INIT_OBJECT_DATASET_NOT_FOUND_TITLE">Base de dados não encontrada</string>
+    <string name="INIT_OBJECT_DATASET_NOT_FOUND">Digitalize um objecto e carregue uma base de dados</string>
+    <string name="menu_back">Amostras do Vuforia</string>
+    <string name="menu_extended_tracking">Monitorização alargada</string>
+    <string name="menu_character_mode">Modo de carácter</string>
+    <string name="menu_flash">Flash</string>
+    <string name="menu_flash_error_on">Não é possível activar o flash</string>
+    <string name="menu_flash_error_off">Não é possível desactivar o flash</string>
+    <string name="menu_contAutofocus">Focagem automática</string>
+    <string name="menu_contAutofocus_error_on">Não é possível activar a focagem automática contínua</string>
+    <string name="menu_contAutofocus_error_off">Não é possível desactivar a focagem automática contínua</string>
+    <string name="menu_datasets">CONJUNTOS DE DADOS</string>
+    <string name="menu_camera">CÂMARA</string>
+    <string name="menu_camera_front">Dianteira</string>
+    <string name="menu_camera_back">Traseira</string>
+    <string name="menu_button_red">Vermelho</string>
+    <string name="menu_button_blue">Azul</string>
+    <string name="menu_button_yellow">Amarelo</string>
+    <string name="menu_button_green">Verde</string>
+    <!--start-->
+    <string name="title_activity_video_player">VideoPlayerActivity</string>
+    <string name="back">Retroceder</string>
+    <string name="download_msg">Pretende transferir \n este manual com especificações EUR ou \n RUS?</string>
+    <string name="download_lang">Tem a certeza de que pretende transferir?</string>
+    <string name="register_push">Pretende registar-se no serviço push?</string>
+    <string name="exit_alert">Tem a certeza de que pretende sair?</string>
+    <string name="internet_connect">Sem ligação à Internet. Verifique a sua rede WIFI ou móvel e tente novamente.</string>
+    <string name="car_msg">Veículo já transferido</string>
+    <string name="car_msg_download">Transfira o manual do seu veículo</string>
+    <string name="video_popup_msg">Pretende saber mais? </string>
+    <string name="video_watch_again">Ver novamente</string>
+    <string name="video_learn_more">Saber mais</string>
+    <string name="top_search">Principais pesquisas</string>
+    <string name="recent_search">Pesquisas recentes</string>
+    <string-array name="car_names">
+        <item>Qashqai EUR Specs</item>
+        <item>Qashqai RUS Specs</item>
+        <item>Juke</item>
+        <item>X-Trail EUR Specs</item>
+        <item>X-Trail RUS Specs</item>
+        <item>Pulsar</item>
+        <item>Micra</item>
+        <item>Note</item>
+        <item>Leaf</item>
+        <item>Navara</item>
+        <item>Novo Nissan Micra</item>
+        <item>Novo Nissan QASHQAI</item>
+        <item>Novo Nissan X-TRAIL</item>
+        <item>Novo Nissan Leaf</item>
+    </string-array>
+    <string-array name="assistance_array">
+        <item>Luzes de aviso</item>
+        <item>Guia de referência rápida</item>
+        <item>Informação sobre os pneus</item>
+        <item>Compartimento do motor</item>
+        <item>Garantia</item>
+        <item>Nissan Assistance</item>
+    </string-array>
+    <string-array name="assistance_array_temp">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="settings_array">
+        <item>Alterar idioma</item>
+        <item>Selecção do veículo</item>
+        <item>Tutorial</item>
+        <item>Quero classificar a aplicação</item>
+        <item>Enviar feedback</item>
+    </string-array>
+    <string-array name="tab_names">
+        <item>Explorar</item>
+        <item>Assistência</item>
+        <item>Procurar</item>
+        <item>Definições</item>
+    </string-array>
+    <string-array name="video_array_title">
+        <item>Aviso e prevenção de saída de faixa</item>
+        <item>Intelligent Emergency Braking (Travagem de emergência inteligente)</item>
+        <item>Intelligent Around View Monitor (Câmara panorâmica inteligente)</item>
+        <item>Áudio no visor com CarPlay</item>
+    </string-array>
+    <string name="select_your_car">Seleccione o seu veículo</string>
+    <string name="download_driver_guide">Transferir Driver&apos;s Guide</string>
+    <string name="driver_guide">DRIVER’S GUIDE</string>
+    <string name="select_language">Selecc Língua</string>
+    <string name="select_language_landing">Selecc Língua</string>
+    <string name="confirm_language">Confirmar idioma</string>
+    <string name="button_OK">OK</string>
+    <string name="button_CANCEL">CANCELAR</string>
+    <string name="button_YES">Sim</string>
+    <string name="button_NO">Não</string>
+    <string name="button_next">Seguinte</string>
+    <string name="explore">EXPLORAR</string>
+    <string name="augmented_reality">Realidade aumentada</string>
+    <string name="explore_your_car">EXPLORE O SEU VEÍCULO</string>
+    <string name="assistance">ASSISTÊNCIA</string>
+    <string name="search">PROCURAR</string>
+    <string name="settings">DEFINIÇÕES</string>
+    <string name="change_language">ALTERAR IDIOMA</string>
+    <string name="add_extra_car">Selecção do veículo</string>
+    <string name="warning_lights">LUZES DE AVISO</string>
+    <string name="quick_reference_guide">Guia de referência rápida</string>
+    <string name="alert_status">Estado</string>
+    <string name="alert_download_complete">Transferir completo..</string>
+    <string name="alert_downloading">A transferir..</string>
+    <string name="no_content_found">Sem resultados</string>
+    <string name="no_content_found_top_recent_search">Nenhuma palavra-chave encontrada</string>
+    <string-array name="tutorial_titles">
+        <item>Explore o seu veículo </item>
+        <item>Luzes avisadoras </item>
+        <item>Guia de referência rápida e mais </item>
+    </string-array>
+    <string-array name="tutorial_details">
+            <item>
+                Conheça todos os controlos do seu Nissan com a tecnologia de Realidade Aumentada. \n Basta apontar a câmara do smartphone para um controlo e clicar na mensagem pop-up para aceder às informações.
+            </item>
+        <item>
+                As informações sobre as luzes avisadoras que se podem acender no painel de instrumentos do veículo são disponibilizadas com um simples toque de botão. \n Permite um acesso rápido, simples e fácil a todas as informações de que necessita.
+            </item>
+        <item>
+                Aceda a uma versão electrónica do Guia de referência rápida para descobrir todas as funcionalidades do seu Nissan. \n São também fornecidas informações importantes sobre pneus, motores, garantia, etc.
+            </item>
+    </string-array>
+    <string name="all">Todos</string>
+    <string name="tyre_information">Informação sobre os pneus</string>
+    <string name="engine_compartment">Compartimento do motor</string>
+    <string name="warranty">Garantia</string>
+    <string name="registered_country_name">Em que país está matriculado o seu veículo?</string>
+    <string name="telephone_number_for">Números de telefone para</string>
+    <string name="national">Nacional:</string>
+    <string name="international">Internacional:</string>
+    <string-array name="country_for_call_array">
+        <item>Áustria</item>
+        <item>Bélgica</item>
+        <item>República Checa</item>
+        <item>Dinamarca</item>
+        <item>Estónia</item>
+        <item>Finlândia</item>
+        <item>França</item>
+        <item>Alemanha</item>
+        <item>Grécia</item>
+        <item>Hungria</item>
+        <item>Itália</item>
+        <item>Letónia</item>
+        <item>Lituânia</item>
+        <item>Países Baixos</item>
+        <item>Noruega</item>
+        <item>Polónia</item>
+        <item>Portugal</item>
+        <item>Eslováquia</item>
+        <item>Espanha</item>
+        <item>Suécia</item>
+        <item>Suíça</item>
+        <item>Reino Unido</item>
+    </string-array>
+    <string-array name="nissan_assistance_array">
+        <item>Guia Nissan Assistance</item>
+        <item>Telefonar para a Nissan Assistance</item>
+    </string-array>
+    <string name="update_msg">Está disponível uma actualização. Pretende transferir?</string>
+    <string name="register_push_dialog">&quot;A registar o seu dispositivo no servidor... Aguarde.&quot;</string>
+    <string name="no_content_found_url">&quot;Nenhum conteúdo encontrado.&quot;</string>
+    <string name="confirmation_failed">&quot;Erro no envio da confirmação.&quot;</string>
+    <string name="device_reg_push">&quot;Sem o registo, não é possível transferir o veículo.&quot;</string>
+    <string name="unable_to_update">&quot;Não é possível actualizar o conteúdo. Tente novamente.&quot;</string>
+    <string name="recent_searches">&quot;Pesquisas recentes&quot;</string>
+    <string name="no_results">&quot;Sem resultados&quot;</string>
+    <string name="search_box_hint">Procurar</string>
+    <string name="data_syncing">A sincronizar dados...</string>
+    <string name="start_download">A iniciar a transferência...</string>
+    <string name="start_car_delete">A iniciar a eliminação...</string>
+
+    <string name="great_not_great_text">Como tem sido a sua experiência até agora?</string>
+    <string name="great">Muito boa</string>
+    <string name="not_great">Não muito boa</string>
+
+    <string name="rate_our_app_sub_title">É bom saber. Poderia classificar a nossa aplicação?</string>
+    <string name="rate_no_thanks">Não, obrigado</string>
+    <string name="rate_ask_me_later">Perguntar mais tarde</string>
+    <string name="rate_our_app_yes">Sim, quero classificar a aplicação</string>
+
+    <string name="feedback_text">Envie-nos o seu feedback directamente. Gostaríamos muito de saber a sua opinião.</string>
+    <string name="send_feedback">Enviar feedback</string>
+
+    <string name="feedback">Feedback</string>
+    <string name="send_feedback_title">Título</string>
+    <string name="send_feedback_description">Descrição</string>
+    <string name="send_feedback_button">Enviar feedback</string>
+
+</resources>

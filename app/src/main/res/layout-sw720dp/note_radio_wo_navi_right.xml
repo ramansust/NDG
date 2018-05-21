@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/popupLayout"
+        android:layout_width="300dp"
+        android:layout_height="620dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="5" >
+
+        <Button
+            android:id="@+id/button1FMAM1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.9"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="4" />
+
+        <Button
+            android:id="@+id/button1FMAM"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="7" />
+
+        <Button
+            android:id="@+id/button1CD"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="6" />
+
+        <Button
+            android:id="@+id/button1CD1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:background="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/button1FMAM2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="1" />
+    </LinearLayout>
+
+</LinearLayout>

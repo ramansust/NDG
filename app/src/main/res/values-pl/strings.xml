@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<resources>
+    <string name="app_name">NISSAN Driver’s Guide</string>
+    <string name="hello_world">Witaj!</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="title_activity_language_selection">LanguageSelectionActivity</string>
+    <string name="title_activity_tutorial">TutorialActivity</string>
+    <string name="title_activity_car_download">CarDownloadActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_details_main">DetailsActivity</string>
+    <string name="title_combimeter_main">CombimeterActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Witaj…</string>
+    <string name="title_activity_image_target">ImageTargetActivity</string>
+    <string name="alert_msg39">Przed użyciem zestawu naprawczego opony przeczytaj dokładnie instrukcję „NAPRAWIANIE PRZEBITEJ OPONY”.</string>
+    <string name="alert_msg40">Czytaj</string>
+    <string name="alert_msg41">Już przeczytałem/przeczytałam</string>
+    <string name="alert_msg42">Przed rozpoczęciem wymiany przebitej opony przeczytaj dokładnie instrukcję „WYMIANA KOŁA Z PRZEBITĄ OPONĄ”.</string>
+    <string name="alert_msg22">Czy chcesz pobrać instrukcję obsługi pojazdu? W zależności od połączenia internetowego może to potrwać do kilku minut. W przypadku każdego pojazdu pobieranie zostanie wykonane tylko raz.</string>
+    <string name="alert_msg23">Czy usunąć instrukcję obsługi?</string>
+    // vuforia strings
+    <string name="INIT_ERROR">Błąd</string>
+    <string name="INIT_ERROR_DEVICE_NOT_SUPPORTED">Nie udało się uruchomić aplikacji Vuforia. To urządzenie nie jest obsługiwane.</string>
+    <string name="INIT_ERROR_NO_CAMERA_ACCESS">Nie udało się uruchomić aplikacji Vuforia. Kamera jest niedostępna.</string>
+    <string name="INIT_LICENSE_ERROR_MISMATCH_KEY">Klucz aplikacji Vuforia nie jest odpowiedni do tego produktu. Uzyskaj ważny klucz, logując się na swoje konto na stronie developer.vuforia.com i wybierając odpowiedni typ produktu podczas tworzenia projektu.</string>
+    <string name="INIT_LICENSE_ERROR_MISSING_KEY">Brak klucza aplikacji Vuforia. Uzyskaj ważny klucz, logując się na swoje konto na stronie developer.vuforia.com i tworząc nowy projekt.</string>
+    <string name="INIT_LICENSE_ERROR_INVALID_KEY">Użyty klucz jest nieprawidłowy. Sprawdź, czy używasz odpowiedniego klucza aplikacji Vuforia.</string>
+    <string name="INIT_LICENSE_ERROR_NO_NETWORK_TRANSIENT">Nie można się połączyć z serwerem. Spróbuj ponownie później.</string>
+    <string name="INIT_LICENSE_ERROR_NO_NETWORK_PERMANENT">Brak dostępu do sieci. Sprawdź swoje połączenie internetowe.</string>
+    <string name="INIT_LICENSE_ERROR_CANCELED_KEY">Ten klucz licencyjny aplikacji został unieważniony i nie można już z niego korzystać. Uzyskaj nowy klucz licencyjny.</string>
+    <string name="INIT_LICENSE_ERROR_PRODUCT_TYPE_MISMATCH">Klucz aplikacji Vuforia nie jest odpowiedni do tego produktu. Uzyskaj ważny klucz, logując się na swoje konto na stronie developer.vuforia.com i wybierając odpowiedni typ produktu podczas tworzenia projektu.</string>
+    <string name="INIT_LICENSE_ERROR_UNKNOWN_ERROR">Nie udało się uruchomić aplikacji Vuforia.</string>
+    <string name="INIT_OBJECT_DATASET_NOT_FOUND_TITLE">Nie znaleziono bazy danych.</string>
+    <string name="INIT_OBJECT_DATASET_NOT_FOUND">Przeprowadź skanowanie i załaduj bazę danych.</string>
+    <string name="menu_back">Próbki Vuforia</string>
+    <string name="menu_extended_tracking">Śledzenie zaawansowane</string>
+    <string name="menu_character_mode">Tryb znaków</string>
+    <string name="menu_flash">Flash</string>
+    <string name="menu_flash_error_on">Nie można włączyć Flash.</string>
+    <string name="menu_flash_error_off">Nie można wyłączyć Flash.</string>
+    <string name="menu_contAutofocus">Auto-Focus</string>
+    <string name="menu_contAutofocus_error_on">Nie można włączyć ciągłego trybu Auto-Focus.</string>
+    <string name="menu_contAutofocus_error_off">Nie można wyłączyć ciągłego trybu Auto-Focus.</string>
+    <string name="menu_datasets">DATASETS</string>
+    <string name="menu_camera">KAMERA</string>
+    <string name="menu_camera_front">Przód</string>
+    <string name="menu_camera_back">Tył</string>
+    <string name="menu_button_red">Czerwony</string>
+    <string name="menu_button_blue">Niebieski</string>
+    <string name="menu_button_yellow">Żółty</string>
+    <string name="menu_button_green">Zielony</string>
+    <!--start-->
+    <string name="title_activity_video_player">VideoPlayerActivity</string>
+    <string name="back">Powrót</string>
+    <string name="download_msg">Czy chcesz pobrać \n instrukcję obsługi w wersji EUR czy \n ROS?</string>
+    <string name="download_lang">Na pewno rozpocząć pobieranie?</string>
+    <string name="register_push">Czy chcesz zarejestrować usługę push?</string>
+    <string name="exit_alert">Na pewno chcesz opuścić to menu?</string>
+    <string name="internet_connect">Brak połączenia z Internetem. Sprawdź dostępność sieci Wi-Fi lub komórkowej i spróbuj ponownie.</string>
+    <string name="car_msg">Instrukcja obsługi pojazdu została już pobrana.</string>
+    <string name="car_msg_download">Pobierz instrukcję obsługi swojego pojazdu.</string>
+    <string name="video_popup_msg">Chcesz dowiedzieć się więcej? </string>
+    <string name="video_watch_again">Obejrzyj ponownie</string>
+    <string name="video_learn_more">Dowiedz się więcej</string>
+    <string name="top_search">Najczęściej wyszukiwane</string>
+    <string name="recent_search">Ostatnio wyszukiwane</string>
+    <string-array name="car_names">
+        <item>Qashqai EUR Specs</item>
+        <item>Qashqai RUS Specs</item>
+        <item>Juke</item>
+        <item>X-Trail EUR Specs</item>
+        <item>X-Trail RUS Specs</item>
+        <item>Pulsar</item>
+        <item>Micra</item>
+        <item>Note</item>
+        <item>Leaf</item>
+        <item>Navara</item>
+        <item>Nowy Nissan Micra</item>
+        <item>Nowy Nissan QASHQAI</item>
+        <item>Nowy Nissan X-TRAIL</item>
+        <item>Nowy Nissan Leaf</item>
+    </string-array>
+    <string-array name="assistance_array">
+        <item>Lampki ostrzegawcze</item>
+        <item>Skrócona instrukcja obsługi</item>
+        <item>Informacje dotyczące opon</item>
+        <item>Przedział silnika</item>
+        <item>Gwarancja</item>
+        <item>Nissan Assistance</item>
+    </string-array>
+    <string-array name="assistance_array_temp">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="settings_array">
+        <item>Zmiana języka</item>
+        <item>Wybór pojazdu</item>
+        <item>Instrukcja</item>
+        <item>Oceń aplikację</item>
+        <item>Wyślij opinię</item>
+    </string-array>
+    <string-array name="tab_names">
+        <item>Odkrywaj</item>
+        <item>Pomoc</item>
+        <item>Szukaj</item>
+        <item>Ustawienia</item>
+    </string-array>
+    <string-array name="video_array_title">
+        <item>System ostrzegania o niekontrolowanej zmianie pasa ruchu i system zapobiegania niekontrolowanej zmianie pasa ruchu</item>
+        <item>Intelligent Emergency Braking</item>
+        <item>Intelligent Around View Monitor</item>
+        <item>Ekran audio z CarPlay</item>
+    </string-array>
+    <string name="select_your_car">Wybierz pojazd</string>
+    <string name="download_driver_guide">Pobierz instrukcję obsługi</string>
+    <string name="driver_guide">INSTRUKCJA OBSŁUGI</string>
+    <string name="select_language">Select Language (wybr jezyka)</string>
+    <string name="select_language_landing">Select Language (wybr jezyka)</string>
+    <string name="confirm_language">Potwierdź wybór języka</string>
+    <string name="button_OK">OK</string>
+    <string name="button_CANCEL">ANULUJ</string>
+    <string name="button_YES">Tak</string>
+    <string name="button_NO">Nie</string>
+    <string name="button_next">Dalej</string>
+    <string name="explore">ODKRYWAJ</string>
+    <string name="augmented_reality">Rzeczywistość rozszerzona</string>
+    <string name="explore_your_car">POZNAJ SWÓJ POJAZD</string>
+    <string name="assistance">POMOC</string>
+    <string name="search">SZUKAJ</string>
+    <string name="settings">USTAWIENIA</string>
+    <string name="change_language">ZMIANA JĘZYKA</string>
+    <string name="add_extra_car">Wybór pojazdu</string>
+    <string name="warning_lights">LAMPKI OSTRZEGAWCZE</string>
+    <string name="quick_reference_guide">Skrócona instrukcja obsługi</string>
+    <string name="alert_status">Stan</string>
+    <string name="alert_download_complete">Ukończono pobieranie.</string>
+    <string name="alert_downloading">Pobieranie…</string>
+    <string name="no_content_found">Brak wyników</string>
+    <string name="no_content_found_top_recent_search">Nie znaleziono wyszukiwanego słowa</string>
+    <string-array name="tutorial_titles">
+        <item>Poznaj swój pojazd </item>
+        <item>Lampki ostrzegawcze </item>
+        <item>Skrócona instrukcja obsługi oraz inne informacje </item>
+    </string-array>
+    <string-array name="tutorial_details">
+            <item>
+                Zapoznaj się ze wszystkimi przyrządami sterującymi swojego Nissana przy użyciu technologii rzeczywistości rozszerzonej. \n Aby uzyskać informacje na temat przyrządu, wystarczy skierować obiektyw aparatu fotograficznego wbudowanego w smartfon na przyrząd sterujący w pojeździe i kliknąć na wyświetlone okienko.
+            </item>
+        <item>
+                Wystarczy nacisnąć przycisk, aby uzyskać informacje na temat lampek ostrzegawczych, jakie zapalają się na panelu wskaźników pojazdu. \n Szybki i łatwy dostęp do wszystkich potrzebnych informacji.
+            </item>
+        <item>
+                Uzyskaj dostęp do elektronicznej wersji Skróconej instrukcji obsługi i poznaj wszystkie funkcje swojego Nissana. \n Uzyskasz również dostęp do istotnych informacji o oponach, silniku, gwarancji itp.
+            </item>
+    </string-array>
+    <string name="all">Wszystko</string>
+    <string name="tyre_information">Informacje dotyczące opon</string>
+    <string name="engine_compartment">Przedział silnika</string>
+    <string name="warranty">Gwarancja</string>
+    <string name="registered_country_name">W którym państwie zarejestrowany jest Twój pojazd?</string>
+    <string name="telephone_number_for">Numery telefonów w kraju:</string>
+    <string name="national">Krajowe:</string>
+    <string name="international">Międzynarodowe:</string>
+    <string-array name="country_for_call_array">
+        <item>Austria</item>
+        <item>Belgia</item>
+        <item>Czechy</item>
+        <item>Dania</item>
+        <item>Estonia</item>
+        <item>Finlandia</item>
+        <item>Francja</item>
+        <item>Niemcy</item>
+        <item>Grecja</item>
+        <item>Węgry</item>
+        <item>Włochy</item>
+        <item>Łotwa</item>
+        <item>Litwa</item>
+        <item>Holandia</item>
+        <item>Norwegia</item>
+        <item>Polska</item>
+        <item>Portugalia</item>
+        <item>Słowacja</item>
+        <item>Hiszpania</item>
+        <item>Szwecja</item>
+        <item>Szwajcaria</item>
+        <item>Wielka Brytania</item>
+    </string-array>
+    <string-array name="nissan_assistance_array">
+        <item>Przewodnik Nissan Assistance</item>
+        <item>Połącz się z Nissan Assistance</item>
+    </string-array>
+    <string name="update_msg">Aktualizacja jest dostępna. Czy chcesz ją pobrać?</string>
+    <string name="register_push_dialog">„Rejestrowanie urządzenia na serwerze… Czekaj”.</string>
+    <string name="no_content_found_url">„Nie znaleziono danych”.</string>
+    <string name="confirmation_failed">„Błąd przesyłania potwierdzenia”.</string>
+    <string name="device_reg_push">„Nie można pobrać danych niezarejestrowanego pojazdu”.</string>
+    <string name="unable_to_update">„Nie można zaktualizować danych. Spróbuj ponownie”.</string>
+    <string name="recent_searches">„Ostatnio wyszukiwane”</string>
+    <string name="no_results">„Brak wyników”</string>
+    <string name="search_box_hint">Szukaj</string>
+    <string name="data_syncing">Synchronizacja danych…</string>
+    <string name="start_download">Rozpoczynanie pobierania…</string>
+    <string name="start_car_delete">Rozpoczynanie usuwania…</string>
+
+    <string name="great_not_great_text">Jakie są Twoje dotychczasowe doświadczenia?</string>
+    <string name="great">Doskonałe</string>
+    <string name="not_great">Niezbyt dobre</string>
+
+    <string name="rate_our_app_sub_title">Dobrze to słyszeć. Czy poświęcisz minutę na ocenę naszej aplikacji?</string>
+    <string name="rate_no_thanks">Nie, dziękuję</string>
+    <string name="rate_ask_me_later">Zapytaj mnie później</string>
+    <string name="rate_our_app_yes">Tak, oceń aplikację</string>
+
+    <string name="feedback_text">Wyślij nam bezpośrednio swoją opinię. Twoja opinia jest dla nas niezmiernie cenna</string>
+    <string name="send_feedback">Wyślij opinię</string>
+
+    <string name="feedback">Opinia</string>
+    <string name="send_feedback_title">Tytuł</string>
+    <string name="send_feedback_description">Opis</string>
+    <string name="send_feedback_button">Prześlij opinię</string>
+
+</resources>

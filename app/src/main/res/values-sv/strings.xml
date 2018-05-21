@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">NISSAN Driver’s Guide</string>
+    <string name="alert_title1">Språkpreferens</string>
+    <string name="alert_msg1">Ditt systemspråk är svenska och det kommer att vara ditt standardspråk i detta program. Du kan ändra det från fliken språkinställningar.</string>
+    <string name="alert_msg2">Detta program stöder för närvarande engelska, tyska, franska, italienska, spanska, nederländska, ryska och svenska. Engelska kommer att bli ditt standardspråk i detta program. Du kan ändra det från fliken språkinställningar.</string>
+    <string name="alert_title3">Observera!</string>
+    <string name="alert_msg3">Du kan inte använda detta program under körning. Kontrollera att ditt fordon står stilla när du använder detta program.</string>
+    <string name="alert_title4">Ansvarsfriskrivning!</string>
+    <string name="alert_msg4">Detta program samlar inte på något sätt in personliga uppgifter. Detta program är NISSANs exklusiva egendom, och är inte öppen för någon typ av förändring. Copyright 2013, NISSAN.</string>
+    <string name="alert_msg5">Vänta...</string>
+    <string name="alert_msg6">Laddar data</string>
+    <string name="alert_title7">Välj det språk du föredrar.</string>
+    <string name="alert_msg7">Funktionen ficklampa fungerar inte på din enhet.</string>
+    <string name="alert_msg8">Otillräckligt ljus för att upptäcka objekt.</string>
+    <string name="alert_msg9">Ja, jag godkänner.</string>
+    <string name="alert_msg10">Nej, jag kommer att avsluta.</string>
+    <string name="alert_msg11">OK</string>
+    <string name="alert_title8">Laddas...</string>
+    <string name="alert_msg12">Ändra språk</string>
+    <string name="alert_title9">Observera!</string>
+    <string name="alert_msg13">Vill du hämta språkinnehållet?</string>
+    <string name="alert_msg14">Ja</string>
+    <string name="alert_msg15">Anslut till Internet för att hämta innehållet.</string>
+    <string name="alert_msg16">Avbryt</string>
+    <string name="alert_msg17">Välj språk</string>
+    <string name="alert_msg18">Ta bara några sekunder till att läsa igenom informationsavsnittet för att optimera din upplevelse med Augmented Reality-tekniken.</string>
+    <string name="alert_msg19">Gå till INFO-sida.</string>
+    <string name="alert_msg20">Vill du verkligen avsluta identifieringsläget?</string>
+    <string name="alert_msg21">Vänd enheten till stående läge för att komma åt information om detta element.</string>
+    <string name="alert_title10">Bekräfta</string>
+    <string name="alert_title11">Status</string>
+    <string name="alert_msg24">Hämtar...</string>
+    <string name="alert_msg25">Hämtningen avslutad</string>
+    <string name="alert_title12">Lyckad</string>
+    <string name="alert_msg26">Hämtningen av fordonets innehåll lyckades.</string>
+    <string name="alert_msg27">Gå till startsidan</string>
+    <string name="alert_msg28">Se fordon</string>
+    <string name="alert_msg29">Lägga till fler fordon</string>
+    <string name="alert_msg30">Vill du ta bort språkinnehållet till fordonet?</string>
+    <string name="alert_msg31">Detta tar bort allt hämtat innehållet för detta fordon. Är du säker?</string>
+    <string name="alert_msg32">Fordonets innehåll har redan hämtats.</string>
+    <string name="alert_msg33">Du har inte installerat något fordon ännu. Gå till hämta sida och välj ditt fordon.</string>
+    <string name="alert_title13">Sparar innehåll...</string>
+    <string name="alert_msg34">Nej</string>
+    <string name="alert_msg35">Du är ansluten till ett låghastighetsnätverk. Anslut till Wi-Fi/4G/3G för att hämta filen (~100MB).</string>
+    <string name="alert_msg36">Översättning finns inte tillgänglig för detta innehåll!</string>
+    <string name="alert_msg37">Vill du ta bort detta språkinnehåll?</string>
+    <string name="alert_msg38">Detta kommer att radera innehållet för detta språk. Är du säker?</string>
+    <string name="alert_msg39">Läs avsnittet ”REPARATION AV PUNKTERAT HJUL” noggrant innan du använder nödreparationssatsen.</string>
+    <string name="alert_msg40">Läs</string>
+    <string name="alert_msg41">Jag har redan läst</string>
+    <string name="alert_msg42">Läs instruktionerna i avsnittet ”BYTE AV PUNKTERAT HJUL” noggrant innan byte av punkterat hjul.</string>
+    <string name="alert_msg43">Har du köpt din Qashqai i Ryssland, i januari 2016 eller senare? \nJA: klicka på "Ja". \nNEJ: klicka "Nej" och ladda ner "Qashqai EUR Specs". </string>
+
+
+    <!--//new msg text only for english-->
+    <string name="alert_msg22">Vill du ladda ner innehållet för detta fordon? Det kan ta flera minuter beroende på hastigheten på din internetanslutning. Det hämtas endast en gång för varje fordon.</string>
+    <string name="alert_msg23">Vill du ta bort?</string>
+    <string name="alert_msg_download">Vilket fordon vill du ladda ner?</string>
+    <string name="qashqai_btn_eur">Qashqai EUR Specs</string>
+    <string name="qashqai_btn_rus">Qashqai RUS Specs</string>
+    <string name="xtrail_btn_eur">X-Trail EUR Specs</string>
+    <string name="xtrail_btn_rus">X-Trail RUS Specs</string>
+    <string name="alert_msg_view">Vilket fordon skulle du vilja visa?</string>
+    <string name="alert_msg_setting">Vilken bil skulle du ställa?</string>
+    <string name="alert_msg_delete">Vilket fordon vill du radera?</string>
+
+    <!--//warranty alert dialog message-->
+     <string name="warranty_alert_message">Innan du läser detta avsnitt, bör
+du identifiera din motortyp. Den
+här informationen finns i början
+av ditt garantihäfte; du hittar
+motortyp överst på höger sida
+om underhållsmärket. Din
+motortyp är den koden som
+följer omedelbart efter fordonets
+namn.
+Se följande exempel:</string>
+
+    <!--start language-->
+    <string name="title_activity_video_player">VideoPlayerActivity</string>
+    <string name="back">Tillbaka</string>
+    <string name="download_msg">Vill du ladda ner den här guiden med europeiska eller ryska specifikationer?</string>
+    <string name="download_lang">Är du säker på att du vill ladda ner?</string>
+    <string name="exit_alert">Är du säker på att du vill avsluta?</string>
+    <string name="internet_connect">Ingen internetanslutning. Kontrollera ditt wifi-nätverk eller mobila datanätverk och försök igen.</string>
+    <string name="car_msg">Car Already Downloaded</string>
+    <string name="car_msg_download">Ladda ner din bilguide</string>
+    <string name="video_popup_msg">Vill du veta mer? </string>
+    <string name="video_watch_again">Visa igen</string>
+    <string name="video_learn_more">Läs mer</string>
+
+    <string-array name="car_names">
+        <item>Qashqai EUR Specs</item>
+        <item>Qashqai RUS Specs</item>
+        <item>Juke</item>
+        <item>X-Trail EUR Specs</item>
+        <item>X-Trail RUS Specs</item>
+        <item>Pulsar</item>
+        <item>Micra</item>
+        <item>Note</item>
+        <item>Leaf</item>
+        <item>Navara</item>
+        <item>Helt Nya Nissan Micra</item>
+        <item>NYA NISSAN QASHQAI</item>
+        <item>NYA NISSAN X-TRAIL</item>
+        <item>Nya Nissan Leaf</item>
+    </string-array>
+    <string-array name="assistance_array">
+        <item>Varningslampor</item>
+        <item>Snabbreferensguide</item>
+        <item>Däckinformation</item>
+        <item>Motorrum</item>
+        <item>Garanti</item>
+        <item>Nissan Assistance</item>
+    </string-array>
+    <string-array name="settings_array">
+        <item>Byt språk</item>
+        <item>Val av bil</item>
+        <item>Handledning</item>
+        <item>Betygsätt appen</item>
+        <item>Skicka synpunkter</item>
+    </string-array>
+    <string-array name="tab_names">
+        <item>UPPTÄCK</item>
+        <item>ASSISTANS</item>
+        <item>Sökning</item>
+        <item>INSTÄLLNINGAR</item>
+    </string-array>
+
+    <string-array name="video_array_title">
+        <item>Lane Departure Warning and Prevention</item>
+        <item>Intelligent Emergency Braking</item>
+        <item>Intelligent Around View Monitor</item>
+        <item>Display Audio With CarPlay</item>
+    </string-array>
+
+    <string name="download_driver_guide">Download Driver\'s Guide</string>
+    <string name="driver_guide">FÖRARENS GUIDE</string>
+    <string name="select_language">Välj språk</string>
+
+    <string name="button_OK">OK</string>
+    <string name="button_CANCEL">Avbryt</string>
+    <string name="button_YES">Ja</string>
+    <string name="button_NO">Nej</string>
+    <string name="button_next">Nästa</string>
+
+    <string name="explore">Upptäck</string>
+    <string name="augmented_reality">Förstärkt verklighet</string>
+    <string name="explore_your_car">UPPTÄCK DIN BIL</string>
+    <string name="assistance">Assistans</string>
+    <string name="search">SEARCH</string>
+    <string name="settings">INSTÄLLNINGAR</string>
+    <string name="change_language">Byt språk</string>
+    <string name="add_extra_car">Val av bil</string>
+    <string name="warning_lights">Varningslampor</string>
+    <string name="quick_reference_guide">Snabbreferensguide</string>
+    <!--string language-->
+
+    <string name="alert_status">Status</string>
+    <string name="alert_download_complete">Hämtningen avslutad..</string>
+    <string name="alert_downloading">Hämtar..</string>
+
+    <string-array name="tutorial_titles">
+        <item>
+            Upptäck din bil
+        </item>
+        <item>
+            Varningslampor
+        </item>
+        <item>
+            Snabbguiden Quick Reference Guide och mycket mer
+        </item>
+    </string-array>
+    <string-array name="tutorial_details">
+        <item>
+            Lär känna alla reglage i din Nissan med hjälp av teknik för förstärkt verklighet (augmented reality).
+            \n Vänd helt enkelt kameran i din smartphone mot ett reglage och klicka på popup-meddelandet för att få information.
+        </item>
+        <item>
+            Med ett enkelt knapptryck får du information om varningslampor som kan tändas i kombinationsinstrumentet i din bil.
+            \n Du får på ett snabbt, enkelt och lättillgängligt sätt all den information du behöver.
+        </item>
+        <item>
+            Få åtkomst till en elektronisk version av din snabbguide för att upptäcka alla funktioner i din Nissan.
+            \n Du får även viktig information om däck, motor, garanti etc.
+        </item>
+    </string-array>
+
+    <string name="registered_country_name">I vilket land är ditt fordon registrerat?</string>
+    <string name="telephone_number_for">Telefonnummer för</string>
+    <string name="national">Inrikessamtal :</string>
+    <string name="international">Utlandssamtal :</string>
+
+    <string-array name="country_for_call_array">
+        <item>Österrike</item>
+        <item>Belgien</item>
+        <item>Tjeckien</item>
+        <item>Danmark</item>
+        <item>Estland</item>
+        <item>Finland</item>
+        <item>Frankrike</item>
+        <item>Tyskland</item>
+        <item>Grekland</item>
+        <item>Ungern</item>
+        <item>Italien</item>
+        <item>Lettland</item>
+        <item>Litauen</item>
+        <item>Nederländerna</item>
+        <item>Norge</item>
+        <item>Polen</item>
+        <item>Portugal</item>
+        <item>Slovakien</item>
+        <item>Spanien</item>
+        <item>Sverige</item>
+        <item>Schweiz</item>
+        <item>Storbritannien</item>
+    </string-array>
+
+    <string-array name="nissan_assistance_array">
+        <item>Nissan Assistance Guide</item>
+        <item>Ring Nissan Assistance</item>
+    </string-array>
+
+    <string name="update_msg">En uppdatering är tillgänglig. Vill du hämta den?</string>
+    <string name="register_push_dialog">&quot;Registerar din enhet på servern... Var god vänta.&quot;</string>
+    <string name="no_content_found_url">&quot;Inget innehåll hittades.&quot;</string>
+    <string name="confirmation_failed">&quot;Fel vid sändning av bekräftelse.&quot;</string>
+    <string name="device_reg_push">&quot;Utan registrering kan du inte ladda ned bilen.&quot;</string>
+    <string name="unable_to_update">&quot;Misslyckades med att uppdatera innehållet. Försök igen. &quot;</string>
+    <string name="recent_searches">&quot;Senaste sökningarna&quot;</string>
+    <string name="no_content_found">&quot;Inga resultat&quot;</string>
+    <string name="search_box_hint">Sökning</string>
+    <string name="data_syncing">Datan synkas…</string>
+    <string name="start_download">Startar nedladdning...</string>
+    <string name="start_car_delete">Startar radering...</string>
+    <string name="no_content_found_top_recent_search">Inga sökord hittades</string>
+
+    <string name="rate_our_app">Rate This App</string>
+    <string name="rate_our_app_title">Rate My App</string>
+
+    <string name="clear">Rensa</string>
+
+    <string name="great_not_great_text">Hur är din upplevelse så här långt?</string>
+    <string name="great">Fantastisk</string>
+    <string name="not_great">Inte bra</string>
+
+    <string name="rate_our_app_sub_title">Bra att höra. Vill du ta en minut för att betygsätta vår app?</string>
+    <string name="rate_no_thanks">Nej tack</string>
+    <string name="rate_ask_me_later">Fråga mig senare</string>
+    <string name="rate_our_app_yes">Ja, betygsätt appen</string>
+
+    <string name="feedback_text">Skicka dina synpunkter till oss direkt. Din åsikt är mycket värdefull för oss.</string>
+    <string name="send_feedback">Skicka synpunkter</string>
+
+    <string name="feedback">Feedback</string>
+    <string name="send_feedback_title">Rubrik</string>
+    <string name="send_feedback_description">Beskrivning</string>
+    <string name="send_feedback_button">Skicka feedback</string>
+
+</resources>

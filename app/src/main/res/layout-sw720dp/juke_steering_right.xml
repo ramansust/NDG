@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="600dp"
+        android:layout_height="680dp"
+        android:layout_gravity="center"
+        android:id="@+id/popupLayout"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.6"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".4"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="115dp"
+                android:clickable="true"
+                android:onClick="buttonEvent"
+                android:tag="44" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".9"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="75dp"
+                android:clickable="true"
+                android:onClick="buttonEvent"
+                android:tag="45" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5" />
+        </LinearLayout>
+        <!--
+             <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="75dp"
+            android:layout_weight="1.6"
+            android:clickable="true"
+            android:onClick="buttonEvent"
+            android:tag="23" />
+        -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".3" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="100dp"
+            android:layout_weight="1.6"
+            android:clickable="true"
+            android:onClick="buttonEvent"
+            android:tag="46" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="70dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout>

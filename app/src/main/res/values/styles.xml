@@ -1,0 +1,48 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:splitMotionEvents">false</item>
+    </style>
+
+    <!-- <style name="MyActionBar"
+         parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+         <item name="android:background">@color/black</item>
+         <item name="android:colorFocusedHighlight">@color/orange</item>
+
+     </style>
+
+     <style name="AppThemeOverlay.Popup" parent="ThemeOverlay.AppCompat.Dark">
+         <item name="android:colorBackground">popup menu background color</item>
+         <item name="colorControlHighlight">selected item color</item>
+     </style>-->
+
+
+    <style name="dividedListStyle" parent="@android:style/Widget.ListView">
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:divider">@drawable/dotted</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+
+    <style name="PauseDialog">
+        <item name="android:windowAnimationStyle">@style/PauseDialogAnimation</item>
+    </style>
+
+    <style name="PauseDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/left_in</item>
+        <item name="android:windowExitAnimation">@anim/right_out</item>
+
+    </style><style name="span">
+    <item name="android:lineSpacingMultiplier">10</item>
+    </style>
+
+
+    <style name="search_tabs_text_appearance_font" parent="TextAppearance.Design.Tab">
+        <item name="fontPath">font/Nissan Brand Bold.otf</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+</resources>

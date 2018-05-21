@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/fresco-0.13.0.aar/551355ec4d94c7defa833c1e01900f52/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4985047e64ea8daf00e923aac6386de67fbd5676">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/24.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/imagepipeline-0.13.0.aar/d8016101add6302f9bf620868b9148c8/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0aa38f91d7e6c9d5983d2148741de45b6cc5949b">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/27.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/build/intermediates/intermediate-jars/release/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="88f97fffb90607a1882ba39d0698e846d38aeb71">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/46.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/design-25.1.0.aar/b0197ccf93baef921068d82f41fff3bc/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/e3dbf3dc0aa7d163bace68c35568e67a/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/34.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.0.4.aar/2937859350cf1203ad82909ac49a55d4/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="364364bf77b4a71afc5930fc3ae57b3f0eea637c">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/22.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/play-services-analytics-11.0.4.aar/d77223c8507e442925cad36f81e02132/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a25b0b5aec89681b95d32780ad7904c1e1e4c679">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/animated-gif-0.13.0.aar/0c027ef02f4cc0e8ef1ff2cf10c18cf8/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="017cbad0ef8876fc041eb28b642a33c3762fe774">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/10.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.1.0.aar/1625f700627ff82d683f9dd56b42f9ec/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/39.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/play-services-analytics-impl-11.0.4.aar/61426e44d8702e5c6ca8b80d16c8820e/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2c2f1b3f82c027e98f56bb0154de0acbcce42e6d">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/14.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/sectioned-recyclerview-0.5.0.aar/7bca3a6172058c697fd1bba83edbb53f/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="84d49b4856aadb32b32f64c60ad844b9e9647b0e">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/firebase-common-11.0.4.aar/dbb62be6dd49e2abb543e7c98dc89f3d/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="43e9789bd3240271265ab30ce1be9f224843f5a8">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/20.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/firebase-iid-11.0.4.aar/f9b03af6375800cb627257f70f68f120/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ed87ccdcb70c17d71ba4e6e4ac16afa62d3c49fb">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/19.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/258c82c5d6bdecbf954be3b22b5393eb/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/33.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/vuforia/vuforia-sdk-android-7-0-43/build/java/vuforia/Vuforia.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e60f52591c8283828afcdb678b3e16306a44a71b">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/play-services-base-11.0.4.aar/54510a632504f230b23f4ba3d050ddb5/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="70ffe00aaf049893f59d1dad57bd82992faa38ef">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/15.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/media/nirob/MyDrive/AndroidUbuntu/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/41.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/firebase-analytics-11.0.4.aar/6b7e45bbc525db2c7406464f1c5d84d0/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e5b429c146094a612134910688d169ec08deeefb">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/17.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/a9a40ae04eaf9a620e16ddeafddce34f/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/35.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/fbcore-0.13.0.aar/406619517a59a038832dfa803b8696be/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9bab39d73226491b969ef7ffebeae2e6e525e98f">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/43.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/drawee-0.13.0.aar/78abeda7e154c17199be02926aa127df/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="db1ed61a6eaa9d50ff214daf79ed485877aaa58a">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/25.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-11.0.4.aar/4b4d77358eaed14f5db8ece393415682/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e1625e48a836779b5fa141d22e5d05563aaccc9a">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/18.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/libs/NDG_SDK.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="dda22eeca5a226efc9e28386442cbb94c39bc90a">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/7e11aafa5b5cde201db2d2798531500f/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/40.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/animated-webp-0.13.0.aar/9346e79d7e0c01a2525d1f20b9609a06/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a3112a1306b603deef909c0612d8d76000af0665">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/11.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.1.0.aar/43cc4d47db5e5157aec8ab5d0c3e2507/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/38.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/44.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/webpsupport-0.13.0.aar/fc57dc44ad9b4c07001c6f53355c883b/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="590c721000a8d11b2f57ae02a7e3d6d3b07c6459">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/12.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/calligraphy-2.2.0.aar/0dae4e46dfb79f1aa565b8ddd6315e84/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ebcb0bcf52fab7c586f39717f7cb8de91748b1b1">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/animated-base-0.13.0.aar/cdb8001b5174ede59ef11a4c364e3bce/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2bea506ec2a27189b7d3198ea11431304c8f7549">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/26.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/firebase-messaging-11.0.4.aar/0732068b927ac07680728ff0b6dc02b0/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f47f4d5bdfd7d7bf330945b8a7ccce4ab437a710">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/play-services-tagmanager-v4-impl-11.0.4.aar/e5fef496b3544f4a758a48e5f2e4316e/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c1b91bc7e480ab100d0397b16c93732e26fd10eb">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/13.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/flowlayoutmanager-1.2.3.2.aar/cb9f5d957697b0c99920d3973ac2597a/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="abadec32f0b8f9b3537ba473914a2fc64185f854">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.1.0.aar/33cdd38d5e81f3757210cbdd7134e8fc/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/751015c2b4eabdb8291d8a65ad1b032e/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/37.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.0.4.aar/1ec4e58b1040fab0eadf142967f69afe/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2430e711762a749feb00b3d64858ca4768251b9d">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/21.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-0.13.0.aar/3ec7896186f2b99a115f5a7558334d97/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e818c866cdd1e9b94d54a3ffbd7420dca384746a">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/28.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/transition-25.1.0.aar/6cc7e7138d59b189218b9338d7859fd0/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/23.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/2ff7329e932eaa14297a8b8030601fa1/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/36.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/c9392ff3568b8eda105a2fcf9bac4476/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/29.jar" />
+    </item>
+
+</items>

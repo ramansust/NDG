@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+<!--        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:gravity="center"
+            android:padding="@dimen/margin_back"
+            android:text="@string/rate_our_app_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_horizontal_margin"
+            android:textStyle="bold" />-->
+
+        <TextView
+            android:id="@+id/txt_sub_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="@string/rate_our_app_sub_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_horizontal_margin" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_view_no_thanks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.2dp"
+            android:background="@color/background"
+            android:gravity="center"
+            android:padding="@dimen/margin_left"
+            android:text="@string/rate_no_thanks"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_horizontal_margin" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@color/white"/>
+
+        <TextView
+            android:id="@+id/txt_view_ask_me_later"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.2dp"
+            android:background="@color/background"
+            android:gravity="center"
+            android:padding="@dimen/margin_left"
+            android:text="@string/rate_ask_me_later"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_horizontal_margin" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@color/white"/>
+
+        <TextView
+            android:id="@+id/txt_view_rate_this_app"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.2dp"
+            android:background="@color/background"
+            android:gravity="center"
+            android:padding="@dimen/margin_left"
+            android:text="@string/rate_our_app_yes"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_horizontal_margin"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
+</LinearLayout>

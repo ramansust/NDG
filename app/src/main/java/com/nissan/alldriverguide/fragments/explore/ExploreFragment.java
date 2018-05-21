@@ -1,0 +1,328 @@
+package com.nissan.alldriverguide.fragments.explore;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.GridView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.nissan.alldriverguide.ImageTargetActivity;
+import com.nissan.alldriverguide.R;
+import com.nissan.alldriverguide.VideoPlayerActivity;
+import com.nissan.alldriverguide.adapter.GridViewAdapter;
+import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.utils.NissanApp;
+import com.nissan.alldriverguide.utils.Values;
+
+public class ExploreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
+
+    // declare video thumb in an array
+    private int[] qashqai_eur_thumbnil_array_en = {R.drawable.qashqai_eur_en_video_01, R.drawable.qashqai_eur_en_video_02};
+    private int[] qashqai_eur_thumbnil_array_fr = {R.drawable.qashqai_eur_fr_video_01, R.drawable.qashqai_eur_fr_video_02};
+    private int[] qashqai_eur_thumbnil_array_it = {R.drawable.qashqai_eur_it_video_01, R.drawable.qashqai_eur_it_video_02};
+
+    private int[] juke_thumbnil_array_en = {R.drawable.juke_en_video_01, R.drawable.juke_en_video_02};
+    private int[] juke_thumbnil_array_de = {R.drawable.juke_de_video_01, R.drawable.juke_de_video_02};
+    private int[] juke_thumbnil_array_fr = {R.drawable.juke_fr_video_01, R.drawable.juke_fr_video_02};
+    private int[] juke_thumbnil_array_it = {R.drawable.juke_it_video_01, R.drawable.juke_it_video_02};
+
+    private int[] xtrail_eur_thumbnil_array_en = {R.drawable.xtrail_eur_en_video_01, R.drawable.xtrail_eur_en_video_02};
+    private int[] xtrail_eur_thumbnil_array_fr = {R.drawable.xtrail_eur_fr_video_01, R.drawable.xtrail_eur_fr_video_02};
+    private int[] xtrail_eur_thumbnil_array_it = {R.drawable.xtrail_eur_it_video_01, R.drawable.xtrail_eur_it_video_02};
+
+    private int[] navara_thumbnil_array_en = {R.drawable.navara_en_video_01, R.drawable.navara_en_video_02};
+    private int[] navara_thumbnil_array_de = {R.drawable.navara_de_video_01, R.drawable.navara_de_video_02};
+    private int[] navara_thumbnil_array_it = {R.drawable.navara_it_video_01, R.drawable.navara_it_video_02};
+
+    private int[] micrak14_thumbnil_array_en = {R.drawable.micrak14_en_video_01, R.drawable.micrak14_en_video_02, R.drawable.micrak14_en_video_03, R.drawable.micrak14_en_video_04};
+    private int[] micrak14_thumbnil_array_de = {R.drawable.micrak14_de_video_01, R.drawable.micrak14_de_video_02, R.drawable.micrak14_de_video_03, R.drawable.micrak14_de_video_04};
+    private int[] micrak14_thumbnil_array_nl = {R.drawable.micrak14_nl_video_01, R.drawable.micrak14_nl_video_02, R.drawable.micrak14_nl_video_03, R.drawable.micrak14_nl_video_04};
+    private int[] micrak14_thumbnil_array_es = {R.drawable.micrak14_es_video_01, R.drawable.micrak14_es_video_02, R.drawable.micrak14_es_video_03, R.drawable.micrak14_es_video_04};
+    private int[] micrak14_thumbnil_array_fr = {R.drawable.micrak14_fr_video_01, R.drawable.micrak14_fr_video_02, R.drawable.micrak14_fr_video_03, R.drawable.micrak14_fr_video_04};
+    private int[] micrak14_thumbnil_array_it = {R.drawable.micrak14_it_video_01, R.drawable.micrak14_it_video_02, R.drawable.micrak14_it_video_03, R.drawable.micrak14_it_video_04};
+
+    private int[] qashqai_2017_thumbnil_array_en = {R.drawable.qashqai_2017_en_video_01, R.drawable.qashqai_2017_en_video_02, R.drawable.qashqai_2017_en_video_03, R.drawable.qashqai_2017_en_video_04, R.drawable.qashqai_2017_en_video_05, R.drawable.qashqai_2017_en_video_06};
+    private int[] qashqai_2017_thumbnil_array_de = {R.drawable.qashqai_2017_de_video_01, R.drawable.qashqai_2017_de_video_02, R.drawable.qashqai_2017_de_video_03, R.drawable.qashqai_2017_de_video_04, R.drawable.qashqai_2017_de_video_05, R.drawable.qashqai_2017_de_video_06};
+    private int[] qashqai_2017_thumbnil_array_es = {R.drawable.qashqai_2017_es_video_01, R.drawable.qashqai_2017_es_video_02, R.drawable.qashqai_2017_es_video_03, R.drawable.qashqai_2017_es_video_04, R.drawable.qashqai_2017_es_video_05, R.drawable.qashqai_2017_es_video_06};
+    private int[] qashqai_2017_thumbnil_array_fr = {R.drawable.qashqai_2017_fr_video_01, R.drawable.qashqai_2017_fr_video_02, R.drawable.qashqai_2017_fr_video_03, R.drawable.qashqai_2017_fr_video_04, R.drawable.qashqai_2017_fr_video_05, R.drawable.qashqai_2017_fr_video_06};
+    private int[] qashqai_2017_thumbnil_array_nl = {R.drawable.qashqai_2017_nl_video_01, R.drawable.qashqai_2017_nl_video_02, R.drawable.qashqai_2017_nl_video_03, R.drawable.qashqai_2017_nl_video_04, R.drawable.qashqai_2017_nl_video_05, R.drawable.qashqai_2017_nl_video_06};
+    private int[] qashqai_2017_thumbnil_array_sv = {R.drawable.qashqai_2017_sv_video_01, R.drawable.qashqai_2017_sv_video_02, R.drawable.qashqai_2017_sv_video_03, R.drawable.qashqai_2017_sv_video_04, R.drawable.qashqai_2017_sv_video_05, R.drawable.qashqai_2017_sv_video_06};
+
+    private int[] xtrail_2017_thumbnil_array_en = {R.drawable.xtrial_2017_en_video_01, R.drawable.xtrial_2017_en_video_02, R.drawable.xtrial_2017_en_video_03, R.drawable.xtrial_2017_en_video_04, R.drawable.xtrial_2017_en_video_05, R.drawable.xtrial_2017_en_video_06};
+
+    private int[] leaf_2017_thumbnil_array_en = {R.drawable.leaf2017_en_video_01, R.drawable.leaf2017_en_video_02, R.drawable.leaf2017_en_video_03};
+    private int[] leaf_2017_thumbnil_array_nl = {R.drawable.leaf2017_nl_video_01, R.drawable.leaf2017_nl_video_02, R.drawable.leaf2017_nl_video_03};
+    private int[] leaf_2017_thumbnil_array_de = {R.drawable.leaf2017_de_video_01, R.drawable.leaf2017_de_video_02, R.drawable.leaf2017_de_video_03};
+    private int[] leaf_2017_thumbnil_array_it = {R.drawable.leaf2017_it_video_01, R.drawable.leaf2017_it_video_02, R.drawable.leaf2017_it_video_03};
+    private int[] leaf_2017_thumbnil_array_no = {R.drawable.leaf2017_no_video_01, R.drawable.leaf2017_no_video_02, R.drawable.leaf2017_no_video_03};
+    private int[] leaf_2017_thumbnil_array_es = {R.drawable.leaf2017_es_video_01, R.drawable.leaf2017_es_video_02, R.drawable.leaf2017_es_video_03};
+
+    private Button btnAR;
+    private RelativeLayout btnBlindSpotAR;
+    private View view;
+
+    private RelativeLayout relativeAR;
+    private RelativeLayout relativeBlindSpot;
+
+    private GridView gridView;
+
+    private Resources resources;
+    private DisplayMetrics metrics;
+    private TextView txtViewExplore;
+
+    /**
+     * Creating instance for this fragment
+     * @return Explore Fragment
+     */
+    public static Fragment newInstance() {
+        Fragment frag = new ExploreFragment();
+        return frag;
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_explore, container, false);
+
+        initViews(view);
+        loadResource();
+        setListener();
+        loadData();
+
+        return view;
+    }
+
+    /**
+     * here load the explore fragment initialized data
+     */
+    private void loadData() {
+        if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+
+            btnAR.setBackgroundResource(R.drawable.ar_selector_new_car);
+        } else {
+            btnAR.setBackgroundResource(R.drawable.ar_selector);
+        }
+
+        if(Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10) {
+            btnBlindSpotAR.setBackgroundResource(R.drawable.explore_xtrail_eur);
+        } else if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+            btnBlindSpotAR.setBackgroundResource(R.drawable.explore_micra_new);
+        }
+
+//        if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10 || Values.carType == 11) {
+        if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+            relativeBlindSpot.setVisibility(View.VISIBLE);
+            relativeAR.setVisibility(View.GONE);
+
+            /*
+            here set the adapter for grid view
+             */
+            gridView.setAdapter(new GridViewAdapter(getActivity().getApplicationContext(), getThumbnilArray(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang())));
+        } else {
+            relativeAR.setVisibility(View.VISIBLE);
+            relativeBlindSpot.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * here set the click listener
+     */
+    private void setListener() {
+        btnAR.setOnClickListener(this);
+        btnBlindSpotAR.setOnClickListener(this);
+
+        gridView.setOnItemClickListener(this);
+    }
+
+    /**
+     * initialized all global variable
+     * @param view for find fragment layout id
+     */
+    private void initViews(View view) {
+
+        txtViewExplore = (TextView) view.findViewById(R.id.txt_blind_spot_ar);
+
+        relativeAR = (RelativeLayout) view.findViewById(R.id.relative_ar);
+        relativeBlindSpot= (RelativeLayout) view.findViewById(R.id.relative_blind_spot);
+
+        btnAR = (Button) view.findViewById(R.id.btn_ar);
+        btnBlindSpotAR = (RelativeLayout) view.findViewById(R.id.btn_blind_spot_ar);
+
+        gridView = (GridView) view.findViewById(R.id.grid_view);
+
+        metrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+    }
+
+    // load resources for language localized
+    private void loadResource() {
+        resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()));
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        new PreferenceUtil(getActivity()).setOpenCountForRateApp();
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_ar:
+
+                // here start the ImageTargetActivity class for AR
+            case R.id.btn_blind_spot_ar:
+                startActivity(new Intent(getActivity(), ImageTargetActivity.class));
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Values.videoIndex = position;
+        // here start the playing video for grid view item click
+        startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
+    }
+
+    /**
+     * @param lang for comparing language sort name
+     * @return int array for specific language
+     */
+    private int[] getThumbnilArray(String lang) {
+        int[] array = new int[4];
+        if(Values.carType == 1) {
+            if(lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("de") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("es") || lang.equalsIgnoreCase("nl") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
+                array = qashqai_eur_thumbnil_array_en;
+            } else if(lang.equalsIgnoreCase("fr")) {
+                array = qashqai_eur_thumbnil_array_fr;
+            } else if(lang.equalsIgnoreCase("it")) {
+                array = qashqai_eur_thumbnil_array_it;
+            }
+        } else if(Values.carType == 3) {
+            if(lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("nl") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("es") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
+                array = juke_thumbnil_array_en;
+            } else if(lang.equalsIgnoreCase("de")) {
+                array = juke_thumbnil_array_de;
+            } else if(lang.equalsIgnoreCase("fr")) {
+                array = juke_thumbnil_array_fr;
+            } else if(lang.equalsIgnoreCase("it")) {
+                array = juke_thumbnil_array_it;
+            }
+        } else if(Values.carType == 4) {
+            if(lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("de") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("es") || lang.equalsIgnoreCase("nl") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
+                array = xtrail_eur_thumbnil_array_en;
+            } else if(lang.equalsIgnoreCase("fr")) {
+                array = xtrail_eur_thumbnil_array_fr;
+            } else if(lang.equalsIgnoreCase("it")) {
+                array = xtrail_eur_thumbnil_array_it;
+            }
+        } else if(Values.carType == 10) {
+            if(lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("fr") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("es") || lang.equalsIgnoreCase("nl") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
+                array = navara_thumbnil_array_en;
+            } else if(lang.equalsIgnoreCase("de")) {
+                array = navara_thumbnil_array_de;
+            } else if(lang.equalsIgnoreCase("it")) {
+                array = navara_thumbnil_array_it;
+            }
+        } else if(Values.carType == 11) {
+            if(lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
+                array = micrak14_thumbnil_array_en;
+            } else if (lang.equalsIgnoreCase("de")) {
+                array = micrak14_thumbnil_array_de;
+            } else if(lang.equalsIgnoreCase("nl")) {
+                array = micrak14_thumbnil_array_nl;
+            } else if(lang.equalsIgnoreCase("es")) {
+                array = micrak14_thumbnil_array_es;
+            } else if(lang.equalsIgnoreCase("fr")) {
+                array = micrak14_thumbnil_array_fr;
+            } else if(lang.equalsIgnoreCase("it")) {
+                array = micrak14_thumbnil_array_it;
+            }
+        } else if(Values.carType == 12) {
+            if(lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("it") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
+                array = qashqai_2017_thumbnil_array_en;
+            } else if (lang.equalsIgnoreCase("de")) {
+                array = qashqai_2017_thumbnil_array_de;
+            } else if(lang.equalsIgnoreCase("nl")) {
+                array = qashqai_2017_thumbnil_array_nl;
+            } else if(lang.equalsIgnoreCase("es")) {
+                array = qashqai_2017_thumbnil_array_es;
+            } else if(lang.equalsIgnoreCase("fr")) {
+                array = qashqai_2017_thumbnil_array_fr;
+            } else if(lang.equalsIgnoreCase("sv")) {
+                array = qashqai_2017_thumbnil_array_sv;
+            }
+        } else if(Values.carType == 13) {
+            array = xtrail_2017_thumbnil_array_en;
+        } else if(Values.carType == 14) {
+            if(lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("fr") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
+                array = leaf_2017_thumbnil_array_en;
+            } else if (lang.equalsIgnoreCase("de")) {
+                array = leaf_2017_thumbnil_array_de;
+            } else if(lang.equalsIgnoreCase("nl")) {
+                array = leaf_2017_thumbnil_array_nl;
+            } else if(lang.equalsIgnoreCase("es")) {
+                array = leaf_2017_thumbnil_array_es;
+            } else if(lang.equalsIgnoreCase("it")) {
+                array = leaf_2017_thumbnil_array_it;
+            } else if(lang.equalsIgnoreCase("no")) {
+                array = leaf_2017_thumbnil_array_no;
+            }
+        } else {
+
+        }
+
+        // here set the localized language image in top left
+        if(lang.equalsIgnoreCase("en")) {
+            txtViewExplore.setBackgroundResource(R.drawable.micra_eng);
+        } else if(lang.equalsIgnoreCase("de")) {
+            txtViewExplore.setBackgroundResource(R.drawable.micra_german);
+        } else if(lang.equalsIgnoreCase("ru")) {
+            txtViewExplore.setBackgroundResource(R.drawable.micra_rus);
+        } else if(lang.equalsIgnoreCase("sv")) {
+            txtViewExplore.setBackgroundResource(R.drawable.micra_swedish);
+        } else if(lang.equalsIgnoreCase("es")) {
+            txtViewExplore.setBackgroundResource(R.drawable.micra_spanish);
+        } else if(lang.equalsIgnoreCase("nl")) {
+            txtViewExplore.setBackgroundResource(R.drawable.micra_dutch);
+        } else if(lang.equalsIgnoreCase("no")) {
+            txtViewExplore.setBackgroundResource(R.drawable.micra_no);
+        } else if(lang.equalsIgnoreCase("fr")) {
+            txtViewExplore.setBackgroundResource(R.drawable.micra_french);
+        } else if(lang.equalsIgnoreCase("it")) {
+            txtViewExplore.setBackgroundResource(R.drawable.micra_italian);
+        } else if(lang.equalsIgnoreCase("pl")) {
+            txtViewExplore.setBackgroundResource(R.drawable.micra_polish);
+        } else if(lang.equalsIgnoreCase("fi")) {
+            txtViewExplore.setBackgroundResource(R.drawable.micra_finish);
+        } else if(lang.equalsIgnoreCase("pt")) {
+            txtViewExplore.setBackgroundResource(R.drawable.micra_portuguese);
+        } else {
+
+        }
+        return array;
+    }
+}

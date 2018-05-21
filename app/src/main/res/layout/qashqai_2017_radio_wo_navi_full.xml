@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="158dp"
+        android:layout_gravity="center"
+        android:id="@+id/popupLayout"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_radio_wo_navi_full_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".7"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEventInitial"/>
+
+        <Button
+            android:id="@+id/btn_radio_wo_navi_full_middle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.6"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEventInitial"/>
+
+        <Button
+            android:id="@+id/btn_radio_wo_navi_full_right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".7"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEventInitial"/>
+
+    </LinearLayout>
+
+</LinearLayout>

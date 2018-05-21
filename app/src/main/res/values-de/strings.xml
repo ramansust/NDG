@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NISSAN Driver’s Guide</string>
+    <string name="alert_title1">Gewünschte Sprache</string>
+    <string name="alert_msg1">Ihre Systemsprache ist Deutsch. Diese wird für Sie als voreingestellte Sprache in dieser App verwendet. Die Spracheinstellungen können Sie im Reiter Spracheinstellungen ändern.</string>
+    <string name="alert_msg2">Diese App unterstützt zur Zeit English, Deutsch, Français, Italiano, Español, Nederlands, Русский und Svenska. Englisch ist in dieser App als Sprache voreingestellt. Die Spracheinstellungen können Sie im Reiter Spracheinstellungen ändern.</string>
+    <string name="alert_title3">Achtung!</string>
+    <string name="alert_msg3">Sie dürfen diese App während der Fahrt nicht verwenden. Bitte verwenden Sie diese App nur, wenn Sie Ihr Fahrzeug angehalten haben.</string>
+    <string name="alert_title4">Haftungsausschluss</string>
+    <string name="alert_msg4">Diese App sammelt auf keine Art und Weise Ihre persönlichen Daten. Diese App ist alleiniges Eigentum von NISSAN und Änderungen jeglicher Art sind untersagt. Copyright 2013, NISSAN.</string>
+    <string name="alert_msg5">Bitte warten...</string>
+    <string name="alert_msg6">Daten werden geladen</string>
+    <string name="alert_title7">Wählen Sie Ihre gewünschte Sprache.</string>
+    <string name="alert_msg7">Die Taschenlampenfunktion wird von Ihrem Gerät nicht unterstützt.</string>
+    <string name="alert_msg8">Unzureichende Lichtverhältnisse machen es unmöglich, Objekte zu erfassen.</string>
+    <string name="alert_msg9">Ich stimme zu.</string>
+    <string name="alert_msg10">Beenden.</string>
+    <string name="alert_msg11">OK</string>
+    <string name="alert_title8">Laden...</string>
+    <string name="alert_msg12">Sprache ändern</string>
+    <string name="alert_title9">Achtung!</string>
+    <string name="alert_msg13">Wollen Sie diese Sprachinhalte herunterladen?</string>
+    <string name="alert_msg14">Ja</string>
+    <string name="alert_msg15">Bitte stellen Sie eine Internetverbindung her, um die Inhalte herunterzuladen.</string>
+    <string name="alert_msg16">Abbrechen</string>
+    <string name="alert_msg17">Sprache wählen</string>
+    <string name="alert_msg18">Bitte nehmen Sie sich für ein bestmögliches Augmented-Reality-Erlebnis einen Moment Zeit und lesen Sie das Kapitel INFO.</string>
+    <string name="alert_msg19">Gehe zu INFO.</string>
+    <string name="alert_msg20">Wollen Sie den Erkennungsmodus verlassen?</string>
+    <string name="alert_msg21">Bitte halten Sie das Gerät hochkant, um auf die Informationen zu diesem Element zugreifen zu können.</string>
+    <string name="alert_title10">Bestätigen</string>
+    <string name="alert_title11">Status</string>
+    <string name="alert_msg24">Herunterladen...</string>
+    <string name="alert_msg25">Download abgeschlossen</string>
+    <string name="alert_title12">Erfolgreich</string>
+    <string name="alert_msg26">Die Fahrzeuginhalte wurden erfolgreich heruntergeladen.</string>
+    <string name="alert_msg27">Zur Homepage gehen</string>
+    <string name="alert_msg28">Fahrzeug anzeigen</string>
+    <string name="alert_msg29">Weitere Fahrzeuge hinzufügen</string>
+    <string name="alert_msg30">Möchten Sie dieses Fahrzeug entfernen?</string>
+    <string name="alert_msg31">Bei diesem Vorgang werden alle heruntergeladenen Inhalte für dieses Fahrzeug gelöscht. Wollen Sie fortfahren?</string>
+    <string name="alert_msg32">Die Inhalte für das Fahrzeug wurden bereits heruntergeladen.</string>
+    <string name="alert_msg33">Sie haben noch kein Fahrzeug installiert. Bitte gehen Sie auf die Download-Seite und wählen Sie Ihr Fahrzeug.</string>
+    <string name="alert_title13">Inhalte werden gespeichert…</string>
+    <string name="alert_msg34">Nein</string>
+    <string name="alert_msg35">Sie sind zur Zeit mit einem langsamen Netzwerk verbunden. Bitte verwenden Sie eine WLAN-/4G/-3G-Verbindung, um die Datei herunterzuladen (~100 MB).</string>
+    <string name="alert_msg36">Für diesen Inhalt ist keine Übersetzung vorhanden!</string>
+    <string name="alert_msg37">Möchten Sie diese Sprachinhalte entfernen?</string>
+    <string name="alert_msg38">Bei diesem Vorgang werden alle heruntergeladenen Inhalte für diese Sprache gelöscht. Wollen Sie fortfahren?</string>
+    <string name="alert_msg39">Lesen Sie die Anweisungen “REPARIEREN EINES DEFEKTEN REIFENS” sorgfältig durch, bevor Sie das Reifenpannenreparaturset verwenden.</string>
+    <string name="alert_msg40">Lesen</string>
+    <string name="alert_msg41">Bereits gelesen</string>
+    <string name="alert_msg42">Lesen Sie die Anweisungen “AUSWECHSELN EINES DEFEKTEN REIFENS” sorgfältig durch, bevor Sie einen defekten Reifen auswechseln.</string>
+    <string name="alert_msg43">Haben Sie Ihren Qashqai in Russland (Januar 2016 oder später) erworben?\nJA: Klicken Sie "Ja" an.\nNEIN: Klicken Sie "NEIN" an und laden Sie "Qashqai EUR Specs" herunter.</string>
+
+    <!--//new msg text only for english-->
+    <string name="alert_msg22">Wollen Sie diese Fahrzeuginhalte herunterladen? Dies kann je nach Geschwindigkeit Ihrer Internetverbindung mehrere Minuten in Anspruch nehmen. Der Download erfolgt nur einmal für jedes Fahrzeug.</string>
+    <string name="alert_msg23">Soll gelöscht werden?</string>
+    <string name="alert_msg_download">Welches Fahrzeug soll heruntergeladen werden?</string>
+    <string name="qashqai_btn_eur">Qashqai EUR Specs</string>
+    <string name="qashqai_btn_rus">Qashqai RUS Specs</string>
+    <string name="xtrail_btn_eur">X-Trail EUR Specs</string>
+    <string name="xtrail_btn_rus">X-Trail RUS Specs</string>
+    <string name="alert_msg_view">Welches Fahrzeug soll angezeigt werden?</string>
+    <string name="alert_msg_setting">Für welches Fahrzeug sollen Einstellungen vorgenommen werden?</string>
+    <string name="alert_msg_delete">Welches Fahrzeug soll gelöscht werden?</string>
+
+    <!--//warranty alert dialog message-->
+    <string name="warranty_alert_message">Bevor Sie diesen Abschnitt lesen, sollten Sie Ihren Motortyp identifizieren. Diese Information steht am Anfang Ihres Garantiehefts; den Motortyp finden Sie oben rechts auf dem Wartungsaufkleber. Ihr Motortyp entspricht dem Code direkt nach dem Fahrzeugnamen. Siehe folgendes Beispiel:</string>
+
+    <!--start language-->
+    <string name="title_activity_video_player">VideoPlayerActivity</string>
+    <string name="back">Zurück</string>
+    <string name="download_msg">Möchten Sie diese Anleitung mit der Spezifikation EUR oder der Spezifikation RUS herunterladen?</string>
+    <string name="download_lang">Sind Sie sicher, dass heruntergeladen werden soll?</string>
+    <string name="exit_alert">Sind Sie sicher, dass Sie beenden möchten?</string>
+    <string name="internet_connect">"Keine Internetverbindung.Bitte überprüfen Sie Ihr WLAN- oder Mobilfunkdatennetzwerk und versuchen Sie es erneut."</string>
+    <string name="car_msg">Car Already Downloaded</string>
+    <string name="car_msg_download">Bitte laden Sie Ihre Fahrzeuganleitung herunter</string>
+    <string name="video_popup_msg">Möchten Sie mehr erfahren?</string>
+    <string name="video_watch_again">Erneut ansehen</string>
+    <string name="video_learn_more">Mehr erfahren</string>
+
+    <string-array name="car_names">
+        <item>Qashqai EUR Specs</item>
+        <item>Qashqai RUS Specs</item>
+        <item>Juke</item>
+        <item>X-Trail EUR Specs</item>
+        <item>X-Trail RUS Specs</item>
+        <item>Pulsar</item>
+        <item>Micra</item>
+        <item>Note</item>
+        <item>Leaf</item>
+        <item>Navara</item>
+        <item>Der Neue Micra</item>
+        <item>DER NEUE NISSAN QASHQAI</item>
+        <item>DER NEUE NISSAN X-TRAIL</item>
+        <item>Der Neue Nissan Leaf</item>
+    </string-array>
+    <string-array name="assistance_array">
+        <item>Warnleuchten</item>
+        <item>Kurzanleitung</item>
+        <item>Reifeninformationen</item>
+        <item>Motorraum</item>
+        <item>Garantie</item>
+        <item>Nissan Assistance</item>
+    </string-array>
+    <string-array name="settings_array">
+        <item>Sprache ändern</item>
+        <item>Fahrzeugauswahl</item>
+        <item>Tutorial</item>
+        <item>App bewerten</item>
+        <item>Feedback abschicken</item>
+    </string-array>
+    <string-array name="tab_names">
+        <item>ERKUNDEN</item>
+        <item>UNTERSTÜTZUNG</item>
+        <item>SUCHEN</item>
+        <item>EINSTELLUNGEN</item>
+    </string-array>
+
+    <string-array name="video_array_title">
+        <item>Lane Departure Warning and Prevention</item>
+        <item>Intelligent Emergency Braking</item>
+        <item>Intelligent Around View Monitor</item>
+        <item>Display Audio With CarPlay</item>
+    </string-array>
+
+    <string name="download_driver_guide">Download Driver\'s Guide</string>
+    <string name="driver_guide">Fahranleitung</string>
+    <string name="select_language">Sprache auswählen</string>
+
+    <string name="button_OK">OK</string>
+    <string name="button_CANCEL">Abbrechen</string>
+    <string name="button_YES">Ja</string>
+    <string name="button_NO">Nein</string>
+    <string name="button_next">Weiter</string>
+
+    <string name="explore">Erkunden</string>
+    <string name="augmented_reality">Augmented Reality</string>
+    <string name="explore_your_car">ERKUNDEN SIE IHR FAHRZEUG</string>
+    <string name="assistance">Unterstützung</string>
+    <string name="search">SEARCH</string>
+    <string name="settings">EINSTELLUNGEN</string>
+    <string name="change_language">Sprache ändern</string>
+    <string name="add_extra_car">Fahrzeugauswahl</string>
+    <string name="warning_lights">Warnleuchten</string>
+    <string name="quick_reference_guide">Kurzanleitung</string>
+    <!--string language-->
+
+    <string name="alert_status">Status</string>
+    <string name="alert_download_complete">Download abgeschlossen..</string>
+    <string name="alert_downloading">Herunterladen..</string>
+
+    <string-array name="tutorial_titles">
+        <item>
+            Erkunden Sie Ihr Fahrzeug
+        </item>
+        <item>
+            Warnleuchten
+        </item>
+        <item>
+            Kurzanleitung und mehr
+        </item>
+    </string-array>
+    <string-array name="tutorial_details">
+        <item>
+            Machen Sie sich mithilfe der Augmented-Reality-Technologie (erweiterte Realität) mit allen Bedienelementen vertraut, die Ihr Nissan zu bieten hat.
+            \n Richten Sie einfach die Kamera Ihres Smartphones auf ein Bedienelement und klicken Sie auf das Pop-up, um auf die Informationen zuzugreifen.
+        </item>
+        <item>
+            Sie erhalten per Knopfdruck Informationen zu Warnleuchten, die im Kombinationsinstrument Ihres Fahrzeugs aufleuchten können.
+            \n Ein schneller, einfacher und müheloser Zugang zu allen Informationen, die Sie benötigen.
+        </item>
+        <item>
+            Rufen Sie die elektronische Version der Kurzanleitung auf, um alle Funktionen Ihres Nissans zu entdecken.
+            \n Es werden darüber hinaus wichtige Informationen zu Reifen, Motoren, Garantieschutz usw. bereitgestellt.
+        </item>
+    </string-array>
+
+    <string name="registered_country_name">In welchem Land ist Ihr Fahrzeug registriert?</string>
+    <string name="telephone_number_for">Telefonnummern für</string>
+    <string name="national">National :</string>
+    <string name="international">International :</string>
+
+    <string-array name="country_for_call_array">
+        <item>Österreich</item>
+        <item>Belgien</item>
+        <item>Tschechien</item>
+        <item>Dänemark</item>
+        <item>Estland</item>
+        <item>Finnland</item>
+        <item>Frankreich</item>
+        <item>Deutschland</item>
+        <item>Griechenland</item>
+        <item>Ungarn</item>
+        <item>Italien</item>
+        <item>Lettland</item>
+        <item>Litauen</item>
+        <item>Niederlande</item>
+        <item>Norwegen</item>
+        <item>Polen</item>
+        <item>Portugal</item>
+        <item>Slowakei</item>
+        <item>Spanien</item>
+        <item>Schweden</item>
+        <item>Schweiz</item>
+        <item>Vereinigtes Königreich</item>
+    </string-array>
+
+    <string-array name="nissan_assistance_array">
+        <item>Anleitung für Nissan Assistance</item>
+        <item>Nissan Assistance anrufen</item>
+    </string-array>
+
+    <string name="update_msg">Es ist ein Update verfügbar. Soll der Download gestartet werden?</string>
+    <string name="register_push_dialog">&quot;Ihr Gerät wird auf dem Server registriert... Bitte warten Sie.&quot;</string>
+    <string name="no_content_found_url">&quot;Keine Inhalte gefunden.&quot;</string>
+    <string name="confirmation_failed">&quot;Bestätigung Sendefehler.&quot;</string>
+    <string name="device_reg_push">&quot;Ohne Registrierung ist kein Fahrzeug-Download möglich.&quot;</string>
+    <string name="unable_to_update">&quot;Inhalte können nicht aktualisiert werden. Versuchen Sie es erneut.&quot;</string>
+    <string name="recent_searches">&quot;Letzte Suchanfragen&quot;</string>
+    <string name="no_content_found">&quot;Keine Ergebnisse&quot;</string>
+    <string name="search_box_hint">Suchen</string>
+    <string name="data_syncing">Daten werden synchronisiert...</string>
+    <string name="start_download">Download wird gestartet...</string>
+    <string name="start_car_delete">Löschvorgang wird gestartet...</string>
+    <string name="no_content_found_top_recent_search">Kein Suchbegriff gefunden</string>
+
+    <string name="clear">Löschen</string>
+
+    <string name="rate_our_app">Rate This App</string>
+    <string name="rate_our_app_title">Rate My App</string>
+
+    <string name="great_not_great_text">Wie bewerten Sie die App bisher?</string>
+    <string name="great">Gut</string>
+    <string name="not_great">Weniger gut</string>
+
+    <string name="rate_our_app_sub_title">Das freut uns. Würden Sie sich kurz Zeit nehmen, um unsere App zu bewerten?</string>
+    <string name="rate_no_thanks">Nein, danke</string>
+    <string name="rate_ask_me_later">Später erneut nachfragen</string>
+    <string name="rate_our_app_yes">Ja, App bewerten</string>
+
+    <string name="feedback_text">Bitte lassen Sie uns Ihr Feedback direkt zukommen. Ihre Meinung ist uns wichtig.</string>
+    <string name="send_feedback">Feedback abschicken</string>
+
+    <string name="feedback_toast">Vielen Dank für Ihr Feedback</string>
+
+    <string name="feedback">Feedback</string>
+    <string name="send_feedback_title">Betreff</string>
+    <string name="send_feedback_description">Beschreibung</string>
+    <string name="send_feedback_button">Feedback abschicken</string>
+
+
+
+
+
+</resources>

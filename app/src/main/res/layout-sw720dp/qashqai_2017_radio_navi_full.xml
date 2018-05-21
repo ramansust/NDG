@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/popupLayout"
+        android:layout_width="700dp"
+        android:layout_height="684dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/btn_radio_full_left_top"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".7"
+                android:background="@android:color/transparent"
+                android:onClick="buttonEventInitial"
+                android:tag="11001" />
+
+            <Button
+                android:id="@+id/btn_radio_full_middle_top"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.6"
+                android:background="@android:color/transparent"
+                android:onClick="buttonEventInitial"
+                android:tag="11002" />
+
+            <Button
+                android:id="@+id/btn_radio_full_right_top"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".7"
+                android:background="@android:color/transparent"
+                android:onClick="buttonEventInitial"
+                android:tag="11003" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/btn_radio_full_left_bottom"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".7"
+                android:background="@android:color/transparent"
+                android:onClick="buttonEventInitial"
+                android:tag="11004" />
+
+            <Button
+                android:id="@+id/btn_radio_full_middle_bottom"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.6"
+                android:background="@android:color/transparent"
+                android:onClick="buttonEventInitial"
+                android:tag="11005" />
+
+            <Button
+                android:id="@+id/btn_radio_full_right_bottom"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".7"
+                android:background="@android:color/transparent"
+                android:onClick="buttonEventInitial"
+                android:tag="11006" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tab_indicator"
+        android:layout_alignParentTop="true"></FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_above="@+id/tabLayout"
+        android:background="@color/tab_indicator_unselected"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/tab_indicator_1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/tab_indicator_unselected"
+            android:elevation="10dp" />
+
+        <View
+            android:id="@+id/tab_indicator_2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/tab_indicator_unselected"
+            android:elevation="10dp" />
+
+        <View
+            android:id="@+id/tab_indicator_3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/tab_indicator_unselected"
+            android:elevation="10dp" />
+
+        <View
+            android:id="@+id/tab_indicator_4"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/tab_indicator_unselected"
+            android:elevation="10dp" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="0dp"
+        android:background="@color/tab_background_unselected"
+        app:tabIndicatorHeight="0dp"
+        app:tabPaddingEnd="0dp"
+        app:tabMode="fixed"
+        app:tabPaddingStart="0dp">
+
+    </android.support.design.widget.TabLayout>
+</RelativeLayout>

@@ -1,0 +1,41 @@
+package com.nissan.alldriverguide.fragments.search.tab;
+
+import android.os.Bundle;
+
+import com.nissan.alldriverguide.fragments.search.TabFragment;
+
+public class BaseTabFragmentActivity extends SearchActivity implements DataPassing {
+
+    protected TabFragment tabFragment;
+    private AllFragment allFragment;
+    private WarningLightFragment warningLightFragment;
+    private int contentView;
+    public static String keyword;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(contentView);
+    }
+
+    public void setMedia(TabFragment media) {
+        this.tabFragment = media;
+    }
+
+    public void setAllFragment(AllFragment allFragment) {
+        this.allFragment = allFragment;
+    }
+
+    public void setWarningLightFragment(WarningLightFragment warningLightFragment) {
+        this.warningLightFragment = warningLightFragment;
+    }
+
+    public void setView(int view) {
+        this.contentView = view;
+    }
+
+    @Override
+    public void onDataPass(String data) {
+        keyword = data;
+    }
+}

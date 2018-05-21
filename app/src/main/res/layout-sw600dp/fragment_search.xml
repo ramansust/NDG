@@ -1,0 +1,124 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/orange"
+        android:gravity="center|center_horizontal"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/input_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/search_bg"
+                android:cursorVisible="true"
+                android:drawableLeft="@drawable/search"
+                android:drawablePadding="10dp"
+                android:drawableStart="@drawable/search"
+                android:hint="@string/search_box_hint"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:paddingEnd="35dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="35dp"
+                android:paddingStart="10dp"
+                android:textColor="#363636"
+                android:textColorHint="#a69f9f"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/imageViewClearButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingEnd="15dp"
+                android:paddingRight="15dp"
+                android:src="@drawable/close"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlSectionHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topPanel" >
+
+        <TextView
+            android:id="@+id/tvSectionHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E9E9E9"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="@string/recent_search"/>
+
+        <TextView
+            android:id="@+id/tvClearSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:textSize="14sp"
+            android:textColor="@color/orange"
+            android:text="@string/clear"/>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_top_recent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rlSectionHeader" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutNoContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ivAlertNoContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_dialog_alert" />
+
+        <TextView
+            android:id="@+id/blank_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_content_found_top_recent_search"
+            android:textAllCaps="true"
+            android:textColor="@color/colorBorder"
+            android:textSize="@dimen/dialog_text_size"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/popupLayout"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+    <LinearLayout
+        android:layout_width="180dp"
+        android:layout_height="300dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="6" >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="63" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="59" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="60" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".6"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="61" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.4"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="62" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="180dp"
+        android:layout_height="300dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="6" >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:background="@android:color/transparent"
+            android:tag="63" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="79" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="60" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".6"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="61" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.4"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="62" />
+    </LinearLayout>
+        </LinearLayout>
+
+</LinearLayout>

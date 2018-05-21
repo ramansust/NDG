@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="350dp"
+        android:layout_gravity="center"
+       android:id="@+id/popupLayout"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".75" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.7"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginRight="60dp"
+                android:layout_weight=".2"
+                android:clickable="true"
+                android:onClick="buttonEvent"
+                android:tag="48" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="105dp"
+                android:layout_weight=".4"
+                android:clickable="true"
+                android:onClick="buttonEvent"
+                android:tag="50" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="85dp"
+                android:layout_marginRight="75dp"
+                android:layout_weight=".3"
+                android:clickable="true"
+                android:onClick="buttonEvent"
+                android:tag="49" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".25" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.3"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="50dp"
+                android:layout_weight=".45"
+                android:clickable="true"
+                android:onClick="buttonEvent"
+                android:tag="51" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight=".75"
+                android:clickable="true"
+                android:onClick="buttonEvent"
+                android:tag="47" />
+        </LinearLayout>
+        <!--
+             <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="35dp"
+            android:layout_weight="1.3"
+            android:clickable="true"
+            android:onClick="buttonEvent"
+            android:tag="31" />
+        -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".75" />
+    </LinearLayout>
+
+</LinearLayout>

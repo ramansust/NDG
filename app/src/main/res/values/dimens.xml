@@ -1,0 +1,17 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">15dp</dimen>
+    <dimen name="height_size">60dp</dimen>
+    <dimen name="margin_left">10dp</dimen>
+    <dimen name="margin_bottom">25dp</dimen>
+    <dimen name="margin_bottom_updated">40dp</dimen>
+    <dimen name="margin_back">5dp</dimen>
+    <dimen name="dialog_text_size">18sp</dimen>
+    <dimen name="list_margin">20sp</dimen>
+    <dimen name="tutorial_title">20sp</dimen>
+    <dimen name="tutorial_detail">15sp</dimen>
+    <dimen name="tab_title">13sp</dimen>
+
+
+</resources>
