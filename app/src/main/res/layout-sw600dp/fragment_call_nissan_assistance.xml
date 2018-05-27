@@ -40,6 +40,7 @@
             android:singleLine="true"
             android:text="TEXT PAGE"
             android:textAllCaps="true"
+            android:textSize="@dimen/dialog_text_size_title"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/white"
             android:textStyle="bold" />

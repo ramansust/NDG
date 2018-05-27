@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/topPanel"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:background="@color/orange"
         android:focusable="true"
@@ -24,7 +24,7 @@
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:layout_weight="1">
 
             <EditText
@@ -45,7 +45,7 @@
                 android:paddingRight="35dp"
                 android:textColor="#363636"
                 android:textColorHint="#a69f9f"
-                android:textSize="14sp" />
+                android:textSize="@dimen/dialog_text_size" />
 
             <ImageView
                 android:id="@+id/imageViewClearButton"
@@ -66,8 +66,8 @@
             android:layout_marginRight="10dp"
             android:gravity="center_vertical"
             android:text="@string/button_CANCEL"
-            android:textSize="@dimen/dialog_text_size"
             android:textColor="@color/white"
+            android:textSize="@dimen/dialog_text_size"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -91,7 +91,7 @@
             <android.support.design.widget.TabLayout
                 android:id="@+id/sliding_tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"

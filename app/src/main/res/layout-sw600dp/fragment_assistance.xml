@@ -43,6 +43,7 @@
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/white"
+            android:textSize="@dimen/dialog_text_size_title"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -84,9 +85,10 @@
         <ImageView
             android:id="@+id/img_car_bg"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="fitCenter"
-            android:background="@drawable/qashqai" />
+            android:layout_height="335dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/note"
+            android:scaleType="fitCenter" />
 
         <TextView
             android:id="@+id/txt_view_driver_guide"
@@ -99,8 +101,9 @@
             android:paddingRight="@dimen/margin_back"
             android:text="Driver's Guide"
             android:textAllCaps="true"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/orange" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/dialog_text_size" />
 
         <TextView
             android:id="@+id/txt_view_car_name"
@@ -113,8 +116,9 @@
             android:paddingRight="@dimen/margin_back"
             android:text="Nissan Note"
             android:textAllCaps="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/white" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dialog_text_size" />
 
     </RelativeLayout>
 
