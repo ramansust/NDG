@@ -5,16 +5,16 @@ package com.nissan.alldriverguide.model;
  */
 public class LanguageInfo {
     private int id;
+    private String name;
+    private boolean isSelected;
+    private int image;
+
     public LanguageInfo(int id, String name, boolean isSelected, int image) {
         this.id = id;
         this.name = name;
         this.isSelected = isSelected;
         this.image = image;
     }
-
-    private String name;
-    private boolean isSelected;
-    private int image;
 
     public int getImage() {
         return image;
