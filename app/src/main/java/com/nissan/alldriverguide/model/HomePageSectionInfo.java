@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 public class HomePageSectionInfo {
 
+    private String colorCodeItem;
     private String sectionTitle;
+    private ArrayList<HomePageEpubInfo> epublist;
     private String colorCode;
 
     public String getColorCodeItem() {
@@ -18,9 +20,6 @@ public class HomePageSectionInfo {
     public void setColorCodeItem(String colorCodeItem) {
         this.colorCodeItem = colorCodeItem;
     }
-
-    private String colorCodeItem;
-    private ArrayList<HomePageEpubInfo> epublist;
 
     public String getSectionTitle() {
         return sectionTitle;

@@ -18,6 +18,7 @@ public class BaseTabFragmentActivity extends SearchActivity implements DataPassi
         setContentView(contentView);
     }
 
+    // this method is used to TabFragment
     public void setMedia(TabFragment media) {
         this.tabFragment = media;
     }
@@ -30,12 +31,13 @@ public class BaseTabFragmentActivity extends SearchActivity implements DataPassi
         this.warningLightFragment = warningLightFragment;
     }
 
+    // this view set in MainActivity inside onCreate
     public void setView(int view) {
         this.contentView = view;
     }
 
     @Override
     public void onDataPass(String data) {
-        keyword = data;
+        keyword = data; // getting search keyword by interface
     }
 }

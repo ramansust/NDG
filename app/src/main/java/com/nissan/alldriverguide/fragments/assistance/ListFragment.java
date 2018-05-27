@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,9 +48,6 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
     private String tyre;
     PreferenceUtil preferenceUtil;
 
-    /**
-     * this ListFragment is used for display QRG list
-     */
     public static Fragment newInstance(String title) {
         Fragment frag = new ListFragment();
         Bundle args = new Bundle();
@@ -83,11 +79,12 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     private void loadData() throws Exception {
-        title.setText(getArguments().get(TITLE).toString());
+        title.setText(getArguments().get(TITLE).toString()); // here set the title on top bar
         txt_back_title.setTypeface(tf);
-        switch (Values.ePubType) {
+        switch (Values.ePubType) {// compare with epub type
 
             case Values.HOMEPAGE_TYPE:
+                // check the toc file exist or not
                 if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
                     list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
                     ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.HOMEPAGE));
@@ -118,23 +115,24 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
             default:
                 break;
         }
+
+        // here compare with latest four cars
         if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
-            Log.e("loadData: ", "********** " + Values.carType);
-            Log.e("loadData: ", "********** " + Values.ePubType);
-            Log.e("loadData: ", "********** " + new PreferenceUtil(getActivity()).getSelectedLang());
 //        if(Values.carType == 14) {
             if (list != null && list.size() > 0) {
+                // this snippet actually display qrg list without search tag
                 int i = 0;
                 Iterator<EpubInfo> epubInfo = list.iterator();
                 while (epubInfo.hasNext()) {
                     i++;
                     epubInfo.next();
 
-                    if (i % 2 == 0) {
+                    if (i % 2 == 0) { // here remove the even number like(NKR) from list
                         epubInfo.remove();
                     }
                 }
 
+                // here remove some unusable html or epub index
                 if (Values.ePubType == Values.HOMEPAGE_TYPE) {
                     if (Values.carType == 11) {
                         list = list.subList(0, list.size() - 2);
@@ -153,10 +151,10 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 
             }
         } else {
+            // here compare three language that have search tag in epub
             if (preferenceUtil.getSelectedLang().equalsIgnoreCase("pl") ||
                     preferenceUtil.getSelectedLang().equalsIgnoreCase("fi") ||
                     preferenceUtil.getSelectedLang().equalsIgnoreCase("pt")) {
-                Log.e("loadData: ", ".......................");
 
                 if (list != null && list.size() > 0) {
                     int i = 0;
@@ -189,8 +187,8 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
                 }
 
             } else {
-                Log.e("loadData: ", "............***...........");
 
+                // here for old car epub that have not contain search tag
                 if (list != null && list.size() > 0) {
                     if (Values.ePubType == Values.HOMEPAGE_TYPE) {
                         if (Values.carType == 11) {
@@ -273,9 +271,10 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Fragment frag = null;
 
+        // here for display demo popup for tyre information
         if (Values.ePubType == Values.TYRE_TYPE) {
             if (position == 2 || position == 6) {
-                Values.gif_index = position;
+                Values.gif_index = position; // save the gif_index 2 or 6
                 showSliderDialog(position);
             } else {
                 frag = DetailsFragment.newInstance(list.get(position).getIndex(), title.getText().toString().trim());

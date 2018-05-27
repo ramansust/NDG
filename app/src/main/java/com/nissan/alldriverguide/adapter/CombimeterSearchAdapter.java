@@ -33,6 +33,11 @@ public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSear
     private ArrayList<SearchCombimeterModel> warning_list;
     private Typeface tf;
 
+    /**
+     * Declare constructor
+     * @param mContext need context
+     * @param list need data list
+     */
     public CombimeterSearchAdapter(Context mContext, ArrayList<SearchCombimeterModel> list) {
         this.mContext = mContext;
         this.warning_list = list;
@@ -90,6 +95,7 @@ public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSear
 
             switch (v.getId()) {
                 case R.id.search_item:
+                    // here set the epub type
                     Values.ePubType = Values.COMBIMETER_TYPE;
                     int ePubIndex = 0;
                     /*if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
@@ -100,6 +106,7 @@ public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSear
 
                     ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
 
+                    // here redirect the fragment to display details data
                     FragmentTransaction fragmentTransaction = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                     fragmentTransaction.replace(R.id.container, DetailsFragment.newInstance(ePubIndex - 1, TabFragment.getTitleName(Values.COMBIMETER_TYPE)));

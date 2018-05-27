@@ -81,6 +81,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         return view;
     }
 
+    // here load the initial data
     private void loadData() {
         txtViewDriverGuide.setTypeface(Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "font/Nissan Brand Regular.otf"));
         txtViewDriverGuide.setText(resources.getString(R.string.driver_guide));
@@ -104,10 +105,12 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         lstView.setOnItemClickListener(this);
     }
 
+    // here set assistance car background according to car type
     private void setCarBackground(int index) {
         NissanApp.getInstance().setCarImageAssistance(index, imageView);
     }
 
+    // here initialized all variable
     private void initViews(View view) {
         context = getActivity().getApplicationContext();
         commonDao = CommonDao.getInstance();
@@ -147,6 +150,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         }
         mLastClickTime = SystemClock.elapsedRealtime();
 
+        // here set the epub type for all assistance list item (eg. Warning Light, QRG, Tyre Information and more...)
         Values.ePubType = position + 1;
 
         if(DetectConnection.checkInternetConnection(getActivity().getApplicationContext())) {
@@ -348,6 +352,10 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         }
     }
 
+    /**
+     * This method for indicate fragment that contain in assistance tab
+     * @param position comparing for redirect fragment
+     */
     private void loadDesireFragment(int position) {
         Fragment frag = null;
         switch (position) {
