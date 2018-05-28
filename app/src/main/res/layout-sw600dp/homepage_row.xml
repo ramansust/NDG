@@ -18,6 +18,7 @@
         android:maxLines="2"
         android:text="demo_text"
         android:textColor="@color/black"
+        android:textSize="@dimen/dialog_text_size"
         android:textStyle="bold" />
 
     <ImageView
