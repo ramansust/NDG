@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -182,6 +181,8 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
 
 //                ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
 
+                // here redirect the DetailsFragment class for opening epub
+                // according to combimeter icon
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                 fragmentTransaction.replace(R.id.container, DetailsFragment.newInstance(ePubIndex - 1, getResources().getString(R.string.warning_lights)));
@@ -255,12 +256,12 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
         LinearLayout.LayoutParams llp2 = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        llp2.width = (int) (width * .28);
+        llp2.width = (int) (width * .28); // set the layout width
 
-        llp2.height = (int) (llp2.width * (98.00 / 150.00));
+        llp2.height = (int) (llp2.width * (98.00 / 150.00)); // set the layout height
 
         space = (width - llp2.width * max_column) / (max_column * 2);
-        llp2.setMargins(space, space, space, space);
+        llp2.setMargins(space, space, space, space); // set the space in layout
 
         for (int j = 0; j < list_combi.size(); j++) {
 
@@ -330,6 +331,10 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
         }
 
         mainLinearLayout.addView(linearLayout);
+        /**
+         * here add the dotted dash line view in "mainLinearLayout" layout
+         * comparing with type argument
+         */
         if (type == Values.RED_TYPE) {
             if (!list_orange.isEmpty()) {
                 mainLinearLayout.addView(add_DashedLine(getActivity(), R.drawable.orange_dash_line, space));

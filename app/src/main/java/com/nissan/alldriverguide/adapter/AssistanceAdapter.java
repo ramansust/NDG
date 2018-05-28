@@ -22,6 +22,14 @@ public class AssistanceAdapter extends BaseAdapter {
     private int[] carImage;
     private Typeface tf;
 
+    /**
+     * Declare constructor that uses for
+     * NissanAssistanceFragment.java
+     * and AssistanceFragment.java
+     * @param context application context
+     * @param carName string array
+     * @param carImage int array
+     */
     public AssistanceAdapter(Context context, String[] carName, int[] carImage) {
         this.context = context;
         this.carName = carName;
@@ -59,13 +67,16 @@ public class AssistanceAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag ();
         }
 
-        viewHolder.imageView.setBackgroundResource(carImage[position]);
-        viewHolder.txtViewTitle.setTypeface(tf);
-        viewHolder.txtViewTitle.setText(carName[position]);
+        viewHolder.imageView.setBackgroundResource(carImage[position]); // here set the car image
+        viewHolder.txtViewTitle.setTypeface(tf); // set the font for car name or nissan assistance
+        viewHolder.txtViewTitle.setText(carName[position]); // set the car name
 
         return convertView;
     }
 
+    /**
+     * this class for list item view initialization
+     */
     static class ViewHolder {
         ImageView imageView;
         TextView txtViewTitle;
