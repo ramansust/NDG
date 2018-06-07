@@ -22,6 +22,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -41,10 +42,14 @@ import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
+import com.nissan.alldriverguide.interfaces.CompleteAlertAPI;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.model.AlertMessage;
+import com.nissan.alldriverguide.multiLang.model.GlobalMessage;
+import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.pushnotification.Config;
 import com.nissan.alldriverguide.pushnotification.NotificationUtils;
 import com.nissan.alldriverguide.retrofit.ApiCall;
@@ -62,6 +67,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -121,6 +127,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_download);
         Logger.error("device_id", NissanApp.getInstance().getDeviceID(this));
+
+//        getGlobalAlertMsg();
         initViews();
         setListener();
         loadData();
@@ -148,6 +156,45 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         };
     }
 
+    private void getGlobalAlertMsg(){
+        new ApiCall().postGlobalAlertMsg("e224fb09fb8daee4", "1", new CompleteAlertAPI() {
+            @Override
+            public void onDownloaded(GlobalMsgResponse responseInfo) {
+                if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+
+                    List<GlobalMessage> globalMsgList = responseInfo.getGlobalMessage();
+                    List<AlertMessage>  alertMsgList = responseInfo.getAlertMessage();
+
+                    List<Object> global_alert = new ArrayList<>();
+                    global_alert.addAll(globalMsgList);
+                    global_alert.addAll(alertMsgList);
+
+                    preferenceUtil.storeGlobalMsgList(global_alert, Values.GLOBALMSGKEY);
+
+                    List<Object> data = preferenceUtil.retrieveGlobalMsgList(Values.GLOBALMSGKEY);
+                    if (data instanceof GlobalMessage) {
+
+                        GlobalMessage gb = (GlobalMessage) data.get(0);
+                        Log.e("xxxxxxxx", gb.getMsg());
+
+                    } else if (data instanceof AlertMessage) {
+
+                        AlertMessage gb = (AlertMessage) data.get(0);
+                        Log.e("yyyyyyyy", "----"+gb.getMsg());
+
+                    } else {
+                        Log.e("zzzzzzzzzzz", "**************");
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailed(String failedReason) {
+                Log.e("onDownloaded", "********Fail******");
+            }
+        });
+    }
 
     private void initViews() {
         activity = CarDownloadActivity.this;
@@ -328,6 +375,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     protected void onResume() {
+        Log.e("onResume: ", "8888888888888888888888888");
+        getGlobalAlertMsg();
         if (preferenceUtil.getIsFirstTime()) {
             if (new File(Values.PATH).exists()) {
                 try {

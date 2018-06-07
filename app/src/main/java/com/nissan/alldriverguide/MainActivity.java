@@ -157,7 +157,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     public void loadResource() {
         metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
         resources = new Resources(getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(MainActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
     }
 
