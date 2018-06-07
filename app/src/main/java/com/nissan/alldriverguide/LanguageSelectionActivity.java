@@ -131,7 +131,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         LanguageInfo info = (LanguageInfo) parent.getAdapter().getItem(position);
         preferenceUtil.setSelectedLang(languageShortName[info.getId()]);
-        Log.e("onItemClick: ", ""+info.getId());
+        Logger.error("onItemClick: ", ""+info.getId());
 
         loadResource();
 
@@ -168,7 +168,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                 } else {
                     showErrorDialog("No content found.");
                     dismissDialog();
-                    Logger.error("Car downloading failed", "____________");
+                    Logger.error("Car downloading failed", "____________" + info.getMessage());
                 }
             }
 

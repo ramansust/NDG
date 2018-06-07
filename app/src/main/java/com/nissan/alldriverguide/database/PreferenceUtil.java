@@ -58,7 +58,7 @@ public class PreferenceUtil {
     public void setSelectedLang(String lang) {
         spEditor = sharedPreferences.edit();
         spEditor.putString(SELECTED_LANG, lang);
-        spEditor.commit();
+        spEditor.apply();
     }
 
 
@@ -125,7 +125,7 @@ public class PreferenceUtil {
     public void setIsFirstTimeGreatNotGreat(boolean isFirst) {
         spEditor = sharedPreferences.edit();
         spEditor.putBoolean(IS_FIRST_TIME_GREAT_NOT_GREAT, isFirst);
-        spEditor.commit();
+        spEditor.apply();
     }
 
     public boolean getSessionOne() {
@@ -135,7 +135,7 @@ public class PreferenceUtil {
     public void setSessionOne(boolean isFirst) {
         spEditor = sharedPreferences.edit();
         spEditor.putBoolean(SESSION_ONE, isFirst);
-        spEditor.commit();
+        spEditor.apply();
     }
 
     public boolean getSessionThree() {

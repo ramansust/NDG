@@ -192,7 +192,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
-                        Toast.makeText(context, "Without rgistration you cannot download car", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Without registration you cannot download car", Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -479,7 +479,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         final StringBuilder stringBuilder = new StringBuilder();
 
         for (PushContentInfo pushContentInfo : list) {
-            stringBuilder.append(pushContentInfo.getePubId() + ",");
+            stringBuilder.append(pushContentInfo.getePubId()).append(",");
         }
 
         stringBuilder.setLength(stringBuilder.length() - 1);
@@ -492,7 +492,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
         btnOk.setText(resources.getString(R.string.button_YES));
 
-        Logger.error("Epub_id____"+ stringBuilder, "LANG_ID _____"+selectedLang);
+        Logger.error("Epub_id____"+ stringBuilder, "LANG_ID _____" + selectedLang);
 
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
