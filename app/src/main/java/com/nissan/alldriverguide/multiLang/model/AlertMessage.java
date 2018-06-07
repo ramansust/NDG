@@ -3,54 +3,40 @@ package com.nissan.alldriverguide.multiLang.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Rohan on 6/7/2018.
- */
-
 public class AlertMessage {
-    @SerializedName("id")
+
+    @SerializedName("select_language")
     @Expose
-    private Integer id;
-    @SerializedName("type")
+    private SelectLanguage selectLanguage;
+    @SerializedName("delete")
     @Expose
-    private String type;
-    @SerializedName("other")
+    private Delete delete;
+    @SerializedName("update_check")
     @Expose
-    private Object other;
-    @SerializedName("msg")
-    @Expose
-    private String msg;
+    private UpdateCheck updateCheck;
 
-    public Integer getId() {
-        return id;
+    public SelectLanguage getSelectLanguage() {
+        return selectLanguage;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setSelectLanguage(SelectLanguage selectLanguage) {
+        this.selectLanguage = selectLanguage;
     }
 
-    public String getType() {
-        return type;
+    public Delete getDelete() {
+        return delete;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setDelete(Delete delete) {
+        this.delete = delete;
     }
 
-    public Object getOther() {
-        return other;
+    public UpdateCheck getUpdateCheck() {
+        return updateCheck;
     }
 
-    public void setOther(Object other) {
-        this.other = other;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setUpdateCheck(UpdateCheck updateCheck) {
+        this.updateCheck = updateCheck;
     }
 
 }
