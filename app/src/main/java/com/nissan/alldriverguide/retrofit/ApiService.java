@@ -31,14 +31,14 @@ public interface ApiService {
     Call<ResponseInfo> postCarDeleteConfirmation(@Field("car_id") String car_id, @Field("language_id") String language_id,
                                                 @Field("epub_id") String ePub_id, @Field("device_id") String device_id);
 
-    // language download post
+    // language download post (Language Fragment)
     @FormUrlEncoded
     @POST("language_download/")
     Call<ResponseInfo> postLanguageDownload(@Field("car_id") String car_id, @Field("language_id") String language_id,
                                               @Field("epub_id") String ePub_id, @Field("device_id") String device_id);
 
 
-    // keyword search post
+    // keyword search post (Language Fragment)
     @FormUrlEncoded
     @POST("download_confirmation/")
     Call<ResponseInfo> postLanguageDownloadConfirmation(@Field("car_id") String car_id, @Field("language_id") String language_id,
@@ -67,4 +67,8 @@ public interface ApiService {
     @POST("add_feedback/")
     Call<ResponseInfo> postAddFeedback(@Field("device_id") String device_id, @Field("title") String title,
                                        @Field("details") String details, @Field("os_version") String os_version);
+
+    /** MultiLanguage ***************************/
+
+
 }

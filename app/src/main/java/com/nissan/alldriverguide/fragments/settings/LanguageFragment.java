@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.settings;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -53,17 +54,17 @@ import java.util.ArrayList;
 
 public class LanguageFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
+    NissanDbHelper dbHelper;
+    SQLiteDatabase sqliteDB;
     private String[] languageName = {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};
-    private String[] languageShortName = {"en", "de", "fr", "it", "es", "nl", "ru", "sv",  "no", "pl", "fi", "pt"};
+    private String[] languageShortName = {"en", "de", "fr", "it", "es", "nl", "ru", "sv", "no", "pl", "fi", "pt"};
     private int[] languageImage = {R.drawable.united_kingdom, R.drawable.germany, R.drawable.france, R.drawable.italy, R.drawable.spain, R.drawable.netherlands, R.drawable.russia, R.drawable.sweden, R.drawable.norway, R.drawable.poland, R.drawable.finland, R.drawable.portugal};
-
     private View view;
     private ListView lstView;
     private ImageButton btnBack;
     private LinearLayout linearBack;
     private LanguageSelectionAdapter adapter;
     private ArrayList<LanguageInfo> list;
-
     private PreferenceUtil preferenceUtil;
     private Configuration conf;
     private Resources resources;
@@ -73,10 +74,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     private CommonDao commonDao;
     private Typeface tf;
     private ProgressDialog progressDialog;
-
-    NissanDbHelper dbHelper;
-    SQLiteDatabase sqliteDB;
-
     private Activity activity;
     private Context context;
 
@@ -94,7 +91,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         loadResource();
         setListener();
         loadData();
-
 
 
         return view;
@@ -226,7 +222,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                    progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.start_download));
+                progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.start_download));
             }
         });
 
@@ -241,6 +237,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                         public boolean onComplete(boolean b) {
                             if (b) {
                                 getActivity().runOnUiThread(new Runnable() {
+                                    @SuppressLint("StaticFieldLeak")
                                     @Override
                                     public void run() {
                                         if (progressDialog != null) {
@@ -361,7 +358,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
                         @Override
                         public void init() {
-                            if(progressDialog == null) {
+                            if (progressDialog == null) {
                                 progressDialog = new ProgressDialogController(activity).downloadProgress(getActivity().getResources().getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + getResources().getString(R.string.alert_download_complete));
                             }
                         }
