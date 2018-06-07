@@ -85,6 +85,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         initViews();
         setListener();
         loadData();
+
     }
 
     private void initViews() {
@@ -134,7 +135,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         LanguageInfo info = (LanguageInfo) parent.getAdapter().getItem(position);
         preferenceUtil.setSelectedLang(languageShortName[info.getId()]);
-        Logger.error("onItemClick: ", ""+info.getId());
+        Log.e("onItemClick: ", ""+info.getId());
 
         loadResource();
 
@@ -168,15 +169,24 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                 if (AppConfig.IS_APP_ONLINE ? Values.SUCCESS_STATUS.equalsIgnoreCase(info.getStatusCode()) && !TextUtils.isEmpty(info.getAssetsUrl()) && !TextUtils.isEmpty(info.getLangUrl()) : Values.SUCCESS_STATUS.equalsIgnoreCase(info.getStatusCode())) {
                     List<Tutorial> tutorials = info.getTutorials();
                     List<TabMenu> tabMenus = info.getTabMenu();
+
+//                    AlertMessage alertMessages = info.getAlertMessage();
                     for (Tutorial tu : tutorials) {
                         Log.e("tuto", "__________" + tu.getDetails());
                     }
-                    //call this after getting the asset link successfully
+                    for (TabMenu tu : tabMenus) {
+                        Log.e("tab", "__________" + tu.getTitle());
+                    }
+
+//                    for (AlertMessage tu : alertMessages) {
+//                        Log.e("alert", "__________" + tu.getMsg());
+//                    }
+//                   call this after getting the asset link successfully
                     startCarAssetsDownload(AppConfig.IS_APP_ONLINE ? info.getAssetsUrl() : NissanApp.getInstance().getAssetsURL(Values.carType), Values.PATH, AppConfig.IS_APP_ONLINE ? info.getLangUrl() : NissanApp.getInstance().getLanguageURL((Values.carType), preferenceUtil.getSelectedLang()), NissanApp.getInstance().getCarPath(Values.carType));
                 } else {
                     showErrorDialog("No content found.");
                     dismissDialog();
-                    Logger.error("Car downloading failed", "____________" + info.getMessage());
+                    Logger.error("Car downloading failed", "____________");
                 }
             }
 
