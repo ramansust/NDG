@@ -865,7 +865,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     private void getRegIdForPush() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
-        String regId = pref.getString("regId", null);
+//        String regId = pref.getString("regId", null);
+        String regId = "e224fb09fb8daee4";//auve
 
         Logger.error("Firebase reg id: " + NissanApp.getInstance().getDeviceID(getApplicationContext()), "_________" + regId);
 
