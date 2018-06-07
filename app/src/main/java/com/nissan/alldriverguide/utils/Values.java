@@ -113,4 +113,6 @@ public class Values {
     public static final int RATE_APP_SECOND_SESSION = 15;
 
 
+    public static final String GLOBALMSGKEY = "globalmsg";
+
 }

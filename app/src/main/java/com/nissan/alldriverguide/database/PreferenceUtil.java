@@ -7,9 +7,11 @@ import android.preference.PreferenceManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.model.EpubInfo;
+import com.nissan.alldriverguide.multiLang.model.GlobalMessage;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PreferenceUtil {
 
@@ -70,7 +72,6 @@ public class PreferenceUtil {
         editor.putString(id, json);
         editor.apply();
     }
-
 
     public ArrayList<EpubInfo> retrieveSearchEpubList(String id) {
         Gson gson = new Gson();
@@ -174,5 +175,41 @@ public class PreferenceUtil {
         spEditor.putInt(RATE_APP, count);
         spEditor.apply();
     }*/
+
+    //this is for storing the GlobalMsgList for search
+    public void storeGlobalMsgList(List<Object> data, String id) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(data);
+        editor.putString(id, json);
+        editor.apply();
+    }
+
+    //this is for retreiving the GlobalMsgList for search
+    public ArrayList<Object> retrieveGlobalMsgList(String id) {
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(id, null);
+        Type type = new TypeToken<ArrayList<Object>>() {    }.getType();
+        ArrayList<Object> arrayList = gson.fromJson(json, type);
+        return arrayList;
+    }
+
+    //this is for storing the GlobalMsgList for search
+    public void storeAlertMsgList(List<GlobalMessage> data, String id) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(data);
+        editor.putString(id, json);
+        editor.apply();
+    }
+
+    //this is for retreiving the GlobalMsgList for search
+    public ArrayList<GlobalMessage> retrieveAlertMsgList(String id) {
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(id, null);
+        Type type = new TypeToken<ArrayList<GlobalMessage>>() {    }.getType();
+        ArrayList<GlobalMessage> arrayList = gson.fromJson(json, type);
+        return arrayList;
+    }
 
 }

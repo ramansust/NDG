@@ -1,4 +1,4 @@
-package com.nissan.alldriverguide.model;
+package com.nissan.alldriverguide.multiLang.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
