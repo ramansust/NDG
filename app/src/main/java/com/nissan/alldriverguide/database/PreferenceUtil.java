@@ -79,7 +79,6 @@ public class PreferenceUtil {
 
 
     public String retrieveMultiLangData(String key) {
-        Gson gson = new Gson();
         String json = sharedPreferences.getString(key, null);
         return json;
     }
