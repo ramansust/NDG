@@ -3,13 +3,19 @@ package com.nissan.alldriverguide.database;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.model.EpubInfo;
+import com.nissan.alldriverguide.multiLang.model.Tutorial;
+
+import org.json.JSONArray;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PreferenceUtil {
 
@@ -28,6 +34,7 @@ public class PreferenceUtil {
     private final String SESSION_THREE = "session_three";
     private final String IS_GREAT = "is_great";
 
+
     public PreferenceUtil(Context mContext) {
         super();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
@@ -40,7 +47,7 @@ public class PreferenceUtil {
     public void setIsFirstTime(boolean isFirst) {
         spEditor = sharedPreferences.edit();
         spEditor.putBoolean(IS_FIRST_TIME, isFirst);
-        spEditor.commit();
+        spEditor.apply();
     }
     public boolean getIsDatabaseEmpty() {
         return sharedPreferences.getBoolean(IS_DATABASE_EMPTY, true);
@@ -49,7 +56,7 @@ public class PreferenceUtil {
     public void setIsDatabaseEmpty(boolean isFirst) {
         spEditor = sharedPreferences.edit();
         spEditor.putBoolean(IS_DATABASE_EMPTY, isFirst);
-        spEditor.commit();
+        spEditor.apply();
     }
     public String getSelectedLang() {
         return sharedPreferences.getString(SELECTED_LANG, "");
@@ -61,6 +68,21 @@ public class PreferenceUtil {
         spEditor.apply();
     }
 
+    //this is for storing the epub list for search
+    public void storeMultiLangData(List<?> data, String key) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(data);
+        editor.putString(key, json);
+        editor.apply();
+    }
+
+
+    public String retrieveMultiLangData(String key) {
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(key, null);
+        return json;
+    }
 
     //this is for storing the epub list for search
     public void storeSearchEpubList(ArrayList<EpubInfo> data, String id) {
@@ -87,7 +109,7 @@ public class PreferenceUtil {
     public void setPushRegistrationID(String push_registration_id) {
         spEditor = sharedPreferences.edit();
         spEditor.putString(PUSH_REGISTRATION, push_registration_id);
-        spEditor.commit();
+        spEditor.apply();
     }
 
     public boolean getPushRegistrationStatus() {
@@ -156,7 +178,7 @@ public class PreferenceUtil {
     public void setIsGreat(boolean isGreat) {
         spEditor = sharedPreferences.edit();
         spEditor.putBoolean(IS_GREAT, isGreat);
-        spEditor.commit();
+        spEditor.apply();
     }
 
     /*public int getOpenCountForRateApp() {
