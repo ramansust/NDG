@@ -112,5 +112,7 @@ public class Values {
     public static final int RATE_APP_FIRST_SESSION = 30;
     public static final int RATE_APP_SECOND_SESSION = 15;
 
+    public static final String TUTORIAL = "multi_lang_tutorial";
+    public static final String TAB_MENU = "multi_lang_tab_menu";
 
 }

@@ -21,8 +21,11 @@ import android.widget.TextView;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
+import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.adapter.LanguageSelectionAdapter;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
@@ -47,6 +50,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -134,7 +138,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         LanguageInfo info = (LanguageInfo) parent.getAdapter().getItem(position);
         preferenceUtil.setSelectedLang(languageShortName[info.getId()]);
-        Logger.error("onItemClick: ", ""+info.getId());
+        Logger.error("onItemClick: ", "" + info.getId());
 
         loadResource();
 
@@ -166,11 +170,12 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             @Override
             public void onDownloaded(ResponseInfo info) {
                 if (AppConfig.IS_APP_ONLINE ? Values.SUCCESS_STATUS.equalsIgnoreCase(info.getStatusCode()) && !TextUtils.isEmpty(info.getAssetsUrl()) && !TextUtils.isEmpty(info.getLangUrl()) : Values.SUCCESS_STATUS.equalsIgnoreCase(info.getStatusCode())) {
-                    List<Tutorial> tutorials = info.getTutorials();
-                    List<TabMenu> tabMenus = info.getTabMenu();
-                    for (Tutorial tu : tutorials) {
-                        Log.e("tuto", "__________" + tu.getDetails());
-                    }
+
+
+                    preferenceUtil.storeMultiLangData(info.getTutorials(), Values.TUTORIAL);
+                    preferenceUtil.storeMultiLangData(info.getTabMenu(), Values.TAB_MENU);
+
+
                     //call this after getting the asset link successfully
                     startCarAssetsDownload(AppConfig.IS_APP_ONLINE ? info.getAssetsUrl() : NissanApp.getInstance().getAssetsURL(Values.carType), Values.PATH, AppConfig.IS_APP_ONLINE ? info.getLangUrl() : NissanApp.getInstance().getLanguageURL((Values.carType), preferenceUtil.getSelectedLang()), NissanApp.getInstance().getCarPath(Values.carType));
                 } else {

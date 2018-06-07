@@ -13,8 +13,17 @@ import android.widget.TextView;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.adapter.TutorialViewPagerAdapter;
+import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.multiLang.model.Tutorial;
+import com.nissan.alldriverguide.utils.Values;
 import com.viewpagerindicator.CirclePageIndicator;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -25,9 +34,9 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     private PagerAdapter adapter;
     private ImageButton btnClose, btnNext;
     private TextView txtNext;
-    private int[] imageTutorials = {R.drawable.tutorial_1, R.drawable.tutorial_2, R.drawable.tutorial_3};
-    private String[] tutorialTitles;
-    private String[] tutorialDetails;
+    private int[] imageTutorials = {R.drawable.tutorial_1, R.drawable.tutorial_2, R.drawable.tutorial_3, R.drawable.tutorial_1, R.drawable.tutorial_2, R.drawable.tutorial_3};
+    private String[] tutorialTitles = new String[10];
+    private String[] tutorialDetails = new String[10];
     private CirclePageIndicator indicator;
 
     @Override
@@ -60,8 +69,19 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void loadData() {
-        tutorialTitles = getResources().getStringArray(R.array.tutorial_titles);
-        tutorialDetails = getResources().getStringArray(R.array.tutorial_details);
+
+        ArrayList<Tutorial> list = getDataFromStorage();
+
+
+        for (int i = 0; i < list.size(); i++) {
+
+            tutorialTitles[i] = list.get(i).getTitle();
+            tutorialDetails[i] = list.get(i).getDetails();
+
+        }
+
+//        tutorialTitles = getResources().getStringArray(R.array.tutorial_titles);
+//        tutorialDetails = getResources().getStringArray(R.array.tutorial_details);
         adapter = new TutorialViewPagerAdapter(TutorialActivity.this, imageTutorials, tutorialTitles, tutorialDetails);
         viewPager.setAdapter(adapter);
         indicator.setViewPager(viewPager);
@@ -154,5 +174,12 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    private ArrayList<Tutorial> getDataFromStorage() {
+
+        Type type = new TypeToken<ArrayList<Tutorial>>() {        }.getType();
+        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(Values.TUTORIAL), type);
+
     }
 }
