@@ -14,6 +14,7 @@ import retrofit2.Response;
 
 public class ApiCall {
 
+
     public ApiCall() {
 
     }
@@ -271,5 +272,39 @@ public class ApiCall {
         });
 
     }
+
+    /*************************
+     * MultiLangual
+     **************************/
+    // by auve
+//    public static void Alertdetails(String department_id, final String employee_id, final
+//    ProgressDialog progressDialog, final InterfaceAlertDetailsResponse
+//                                                 interfaceAlertDetailsResponse) {
+//
+//        //Creating an object of our api interface
+//        final ApiService api = RetrofitClient.getApiService();
+//        Call<AlertDetails> call = api.getAlertdetails(department_id, employee_id);
+//        call.enqueue(new Callback<AlertDetails>() {
+//
+//            @Override
+//            public void onResponse(Call<AlertDetails> call, Response<AlertDetails> response) {
+//                if (response.isSuccessful()) {
+//                    progressDialog.dismiss();
+//                    AlertDetails alertDetails = response.body();
+//                    interfaceAlertDetailsResponse.listOfAlertDetailsResponse(alertDetails);
+//                } else {
+//                    Toast.makeText(MyApplication.getAppContext(), "Response Failed", Toast.LENGTH_SHORT).show();
+//                    progressDialog.dismiss();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<AlertDetails> call, Throwable t) {
+//                Toast.makeText(MyApplication.getAppContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//                progressDialog.dismiss();
+//            }
+//        });
+//    }
+
 
 }
