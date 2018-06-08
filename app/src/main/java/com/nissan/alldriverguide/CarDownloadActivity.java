@@ -47,7 +47,10 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
+import com.nissan.alldriverguide.multiLang.model.LanguageList;
+import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.pushnotification.Config;
 import com.nissan.alldriverguide.pushnotification.NotificationUtils;
 import com.nissan.alldriverguide.retrofit.ApiCall;
@@ -65,6 +68,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
