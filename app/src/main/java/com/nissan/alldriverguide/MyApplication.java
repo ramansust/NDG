@@ -1,6 +1,7 @@
 package com.nissan.alldriverguide;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -18,11 +19,11 @@ public class MyApplication extends Application {
     // The following line should be changed to include the correct property id.
     public static final String PROPERTY_ID = "UA-57902793-1";// UA-57795549-1 (Main)
 //    public static final String PROPERTY_ID = "UA-93701816-1";
-
+    private static Context context;
     @Override
     public void onCreate() {
         super.onCreate();
-
+        MyApplication.context = getApplicationContext();
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                         .setDefaultFontPath("font/Nissan Brand Bold.otf")
                         .setFontAttrId(R.attr.fontPath)
@@ -58,4 +59,10 @@ public class MyApplication extends Application {
         }
         return mTrackers.get(trackerId);
     }
+
+    // auve
+    public static Context getAppContext() {
+        return MyApplication.context;
+    }
+
 }

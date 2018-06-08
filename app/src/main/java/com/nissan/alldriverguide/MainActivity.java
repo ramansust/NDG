@@ -33,6 +33,8 @@ import android.widget.TextView;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.assistance.AssistanceFragment;
@@ -41,9 +43,14 @@ import com.nissan.alldriverguide.fragments.search.SearchFragment;
 import com.nissan.alldriverguide.fragments.search.tab.BaseTabFragmentActivity;
 import com.nissan.alldriverguide.fragments.settings.Feedback;
 import com.nissan.alldriverguide.fragments.settings.SettingsFragment;
+import com.nissan.alldriverguide.multiLang.model.TabMenu;
+import com.nissan.alldriverguide.multiLang.model.Tutorial;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -55,7 +62,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
     public TabLayout tabLayout;
     private Tracker tracker;
-    private String[] tabNames;
+    private String[] tabNames = new String[10];
     private int[] tabIconsSelected = {R.drawable.explore_selected, R.drawable.assistance_selected, R.drawable.search_pressed, R.drawable.settings_selected};
     private int[] tabIconsUnSelected = {R.drawable.explore_unselected, R.drawable.assistance_unselected, R.drawable.search, R.drawable.settings_unselected};
     // Start------------ For permission related constants
@@ -143,14 +150,19 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
-        tabNames = resources.getStringArray(R.array.tab_names);
+        ArrayList<TabMenu> tabMenuArrayList = getDataFromStorage();
+
+        for (int i = 0; i < tabMenuArrayList.size(); i++) {
+            tabNames[i] = tabMenuArrayList.get(i).getTitle();
+        }
+
+        //tabNames = resources.getStringArray(R.array.tab_names);
         setupTabLayout();
     }
 
     public void loadResource() {
         metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
         resources = new Resources(getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(MainActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
     }
 
@@ -901,6 +913,13 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
             }
         }
         return super.dispatchTouchEvent(event);
+    }
+
+    private ArrayList<TabMenu> getDataFromStorage() {
+
+        Type type = new TypeToken<ArrayList<TabMenu>>() {        }.getType();
+        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(Values.TAB_MENU), type);
+
     }
 
 }
