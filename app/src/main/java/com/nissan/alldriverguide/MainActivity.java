@@ -44,7 +44,6 @@ import com.nissan.alldriverguide.fragments.search.tab.BaseTabFragmentActivity;
 import com.nissan.alldriverguide.fragments.settings.Feedback;
 import com.nissan.alldriverguide.fragments.settings.SettingsFragment;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
-import com.nissan.alldriverguide.multiLang.model.Tutorial;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
@@ -62,7 +61,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
     public TabLayout tabLayout;
     private Tracker tracker;
-    private String[] tabNames = new String[10];
+    private String[] tabNames = new String[4];
     private int[] tabIconsSelected = {R.drawable.explore_selected, R.drawable.assistance_selected, R.drawable.search_pressed, R.drawable.settings_selected};
     private int[] tabIconsUnSelected = {R.drawable.explore_unselected, R.drawable.assistance_unselected, R.drawable.search, R.drawable.settings_unselected};
     // Start------------ For permission related constants
