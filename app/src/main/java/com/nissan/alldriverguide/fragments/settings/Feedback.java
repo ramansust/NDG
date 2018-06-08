@@ -49,6 +49,10 @@ public class Feedback extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    /**
+     * Here initialized all variable
+     * @param view need for find id for layout
+     */
     private void initViews(View view) {
         preferenceUtil = new PreferenceUtil(getActivity());
         back = (ImageView) view.findViewById(R.id.btn_back);
@@ -57,6 +61,9 @@ public class Feedback extends Fragment implements View.OnClickListener {
         etDescription = (EditText) view.findViewById(R.id.send_feedback_description);
     }
 
+    /**
+     * set the listener for item click
+     */
     private void setListener() {
         back.setOnClickListener(this);
         btnSendFeedback.setOnClickListener(this);
@@ -64,6 +71,10 @@ public class Feedback extends Fragment implements View.OnClickListener {
         etDescription.addTextChangedListener(textWatcher);
     }
 
+    /**
+     * Text watcher used for send feedback edit text box color change
+     * if invalid edit text box show red else gray
+     */
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -124,6 +135,11 @@ public class Feedback extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * Here call the api for send feedback
+     * @param title for send feedback edit text title
+     * @param description for send feedback edit text description
+     */
     private void sendFeedback(String title, String description) {
 
         new ApiCall().postAddFeedback(NissanApp.getInstance().getDeviceID(getActivity()), title, description, NissanApp.getInstance().getDeviceModel(), new CompleteAPI() {

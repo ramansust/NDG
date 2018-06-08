@@ -32,12 +32,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    /**
-     * DetailsActivity is used from ImageTargetActivity (after detecting AR),
-     * VideoPlayerActivity (loading epub for learn more button)
-     * CombimeterActivity (after detecting AR loading combimeter epub)
-     */
-
     private final String EPUB_INDEX = "epub_index";
     private WebView webView;
     private ImageButton btnBack;

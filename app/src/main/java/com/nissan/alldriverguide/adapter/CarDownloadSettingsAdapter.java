@@ -8,7 +8,6 @@ import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -832,7 +831,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         int index = 0;
 
         for (int i = 0; i < list.size(); i++) {
-            Log.e("adapterNotify: ", list.get(i).getName()+", status: " + list.get(i).getStatus());
             if (list.get(i).getStatus().equalsIgnoreCase("1")) {
                 if (isDownloaded) {
                     isDownloaded = false;

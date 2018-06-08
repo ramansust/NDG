@@ -52,6 +52,9 @@ public class ARQashqai2017 implements GLSurfaceView.Renderer, SampleAppRendererC
 
     private SampleAppRenderer mSampleAppRenderer;
 
+    /**
+     * Declare the constructor
+     */
     public ARQashqai2017(ImageTargetActivity activity, SampleApplicationSession session) {
         mActivity = activity;
         vuforiaAppSession = session;
@@ -361,6 +364,7 @@ public class ARQashqai2017 implements GLSurfaceView.Renderer, SampleAppRendererC
             handler.post(new Runnable() {
                 public void run() {
 
+                    // compare trackable.getUserData() with vuforia xml image target name
                     if (userDataToCompare.equalsIgnoreCase("steering_left_1")
                             || userDataToCompare.equalsIgnoreCase("steering_left_2")
                             || userDataToCompare.equalsIgnoreCase("steering_left_3")
@@ -376,6 +380,7 @@ public class ARQashqai2017 implements GLSurfaceView.Renderer, SampleAppRendererC
                         }
 
                         Values.ar_value = Analytics.STEERING_LEFT;
+                        // Notice that inflated layout name and popup image name are should be same
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.qashqai_2017_steering_left, null, false);
                         setBackground(mActivity.inflatedLayout, drawables + "qashqai_2017_steering_left.png");
@@ -544,6 +549,8 @@ public class ARQashqai2017 implements GLSurfaceView.Renderer, SampleAppRendererC
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
+                        // if AR popup has 3 part and each part have click listener then buttonEventInitial
+                        // method handle of it
                         buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_ac_auto_full_left));
                         buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_ac_auto_full_middle));
                         buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_ac_auto_full_right));

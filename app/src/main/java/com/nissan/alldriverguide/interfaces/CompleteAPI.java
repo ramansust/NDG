@@ -7,6 +7,8 @@ import com.nissan.alldriverguide.model.ResponseInfo;
  */
 
 public interface CompleteAPI {
-    void onDownloaded(ResponseInfo responseInfo);
-    void onFailed(String failedReason);
+    // this interface used for getting value from api call
+
+    void onDownloaded(ResponseInfo responseInfo); // this method for getting response body
+    void onFailed(String failedReason); // if response body is null then getting FAILED_STATUS 400
 }

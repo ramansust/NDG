@@ -252,11 +252,13 @@ public class SearchFragment extends Fragment {
                     hideKeyboard(view);
                 }
 
+                // get search keyword
                 getKeyword = getSearchKeyword.getText().toString().trim();
 
                 if (getKeyword.equalsIgnoreCase("")) {
                     Toast.makeText(getActivity(), "Please Input Search Keyword", Toast.LENGTH_SHORT).show();
-                } else {
+
+                } else { // if search keyword is not blank
                     if (new NissanApp().insertSearchDataIntoDatabase(getActivity().getApplicationContext(), getKeyword)) {
                         long currentTime = System.currentTimeMillis(); //Calendar.getInstance().getTime();
 

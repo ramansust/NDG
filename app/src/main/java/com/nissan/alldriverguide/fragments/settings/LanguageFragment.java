@@ -212,6 +212,11 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     }
 
+    /**
+     * Display download alert for language
+     * @param lang language id need for save language sort name
+     * @param position adapter position
+     */
     private void showDownloadAlert(final String lang, final int position) {
         final Dialog dialog = new DialogController(getActivity()).langDialog();
 
@@ -232,7 +237,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                startDownloadProcedure(lang, position);
+                startDownloadProcedure(lang, position); // start language download procedure
             }
         });
         dialog.show();
@@ -252,6 +257,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
                 if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getLangUrl())) {
 
+                    // here download language method
                     new MADownloadManager(activity, context).downloadLanguage(false, "Language", AppConfig.IS_APP_ONLINE ? responseInfo.getLangUrl() : NissanApp.getInstance().getLanguageURL(Values.carType, lang), NissanApp.getInstance().getCarPath(Values.carType), new DownloaderStatus() {
                         @Override
                         public boolean onComplete(boolean b) {
@@ -274,9 +280,10 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
                                                             if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
                                                                 try {
+                                                                    // delete previous language directory
                                                                     FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType)));
 
-                                                                    preferenceUtil.setSelectedLang(lang);
+                                                                    preferenceUtil.setSelectedLang(lang); // here store the language sort name
                                                                     ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));
                                                                     commonDao.updateLanguageStatus(getActivity().getBaseContext(), Values.carType, lang);
                                                                     commonDao.makeAllPushEntryStatusChangeLangauge(getActivity().getBaseContext(), Values.carType, NissanApp.getInstance().getLanguageID(lang));
@@ -285,6 +292,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                                     e.printStackTrace();
                                                                 }
 
+                                                                // set selection for selected language
                                                                 for (int i = 0; i < list.size(); i++) {
                                                                     if (i == position) {
                                                                         list.get(i).setIsSelected(true);
@@ -294,7 +302,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                                 }
 
                                                                 adapter.notifyDataSetChanged();
-                                                                loadResource();
+                                                                loadResource(); // load resource for change language
                                                                 ((MainActivity) getActivity()).loadResource();
                                                                 ((MainActivity) getActivity()).setTabResources();
 
