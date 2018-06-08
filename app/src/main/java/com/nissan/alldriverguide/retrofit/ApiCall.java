@@ -3,8 +3,10 @@ package com.nissan.alldriverguide.retrofit;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAlertAPI;
 import com.nissan.alldriverguide.interfaces.CompleteCarwiseLanguageListAPI;
+import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.model.LanguageList;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.utils.Values;
 
@@ -319,6 +321,26 @@ public class ApiCall {
 
             @Override
             public void onFailure(Call<LanguageList> call, Throwable t) {
+                completeAPI.onFailed(Values.FAILED_STATUS);
+            }
+        });
+
+    }
+
+    // post ExploreTab Content
+    public void postExploreTabContent(String device_id, String language_id, String car_id,String epub_id,String tab_id,final CompleteExploreTabContent completeAPI) {
+
+        //Creating an object of our api interface
+        ApiService api = RetrofitClient.getApiService();
+        Call<ExploreTabModel> call = api.postTabWiseContent(device_id, language_id,car_id,epub_id,tab_id);
+        call.enqueue(new Callback<ExploreTabModel>() {
+            @Override
+            public void onResponse(Call<ExploreTabModel> call, Response<ExploreTabModel> response) {
+                completeAPI.onDownloaded(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ExploreTabModel> call, Throwable t) {
                 completeAPI.onFailed(Values.FAILED_STATUS);
             }
         });

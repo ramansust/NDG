@@ -173,9 +173,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             public void onDownloaded(ResponseInfo info) {
                 if (AppConfig.IS_APP_ONLINE ? Values.SUCCESS_STATUS.equalsIgnoreCase(info.getStatusCode()) && !TextUtils.isEmpty(info.getAssetsUrl()) && !TextUtils.isEmpty(info.getLangUrl()) : Values.SUCCESS_STATUS.equalsIgnoreCase(info.getStatusCode())) {
 
-
-                    preferenceUtil.storeMultiLangData(info.getTutorials(), Values.TUTORIAL);
-                    preferenceUtil.storeMultiLangData(info.getTabMenu(), Values.TAB_MENU);
+                    preferenceUtil.storeMultiLangData(info.getTutorials(), Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TUTORIAL);
+                    preferenceUtil.storeMultiLangData(info.getTabMenu(), Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TAB_MENU);
 
 
                     //call this after getting the asset link successfully

@@ -44,6 +44,7 @@ import com.nissan.alldriverguide.fragments.search.tab.BaseTabFragmentActivity;
 import com.nissan.alldriverguide.fragments.settings.Feedback;
 import com.nissan.alldriverguide.fragments.settings.SettingsFragment;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
+import com.nissan.alldriverguide.multiLang.model.Tutorial;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
@@ -97,7 +98,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     protected void onCreate(Bundle savedInstanceState) {
         setView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
-        Log.e("onCreate: ", NissanApp.getInstance().getDeviceID(this));
+
         loadResource();
         initViews();
         setTabResources();
@@ -151,8 +152,12 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
         ArrayList<TabMenu> tabMenuArrayList = getDataFromStorage();
 
-        for (int i = 0; i < tabMenuArrayList.size(); i++) {
-            tabNames[i] = tabMenuArrayList.get(i).getTitle();
+        if (tabMenuArrayList != null && tabMenuArrayList.size() > 0) {
+            for (int i = 0; i < tabMenuArrayList.size(); i++) {
+                tabNames[i] = tabMenuArrayList.get(i).getTitle();
+            }
+        } else {
+            tabNames = resources.getStringArray(R.array.tab_names);
         }
 
         //tabNames = resources.getStringArray(R.array.tab_names);
@@ -172,6 +177,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         loadResource();
 
         tabNames = resources.getStringArray(R.array.tab_names); // get the tab name from array
+//        tabNames = resources.getStringArray(R.array.tab_names);
         for (int i = 0; i < tabNames.length; i++) {
             tabTextViews[i].setText(tabNames[i]); // set the tab name in tab text
         }
@@ -916,8 +922,10 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
     private ArrayList<TabMenu> getDataFromStorage() {
 
+        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TAB_MENU;
+
         Type type = new TypeToken<ArrayList<TabMenu>>() {        }.getType();
-        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(Values.TAB_MENU), type);
+        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);
 
     }
 
