@@ -1,10 +1,11 @@
 package com.nissan.alldriverguide.retrofit;
 
-import com.nissan.alldriverguide.model.LanguageList;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
+import com.nissan.alldriverguide.multiLang.model.LanguageList;
+import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -78,6 +79,9 @@ public interface ApiService {
     @POST("global_message/")
     Call<GlobalMsgResponse> postAlertMsg(@Field("device_id") String device_id, @Field("language_id") String language_id);
 
+    @FormUrlEncoded
+    @POST("car_wise_language_list/")
+    Call<LanguageListResponse> languageList(@Field("device_id") String device_id, @Field("car_id") String car_id);
     // post Car wise language List
     @FormUrlEncoded
     @POST("car_wise_language_list/")
@@ -86,7 +90,7 @@ public interface ApiService {
     // post Explore Tab Content
     @FormUrlEncoded
     @POST("get_tab_content/")
-    Call<ExploreTabModel> postTabWiseContent(@Field("device_id") String device_id, @Field("language_id") String language_id,@Field("car_id") String car_id, @Field("epub_id") String epub_id,@Field("tab_id") String tab_id);
+    Call<ExploreTabModel> postTabWiseContent(@Field("device_id") String device_id, @Field("language_id") String language_id, @Field("car_id") String car_id, @Field("epub_id") String epub_id, @Field("tab_id") String tab_id);
 
     // post Assistance Tab Content
     @FormUrlEncoded

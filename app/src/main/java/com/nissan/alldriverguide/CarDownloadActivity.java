@@ -113,6 +113,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private BroadcastReceiver mRegistrationBroadcastReceiver;
 
     private long doubleClickPopup = 0;
+    private List<LanguageList> languageLists;
+    private LanguageListResponse languageListResponses;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -151,6 +153,14 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 }
             }
         };
+
+        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", new InterfaceLanguageListResponse() {
+            @Override
+            public void languageListResponse(LanguageListResponse languageListResponse) {
+                languageListResponses = languageListResponse;
+                languageListResponses.getLanguageList().size();
+            }
+        });
     }
 
     /**
@@ -282,22 +292,15 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             if ("1".equalsIgnoreCase(info.getStatus())) { // status 1 means downloaded car
                 carDownloadCheck(info.getId());
             } else {
-                // this condition for 4 cars which live in previous model section
-                // for those cars need to display different popup for downloaded car
                 if (info.getId() == 1 || info.getId() == 2 || info.getId() == 4 || info.getId() == 5) {
                     showCarDownloadDialog(info.getId());
                 } else {
-                    // this for all cars except top 4
                     carDownloadCheck(info.getId());
                 }
             }
         }
     }
 
-    /**
-     * Show dialog display for carType 1,2,4,&5
-     * @param carType comparing
-     */
     private void showCarDownloadDialog(final int carType) {
         final Dialog dialog = new DialogController(CarDownloadActivity.this).carDialog();
 
