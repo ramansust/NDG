@@ -22,8 +22,12 @@ import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.AssistanceAdapter;
 import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.multiLang.model.ChildNode;
+import com.nissan.alldriverguide.multiLang.model.Datum;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
+
+import java.util.List;
 
 public class NissanAssistanceFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
@@ -45,6 +49,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
     public Resources resources;
     private PreferenceUtil preferenceUtil;
     private static final String TITLE = "title";
+    private String[] nissanAssistance;
 
     public static Fragment newInstance(String title) {
         Fragment frag = new NissanAssistanceFragment();
@@ -62,7 +67,8 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
         initViews(view);
         loadResource();
         setListener();
-        loadData();
+        abc();
+//        loadData();
         return view;
     }
 
@@ -70,6 +76,25 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
     public void onAttach(Context context) {
         super.onAttach(context);
         new PreferenceUtil(getActivity()).setOpenCountForRateApp();
+    }
+
+    private void abc() {
+        List<Datum> list = AssistanceFragment.assistanceInfo.getData();
+        if (list != null && list.size() > 0) {
+            List<ChildNode> childNodes;
+            for (int i = 0; i <list.size(); i++) {
+                if (list.get(i).getIndex() == 6) {
+                    childNodes = list.get(i).getChildNode();
+                    if (nissanAssistance == null) {
+                        nissanAssistance = new String[childNodes.size()];
+                        for (int j = 0; j < childNodes.size(); j++) {
+                            nissanAssistance[j] = childNodes.get(j).getTitle();
+                        }
+                    }
+                }
+            }
+        }
+        loadData();
     }
 
     /**
@@ -81,7 +106,8 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
         txtViewDriverGuide.setTypeface(Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "font/Nissan Brand Regular.otf"));
         txtViewDriverGuide.setText(resources.getString(R.string.driver_guide));
         txtViewTitle.setText(getArguments().get(TITLE).toString());
-        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.nissan_assistance_array), nissanNssistanceImage);
+//        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.nissan_assistance_array), nissanNssistanceImage);
+        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), nissanAssistance, nissanNssistanceImage);
         lstView.setAdapter(adapter);
 
         // condition for new four cars (eg. 11 = All New Nissan Micra, 12 = New Nissan QASHQAI etc...)

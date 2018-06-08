@@ -47,8 +47,6 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
-import com.nissan.alldriverguide.multiLang.model.AlertMessage;
-import com.nissan.alldriverguide.multiLang.model.GlobalMessage;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.pushnotification.Config;
 import com.nissan.alldriverguide.pushnotification.NotificationUtils;
@@ -67,7 +65,6 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -364,7 +361,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     protected void onResume() {
-        Log.e("onResume: ", "8888888888888888888888888");
         getGlobalAlertMsg();
         if (preferenceUtil.getIsFirstTime()) {
             if (new File(Values.PATH).exists()) {

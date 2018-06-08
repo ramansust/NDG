@@ -117,4 +117,6 @@ public class Values {
 
     public static final String GLOBALMSGKEY = "globalmsg";
 
+    public static final String ASSISTANCE_OBJ_STORE_KEY = "assistance";
+
 }
