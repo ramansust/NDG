@@ -55,7 +55,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
     private String[] languageName ;/*= {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};*/
     private String[] languageShortName; /*= {"en", "de", "fr", "it", "es", "nl", "ru", "sv", "no", "pl", "fi", "pt"};*/
-     private int[] languageImage = {R.drawable.united_kingdom, R.drawable.germany, R.drawable.france, R.drawable.italy, R.drawable.spain, R.drawable.netherlands, R.drawable.russia, R.drawable.sweden, R.drawable.norway, R.drawable.poland, R.drawable.finland, R.drawable.portugal};
+    private int[] languageImage = {R.drawable.united_kingdom, R.drawable.germany, R.drawable.france, R.drawable.italy, R.drawable.spain, R.drawable.netherlands, R.drawable.russia, R.drawable.sweden, R.drawable.norway, R.drawable.poland, R.drawable.finland, R.drawable.portugal};
 
     private ListView lstView;
     private ArrayList<LanguageInfo> list;
@@ -71,8 +71,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private Context context;
     private LanguageListResponse languageListResponses;
     private String[] languageDialog, cancelLangDownload, okLangDownload;
-    private ProgressDialog dialog;
-
+    private String deviceDensity;
+    private String langFlagUri;
     public LanguageSelectionActivity() {
     }
 
@@ -87,7 +87,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language_selection);
 
-        dialogWait();
+        progressDialog = new ProgressDialogController(this).showDialog("adfkaljshfkj");
+        deviceDensity = NissanApp.getInstance().getDensityName(context);
         getDataCarWise();
         initViews();
         setListener();
@@ -100,15 +101,9 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 //        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);
 //
 //    }
-    private void dialogWait() {
-        dialog = new ProgressDialog(this);
-        dialog.setMessage("Loading...");
-        dialog.setCancelable(false);
-        dialog.show();
-    }
 
     private void getDataCarWise() {
-        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", dialog, new InterfaceLanguageListResponse() {
+        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", progressDialog , new InterfaceLanguageListResponse() {
             @Override
             public void languageListResponse(LanguageListResponse languageListResponse) {
                 languageListResponses = languageListResponse;
@@ -129,8 +124,26 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     languageDialog[i] = (languageListResponse.getLanguageList().get(i).getAlertMessage());
                     cancelLangDownload[i] = (languageListResponse.getLanguageList().get(i).getCancel());
                     okLangDownload[i] = (languageListResponse.getLanguageList().get(i).getOk());
-                }
 
+                    if("xxxhdpi".contains(deviceDensity)){
+                        langFlagUri = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                    }
+                    if("xxhdpi".contains(deviceDensity)){
+                        langFlagUri = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                    }
+                    if("xhdpi".contains(deviceDensity)){
+                        langFlagUri = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                    }
+                    if("hdpi".contains(deviceDensity)){
+                        langFlagUri = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                    }
+                    if("mdpi".contains(deviceDensity)){
+                        langFlagUri = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                    }
+                    if("ldpi".contains(deviceDensity)){
+                        langFlagUri = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                    }
+                }
                 loadData();
             }
         });
