@@ -2,6 +2,7 @@ package com.nissan.alldriverguide.retrofit;
 
 import com.nissan.alldriverguide.model.LanguageList;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 
 import retrofit2.Call;
@@ -81,5 +82,9 @@ public interface ApiService {
     @POST("car_wise_language_list/")
     Call<LanguageList> postCarwiseLanguageList(@Field("device_id") String device_id, @Field("language_id") String language_id);
 
+    // post Explore Tab Content
+    @FormUrlEncoded
+    @POST("get_tab_content/")
+    Call<ExploreTabModel> postTabWiseContent(@Field("device_id") String device_id, @Field("language_id") String language_id,@Field("car_id") String car_id, @Field("epub_id") String epub_id,@Field("tab_id") String tab_id);
 
 }

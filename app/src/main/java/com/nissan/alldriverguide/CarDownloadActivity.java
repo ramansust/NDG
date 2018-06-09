@@ -161,10 +161,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onDownloaded(GlobalMsgResponse responseInfo) {
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
-
-
-
-
                 }
             }
 
