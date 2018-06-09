@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,8 +43,11 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     private String[] countryName;
     private String[] countrFlag;
     private int[] flag = {R.drawable.austria, R.drawable.belgium, R.drawable.czech_republic/*, R.drawable.denmark, R.drawable.estonia, R.drawable.finland, R.drawable.france, R.drawable.germany, R.drawable.greece, R.drawable.hungary, R.drawable.italy, R.drawable.latvia, R.drawable.lithuania, R.drawable.netherlands, R.drawable.norway, R.drawable.poland, R.drawable.portugal, R.drawable.slovakia, R.drawable.spain, R.drawable.sweden, R.drawable.switzerland, R.drawable.united_kingdom*/};
-    private String[] nationalNumber = {"0800215380", "0080050001001", "800232323"/*, "", "8006666", "", "0805112233", "08005894987", "2103428600", "0680333888", "800105800", "80003211", "880030725", "08000231513", "", "0801647726", "800200000", "0800112020", "900118119", "", "0800860900", "03301231231"*/};
-    private String[] internationalNumber = {"+43190577777", "+3238703401", "+3613715491"/*, "+4570140147", "+3726506043", "+358107705222", "+33172676914", "+492232572079", "+302103428600", "+3613715493", "+390690808777", "+3726064071", "+3705270940", "+31205162026", "+4781521310 ", "+3613715496", "+34932907526", "+3613715495", "+34932907515", "+46850103000", "+41447365550", "+441913352879"*/};
+    //    private String[] nationalNumber = {"0800215380", "0080050001001", "800232323"/*, "", "8006666", "", "0805112233", "08005894987", "2103428600", "0680333888", "800105800", "80003211", "880030725", "08000231513", "", "0801647726", "800200000", "0800112020", "900118119", "", "0800860900", "03301231231"*/};
+    private String[] nationalNumber;
+    private String[] internationalNumber;
+    //    private String[] internationalNumber = {"+43190577777", "+3238703401", "+3613715491"/*, "+4570140147", "+3726506043", "+358107705222", "+33172676914", "+492232572079", "+302103428600", "+3613715493", "+390690808777", "+3726064071", "+3705270940", "+31205162026", "+4781521310 ", "+3613715496", "+34932907526", "+3613715495", "+34932907515", "+46850103000", "+41447365550", "+441913352879"*/};
+    private String[] phonePopupText;
 
     private View view;
     private ListView lstView;
@@ -59,8 +61,10 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     private Resources resources;
     private DisplayMetrics metrics;
     private TextView txtViewTitle;
+    private TextView txtHeaderTitle;
     private Typeface tf;
     private static final String TITLE = "title";
+    private String headerTitle;
 
     public static Fragment newInstance(String title) {
         Fragment frag = new CallNissanAssistanceFragment();
@@ -78,9 +82,9 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
 //        countryName = getResources().getStringArray(R.array.country_for_call_array);
 
         initViews(view);
-        loadResource();
         setListener();
         callNissanAssistance();
+        loadResource();
 //        loadData();
 
         return view;
@@ -90,6 +94,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
         txtViewTitle.setText(getArguments().getString(TITLE));
 //        txtViewTitle.setTypeface(tf);
+        txtHeaderTitle.setText(headerTitle);
     }
 
     public void callNissanAssistance() {
@@ -97,19 +102,34 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         if (list != null && list.size() > 0) {
             List<ChildNode> childNodes;
             List<CountryList> countryLists;
+
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).getIndex() == 6) {
+
                     childNodes = list.get(i).getChildNode();
+
                     for (int j = 0; j < childNodes.size(); j++) {
+
                         if (childNodes.get(j).getIndex() == 2) {
+                            headerTitle = childNodes.get(j).getHeaderTitle();
                             countryLists = childNodes.get(j).getCountryList();
-                            if (countryName == null & countrFlag == null) {
+
+                            if (countryName == null && countrFlag == null &&
+                                    nationalNumber == null && internationalNumber == null) {
+
                                 countryName = new String[countryLists.size()];
                                 countrFlag = new String[countryLists.size()];
+                                nationalNumber = new String[countryLists.size()];
+                                internationalNumber = new String[countryLists.size()];
+                                phonePopupText = new String[countryLists.size()];
+
                                 for (int k = 0; k < countryLists.size(); k++) {
+
                                     countryName[k] = countryLists.get(k).getCountryName();
                                     countrFlag[k] = countryLists.get(k).getThumbXhdpi();
-                                    Log.e("callNissanAssistance: ", countryLists.get(k).getThumbXhdpi());
+                                    nationalNumber[k] = countryLists.get(k).getPhoneNational();
+                                    internationalNumber[k] = countryLists.get(k).getPhoneInternational();
+                                    phonePopupText[k] = countryLists.get(k).getPopup();
                                 }
                             }
                         }
@@ -124,7 +144,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         list = new ArrayList<>();
 
         for (int i = 0; i < countryName.length; i++) {
-            CallInfo info = new CallInfo(countryName[i], flag[i], nationalNumber[i], internationalNumber[i]);
+            CallInfo info = new CallInfo(countryName[i], countrFlag[i], nationalNumber[i], internationalNumber[i]);
             list.add(info);
         }
 
@@ -158,6 +178,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         btnBack = (ImageButton) view.findViewById(R.id.btn_back);
         lstView = (ListView) view.findViewById(R.id.lst_view);
         txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
+        txtHeaderTitle = (TextView) view.findViewById(R.id.txt_view_country_name);
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
         tf = Typeface.createFromAsset(getActivity().getAssets(), "font/Nissan Brand Regular.otf");
@@ -179,10 +200,12 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
 
         if ("fr".equalsIgnoreCase(preferenceUtil.getSelectedLang())) {
             TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+//            txtViewTitle.setText(getResources().getString(R.string.telephone_number_for) + " " + countryNameFR[position]);
             txtViewTitle.setText(getResources().getString(R.string.telephone_number_for) + " " + countryNameFR[position]);
         } else {
             TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-            txtViewTitle.setText(getResources().getString(R.string.telephone_number_for) + " " + list.get(position).getCountryName());
+//            txtViewTitle.setText(getResources().getString(R.string.telephone_number_for) + " " + list.get(position).getCountryName());
+            txtViewTitle.setText(phonePopupText[position]);
         }
 
         TextView btnCancel = (TextView) dialog.findViewById(R.id.btn_cancel);

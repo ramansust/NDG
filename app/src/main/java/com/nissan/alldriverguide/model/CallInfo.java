@@ -7,6 +7,7 @@ package com.nissan.alldriverguide.model;
 public class CallInfo {
     private String countryName;
     private int flag;
+    private String countryFlag;
 
     public String getCountryName() {
         return countryName;
@@ -16,17 +17,32 @@ public class CallInfo {
         this.countryName = countryName;
     }
 
-    public int getFlag() {
+/*    public int getFlag() {
         return flag;
     }
 
     public void setFlag(int flag) {
         this.flag = flag;
+    }*/
+
+    public String getCountryFlag() {
+        return countryFlag;
+    }
+
+    public void setCountryFlag(String countryFlag) {
+        this.countryFlag = countryFlag;
     }
 
     public CallInfo(String countryName, int flag, String nationalNumber, String internationalNumber) {
         this.countryName = countryName;
         this.flag = flag;
+        this.nationalNumber = nationalNumber;
+        this.internationalNumber = internationalNumber;
+    }
+
+    public CallInfo(String countryName, String flag, String nationalNumber, String internationalNumber) {
+        this.countryName = countryName;
+        this.countryFlag = flag;
         this.nationalNumber = nationalNumber;
         this.internationalNumber = internationalNumber;
     }

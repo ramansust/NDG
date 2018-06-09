@@ -2,6 +2,7 @@ package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.model.CallInfo;
 
@@ -63,7 +65,18 @@ public class CallNumberAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag ();
         }
 
-        viewHolder.imageView.setBackgroundResource(list.get(position).getFlag());
+//        viewHolder.imageView.setBackgroundResource(list.get(position).getFlag());
+//        Glide.with(context)
+//                .load(list.get(position).getFlag())
+//                .into(viewHolder.imageView);
+
+        String imageBytes = list.get(position).getCountryFlag();
+        byte[] imageByteArray = Base64.decode(imageBytes, Base64.DEFAULT);
+        Glide.with(context)
+                .load(imageByteArray)
+                .asBitmap()
+                .placeholder(R.drawable.austria)
+                .into(viewHolder.imageView);
 
         viewHolder.txtViewTitle.setTypeface(tf);
         viewHolder.txtViewTitle.setText(list.get(position).getCountryName());
