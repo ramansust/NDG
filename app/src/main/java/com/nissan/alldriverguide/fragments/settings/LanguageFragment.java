@@ -254,13 +254,15 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
                 if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getLangUrl())) {
 
-                    // here download language method
-                    Log.e("old_lang", "__________" + preferenceUtil.getSelectedLang());
-                    Log.e("new_lang", "__________" + lang);
+                    String old_key_tutorial = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.TUTORIAL;
+                    String old_key_tab = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.TAB_MENU;
+                    String new_key_tutorial = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TUTORIAL;
+                    String new_key_tab = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TAB_MENU;
 
-//                    preferenceUtil.storeMultiLangData(responseInfo.getTutorials(), Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TUTORIAL);
-//                    preferenceUtil.storeMultiLangData(responseInfo.getTabMenu(), Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TAB_MENU);
-
+                    preferenceUtil.deleteMultiLangData(old_key_tab);
+                    preferenceUtil.deleteMultiLangData(old_key_tutorial);
+                    preferenceUtil.storeMultiLangData(responseInfo.getTutorials(), new_key_tutorial);
+                    preferenceUtil.storeMultiLangData(responseInfo.getTabMenu(), new_key_tab);
 
                     new MADownloadManager(activity, context).downloadLanguage(false, "Language", AppConfig.IS_APP_ONLINE ? responseInfo.getLangUrl() : NissanApp.getInstance().getLanguageURL(Values.carType, lang), NissanApp.getInstance().getCarPath(Values.carType), new DownloaderStatus() {
                         @Override

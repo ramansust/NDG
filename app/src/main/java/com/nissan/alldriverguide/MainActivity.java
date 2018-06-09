@@ -152,6 +152,8 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
         ArrayList<TabMenu> tabMenuArrayList = getDataFromStorage();
 
+        NissanApp.getInstance().setTabMenuArrayList(tabMenuArrayList);
+
         if (tabMenuArrayList != null && tabMenuArrayList.size() > 0) {
             for (int i = 0; i < tabMenuArrayList.size(); i++) {
                 tabNames[i] = tabMenuArrayList.get(i).getTitle();

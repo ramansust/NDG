@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -83,6 +84,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
 
         ArrayList<Tutorial> list = getDataFromStorage();
 
+        NissanApp.getInstance().setTutorialArrayList(list);
 
         if (list != null && list.size() > 0) {
             TUTORIAL_COUNT = list.size() - 1;
