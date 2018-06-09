@@ -16,7 +16,6 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.adapter.TutorialViewPagerAdapter;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.multiLang.model.Tutorial;
@@ -85,6 +84,8 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         ArrayList<Tutorial> list = getDataFromStorage();
 
         NissanApp.getInstance().setTutorialArrayList(list);
+
+        Log.e("professional", "_________" + list.size());
 
         if (list != null && list.size() > 0) {
             TUTORIAL_COUNT = list.size() - 1;
@@ -201,7 +202,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
 
     private ArrayList<Tutorial> getDataFromStorage() {
 
-        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TUTORIAL;
+        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TUTORIAL_KEY;
 
         Type type = new TypeToken<ArrayList<Tutorial>>() {
         }.getType();

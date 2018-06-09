@@ -21,6 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.MainActivity;
@@ -35,6 +37,7 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.model.AlertMessage;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
@@ -48,9 +51,11 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class AddCarFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
@@ -548,11 +553,13 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
-                    NissanApp.getInstance().showInternetAlert(getActivity(), getResources().getString(R.string.car_msg_download));
+//                    NissanApp.getInstance().showInternetAlert(getActivity(), getResources().getString(R.string.car_msg_download));
+                    NissanApp.getInstance().showInternetAlert(getActivity(), getCarDownloadMessage());
                 }
             }
         } else {
-            NissanApp.getInstance().showInternetAlert(getActivity(), getResources().getString(R.string.car_msg_download));
+//            NissanApp.getInstance().showInternetAlert(getActivity(), getResources().getString(R.string.car_msg_download));
+            NissanApp.getInstance().showInternetAlert(getActivity(), getCarDownloadMessage());
         }
     }
 
@@ -595,4 +602,28 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(getActivity().getApplicationContext(), msg);
         dialogFragment.show(getActivity().getSupportFragmentManager(), "error_fragment");
     }
+
+    private String getCarDownloadMessage() {
+
+        String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
+
+        List<AlertMessage> alertMessageArrayList = NissanApp.getInstance().getAlertMessageGlobalArrayList();
+        if (alertMessageArrayList == null || alertMessageArrayList.size() == 0) {
+            Type type = new TypeToken<ArrayList<AlertMessage>>() {
+            }.getType();
+            alertMessageArrayList = new Gson().fromJson(new PreferenceUtil(getActivity()).retrieveMultiLangData(key_global_alert_message), type);
+            NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageArrayList);
+        }
+
+
+        for (int i = 0; i < alertMessageArrayList.size(); i++) {
+
+            if (alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_1))
+                return alertMessageArrayList.get(i).getMsg();
+
+        }
+
+        return getResources().getString(R.string.car_msg_download);
+    }
+
 }

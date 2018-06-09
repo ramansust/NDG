@@ -44,7 +44,6 @@ import com.nissan.alldriverguide.fragments.search.tab.BaseTabFragmentActivity;
 import com.nissan.alldriverguide.fragments.settings.Feedback;
 import com.nissan.alldriverguide.fragments.settings.SettingsFragment;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
-import com.nissan.alldriverguide.multiLang.model.Tutorial;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
@@ -150,6 +149,14 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
+        setTabNames();
+
+        //tabNames = resources.getStringArray(R.array.tab_names);
+        setupTabLayout();
+    }
+
+    private void setTabNames() {
+
         ArrayList<TabMenu> tabMenuArrayList = getDataFromStorage();
 
         NissanApp.getInstance().setTabMenuArrayList(tabMenuArrayList);
@@ -162,8 +169,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
             tabNames = resources.getStringArray(R.array.tab_names);
         }
 
-        //tabNames = resources.getStringArray(R.array.tab_names);
-        setupTabLayout();
     }
 
     public void loadResource() {
@@ -178,7 +183,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     public void setTabResources() {
         loadResource();
 
-        tabNames = resources.getStringArray(R.array.tab_names); // get the tab name from array
+        setTabNames();
 //        tabNames = resources.getStringArray(R.array.tab_names);
         for (int i = 0; i < tabNames.length; i++) {
             tabTextViews[i].setText(tabNames[i]); // set the tab name in tab text
@@ -924,7 +929,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
     private ArrayList<TabMenu> getDataFromStorage() {
 
-        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TAB_MENU;
+        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TAB_MENU_KEY;
 
         Type type = new TypeToken<ArrayList<TabMenu>>() {        }.getType();
         return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);
