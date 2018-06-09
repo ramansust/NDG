@@ -89,6 +89,18 @@ public class PreferenceUtil {
         spEditor.apply();
     }
 
+    // retrieve selected language
+    public String getPreviousLanguage() {
+        return sharedPreferences.getString("previous_lang", "");
+    }
+
+    // store selected language
+    public void setPreviousLanguage(String lang) {
+        spEditor = sharedPreferences.edit();
+        spEditor.putString("previous_lang", lang);
+        spEditor.apply();
+    }
+
     //this is for storing the epub list for search
     public void storeMultiLangData(List<?> data, String key) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
