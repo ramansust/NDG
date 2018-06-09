@@ -156,7 +156,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     }
 
     public void postAssistanceData() {
-        new ApiCall().postAssistanceTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "1", String.valueOf(Values.carType), "0", "2", new CompleteAssistanceTabContent() {
+        int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
+        new ApiCall().postAssistanceTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2", new CompleteAssistanceTabContent() {
             @Override
             public void onDownloaded(AssistanceInfo responseInfo) {
 
