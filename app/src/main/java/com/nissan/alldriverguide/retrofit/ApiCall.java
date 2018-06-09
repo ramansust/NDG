@@ -1,7 +1,17 @@
 package com.nissan.alldriverguide.retrofit;
 
+import android.util.Log;
+import android.widget.Toast;
+
+import com.nissan.alldriverguide.MyApplication;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
+import com.nissan.alldriverguide.interfaces.CompleteAlertAPI;
+import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
+import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
+import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
+import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.utils.Values;
 
 import retrofit2.Call;
@@ -302,24 +312,24 @@ public class ApiCall {
     }
 
     // post Car wise Language List
-    public void postGlobalAlertMsg(String device_id, String language_id, final CompleteCarwiseLanguageListAPI completeAPI) {
-
-        //Creating an object of our api interface
-        ApiService api = RetrofitClient.getApiService();
-        Call<LanguageList> call = api.postCarwiseLanguageList(device_id, language_id);
-        call.enqueue(new Callback<LanguageList>() {
-            @Override
-            public void onResponse(Call<LanguageList> call, Response<LanguageList> response) {
-                completeAPI.onDownloaded(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<LanguageList> call, Throwable t) {
-                completeAPI.onFailed(Values.FAILED_STATUS);
-            }
-        });
-
-    }
+//    public void postGlobalAlertMsg(String device_id, String language_id, final CompleteCarwiseLanguageListAPI completeAPI) {
+//
+//        //Creating an object of our api interface
+//        ApiService api = RetrofitClient.getApiService();
+//        Call<LanguageList> call = api.postCarwiseLanguageList(device_id, language_id);
+//        call.enqueue(new Callback<LanguageList>() {
+//            @Override
+//            public void onResponse(Call<LanguageList> call, Response<LanguageList> response) {
+//                completeAPI.onDownloaded(response.body());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<LanguageList> call, Throwable t) {
+//                completeAPI.onFailed(Values.FAILED_STATUS);
+//            }
+//        });
+//
+//    }
 
     // post ExploreTab Content
     public void postExploreTabContent(String device_id, String language_id, String car_id,String epub_id,String tab_id,final CompleteExploreTabContent completeAPI) {
@@ -357,8 +367,8 @@ public class ApiCall {
                     Log.e("response.code(): ",""+ response.code() );
                     if (response.isSuccessful()) {
                         LanguageListResponse languageListResponse = response.body();
-                        List<LanguageList> languageLists = response.body().getLanguageList();
-                        Log.e("--", "onResponse: "+ languageLists.size());
+//                        List<LanguageList> languageLists = response.body().getLanguageList();
+//                        Log.e("--", "onResponse: "+ languageLists.size());
                         interfaceLanguageListResponse.languageListResponse(languageListResponse);
 
 //                        progressDialog.dismiss();
