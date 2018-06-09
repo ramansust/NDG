@@ -56,6 +56,9 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         loadData();
     }
 
+    /**
+     * Initialized all view
+     */
     private void initViews() {
         viewPager = (ViewPager) findViewById(R.id.tutorialViewPager);
         btnClose = (ImageButton) findViewById(R.id.btnClose);
@@ -64,12 +67,18 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         indicator = (CirclePageIndicator) findViewById(R.id.viewpager_indicator);
     }
 
+    /**
+     * Here set the listener for click item
+     */
     private void setListener() {
         btnClose.setOnClickListener(this);
         btnNext.setOnClickListener(this);
         txtNext.setOnClickListener(this);
     }
 
+    /**
+     * Here loading data and set adapter
+     */
     private void loadData() {
 
         ArrayList<Tutorial> list = getDataFromStorage();
@@ -101,11 +110,11 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnClose:
-                if (getIntent().getExtras().get("from").equals("activity")) {
+                if (getIntent().getExtras().get("from").equals("activity")) { // if car downloaded is first time
                     startActivity(new Intent(TutorialActivity.this, MainActivity.class));
                     overridePendingTransition(R.anim.left_in, R.anim.left_out);
                     finish();
-                } else if (getIntent().getExtras().get("from").equals("fragment")) {
+                } else if (getIntent().getExtras().get("from").equals("fragment")) { // if start this activity form settingsFragment
                     overridePendingTransition(R.anim.left_in, R.anim.left_out);
                     finish();
                 }
@@ -140,6 +149,9 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * indicate for the next movement action
+     */
     private void gotoNextActivity() {
         if (getIntent().getExtras().get("from").equals("activity")) {
             startActivity(new Intent(TutorialActivity.this, MainActivity.class));

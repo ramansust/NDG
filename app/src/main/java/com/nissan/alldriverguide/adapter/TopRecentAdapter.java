@@ -27,6 +27,11 @@ public class TopRecentAdapter extends RecyclerView.Adapter<TopRecentAdapter.Simp
     private Context mContext;
     private List<SearchModel> list1, list2, list3;
 
+    /**
+     * Declare the constructor
+     * @param mContext needed
+     * @param list2 need to a collection list
+     */
 //    public TopRecentAdapter(Context mContext, List<SearchModel> list1, List<SearchModel> list2) {
     public TopRecentAdapter(Context mContext, List<SearchModel> list2) {
         this.mContext = mContext;

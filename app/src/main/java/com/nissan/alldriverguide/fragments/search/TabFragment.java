@@ -49,7 +49,7 @@ import static android.text.TextUtils.isEmpty;
 
 /**
  * Created by nirob on 9/12/17.
- * Updated by shuvo on 20/11/17.
+ * Updated by shuvo on 20/12/17.
  */
 
 public class TabFragment extends Fragment {
@@ -112,6 +112,10 @@ public class TabFragment extends Fragment {
         }
     }
 
+    /**
+     * Initialized all variable
+     * @param v for fragment layout view
+     */
     private void initializeView(View v) {
         commondao = CommonDao.getInstance();
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
@@ -137,6 +141,7 @@ public class TabFragment extends Fragment {
         setCurrentTabFragment(0);
     }
 
+    // add icon in tab layout
     private void addAllTabsInTabLayout() {
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.warning_light));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.quick_reference));
@@ -147,6 +152,9 @@ public class TabFragment extends Fragment {
         setDividerBetweenTabs();
     }
 
+    /**
+     * Set the click listener
+     */
     private void setListener() {
         getSearchKeyword.setOnEditorActionListener(editorActionListener);
         cancel.setOnClickListener(clickListener);
@@ -172,6 +180,9 @@ public class TabFragment extends Fragment {
         });
     }
 
+    /**
+     * Here check the content update
+     */
     private void checkUpdatedContent() {
         final ArrayList<PushContentInfo> list = commondao.getNotificationList(getActivity().getApplicationContext(), Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
 
@@ -202,6 +213,10 @@ public class TabFragment extends Fragment {
         resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
     }
 
+    /**
+     * Here indicate the search tab fragment
+     * @param tabPosition identify the specific Fragment
+     */
     private void setCurrentTabFragment(int tabPosition) {
         switch (tabPosition) {
             case 0:
@@ -225,6 +240,9 @@ public class TabFragment extends Fragment {
         }
     }
 
+    /**
+     * here set the search tab divider
+     */
     private void setDividerBetweenTabs() {
         //this is to set divider between tabs
         LinearLayout linearLayout = (LinearLayout) tabLayout.getChildAt(0);
@@ -304,11 +322,14 @@ public class TabFragment extends Fragment {
     };
 
 
+    /**
+     * This listener for keyboard search action
+     */
     private TextView.OnEditorActionListener editorActionListener = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
 
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) { // here implement the keyboard search
 
                 View view = getActivity().getCurrentFocus();
                 if (view != null) {

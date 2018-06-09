@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -21,11 +20,8 @@ import android.widget.TextView;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
-import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.adapter.LanguageSelectionAdapter;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
@@ -35,8 +31,6 @@ import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
-import com.nissan.alldriverguide.multiLang.model.TabMenu;
-import com.nissan.alldriverguide.multiLang.model.Tutorial;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
@@ -50,9 +44,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -91,6 +83,9 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         loadData();
     }
 
+    /**
+     * Initialized all variable
+     */
     private void initViews() {
         activity = LanguageSelectionActivity.this;
         context = getApplicationContext();
@@ -104,9 +99,13 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         lstView.setOnItemClickListener(this);
     }
 
+    /**
+     * Load the initial data into list
+     */
     private void loadData() {
         for (int i = 0; i < languageName.length; i++) {
             LanguageInfo info = new LanguageInfo(i, languageName[i], false, languageImage[i]);
+            // display 2 languages only for car type 2 and 5
             if (Values.carType == 2 || Values.carType == 5) {
                 if (i == 0 || i == 6) {
                     list.add(info);
@@ -137,7 +136,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         LanguageInfo info = (LanguageInfo) parent.getAdapter().getItem(position);
-        preferenceUtil.setSelectedLang(languageShortName[info.getId()]);
+        preferenceUtil.setSelectedLang(languageShortName[info.getId()]); // here save the selected language sort name into preference
         Logger.error("onItemClick: ", "" + info.getId());
 
         loadResource();
@@ -157,6 +156,9 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         resources = new Resources(getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(LanguageSelectionActivity.this, preferenceUtil.getSelectedLang()));
     }
 
+    /**
+     * Start Car download procedure
+     */
     private void startCarDownloadProcedure() {
 
         runOnUiThread(new Runnable() {
@@ -195,6 +197,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
     private void startCarAssetsDownload(String assetsSource, String assetsDestination, final String langSource, String langDestination) {
+        // downloadCarAssets method actually download car asset and language epub are both
         new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(Values.carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
             @Override
             public boolean onComplete(boolean b) {
@@ -290,6 +293,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             public void onDownloaded(ResponseInfo responseInfo) {
                 if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
                     sendMsgToGoogleAnalytics(NissanApp.getInstance().getCarName(Values.carType) + Analytics.DOWNLOAD + Analytics.DOT + NissanApp.getInstance().getLanguageName(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + Analytics.DOT + Analytics.PLATFORM);
+                    // set the car path according to car type
                     Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
 
                     commonDao.updateDateAndStatus(getBaseContext(), Values.carType, "1", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
@@ -300,6 +304,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     }
                     commonDao.updateLanguageStatus(getBaseContext(), Values.carType, preferenceUtil.getSelectedLang());
 
+                    // for downloaded car selection
                     NissanApp.getInstance().setCarAllList(commonDao.getAllCarList(getBaseContext()));
                     for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
                         if (NissanApp.getInstance().getCarAllList().get(i).getId() == Values.carType) {
@@ -329,6 +334,9 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
 
+    /**
+     * Indicate MainActivity after downloading car
+     */
     private void goToNextPage() {
         if (preferenceUtil.getIsFirstTime()) {
             preferenceUtil.setIsFirstTime(false);

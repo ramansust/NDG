@@ -25,6 +25,7 @@ import java.util.Map;
 
 /**
  * Created by nirob on 9/12/17.
+ * This class not in used anymore
  */
 
 public class AllFragment extends Fragment {

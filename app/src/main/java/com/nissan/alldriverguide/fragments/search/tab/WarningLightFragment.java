@@ -68,6 +68,9 @@ public class WarningLightFragment extends Fragment {
     }
 
 
+    /**
+     * Data added and display for WarningLightFragment
+     */
     private void addData() {
         epubInfoArrayList = new PreferenceUtil(getActivity().getApplicationContext()).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.UNDERSCORE + Values.COMBIMETER_TYPE);
         if (epubInfoArrayList == null || epubInfoArrayList.size() == 0) {
@@ -85,6 +88,11 @@ public class WarningLightFragment extends Fragment {
     }
 
 
+    /**
+     * This method process the List data that pass into adapter
+     * @param newList data list for processing
+     * @return ArrayList
+     */
     private ArrayList<SearchCombimeterModel> searchTemp(ArrayList<EpubInfo> newList) {
 
         ArrayList<SearchCombimeterModel> sortedList = new ArrayList<>();
@@ -111,16 +119,24 @@ public class WarningLightFragment extends Fragment {
     }
 
 
+    /**
+     * This method return the result that display in WarningLightFragment section
+     * @param ePubInfoList need data list
+     * @param keyWord need for search keyword the contain in search tag
+     * @return ArrayList
+     */
     public static ArrayList<EpubInfo> searchForTag(ArrayList<EpubInfo> ePubInfoList, String keyWord) {
 
         ArrayList<EpubInfo> searchResultList = new ArrayList<>();
 
         if (ePubInfoList != null && ePubInfoList.size() > 0) {
+            // search tag contain for new four cars
             if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 //            if(Values.carType == 14) {
                 for(int i = 0; i < (ePubInfoList.size() / 2); i++) {
                     int searchTagIndex = (i * 2) + 1;
 
+                    // this condition remove the demo item from WarningLightFragment
                     if(!ePubInfoList.get(searchTagIndex - 1).getTitle().toLowerCase().contains("demo")) {
                         if (ePubInfoList.get(searchTagIndex - 1).getTitle().toLowerCase().contains(keyWord.toLowerCase().trim()) || ePubInfoList.get(searchTagIndex).getTitle().toLowerCase().contains(keyWord.toLowerCase().trim())) {
                             ePubInfoList.get(searchTagIndex - 1).setIndex((searchTagIndex - 1) / 2); // need to check again
@@ -129,7 +145,7 @@ public class WarningLightFragment extends Fragment {
                         }
                     }
                 }
-            } else {
+            } else { // this one for all cars
                 for (EpubInfo epubInfo : ePubInfoList) {
 
                     if(!epubInfo.getTitle().toLowerCase().contains("demo")) {
@@ -154,11 +170,16 @@ public class WarningLightFragment extends Fragment {
         return searchResultList;
     }
 
+    // here set the adapter
     private void setAdapter(ArrayList<SearchCombimeterModel> searchCombimeterModelArrayList) {
         adapter = new CombimeterSearchAdapter(getActivity(), searchCombimeterModelArrayList);
         recyclerView.setAdapter(adapter);
     }
 
+    /**
+     * This method get file name in combimeter folder form sdCard folder
+     * @return
+     */
     private ArrayList<String> getFileNames() {
         ArrayList<String> fileNameList = new ArrayList<>();
         File dir = new File(drawable_folder + "/");

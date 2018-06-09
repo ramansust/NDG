@@ -8,6 +8,8 @@ import com.mobioapp.infinitipacket.model.EpubInfo;
 
 public class HomePageEpubInfo extends EpubInfo {
     private String sectionTitle;
+    private String colorCode;
+    private String colorCodeItem;
 
     public String getSectionTitle() {
         return sectionTitle;
@@ -25,8 +27,6 @@ public class HomePageEpubInfo extends EpubInfo {
         this.colorCode = colorCode;
     }
 
-    private String colorCode;
-
     public String getColorCodeItem() {
         return colorCodeItem;
     }
@@ -35,5 +35,5 @@ public class HomePageEpubInfo extends EpubInfo {
         this.colorCodeItem = colorCodeItem;
     }
 
-    private String colorCodeItem;
+
 }

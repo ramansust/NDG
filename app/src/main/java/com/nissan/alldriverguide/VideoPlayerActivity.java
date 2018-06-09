@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -102,6 +101,9 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
         super.onSaveInstanceState(outState, outPersistentState);
     }
 
+    /**
+     * Here initialized all variable
+     */
     private void initViews() {
         new PreferenceUtil(getApplicationContext()).setOpenCountForRateApp();
 
@@ -131,6 +133,9 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
         }
     }
 
+    /**
+     * Here set the click listener
+     */
     private void setListener() {
         videoView.setOnCompletionListener(this);
         videoView.setMediaController(new MediaController(this));
@@ -149,8 +154,8 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
         txtViewTitle.setText(resources.getString(R.string.video_popup_msg));
         txtViewLearnMoreAlways.setText(resources.getString(R.string.video_learn_more));
 
-        if (Values.carType == 12 || Values.carType == 13) {
-            if (Values.videoIndex == 5) {
+        if (Values.carType == 12 || Values.carType == 13) { //for New Nissan QASHQAI and New Nissan X-TRAIL cars
+            if (Values.videoIndex == 5) { // for 6 number video index learn more button will hide
                 txtViewLearnMore.setVisibility(View.GONE);
                 txtViewLearnMoreAlways.setVisibility(View.GONE);
             } else {
@@ -170,18 +175,19 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
         resources = new Resources(VideoPlayerActivity.this.getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(VideoPlayerActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
     }
 
+    /**
+     * Here set the video video full online link to video view
+     */
     private void startVideo() {
         if (Values.carType == 1) {
             Uri video = Uri.parse(qashqaiEURBaseURL + new PreferenceUtil(getApplicationContext()).getSelectedLang() + "/" + qashqaiEURVideoNameArray[Values.videoIndex] + new PreferenceUtil(getApplicationContext()).getSelectedLang().toString().toUpperCase() + ".mp4");
             videoView.setVideoURI(video);
-            Log.e("startVideo: ", video.toString());
         } else if (Values.carType == 3) {
             Uri video = Uri.parse(jukeBaseURL + new PreferenceUtil(getApplicationContext()).getSelectedLang() + "/" + jukeVideoNameArray[Values.videoIndex] + new PreferenceUtil(getApplicationContext()).getSelectedLang().toString().toUpperCase() + ".mp4");
             videoView.setVideoURI(video);
         } else if (Values.carType == 4) {
             Uri video = Uri.parse(xtrailEURBaseURL + new PreferenceUtil(getApplicationContext()).getSelectedLang() + "/" + xtrailEURVideoNameArray[Values.videoIndex] + new PreferenceUtil(getApplicationContext()).getSelectedLang().toString().toUpperCase() + ".mp4");
             videoView.setVideoURI(video);
-            Log.e("startVideo: ", video.toString());
         } else if (Values.carType == 10) {
             Uri video = Uri.parse(navaraBaseURL + new PreferenceUtil(getApplicationContext()).getSelectedLang() + "/" + navaraVideoNameArray[Values.videoIndex] + new PreferenceUtil(getApplicationContext()).getSelectedLang().toString().toUpperCase() + ".mp4");
             videoView.setVideoURI(video);
@@ -191,14 +197,11 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
         } else if (Values.carType == 12) {
             Uri video = Uri.parse(qashqai2017BaseURL + new PreferenceUtil(getApplicationContext()).getSelectedLang() + "/" + qashqai2017VideoNameArray[Values.videoIndex] + new PreferenceUtil(getApplicationContext()).getSelectedLang().toString().toUpperCase() + ".mp4");
             videoView.setVideoURI(video);
-            Log.e("startVideo: ", video.toString());
         } else if (Values.carType == 13) {
             Uri video = Uri.parse(xtrail2017BaseURL + new PreferenceUtil(getApplicationContext()).getSelectedLang() + "/" + xtrail2017VideoNameArray[Values.videoIndex] + new PreferenceUtil(getApplicationContext()).getSelectedLang().toString().toUpperCase() + ".mp4");
             videoView.setVideoURI(video);
-            Log.e("startVideo: ", video.toString());
         } else if (Values.carType == 14) {
             Uri video = Uri.parse(leaf2017BaseURL + new PreferenceUtil(getApplicationContext()).getSelectedLang() + "/" + leaf2017VideoNameArray[Values.videoIndex] + new PreferenceUtil(getApplicationContext()).getSelectedLang().toString().toUpperCase() + ".mp4");
-            Log.e("startVideo: ", video.toString());
             videoView.setVideoURI(video);
         }
     }

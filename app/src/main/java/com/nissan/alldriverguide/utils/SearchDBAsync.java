@@ -73,7 +73,9 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
                 Logger.error("file_name", "_______" + listOfFiles.get(i));
                 Logger.error("Path_Epub", "" + ePubPath);
 
-                // here extract language epub list on sdCard
+                // here MAePubParser takes epub source path eg. /storage/emulated/0/.AllDriverGuide/qashqai2017/qashqai2017_en/homepage_en.epub
+                // this MAePubParser extract the epub to sdCard and destination folder define in library
+                // parseePub() method in MAePubParser class actually parse the toc.ncx file and load in arrayList
                 ArrayList<EpubInfo> listOfEpub = new MAePubParser(ePubPath).parseePub();
 
                 if (listOfEpub == null || listOfEpub.size() < 1)

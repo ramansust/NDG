@@ -117,6 +117,9 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         super.onPause();
     }
 
+    /**
+     * Set the car path and select tab
+     */
     private void loadData() {
         Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
 
@@ -124,6 +127,9 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         setTabIndicatorIconAndTextColor(0);
     }
 
+    /**
+     * Initialized All views
+     */
     private void initViews() {
         metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -164,14 +170,19 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         resources = new Resources(getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(MainActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
     }
 
+    /**
+     * Setup tab resources
+     */
     public void setTabResources() {
         loadResource();
 
+        tabNames = resources.getStringArray(R.array.tab_names); // get the tab name from array
 //        tabNames = resources.getStringArray(R.array.tab_names);
         for (int i = 0; i < tabNames.length; i++) {
-            tabTextViews[i].setText(tabNames[i]);
+            tabTextViews[i].setText(tabNames[i]); // set the tab name in tab text
         }
 
+        // For new four cars search tab visible else Invisible
         if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
             ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(2).setVisibility(View.VISIBLE);
             tabIndicator3.setVisibility(View.VISIBLE);
@@ -181,6 +192,10 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         }
     }
 
+    /**
+     * Setup tab icon and text color color
+     * @param tabPosition compare and decoration
+     */
     public void setTabIndicatorIconAndTextColor(int tabPosition) {
         switch (tabPosition) {
             case 0:
@@ -273,6 +288,9 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         }
     }
 
+    /**
+     * Setup custom tab layout
+     */
     private void setupTabLayout() {
         TabLayout.Tab tab;
         for (int i = 0; i < tabNames.length; i++) {
@@ -386,7 +404,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
                 transaction.replace(R.id.container, SearchFragment.newInstance());
                 transaction.addToBackStack("");
                 transaction.commit();
-            } else {
+            } else { // this block for great or not great popup
                 Log.e("onBackPressed: ", "---" + preferenceUtil.getOpenCountForRateApp());
 
                 if (preferenceUtil.getIsFirstTimeGreatNotGreat() && preferenceUtil.getOpenCountForRateApp() >= Values.RATE_APP_FIRST_SESSION) {
@@ -479,6 +497,9 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         }
     }
 
+    /**
+     * Back button pressed popup
+     */
     public void backAlert() {
         final Dialog dialog = new DialogController(MainActivity.this).langDialog();
 
@@ -494,7 +515,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
             public void onClick(View v) {
                 dialog.dismiss();
 
-                Values.ePubType = 0;
+                Values.ePubType = 0; // reset the epub type
                 finish();
             }
         });
@@ -510,15 +531,15 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         dialog.show();
     }
 
+    /**
+     * Rate our app popup display
+     */
     public void rateOurApp() {
         preferenceUtil.setOpenCountForRateApp();
 
         final Dialog dialog = new DialogController(MainActivity.this).rateOurAppDialog();
 
-//        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
         TextView txtViewSubTitle = (TextView) dialog.findViewById(R.id.txt_sub_title);
-
-//        txtViewTitle.setText(getResources().getString(R.string.rate_our_app_title));
         txtViewSubTitle.setText(getResources().getString(R.string.rate_our_app_sub_title));
 
         TextView txtViewNoThanks = (TextView) dialog.findViewById(R.id.txt_view_no_thanks);
@@ -560,6 +581,9 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         dialog.show();
     }
 
+    /**
+     * Great or Not Great popup display when user click 30 times in application
+     */
     public void greatNotGreat() {
         preferenceUtil.setOpenCountForRateApp();
 
@@ -597,6 +621,9 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
     }
 
+    /**
+     * Feedback dialog
+     */
     public void feedBack() {
         preferenceUtil.setOpenCountForRateApp();
 
@@ -875,7 +902,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         return NissanApp.getInstance().getCarName(Values.carType) + Analytics.DOT + Values.tabSettings + assistance + Analytics.DOT + NissanApp.getInstance().getLanguageName(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + Analytics.DOT + Analytics.PLATFORM + "";
     }
 
-    //this is for hide soft keyboard when touch outside when edittext was focused
+    //this is for hide soft keyboard when touch outside when editText was focused
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {

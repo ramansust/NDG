@@ -24,6 +24,7 @@ import java.util.List;
  */
 
 public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
+    // declare the interface that used for getting item position
     public interface OnItemClickListener {
         void onClick(int index);
     }
@@ -38,11 +39,20 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
     private List<HomePageSectionInfo> listHeader;
     private HashMap<String, List<EpubInfo>> childList;
 
+    /**
+     * Declare Constructor
+     * @param context needed
+     * @param list for data process
+     */
     public HomePageExpandableAdapter(Context context, List<HomePageEpubInfo> list) {
         this.context = context;
         loadData(list);
     }
 
+    /**
+     * This method actually process the given data
+     * @param ePubList data that provided through constructor
+     */
     private void loadData(List<HomePageEpubInfo> ePubList) {
 
         listHeader = new ArrayList<>();
@@ -53,7 +63,7 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
             HomePageSectionInfo sectionInfo = new HomePageSectionInfo();
             ArrayList<EpubInfo> itemList = new ArrayList<>();
 
-            for (int i = 0; i < ePubList.size(); i++) {
+            for (int i = 0; i < ePubList.size(); i++) { // looping for given arrayList
                 HomePageEpubInfo info = ePubList.get(i);
 
                 if (title.equalsIgnoreCase("")) {

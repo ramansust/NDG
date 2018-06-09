@@ -22,6 +22,7 @@ public class GridViewAdapter extends BaseAdapter {
     private Typeface tf;
     private Typeface tfRegular;
 
+    // declare the constructor the need to context and int array
     public GridViewAdapter(Context context, int[] thumbnil) {
         this.context = context;
         this.thumbnil = thumbnil;
@@ -59,6 +60,7 @@ public class GridViewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag ();
         }
 
+        // set the video thumb in imageView
         viewHolder.imageView.setBackgroundResource(thumbnil[position]);
 
         return convertView;

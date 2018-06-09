@@ -1100,6 +1100,10 @@ public class NissanApp {
         transaction.commit();
     }
 
+    /*
+     * This method actually check the epub type null
+     * or not null that retrieve form database
+     */
     public boolean insertSearchDataIntoDatabase(Context mContext, String keyWord) {
 
         ArrayList<EpubInfo> searchResult;

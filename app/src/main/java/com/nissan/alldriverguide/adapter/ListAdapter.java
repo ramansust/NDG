@@ -29,6 +29,11 @@ public class ListAdapter extends BaseAdapter {
     private List<EpubInfo> list;
     private Typeface tf;
 
+    /**
+     * Declare Constructor
+     * @param context needed
+     * @param list EpubInfo type data list
+     */
     public ListAdapter(Context context, List<EpubInfo> list) {
         this.context = context;
         this.list = list;
@@ -65,26 +70,27 @@ public class ListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag ();
         }
 
+        // Here set the DEMO text color for 2 & 6 number epub for Tyre Information
         if (Values.ePubType == Values.TYRE_TYPE) {
             if (position == 2 || position == 6) {
-                String str = list.get(position).getTitle().toString().toUpperCase();
-                viewHolder.txtViewTitle.setTextColor (Color.parseColor("#C3002F"));
+                String str = list.get(position).getTitle().toString().toUpperCase(); // output:eg 2.1. CHANGING FLAT TYRE (DEMO)
+                viewHolder.txtViewTitle.setTextColor (Color.parseColor("#C3002F")); // set the text color
                 String c = "(";
-                int p = str.indexOf(c);
+                int p = str.indexOf(c); // you can find the c in str in 24 index
                 if(p <= 0) {
                     p = 0;
                 }
                 String s = " ";
                 if(p > 0) {
-                    s = str.substring(0, p - 1);
+                    s = str.substring(0, p - 1); // here subtract (DEMO) from str, output: 2.1. CHANGING FLAT TYRE
                 }
                 SpannableString spanString1 = new SpannableString(s + " ");
-                spanString1.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString1.length(), 0);
+                spanString1.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString1.length(), 0); // set bold for this text: 2.1. CHANGING FLAT TYRE
                 SpannableString spanString = new SpannableString(str.substring(p, str.length()));
-                spanString.setSpan(new UnderlineSpan(), 0, spanString.length(), 0);
-                spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
-                viewHolder.txtViewTitle.setTypeface(tf);
-                viewHolder.txtViewTitle.setText(TextUtils.concat(spanString1, spanString));
+                spanString.setSpan(new UnderlineSpan(), 0, spanString.length(), 0); // set underline for (DEMO)
+                spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0); // set BOLD for (DEMO)
+                viewHolder.txtViewTitle.setTypeface(tf); // set custom font
+                viewHolder.txtViewTitle.setText(TextUtils.concat(spanString1, spanString)); // finally set the SpannableString in textView
             } else {
                 viewHolder.txtViewTitle.setTypeface(tf);
                 viewHolder.txtViewTitle.setText (list.get(position).getTitle().toUpperCase());

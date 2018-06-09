@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 
 /**
  * Created by mobioapp on 11/22/17.
+ * This class not uses anymore
  */
 
 public class MyCustomViewPager extends ViewPager {
