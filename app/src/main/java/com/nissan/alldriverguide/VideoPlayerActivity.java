@@ -179,7 +179,11 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
      * Here set the video video full online link to video view
      */
     private void startVideo() {
-        if (Values.carType == 1) {
+
+        Log.e("Video Tag",""+NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl());
+        Uri video = Uri.parse(NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl());
+        videoView.setVideoURI(video);
+        /*if (Values.carType == 1) {
             Uri video = Uri.parse(qashqaiEURBaseURL + new PreferenceUtil(getApplicationContext()).getSelectedLang() + "/" + qashqaiEURVideoNameArray[Values.videoIndex] + new PreferenceUtil(getApplicationContext()).getSelectedLang().toString().toUpperCase() + ".mp4");
             videoView.setVideoURI(video);
         } else if (Values.carType == 3) {
@@ -203,7 +207,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
         } else if (Values.carType == 14) {
             Uri video = Uri.parse(leaf2017BaseURL + new PreferenceUtil(getApplicationContext()).getSelectedLang() + "/" + leaf2017VideoNameArray[Values.videoIndex] + new PreferenceUtil(getApplicationContext()).getSelectedLang().toString().toUpperCase() + ".mp4");
             videoView.setVideoURI(video);
-        }
+        }*/
     }
 
     @Override

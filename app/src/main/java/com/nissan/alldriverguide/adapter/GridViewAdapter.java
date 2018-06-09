@@ -9,7 +9,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.nissan.alldriverguide.R;
+import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
+
+import java.util.ArrayList;
 
 /**
  * Created by raman on 1/19/17.
@@ -18,14 +22,13 @@ public class GridViewAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
-    private int[] thumbnil;
     private Typeface tf;
     private Typeface tfRegular;
+    private ArrayList<ExploreTabVideoModel> video_list;
 
-    // declare the constructor the need to context and int array
-    public GridViewAdapter(Context context, int[] thumbnil) {
+    public GridViewAdapter(Context context, ArrayList<ExploreTabVideoModel> video_list) {
         this.context = context;
-        this.thumbnil = thumbnil;
+        this.video_list = video_list;
         this.tf = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf");
         this.tfRegular = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Regular.otf");
         inflater = LayoutInflater.from (this.context);
@@ -33,12 +36,12 @@ public class GridViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount () {
-        return thumbnil != null ? thumbnil.length : 0;
+        return video_list != null ? video_list.size() : 0;
     }
 
     @Override
     public Object getItem (int position) {
-        return thumbnil[position];
+        return video_list;
     }
 
     @Override
@@ -60,8 +63,10 @@ public class GridViewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag ();
         }
 
-        // set the video thumb in imageView
-        viewHolder.imageView.setBackgroundResource(thumbnil[position]);
+        //viewHolder.imageView.setBackgroundResource(thumbnil[position]);
+        Glide.with(context)
+                .load(video_list.get(position).getThumbXhdpi())
+                .into(viewHolder.imageView);
 
         return convertView;
     }

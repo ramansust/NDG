@@ -5,38 +5,49 @@ import com.google.gson.annotations.SerializedName;
 
 public class AlertMessage {
 
-    @SerializedName("select_language")
+    @SerializedName("id")
     @Expose
-    private SelectLanguage selectLanguage;
-    @SerializedName("delete")
+    private Integer id;
+    @SerializedName("msg")
     @Expose
-    private Delete delete;
-    @SerializedName("update_check")
+    private String msg;
+    @SerializedName("other")
     @Expose
-    private UpdateCheck updateCheck;
+    private Object other;
+    @SerializedName("type")
+    @Expose
+    private String type;
 
-    public SelectLanguage getSelectLanguage() {
-        return selectLanguage;
+    public Integer getId() {
+        return id;
     }
 
-    public void setSelectLanguage(SelectLanguage selectLanguage) {
-        this.selectLanguage = selectLanguage;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Delete getDelete() {
-        return delete;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setDelete(Delete delete) {
-        this.delete = delete;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
-    public UpdateCheck getUpdateCheck() {
-        return updateCheck;
+    public Object getOther() {
+        return other;
     }
 
-    public void setUpdateCheck(UpdateCheck updateCheck) {
-        this.updateCheck = updateCheck;
+    public void setOther(Object other) {
+        this.other = other;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
 }

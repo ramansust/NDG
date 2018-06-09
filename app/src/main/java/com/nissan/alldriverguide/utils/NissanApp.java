@@ -25,6 +25,9 @@ import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.search.tab.WarningLightFragment;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.VideoInfo;
+import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
+import com.nissan.alldriverguide.multiLang.model.AlertMessage;
+import com.nissan.alldriverguide.multiLang.model.GlobalMessage;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
 import com.nissan.alldriverguide.multiLang.model.Tutorial;
 
@@ -39,6 +42,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -57,6 +61,24 @@ public class NissanApp {
     private Configuration conf;
     private ArrayList<TabMenu> tabMenuArrayList;
     private ArrayList<Tutorial> tutorialArrayList;
+    private List<AlertMessage> alertMessageGlobalArrayList;
+    private List<GlobalMessage> globalMessageArrayList;
+
+    public List<AlertMessage> getAlertMessageGlobalArrayList() {
+        return alertMessageGlobalArrayList;
+    }
+
+    public void setAlertMessageGlobalArrayList(List<AlertMessage> alertMessageGlobalArrayList) {
+        this.alertMessageGlobalArrayList = alertMessageGlobalArrayList;
+    }
+
+    public List<GlobalMessage> getGlobalMessageArrayList() {
+        return globalMessageArrayList;
+    }
+
+    public void setGlobalMessageArrayList(List<GlobalMessage> globalMessageArrayList) {
+        this.globalMessageArrayList = globalMessageArrayList;
+    }
 
     public ArrayList<Tutorial> getTutorialArrayList() {
         return tutorialArrayList;
@@ -90,6 +112,16 @@ public class NissanApp {
 
     public void setCarAllList(ArrayList<CarInfo> carAllList) {
         this.carAllList = carAllList;
+    }
+
+    private ArrayList<ExploreTabVideoModel> exploreVideoList;
+
+    public ArrayList<ExploreTabVideoModel> getExploreVideoList() {
+        return exploreVideoList;
+    }
+
+    public void setExploreVideoList(ArrayList<ExploreTabVideoModel> exploreVideoList) {
+        this.exploreVideoList = exploreVideoList;
     }
 
     private ArrayList<CarInfo> carAllList;

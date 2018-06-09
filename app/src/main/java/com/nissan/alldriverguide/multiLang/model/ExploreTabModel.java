@@ -3,6 +3,7 @@ package com.nissan.alldriverguide.multiLang.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExploreTabModel {
@@ -10,9 +11,15 @@ public class ExploreTabModel {
     @SerializedName("message")
     @Expose
     private String message;
+    @SerializedName("header_image")
+    @Expose
+    private String headerImage;
     @SerializedName("video_list")
     @Expose
-    private List<ExploreTabVideoModel> videoList = null;
+    private ArrayList<ExploreTabVideoModel> videoList = null;
+    @SerializedName("header_background_image")
+    @Expose
+    private String headerBackgroundImage;
     @SerializedName("status_code")
     @Expose
     private String statusCode;
@@ -25,12 +32,28 @@ public class ExploreTabModel {
         this.message = message;
     }
 
-    public List<ExploreTabVideoModel> getVideoList() {
+    public String getHeaderImage() {
+        return headerImage;
+    }
+
+    public void setHeaderImage(String headerImage) {
+        this.headerImage = headerImage;
+    }
+
+    public ArrayList<ExploreTabVideoModel> getVideoList() {
         return videoList;
     }
 
-    public void setVideoList(List<ExploreTabVideoModel> videoList) {
+    public void setVideoList(ArrayList<ExploreTabVideoModel> videoList) {
         this.videoList = videoList;
+    }
+
+    public String getHeaderBackgroundImage() {
+        return headerBackgroundImage;
+    }
+
+    public void setHeaderBackgroundImage(String headerBackgroundImage) {
+        this.headerBackgroundImage = headerBackgroundImage;
     }
 
     public String getStatusCode() {

@@ -1,6 +1,5 @@
 package com.nissan.alldriverguide.retrofit;
 
-import android.app.ProgressDialog;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -333,7 +332,7 @@ public class ApiCall {
 //    }
 
     // post ExploreTab Content
-    public void postExploreTabContent(String device_id, String language_id, String car_id,String epub_id,String tab_id,final CompleteExploreTabContent completeAPI) {
+    public void postExploreTabContent(final ProgressDialog progressDialog,String device_id, String language_id, String car_id, String epub_id, String tab_id, final CompleteExploreTabContent completeAPI) {
 
         //Creating an object of our api interface
         ApiService api = RetrofitClient.getApiService();
@@ -341,15 +340,38 @@ public class ApiCall {
         call.enqueue(new Callback<ExploreTabModel>() {
             @Override
             public void onResponse(Call<ExploreTabModel> call, Response<ExploreTabModel> response) {
-                completeAPI.onDownloaded(response.body());
+                if(response.isSuccessful()){
+                    progressDialog.dismiss();
+                    completeAPI.onDownloaded(response.body());
+                }
             }
 
             @Override
             public void onFailure(Call<ExploreTabModel> call, Throwable t) {
                 completeAPI.onFailed(Values.FAILED_STATUS);
+                progressDialog.dismiss();
             }
         });
 
+    }
+
+    // post AssistanceTab Content
+    public void postAssistanceTabContent(String device_id, String language_id, String car_id, String epub_id, String tab_id, final CompleteAssistanceTabContent completeAPI) {
+
+        //Creating an object of our api interface
+        ApiService api = RetrofitClient.getApiService();
+        Call<AssistanceInfo> call = api.postAssistanceContent(device_id, language_id, car_id, epub_id, tab_id);
+        call.enqueue(new Callback<AssistanceInfo>() {
+            @Override
+            public void onResponse(Call<AssistanceInfo> call, Response<AssistanceInfo> response) {
+                completeAPI.onDownloaded(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<AssistanceInfo> call, Throwable t) {
+                completeAPI.onFailed(Values.FAILED_STATUS);
+            }
+        });
     }
 
     /*************************
