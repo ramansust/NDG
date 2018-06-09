@@ -79,8 +79,11 @@ public class PreferenceUtil {
 
 
     public String retrieveMultiLangData(String key) {
-        String json = sharedPreferences.getString(key, null);
-        return json;
+        return sharedPreferences.getString(key, null);
+    }
+
+    public void deleteMultiLangData(String key) {
+        sharedPreferences.edit().remove(key).apply();
     }
 
     //this is for storing the epub list for search

@@ -62,7 +62,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
     public TabLayout tabLayout;
     private Tracker tracker;
-    private String[] tabNames = new String[10];
+    private String[] tabNames = new String[4];
     private int[] tabIconsSelected = {R.drawable.explore_selected, R.drawable.assistance_selected, R.drawable.search_pressed, R.drawable.settings_selected};
     private int[] tabIconsUnSelected = {R.drawable.explore_unselected, R.drawable.assistance_unselected, R.drawable.search, R.drawable.settings_unselected};
     // Start------------ For permission related constants
@@ -146,8 +146,12 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
         ArrayList<TabMenu> tabMenuArrayList = getDataFromStorage();
 
-        for (int i = 0; i < tabMenuArrayList.size(); i++) {
-            tabNames[i] = tabMenuArrayList.get(i).getTitle();
+        if (tabMenuArrayList != null && tabMenuArrayList.size() > 0) {
+            for (int i = 0; i < tabMenuArrayList.size(); i++) {
+                tabNames[i] = tabMenuArrayList.get(i).getTitle();
+            }
+        } else {
+            tabNames = resources.getStringArray(R.array.tab_names);
         }
 
         //tabNames = resources.getStringArray(R.array.tab_names);
@@ -163,7 +167,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     public void setTabResources() {
         loadResource();
 
-        tabNames = resources.getStringArray(R.array.tab_names);
+//        tabNames = resources.getStringArray(R.array.tab_names);
         for (int i = 0; i < tabNames.length; i++) {
             tabTextViews[i].setText(tabNames[i]);
         }
@@ -891,8 +895,10 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
     private ArrayList<TabMenu> getDataFromStorage() {
 
+        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TAB_MENU;
+
         Type type = new TypeToken<ArrayList<TabMenu>>() {        }.getType();
-        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(Values.TAB_MENU), type);
+        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);
 
     }
 

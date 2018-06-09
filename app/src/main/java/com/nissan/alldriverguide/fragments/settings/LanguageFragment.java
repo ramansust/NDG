@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -231,6 +232,13 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             public void onDownloaded(ResponseInfo responseInfo) {
 
                 if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getLangUrl())) {
+
+                    Log.e("old_lang", "__________" + preferenceUtil.getSelectedLang());
+                    Log.e("new_lang", "__________" + lang);
+
+//                    preferenceUtil.storeMultiLangData(responseInfo.getTutorials(), Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TUTORIAL);
+//                    preferenceUtil.storeMultiLangData(responseInfo.getTabMenu(), Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TAB_MENU);
+
 
                     new MADownloadManager(activity, context).downloadLanguage(false, "Language", AppConfig.IS_APP_ONLINE ? responseInfo.getLangUrl() : NissanApp.getInstance().getLanguageURL(Values.carType, lang), NissanApp.getInstance().getCarPath(Values.carType), new DownloaderStatus() {
                         @Override
