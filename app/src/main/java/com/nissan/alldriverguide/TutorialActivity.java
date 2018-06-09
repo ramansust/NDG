@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -15,7 +16,6 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.adapter.TutorialViewPagerAdapter;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.multiLang.model.Tutorial;
@@ -56,6 +56,9 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         loadData();
     }
 
+    /**
+     * Initialized all view
+     */
     private void initViews() {
         viewPager = (ViewPager) findViewById(R.id.tutorialViewPager);
         btnClose = (ImageButton) findViewById(R.id.btnClose);
@@ -64,16 +67,25 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         indicator = (CirclePageIndicator) findViewById(R.id.viewpager_indicator);
     }
 
+    /**
+     * Here set the listener for click item
+     */
     private void setListener() {
         btnClose.setOnClickListener(this);
         btnNext.setOnClickListener(this);
         txtNext.setOnClickListener(this);
     }
 
+    /**
+     * Here loading data and set adapter
+     */
     private void loadData() {
 
         ArrayList<Tutorial> list = getDataFromStorage();
 
+        NissanApp.getInstance().setTutorialArrayList(list);
+
+        Log.e("professional", "_________" + list.size());
 
         if (list != null && list.size() > 0) {
             TUTORIAL_COUNT = list.size() - 1;
@@ -101,11 +113,11 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnClose:
-                if (getIntent().getExtras().get("from").equals("activity")) {
+                if (getIntent().getExtras().get("from").equals("activity")) { // if car downloaded is first time
                     startActivity(new Intent(TutorialActivity.this, MainActivity.class));
                     overridePendingTransition(R.anim.left_in, R.anim.left_out);
                     finish();
-                } else if (getIntent().getExtras().get("from").equals("fragment")) {
+                } else if (getIntent().getExtras().get("from").equals("fragment")) { // if start this activity form settingsFragment
                     overridePendingTransition(R.anim.left_in, R.anim.left_out);
                     finish();
                 }
@@ -140,6 +152,9 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * indicate for the next movement action
+     */
     private void gotoNextActivity() {
         if (getIntent().getExtras().get("from").equals("activity")) {
             startActivity(new Intent(TutorialActivity.this, MainActivity.class));
@@ -187,7 +202,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
 
     private ArrayList<Tutorial> getDataFromStorage() {
 
-        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TUTORIAL;
+        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TUTORIAL_KEY;
 
         Type type = new TypeToken<ArrayList<Tutorial>>() {
         }.getType();

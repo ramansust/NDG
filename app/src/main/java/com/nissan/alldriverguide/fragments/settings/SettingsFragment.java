@@ -96,6 +96,9 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Fragment frag = null;
+        /**
+         * Here specify the fragment by the item position
+         */
         switch (position) {
             case 0:
                 frag = LanguageFragment.newInstance();
@@ -115,11 +118,12 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 break;
 
             case 3:
+                // used for great or not great popup display
                 preferenceUtil.setSessionOne(false);
                 preferenceUtil.setSessionThree(false);
                 preferenceUtil.setIsFirstTimeGreatNotGreat(false);
                 new PreferenceUtil(getActivity()).resetUserNavigationCount();
-
+                // go to play store
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getActivity().getApplicationContext().getPackageName())));
                 break;
 

@@ -157,6 +157,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
         startLoadingAnimation();
 
+        // Here added the vuforia xml in arrayList according to car type
         switch (Values.carType) {
             case 1:
                 mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "qashqai.xml");
@@ -218,9 +219,8 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 break;
         }
 
-
-        vuforiaAppSession
-                .initAR(this, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        // set screen orientation for AR
+        vuforiaAppSession.initAR(this, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mGestureDetector = new GestureDetector(this, new GestureListener());
 
         // Load any sample specific textures:
@@ -370,6 +370,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         //mRenderer = new ImageTargetRendererFerrari(this, vuforiaAppSession);
 
 
+        // create carAR instance compare with carType;
         switch (Values.carType) {
 
             case 1:
@@ -830,7 +831,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     /**
      * this method is used in xml onClick
-     * here tag 1000 is
+     * here tag 1000 is used for .......
      * @param b need to get tag from button
      *          that set in xml (set tag).
      */
@@ -866,6 +867,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
 //                ePubIndex = (Integer.parseInt(b.getTag().toString()) * 2) + 1;
 
+                // here specify the DetailsActivity for loading epub data
                 Intent intentButton = new Intent(ImageTargetActivity.this, DetailsActivity.class);
                 intentButton.putExtra("epub_index", ePubIndex);
                 intentButton.putExtra("epub_title", "DETAILS");

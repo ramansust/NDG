@@ -79,40 +79,46 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         new PreferenceUtil(getActivity()).setOpenCountForRateApp();
     }
 
+    /**
+     * Here load the initialized data
+     * @throws Exception
+     */
     private void loadData() throws Exception {
         title.setText(getArguments().get(TITLE).toString());
         txt_back_title.setTypeface(tf);
 
+        // here check the toc.ncx is exist or not in sdCard
         if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
+            // parseePub need to destination path like: /storage/emulated/0/.AllDriverGuide/leaf2017/leaf2017_en/.ar_homepage
             list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
             ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.HOMEPAGE));
         }
 
         if (list != null && list.size() > 0) {
             ArrayList<HomePageEpubInfo> homePageList = new ArrayList<>();
-            for (int i = 0; i < list.size(); i = i + 2) {
-                HomePageEpubInfo info = new HomePageEpubInfo();
+            for (int i = 0; i < list.size(); i = i + 2) { // lopping for odd number that contain in list like: 1,3,5,7,
+                HomePageEpubInfo info = new HomePageEpubInfo(); // creating object HomePageEpubInfo that extend EpubInfo
 
                 info.setTitle(list.get(i).getTitle());
                 info.setHtmlLink(list.get(i).getHtmlLink());
                 info.setIndex(list.get(i).getIndex());
 
-                String section = list.get(i + 1).getTitle();
+                String section = list.get(i + 1).getTitle(); // here get the even number title like: [CHARGING THE BATTERY, #669933, #E8F0E1]
 
-                section = section.substring(1, section.length() - 1);
+                section = section.substring(1, section.length() - 1); // here remove the third bracket [] from section
                 if (section != null && section.contains(",")) {
-                    String[] stringArray = section.split(",");
+                    String[] stringArray = section.split(","); // split 1st part for title, 2nd part for header color and 3d part for headers child color
 
                     if (stringArray.length > 0) {
-                        info.setSectionTitle(stringArray[0].trim());
+                        info.setSectionTitle(stringArray[0].trim()); // here set the title in HomePageEpubInfo class
                     }
 
                     if (stringArray.length > 1) {
-                        info.setColorCode(stringArray[1].trim());
+                        info.setColorCode(stringArray[1].trim()); // here set the header color in HomePageEpubInfo class
                     }
 
                     if (stringArray.length > 2) {
-                        info.setColorCodeItem(stringArray[2].trim());
+                        info.setColorCodeItem(stringArray[2].trim()); // here set the headers title color in HomePageEpubInfo class
                     }
                 } else if (section != null && section.contains(" ")) {
                     String[] stringArray = section.split(" ");
@@ -132,7 +138,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 } else {
                 }
 
-                homePageList.add(info);
+                homePageList.add(info); // here load the array list that provide for adapter
             }
 
             if (homePageList != null && homePageList.size() > 0) {
@@ -167,6 +173,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    // here initialized all variable
     private void initViews(View view) {
         btnBack = (ImageButton) view.findViewById(R.id.btn_back);
 

@@ -26,6 +26,10 @@ import com.nissan.alldriverguide.fragments.search.tab.WarningLightFragment;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.VideoInfo;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
+import com.nissan.alldriverguide.multiLang.model.AlertMessage;
+import com.nissan.alldriverguide.multiLang.model.GlobalMessage;
+import com.nissan.alldriverguide.multiLang.model.TabMenu;
+import com.nissan.alldriverguide.multiLang.model.Tutorial;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -38,6 +42,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -54,6 +59,42 @@ public class NissanApp {
 
     private ArrayList<VideoInfo> list;
     private Configuration conf;
+    private ArrayList<TabMenu> tabMenuArrayList;
+    private ArrayList<Tutorial> tutorialArrayList;
+    private List<AlertMessage> alertMessageGlobalArrayList;
+    private List<GlobalMessage> globalMessageArrayList;
+
+    public List<AlertMessage> getAlertMessageGlobalArrayList() {
+        return alertMessageGlobalArrayList;
+    }
+
+    public void setAlertMessageGlobalArrayList(List<AlertMessage> alertMessageGlobalArrayList) {
+        this.alertMessageGlobalArrayList = alertMessageGlobalArrayList;
+    }
+
+    public List<GlobalMessage> getGlobalMessageArrayList() {
+        return globalMessageArrayList;
+    }
+
+    public void setGlobalMessageArrayList(List<GlobalMessage> globalMessageArrayList) {
+        this.globalMessageArrayList = globalMessageArrayList;
+    }
+
+    public ArrayList<Tutorial> getTutorialArrayList() {
+        return tutorialArrayList;
+    }
+
+    public void setTutorialArrayList(ArrayList<Tutorial> tutorialArrayList) {
+        this.tutorialArrayList = tutorialArrayList;
+    }
+
+    public ArrayList<TabMenu> getTabMenuArrayList() {
+        return tabMenuArrayList;
+    }
+
+    public void setTabMenuArrayList(ArrayList<TabMenu> tabMenuArrayList) {
+        this.tabMenuArrayList = tabMenuArrayList;
+    }
 
     public ArrayList<Object> getCarList() {
         return carList;
@@ -1111,6 +1152,10 @@ public class NissanApp {
         transaction.commit();
     }
 
+    /*
+     * This method actually check the epub type null
+     * or not null that retrieve form database
+     */
     public boolean insertSearchDataIntoDatabase(Context mContext, String keyWord) {
 
         ArrayList<EpubInfo> searchResult;

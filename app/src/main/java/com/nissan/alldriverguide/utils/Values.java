@@ -112,11 +112,19 @@ public class Values {
     public static final int RATE_APP_FIRST_SESSION = 30;
     public static final int RATE_APP_SECOND_SESSION = 15;
 
-    public static final String TUTORIAL = "multi_lang_tutorial";
-    public static final String TAB_MENU = "multi_lang_tab_menu";
+    public static final String TUTORIAL_KEY = "multi_lang_tutorial";
+    public static final String TAB_MENU_KEY = "multi_lang_tab_menu";
 
     public static final String GLOBALMSGKEY = "globalmsg";
     public static final String EXPLOREDATA = "multi_lang_explore";
     public static final String EPUBID = "0";
+    public static final String GLOBAL_MSG_KEY = "multi_lang_globalmsg";
+    public static final String GLOBAL_ALERT_MSG_KEY = "multi_lang_global_alert_msg";
+
+    public static final String ALERT_MSG_TYPE_INTERNET = "internet_check";
+    public static final String ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_1 = "download_car_guide1";
+    public static final String ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2 = "download_car_guide2";
+
+    public static final String ASSISTANCE_OBJ_STORE_KEY = "assistance";
 
 }

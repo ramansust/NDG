@@ -22,6 +22,13 @@ public class TutorialViewPagerAdapter extends PagerAdapter {
     private LayoutInflater inflater;
     private Typeface typeFaceBold, typeFaceNormal;
 
+    /**
+     * Declare constructor
+     * @param context
+     * @param imageId for view pager background image
+     * @param tutorialTitles display in viewpager as a title text
+     * @param tutorialDetails display in viewpager as a details text
+     */
     public TutorialViewPagerAdapter(Context context, int[] imageId, String[] tutorialTitles, String[] tutorialDetails) {
         this.context = context;
         this.imageId = imageId;

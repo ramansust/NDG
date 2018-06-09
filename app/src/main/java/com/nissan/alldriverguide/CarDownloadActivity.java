@@ -47,9 +47,10 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
-import com.nissan.alldriverguide.multiLang.model.AlertMessage;
-import com.nissan.alldriverguide.multiLang.model.GlobalMessage;
+import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
+import com.nissan.alldriverguide.multiLang.model.LanguageList;
+import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.pushnotification.Config;
 import com.nissan.alldriverguide.pushnotification.NotificationUtils;
 import com.nissan.alldriverguide.retrofit.ApiCall;
@@ -116,6 +117,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private BroadcastReceiver mRegistrationBroadcastReceiver;
 
     private long doubleClickPopup = 0;
+    private List<LanguageList> languageLists;
+    private LanguageListResponse languageListResponses;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -154,13 +157,34 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 }
             }
         };
+
+        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", new InterfaceLanguageListResponse() {
+            @Override
+            public void languageListResponse(LanguageListResponse languageListResponse) {
+                languageListResponses = languageListResponse;
+                languageListResponses.getLanguageList().size();
+            }
+        });
     }
 
+    /**
+     * Initialized all variable
+     */
     private void getGlobalAlertMsg(){
         new ApiCall().postGlobalAlertMsg("e224fb09fb8daee4", "1", new CompleteAlertAPI() {
             @Override
             public void onDownloaded(GlobalMsgResponse responseInfo) {
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+
+                    String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.GLOBAL_MSG_KEY;
+                    String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
+
+                    preferenceUtil.storeMultiLangData(responseInfo.getAlertMessage(), key_global_alert_message);
+                    preferenceUtil.storeMultiLangData(responseInfo.getGlobalMessage(), key_global_message);
+
+                    NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
+                    NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
+
                 }
             }
 
@@ -267,15 +291,19 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     }
 
+    /**
+     * For Normal app behaviour without update push notification
+     * @param position needed for list item
+     * @param parent derived from object
+     */
     private void goForNormalOperation(int position, AdapterView<?> parent) {
         selectedCarIndex = position;
-
+        // class cast for CarInfo class
         if (parent.getAdapter().getItem(position).getClass() == CarInfo.class) {
             CarInfo info = (CarInfo) parent.getAdapter().getItem(position);
             selectedLang = commonDao.getLanguageStatus(getApplicationContext(), info.getId());
 
-            if ("1".equalsIgnoreCase(info.getStatus())) {
-                Logger.error("onItemClick:>>>>>>>>> ", "" + info.getSelectedLanguage() + "  == getSelectedCar = " + info.getSelectedCar());
+            if ("1".equalsIgnoreCase(info.getStatus())) { // status 1 means downloaded car
                 carDownloadCheck(info.getId());
             } else {
                 if (info.getId() == 1 || info.getId() == 2 || info.getId() == 4 || info.getId() == 5) {
@@ -350,7 +378,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     protected void onResume() {
-        Log.e("onResume: ", "8888888888888888888888888");
         getGlobalAlertMsg();
         if (preferenceUtil.getIsFirstTime()) {
             if (new File(Values.PATH).exists()) {
@@ -415,9 +442,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     }
 
     private void carDownloadCheck(final int position) {
-        Logger.error("pos_carDownloadCheck","___________" + position);
-
-        Values.carType = position;
+        Values.carType = position; // set the car type
 
         if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(Values.carType))) {
             if (commonDao.getStatus(getBaseContext(), Values.carType) == 1) { // if car is downloaded (status 1 is used for downloaded car)
@@ -702,6 +727,10 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         dialog.show();
     }
 
+    /**
+     * Before next page downloaded car set selected by 1
+     * @param position compared downloaded car
+     */
     private void goToNextPage(int position) {
         for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
             if (NissanApp.getInstance().getCarAllList().get(i).getId() == position) {
@@ -716,6 +745,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         overridePendingTransition(R.anim.left_in, R.anim.right_out);
     }
 
+    /**
+     * Start Car download procedure
+     */
     private void startCarDownloadProcedure() {
         progressDialog = new ProgressDialogController(activity).showDialog(getResources().getString(R.string.start_download));
 
@@ -982,6 +1014,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     }
 
     private void startCarAssetsDownload(String assetsSource, String assetsDestination, String langSource, String langDestination) {
+        // downloadCarAssets method download car asset and language both
         new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(Values.carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
             @Override
             public boolean onComplete(boolean b) {
@@ -1007,17 +1040,21 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                                         if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
                                             sendMsgToGoogleAnalytics(NissanApp.getInstance().getCarName(Values.carType) + Analytics.DOWNLOAD + Analytics.DOT + NissanApp.getInstance().getLanguageName(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + Analytics.DOT + Analytics.PLATFORM);
+                                            // set the car paht where car asset is downloaded
                                             Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
 
                                             commonDao.updateDateAndStatus(getBaseContext(), Values.carType, Values.ALREADY_DOWNLOADED, NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                                             if (Values.carType == 1 || Values.carType == 4) {
                                                 CarInfo carInfo = commonDao.getCarInfo(getApplicationContext(), Values.carType + 1);
                                                 if (Values.carType == 1) {
+                                                    // if car type 1 then update the 2 number car region = 'EUR' for display EUROPE and RUSSIA both car
                                                     if (commonDao.getStatus(getBaseContext(), Values.carType + 1) == 2) {
+                                                        // here update the car when download car number 1
                                                         commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 1, "2", NissanApp.getInstance().getDateTime(), "EUR", carInfo.getVersionName(), carInfo.getVersionCode());
                                                     }
                                                 } else if (Values.carType == 4) {
                                                     if (commonDao.getStatus(getBaseContext(), Values.carType + 1) == 0) {
+                                                        // here update the car when download car number 4
                                                         commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 1, "0", NissanApp.getInstance().getDateTime(), "EUR", carInfo.getVersionName(), carInfo.getVersionCode());
                                                     }
                                                 } else {
@@ -1026,6 +1063,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                                             }
                                             commonDao.updateLanguageStatus(getBaseContext(), Values.carType, preferenceUtil.getSelectedLang());
 
+                                            // here set the car selection for car downloaded settings adapter
                                             NissanApp.getInstance().setCarAllList(commonDao.getAllCarList(getBaseContext()));
                                             for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
                                                 if (NissanApp.getInstance().getCarAllList().get(i).getId() == Values.carType) {
@@ -1038,6 +1076,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                                             commonDao.updateAllPushContentStatusForSingleCar(context, Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
                                             dismissDialog();
 
+                                            // if car is first time downloaded then show the Tutorial Activity
                                             if (preferenceUtil.getIsFirstTime()) {
                                                 startActivity(new Intent(CarDownloadActivity.this, TutorialActivity.class).putExtra("from", "activity"));
                                                 finish();

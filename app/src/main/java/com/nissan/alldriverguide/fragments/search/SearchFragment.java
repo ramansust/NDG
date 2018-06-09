@@ -67,7 +67,6 @@ public class SearchFragment extends Fragment {
     private ArrayList<SearchModel> dateWise_List;
 
     private String selectedLanguage = "";
-    //end here
 
     private Resources resources;
     private DisplayMetrics metrics;
@@ -84,6 +83,10 @@ public class SearchFragment extends Fragment {
         return layout;
     }
 
+    /**
+     * Initialized all variable
+     * @param layout need to fragment layout view
+     */
     private void initAll(View layout) {
 
         resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()));
@@ -236,21 +239,26 @@ public class SearchFragment extends Fragment {
         }
     };
 
+    /**
+     * This method for keyboard search action
+     */
     private TextView.OnEditorActionListener editorActionListener = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
 
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) { // keyboard search
                 View view = getActivity().getCurrentFocus();
                 if (view != null) {
                     hideKeyboard(view);
                 }
 
+                // get search keyword
                 getKeyword = getSearchKeyword.getText().toString().trim();
 
                 if (getKeyword.equalsIgnoreCase("")) {
                     Toast.makeText(getActivity(), "Please Input Search Keyword", Toast.LENGTH_SHORT).show();
-                } else {
+
+                } else { // if search keyword is not blank
                     if (new NissanApp().insertSearchDataIntoDatabase(getActivity().getApplicationContext(), getKeyword)) {
                         long currentTime = System.currentTimeMillis(); //Calendar.getInstance().getTime();
 
@@ -269,6 +277,7 @@ public class SearchFragment extends Fragment {
                     }
 
                     Values.keyWord = getKeyword;
+                    // here indicate TabFragment when user take action for keyboard search
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                     transaction.replace(R.id.container, TabFragment.newInstance(getKeyword));
@@ -284,6 +293,9 @@ public class SearchFragment extends Fragment {
     };
 
 
+    /**
+     * Text watcher for editText clear icon Visible/InVisible
+     */
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -305,6 +317,7 @@ public class SearchFragment extends Fragment {
     };
 
 
+    // delete recent search keyword in FlowLayout
     private class deleteRecentSearches extends AsyncTask<Void, Void, Boolean>{
 
         private ProgressDialog progressDialog;
@@ -341,6 +354,7 @@ public class SearchFragment extends Fragment {
         }
     }
 
+    // keyboard hide method
     protected void hideKeyboard(View view) {
         InputMethodManager in = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (in != null)

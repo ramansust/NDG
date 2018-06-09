@@ -3,12 +3,11 @@ package com.nissan.alldriverguide.database;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.model.EpubInfo;
+import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 import com.nissan.alldriverguide.multiLang.model.Tutorial;
@@ -42,28 +41,48 @@ public class PreferenceUtil {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
+    /**
+     * Default value is true
+     * @return boolean for checking tutorial page display or not
+     */
     public boolean getIsFirstTime() {
         return sharedPreferences.getBoolean(IS_FIRST_TIME, true);
     }
 
+    /**
+     * First time downloaded car
+     * @param isFirst false value make first time false
+     */
     public void setIsFirstTime(boolean isFirst) {
         spEditor = sharedPreferences.edit();
         spEditor.putBoolean(IS_FIRST_TIME, isFirst);
         spEditor.apply();
     }
+
+    /**
+     * Default value is true
+     * @return boolean
+     */
     public boolean getIsDatabaseEmpty() {
         return sharedPreferences.getBoolean(IS_DATABASE_EMPTY, true);
     }
 
+    /**
+     * when database is not empty set
+     * @param isFirst is false
+     */
     public void setIsDatabaseEmpty(boolean isFirst) {
         spEditor = sharedPreferences.edit();
         spEditor.putBoolean(IS_DATABASE_EMPTY, isFirst);
         spEditor.apply();
     }
+
+    // retrieve selected language
     public String getSelectedLang() {
         return sharedPreferences.getString(SELECTED_LANG, "");
     }
 
+    // store selected language
     public void setSelectedLang(String lang) {
         spEditor = sharedPreferences.edit();
         spEditor.putString(SELECTED_LANG, lang);
@@ -97,7 +116,7 @@ public class PreferenceUtil {
         editor.apply();
     }
 
-
+    // this is for retrieve epub list for search
     public ArrayList<EpubInfo> retrieveSearchEpubList(String id) {
         Gson gson = new Gson();
         String json = sharedPreferences.getString(id, null);
@@ -137,20 +156,27 @@ public class PreferenceUtil {
         spEditor.apply();
     }
 
+    // getting push registration status. Default value is false
     public boolean getPushRegistrationStatus() {
         return sharedPreferences.getBoolean(PUSH_REGISTRATION_STATUS, false);
     }
 
+    // set push registration status
     public void setPushRegistrationStatus(boolean bool) {
         spEditor = sharedPreferences.edit();
         spEditor.putBoolean(PUSH_REGISTRATION_STATUS, bool);
         spEditor.apply();
     }
 
+    // this method for getting user click count for great or not great popup
     public int getOpenCountForRateApp() {
         return sharedPreferences.getInt(RATE_APP, 0);
     }
 
+    //===============This scope for Great or not Great popup display===============
+    //==================================Start======================================
+
+    // this method for set user click count for great or not great popup
     public void setOpenCountForRateApp() {
         int count = getOpenCountForRateApp() + 1;
 
@@ -165,10 +191,13 @@ public class PreferenceUtil {
         spEditor.apply();
     }
 
+    // for the first time display great or not great popup
+    // Great or not great popup display once at app life
     public boolean getIsFirstTimeGreatNotGreat() {
         return sharedPreferences.getBoolean(IS_FIRST_TIME_GREAT_NOT_GREAT, true);
     }
 
+    // set false when display the great or not great need not to display
     public void setIsFirstTimeGreatNotGreat(boolean isFirst) {
         spEditor = sharedPreferences.edit();
         spEditor.putBoolean(IS_FIRST_TIME_GREAT_NOT_GREAT, isFirst);
@@ -205,6 +234,8 @@ public class PreferenceUtil {
         spEditor.putBoolean(IS_GREAT, isGreat);
         spEditor.apply();
     }
+    //===============This scope for Great or not Great popup display===============
+    //==================================End======================================
 
     /*public int getOpenCountForRateApp() {
         return sharedPreferences.getInt(RATE_APP, 0);
@@ -221,5 +252,22 @@ public class PreferenceUtil {
         spEditor.putInt(RATE_APP, count);
         spEditor.apply();
     }*/
+
+    // this is for storing object for Assistance tab
+    public void storeAssistanceData(AssistanceInfo data, String key) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(data);
+        editor.putString(key, json);
+        editor.apply();
+    }
+
+    // this is for retrieve object for Assistance tab
+    public AssistanceInfo retrieveAssistanceData (String key) {
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(key, null);
+        AssistanceInfo obj = gson.fromJson(json, AssistanceInfo.class);
+        return obj;
+    }
 
 }

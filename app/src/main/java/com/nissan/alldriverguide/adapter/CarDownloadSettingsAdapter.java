@@ -8,7 +8,6 @@ import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +20,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.MainActivity;
@@ -31,10 +32,13 @@ import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.settings.AddCarFragment;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
+import com.nissan.alldriverguide.interfaces.CompleteAlertAPI;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.model.AlertMessage;
+import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
@@ -47,9 +51,11 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by raman on 1/19/17.
@@ -79,6 +85,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     private PreferenceUtil preferenceUtil; // declare the native internal storage
     private String[] carNames;
     public ProgressDialog progressDialog;
+    private String internetCheckMessage = "";
 
 
     public CarDownloadSettingsAdapter(AddCarFragment frag, Activity activity, Context context, ArrayList<CarInfo> list) {
@@ -205,7 +212,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 //                        startCarDeleteProcedure();
                         showCarDownloadDialogForSingleCar(list.get(position).getId(), false);
                     } else {
-                        NissanApp.getInstance().showInternetAlert(activity, context.getResources().getString(R.string.internet_connect));
+
+                        NissanApp.getInstance().showInternetAlert(activity, internetCheckMessage);
                     }
 
                 } else { // for downloading car action
@@ -217,7 +225,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                                 LanguageSelectionDialog(list.get(position).getId());
                             }
                         } else {
-                            NissanApp.getInstance().showInternetAlert(activity, context.getResources().getString(R.string.internet_connect));
+//                            NissanApp.getInstance().showInternetAlert(activity, context.getResources().getString(R.string.internet_connect));
+                            NissanApp.getInstance().showInternetAlert(activity, internetCheckMessage);
                         }
                     } else {
 
@@ -434,6 +443,34 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         });
     }
 
+    private void changeGlobalAlertMsg(){
+
+        new ApiCall().postGlobalAlertMsg("e224fb09fb8daee4", NissanApp.getInstance().getLanguageID(lang)+"", new CompleteAlertAPI() {
+            @Override
+            public void onDownloaded(GlobalMsgResponse responseInfo) {
+                if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+
+                    String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.GLOBAL_MSG_KEY;
+                    String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
+
+                    preferenceUtil.storeMultiLangData(responseInfo.getAlertMessage(), key_global_alert_message);
+                    preferenceUtil.storeMultiLangData(responseInfo.getGlobalMessage(), key_global_message);
+
+                    NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
+                    NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
+
+                    startCarDownloadProcedure();
+
+                }
+            }
+
+            @Override
+            public void onFailed(String failedReason) {
+                Logger.error("changeGlobal", "********Fail******" + failedReason);
+            }
+        });
+    }
+
     private void showCarDownloadDialogForSingleCar(final int carType, final boolean isCarDownload) {
         this.carType = carType;
         final Dialog dialog = new DialogController(activity).langDialog();
@@ -462,7 +499,9 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
                 // if isCarDownload = true then start car downloading process
                 if (isCarDownload) {
-                    startCarDownloadProcedure();
+
+                    changeGlobalAlertMsg();
+
                 } else {
                     activity.runOnUiThread(new Runnable() {
                         @Override
@@ -551,6 +590,19 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         new ApiCall().postCarDownload("" + carType, "" + NissanApp.getInstance().getLanguageID(lang), "0", NissanApp.getInstance().getDeviceID(context), new CompleteAPI() {
             @Override
             public void onDownloaded(ResponseInfo responseInfo) {
+
+                String old_key_tutorial = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.TUTORIAL_KEY;
+                String old_key_tab = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.TAB_MENU_KEY;
+                String new_key_tutorial = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TUTORIAL_KEY;
+                String new_key_tab = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TAB_MENU_KEY;
+
+                preferenceUtil.deleteMultiLangData(old_key_tab);
+                preferenceUtil.deleteMultiLangData(old_key_tutorial);
+                preferenceUtil.storeMultiLangData(responseInfo.getTutorials(), new_key_tutorial);
+                preferenceUtil.storeMultiLangData(responseInfo.getTabMenu(), new_key_tab);
+
+
+
                 if (AppConfig.IS_APP_ONLINE ? Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getAssetsUrl()) && !TextUtils.isEmpty(responseInfo.getLangUrl()) : Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
                     startCarAssetsDownload(AppConfig.IS_APP_ONLINE ? responseInfo.getAssetsUrl() : NissanApp.getInstance().getAssetsURL(carType), Values.PATH, AppConfig.IS_APP_ONLINE ? responseInfo.getLangUrl() : NissanApp.getInstance().getLanguageURL((carType), lang), NissanApp.getInstance().getCarPath(carType), false);
                 } else {
@@ -571,7 +623,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         final Dialog dialog = new DialogController(activity).carDialog();
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-        txtViewTitle.setText(context.getResources().getString(R.string.download_msg));
+
+        txtViewTitle.setText(getCarDownloadMessage(preferenceUtil.getSelectedLang()));
 
         ImageButton btnEUR = (ImageButton) dialog.findViewById(R.id.btn_eur);
         ImageButton btnRUS = (ImageButton) dialog.findViewById(R.id.btn_rus);
@@ -794,6 +847,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     public void loadResource() {
         resources = new Resources(activity.getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(activity, preferenceUtil.getSelectedLang()));
         carNames = activity.getResources().getStringArray(R.array.car_names);
+        internetCheckMessage = getInternetCheckMessage(preferenceUtil.getSelectedLang());
     }
 
     public void adapterNotify(boolean isDelete) {
@@ -832,7 +886,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         int index = 0;
 
         for (int i = 0; i < list.size(); i++) {
-            Log.e("adapterNotify: ", list.get(i).getName()+", status: " + list.get(i).getStatus());
             if (list.get(i).getStatus().equalsIgnoreCase("1")) {
                 if (isDownloaded) {
                     isDownloaded = false;
@@ -868,4 +921,51 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             frag.lstView.smoothScrollBy(2, 10);
         }
     }
+
+    private String getInternetCheckMessage(String lang_short_name) {
+
+        String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_short_name) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
+
+        List<AlertMessage> alertMessageArrayList = NissanApp.getInstance().getAlertMessageGlobalArrayList();
+        if (alertMessageArrayList == null || alertMessageArrayList.size() == 0) {
+            Type type = new TypeToken<ArrayList<AlertMessage>>() {
+            }.getType();
+            alertMessageArrayList = new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData(key_global_alert_message), type);
+            NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageArrayList);
+        }
+
+
+        for (int i = 0; i < alertMessageArrayList.size(); i++) {
+
+            if (alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.ALERT_MSG_TYPE_INTERNET))
+                return alertMessageArrayList.get(i).getMsg();
+
+        }
+
+        return context.getResources().getString(R.string.internet_connect);
+    }
+
+    private String getCarDownloadMessage(String lang_short_name) {
+
+        String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_short_name) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
+
+        List<AlertMessage> alertMessageArrayList = NissanApp.getInstance().getAlertMessageGlobalArrayList();
+        if (alertMessageArrayList == null || alertMessageArrayList.size() == 0) {
+            Type type = new TypeToken<ArrayList<AlertMessage>>() {
+            }.getType();
+            alertMessageArrayList = new Gson().fromJson(new PreferenceUtil(activity).retrieveMultiLangData(key_global_alert_message), type);
+            NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageArrayList);
+        }
+
+
+        for (int i = 0; i < alertMessageArrayList.size(); i++) {
+
+            if (alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2))
+                return alertMessageArrayList.get(i).getMsg();
+
+        }
+
+        return activity.getResources().getString(R.string.download_msg);
+    }
+
 }

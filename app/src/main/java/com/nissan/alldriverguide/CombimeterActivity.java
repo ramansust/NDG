@@ -57,7 +57,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void loadData() {
-
+        // declare color category wise ArrayList
         list_red = new ArrayList<String>();
         list_orange = new ArrayList<String>();
         list_yellow = new ArrayList<String>();
@@ -106,11 +106,17 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
         scrollView.addView(mainLinearLayout);
     }
 
+    /**
+     * Here set the click listener
+     */
     private void setListener() {
         btnBack.setOnClickListener(this);
         linearBack.setOnClickListener(this);
     }
 
+    /**
+     * Here initialized all view
+     */
     private void initViews() {
         btnBack = (ImageButton) findViewById(R.id.btn_back);
         linearBack = (LinearLayout) findViewById(R.id.linear_back);
@@ -120,6 +126,9 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
         txt_back_title.setTypeface(tf);
     }
 
+    /**
+     * Here load the name form sdCard into ArrayList
+     */
     public void listFiles() {
 
         File dir = new File(drawable_folder + "/");
@@ -147,6 +156,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
             }
         }
 
+        // sort the ArrayList using Comparator interface
         Collections.sort(list_red, new MassComparator());
         Collections.sort(list_orange, new MassComparator());
         Collections.sort(list_yellow, new MassComparator());
@@ -174,11 +184,11 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
         LinearLayout.LayoutParams llp2 = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        llp2.width = (int) (width * .28);
+        llp2.width = (int) (width * .28); // set icon width
 
-        llp2.height = (int) (llp2.width * (98.00 / 150.00));
+        llp2.height = (int) (llp2.width * (98.00 / 150.00)); // set icon height
 
-        space = (width - llp2.width * max_column) / (max_column * 2);
+        space = (width - llp2.width * max_column) / (max_column * 2); // set space between icon
         llp2.setMargins(space, space, space, space);
 
         for (int j = 0; j < list_combi.size(); j++) {
@@ -249,6 +259,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
         }
 
         mainLinearLayout.addView(linearLayout);
+        // here actually define which color deshline added after which one
         if (type == Values.RED_TYPE) {
             if (!list_orange.isEmpty()) {
                 mainLinearLayout.addView(add_DashedLine(getApplicationContext(), R.drawable.orange_dash_line, space));
@@ -292,6 +303,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
 
     }
 
+    // for sorting ArrayList
     public static class MassComparator implements Comparator<String> {
 
         @Override
@@ -343,7 +355,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
                 if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 //                if(Values.carType == 14) {
                     ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
-                } else {
+                } else { // Three languages for all car epub index will be double coz search tag is added in new epub
                     if(preferenceUtil.getSelectedLang().equalsIgnoreCase("pl") || preferenceUtil.getSelectedLang().equalsIgnoreCase("fi") || preferenceUtil.getSelectedLang().equalsIgnoreCase("pt")) {
                         ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
                     } else {

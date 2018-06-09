@@ -32,9 +32,12 @@ import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.combimeter.CombimeterFragment;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
+import com.nissan.alldriverguide.interfaces.CompleteAssistanceTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
+import com.nissan.alldriverguide.multiLang.model.Datum;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.DialogErrorFragment;
@@ -43,10 +46,13 @@ import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.SingleContentUpdating;
 import com.nissan.alldriverguide.utils.Values;
 
+import java.util.List;
+
 public class AssistanceFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private Context context;
     public Resources resources;
+    private String[] assistanceArray;
     private int[] assistanceImage = {R.drawable.warning_light, R.drawable.quick_reference, R.drawable.tyre, R.drawable.engine_compartment, R.drawable.warranty, R.drawable.selled};
     private View view;
     private TextView txtViewCarName;
@@ -57,6 +63,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private AssistanceAdapter adapter;
     private DisplayMetrics metrics;
     private PreferenceUtil preferenceUtil;
+    public static AssistanceInfo assistanceInfo;
 
     private CommonDao commonDao;
     private ProgressDialog progressDialog;
@@ -77,21 +84,27 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         initViews(view);
         loadResource();
         setListener();
-        loadData();
+        postAssistanceData();
         return view;
     }
 
+    // here load the initial data
     private void loadData() {
         txtViewDriverGuide.setTypeface(Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "font/Nissan Brand Regular.otf"));
-        txtViewDriverGuide.setText(resources.getString(R.string.driver_guide));
+//        txtViewDriverGuide.setText(resources.getString(R.string.driver_guide));
+        txtViewDriverGuide.setText(assistanceInfo.getAssistanceTitle());
+//        txt_title.setText(resources.getString(R.string.assistance));
         txt_title.setText(resources.getString(R.string.assistance));
-        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.assistance_array), assistanceImage);
+//        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.assistance_array), assistanceImage);
+        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), assistanceArray, assistanceImage);
         lstView.setAdapter(adapter);
 
         if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
-            txtViewCarName.setText(resources.getStringArray(R.array.car_names)[Values.carType - 1]);
+//            txtViewCarName.setText(resources.getStringArray(R.array.car_names)[Values.carType - 1]);
+            txtViewCarName.setText(assistanceInfo.getSelectedCar());
         } else {
-            txtViewCarName.setText("NISSAN " + resources.getStringArray(R.array.car_names)[Values.carType - 1]);
+//            txtViewCarName.setText("NISSAN " + resources.getStringArray(R.array.car_names)[Values.carType - 1]);
+            txtViewCarName.setText("NISSAN " + assistanceInfo.getSelectedCar());
         }
         setCarBackground(Values.carType);
     }
@@ -104,10 +117,12 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         lstView.setOnItemClickListener(this);
     }
 
+    // here set assistance car background according to car type
     private void setCarBackground(int index) {
         NissanApp.getInstance().setCarImageAssistance(index, imageView);
     }
 
+    // here initialized all variable
     private void initViews(View view) {
         context = getActivity().getApplicationContext();
         commonDao = CommonDao.getInstance();
@@ -139,6 +154,34 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         super.onSaveInstanceState(outState);
     }
 
+    public void postAssistanceData() {
+        new ApiCall().postAssistanceTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "1", String.valueOf(Values.carType), "0", "2", new CompleteAssistanceTabContent() {
+            @Override
+            public void onDownloaded(AssistanceInfo responseInfo) {
+
+                if (preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY) == null) {
+                    preferenceUtil.storeAssistanceData(responseInfo, Values.ASSISTANCE_OBJ_STORE_KEY);
+                }
+
+                if (assistanceInfo == null) {
+                    assistanceInfo = preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY);
+                    List<Datum> list = assistanceInfo.getData();
+                    assistanceArray = new String[list.size()];
+                    for (int i = 0; i < list.size(); i++) {
+                        assistanceArray[i] = list.get(i).getTitle();
+                    }
+                }
+
+                loadData();
+            }
+
+            @Override
+            public void onFailed(String failedReason) {
+
+            }
+        });
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
@@ -147,9 +190,10 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         }
         mLastClickTime = SystemClock.elapsedRealtime();
 
+        // here set the epub type for all assistance list item (eg. Warning Light, QRG, Tyre Information and more...)
         Values.ePubType = position + 1;
 
-        if(DetectConnection.checkInternetConnection(getActivity().getApplicationContext())) {
+        if (DetectConnection.checkInternetConnection(getActivity().getApplicationContext())) {
             PushContentInfo info = commonDao.getNotificationData(getActivity().getApplicationContext(), Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()), Values.ePubType);
 
             if (info != null && !TextUtils.isEmpty(info.getCarId()) && !TextUtils.isEmpty(info.getLangId()) && !TextUtils.isEmpty(info.getePubId())) {
@@ -348,6 +392,11 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         }
     }
 
+    /**
+     * This method for indicate fragment that contain in assistance tab
+     *
+     * @param position comparing for redirect fragment
+     */
     private void loadDesireFragment(int position) {
         Fragment frag = null;
         switch (position) {
@@ -357,7 +406,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 break;
 
             case 1:
-                if(Values.carType == 14) {
+                if (Values.carType == 14) {
                     frag = HomePageFragment.newInstance((resources.getStringArray(R.array.assistance_array))[position]);
                 } else {
                     frag = ListFragment.newInstance((resources.getStringArray(R.array.assistance_array))[position]);
