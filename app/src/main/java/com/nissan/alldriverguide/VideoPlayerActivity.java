@@ -171,7 +171,11 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     }
 
     private void startVideo() {
-        if (Values.carType == 1) {
+
+        Log.e("Video Tag",""+NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl());
+        Uri video = Uri.parse(NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl());
+        videoView.setVideoURI(video);
+        /*if (Values.carType == 1) {
             Uri video = Uri.parse(qashqaiEURBaseURL + new PreferenceUtil(getApplicationContext()).getSelectedLang() + "/" + qashqaiEURVideoNameArray[Values.videoIndex] + new PreferenceUtil(getApplicationContext()).getSelectedLang().toString().toUpperCase() + ".mp4");
             videoView.setVideoURI(video);
             Log.e("startVideo: ", video.toString());
@@ -200,7 +204,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
             Uri video = Uri.parse(leaf2017BaseURL + new PreferenceUtil(getApplicationContext()).getSelectedLang() + "/" + leaf2017VideoNameArray[Values.videoIndex] + new PreferenceUtil(getApplicationContext()).getSelectedLang().toString().toUpperCase() + ".mp4");
             Log.e("startVideo: ", video.toString());
             videoView.setVideoURI(video);
-        }
+        }*/
     }
 
     @Override

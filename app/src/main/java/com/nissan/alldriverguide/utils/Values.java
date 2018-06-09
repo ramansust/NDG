@@ -116,5 +116,7 @@ public class Values {
     public static final String TAB_MENU = "multi_lang_tab_menu";
 
     public static final String GLOBALMSGKEY = "globalmsg";
+    public static final String EXPLOREDATA = "multi_lang_explore";
+    public static final String EPUBID = "0";
 
 }

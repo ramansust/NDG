@@ -25,6 +25,7 @@ import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.search.tab.WarningLightFragment;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.VideoInfo;
+import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -70,6 +71,16 @@ public class NissanApp {
 
     public void setCarAllList(ArrayList<CarInfo> carAllList) {
         this.carAllList = carAllList;
+    }
+
+    private ArrayList<ExploreTabVideoModel> exploreVideoList;
+
+    public ArrayList<ExploreTabVideoModel> getExploreVideoList() {
+        return exploreVideoList;
+    }
+
+    public void setExploreVideoList(ArrayList<ExploreTabVideoModel> exploreVideoList) {
+        this.exploreVideoList = exploreVideoList;
     }
 
     private ArrayList<CarInfo> carAllList;
