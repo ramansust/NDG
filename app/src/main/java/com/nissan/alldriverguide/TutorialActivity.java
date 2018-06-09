@@ -83,6 +83,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
 
         ArrayList<Tutorial> list = getDataFromStorage();
 
+        NissanApp.getInstance().setTutorialArrayList(list);
 
         if (list != null && list.size() > 0) {
             TUTORIAL_COUNT = list.size() - 1;
