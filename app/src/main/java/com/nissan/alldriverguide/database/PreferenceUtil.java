@@ -3,15 +3,11 @@ package com.nissan.alldriverguide.database;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.model.EpubInfo;
-import com.nissan.alldriverguide.multiLang.model.Tutorial;
-
-import org.json.JSONArray;
+import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -230,5 +226,22 @@ public class PreferenceUtil {
         spEditor.putInt(RATE_APP, count);
         spEditor.apply();
     }*/
+
+    // this is for storing object for Assistance tab
+    public void storeAssistanceData(AssistanceInfo data, String key) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(data);
+        editor.putString(key, json);
+        editor.apply();
+    }
+
+    // this is for retrieve object for Assistance tab
+    public AssistanceInfo retrieveAssistanceData (String key) {
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(key, null);
+        AssistanceInfo obj = gson.fromJson(json, AssistanceInfo.class);
+        return obj;
+    }
 
 }

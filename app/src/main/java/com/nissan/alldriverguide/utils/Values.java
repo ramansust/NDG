@@ -122,4 +122,6 @@ public class Values {
     public static final String ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_1 = "download_car_guide1";
     public static final String ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2 = "download_car_guide2";
 
+    public static final String ASSISTANCE_OBJ_STORE_KEY = "assistance";
+
 }

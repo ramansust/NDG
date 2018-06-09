@@ -6,9 +6,11 @@ import android.widget.Toast;
 import com.nissan.alldriverguide.MyApplication;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAlertAPI;
+import com.nissan.alldriverguide.interfaces.CompleteAssistanceTabContent;
 import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
+import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
@@ -349,6 +351,25 @@ public class ApiCall {
             }
         });
 
+    }
+
+    // post AssistanceTab Content
+    public void postAssistanceTabContent(String device_id, String language_id, String car_id, String epub_id, String tab_id, final CompleteAssistanceTabContent completeAPI) {
+
+        //Creating an object of our api interface
+        ApiService api = RetrofitClient.getApiService();
+        Call<AssistanceInfo> call = api.postAssistanceContent(device_id, language_id, car_id, epub_id, tab_id);
+        call.enqueue(new Callback<AssistanceInfo>() {
+            @Override
+            public void onResponse(Call<AssistanceInfo> call, Response<AssistanceInfo> response) {
+                completeAPI.onDownloaded(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<AssistanceInfo> call, Throwable t) {
+                completeAPI.onFailed(Values.FAILED_STATUS);
+            }
+        });
     }
 
     /*************************
