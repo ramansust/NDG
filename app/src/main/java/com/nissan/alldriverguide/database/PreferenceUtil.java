@@ -10,6 +10,8 @@ import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
+import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
+import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
 import com.nissan.alldriverguide.multiLang.model.Tutorial;
 
 import org.json.JSONArray;
@@ -144,6 +146,27 @@ public class PreferenceUtil {
         /*Type type = new TypeToken<ArrayList<ExploreTabVideoModel>>() {        }.getType();
         ArrayList<ExploreTabVideoModel> arrayList = gson.fromJson(json, type);
         return arrayList;*/
+    }
+
+    //this is for storing the exploretabList
+    public void storeSettingDataList(ArrayList<SettingsTabListModel> list, String id) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        editor.putString(id, json);
+        editor.apply();
+    }
+
+
+    public ArrayList<SettingsTabListModel> retrieveSettingDataList(String id) {
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(id, null);
+
+        /*ExploreTabModel obj = gson.fromJson(json, ExploreTabModel.class);
+        return obj;*/
+        Type type = new TypeToken<ArrayList<SettingsTabListModel>>() {        }.getType();
+        ArrayList<SettingsTabListModel> arrayList = gson.fromJson(json, type);
+        return arrayList;
     }
 
     public String getPushRegistrationID() {

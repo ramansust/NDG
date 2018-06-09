@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.settings;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -9,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +22,18 @@ import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.TutorialActivity;
 import com.nissan.alldriverguide.adapter.AssistanceAdapter;
+import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.interfaces.CompleteSettingTabContent;
+import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
+import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
+import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
+import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
+
+import java.util.ArrayList;
 
 public class SettingsFragment extends Fragment implements AdapterView.OnItemClickListener {
 
@@ -38,6 +48,11 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
 
     private AssistanceAdapter adapter;
 
+    private String sharedpref_key;
+    private ProgressDialog progressDialog;
+    private ArrayList<SettingsTabListModel> settingList = new ArrayList<>();
+    private String[] setting_names;
+
     public static Fragment newInstance() {
         Fragment frag = new SettingsFragment();
         return frag;
@@ -50,13 +65,84 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         initViews(view);
         loadResource();
         setListener();
-        loadData();
+        getSettingTabContent();
+        //loadData();
         return view;
+    }
+
+    private void getSettingTabContent() {
+
+        progressDialog = new ProgressDialogController(getActivity()).showDialog(resources.getString(R.string.register_push_dialog));
+        sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.SETTINGDATA;
+        if (new PreferenceUtil(getActivity()).retrieveSettingDataList(sharedpref_key) == null) {
+            new PreferenceUtil(getActivity()).deleteMultiLangData(sharedpref_key);
+            apiCall();
+        } else {
+
+            if (progressDialog != null) {
+                progressDialog.dismiss();
+            }
+
+            settingList = new PreferenceUtil(getActivity()).retrieveSettingDataList(sharedpref_key);
+            //Log.e(" message", "  " + responseInfo.getMessage());
+            setting_names = new String[settingList.size()];
+            for (int i = 0; i < settingList.size(); i++) {
+                setting_names[i] = settingList.get(i).getTitle();
+            }
+            for (SettingsTabListModel videoModel : settingList) {
+                Log.e("Setting Title", " --------  " + videoModel.getTitle());
+                Log.e("Setting feedback_title", " --------  " + videoModel.getFeedbackTitle());
+                Log.e("Setting id", " --------  " + videoModel.getId());
+            }
+            loadData();
+        }
+    }
+
+    private void apiCall() {
+        int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
+        String language_name = new PreferenceUtil(getActivity()).getSelectedLang();
+        Log.e("Setting Tab", "Language ID ---- " + language_ID);
+        Log.e("Setting Tab", "Language Name Previous ---- " + language_name);
+        Log.e("Setting Tab", "Key ---- " + Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.EXPLOREDATA);
+
+        new ApiCall().postSettingTabContent(progressDialog, NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "4", new CompleteSettingTabContent() {
+            @Override
+            public void onDownloaded(SettingsTabModel responseInfo) {
+                if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+
+
+                    new PreferenceUtil(getActivity()).storeSettingDataList(responseInfo.getData(),sharedpref_key);
+                    Log.e(" message", "  " + sharedpref_key);
+                    Log.e(" size", "  " + responseInfo.getData());
+                    settingList.clear();
+                    settingList = new PreferenceUtil(getActivity()).retrieveSettingDataList(sharedpref_key);
+
+
+
+                    setting_names = new String[settingList.size()];
+                    for (int i = 0; i < settingList.size(); i++) {
+                        setting_names[i] = settingList.get(i).getTitle();
+                    }
+
+                    for (SettingsTabListModel videoModel : settingList) {
+                        Log.e("Setting Title", " --------  " + videoModel.getTitle());
+                        Log.e("Setting feedback_title", " --------  " + videoModel.getFeedbackTitle());
+                        Log.e("Setting id", " --------  " + videoModel.getId());
+                    }
+
+                    loadData();
+                }
+            }
+
+            @Override
+            public void onFailed(String failedReason) {
+            }
+        });
     }
 
     private void loadData() {
         txt_title.setText(resources.getString(R.string.settings));
-        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.settings_array), assistanceImage);
+        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), setting_names, assistanceImage);
         lstView.setAdapter(adapter);
     }
 
