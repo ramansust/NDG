@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.nissan.alldriverguide.MyApplication;
+import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAlertAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAssistanceTabContent;
@@ -426,6 +427,7 @@ public class ApiCall {
                     if (response.isSuccessful()) {
                         LanguageListResponse languageListResponse = response.body();
                         interfaceLanguageListResponse.languageListResponse(languageListResponse);
+                        new PreferenceUtil(MyApplication.getAppContext()).storeMultiLangData(languageListResponse.getLanguageList(), "LanguageList");
                         progressDialog.dismiss();
                     } else {
                         progressDialog.dismiss();

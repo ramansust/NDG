@@ -22,8 +22,6 @@ import android.widget.TextView;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.adapter.LanguageSelectionAdapter;
@@ -39,6 +37,7 @@ import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.AlertMessage;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
+import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
@@ -53,7 +52,6 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,10 +76,13 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private Activity activity;
     private Context context;
     private LanguageListResponse languageListResponses;
-    private String[] languageDialog, languageDialogInternetCheck, languageDialogDownloading, languageDialogStartDownloading, languageDialogSync, cancelLangDownload, okLangDownload;
+    private String[] languageDialogDownloadConfirmation, languageDialogInternetCheck, languageDialogDownloading, languageDialogStartDownloading, languageDialogSync, cancelLangDownload, okLangDownload;
     private String deviceDensity;
     private String[] langFlagUri;
     private LanguageInfo info;
+    private String msg_type="";
+    private Object alertMessage="";
+    private AlertMessage type, msg ;
 
     public LanguageSelectionActivity() {
     }
@@ -104,101 +105,58 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         setListener();
     }
 
-//    private ArrayList<LanguageList> getDataFromStorage() {
-//        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.CAR_LANGUAGE_LIST;
-//
-//        Type type = new TypeToken<ArrayList<LanguageList>>() {        }.getType();
-//        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);
-//
-//    }
-private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
-
-    String key_car_wise_lang_dl = Values.carType + "_" + Values.CAR_WISE_LANG_DOWNLOAD_ALERT_MSG;
-
-    List<AlertMessage> alertMessageCarWiseDownloadList = NissanApp.getInstance().getAlertMessageCarWiseLangDownloadList();
-    if (alertMessageCarWiseDownloadList == null || alertMessageCarWiseDownloadList.size() == 0) {
-        Type type = new TypeToken<ArrayList<AlertMessage>>() {}.getType();
-        alertMessageCarWiseDownloadList = new Gson().fromJson(new PreferenceUtil(activity).retrieveMultiLangData(key_car_wise_lang_dl), type);
-        NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageCarWiseDownloadList);
-    }
-    for (int i = 0; i < alertMessageCarWiseDownloadList.size(); i++) {
-
-        if (msg_type.equalsIgnoreCase(Values.INTERNET_CHECK) && alertMessageCarWiseDownloadList.get(i).getType().equalsIgnoreCase(Values.INTERNET_CHECK))
-            return alertMessageCarWiseDownloadList.get(i).getMsg();
-        if (msg_type.equalsIgnoreCase(Values.DOWNLOADING) && alertMessageCarWiseDownloadList.get(i).getType().equalsIgnoreCase(Values.DOWNLOADING))
-            return alertMessageCarWiseDownloadList.get(i).getMsg();
-        if (msg_type.equalsIgnoreCase(Values.STARTING_DOWNLOAD) && alertMessageCarWiseDownloadList.get(i).getType().equalsIgnoreCase(Values.STARTING_DOWNLOAD))
-            return alertMessageCarWiseDownloadList.get(i).getMsg();
-        if (msg_type.equalsIgnoreCase(Values.DATA_SYNCING) && alertMessageCarWiseDownloadList.get(i).getType().equalsIgnoreCase(Values.DATA_SYNCING))
-            return alertMessageCarWiseDownloadList.get(i).getMsg();
-    }
-
-    return "";
-}
-
-
     private void getDataCarWise() {
         new ApiCall().getLanguageList("e224fb09fb8daee4", "1", progressDialog , new InterfaceLanguageListResponse() {
             @Override
             public void languageListResponse(LanguageListResponse languageListResponse) {
+
                 languageListResponses = languageListResponse;
-                String key = Values.carType + "_" + Values.CAR_LANGUAGE_LIST;
-
-                preferenceUtil.storeMultiLangData(languageListResponses.getLanguageList(), key);
-
+                
                 languageName = new String[languageListResponses.getLanguageList().size()];
                 languageShortName = new String[languageListResponses.getLanguageList().size()];
-                languageDialog = new String[languageListResponses.getLanguageList().size()];
                 cancelLangDownload = new String[languageListResponses.getLanguageList().size()];
                 okLangDownload = new String[languageListResponses.getLanguageList().size()];
                 langFlagUri =  new String[languageListResponses.getLanguageList().size()];
 
                 for(int i = 0; i <languageListResponses.getLanguageList().size(); i++){
+                    NissanApp.getInstance().setAlertMessageCarWiseLangDownloadList(languageListResponses.getLanguageList().get(i).getAlertMessage());
                     languageDialogStartDownloading = new String[languageListResponses.getLanguageList().get(i).getAlertMessage().size()];
                     languageDialogDownloading = new String[languageListResponses.getLanguageList().get(i).getAlertMessage().size()];
                     languageDialogInternetCheck = new String[languageListResponses.getLanguageList().get(i).getAlertMessage().size()];
                     languageDialogSync = new String[languageListResponses.getLanguageList().get(i).getAlertMessage().size()];
-
-                    Log.e("---", "languageListResponse: "+ languageListResponse.getLanguageList().get(i).getLanguageName() );
                     languageName[i] = (languageListResponse.getLanguageList().get(i).getLanguageName());
                     languageShortName[i] = (languageListResponse.getLanguageList().get(i).getLanguageShortcode());
 
-//                    if(languageListResponse.getLanguageList().get(i).getAlertMessage().size() != 0 ){
-//                        if(languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getType().equalsIgnoreCase(Values.STARTING_DOWNLOAD)){
-//                            languageDialogStartDownloading[i] = languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getMsg();
-//                        } else if(languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getType().equalsIgnoreCase(Values.DATA_SYNCING)){
-//                            languageDialogSync[i] = languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getMsg();
-//                        }else if(languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getType().equalsIgnoreCase(Values.DOWNLOADING)){
-//                            languageDialogDownloading[i] = languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getMsg();
-//                        }else if(languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getType().equalsIgnoreCase(Values.INTERNET_CHECK)){
-//                            languageDialogInternetCheck[i] = languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getMsg();
-//                        }else if(languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getType().equalsIgnoreCase(Values.DOWNLOAD_CONFIRMATION)){
-//                            languageDialogInternetCheck[i] = languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getMsg();
-//                        }
+//                    List<AlertMessage> alertMessages = languageListResponse.getLanguageList().get(i).getAlertMessage();
+//                    msg = null;
+//                    for (int j = 0; j < alertMessages.size(); j++) {
+//                         msg = alertMessages.get(j);
+//                        Log.e("ListResponse: ", msg.getMsg());
 //                    }
-                    cancelLangDownload[i] = (languageListResponse.getLanguageList().get(i).getCancel());
-                    okLangDownload[i] = (languageListResponse.getLanguageList().get(i).getOk());
+//
+//                    List<AlertMessage> alertType= languageListResponse.getLanguageList().get(i).getAlertMessage();
+//                    type = null;
+//                    for (int k = 0; k < alertType.size(); k++) {
+//                        type = alertType.get(k);
+//                        Log.e("ListResponse: ", type.getType());
+//                    }
+
+//                    cancelLangDownload[i] = (languageListResponse.getLanguageList().get(i).getCancel());
+//                    okLangDownload[i] = (languageListResponse.getLanguageList().get(i).getOk());
 
                     if("xxxhdpi".contains(deviceDensity)){
                         langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
-                        Log.e("qqq", "languageListResponse: "+langFlagUri );
                     } else if("xxhdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
-                        Log.e("qqq", "languageListResponse: "+langFlagUri );
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxhdpi();
                     }else if("xhdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
-                        Log.e("qqq", "languageListResponse: "+langFlagUri );
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXhdpi();
                     }else if("hdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
-                        Log.e("qqq", "languageListResponse: "+langFlagUri );
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getHdpi();
                     }else if("mdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
-                        Log.e("qqq", "languageListResponse: "+langFlagUri );
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getHdpi();
                     }else if("ldpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
-                        Log.e("qqq", "languageListResponse: "+langFlagUri );
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getLdpi();
                     }
-
                 }
                 loadData(langFlagUri);
             }
@@ -261,16 +219,22 @@ private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         info = (LanguageInfo) parent.getAdapter().getItem(position);
+
+        LanguageList languageModel = getDataFromMainList(position);
+        preferenceUtil.setSelectedLang(languageModel.getLanguageShortcode());
+
+
+//        preferenceUtil.setSelectedLang(languageShortName[info.getId()]); // here save the selected language sort name into preference
+        Logger.error("onItemClick: ", "" + info.getId());
+        Logger.error("onItemClick: ", "" + languageShortName[info.getId()]);
         preferenceUtil.setSelectedLang(languageShortName[info.getId()]); // here save the selected language sort name into preference
 
         loadResource();
 
         if (NissanApp.getInstance().createPath(Values.PATH)) {
             if (DetectConnection.checkInternetConnection(getApplicationContext())) {
-                showCarDownloadDialogForSingleCar(info);
-                changeGlobalAlertMsg();
+                changeGlobalAlertMsg(info, languageModel);
             } else {
-//                NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, getResources().getString(R.string.internet_connect));
                 String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
                 NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
             }
@@ -279,7 +243,21 @@ private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
         }
     }
 
-    private void changeGlobalAlertMsg(){
+    private LanguageList getDataFromMainList(int position) {
+
+        Log.e("list_lang", "__________" + list.get(position).getName());
+
+        for (int i = 0; i < languageListResponses.getLanguageList().size(); i++) {
+            Log.e("list_lang_temp", "__________" + languageListResponses.getLanguageList().get(i).getLanguageName());
+            if (list.get(position).getName().equalsIgnoreCase(languageListResponses.getLanguageList().get(i).getLanguageName())) {
+                return languageListResponses.getLanguageList().get(i);
+            }
+        }
+
+        return new LanguageList();
+    }
+
+    private void changeGlobalAlertMsg(final LanguageInfo info, final LanguageList selectedModelClass){
         new ApiCall().postGlobalAlertMsg("e224fb09fb8daee4", NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang())+"", new CompleteAlertAPI() {
             @Override
             public void onDownloaded(GlobalMsgResponse responseInfo) {
@@ -294,7 +272,7 @@ private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
                     NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
                     NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
 
-                    showCarDownloadDialogForSingleCar(info);
+                    showCarDownloadDialogForSingleCar(info, selectedModelClass);
 
                 }
             }
@@ -533,16 +511,20 @@ private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
         tracker.send(new HitBuilders.AppViewBuilder().build());
     }
 
-    private void showCarDownloadDialogForSingleCar(LanguageInfo info) {
+    private void showCarDownloadDialogForSingleCar(LanguageInfo info, LanguageList selectedModel) {
         final Dialog dialog = new DialogController(LanguageSelectionActivity.this).langDialog();
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-        txtViewTitle.setText(languageDialog[info.getId()]);
+
+        String downloadConfirmationText = getAlertMessage(selectedModel, Values.DOWNLOAD_CONFIRMATION);
+
+        txtViewTitle.setText(downloadConfirmationText.isEmpty() ? resources.getString(R.string.alert_msg22) : downloadConfirmationText);
+
 
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
-        btnCancel.setText(cancelLangDownload[info.getId()]);
-        btnOk.setText(okLangDownload[info.getId()]);
+        btnCancel.setText(selectedModel.getCancel());
+        btnOk.setText(selectedModel.getOk());
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -560,6 +542,23 @@ private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
         });
 
         dialog.show();
+    }
+
+    private String getAlertMessage(LanguageList model, String downloadConfirmation) {
+
+        Log.e("model", "________" + model.getLanguageName());
+
+        List<AlertMessage> alertMessageList = model.getAlertMessage();
+
+        if (alertMessageList == null || alertMessageList.size() == 0)
+            return "";
+
+        for (AlertMessage alertMsg : alertMessageList) {
+            if (alertMsg.getType().equalsIgnoreCase(downloadConfirmation)) {
+                return alertMsg.getMsg();
+            }
+        }
+     return  "";
     }
 
     private void errorFileDelete(int carType) {
