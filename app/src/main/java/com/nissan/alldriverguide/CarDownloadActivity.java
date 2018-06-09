@@ -49,9 +49,6 @@ import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
-import com.nissan.alldriverguide.multiLang.model.TabMenu;
-import com.nissan.alldriverguide.multiLang.model.Tutorial;
-import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.pushnotification.Config;
 import com.nissan.alldriverguide.pushnotification.NotificationUtils;
 import com.nissan.alldriverguide.retrofit.ApiCall;
@@ -221,8 +218,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 final Dialog dialog = new DialogController(activity).pushRegistrationDialog();
 
                 TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-                txtViewTitle.setText(getResources().getString(R.string.register_push));
-
+                txtViewTitle.setText(getAlertMessage(preferenceUtil.getSelectedLang(), Values.REGISTER_PUSH_MESSAGE).isEmpty() ? getResources().getString(R.string.register_push) : getAlertMessage(preferenceUtil.getSelectedLang(), Values.REGISTER_PUSH_MESSAGE));
                 Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
                 Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
 
@@ -1179,5 +1175,27 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private void showErrorDialog(String msg) {
         DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
         dialogFragment.show(getSupportFragmentManager(), "error_fragment");
+    }
+
+    private String getAlertMessage(String lang_short_name, String msg_type) {
+
+        String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_short_name) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
+
+        List<AlertMessage> alertMessageArrayList = NissanApp.getInstance().getAlertMessageGlobalArrayList();
+        if (alertMessageArrayList == null || alertMessageArrayList.size() == 0) {
+            Type type = new TypeToken<ArrayList<AlertMessage>>() {
+            }.getType();
+            alertMessageArrayList = new Gson().fromJson(new PreferenceUtil(activity).retrieveMultiLangData(key_global_alert_message), type);
+            NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageArrayList);
+        }
+
+
+        for (int i = 0; i < alertMessageArrayList.size(); i++) {
+
+            if (msg_type.equalsIgnoreCase(Values.REGISTER_PUSH_MESSAGE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.REGISTER_PUSH_MESSAGE))
+                return alertMessageArrayList.get(i).getMsg();
+        }
+
+        return "";
     }
 }
