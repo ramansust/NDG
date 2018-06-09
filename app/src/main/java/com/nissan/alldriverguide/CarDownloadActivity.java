@@ -162,29 +162,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             public void onDownloaded(GlobalMsgResponse responseInfo) {
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
 
-                    List<GlobalMessage> globalMsgList = responseInfo.getGlobalMessage();
-                    List<AlertMessage>  alertMsgList = responseInfo.getAlertMessage();
 
-                    List<Object> global_alert = new ArrayList<>();
-                    global_alert.addAll(globalMsgList);
-                    global_alert.addAll(alertMsgList);
 
-                    preferenceUtil.storeGlobalMsgList(global_alert, Values.GLOBALMSGKEY);
-
-                    List<Object> data = preferenceUtil.retrieveGlobalMsgList(Values.GLOBALMSGKEY);
-                    if (data instanceof GlobalMessage) {
-
-                        GlobalMessage gb = (GlobalMessage) data.get(0);
-                        Log.e("xxxxxxxx", gb.getMsg());
-
-                    } else if (data instanceof AlertMessage) {
-
-                        AlertMessage gb = (AlertMessage) data.get(0);
-                        Log.e("yyyyyyyy", "----"+gb.getMsg());
-
-                    } else {
-                        Log.e("zzzzzzzzzzz", "**************");
-                    }
 
                 }
             }
