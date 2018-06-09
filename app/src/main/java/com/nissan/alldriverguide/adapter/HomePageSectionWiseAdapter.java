@@ -21,6 +21,7 @@ import java.util.List;
 /**
  * @author Sourav
  * @Since 09/03/17.
+ * This class not in used anymore
  */
 public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<HomePageSectionWiseAdapter.MainVH> {
     private Context context;

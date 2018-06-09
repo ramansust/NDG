@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.util.Locale;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -57,6 +54,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         return textView;
     }
 
+    /**
+     * Splash display for 3 sec then go to CarDownloadActivity class
+     */
     private void createSplashScreen() {
         new Handler().postDelayed (new Runnable () {
 

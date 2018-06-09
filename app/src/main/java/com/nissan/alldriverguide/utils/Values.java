@@ -115,4 +115,6 @@ public class Values {
     public static final String TUTORIAL = "multi_lang_tutorial";
     public static final String TAB_MENU = "multi_lang_tab_menu";
 
+    public static final String GLOBALMSGKEY = "globalmsg";
+
 }

@@ -58,6 +58,7 @@ public class VideoAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag ();
         }
 
+        // for loading video thumb using Ion image loader library
         Ion.with(viewHolder.imgView)
                 .placeholder(R.drawable.arrow)
                 .error(R.drawable.arrow)
@@ -70,6 +71,9 @@ public class VideoAdapter extends BaseAdapter {
         return convertView;
     }
 
+    /**
+     * Declare ViewHolder class for initialized item view
+     */
     static class ViewHolder {
         ImageView imgView;
         TextView txtViewTitle;

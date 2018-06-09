@@ -531,6 +531,7 @@ public class CommonDao {
         return result;
     }
 
+    // This method for get count for specific search tag
     public int getCountForSpecificTag(Context context, String searchtag, int carType, String langType) {
         int count = 0;
         SQLiteDatabase db = getWritableDatabase(context, NissanDbHelper.class);
@@ -614,6 +615,10 @@ public class CommonDao {
     }
 
 
+    /*
+     * This method for deleting recent search keyword that
+     * stored in database and display it into recent fragment.
+     */
     public boolean deleteRecentSearchesFromSearchTable(Context context, int carType, String selectedLanguage) {
         SQLiteDatabase db = getWritableDatabase(context, NissanDbHelper.class);
 
@@ -655,12 +660,10 @@ public class CommonDao {
         return List;
     }
 
-
+    // this method for checking search tag is existing or not into database
     public boolean isTagExists(Context context, String tag, int carType, String languageType) {
         SQLiteDatabase db = getWritableDatabase(context, NissanDbHelper.class);
         String selectQuery = "SELECT * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.SEARCHTAG + " = '" + tag + "' AND " + SearchTagTableDirectory.CARTYPE + " = '" + carType + "' AND " + SearchTagTableDirectory.LANGUAGE_TYPE + " = '" + languageType + "'";
-        Log.e("Query", "___________" + selectQuery);
-        //String selectQuery = "SELECT * FROM search_info WHERE search=" + tag;
         Cursor cursor = db.rawQuery(selectQuery, null);
         try {
             if (cursor.getCount() > 0) {
@@ -694,6 +697,9 @@ public class CommonDao {
         return result;
     }
 
+    /*
+     * This method for insert search key into database
+     */
     public long insertNewKeywordInSearchTable(Context context, SearchModel searchModel, int carType, String langType) {
         SQLiteDatabase db = getWritableDatabase(context, NissanDbHelper.class);
         if (db.isOpen()) {

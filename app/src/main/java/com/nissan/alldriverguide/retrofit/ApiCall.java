@@ -1,17 +1,8 @@
 package com.nissan.alldriverguide.retrofit;
 
-import android.util.Log;
-import android.widget.Toast;
-
-import com.nissan.alldriverguide.MyApplication;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.model.ResponseInfo;
-import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
-import com.nissan.alldriverguide.multiLang.model.LanguageList;
-import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.utils.Values;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -277,6 +268,74 @@ public class ApiCall {
             @Override
             public void onFailure(Call<ResponseInfo> call, Throwable t) {
                 completeAPI.onFailed(t.getMessage());
+            }
+        });
+
+    }
+
+    // post Alert Msg
+    public void postGlobalAlertMsg(String device_id, String language_id, final CompleteAlertAPI completeAPI) {
+
+        //Creating an object of our api interface
+        ApiService api = RetrofitClient.getApiService();
+        Call<GlobalMsgResponse> call = api.postAlertMsg(device_id, language_id);
+        call.enqueue(new Callback<GlobalMsgResponse>() {
+            @Override
+            public void onResponse(Call<GlobalMsgResponse> call, Response<GlobalMsgResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response != null) {
+                        completeAPI.onDownloaded(response.body());
+                    } else {
+                        completeAPI.onFailed(Values.FAILED_STATUS);
+                    }
+                } else {
+                    //do your failure work
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GlobalMsgResponse> call, Throwable t) {
+                completeAPI.onFailed(t.getMessage());
+            }
+        });
+
+    }
+
+    // post Car wise Language List
+    public void postGlobalAlertMsg(String device_id, String language_id, final CompleteCarwiseLanguageListAPI completeAPI) {
+
+        //Creating an object of our api interface
+        ApiService api = RetrofitClient.getApiService();
+        Call<LanguageList> call = api.postCarwiseLanguageList(device_id, language_id);
+        call.enqueue(new Callback<LanguageList>() {
+            @Override
+            public void onResponse(Call<LanguageList> call, Response<LanguageList> response) {
+                completeAPI.onDownloaded(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<LanguageList> call, Throwable t) {
+                completeAPI.onFailed(Values.FAILED_STATUS);
+            }
+        });
+
+    }
+
+    // post ExploreTab Content
+    public void postExploreTabContent(String device_id, String language_id, String car_id,String epub_id,String tab_id,final CompleteExploreTabContent completeAPI) {
+
+        //Creating an object of our api interface
+        ApiService api = RetrofitClient.getApiService();
+        Call<ExploreTabModel> call = api.postTabWiseContent(device_id, language_id,car_id,epub_id,tab_id);
+        call.enqueue(new Callback<ExploreTabModel>() {
+            @Override
+            public void onResponse(Call<ExploreTabModel> call, Response<ExploreTabModel> response) {
+                completeAPI.onDownloaded(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ExploreTabModel> call, Throwable t) {
+                completeAPI.onFailed(Values.FAILED_STATUS);
             }
         });
 

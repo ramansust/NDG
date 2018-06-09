@@ -9,6 +9,7 @@ import com.nissan.alldriverguide.R;
 
 /**
  * Created by mobioapp on 1/23/18.
+ * This class not uses anymore
  */
 
 public class FlowLayout extends ViewGroup {

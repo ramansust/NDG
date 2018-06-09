@@ -95,9 +95,10 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
     private void loadData() throws IndexOutOfBoundsException {
         try {
             list = new ArrayList<>();
-            title.setText(getArguments().getString(TITLE));
-            switch (Values.ePubType) {
+            title.setText(getArguments().getString(TITLE)); // here set the title on top bar
+            switch (Values.ePubType) { // compare with epub type
                 case Values.COMBIMETER_TYPE:
+                    // check the toc file exist or not
                     if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.COMBIMETER + Values.TOC_DIRECTORY).exists()) {
                         list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.COMBIMETER);
 
@@ -212,6 +213,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
 
                 case Values.ASSISTANCE_TYPE:
                     if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.WARRANTY + Values.TOC_DIRECTORY).exists()) {
+                        // parse toc.ncx file and added into list(added like: Text/DG_ZE1_WARRANTY_QR17xx-0ZE1E0EUR_November_2017-4.xhtml#_idParaDest-10)
                         list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.WARRANTY);
 
                         if (list != null) {
@@ -230,6 +232,8 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                     break;
             }
 
+            // here check the url
+            // eg. url = file:///storage/emulated/0/.AllDriverGuide/micrak14/micrak14_en/.ar_warranty/OEBPS/Text/DG_K14_WARRANTY_DG17xx-0K14E0EUR_November_2017-4.xhtml#_idParaDest-10
             if (htmlContent.endsWith("/#")) {
                 webView.setVisibility(View.GONE);
 //                linearLayoutNoContent.setVisibility(View.VISIBLE);
@@ -281,6 +285,9 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * setup web view
+     */
     private void setupWebView() {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);

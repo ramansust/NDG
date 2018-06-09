@@ -27,6 +27,12 @@ public class LanguageSelectionAdapter extends BaseAdapter {
     private boolean isColor;
     private Typeface tf;
 
+    /**
+     * Declare constructor
+     * @param context needed
+     * @param list data list
+     * @param isColor for check visible/ invisible
+     */
     public LanguageSelectionAdapter (Context context, List<LanguageInfo> list, boolean isColor) {
         this.context = context;
         this.list = list;
@@ -71,6 +77,7 @@ public class LanguageSelectionAdapter extends BaseAdapter {
 
         if(isColor) {
             viewHolder.txtViewTitle.setTextColor(Color.BLACK);
+            // check the selection. if selected checkBox visible else invisible
             if(list.get(position).isSelected()) {
                 viewHolder.checkBox.setVisibility(View.VISIBLE);
                 viewHolder.checkBox.setButtonDrawable(R.drawable.tick_icon);

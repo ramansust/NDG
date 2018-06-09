@@ -6,6 +6,11 @@ import android.net.ConnectivityManager;
 
 public class DetectConnection {
 
+    /**
+     * The internet connection available or not
+     * @param context need for get system service
+     * @return true if net is connected otherwise false
+     */
     public static boolean checkInternetConnection(Context context) {
 
         ConnectivityManager con_manager = (ConnectivityManager) context

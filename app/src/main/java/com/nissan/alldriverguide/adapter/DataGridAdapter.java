@@ -24,6 +24,9 @@ import com.nissan.alldriverguide.utils.Values;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * This class not in used anymore
+ */
 
 public class DataGridAdapter extends BaseAdapter {
 

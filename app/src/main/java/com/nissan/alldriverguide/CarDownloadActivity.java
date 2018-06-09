@@ -1,6 +1,5 @@
 package com.nissan.alldriverguide;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -23,6 +22,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -46,11 +46,6 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
-import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
-import com.nissan.alldriverguide.multiLang.model.LanguageList;
-import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
-import com.nissan.alldriverguide.multiLang.model.TabMenu;
-import com.nissan.alldriverguide.multiLang.model.Tutorial;
 import com.nissan.alldriverguide.pushnotification.Config;
 import com.nissan.alldriverguide.pushnotification.NotificationUtils;
 import com.nissan.alldriverguide.retrofit.ApiCall;
@@ -68,7 +63,6 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -130,6 +124,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_download);
         Logger.error("device_id", NissanApp.getInstance().getDeviceID(this));
+
+//        getGlobalAlertMsg();
         initViews();
         setListener();
         loadData();
@@ -161,6 +157,24 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             public void languageListResponse(LanguageListResponse languageListResponse) {
                 languageListResponses = languageListResponse;
                 languageListResponses.getLanguageList().size();
+            }
+        });
+    }
+
+    /**
+     * Initialized all variable
+     */
+    private void getGlobalAlertMsg(){
+        new ApiCall().postGlobalAlertMsg("e224fb09fb8daee4", "1", new CompleteAlertAPI() {
+            @Override
+            public void onDownloaded(GlobalMsgResponse responseInfo) {
+                if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+                }
+            }
+
+            @Override
+            public void onFailed(String failedReason) {
+                Log.e("onDownloaded", "********Fail******");
             }
         });
     }
@@ -261,15 +275,19 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     }
 
+    /**
+     * For Normal app behaviour without update push notification
+     * @param position needed for list item
+     * @param parent derived from object
+     */
     private void goForNormalOperation(int position, AdapterView<?> parent) {
         selectedCarIndex = position;
-
+        // class cast for CarInfo class
         if (parent.getAdapter().getItem(position).getClass() == CarInfo.class) {
             CarInfo info = (CarInfo) parent.getAdapter().getItem(position);
             selectedLang = commonDao.getLanguageStatus(getApplicationContext(), info.getId());
 
-            if ("1".equalsIgnoreCase(info.getStatus())) {
-                Logger.error("onItemClick:>>>>>>>>> ", "" + info.getSelectedLanguage() + "  == getSelectedCar = " + info.getSelectedCar());
+            if ("1".equalsIgnoreCase(info.getStatus())) { // status 1 means downloaded car
                 carDownloadCheck(info.getId());
             } else {
                 if (info.getId() == 1 || info.getId() == 2 || info.getId() == 4 || info.getId() == 5) {
@@ -344,6 +362,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     protected void onResume() {
+        Log.e("onResume: ", "8888888888888888888888888");
+        getGlobalAlertMsg();
         if (preferenceUtil.getIsFirstTime()) {
             if (new File(Values.PATH).exists()) {
                 try {
@@ -407,9 +427,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     }
 
     private void carDownloadCheck(final int position) {
-        Logger.error("pos_carDownloadCheck","___________" + position);
-
-        Values.carType = position;
+        Values.carType = position; // set the car type
 
         if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(Values.carType))) {
             if (commonDao.getStatus(getBaseContext(), Values.carType) == 1) { // if car is downloaded (status 1 is used for downloaded car)
