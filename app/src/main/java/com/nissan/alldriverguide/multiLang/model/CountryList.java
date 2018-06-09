@@ -5,159 +5,159 @@ import com.google.gson.annotations.SerializedName;
 
 public class CountryList {
 
-@SerializedName("thumb_ldpi")
-@Expose
-private Object thumbLdpi;
-@SerializedName("thumb_xxhdpi")
-@Expose
-private Object thumbXxhdpi;
-@SerializedName("thumb_hdpi")
-@Expose
-private Object thumbHdpi;
-@SerializedName("thumb_twox")
-@Expose
-private Object thumbTwox;
-@SerializedName("phone_national")
-@Expose
-private String phoneNational;
-@SerializedName("phone_international")
-@Expose
-private String phoneInternational;
-@SerializedName("thumb_onex")
-@Expose
-private Object thumbOnex;
-@SerializedName("country_name")
-@Expose
-private String countryName;
-@SerializedName("popup")
-@Expose
-private String popup;
-@SerializedName("thumb_threex")
-@Expose
-private Object thumbThreex;
-@SerializedName("country_display_name")
-@Expose
-private String countryDisplayName;
-@SerializedName("id")
-@Expose
-private Integer id;
-@SerializedName("thumb_xxxhdpi")
-@Expose
-private Object thumbXxxhdpi;
-@SerializedName("thumb_xhdpi")
-@Expose
-private Object thumbXhdpi;
+    @SerializedName("thumb_xxxhdpi")
+    @Expose
+    private String thumbXxxhdpi;
+    @SerializedName("thumb_ldpi")
+    @Expose
+    private String thumbLdpi;
+    @SerializedName("popup")
+    @Expose
+    private String popup;
+    @SerializedName("thumb_twox")
+    @Expose
+    private String thumbTwox;
+    @SerializedName("country_name")
+    @Expose
+    private String countryName;
+    @SerializedName("phone_international")
+    @Expose
+    private String phoneInternational;
+    @SerializedName("phone_national")
+    @Expose
+    private String phoneNational;
+    @SerializedName("thumb_xhdpi")
+    @Expose
+    private String thumbXhdpi;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("thumb_hdpi")
+    @Expose
+    private String thumbHdpi;
+    @SerializedName("thumb_onex")
+    @Expose
+    private String thumbOnex;
+    @SerializedName("thumb_xxhdpi")
+    @Expose
+    private String thumbXxhdpi;
+    @SerializedName("thumb_threex")
+    @Expose
+    private String thumbThreex;
+    @SerializedName("country_display_name")
+    @Expose
+    private String countryDisplayName;
 
-public Object getThumbLdpi() {
-return thumbLdpi;
-}
+    public String getThumbXxxhdpi() {
+        return thumbXxxhdpi;
+    }
 
-public void setThumbLdpi(Object thumbLdpi) {
-this.thumbLdpi = thumbLdpi;
-}
+    public void setThumbXxxhdpi(String thumbXxxhdpi) {
+        this.thumbXxxhdpi = thumbXxxhdpi;
+    }
 
-public Object getThumbXxhdpi() {
-return thumbXxhdpi;
-}
+    public String getThumbLdpi() {
+        return thumbLdpi;
+    }
 
-public void setThumbXxhdpi(Object thumbXxhdpi) {
-this.thumbXxhdpi = thumbXxhdpi;
-}
+    public void setThumbLdpi(String thumbLdpi) {
+        this.thumbLdpi = thumbLdpi;
+    }
 
-public Object getThumbHdpi() {
-return thumbHdpi;
-}
+    public String getPopup() {
+        return popup;
+    }
 
-public void setThumbHdpi(Object thumbHdpi) {
-this.thumbHdpi = thumbHdpi;
-}
+    public void setPopup(String popup) {
+        this.popup = popup;
+    }
 
-public Object getThumbTwox() {
-return thumbTwox;
-}
+    public String getThumbTwox() {
+        return thumbTwox;
+    }
 
-public void setThumbTwox(Object thumbTwox) {
-this.thumbTwox = thumbTwox;
-}
+    public void setThumbTwox(String thumbTwox) {
+        this.thumbTwox = thumbTwox;
+    }
 
-public String getPhoneNational() {
-return phoneNational;
-}
+    public String getCountryName() {
+        return countryName;
+    }
 
-public void setPhoneNational(String phoneNational) {
-this.phoneNational = phoneNational;
-}
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
 
-public String getPhoneInternational() {
-return phoneInternational;
-}
+    public String getPhoneInternational() {
+        return phoneInternational;
+    }
 
-public void setPhoneInternational(String phoneInternational) {
-this.phoneInternational = phoneInternational;
-}
+    public void setPhoneInternational(String phoneInternational) {
+        this.phoneInternational = phoneInternational;
+    }
 
-public Object getThumbOnex() {
-return thumbOnex;
-}
+    public String getPhoneNational() {
+        return phoneNational;
+    }
 
-public void setThumbOnex(Object thumbOnex) {
-this.thumbOnex = thumbOnex;
-}
+    public void setPhoneNational(String phoneNational) {
+        this.phoneNational = phoneNational;
+    }
 
-public String getCountryName() {
-return countryName;
-}
+    public String getThumbXhdpi() {
+        return thumbXhdpi;
+    }
 
-public void setCountryName(String countryName) {
-this.countryName = countryName;
-}
+    public void setThumbXhdpi(String thumbXhdpi) {
+        this.thumbXhdpi = thumbXhdpi;
+    }
 
-public String getPopup() {
-return popup;
-}
+    public Integer getId() {
+        return id;
+    }
 
-public void setPopup(String popup) {
-this.popup = popup;
-}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-public Object getThumbThreex() {
-return thumbThreex;
-}
+    public String getThumbHdpi() {
+        return thumbHdpi;
+    }
 
-public void setThumbThreex(Object thumbThreex) {
-this.thumbThreex = thumbThreex;
-}
+    public void setThumbHdpi(String thumbHdpi) {
+        this.thumbHdpi = thumbHdpi;
+    }
 
-public String getCountryDisplayName() {
-return countryDisplayName;
-}
+    public String getThumbOnex() {
+        return thumbOnex;
+    }
 
-public void setCountryDisplayName(String countryDisplayName) {
-this.countryDisplayName = countryDisplayName;
-}
+    public void setThumbOnex(String thumbOnex) {
+        this.thumbOnex = thumbOnex;
+    }
 
-public Integer getId() {
-return id;
-}
+    public String getThumbXxhdpi() {
+        return thumbXxhdpi;
+    }
 
-public void setId(Integer id) {
-this.id = id;
-}
+    public void setThumbXxhdpi(String thumbXxhdpi) {
+        this.thumbXxhdpi = thumbXxhdpi;
+    }
 
-public Object getThumbXxxhdpi() {
-return thumbXxxhdpi;
-}
+    public String getThumbThreex() {
+        return thumbThreex;
+    }
 
-public void setThumbXxxhdpi(Object thumbXxxhdpi) {
-this.thumbXxxhdpi = thumbXxxhdpi;
-}
+    public void setThumbThreex(String thumbThreex) {
+        this.thumbThreex = thumbThreex;
+    }
 
-public Object getThumbXhdpi() {
-return thumbXhdpi;
-}
+    public String getCountryDisplayName() {
+        return countryDisplayName;
+    }
 
-public void setThumbXhdpi(Object thumbXhdpi) {
-this.thumbXhdpi = thumbXhdpi;
-}
+    public void setCountryDisplayName(String countryDisplayName) {
+        this.countryDisplayName = countryDisplayName;
+    }
 
 }
