@@ -19,6 +19,7 @@ import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.adapter.TutorialViewPagerAdapter;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.multiLang.model.Tutorial;
+import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -38,6 +39,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     private String[] tutorialTitles = new String[10];
     private String[] tutorialDetails = new String[10];
     private CirclePageIndicator indicator;
+    private int TUTORIAL_COUNT = 0;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -73,11 +75,18 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         ArrayList<Tutorial> list = getDataFromStorage();
 
 
-        for (int i = 0; i < list.size(); i++) {
+        if (list != null && list.size() > 0) {
+            TUTORIAL_COUNT = list.size() - 1;
+            for (int i = 0; i < list.size(); i++) {
 
-            tutorialTitles[i] = list.get(i).getTitle();
-            tutorialDetails[i] = list.get(i).getDetails();
+                tutorialTitles[i] = list.get(i).getTitle();
+                tutorialDetails[i] = list.get(i).getDetails();
 
+            }
+        } else {
+            TUTORIAL_COUNT = 2;
+            tutorialTitles = getResources().getStringArray(R.array.tutorial_titles);
+            tutorialDetails = getResources().getStringArray(R.array.tutorial_details);
         }
 
 //        tutorialTitles = getResources().getStringArray(R.array.tutorial_titles);
@@ -104,7 +113,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
 
             case R.id.btnNext:
                 try {
-                    if (viewPager.getCurrentItem() == 2) {
+                    if (viewPager.getCurrentItem() == TUTORIAL_COUNT) {
                         gotoNextActivity();
                     } else {
                         viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
@@ -116,7 +125,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
 
             case R.id.txtNext:
                 try {
-                    if (viewPager.getCurrentItem() == 2) {
+                    if (viewPager.getCurrentItem() == TUTORIAL_COUNT) {
                         gotoNextActivity();
                     } else {
                         viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
@@ -178,8 +187,11 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
 
     private ArrayList<Tutorial> getDataFromStorage() {
 
-        Type type = new TypeToken<ArrayList<Tutorial>>() {        }.getType();
-        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(Values.TUTORIAL), type);
+        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TUTORIAL;
+
+        Type type = new TypeToken<ArrayList<Tutorial>>() {
+        }.getType();
+        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);
 
     }
 }
