@@ -159,7 +159,13 @@ private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
                     languageDialogInternetCheck = new String[languageListResponses.getLanguageList().get(i).getAlertMessage().size()];
                     languageDialogSync = new String[languageListResponses.getLanguageList().get(i).getAlertMessage().size()];
 
-                    Log.e("---", "languageListResponse: "+ languageListResponse.getLanguageList().get(i).getLanguageName() );
+                    List<AlertMessage> alertMessages = languageListResponse.getLanguageList().get(i).getAlertMessage();
+                    for (int j = 0; j < alertMessages.size(); j++) {
+                        AlertMessage message = alertMessages.get(j);
+                        Log.e("ListResponse: ", message.getMsg());
+                    }
+
+//                    Log.e("---", "languageListResponse: "+ languageListResponse.getLanguageList().get(i).getAlertMessage() );
                     languageName[i] = (languageListResponse.getLanguageList().get(i).getLanguageName());
                     languageShortName[i] = (languageListResponse.getLanguageList().get(i).getLanguageShortcode());
 
@@ -264,7 +270,6 @@ private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
         preferenceUtil.setSelectedLang(languageShortName[info.getId()]); // here save the selected language sort name into preference
         Logger.error("onItemClick: ", "" + info.getId());
         Logger.error("onItemClick: ", "" + languageShortName[info.getId()]);
-        Logger.error("-----: ", "" + languageDialogStartDownloading[info.getId()]);
 
         loadResource();
 
@@ -540,7 +545,7 @@ private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
         final Dialog dialog = new DialogController(LanguageSelectionActivity.this).langDialog();
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-        txtViewTitle.setText(languageDialog[info.getId()]);
+//        txtViewTitle.setText(languageDialog[info.getId()]);
 
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);

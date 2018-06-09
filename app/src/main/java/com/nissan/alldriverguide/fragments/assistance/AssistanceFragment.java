@@ -94,7 +94,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 //        txtViewDriverGuide.setText(resources.getString(R.string.driver_guide));
         txtViewDriverGuide.setText(assistanceInfo.getAssistanceTitle());
 //        txt_title.setText(resources.getString(R.string.assistance));
-        txt_title.setText(resources.getString(R.string.assistance));
+//        txt_title.setText(resources.getString(R.string.assistance));
+        txt_title.setText(NissanApp.getInstance().getTabMenuArrayList().get(1).getTitle());
 //        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.assistance_array), assistanceImage);
         adapter = new AssistanceAdapter(getActivity().getApplicationContext(), assistanceArray, assistanceImage);
         lstView.setAdapter(adapter);

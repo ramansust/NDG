@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     private Typeface tf;
     private static final String TITLE = "title";
     private String headerTitle;
+    private String deviceDensity;
 
     public static Fragment newInstance(String title) {
         Fragment frag = new CallNissanAssistanceFragment();
@@ -126,10 +128,20 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
                                 for (int k = 0; k < countryLists.size(); k++) {
 
                                     countryName[k] = countryLists.get(k).getCountryName();
-                                    countrFlag[k] = countryLists.get(k).getThumbXhdpi();
+//                                    countrFlag[k] = countryLists.get(k).getThumbXhdpi();
                                     nationalNumber[k] = countryLists.get(k).getPhoneNational();
                                     internationalNumber[k] = countryLists.get(k).getPhoneInternational();
                                     phonePopupText[k] = countryLists.get(k).getPopup();
+
+                                    if ("xxhdpi".contains(deviceDensity)) {
+                                        countrFlag[k] = countryLists.get(k).getThumbXxhdpi();
+                                    } else if ("xhdpi".contains(deviceDensity)) {
+                                        countrFlag[k] = countryLists.get(k).getThumbXhdpi();
+                                    } else if ("hdpi".contains(deviceDensity)) {
+                                        countrFlag[k] = countryLists.get(k).getThumbHdpi();
+                                    } else {
+                                        countrFlag[k] = countryLists.get(k).getThumbXhdpi();
+                                    }
                                 }
                             }
                         }
@@ -175,6 +187,8 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     }
 
     private void initViews(View view) {
+        deviceDensity = NissanApp.getInstance().getDensityName(getActivity());
+        Log.e("initViews: ", deviceDensity);
         btnBack = (ImageButton) view.findViewById(R.id.btn_back);
         lstView = (ListView) view.findViewById(R.id.lst_view);
         txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
@@ -240,11 +254,17 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
             }
         });
 
-        if (list.get(position).getNationalNumber().isEmpty()) {
+//        if (list.get(position).getNationalNumber().isEmpty()) {
+//            ((LinearLayout) dialog.findViewById(R.id.linear_national)).setVisibility(View.GONE);
+//        }
+        if (list.get(position).getNationalNumber() == null) {
             ((LinearLayout) dialog.findViewById(R.id.linear_national)).setVisibility(View.GONE);
         }
 
-        if (list.get(position).getInternationalNumber().isEmpty()) {
+//        if (list.get(position).getInternationalNumber().isEmpty()) {
+//            ((LinearLayout) dialog.findViewById(R.id.linear_international)).setVisibility(View.GONE);
+//        }
+        if (list.get(position).getInternationalNumber() == null) {
             ((LinearLayout) dialog.findViewById(R.id.linear_international)).setVisibility(View.GONE);
         }
 

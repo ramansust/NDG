@@ -393,12 +393,18 @@ public class ApiCall {
         call.enqueue(new Callback<AssistanceInfo>() {
             @Override
             public void onResponse(Call<AssistanceInfo> call, Response<AssistanceInfo> response) {
-                completeAPI.onDownloaded(response.body());
+                if (response.isSuccessful()) {
+                    if (response != null) {
+                        completeAPI.onDownloaded(response.body());
+                    } else {
+                        completeAPI.onFailed(Values.FAILED_STATUS);
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<AssistanceInfo> call, Throwable t) {
-                completeAPI.onFailed(Values.FAILED_STATUS);
+                completeAPI.onFailed(t.getMessage());
             }
         });
     }
