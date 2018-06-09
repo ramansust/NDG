@@ -882,7 +882,8 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         final Dialog dialog = new DialogController(ImageTargetActivity.this).langDialog();
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-        txtViewTitle.setText(resources.getString(R.string.exit_alert));
+        String exitDialogueText = NissanApp.getInstance().getAlertMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.CONFIRM_EXIT_MESSAGE);
+        txtViewTitle.setText(exitDialogueText.isEmpty() ? resources.getString(R.string.exit_alert) : exitDialogueText);
 
         Button btnNo = (Button) dialog.findViewById(R.id.btn_cancel);
         btnNo.setText(resources.getString(R.string.button_NO));

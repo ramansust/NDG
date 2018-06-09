@@ -133,10 +133,31 @@ public class Values {
     public static final String ASSISTANCE_OBJ_STORE_KEY = "assistance";
     public static final String  DELETE_MESSAGE = "delete_message";
     public static final String  REGISTER_PUSH_MESSAGE = "register_push";
+    public static final String  ALREADY_READ_IT = "already read";
+    public static final String  CHANGING_FLAT_TYRE = "please_read";
+    public static final String  CONFIRM_EXIT_MESSAGE = "confirm_exit";
+    public static final String  LEARN_MORE_TITLE = "learn_more_title";
+    public static final String  WATCH_AGAIN_MSG = "watch_again";
+    public static final String  LEARN_MORE_MSG = "learn_more";
+    public static final String SEARCH_HINT = "search";
+    public static final String RECENT_SEARCH = "recent";
+    public static final String CLEAR = "clear";
     public static final String  INTERNET_CHECK = "internet_check";
     public static final String  DOWNLOADING = "downloading";
     public static final String  STARTING_DOWNLOAD = "starting_download";
     public static final String  DATA_SYNCING = "data_syncing";
     public static final String  DOWNLOAD_CONFIRMATION = "dowload_confirmation";
 
+    public static final String  RATE_OUR_APP_YES = "rate_our_app_yes";
+    public static final String  RATE_ASK_ME_LATER = "rate_ask_me_later";
+    public static final String  RATE_NO_THANKS = "rate_no_thanks";
+    public static final String  RATE_OUR_APP_SUBTITLE = "rate_our_app_sub_title";
+
+    public static final String  FEEDBACK_TITLE = "feedback";
+    public static final String  TITLE_FIELD = "send_feedback_title";
+    public static final String  DESCRIPTION_FIELD = "send_feedback_description";
+    public static final String  SEND_FEEDBACK_BUTTON_TEXT = "send_feedback_button";
+    public static final String  SEND_FEEDBACK_COMPLETE_TOAST = "feedback_toast";
+
+    public static final String  NEXT = "next";
 }

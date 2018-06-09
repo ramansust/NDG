@@ -554,12 +554,14 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                     e.printStackTrace();
                 } finally {
 //                    NissanApp.getInstance().showInternetAlert(getActivity(), getResources().getString(R.string.car_msg_download));
-                    NissanApp.getInstance().showInternetAlert(getActivity(), getCarDownloadMessage());
+                    String carDownloadGuideMsg = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_1);
+                    NissanApp.getInstance().showInternetAlert(getActivity(), carDownloadGuideMsg.isEmpty() ? getResources().getString(R.string.car_msg_download) : carDownloadGuideMsg);
                 }
             }
         } else {
 //            NissanApp.getInstance().showInternetAlert(getActivity(), getResources().getString(R.string.car_msg_download));
-            NissanApp.getInstance().showInternetAlert(getActivity(), getCarDownloadMessage());
+            String carDownloadGuideMsg = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_1);
+            NissanApp.getInstance().showInternetAlert(getActivity(), carDownloadGuideMsg.isEmpty() ? getResources().getString(R.string.car_msg_download) : carDownloadGuideMsg);
         }
     }
 
@@ -601,29 +603,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     public void showErrorDialog(String msg) {
         DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(getActivity().getApplicationContext(), msg);
         dialogFragment.show(getActivity().getSupportFragmentManager(), "error_fragment");
-    }
-
-    private String getCarDownloadMessage() {
-
-        String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
-
-        List<AlertMessage> alertMessageArrayList = NissanApp.getInstance().getAlertMessageGlobalArrayList();
-        if (alertMessageArrayList == null || alertMessageArrayList.size() == 0) {
-            Type type = new TypeToken<ArrayList<AlertMessage>>() {
-            }.getType();
-            alertMessageArrayList = new Gson().fromJson(new PreferenceUtil(getActivity()).retrieveMultiLangData(key_global_alert_message), type);
-            NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageArrayList);
-        }
-
-
-        for (int i = 0; i < alertMessageArrayList.size(); i++) {
-
-            if (alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_1))
-                return alertMessageArrayList.get(i).getMsg();
-
-        }
-
-        return getResources().getString(R.string.car_msg_download);
     }
 
 }

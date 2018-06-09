@@ -256,7 +256,7 @@ public class PreferenceUtil {
     public void setSessionThree(boolean isFirst) {
         spEditor = sharedPreferences.edit();
         spEditor.putBoolean(SESSION_THREE, isFirst);
-        spEditor.commit();
+        spEditor.apply();
     }
 
 

@@ -159,13 +159,7 @@ private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
                     languageDialogInternetCheck = new String[languageListResponses.getLanguageList().get(i).getAlertMessage().size()];
                     languageDialogSync = new String[languageListResponses.getLanguageList().get(i).getAlertMessage().size()];
 
-                    List<AlertMessage> alertMessages = languageListResponse.getLanguageList().get(i).getAlertMessage();
-                    for (int j = 0; j < alertMessages.size(); j++) {
-                        AlertMessage message = alertMessages.get(j);
-                        Log.e("ListResponse: ", message.getMsg());
-                    }
-
-//                    Log.e("---", "languageListResponse: "+ languageListResponse.getLanguageList().get(i).getAlertMessage() );
+                    Log.e("---", "languageListResponse: "+ languageListResponse.getLanguageList().get(i).getLanguageName() );
                     languageName[i] = (languageListResponse.getLanguageList().get(i).getLanguageName());
                     languageShortName[i] = (languageListResponse.getLanguageList().get(i).getLanguageShortcode());
 
@@ -268,8 +262,6 @@ private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         info = (LanguageInfo) parent.getAdapter().getItem(position);
         preferenceUtil.setSelectedLang(languageShortName[info.getId()]); // here save the selected language sort name into preference
-        Logger.error("onItemClick: ", "" + info.getId());
-        Logger.error("onItemClick: ", "" + languageShortName[info.getId()]);
 
         loadResource();
 
@@ -279,8 +271,8 @@ private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
                 changeGlobalAlertMsg();
             } else {
 //                NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, getResources().getString(R.string.internet_connect));
-                String internetCheckMessage = getInternetCheckMessage();
-                NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage);
+                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+                NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
             }
         } else {
 
@@ -545,7 +537,7 @@ private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
         final Dialog dialog = new DialogController(LanguageSelectionActivity.this).langDialog();
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-//        txtViewTitle.setText(languageDialog[info.getId()]);
+        txtViewTitle.setText(languageDialog[info.getId()]);
 
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
@@ -588,28 +580,5 @@ private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
     private void showErrorDialog(String msg) {
         DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
         dialogFragment.show(getSupportFragmentManager(), "error_fragment");
-    }
-
-    private String getInternetCheckMessage() {
-
-        String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
-
-        List<AlertMessage> alertMessageArrayList = NissanApp.getInstance().getAlertMessageGlobalArrayList();
-        if (alertMessageArrayList == null || alertMessageArrayList.size() == 0) {
-            Type type = new TypeToken<ArrayList<AlertMessage>>() {
-            }.getType();
-            alertMessageArrayList = new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key_global_alert_message), type);
-            NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageArrayList);
-        }
-
-
-        for (int i = 0; i < alertMessageArrayList.size(); i++) {
-
-            if (alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.ALERT_MSG_TYPE_INTERNET))
-                return alertMessageArrayList.get(i).getMsg();
-
-        }
-
-        return getResources().getString(R.string.internet_connect);
     }
 }
