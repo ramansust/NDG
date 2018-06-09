@@ -208,7 +208,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             ((MainActivity) getActivity()).setTabResources();
         } else {
             if (DetectConnection.checkInternetConnection(getActivity().getApplicationContext())) {
-                changeGlobalAlertMsg(position);
+                showDownloadAlert(languageShortName[list.get(position).getId()], position);
             } else {
 //                NissanApp.getInstance().showInternetAlert(getActivity(), getResources().getString(R.string.internet_connect));
                 String internetCheckMessage = getInternetCheckMessage(languageShortName[list.get(position).getId()]);
@@ -227,6 +227,8 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             public void onDownloaded(GlobalMsgResponse responseInfo) {
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
 
+                    preferenceUtil.setPreviousLanguage(Values.carType+"_"+NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
+
                     String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_sort_name) + "_" + Values.GLOBAL_MSG_KEY;
                     String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_sort_name) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
 
@@ -236,7 +238,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                     NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
                     NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
 
-                    showDownloadAlert(lang_sort_name, position);
+                    startDownloadProcedure(lang_sort_name, position); // start language download procedure
 
                 }
             }
@@ -273,7 +275,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                startDownloadProcedure(lang, position); // start language download procedure
+                changeGlobalAlertMsg(position);
             }
         });
         dialog.show();

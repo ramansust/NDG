@@ -127,5 +127,7 @@ public class Values {
     public static final String ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2 = "download_car_guide2";
 
     public static final String ASSISTANCE_OBJ_STORE_KEY = "assistance";
+    public static final String  DELETE_MESSAGE = "delete_message";
+    public static final String  REGISTER_PUSH_MESSAGE = "register_push";
 
 }
