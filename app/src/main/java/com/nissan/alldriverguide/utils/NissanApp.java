@@ -62,8 +62,15 @@ public class NissanApp {
     private Configuration conf;
     private ArrayList<TabMenu> tabMenuArrayList;
     private ArrayList<Tutorial> tutorialArrayList;
-    private List<AlertMessage> alertMessageGlobalArrayList;
+    private List<AlertMessage> alertMessageGlobalArrayList, alertMessageCarWiseLangDownloadList;
     private List<GlobalMessage> globalMessageArrayList;
+    public List<AlertMessage> getAlertMessageCarWiseLangDownloadList() {
+        return alertMessageCarWiseLangDownloadList;
+    }
+
+    public void setAlertMessageCarWiseLangDownloadList(List<AlertMessage> alertMessageGlobalArrayList) {
+        this.alertMessageGlobalArrayList = alertMessageCarWiseLangDownloadList;
+    }
 
     public List<AlertMessage> getAlertMessageGlobalArrayList() {
         return alertMessageGlobalArrayList;
@@ -1319,4 +1326,23 @@ public class NissanApp {
         return 0;
     }
 
+    public String getDensityName(Context context) {
+        float density = context.getResources().getDisplayMetrics().density;
+        if (density >= 4.0) {
+            return "xxxhdpi";
+        }
+        if (density >= 3.0) {
+            return "xxhdpi";
+        }
+        if (density >= 2.0) {
+            return "xhdpi";
+        }
+        if (density >= 1.5) {
+            return "hdpi";
+        }
+        if (density >= 1.0) {
+            return "mdpi";
+        }
+        return "ldpi";
+    }
 }
