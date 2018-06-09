@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.retrofit;
 
+import android.app.ProgressDialog;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -354,7 +355,7 @@ public class ApiCall {
     /*************************
      * MultiLangual
      **************************/
-    public void getLanguageList(final String device_id, final String car_id,/* final ProgressDialog progressDialog,*/ final InterfaceLanguageListResponse interfaceLanguageListResponse) {
+    public void getLanguageList(final String device_id, final String car_id, final ProgressDialog progressDialog, final InterfaceLanguageListResponse interfaceLanguageListResponse) {
 
         ApiService api = RetrofitClient.getApiService();
 
@@ -368,9 +369,9 @@ public class ApiCall {
                     if (response.isSuccessful()) {
                         LanguageListResponse languageListResponse = response.body();
                         interfaceLanguageListResponse.languageListResponse(languageListResponse);
-
+                        progressDialog.dismiss();
                     } else {
-//                        progressDialog.dismiss();
+                        progressDialog.dismiss();
                         Toast.makeText(MyApplication.getAppContext(), "Response Failed", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -379,8 +380,7 @@ public class ApiCall {
                 public void onFailure(Call<LanguageListResponse> call, Throwable t) {
                     Log.e("Error___", "_______"+t.toString());
                     Toast.makeText(MyApplication.getAppContext(), "onFailure",Toast.LENGTH_SHORT).show();
-//                    progressDialog.dismiss();
-
+                    progressDialog.dismiss();
                 }
             });
     }

@@ -3,10 +3,6 @@ package com.nissan.alldriverguide.retrofit;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
-import com.nissan.alldriverguide.multiLang.model.LanguageList;
-import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
-import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
-import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 
 import retrofit2.Call;

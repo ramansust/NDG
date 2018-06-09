@@ -4,7 +4,12 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class LanguageList {
-
+    @SerializedName("cancel")
+    @Expose
+    private String cancel;
+    @SerializedName("ok")
+    @Expose
+    private String ok;
     @SerializedName("language_id")
     @Expose
     private Integer languageId;
@@ -92,6 +97,21 @@ public class LanguageList {
 
     public void setAlertMessage(String alertMessage) {
         this.alertMessage = alertMessage;
+    }
+    public String getOk() {
+        return ok;
+    }
+
+    public void setOk(String ok) {
+        this.ok = ok;
+    }
+
+    public String getCancel() {
+        return cancel;
+    }
+
+    public void setCancel(String cancel) {
+        this.cancel = cancel;
     }
 
 }

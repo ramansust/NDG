@@ -70,6 +70,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private Activity activity;
     private Context context;
     private LanguageListResponse languageListResponses;
+    private String[] languageDialog, cancelLangDownload, okLangDownload;
+    private ProgressDialog dialog;
 
     public LanguageSelectionActivity() {
     }
@@ -85,24 +87,50 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language_selection);
 
+        dialogWait();
         getDataCarWise();
         initViews();
         setListener();
+    }
 
+//    private ArrayList<LanguageList> getDataFromStorage() {
+//        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.CAR_LANGUAGE_LIST;
+//
+//        Type type = new TypeToken<ArrayList<LanguageList>>() {        }.getType();
+//        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);
+//
+//    }
+    private void dialogWait() {
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Loading...");
+        dialog.setCancelable(false);
+        dialog.show();
     }
 
     private void getDataCarWise() {
-        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", new InterfaceLanguageListResponse() {
+        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", dialog, new InterfaceLanguageListResponse() {
             @Override
             public void languageListResponse(LanguageListResponse languageListResponse) {
                 languageListResponses = languageListResponse;
+                String key = Values.carType + "_" + Values.CAR_LANGUAGE_LIST;
+//
+                preferenceUtil.storeMultiLangData(languageListResponses.getLanguageList(), key);
+//
                 languageName = new String[languageListResponses.getLanguageList().size()];
                 languageShortName = new String[languageListResponses.getLanguageList().size()];
+                languageDialog = new String[languageListResponses.getLanguageList().size()];
+                cancelLangDownload = new String[languageListResponses.getLanguageList().size()];
+                okLangDownload = new String[languageListResponses.getLanguageList().size()];
+
                 for(int i = 0; i <languageListResponses.getLanguageList().size(); i++){
                     Log.e("---", "languageListResponse: "+ languageListResponse.getLanguageList().get(i).getLanguageName() );
                     languageName[i] = (languageListResponse.getLanguageList().get(i).getLanguageName());
                     languageShortName[i] = (languageListResponse.getLanguageList().get(i).getLanguageShortcode());
+                    languageDialog[i] = (languageListResponse.getLanguageList().get(i).getAlertMessage());
+                    cancelLangDownload[i] = (languageListResponse.getLanguageList().get(i).getCancel());
+                    okLangDownload[i] = (languageListResponse.getLanguageList().get(i).getOk());
                 }
+
                 loadData();
             }
         });
@@ -170,7 +198,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
         if (NissanApp.getInstance().createPath(Values.PATH)) {
             if (DetectConnection.checkInternetConnection(getApplicationContext())) {
-                showCarDownloadDialogForSingleCar();
+                showCarDownloadDialogForSingleCar(info);
             } else {
                 NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, getResources().getString(R.string.internet_connect));
             }
@@ -407,14 +435,16 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         tracker.send(new HitBuilders.AppViewBuilder().build());
     }
 
-    private void showCarDownloadDialogForSingleCar() {
+    private void showCarDownloadDialogForSingleCar(LanguageInfo info) {
         final Dialog dialog = new DialogController(LanguageSelectionActivity.this).langDialog();
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-//        txtViewTitle.setText(getResources().getString(R.string.alert_msg22));
-//        txtViewTitle.setText();
+        txtViewTitle.setText(languageDialog[info.getId()]);
+
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        btnCancel.setText(cancelLangDownload[info.getId()]);
+        btnOk.setText(okLangDownload[info.getId()]);
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
