@@ -1,12 +1,18 @@
 package com.nissan.alldriverguide.fragments.explore;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +22,24 @@ import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.nissan.alldriverguide.ImageTargetActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.VideoPlayerActivity;
 import com.nissan.alldriverguide.adapter.GridViewAdapter;
+import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
+import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
+import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
+import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExploreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -79,9 +96,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private Resources resources;
     private DisplayMetrics metrics;
     private TextView txtViewExplore;
+    private String sharedpref_key;
+    private ArrayList<ExploreTabVideoModel> videoList = new ArrayList<>();
+    private String header_text;
+    private String header_Background;
+    private ExploreTabModel exploreModel;
+    private ProgressDialog progressDialog;
 
     /**
      * Creating instance for this fragment
+     *
      * @return Explore Fragment
      */
     public static Fragment newInstance() {
@@ -94,19 +118,151 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_explore, container, false);
 
+
         initViews(view);
         loadResource();
         setListener();
-        loadData();
+
+        getExploreTabContent();
 
         return view;
+    }
+
+    private void getExploreTabContent() {
+
+        progressDialog = new ProgressDialogController(getActivity()).showDialog(resources.getString(R.string.register_push_dialog));
+
+        sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.EXPLOREDATA;
+        if (new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key) == null) {
+            new PreferenceUtil(getActivity()).deleteMultiLangData(sharedpref_key);
+            apiCall();
+        } else {
+
+            if (progressDialog != null) {
+                progressDialog.dismiss();
+            }
+
+            videoList.clear();
+            exploreModel = new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key);
+            header_text = exploreModel.getHeaderImage();
+            header_Background = exploreModel.getHeaderBackgroundImage();
+            videoList = exploreModel.getVideoList();
+            NissanApp.getInstance().setExploreVideoList(videoList);
+
+            Log.e(" Else Explore Header Img", "  " + header_text);
+            Log.e(" Explore Header BackGround", "  " + header_Background);
+
+
+            for (ExploreTabVideoModel videoModel : videoList) {
+                Log.e("Else Video Title", " --------  " + videoModel.getTitle());
+                Log.e("Video thumb_xhdpi", " --------  " + videoModel.getThumbXhdpi());
+                Log.e("Video video_url", " --------  " + videoModel.getVideoUrl());
+                Log.e("Video language", " --------  " + videoModel.getLanguage());
+                Log.e("Video created_at", " --------  " + videoModel.getCreatedAt());
+            }
+
+            loadData();
+        }
+    }
+
+    private void apiCall() {
+        int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
+        String language_name = new PreferenceUtil(getActivity()).getSelectedLang();
+        Log.e("Explore Tab", "Language ID ---- " + language_ID);
+        Log.e("Explore Tab", "Language Name Previous ---- " + language_name);
+        Log.e("Explore Tab", "Key ---- " + Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.EXPLOREDATA);
+
+        new ApiCall().postExploreTabContent(progressDialog, NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1", new CompleteExploreTabContent() {
+            @Override
+            public void onDownloaded(ExploreTabModel responseInfo) {
+                if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+
+                    new PreferenceUtil(getActivity()).storeExploreDataList(responseInfo, sharedpref_key);
+                    videoList.clear();
+                    exploreModel = new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key);
+                    header_text = exploreModel.getHeaderImage();
+                    header_Background = exploreModel.getHeaderBackgroundImage();
+                    videoList = exploreModel.getVideoList();
+                    NissanApp.getInstance().setExploreVideoList(videoList);
+
+                    Log.e(" Explore Header Img", "  " + header_text);
+                    Log.e(" Explore Header BackGround", "  " + header_Background);
+
+                    for (ExploreTabVideoModel videoModel : videoList) {
+                        Log.e("If Video Title", " --------  " + videoModel.getTitle());
+                        Log.e("Video thumb_xhdpi", " --------  " + videoModel.getThumbXhdpi());
+                        Log.e("Video video_url", " --------  " + videoModel.getVideoUrl());
+                        Log.e("Video language", " --------  " + videoModel.getLanguage());
+                        Log.e("Video created_at", " --------  " + videoModel.getCreatedAt());
+                    }
+
+                    loadData();
+                }
+            }
+
+            @Override
+            public void onFailed(String failedReason) {
+            }
+        });
     }
 
     /**
      * here load the explore fragment initialized data
      */
     private void loadData() {
-        if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+
+
+        if (header_text != null) {
+            relativeBlindSpot.setVisibility(View.VISIBLE);
+            relativeAR.setVisibility(View.GONE);
+
+            Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        txtViewExplore.setBackground(drawable);
+                    }
+                }
+            });
+
+            Glide.with(this).load(header_Background).asBitmap().into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        btnBlindSpotAR.setBackground(drawable);
+                    }
+                }
+            });
+
+            gridView.setAdapter(new GridViewAdapter(getActivity().getApplicationContext(), videoList));
+
+
+        } else {
+            relativeAR.setVisibility(View.VISIBLE);
+            relativeBlindSpot.setVisibility(View.GONE);
+
+            /*Glide.with(this).load(header_Background).asBitmap().into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        btnAR.setBackground(drawable);
+                    }
+                }
+            });*/
+        }
+
+        for (int k = 0; k < videoList.size(); k++) {
+            if (videoList.get(k).getThumbXhdpi() != null) {
+            }
+
+        }
+
+
+        //old static Rohan
+        /*if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 
             btnAR.setBackgroundResource(R.drawable.ar_selector_new_car);
         } else {
@@ -117,20 +273,20 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             btnBlindSpotAR.setBackgroundResource(R.drawable.explore_xtrail_eur);
         } else if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
             btnBlindSpotAR.setBackgroundResource(R.drawable.explore_micra_new);
-        }
+        }*/
 
 //        if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10 || Values.carType == 11) {
-        if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+        /*if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
             relativeBlindSpot.setVisibility(View.VISIBLE);
             relativeAR.setVisibility(View.GONE);
-            /*
-            here set the adapter for grid view
-             */
+
+            //here set the adapter for grid view
+
             gridView.setAdapter(new GridViewAdapter(getActivity().getApplicationContext(), getThumbnilArray(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang())));
         } else {
             relativeAR.setVisibility(View.VISIBLE);
             relativeBlindSpot.setVisibility(View.GONE);
-        }
+        }*/
     }
 
     /**
@@ -139,12 +295,12 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private void setListener() {
         btnAR.setOnClickListener(this);
         btnBlindSpotAR.setOnClickListener(this);
-
         gridView.setOnItemClickListener(this);
     }
 
     /**
      * initialized all global variable
+     *
      * @param view for find fragment layout id
      */
     private void initViews(View view) {
@@ -152,7 +308,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         txtViewExplore = (TextView) view.findViewById(R.id.txt_blind_spot_ar);
 
         relativeAR = (RelativeLayout) view.findViewById(R.id.relative_ar);
-        relativeBlindSpot= (RelativeLayout) view.findViewById(R.id.relative_blind_spot);
+        relativeBlindSpot = (RelativeLayout) view.findViewById(R.id.relative_blind_spot);
 
         btnAR = (Button) view.findViewById(R.id.btn_ar);
         btnBlindSpotAR = (RelativeLayout) view.findViewById(R.id.btn_blind_spot_ar);
@@ -212,82 +368,82 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
      */
     private int[] getThumbnilArray(String lang) {
         int[] array = new int[4];
-        if(Values.carType == 1) {
-            if(lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("de") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("es") || lang.equalsIgnoreCase("nl") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
+        if (Values.carType == 1) {
+            if (lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("de") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("es") || lang.equalsIgnoreCase("nl") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
                 array = qashqai_eur_thumbnil_array_en;
-            } else if(lang.equalsIgnoreCase("fr")) {
+            } else if (lang.equalsIgnoreCase("fr")) {
                 array = qashqai_eur_thumbnil_array_fr;
-            } else if(lang.equalsIgnoreCase("it")) {
+            } else if (lang.equalsIgnoreCase("it")) {
                 array = qashqai_eur_thumbnil_array_it;
             }
-        } else if(Values.carType == 3) {
-            if(lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("nl") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("es") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
+        } else if (Values.carType == 3) {
+            if (lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("nl") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("es") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
                 array = juke_thumbnil_array_en;
-            } else if(lang.equalsIgnoreCase("de")) {
+            } else if (lang.equalsIgnoreCase("de")) {
                 array = juke_thumbnil_array_de;
-            } else if(lang.equalsIgnoreCase("fr")) {
+            } else if (lang.equalsIgnoreCase("fr")) {
                 array = juke_thumbnil_array_fr;
-            } else if(lang.equalsIgnoreCase("it")) {
+            } else if (lang.equalsIgnoreCase("it")) {
                 array = juke_thumbnil_array_it;
             }
-        } else if(Values.carType == 4) {
-            if(lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("de") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("es") || lang.equalsIgnoreCase("nl") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
+        } else if (Values.carType == 4) {
+            if (lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("de") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("es") || lang.equalsIgnoreCase("nl") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
                 array = xtrail_eur_thumbnil_array_en;
-            } else if(lang.equalsIgnoreCase("fr")) {
+            } else if (lang.equalsIgnoreCase("fr")) {
                 array = xtrail_eur_thumbnil_array_fr;
-            } else if(lang.equalsIgnoreCase("it")) {
+            } else if (lang.equalsIgnoreCase("it")) {
                 array = xtrail_eur_thumbnil_array_it;
             }
-        } else if(Values.carType == 10) {
-            if(lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("fr") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("es") || lang.equalsIgnoreCase("nl") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
+        } else if (Values.carType == 10) {
+            if (lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("fr") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("es") || lang.equalsIgnoreCase("nl") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
                 array = navara_thumbnil_array_en;
-            } else if(lang.equalsIgnoreCase("de")) {
+            } else if (lang.equalsIgnoreCase("de")) {
                 array = navara_thumbnil_array_de;
-            } else if(lang.equalsIgnoreCase("it")) {
+            } else if (lang.equalsIgnoreCase("it")) {
                 array = navara_thumbnil_array_it;
             }
-        } else if(Values.carType == 11) {
-            if(lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
+        } else if (Values.carType == 11) {
+            if (lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
                 array = micrak14_thumbnil_array_en;
             } else if (lang.equalsIgnoreCase("de")) {
                 array = micrak14_thumbnil_array_de;
-            } else if(lang.equalsIgnoreCase("nl")) {
+            } else if (lang.equalsIgnoreCase("nl")) {
                 array = micrak14_thumbnil_array_nl;
-            } else if(lang.equalsIgnoreCase("es")) {
+            } else if (lang.equalsIgnoreCase("es")) {
                 array = micrak14_thumbnil_array_es;
-            } else if(lang.equalsIgnoreCase("fr")) {
+            } else if (lang.equalsIgnoreCase("fr")) {
                 array = micrak14_thumbnil_array_fr;
-            } else if(lang.equalsIgnoreCase("it")) {
+            } else if (lang.equalsIgnoreCase("it")) {
                 array = micrak14_thumbnil_array_it;
             }
-        } else if(Values.carType == 12) {
-            if(lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("it") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
+        } else if (Values.carType == 12) {
+            if (lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("it") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
                 array = qashqai_2017_thumbnil_array_en;
             } else if (lang.equalsIgnoreCase("de")) {
                 array = qashqai_2017_thumbnil_array_de;
-            } else if(lang.equalsIgnoreCase("nl")) {
+            } else if (lang.equalsIgnoreCase("nl")) {
                 array = qashqai_2017_thumbnil_array_nl;
-            } else if(lang.equalsIgnoreCase("es")) {
+            } else if (lang.equalsIgnoreCase("es")) {
                 array = qashqai_2017_thumbnil_array_es;
-            } else if(lang.equalsIgnoreCase("fr")) {
+            } else if (lang.equalsIgnoreCase("fr")) {
                 array = qashqai_2017_thumbnil_array_fr;
-            } else if(lang.equalsIgnoreCase("sv")) {
+            } else if (lang.equalsIgnoreCase("sv")) {
                 array = qashqai_2017_thumbnil_array_sv;
             }
-        } else if(Values.carType == 13) {
+        } else if (Values.carType == 13) {
             array = xtrail_2017_thumbnil_array_en;
-        } else if(Values.carType == 14) {
-            if(lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("fr") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
+        } else if (Values.carType == 14) {
+            if (lang.equalsIgnoreCase("en") || lang.equalsIgnoreCase("ru") || lang.equalsIgnoreCase("fr") || lang.equalsIgnoreCase("sv") || lang.equalsIgnoreCase("pl") || lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("pt")) {
                 array = leaf_2017_thumbnil_array_en;
             } else if (lang.equalsIgnoreCase("de")) {
                 array = leaf_2017_thumbnil_array_de;
-            } else if(lang.equalsIgnoreCase("nl")) {
+            } else if (lang.equalsIgnoreCase("nl")) {
                 array = leaf_2017_thumbnil_array_nl;
-            } else if(lang.equalsIgnoreCase("es")) {
+            } else if (lang.equalsIgnoreCase("es")) {
                 array = leaf_2017_thumbnil_array_es;
-            } else if(lang.equalsIgnoreCase("it")) {
+            } else if (lang.equalsIgnoreCase("it")) {
                 array = leaf_2017_thumbnil_array_it;
-            } else if(lang.equalsIgnoreCase("no")) {
+            } else if (lang.equalsIgnoreCase("no")) {
                 array = leaf_2017_thumbnil_array_no;
             }
         } else {
@@ -295,29 +451,29 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         }
 
         // here set the localized language image in top left
-        if(lang.equalsIgnoreCase("en")) {
+        if (lang.equalsIgnoreCase("en")) {
             txtViewExplore.setBackgroundResource(R.drawable.micra_eng);
-        } else if(lang.equalsIgnoreCase("de")) {
+        } else if (lang.equalsIgnoreCase("de")) {
             txtViewExplore.setBackgroundResource(R.drawable.micra_german);
-        } else if(lang.equalsIgnoreCase("ru")) {
+        } else if (lang.equalsIgnoreCase("ru")) {
             txtViewExplore.setBackgroundResource(R.drawable.micra_rus);
-        } else if(lang.equalsIgnoreCase("sv")) {
+        } else if (lang.equalsIgnoreCase("sv")) {
             txtViewExplore.setBackgroundResource(R.drawable.micra_swedish);
-        } else if(lang.equalsIgnoreCase("es")) {
+        } else if (lang.equalsIgnoreCase("es")) {
             txtViewExplore.setBackgroundResource(R.drawable.micra_spanish);
-        } else if(lang.equalsIgnoreCase("nl")) {
+        } else if (lang.equalsIgnoreCase("nl")) {
             txtViewExplore.setBackgroundResource(R.drawable.micra_dutch);
-        } else if(lang.equalsIgnoreCase("no")) {
+        } else if (lang.equalsIgnoreCase("no")) {
             txtViewExplore.setBackgroundResource(R.drawable.micra_no);
-        } else if(lang.equalsIgnoreCase("fr")) {
+        } else if (lang.equalsIgnoreCase("fr")) {
             txtViewExplore.setBackgroundResource(R.drawable.micra_french);
-        } else if(lang.equalsIgnoreCase("it")) {
+        } else if (lang.equalsIgnoreCase("it")) {
             txtViewExplore.setBackgroundResource(R.drawable.micra_italian);
-        } else if(lang.equalsIgnoreCase("pl")) {
+        } else if (lang.equalsIgnoreCase("pl")) {
             txtViewExplore.setBackgroundResource(R.drawable.micra_polish);
-        } else if(lang.equalsIgnoreCase("fi")) {
+        } else if (lang.equalsIgnoreCase("fi")) {
             txtViewExplore.setBackgroundResource(R.drawable.micra_finish);
-        } else if(lang.equalsIgnoreCase("pt")) {
+        } else if (lang.equalsIgnoreCase("pt")) {
             txtViewExplore.setBackgroundResource(R.drawable.micra_portuguese);
         } else {
 

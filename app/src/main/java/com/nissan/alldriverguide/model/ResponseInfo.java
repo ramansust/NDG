@@ -2,6 +2,7 @@ package com.nissan.alldriverguide.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.nissan.alldriverguide.multiLang.model.AlertMessage;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
 import com.nissan.alldriverguide.multiLang.model.Tutorial;
 
@@ -43,10 +44,6 @@ public class ResponseInfo {
     @SerializedName("tab_menu")
     @Expose
     private List<TabMenu> tabMenu = null;
-
-//    @SerializedName("alert_message")
-//    @Expose
-//    private List<AlertMessage> alertMessage = null;
 
     public String getAssetsUrl() {
         return assetsUrl;
@@ -100,13 +97,5 @@ public class ResponseInfo {
     public void setTabMenu(List<TabMenu> tabMenu) {
         this.tabMenu = tabMenu;
     }
-
-//    public List<AlertMessage> getAlertMessage() {
-//        return alertMessage;
-//    }
-//
-//    public void setAlertMessage(List<AlertMessage> alertMessage) {
-//        this.alertMessage = alertMessage;
-//    }
 
 }
