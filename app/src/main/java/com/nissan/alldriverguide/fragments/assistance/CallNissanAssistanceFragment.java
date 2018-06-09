@@ -30,6 +30,7 @@ import com.nissan.alldriverguide.multiLang.model.ChildNode;
 import com.nissan.alldriverguide.multiLang.model.CountryList;
 import com.nissan.alldriverguide.multiLang.model.Datum;
 import com.nissan.alldriverguide.utils.NissanApp;
+import com.nissan.alldriverguide.utils.Values;
 
 import java.text.Collator;
 import java.util.ArrayList;
@@ -67,6 +68,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     private static final String TITLE = "title";
     private String headerTitle;
     private String deviceDensity;
+    private String nationalText, internationalText;
 
     public static Fragment newInstance(String title) {
         Fragment frag = new CallNissanAssistanceFragment();
@@ -88,6 +90,9 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         callNissanAssistance();
         loadResource();
 //        loadData();
+
+        nationalText = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.NATIONAL_MSG);
+        internationalText = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.INTERNATIONAL_MSG);
 
         return view;
     }
@@ -230,6 +235,9 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
             }
         });
 
+        TextView txtNational = (TextView) dialog.findViewById(R.id.txt_view_national);
+        txtNational.setText(nationalText.isEmpty() ? "" : nationalText);
+
         TextView txtViewNational = (TextView) dialog.findViewById(R.id.txt_view_national_number);
         txtViewNational.setText(" " + list.get(position).getNationalNumber());
         txtViewNational.setOnClickListener(new View.OnClickListener() {
@@ -241,6 +249,9 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
                 startActivity(callIntent);
             }
         });
+
+        TextView txtInternational = (TextView) dialog.findViewById(R.id.txt_view_international);
+        txtInternational.setText(internationalText.isEmpty() ? "" : internationalText);
 
         TextView txtViewInternational = (TextView) dialog.findViewById(R.id.txt_view_international_number);
         txtViewInternational.setText(" " + list.get(position).getInternationalNumber());

@@ -160,4 +160,7 @@ public class Values {
     public static final String  SEND_FEEDBACK_COMPLETE_TOAST = "feedback_toast";
 
     public static final String  NEXT = "next";
+
+    public static final String  NATIONAL_MSG = "national";
+    public static final String  INTERNATIONAL_MSG = "international";
 }
