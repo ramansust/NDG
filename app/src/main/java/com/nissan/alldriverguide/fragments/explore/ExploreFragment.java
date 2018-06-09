@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
@@ -35,6 +36,7 @@ import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 import com.nissan.alldriverguide.retrofit.ApiCall;
+import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
@@ -97,11 +99,13 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private DisplayMetrics metrics;
     private TextView txtViewExplore;
     private String sharedpref_key;
+    private String preSharedpref_key;
     private ArrayList<ExploreTabVideoModel> videoList = new ArrayList<>();
     private String header_text;
     private String header_Background;
     private ExploreTabModel exploreModel;
     private ProgressDialog progressDialog;
+    private String device_density;
 
     /**
      * Creating instance for this fragment
@@ -118,90 +122,93 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_explore, container, false);
 
-
         initViews(view);
+        device_density = NissanApp.getInstance().getDensityName(getActivity());
         loadResource();
         setListener();
-
         getExploreTabContent();
-
         return view;
     }
 
     private void getExploreTabContent() {
 
-        progressDialog = new ProgressDialogController(getActivity()).showDialog(resources.getString(R.string.register_push_dialog));
+        //progressDialog = new ProgressDialogController(getActivity()).showDialog(resources.getString(R.string.data_syncing));
 
+        preSharedpref_key = new PreferenceUtil(getActivity()).getPreviousLanguage() + "_" + Values.EXPLOREDATA;
         sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.EXPLOREDATA;
-        if (new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key) == null) {
-            new PreferenceUtil(getActivity()).deleteMultiLangData(sharedpref_key);
-            apiCall();
+        Log.e("Pre Shared Key", "---  " + preSharedpref_key);
+        Log.e("Cur Shared Key", "---  " + sharedpref_key);
+
+        String old_Lan = new PreferenceUtil(getActivity()).getPreviousLanguage();
+        String new_Lan = new PreferenceUtil(getActivity()).getSelectedLang();
+
+        if (old_Lan.equalsIgnoreCase("null")) {
+
+            check_Data();
+
         } else {
 
-            if (progressDialog != null) {
-                progressDialog.dismiss();
-            }
+            new PreferenceUtil(getActivity()).deleteMultiLangData(preSharedpref_key);
+            check_Data();
+        }
+    }
 
+    public void check_density() {
+        if (device_density.equalsIgnoreCase("xxxhdpi")) {
+            header_text = exploreModel.getHeaderXxxhdpi();
+        } else if (device_density.equalsIgnoreCase("xxhdpi")) {
+            header_text = exploreModel.getHeaderXxhdpi();
+        } else if (device_density.equalsIgnoreCase("xhdpi")) {
+            header_text = exploreModel.getHeaderXhdpi();
+        } else if (device_density.equalsIgnoreCase("hdpi")) {
+            header_text = exploreModel.getHeaderHdpi();
+        } else if (device_density.equalsIgnoreCase("ldpi")) {
+            header_text = exploreModel.getHeaderLdpi();
+        } else {
+            header_text = exploreModel.getHeaderXhdpi();
+        }
+    }
+
+    public void check_Data() {
+        if (new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key) != null) {
             videoList.clear();
             exploreModel = new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key);
-            header_text = exploreModel.getHeaderImage();
-            header_Background = exploreModel.getHeaderBackgroundImage();
+            check_density();
+
             videoList = exploreModel.getVideoList();
             NissanApp.getInstance().setExploreVideoList(videoList);
 
-            Log.e(" Else Explore Header Img", "  " + header_text);
-            Log.e(" Explore Header BackGround", "  " + header_Background);
-
-
-            for (ExploreTabVideoModel videoModel : videoList) {
-                Log.e("Else Video Title", " --------  " + videoModel.getTitle());
-                Log.e("Video thumb_xhdpi", " --------  " + videoModel.getThumbXhdpi());
-                Log.e("Video video_url", " --------  " + videoModel.getVideoUrl());
-                Log.e("Video language", " --------  " + videoModel.getLanguage());
-                Log.e("Video created_at", " --------  " + videoModel.getCreatedAt());
-            }
-
             loadData();
+            apiCall();
+
+        } else {
+            apiCall();
         }
     }
 
     private void apiCall() {
         int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
         String language_name = new PreferenceUtil(getActivity()).getSelectedLang();
-        Log.e("Explore Tab", "Language ID ---- " + language_ID);
-        Log.e("Explore Tab", "Language Name Previous ---- " + language_name);
-        Log.e("Explore Tab", "Key ---- " + Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.EXPLOREDATA);
 
-        new ApiCall().postExploreTabContent(progressDialog, NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1", new CompleteExploreTabContent() {
+        new ApiCall().postExploreTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1", new CompleteExploreTabContent() {
             @Override
             public void onDownloaded(ExploreTabModel responseInfo) {
+                Log.e("Success", "" + responseInfo.getStatusCode());
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
 
                     new PreferenceUtil(getActivity()).storeExploreDataList(responseInfo, sharedpref_key);
                     videoList.clear();
                     exploreModel = new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key);
-                    header_text = exploreModel.getHeaderImage();
-                    header_Background = exploreModel.getHeaderBackgroundImage();
+                    check_density();
                     videoList = exploreModel.getVideoList();
                     NissanApp.getInstance().setExploreVideoList(videoList);
-
-                    Log.e(" Explore Header Img", "  " + header_text);
-                    Log.e(" Explore Header BackGround", "  " + header_Background);
-
-                    for (ExploreTabVideoModel videoModel : videoList) {
-                        Log.e("If Video Title", " --------  " + videoModel.getTitle());
-                        Log.e("Video thumb_xhdpi", " --------  " + videoModel.getThumbXhdpi());
-                        Log.e("Video video_url", " --------  " + videoModel.getVideoUrl());
-                        Log.e("Video language", " --------  " + videoModel.getLanguage());
-                        Log.e("Video created_at", " --------  " + videoModel.getCreatedAt());
-                    }
-
                     loadData();
                 }
             }
 
             @Override
             public void onFailed(String failedReason) {
+                Log.e("Error", "" + failedReason);
             }
         });
     }
@@ -210,7 +217,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
      * here load the explore fragment initialized data
      */
     private void loadData() {
-
 
         if (header_text != null) {
             relativeBlindSpot.setVisibility(View.VISIBLE);
@@ -226,7 +232,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 }
             });
 
-            Glide.with(this).load(header_Background).asBitmap().into(new SimpleTarget<Bitmap>() {
+           /* Glide.with(this).load(header_Background).asBitmap().into(new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
@@ -234,9 +240,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                         btnBlindSpotAR.setBackground(drawable);
                     }
                 }
-            });
+            });*/
 
-            gridView.setAdapter(new GridViewAdapter(getActivity().getApplicationContext(), videoList));
+            gridView.setAdapter(new GridViewAdapter(getActivity().getApplicationContext(), videoList, device_density));
 
 
         } else {
@@ -254,26 +260,19 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             });*/
         }
 
-        for (int k = 0; k < videoList.size(); k++) {
-            if (videoList.get(k).getThumbXhdpi() != null) {
-            }
-
-        }
-
-
         //old static Rohan
         /*if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 
             btnAR.setBackgroundResource(R.drawable.ar_selector_new_car);
         } else {
             btnAR.setBackgroundResource(R.drawable.ar_selector);
-        }
-
-        if(Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10) {
-            btnBlindSpotAR.setBackgroundResource(R.drawable.explore_xtrail_eur);
-        } else if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
-            btnBlindSpotAR.setBackgroundResource(R.drawable.explore_micra_new);
         }*/
+
+        if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10) {
+            btnBlindSpotAR.setBackgroundResource(R.drawable.explore_xtrail_eur);
+        } else if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+            btnBlindSpotAR.setBackgroundResource(R.drawable.explore_micra_new);
+        }
 
 //        if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10 || Values.carType == 11) {
         /*if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {

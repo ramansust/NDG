@@ -93,7 +93,7 @@ public class PreferenceUtil {
 
     // retrieve selected language
     public String getPreviousLanguage() {
-        return sharedPreferences.getString("previous_lang", "");
+        return sharedPreferences.getString("previous_lang", "null");
     }
 
     // store selected language

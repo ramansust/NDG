@@ -25,47 +25,62 @@ public class GridViewAdapter extends BaseAdapter {
     private Typeface tf;
     private Typeface tfRegular;
     private ArrayList<ExploreTabVideoModel> video_list;
+    private String device_density;
+    private String img_name;
 
-    public GridViewAdapter(Context context, ArrayList<ExploreTabVideoModel> video_list) {
+    public GridViewAdapter(Context context, ArrayList<ExploreTabVideoModel> video_list, String device_density) {
         this.context = context;
         this.video_list = video_list;
+        this.device_density = device_density;
         this.tf = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf");
         this.tfRegular = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Regular.otf");
-        inflater = LayoutInflater.from (this.context);
+        inflater = LayoutInflater.from(this.context);
     }
 
     @Override
-    public int getCount () {
+    public int getCount() {
         return video_list != null ? video_list.size() : 0;
     }
 
     @Override
-    public Object getItem (int position) {
+    public Object getItem(int position) {
         return video_list;
     }
 
     @Override
-    public long getItemId (int position) {
+    public long getItemId(int position) {
         return position;
     }
 
     @Override
-    public View getView (final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         final ViewHolder viewHolder;
 
         if (convertView == null) {
-            inflater = (LayoutInflater) context.getSystemService (Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate (R.layout.video_row, parent, false);
-            viewHolder = new ViewHolder (convertView);
-            convertView.setTag (viewHolder);
+            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.video_row, parent, false);
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) convertView.getTag ();
+            viewHolder = (ViewHolder) convertView.getTag();
         }
-
         //viewHolder.imageView.setBackgroundResource(thumbnil[position]);
+        if (device_density.equalsIgnoreCase("xxxhdpi")) {
+            img_name = video_list.get(position).getThumbXxxhdpi();
+        } else if (device_density.equalsIgnoreCase("xxhdpi")) {
+            img_name = video_list.get(position).getThumbXxhdpi();
+        } else if (device_density.equalsIgnoreCase("xhdpi")) {
+            img_name = video_list.get(position).getThumbXhdpi();
+        } else if (device_density.equalsIgnoreCase("hdpi")) {
+            img_name = video_list.get(position).getThumbHdpi();
+        } else if (device_density.equalsIgnoreCase("ldpi")) {
+            img_name = video_list.get(position).getThumbLdpi();
+        } else {
+            img_name = video_list.get(position).getThumbXhdpi();
+        }
         Glide.with(context)
-                .load(video_list.get(position).getThumbXhdpi())
+                .load(img_name)
                 .into(viewHolder.imageView);
 
         return convertView;
@@ -75,9 +90,9 @@ public class GridViewAdapter extends BaseAdapter {
         ImageView imageView;
         TextView txtViewTitle;
 
-        public ViewHolder (View view) {
+        public ViewHolder(View view) {
             imageView = (ImageView) view.findViewById(R.id.img_view);
-            txtViewTitle = (TextView) view.findViewById (R.id.txt_video_title);
+            txtViewTitle = (TextView) view.findViewById(R.id.txt_video_title);
         }
     }
 
