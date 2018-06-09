@@ -367,15 +367,7 @@ public class ApiCall {
                     Log.e("response.code(): ",""+ response.code() );
                     if (response.isSuccessful()) {
                         LanguageListResponse languageListResponse = response.body();
-//                        List<LanguageList> languageLists = response.body().getLanguageList();
-//                        Log.e("--", "onResponse: "+ languageLists.size());
                         interfaceLanguageListResponse.languageListResponse(languageListResponse);
-
-//                        progressDialog.dismiss();
-//                        List<LanguageList> languageLists = response.body();
-//                        interfaceLanguageListResponse.languageListResponse(languageLists);
-//                        interfaceLanguageListResponse.languageListResponse(languageLists);
-//                        Toast.makeText(context, "Response Success", Toast.LENGTH_LONG).show();
 
                     } else {
 //                        progressDialog.dismiss();

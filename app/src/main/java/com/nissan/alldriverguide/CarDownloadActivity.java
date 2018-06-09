@@ -48,10 +48,8 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
-import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
-import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
 import com.nissan.alldriverguide.multiLang.model.Tutorial;
 import com.nissan.alldriverguide.pushnotification.Config;
@@ -121,7 +119,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     private long doubleClickPopup = 0;
     private List<LanguageList> languageLists;
-    private LanguageListResponse languageListResponses;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -160,14 +157,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 }
             }
         };
-
-        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", new InterfaceLanguageListResponse() {
-            @Override
-            public void languageListResponse(LanguageListResponse languageListResponse) {
-                languageListResponses = languageListResponse;
-                languageListResponses.getLanguageList().size();
-            }
-        });
     }
 
     /**

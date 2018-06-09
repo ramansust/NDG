@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -31,6 +32,8 @@ import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
+import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
@@ -50,9 +53,9 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class LanguageSelectionActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    private String[] languageName = {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};
-    private String[] languageShortName = {"en", "de", "fr", "it", "es", "nl", "ru", "sv", "no", "pl", "fi", "pt"};
-    private int[] languageImage = {R.drawable.united_kingdom, R.drawable.germany, R.drawable.france, R.drawable.italy, R.drawable.spain, R.drawable.netherlands, R.drawable.russia, R.drawable.sweden, R.drawable.norway, R.drawable.poland, R.drawable.finland, R.drawable.portugal};
+    private String[] languageName ;/*= {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};*/
+    private String[] languageShortName; /*= {"en", "de", "fr", "it", "es", "nl", "ru", "sv", "no", "pl", "fi", "pt"};*/
+     private int[] languageImage = {R.drawable.united_kingdom, R.drawable.germany, R.drawable.france, R.drawable.italy, R.drawable.spain, R.drawable.netherlands, R.drawable.russia, R.drawable.sweden, R.drawable.norway, R.drawable.poland, R.drawable.finland, R.drawable.portugal};
 
     private ListView lstView;
     private ArrayList<LanguageInfo> list;
@@ -66,6 +69,10 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private String carName = "";
     private Activity activity;
     private Context context;
+    private LanguageListResponse languageListResponses;
+
+    public LanguageSelectionActivity() {
+    }
 
 
     @Override
@@ -78,9 +85,27 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language_selection);
 
+        getDataCarWise();
         initViews();
         setListener();
-        loadData();
+
+    }
+
+    private void getDataCarWise() {
+        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", new InterfaceLanguageListResponse() {
+            @Override
+            public void languageListResponse(LanguageListResponse languageListResponse) {
+                languageListResponses = languageListResponse;
+                languageName = new String[languageListResponses.getLanguageList().size()];
+                languageShortName = new String[languageListResponses.getLanguageList().size()];
+                for(int i = 0; i <languageListResponses.getLanguageList().size(); i++){
+                    Log.e("---", "languageListResponse: "+ languageListResponse.getLanguageList().get(i).getLanguageName() );
+                    languageName[i] = (languageListResponse.getLanguageList().get(i).getLanguageName());
+                    languageShortName[i] = (languageListResponse.getLanguageList().get(i).getLanguageShortcode());
+                }
+                loadData();
+            }
+        });
     }
 
     /**
@@ -103,6 +128,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
      * Load the initial data into list
      */
     private void loadData() {
+        Log.e("***", "loadData: "+ languageName.length);
         for (int i = 0; i < languageName.length; i++) {
             LanguageInfo info = new LanguageInfo(i, languageName[i], false, languageImage[i]);
             // display 2 languages only for car type 2 and 5
@@ -138,6 +164,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         LanguageInfo info = (LanguageInfo) parent.getAdapter().getItem(position);
         preferenceUtil.setSelectedLang(languageShortName[info.getId()]); // here save the selected language sort name into preference
         Logger.error("onItemClick: ", "" + info.getId());
+        Logger.error("onItemClick: ", "" + languageShortName[info.getId()]);
 
         loadResource();
 
@@ -384,8 +411,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         final Dialog dialog = new DialogController(LanguageSelectionActivity.this).langDialog();
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-        txtViewTitle.setText(getResources().getString(R.string.alert_msg22));
-
+//        txtViewTitle.setText(getResources().getString(R.string.alert_msg22));
+//        txtViewTitle.setText();
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
 
