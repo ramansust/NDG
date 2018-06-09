@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -35,10 +37,9 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
-import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.AlertMessage;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
-import com.nissan.alldriverguide.multiLang.model.Tutorial;
+import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
@@ -80,6 +81,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private String[] languageDialog, cancelLangDownload, okLangDownload;
     private String deviceDensity;
     private String langFlagUri;
+    private LanguageInfo info;
+
     public LanguageSelectionActivity() {
     }
 
@@ -95,7 +98,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         setContentView(R.layout.activity_language_selection);
 
         progressDialog = new ProgressDialogController(this).showDialog("adfkaljshfkj");
-        deviceDensity = NissanApp.getInstance().getDensityName(context);
+        deviceDensity = NissanApp.getInstance().getDensityName(this);
         getDataCarWise();
         initViews();
         setListener();
@@ -128,7 +131,9 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     Log.e("---", "languageListResponse: "+ languageListResponse.getLanguageList().get(i).getLanguageName() );
                     languageName[i] = (languageListResponse.getLanguageList().get(i).getLanguageName());
                     languageShortName[i] = (languageListResponse.getLanguageList().get(i).getLanguageShortcode());
-                    languageDialog[i] = (languageListResponse.getLanguageList().get(i).getAlertMessage());
+                    if(languageListResponse.getLanguageList().get(i).getAlertMessage().size()!=0 ){
+                        languageDialog[i] = languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getMsg();
+                    }
                     cancelLangDownload[i] = (languageListResponse.getLanguageList().get(i).getCancel());
                     okLangDownload[i] = (languageListResponse.getLanguageList().get(i).getOk());
 
@@ -209,7 +214,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        LanguageInfo info = (LanguageInfo) parent.getAdapter().getItem(position);
+        info = (LanguageInfo) parent.getAdapter().getItem(position);
         preferenceUtil.setSelectedLang(languageShortName[info.getId()]); // here save the selected language sort name into preference
         Logger.error("onItemClick: ", "" + info.getId());
         Logger.error("onItemClick: ", "" + languageShortName[info.getId()]);
@@ -245,7 +250,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
                     NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
 
-                    showCarDownloadDialogForSingleCar();
+                    showCarDownloadDialogForSingleCar(info);
 
                 }
             }
@@ -308,6 +313,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             public boolean onComplete(boolean b) {
                 if (b) {
                     runOnUiThread(new Runnable() {
+                        @SuppressLint("StaticFieldLeak")
                         @Override
                         public void run() {
 
