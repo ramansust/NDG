@@ -1,6 +1,7 @@
 package com.nissan.alldriverguide.retrofit;
 
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -70,5 +71,7 @@ public interface ApiService {
 
     /** MultiLanguage ***************************/
 
-
+    @FormUrlEncoded
+    @POST("car_wise_language_list/")
+    Call<LanguageListResponse> languageList(@Field("device_id") String device_id, @Field("car_id") String car_id);
 }

@@ -1,8 +1,17 @@
 package com.nissan.alldriverguide.retrofit;
 
+import android.util.Log;
+import android.widget.Toast;
+
+import com.nissan.alldriverguide.MyApplication;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
+import com.nissan.alldriverguide.multiLang.model.LanguageList;
+import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.utils.Values;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -276,35 +285,42 @@ public class ApiCall {
     /*************************
      * MultiLangual
      **************************/
-    // by auve
-//    public static void Alertdetails(String department_id, final String employee_id, final
-//    ProgressDialog progressDialog, final InterfaceAlertDetailsResponse
-//                                                 interfaceAlertDetailsResponse) {
-//
-//        //Creating an object of our api interface
-//        final ApiService api = RetrofitClient.getApiService();
-//        Call<AlertDetails> call = api.getAlertdetails(department_id, employee_id);
-//        call.enqueue(new Callback<AlertDetails>() {
-//
-//            @Override
-//            public void onResponse(Call<AlertDetails> call, Response<AlertDetails> response) {
-//                if (response.isSuccessful()) {
-//                    progressDialog.dismiss();
-//                    AlertDetails alertDetails = response.body();
-//                    interfaceAlertDetailsResponse.listOfAlertDetailsResponse(alertDetails);
-//                } else {
-//                    Toast.makeText(MyApplication.getAppContext(), "Response Failed", Toast.LENGTH_SHORT).show();
-//                    progressDialog.dismiss();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<AlertDetails> call, Throwable t) {
-//                Toast.makeText(MyApplication.getAppContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//                progressDialog.dismiss();
-//            }
-//        });
-//    }
+    public void getLanguageList(final String device_id, final String car_id,/* final ProgressDialog progressDialog,*/ final InterfaceLanguageListResponse interfaceLanguageListResponse) {
 
+        ApiService api = RetrofitClient.getApiService();
 
+        Call<LanguageListResponse> call = api.languageList(device_id, car_id);
+
+            call.enqueue(new Callback<LanguageListResponse>() {
+
+                @Override
+                public void onResponse(Call<LanguageListResponse> call, Response<LanguageListResponse> response) {
+                    Log.e("response.code(): ",""+ response.code() );
+                    if (response.isSuccessful()) {
+                        LanguageListResponse languageListResponse = response.body();
+                        List<LanguageList> languageLists = response.body().getLanguageList();
+                        Log.e("--", "onResponse: "+ languageLists.size());
+                        interfaceLanguageListResponse.languageListResponse(languageListResponse);
+
+//                        progressDialog.dismiss();
+//                        List<LanguageList> languageLists = response.body();
+//                        interfaceLanguageListResponse.languageListResponse(languageLists);
+//                        interfaceLanguageListResponse.languageListResponse(languageLists);
+//                        Toast.makeText(context, "Response Success", Toast.LENGTH_LONG).show();
+
+                    } else {
+//                        progressDialog.dismiss();
+                        Toast.makeText(MyApplication.getAppContext(), "Response Failed", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<LanguageListResponse> call, Throwable t) {
+                    Log.e("Error___", "_______"+t.toString());
+                    Toast.makeText(MyApplication.getAppContext(), "onFailure",Toast.LENGTH_SHORT).show();
+//                    progressDialog.dismiss();
+
+                }
+            });
+    }
 }

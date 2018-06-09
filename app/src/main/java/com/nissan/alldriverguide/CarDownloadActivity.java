@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -45,6 +46,11 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
+import com.nissan.alldriverguide.multiLang.model.LanguageList;
+import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
+import com.nissan.alldriverguide.multiLang.model.TabMenu;
+import com.nissan.alldriverguide.multiLang.model.Tutorial;
 import com.nissan.alldriverguide.pushnotification.Config;
 import com.nissan.alldriverguide.pushnotification.NotificationUtils;
 import com.nissan.alldriverguide.retrofit.ApiCall;
@@ -62,6 +68,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -110,6 +117,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private BroadcastReceiver mRegistrationBroadcastReceiver;
 
     private long doubleClickPopup = 0;
+    private List<LanguageList> languageLists;
+    private LanguageListResponse languageListResponses;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -146,8 +155,15 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 }
             }
         };
-    }
 
+        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", new InterfaceLanguageListResponse() {
+            @Override
+            public void languageListResponse(LanguageListResponse languageListResponse) {
+                languageListResponses = languageListResponse;
+                languageListResponses.getLanguageList().size();
+            }
+        });
+    }
 
     private void initViews() {
         activity = CarDownloadActivity.this;
@@ -959,6 +975,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     private void startCarAssetsDownload(String assetsSource, String assetsDestination, String langSource, String langDestination) {
         new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(Values.carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
+            @SuppressLint("StaticFieldLeak")
             @Override
             public boolean onComplete(boolean b) {
                 if (b) {
@@ -981,6 +998,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                                     public void onDownloaded(ResponseInfo responseInfo) {
 
                                         if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
+//auve
+                                            List<TabMenu> tabMenus = responseInfo.getTabMenu();
+                                            List<Tutorial> tutorials = responseInfo.getTutorials();
 
                                             sendMsgToGoogleAnalytics(NissanApp.getInstance().getCarName(Values.carType) + Analytics.DOWNLOAD + Analytics.DOT + NissanApp.getInstance().getLanguageName(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + Analytics.DOT + Analytics.PLATFORM);
                                             Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
