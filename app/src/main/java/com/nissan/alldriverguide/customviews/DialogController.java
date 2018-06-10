@@ -5,8 +5,12 @@ import android.app.Dialog;
 import android.app.ActionBar.LayoutParams;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Window;
+import android.widget.TextView;
 
 import com.nissan.alldriverguide.R;
+import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.utils.NissanApp;
+import com.nissan.alldriverguide.utils.Values;
 
 public class DialogController {
 
@@ -109,6 +113,9 @@ public class DialogController {
         dialog.setCancelable(false);
         dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        TextView txt_view_rate_this_app = (TextView) dialog.findViewById(R.id.txt_view_rate_this_app);
+        String rate_this_app_yes_text = NissanApp.getInstance().getAlertMessage(activity, new PreferenceUtil(activity).getSelectedLang(), Values.RATE_OUR_APP_YES);
+        txt_view_rate_this_app.setText(rate_this_app_yes_text.isEmpty() ? activity.getResources().getString(R.string.rate_our_app_yes) : rate_this_app_yes_text);
         return dialog;
     }
 
