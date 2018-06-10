@@ -78,9 +78,9 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private Activity activity;
     private Context context;
     private LanguageListResponse languageListResponses;
-    private String[] languageDialog, cancelLangDownload, okLangDownload;
+    private String[] languageDialog, languageDialogInternetCheck, languageDialogDownloading, languageDialogStartDownloading, languageDialogSync, cancelLangDownload, okLangDownload;
     private String deviceDensity;
-    private String langFlagUri;
+    private String[] langFlagUri;
     private LanguageInfo info;
 
     public LanguageSelectionActivity() {
@@ -111,6 +111,31 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 //        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);
 //
 //    }
+private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
+
+    String key_car_wise_lang_dl = Values.carType + "_" + Values.CAR_WISE_LANG_DOWNLOAD_ALERT_MSG;
+
+    List<AlertMessage> alertMessageCarWiseDownloadList = NissanApp.getInstance().getAlertMessageCarWiseLangDownloadList();
+    if (alertMessageCarWiseDownloadList == null || alertMessageCarWiseDownloadList.size() == 0) {
+        Type type = new TypeToken<ArrayList<AlertMessage>>() {}.getType();
+        alertMessageCarWiseDownloadList = new Gson().fromJson(new PreferenceUtil(activity).retrieveMultiLangData(key_car_wise_lang_dl), type);
+        NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageCarWiseDownloadList);
+    }
+    for (int i = 0; i < alertMessageCarWiseDownloadList.size(); i++) {
+
+        if (msg_type.equalsIgnoreCase(Values.INTERNET_CHECK) && alertMessageCarWiseDownloadList.get(i).getType().equalsIgnoreCase(Values.INTERNET_CHECK))
+            return alertMessageCarWiseDownloadList.get(i).getMsg();
+        if (msg_type.equalsIgnoreCase(Values.DOWNLOADING) && alertMessageCarWiseDownloadList.get(i).getType().equalsIgnoreCase(Values.DOWNLOADING))
+            return alertMessageCarWiseDownloadList.get(i).getMsg();
+        if (msg_type.equalsIgnoreCase(Values.STARTING_DOWNLOAD) && alertMessageCarWiseDownloadList.get(i).getType().equalsIgnoreCase(Values.STARTING_DOWNLOAD))
+            return alertMessageCarWiseDownloadList.get(i).getMsg();
+        if (msg_type.equalsIgnoreCase(Values.DATA_SYNCING) && alertMessageCarWiseDownloadList.get(i).getType().equalsIgnoreCase(Values.DATA_SYNCING))
+            return alertMessageCarWiseDownloadList.get(i).getMsg();
+    }
+
+    return "";
+}
+
 
     private void getDataCarWise() {
         new ApiCall().getLanguageList("e224fb09fb8daee4", "1", progressDialog , new InterfaceLanguageListResponse() {
@@ -118,45 +143,64 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             public void languageListResponse(LanguageListResponse languageListResponse) {
                 languageListResponses = languageListResponse;
                 String key = Values.carType + "_" + Values.CAR_LANGUAGE_LIST;
-//
+
                 preferenceUtil.storeMultiLangData(languageListResponses.getLanguageList(), key);
-//
+
                 languageName = new String[languageListResponses.getLanguageList().size()];
                 languageShortName = new String[languageListResponses.getLanguageList().size()];
                 languageDialog = new String[languageListResponses.getLanguageList().size()];
                 cancelLangDownload = new String[languageListResponses.getLanguageList().size()];
                 okLangDownload = new String[languageListResponses.getLanguageList().size()];
+                langFlagUri =  new String[languageListResponses.getLanguageList().size()];
 
                 for(int i = 0; i <languageListResponses.getLanguageList().size(); i++){
+                    languageDialogStartDownloading = new String[languageListResponses.getLanguageList().get(i).getAlertMessage().size()];
+                    languageDialogDownloading = new String[languageListResponses.getLanguageList().get(i).getAlertMessage().size()];
+                    languageDialogInternetCheck = new String[languageListResponses.getLanguageList().get(i).getAlertMessage().size()];
+                    languageDialogSync = new String[languageListResponses.getLanguageList().get(i).getAlertMessage().size()];
+
                     Log.e("---", "languageListResponse: "+ languageListResponse.getLanguageList().get(i).getLanguageName() );
                     languageName[i] = (languageListResponse.getLanguageList().get(i).getLanguageName());
                     languageShortName[i] = (languageListResponse.getLanguageList().get(i).getLanguageShortcode());
-                    if(languageListResponse.getLanguageList().get(i).getAlertMessage().size()!=0 ){
-                        languageDialog[i] = languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getMsg();
-                    }
+
+//                    if(languageListResponse.getLanguageList().get(i).getAlertMessage().size() != 0 ){
+//                        if(languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getType().equalsIgnoreCase(Values.STARTING_DOWNLOAD)){
+//                            languageDialogStartDownloading[i] = languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getMsg();
+//                        } else if(languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getType().equalsIgnoreCase(Values.DATA_SYNCING)){
+//                            languageDialogSync[i] = languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getMsg();
+//                        }else if(languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getType().equalsIgnoreCase(Values.DOWNLOADING)){
+//                            languageDialogDownloading[i] = languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getMsg();
+//                        }else if(languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getType().equalsIgnoreCase(Values.INTERNET_CHECK)){
+//                            languageDialogInternetCheck[i] = languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getMsg();
+//                        }else if(languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getType().equalsIgnoreCase(Values.DOWNLOAD_CONFIRMATION)){
+//                            languageDialogInternetCheck[i] = languageListResponse.getLanguageList().get(i).getAlertMessage().get(i).getMsg();
+//                        }
+//                    }
                     cancelLangDownload[i] = (languageListResponse.getLanguageList().get(i).getCancel());
                     okLangDownload[i] = (languageListResponse.getLanguageList().get(i).getOk());
 
                     if("xxxhdpi".contains(deviceDensity)){
-                        langFlagUri = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                        Log.e("qqq", "languageListResponse: "+langFlagUri );
+                    } else if("xxhdpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                        Log.e("qqq", "languageListResponse: "+langFlagUri );
+                    }else if("xhdpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                        Log.e("qqq", "languageListResponse: "+langFlagUri );
+                    }else if("hdpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                        Log.e("qqq", "languageListResponse: "+langFlagUri );
+                    }else if("mdpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                        Log.e("qqq", "languageListResponse: "+langFlagUri );
+                    }else if("ldpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                        Log.e("qqq", "languageListResponse: "+langFlagUri );
                     }
-                    if("xxhdpi".contains(deviceDensity)){
-                        langFlagUri = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
-                    }
-                    if("xhdpi".contains(deviceDensity)){
-                        langFlagUri = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
-                    }
-                    if("hdpi".contains(deviceDensity)){
-                        langFlagUri = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
-                    }
-                    if("mdpi".contains(deviceDensity)){
-                        langFlagUri = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
-                    }
-                    if("ldpi".contains(deviceDensity)){
-                        langFlagUri = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
-                    }
+
                 }
-                loadData();
+                loadData(langFlagUri);
             }
         });
     }
@@ -180,28 +224,30 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     /**
      * Load the initial data into list
      */
-    private void loadData() {
+    private void loadData(String FlagUrl[]) {
         Log.e("***", "loadData: "+ languageName.length);
         for (int i = 0; i < languageName.length; i++) {
-            LanguageInfo info = new LanguageInfo(i, languageName[i], false, languageImage[i]);
+
+            LanguageInfo info = new LanguageInfo(i, languageName[i], false, FlagUrl[i]);
+            list.add(info);
             // display 2 languages only for car type 2 and 5
-            if (Values.carType == 2 || Values.carType == 5) {
-                if (i == 0 || i == 6) {
-                    list.add(info);
-                }
-            } else {
-                if (Values.carType == 7 || Values.carType == 8 || Values.carType == 9) {
-                    if (i != 6 && i != 8) {
-                        list.add(info);
-                    }
-                } else if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 6 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13) {
-                    if (i != 8) {
-                        list.add(info);
-                    }
-                } else {
-                    list.add(info);
-                }
-            }
+//            if (Values.carType == 2 || Values.carType == 5) {
+//                if (i == 0 || i == 6) {
+//                    list.add(info);
+//                }
+//            } else {
+//                if (Values.carType == 7 || Values.carType == 8 || Values.carType == 9) {
+//                    if (i != 6 && i != 8) {
+//                        list.add(info);
+//                    }
+//                } else if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 6 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13) {
+//                    if (i != 8) {
+//                        list.add(info);
+//                    }
+//                } else {
+//                    list.add(info);
+//                }
+//            }
         }
 
         adapter = new LanguageSelectionAdapter(getApplicationContext(), list, false);
@@ -218,6 +264,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         preferenceUtil.setSelectedLang(languageShortName[info.getId()]); // here save the selected language sort name into preference
         Logger.error("onItemClick: ", "" + info.getId());
         Logger.error("onItemClick: ", "" + languageShortName[info.getId()]);
+        Logger.error("-----: ", "" + languageDialogStartDownloading[info.getId()]);
 
         loadResource();
 
@@ -444,7 +491,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         });
     }
 
-
     /**
      * Indicate MainActivity after downloading car
      */
@@ -458,7 +504,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         overridePendingTransition(R.anim.left_in, R.anim.right_out);
         finish();
     }
-
 
     @Override
     protected void onStart() {

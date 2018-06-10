@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -34,6 +35,8 @@ import android.widget.Toast;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.adapter.CarDownloadAdapter;
@@ -47,6 +50,7 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.model.AlertMessage;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.pushnotification.Config;
@@ -65,6 +69,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -1004,6 +1009,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private void startCarAssetsDownload(String assetsSource, String assetsDestination, String langSource, String langDestination) {
         // downloadCarAssets method download car asset and language both
         new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(Values.carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
+            @SuppressLint("StaticFieldLeak")
             @Override
             public boolean onComplete(boolean b) {
                 if (b) {

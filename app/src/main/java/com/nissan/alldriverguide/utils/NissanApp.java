@@ -61,8 +61,15 @@ public class NissanApp {
     private Configuration conf;
     private ArrayList<TabMenu> tabMenuArrayList;
     private ArrayList<Tutorial> tutorialArrayList;
-    private List<AlertMessage> alertMessageGlobalArrayList;
+    private List<AlertMessage> alertMessageGlobalArrayList, alertMessageCarWiseLangDownloadList;
     private List<GlobalMessage> globalMessageArrayList;
+    public List<AlertMessage> getAlertMessageCarWiseLangDownloadList() {
+        return alertMessageCarWiseLangDownloadList;
+    }
+
+    public void setAlertMessageCarWiseLangDownloadList(List<AlertMessage> alertMessageGlobalArrayList) {
+        this.alertMessageGlobalArrayList = alertMessageCarWiseLangDownloadList;
+    }
 
     public List<AlertMessage> getAlertMessageGlobalArrayList() {
         return alertMessageGlobalArrayList;

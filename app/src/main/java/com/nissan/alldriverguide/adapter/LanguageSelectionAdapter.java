@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.model.LanguageInfo;
 
@@ -70,7 +71,14 @@ public class LanguageSelectionAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag ();
         }
 
-        viewHolder.imageView.setBackgroundResource(list.get(position).getImage());
+//        viewHolder.imageView.setBackgroundResource(list.get(position).getImage());
+        Glide.with(context)
+                .load(list.get(position).getImage()) // image url
+                .placeholder(R.drawable.arrow) // any placeholder to load at start
+                .error(R.drawable.arrow)  // any image in case of error
+                .override(200, 200) // resizing
+                .centerCrop()
+                .into(viewHolder.imageView);
 
         viewHolder.txtViewTitle.setTypeface(tf);
         viewHolder.txtViewTitle.setText(list.get(position).getName());
