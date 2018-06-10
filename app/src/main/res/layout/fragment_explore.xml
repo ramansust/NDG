@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/relative_top"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <RelativeLayout
             android:id="@+id/relative_blind_spot_top"
@@ -86,8 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/txt_blind_spot_ar"
-                android:layout_toRightOf="@+id/txt_blind_spot_ar"
+                android:layout_alignParentRight="true"
                 android:background="@drawable/explore_micra_new" />
 
             <TextView
