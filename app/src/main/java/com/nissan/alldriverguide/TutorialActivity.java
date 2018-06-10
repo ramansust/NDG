@@ -81,11 +81,13 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
      */
     private void loadData() {
 
+        String nextText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(getApplicationContext()).getSelectedLang(), Values.NEXT);
+
+        txtNext.setText(nextText.isEmpty() ? getResources().getString(R.string.button_next) : nextText);
+
         ArrayList<Tutorial> list = getDataFromStorage();
 
         NissanApp.getInstance().setTutorialArrayList(list);
-
-        Log.e("professional", "_________" + list.size());
 
         if (list != null && list.size() > 0) {
             TUTORIAL_COUNT = list.size() - 1;

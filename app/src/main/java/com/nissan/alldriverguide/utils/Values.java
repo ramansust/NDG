@@ -109,7 +109,7 @@ public class Values {
     public static final int RATE_APP_DIVISOR = 30;
 
     public static final int RATE_APP_SESSION = 0;
-    public static final int RATE_APP_FIRST_SESSION = 3;
+    public static final int RATE_APP_FIRST_SESSION = 30;
     public static final int RATE_APP_SECOND_SESSION = 15;
 
     public static final String TUTORIAL = "multi_lang_tutorial";
@@ -158,4 +158,6 @@ public class Values {
     public static final String  DESCRIPTION_FIELD = "send_feedback_description";
     public static final String  SEND_FEEDBACK_BUTTON_TEXT = "send_feedback_button";
     public static final String  SEND_FEEDBACK_COMPLETE_TOAST = "feedback_toast";
+
+    public static final String  NEXT = "next";
 }
