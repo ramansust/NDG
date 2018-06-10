@@ -151,21 +151,30 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     }
 
     public void check_density() {
+
+        String method ;
         if (device_density.equalsIgnoreCase("xxxhdpi")) {
             header_text = exploreModel.getHeaderXxxhdpi();
+            method = "exploreModel.getHeaderXxxhdpi()"+ "   density  " +  device_density;
         } else if (device_density.equalsIgnoreCase("xxhdpi")) {
             header_text = exploreModel.getHeaderXxhdpi();
+            method = "exploreModel.getHeaderXxhdpi()"+ "   density  " +  device_density;
         } else if (device_density.equalsIgnoreCase("xhdpi")) {
             header_text = exploreModel.getHeaderXhdpi();
+            method = "exploreModel.getHeaderXhdpi()" + "   density  " +  device_density;
         } else if (device_density.equalsIgnoreCase("hdpi")) {
             header_text = exploreModel.getHeaderHdpi();
+            method = "exploreModel.getHeaderHdpi()"+ "   density  " +  device_density;
         } else if (device_density.equalsIgnoreCase("ldpi")) {
             header_text = exploreModel.getHeaderLdpi();
+            method = "exploreModel.getHeaderLdpi()"+ "   density  " +  device_density;
         } else {
             header_text = exploreModel.getHeaderXhdpi();
+            method = "else exploreModel.getHeaderXhdpi()"+ "   density  " +  device_density;
+
         }
 
-        Log.e("HeaderText ",""+header_text);
+        Log.e("HeaderText ",""+header_text + "  method  ---  " + method);
     }
 
     public void check_Data() {
@@ -200,7 +209,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             public void onDownloaded(ExploreTabModel responseInfo) {
                 Log.e("Success", "" + responseInfo.getStatusCode());
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
-                    new PreferenceUtil(getActivity()).storeExploreDataList(responseInfo, sharedpref_key);
+                    new PreferenceUtil(getActivity().getApplicationContext()).storeExploreDataList(responseInfo, sharedpref_key);
                     videoList.clear();
                     exploreModel = new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key);
                     check_density();
@@ -232,6 +241,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         txtViewExplore.setBackground(drawable);
+                        //txtViewExplore.setBackgroundResource(R.drawable.micra_eng);
                     }
                 }
             });
@@ -309,7 +319,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private void initViews(View view) {
 
         txtViewExplore = (TextView) view.findViewById(R.id.txt_blind_spot_ar);
-
         relativeAR = (RelativeLayout) view.findViewById(R.id.relative_ar);
         relativeBlindSpot = (RelativeLayout) view.findViewById(R.id.relative_blind_spot);
 
@@ -350,6 +359,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 // here start the ImageTargetActivity class for AR
             case R.id.btn_blind_spot_ar:
+                Log.e("Blind SPot Click","   ---  " + btnBlindSpotAR);
                 startActivity(new Intent(getActivity(), ImageTargetActivity.class));
                 break;
 
