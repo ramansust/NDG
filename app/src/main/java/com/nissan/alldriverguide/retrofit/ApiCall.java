@@ -338,7 +338,7 @@ public class ApiCall {
 //    }
 
     // post ExploreTab Content
-    public void postExploreTabContent(final ProgressDialog progressDialog, String device_id, String language_id, String car_id, String epub_id, String tab_id, final CompleteExploreTabContent completeAPI) {
+    public void postExploreTabContent(String device_id, String language_id, String car_id, String epub_id, String tab_id, final CompleteExploreTabContent completeAPI) {
 
         //Creating an object of our api interface
         ApiService api = RetrofitClient.getApiService();
@@ -347,7 +347,6 @@ public class ApiCall {
             @Override
             public void onResponse(Call<ExploreTabModel> call, Response<ExploreTabModel> response) {
                 if(response.isSuccessful()){
-                    progressDialog.dismiss();
                     completeAPI.onDownloaded(response.body());
                 }
             }
@@ -355,14 +354,14 @@ public class ApiCall {
             @Override
             public void onFailure(Call<ExploreTabModel> call, Throwable t) {
                 completeAPI.onFailed(Values.FAILED_STATUS);
-                progressDialog.dismiss();
+
             }
         });
 
     }
 
     // post ExploreTab Content
-    public void postSettingTabContent(final ProgressDialog progressDialog,String device_id, String language_id, String car_id, String epub_id, String tab_id, final CompleteSettingTabContent completeAPI) {
+    public void postSettingTabContent(String device_id, String language_id, String car_id, String epub_id, String tab_id, final CompleteSettingTabContent completeAPI) {
 
         //Creating an object of our api interface
         ApiService api = RetrofitClient.getApiService();
@@ -371,7 +370,6 @@ public class ApiCall {
             @Override
             public void onResponse(Call<SettingsTabModel> call, Response<SettingsTabModel> response) {
                 if(response.isSuccessful()){
-                    progressDialog.dismiss();
                     completeAPI.onDownloaded(response.body());
                 }
             }
@@ -379,7 +377,6 @@ public class ApiCall {
             @Override
             public void onFailure(Call<SettingsTabModel> call, Throwable t) {
                 completeAPI.onFailed(Values.FAILED_STATUS);
-                progressDialog.dismiss();
             }
         });
 
@@ -394,12 +391,18 @@ public class ApiCall {
         call.enqueue(new Callback<AssistanceInfo>() {
             @Override
             public void onResponse(Call<AssistanceInfo> call, Response<AssistanceInfo> response) {
-                completeAPI.onDownloaded(response.body());
+                if (response.isSuccessful()) {
+                    if (response != null) {
+                        completeAPI.onDownloaded(response.body());
+                    } else {
+                        completeAPI.onFailed(Values.FAILED_STATUS);
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<AssistanceInfo> call, Throwable t) {
-                completeAPI.onFailed(Values.FAILED_STATUS);
+                completeAPI.onFailed(t.getMessage());
             }
         });
     }

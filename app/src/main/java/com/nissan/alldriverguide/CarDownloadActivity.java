@@ -1195,7 +1195,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageArrayList);
         }
 
-
         for (int i = 0; i < alertMessageArrayList.size(); i++) {
 
             if (msg_type.equalsIgnoreCase(Values.REGISTER_PUSH_MESSAGE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.REGISTER_PUSH_MESSAGE))

@@ -8,36 +8,62 @@ import java.util.List;
 
 public class ExploreTabModel {
 
-    @SerializedName("message")
+    @SerializedName("header_hdpi")
     @Expose
-    private String message;
-    @SerializedName("header_image")
-    @Expose
-    private String headerImage;
-    @SerializedName("video_list")
-    @Expose
-    private ArrayList<ExploreTabVideoModel> videoList = null;
-    @SerializedName("header_background_image")
-    @Expose
-    private String headerBackgroundImage;
+    private String headerHdpi;
     @SerializedName("status_code")
     @Expose
     private String statusCode;
+    @SerializedName("header_2x")
+    @Expose
+    private String header2x;
+    @SerializedName("video_list")
+    @Expose
+    private ArrayList<ExploreTabVideoModel> videoList = null;
+    @SerializedName("header_1x")
+    @Expose
+    private String header1x;
+    @SerializedName("header_xhdpi")
+    @Expose
+    private String headerXhdpi;
+    @SerializedName("header_ldpi")
+    @Expose
+    private String headerLdpi;
+    @SerializedName("header_xxxhdpi")
+    @Expose
+    private String headerXxxhdpi;
+    @SerializedName("header_xxhdpi")
+    @Expose
+    private String headerXxhdpi;
+    @SerializedName("header_3x")
+    @Expose
+    private String header3x;
+    @SerializedName("message")
+    @Expose
+    private String message;
 
-    public String getMessage() {
-        return message;
+    public String getHeaderHdpi() {
+        return headerHdpi;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setHeaderHdpi(String headerHdpi) {
+        this.headerHdpi = headerHdpi;
     }
 
-    public String getHeaderImage() {
-        return headerImage;
+    public String getStatusCode() {
+        return statusCode;
     }
 
-    public void setHeaderImage(String headerImage) {
-        this.headerImage = headerImage;
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    public String getHeader2x() {
+        return header2x;
+    }
+
+    public void setHeader2x(String header2x) {
+        this.header2x = header2x;
     }
 
     public ArrayList<ExploreTabVideoModel> getVideoList() {
@@ -48,20 +74,60 @@ public class ExploreTabModel {
         this.videoList = videoList;
     }
 
-    public String getHeaderBackgroundImage() {
-        return headerBackgroundImage;
+    public String getHeader1x() {
+        return header1x;
     }
 
-    public void setHeaderBackgroundImage(String headerBackgroundImage) {
-        this.headerBackgroundImage = headerBackgroundImage;
+    public void setHeader1x(String header1x) {
+        this.header1x = header1x;
     }
 
-    public String getStatusCode() {
-        return statusCode;
+    public String getHeaderXhdpi() {
+        return headerXhdpi;
     }
 
-    public void setStatusCode(String statusCode) {
-        this.statusCode = statusCode;
+    public void setHeaderXhdpi(String headerXhdpi) {
+        this.headerXhdpi = headerXhdpi;
+    }
+
+    public String getHeaderLdpi() {
+        return headerLdpi;
+    }
+
+    public void setHeaderLdpi(String headerLdpi) {
+        this.headerLdpi = headerLdpi;
+    }
+
+    public String getHeaderXxxhdpi() {
+        return headerXxxhdpi;
+    }
+
+    public void setHeaderXxxhdpi(String headerXxxhdpi) {
+        this.headerXxxhdpi = headerXxxhdpi;
+    }
+
+    public String getHeaderXxhdpi() {
+        return headerXxhdpi;
+    }
+
+    public void setHeaderXxhdpi(String headerXxhdpi) {
+        this.headerXxhdpi = headerXxhdpi;
+    }
+
+    public String getHeader3x() {
+        return header3x;
+    }
+
+    public void setHeader3x(String header3x) {
+        this.header3x = header3x;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
 }

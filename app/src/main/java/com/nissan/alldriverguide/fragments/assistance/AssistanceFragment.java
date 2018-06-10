@@ -94,7 +94,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 //        txtViewDriverGuide.setText(resources.getString(R.string.driver_guide));
         txtViewDriverGuide.setText(assistanceInfo.getAssistanceTitle());
 //        txt_title.setText(resources.getString(R.string.assistance));
-        txt_title.setText(resources.getString(R.string.assistance));
+//        txt_title.setText(resources.getString(R.string.assistance));
+        txt_title.setText(NissanApp.getInstance().getTabMenuArrayList().get(1).getTitle());
 //        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.assistance_array), assistanceImage);
         adapter = new AssistanceAdapter(getActivity().getApplicationContext(), assistanceArray, assistanceImage);
         lstView.setAdapter(adapter);
@@ -155,7 +156,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     }
 
     public void postAssistanceData() {
-        new ApiCall().postAssistanceTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "1", String.valueOf(Values.carType), "0", "2", new CompleteAssistanceTabContent() {
+        int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
+        new ApiCall().postAssistanceTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2", new CompleteAssistanceTabContent() {
             @Override
             public void onDownloaded(AssistanceInfo responseInfo) {
 

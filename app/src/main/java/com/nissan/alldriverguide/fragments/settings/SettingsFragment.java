@@ -25,7 +25,6 @@ import com.nissan.alldriverguide.adapter.AssistanceAdapter;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteSettingTabContent;
-import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
 import com.nissan.alldriverguide.retrofit.ApiCall;
@@ -34,6 +33,8 @@ import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class SettingsFragment extends Fragment implements AdapterView.OnItemClickListener {
 
@@ -52,6 +53,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     private ProgressDialog progressDialog;
     private ArrayList<SettingsTabListModel> settingList = new ArrayList<>();
     private String[] setting_names;
+    private String preSharedpref_key;
 
     public static Fragment newInstance() {
         Fragment frag = new SettingsFragment();
@@ -70,66 +72,67 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         return view;
     }
 
-    private void getSettingTabContent() {
+    private void check_Data() {
 
-        progressDialog = new ProgressDialogController(getActivity()).showDialog(resources.getString(R.string.register_push_dialog));
-        sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.SETTINGDATA;
-        if (new PreferenceUtil(getActivity()).retrieveSettingDataList(sharedpref_key) == null) {
-            new PreferenceUtil(getActivity()).deleteMultiLangData(sharedpref_key);
-            apiCall();
-        } else {
-
-            if (progressDialog != null) {
-                progressDialog.dismiss();
-            }
-
+        if (new PreferenceUtil(getActivity()).retrieveSettingDataList(sharedpref_key) != null) {
+            Log.e("Load Setting db", " ---sharepref-----  " + sharedpref_key);
+            settingList.clear();
             settingList = new PreferenceUtil(getActivity()).retrieveSettingDataList(sharedpref_key);
-            //Log.e(" message", "  " + responseInfo.getMessage());
+            Collections.sort(settingList, new Comparator<SettingsTabListModel>() {
+                @Override
+                public int compare(SettingsTabListModel lhs, SettingsTabListModel rhs) {
+                    return lhs.getIndex().compareTo(rhs.getIndex());
+                }
+            });
             setting_names = new String[settingList.size()];
             for (int i = 0; i < settingList.size(); i++) {
                 setting_names[i] = settingList.get(i).getTitle();
             }
-            for (SettingsTabListModel videoModel : settingList) {
-                Log.e("Setting Title", " --------  " + videoModel.getTitle());
-                Log.e("Setting feedback_title", " --------  " + videoModel.getFeedbackTitle());
-                Log.e("Setting id", " --------  " + videoModel.getId());
-            }
             loadData();
+            apiCall();
+        } else {
+            apiCall();
+        }
+
+    }
+
+    private void getSettingTabContent() {
+
+        preSharedpref_key = new PreferenceUtil(getActivity()).getPreviousLanguage() + "_" + Values.SETTINGDATA;
+        sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.SETTINGDATA;
+
+        String old_Lan = new PreferenceUtil(getActivity()).getPreviousLanguage();
+        String new_Lan = new PreferenceUtil(getActivity()).getSelectedLang();
+
+        if (old_Lan.equalsIgnoreCase("null")) {
+            check_Data();
+
+        } else {
+            new PreferenceUtil(getActivity()).deleteMultiLangData(preSharedpref_key);
+            Log.e("Old Lan Not Null ", "--presha-  " + preSharedpref_key);
+            Log.e("Old Lan Not Null ", "--share-  " + sharedpref_key);
+            check_Data();
         }
     }
 
     private void apiCall() {
         int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
         String language_name = new PreferenceUtil(getActivity()).getSelectedLang();
-        Log.e("Setting Tab", "Language ID ---- " + language_ID);
-        Log.e("Setting Tab", "Language Name Previous ---- " + language_name);
-        Log.e("Setting Tab", "Key ---- " + Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.EXPLOREDATA);
-
-        new ApiCall().postSettingTabContent(progressDialog, NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "4", new CompleteSettingTabContent() {
+        new ApiCall().postSettingTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "4", new CompleteSettingTabContent() {
             @Override
             public void onDownloaded(SettingsTabModel responseInfo) {
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
 
+                    new PreferenceUtil(getActivity()).storeSettingDataList(responseInfo.getData(), sharedpref_key);
 
-                    new PreferenceUtil(getActivity()).storeSettingDataList(responseInfo.getData(),sharedpref_key);
-                    Log.e(" message", "  " + sharedpref_key);
-                    Log.e(" size", "  " + responseInfo.getData());
                     settingList.clear();
                     settingList = new PreferenceUtil(getActivity()).retrieveSettingDataList(sharedpref_key);
-
 
 
                     setting_names = new String[settingList.size()];
                     for (int i = 0; i < settingList.size(); i++) {
                         setting_names[i] = settingList.get(i).getTitle();
                     }
-
-                    for (SettingsTabListModel videoModel : settingList) {
-                        Log.e("Setting Title", " --------  " + videoModel.getTitle());
-                        Log.e("Setting feedback_title", " --------  " + videoModel.getFeedbackTitle());
-                        Log.e("Setting id", " --------  " + videoModel.getId());
-                    }
-
                     loadData();
                 }
             }
