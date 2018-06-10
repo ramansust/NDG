@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +64,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private AssistanceAdapter adapter;
     private DisplayMetrics metrics;
     private PreferenceUtil preferenceUtil;
-    public static AssistanceInfo assistanceInfo;
+    private AssistanceInfo assistanceInfo;
 
     private CommonDao commonDao;
     private ProgressDialog progressDialog;
@@ -161,6 +162,10 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
                 if (preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY) == null) {
                     preferenceUtil.storeAssistanceData(responseInfo, Values.ASSISTANCE_OBJ_STORE_KEY);
+                    NissanApp.getInstance().setAssistanceInfo(preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY));
+                    Log.e("onDownloaded: ", "Assistance data successfully inserted");
+                } else {
+                    NissanApp.getInstance().setAssistanceInfo(preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY));
                 }
 
                 if (assistanceInfo == null) {
@@ -426,7 +431,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 break;
 
             case 5:
-                frag = NissanAssistanceFragment.newInstance(resources.getStringArray(R.array.assistance_array)[position]);
+//                frag = NissanAssistanceFragment.newInstance(resources.getStringArray(R.array.assistance_array)[position]);
+                frag = NissanAssistanceFragment.newInstance(assistanceArray[position]);
                 break;
 
             default:

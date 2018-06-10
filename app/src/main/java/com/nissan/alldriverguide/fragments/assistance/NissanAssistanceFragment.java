@@ -67,7 +67,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
         initViews(view);
         loadResource();
         setListener();
-        abc();
+        nissanAssistance();
 //        loadData();
         return view;
     }
@@ -78,8 +78,8 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
         new PreferenceUtil(getActivity()).setOpenCountForRateApp();
     }
 
-    private void abc() {
-        List<Datum> list = AssistanceFragment.assistanceInfo.getData();
+    private void nissanAssistance() {
+        List<Datum> list = NissanApp.getInstance().getAssistanceInfo().getData();
         if (list != null && list.size() > 0) {
             List<ChildNode> childNodes;
             for (int i = 0; i <list.size(); i++) {
@@ -104,7 +104,8 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
         linearBack.setVisibility(View.VISIBLE);
 
         txtViewDriverGuide.setTypeface(Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "font/Nissan Brand Regular.otf"));
-        txtViewDriverGuide.setText(resources.getString(R.string.driver_guide));
+//        txtViewDriverGuide.setText(resources.getString(R.string.driver_guide));
+        txtViewDriverGuide.setText(NissanApp.getInstance().getAssistanceInfo().getAssistanceTitle());
         txtViewTitle.setText(getArguments().get(TITLE).toString());
 //        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.nissan_assistance_array), nissanNssistanceImage);
         adapter = new AssistanceAdapter(getActivity().getApplicationContext(), nissanAssistance, nissanNssistanceImage);
@@ -112,9 +113,11 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
 
         // condition for new four cars (eg. 11 = All New Nissan Micra, 12 = New Nissan QASHQAI etc...)
         if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
-            txtViewCarName.setText(resources.getStringArray(R.array.car_names)[Values.carType - 1]);
+//            txtViewCarName.setText(resources.getStringArray(R.array.car_names)[Values.carType - 1]);
+            txtViewCarName.setText(NissanApp.getInstance().assistanceInfo.getSelectedCar());
         } else {
-            txtViewCarName.setText("NISSAN " + resources.getStringArray(R.array.car_names)[Values.carType - 1]);
+//            txtViewCarName.setText("NISSAN " + resources.getStringArray(R.array.car_names)[Values.carType - 1]);
+            txtViewCarName.setText("NISSAN " + NissanApp.getInstance().assistanceInfo.getSelectedCar());
         }
         // set image background according to car type
         setCarBackground(Values.carType);
@@ -172,7 +175,8 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
                 break;
 
             case 1:
-                frag = CallNissanAssistanceFragment.newInstance(resources.getStringArray(R.array.nissan_assistance_array)[position]);
+//                frag = CallNissanAssistanceFragment.newInstance(resources.getStringArray(R.array.nissan_assistance_array)[position]);
+                frag = CallNissanAssistanceFragment.newInstance(nissanAssistance[position]);
                 break;
 
             default:
