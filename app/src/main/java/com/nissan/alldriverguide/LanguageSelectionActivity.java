@@ -111,7 +111,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             public void languageListResponse(LanguageListResponse languageListResponse) {
 
                 languageListResponses = languageListResponse;
-                
+
+
                 languageName = new String[languageListResponses.getLanguageList().size()];
                 languageShortName = new String[languageListResponses.getLanguageList().size()];
                 cancelLangDownload = new String[languageListResponses.getLanguageList().size()];
