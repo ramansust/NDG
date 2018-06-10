@@ -1,7 +1,6 @@
 package com.nissan.alldriverguide.retrofit;
 
 import android.app.ProgressDialog;
-
 import android.util.Log;
 import android.widget.Toast;
 
@@ -338,7 +337,7 @@ public class ApiCall {
 //    }
 
     // post ExploreTab Content
-    public void postExploreTabContent(final ProgressDialog progressDialog,String device_id, String language_id, String car_id, String epub_id, String tab_id, final CompleteExploreTabContent completeAPI) {
+    public void postExploreTabContent(final ProgressDialog progressDialog, String device_id, String language_id, String car_id, String epub_id, String tab_id, final CompleteExploreTabContent completeAPI) {
 
         //Creating an object of our api interface
         ApiService api = RetrofitClient.getApiService();
@@ -407,7 +406,7 @@ public class ApiCall {
     /*************************
      * MultiLangual
      **************************/
-    public void getLanguageList(final String device_id, final String car_id,/* final ProgressDialog progressDialog,*/ final InterfaceLanguageListResponse interfaceLanguageListResponse) {
+    public void getLanguageList(final String device_id, final String car_id, final ProgressDialog progressDialog, final InterfaceLanguageListResponse interfaceLanguageListResponse) {
 
         ApiService api = RetrofitClient.getApiService();
 
@@ -420,18 +419,10 @@ public class ApiCall {
                     Log.e("response.code(): ",""+ response.code() );
                     if (response.isSuccessful()) {
                         LanguageListResponse languageListResponse = response.body();
-//                        List<LanguageList> languageLists = response.body().getLanguageList();
-//                        Log.e("--", "onResponse: "+ languageLists.size());
                         interfaceLanguageListResponse.languageListResponse(languageListResponse);
-
-//                        progressDialog.dismiss();
-//                        List<LanguageList> languageLists = response.body();
-//                        interfaceLanguageListResponse.languageListResponse(languageLists);
-//                        interfaceLanguageListResponse.languageListResponse(languageLists);
-//                        Toast.makeText(context, "Response Success", Toast.LENGTH_LONG).show();
-
+                        progressDialog.dismiss();
                     } else {
-//                        progressDialog.dismiss();
+                        progressDialog.dismiss();
                         Toast.makeText(MyApplication.getAppContext(), "Response Failed", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -440,8 +431,7 @@ public class ApiCall {
                 public void onFailure(Call<LanguageListResponse> call, Throwable t) {
                     Log.e("Error___", "_______"+t.toString());
                     Toast.makeText(MyApplication.getAppContext(), "onFailure",Toast.LENGTH_SHORT).show();
-//                    progressDialog.dismiss();
-
+                    progressDialog.dismiss();
                 }
             });
     }

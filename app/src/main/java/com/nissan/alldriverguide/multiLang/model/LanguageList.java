@@ -3,8 +3,15 @@ package com.nissan.alldriverguide.multiLang.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LanguageList {
+import java.util.List;
 
+public class LanguageList {
+    @SerializedName("cancel")
+    @Expose
+    private String cancel;
+    @SerializedName("ok")
+    @Expose
+    private String ok;
     @SerializedName("language_id")
     @Expose
     private Integer languageId;
@@ -28,8 +35,15 @@ public class LanguageList {
     private String epubNames;
     @SerializedName("alert_message")
     @Expose
-    private String alertMessage;
+    private List<AlertMessage> alertMessage = null;
 
+    public List<AlertMessage> getAlertMessage() {
+        return alertMessage;
+    }
+
+    public void setAlertMessage(List<AlertMessage> alertMessage) {
+        this.alertMessage = alertMessage;
+    }
     public Integer getLanguageId() {
         return languageId;
     }
@@ -86,12 +100,20 @@ public class LanguageList {
         this.epubNames = epubNames;
     }
 
-    public String getAlertMessage() {
-        return alertMessage;
+    public String getOk() {
+        return ok;
     }
 
-    public void setAlertMessage(String alertMessage) {
-        this.alertMessage = alertMessage;
+    public void setOk(String ok) {
+        this.ok = ok;
+    }
+
+    public String getCancel() {
+        return cancel;
+    }
+
+    public void setCancel(String cancel) {
+        this.cancel = cancel;
     }
 
 }

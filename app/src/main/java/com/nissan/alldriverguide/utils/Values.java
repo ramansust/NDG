@@ -112,6 +112,9 @@ public class Values {
     public static final int RATE_APP_FIRST_SESSION = 30;
     public static final int RATE_APP_SECOND_SESSION = 15;
 
+    public static final String TUTORIAL = "multi_lang_tutorial";
+    public static final String TAB_MENU = "multi_lang_tab_menu";
+    public static final String CAR_LANGUAGE_LIST= "multi_lang_list";
     public static final String TUTORIAL_KEY = "multi_lang_tutorial";
     public static final String TAB_MENU_KEY = "multi_lang_tab_menu";
 
@@ -121,6 +124,7 @@ public class Values {
     public static final String EPUBID = "0";
     public static final String GLOBAL_MSG_KEY = "multi_lang_globalmsg";
     public static final String GLOBAL_ALERT_MSG_KEY = "multi_lang_global_alert_msg";
+    public static final String CAR_WISE_LANG_DOWNLOAD_ALERT_MSG = "multi_lang_car_wise_dl_list_alert_msg";
 
     public static final String ALERT_MSG_TYPE_INTERNET = "internet_check";
     public static final String ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_1 = "download_car_guide1";
@@ -138,4 +142,10 @@ public class Values {
     public static final String SEARCH_HINT = "search";
     public static final String RECENT_SEARCH = "recent";
     public static final String CLEAR = "clear";
+    public static final String  INTERNET_CHECK = "internet_check";
+    public static final String  DOWNLOADING = "downloading";
+    public static final String  STARTING_DOWNLOAD = "starting_download";
+    public static final String  DATA_SYNCING = "data_syncing";
+    public static final String  DOWNLOAD_CONFIRMATION = "dowload_confirmation";
+
 }

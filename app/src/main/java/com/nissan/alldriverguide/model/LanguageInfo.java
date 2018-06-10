@@ -7,20 +7,19 @@ public class LanguageInfo {
     private int id;
     private String name;
     private boolean isSelected;
-    private int image;
+    private String image;
 
-    public LanguageInfo(int id, String name, boolean isSelected, int image) {
+    public LanguageInfo(int id, String name, boolean isSelected, String image) {
         this.id = id;
         this.name = name;
         this.isSelected = isSelected;
         this.image = image;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
-
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
