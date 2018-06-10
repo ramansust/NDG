@@ -1386,6 +1386,23 @@ public class NissanApp {
                 return alertMessageArrayList.get(i).getMsg();
             if (msg_type.equalsIgnoreCase(Values.RATE_OUR_APP_YES) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.RATE_OUR_APP_YES))
                 return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.RATE_ASK_ME_LATER) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.RATE_ASK_ME_LATER))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.RATE_NO_THANKS) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.RATE_NO_THANKS))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.RATE_OUR_APP_SUBTITLE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.RATE_OUR_APP_SUBTITLE))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.FEEDBACK_TITLE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.FEEDBACK_TITLE))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.TITLE_FIELD) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.TITLE_FIELD))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.DESCRIPTION_FIELD) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.DESCRIPTION_FIELD))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.SEND_FEEDBACK_BUTTON_TEXT) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.SEND_FEEDBACK_BUTTON_TEXT))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.SEND_FEEDBACK_COMPLETE_TOAST) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.SEND_FEEDBACK_COMPLETE_TOAST))
+                return alertMessageArrayList.get(i).getMsg();
+
         }
 
         return "";

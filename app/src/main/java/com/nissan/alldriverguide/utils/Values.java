@@ -109,7 +109,7 @@ public class Values {
     public static final int RATE_APP_DIVISOR = 30;
 
     public static final int RATE_APP_SESSION = 0;
-    public static final int RATE_APP_FIRST_SESSION = 30;
+    public static final int RATE_APP_FIRST_SESSION = 3;
     public static final int RATE_APP_SECOND_SESSION = 15;
 
     public static final String TUTORIAL = "multi_lang_tutorial";
@@ -149,5 +149,13 @@ public class Values {
     public static final String  DOWNLOAD_CONFIRMATION = "dowload_confirmation";
 
     public static final String  RATE_OUR_APP_YES = "rate_our_app_yes";
+    public static final String  RATE_ASK_ME_LATER = "rate_ask_me_later";
+    public static final String  RATE_NO_THANKS = "rate_no_thanks";
+    public static final String  RATE_OUR_APP_SUBTITLE = "rate_our_app_sub_title";
 
+    public static final String  FEEDBACK_TITLE = "feedback";
+    public static final String  TITLE_FIELD = "send_feedback_title";
+    public static final String  DESCRIPTION_FIELD = "send_feedback_description";
+    public static final String  SEND_FEEDBACK_BUTTON_TEXT = "send_feedback_button";
+    public static final String  SEND_FEEDBACK_COMPLETE_TOAST = "feedback_toast";
 }

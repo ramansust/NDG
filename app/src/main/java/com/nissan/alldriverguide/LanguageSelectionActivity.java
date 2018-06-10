@@ -262,9 +262,6 @@ private String getAlertMessage(String car_wise_lang_dl, String msg_type) {
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         info = (LanguageInfo) parent.getAdapter().getItem(position);
         preferenceUtil.setSelectedLang(languageShortName[info.getId()]); // here save the selected language sort name into preference
-        Logger.error("onItemClick: ", "" + info.getId());
-        Logger.error("onItemClick: ", "" + languageShortName[info.getId()]);
-        Logger.error("-----: ", "" + languageDialogStartDownloading[info.getId()]);
 
         loadResource();
 
