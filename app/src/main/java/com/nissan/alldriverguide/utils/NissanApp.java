@@ -204,7 +204,6 @@ public class NissanApp {
     }
 
     /**
-     *
      * @param language_name compare with language sort name
      * @return Language full name as a string
      */
@@ -243,7 +242,7 @@ public class NissanApp {
     }
 
     /**
-     *@return Vuforia key
+     * @return Vuforia key
      */
     public String getVuforia_key() {
         return Vuforia_key;
@@ -281,8 +280,7 @@ public class NissanApp {
     }
 
     /**
-     *
-     * @param car compare with car
+     * @param car  compare with car
      * @param lang compare with language sort name
      * @return Language URL for specific car as a string
      */
@@ -678,7 +676,6 @@ public class NissanApp {
     }
 
     /**
-     *
      * @param path select car path location
      * @return true if car path is exist
      */
@@ -697,8 +694,9 @@ public class NissanApp {
 
     /**
      * display internet alert when internet is not available
+     *
      * @param activity getting activity
-     * @param msg display internet alert text
+     * @param msg      display internet alert text
      */
     public void showInternetAlert(Activity activity, String msg) {
         final Dialog dialog = new DialogController(activity).internetDialog();
@@ -788,7 +786,6 @@ public class NissanApp {
     }
 
     /**
-     *
      * @param carType for specific car epub
      * @return ePub folder ptah for specific car as a string
      */
@@ -860,6 +857,7 @@ public class NissanApp {
 
     /**
      * for getting local car asset URL
+     *
      * @param carType compare with specific car
      * @return specific car URL as a string
      */
@@ -938,9 +936,8 @@ public class NissanApp {
     }
 
     /**
-     *
      * @param activity
-     * @param lang for localized language in Android configuration
+     * @param lang     for localized language in Android configuration
      * @return Configuration by getting selected language
      */
     public Configuration changeLocalLanguage(Activity activity, String lang) {
@@ -988,8 +985,7 @@ public class NissanApp {
     }
 
     /**
-     *
-     * @param position indicate the car id
+     * @param position  indicate the car id
      * @param imageView set image by car id which display in list
      */
     public void setCarImage(int position, ImageView imageView) {
@@ -1122,7 +1118,7 @@ public class NissanApp {
                 imageView.setBackgroundResource(R.drawable.xtrail_2017_assistance);
                 break;
 
-            case 14 :
+            case 14:
                 imageView.setBackgroundResource(R.drawable.leaf_2017_assistance);
                 break;
 
@@ -1291,6 +1287,8 @@ public class NissanApp {
             langID = 11;
         } else if (language_name.equalsIgnoreCase("pt")) {
             langID = 12;
+        } else if (language_name.equalsIgnoreCase("null")) {
+            langID = 0;
         } else {
             langID = 1;
         }
@@ -1317,6 +1315,26 @@ public class NissanApp {
             return Values.WARRANTY_TYPE;
 
         return 0;
+    }
+
+    public String getDensityName(Context context) {
+        float density = context.getResources().getDisplayMetrics().density;
+        if (density >= 4.0) {
+            return "xxxhdpi";
+        }
+        if (density >= 3.0) {
+            return "xxhdpi";
+        }
+        if (density >= 2.0) {
+            return "xhdpi";
+        }
+        if (density >= 1.5) {
+            return "hdpi";
+        }
+        if (density >= 1.0) {
+            return "mdpi";
+        }
+        return "ldpi";
     }
 
 }
