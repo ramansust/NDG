@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nissan.alldriverguide.MainActivity;
@@ -21,6 +22,7 @@ import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.NissanApp;
+import com.nissan.alldriverguide.utils.Values;
 
 /**
  * Created by nirob on 4/19/18.
@@ -30,7 +32,8 @@ public class Feedback extends Fragment implements View.OnClickListener {
 
     private ImageView back;
     private Button btnSendFeedback;
-    EditText etTitle, etDescription;
+    private EditText etTitle, etDescription;
+    private TextView tvTitle, tvTitleField, tvDescriptionField;
     private PreferenceUtil preferenceUtil;
 
     public static Fragment newInstance() {
@@ -44,9 +47,22 @@ public class Feedback extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_feedback, container, false);
 
         initViews(view);
+        loadTextFromDatabase();
         setListener();
 
         return view;
+    }
+
+    private void loadTextFromDatabase() {
+
+        String pageTitle = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.FEEDBACK_TITLE);
+        tvTitle.setText(pageTitle.isEmpty() ? getActivity().getResources().getString(R.string.feedback) : pageTitle);
+        String titleField = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.TITLE_FIELD);
+        tvTitleField.setText(titleField.isEmpty() ? getActivity().getResources().getString(R.string.send_feedback_title) : titleField);
+        String descriptionField = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.DESCRIPTION_FIELD);
+        tvDescriptionField.setText(descriptionField.isEmpty() ? getActivity().getResources().getString(R.string.send_feedback_description) : descriptionField);
+        String send_feedback_button_text = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.SEND_FEEDBACK_BUTTON_TEXT);
+        btnSendFeedback.setText(send_feedback_button_text.isEmpty() ? getActivity().getResources().getString(R.string.send_feedback_button) : send_feedback_button_text);
     }
 
     /**
@@ -59,6 +75,9 @@ public class Feedback extends Fragment implements View.OnClickListener {
         btnSendFeedback = (Button) view.findViewById(R.id.send_feedback_button);
         etTitle = (EditText) view.findViewById(R.id.send_feedback_title);
         etDescription = (EditText) view.findViewById(R.id.send_feedback_description);
+        tvTitle = (TextView) view.findViewById(R.id.txt_title);
+        tvTitleField = (TextView) view.findViewById(R.id.tvTitleField);
+        tvDescriptionField = (TextView) view.findViewById(R.id.tvDescriptionField);
     }
 
     /**
@@ -152,7 +171,9 @@ public class Feedback extends Fragment implements View.OnClickListener {
                     preferenceUtil.setIsFirstTimeGreatNotGreat(false);
                     preferenceUtil.resetUserNavigationCount();
 
-                    Toast.makeText(getActivity(), getResources().getString(R.string.feedback_toast), Toast.LENGTH_SHORT).show();
+                    String toastMsg = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.SEND_FEEDBACK_COMPLETE_TOAST);
+
+                    Toast.makeText(getActivity(), toastMsg.isEmpty() ? getResources().getString(R.string.feedback_toast) : toastMsg, Toast.LENGTH_SHORT).show();
                     getActivity().onBackPressed();
                 }
             }
