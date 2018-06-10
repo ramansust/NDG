@@ -150,10 +150,13 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     }
 
     private void loadData() {
-        txtViewLearnMore.setText(resources.getString(R.string.video_learn_more));
-        txtViewWatchAgain.setText(resources.getString(R.string.video_watch_again));
-        txtViewTitle.setText(resources.getString(R.string.video_popup_msg));
-        txtViewLearnMoreAlways.setText(resources.getString(R.string.video_learn_more));
+        String learnMoreTitle = NissanApp.getInstance().getAlertMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.LEARN_MORE_TITLE);
+        String watchAgainMsg = NissanApp.getInstance().getAlertMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.WATCH_AGAIN_MSG);
+        String learnMoreMsg = NissanApp.getInstance().getAlertMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.LEARN_MORE_MSG);
+        txtViewLearnMore.setText(learnMoreMsg.isEmpty() ? resources.getString(R.string.video_learn_more) : learnMoreMsg);
+        txtViewWatchAgain.setText(watchAgainMsg.isEmpty() ? resources.getString(R.string.video_watch_again) : watchAgainMsg);
+        txtViewTitle.setText(learnMoreTitle.isEmpty() ? resources.getString(R.string.video_popup_msg) : learnMoreTitle);
+        txtViewLearnMoreAlways.setText(learnMoreMsg.isEmpty() ? resources.getString(R.string.video_learn_more) : learnMoreMsg);
 
         if (Values.carType == 12 || Values.carType == 13) { //for New Nissan QASHQAI and New Nissan X-TRAIL cars
             if (Values.videoIndex == 5) { // for 6 number video index learn more button will hide

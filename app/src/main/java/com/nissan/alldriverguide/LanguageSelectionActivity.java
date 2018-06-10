@@ -155,8 +155,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                 changeGlobalAlertMsg();
             } else {
 //                NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, getResources().getString(R.string.internet_connect));
-                String internetCheckMessage = getInternetCheckMessage();
-                NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage);
+                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+                NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
             }
         } else {
 
@@ -463,28 +463,5 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private void showErrorDialog(String msg) {
         DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
         dialogFragment.show(getSupportFragmentManager(), "error_fragment");
-    }
-
-    private String getInternetCheckMessage() {
-
-        String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
-
-        List<AlertMessage> alertMessageArrayList = NissanApp.getInstance().getAlertMessageGlobalArrayList();
-        if (alertMessageArrayList == null || alertMessageArrayList.size() == 0) {
-            Type type = new TypeToken<ArrayList<AlertMessage>>() {
-            }.getType();
-            alertMessageArrayList = new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key_global_alert_message), type);
-            NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageArrayList);
-        }
-
-
-        for (int i = 0; i < alertMessageArrayList.size(); i++) {
-
-            if (alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.ALERT_MSG_TYPE_INTERNET))
-                return alertMessageArrayList.get(i).getMsg();
-
-        }
-
-        return getResources().getString(R.string.internet_connect);
     }
 }

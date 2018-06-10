@@ -479,7 +479,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         if (isCarDownload) {
             txtViewTitle.setText(context.getResources().getString(R.string.alert_msg22));
         } else {
-            txtViewTitle.setText(getAlertMessage(preferenceUtil.getSelectedLang(), Values.DELETE_MESSAGE).isEmpty() ? context.getResources().getString(R.string.alert_msg23) : getAlertMessage(preferenceUtil.getSelectedLang(), Values.DELETE_MESSAGE));
+            txtViewTitle.setText(NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DELETE_MESSAGE).isEmpty() ? context.getResources().getString(R.string.alert_msg23) : NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DELETE_MESSAGE));
         }
 
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
@@ -624,7 +624,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
 
-        String textMsg = getAlertMessage(preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2);
+        String textMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2);
 
         if (TextUtils.isEmpty(textMsg))
             textMsg = activity.getResources().getString(R.string.download_msg);
@@ -852,7 +852,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     public void loadResource() {
         resources = new Resources(activity.getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(activity, preferenceUtil.getSelectedLang()));
         carNames = activity.getResources().getStringArray(R.array.car_names);
-        internetCheckMessage = getAlertMessage(preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+        internetCheckMessage = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
     }
 
     public void adapterNotify(boolean isDelete) {
@@ -925,32 +925,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         } else {
             frag.lstView.smoothScrollBy(2, 10);
         }
-    }
-
-    private String getAlertMessage(String lang_short_name, String msg_type) {
-
-        String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_short_name) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
-
-        List<AlertMessage> alertMessageArrayList = NissanApp.getInstance().getAlertMessageGlobalArrayList();
-        if (alertMessageArrayList == null || alertMessageArrayList.size() == 0) {
-            Type type = new TypeToken<ArrayList<AlertMessage>>() {
-            }.getType();
-            alertMessageArrayList = new Gson().fromJson(new PreferenceUtil(activity).retrieveMultiLangData(key_global_alert_message), type);
-            NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageArrayList);
-        }
-
-
-        for (int i = 0; i < alertMessageArrayList.size(); i++) {
-
-            if (msg_type.equalsIgnoreCase(Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2))
-                return alertMessageArrayList.get(i).getMsg();
-            if (msg_type.equalsIgnoreCase(Values.DELETE_MESSAGE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.DELETE_MESSAGE))
-                return alertMessageArrayList.get(i).getMsg();
-            if (msg_type.equalsIgnoreCase(Values.ALERT_MSG_TYPE_INTERNET) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.ALERT_MSG_TYPE_INTERNET))
-                return alertMessageArrayList.get(i).getMsg();
-        }
-
-        return "";
     }
 
 }

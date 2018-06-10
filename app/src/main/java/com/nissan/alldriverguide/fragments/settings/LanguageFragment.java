@@ -211,8 +211,8 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                 showDownloadAlert(languageShortName[list.get(position).getId()], position);
             } else {
 //                NissanApp.getInstance().showInternetAlert(getActivity(), getResources().getString(R.string.internet_connect));
-                String internetCheckMessage = getInternetCheckMessage(languageShortName[list.get(position).getId()]);
-                NissanApp.getInstance().showInternetAlert(getActivity(), internetCheckMessage);
+                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(getActivity(), languageShortName[list.get(position).getId()], Values.ALERT_MSG_TYPE_INTERNET);
+                NissanApp.getInstance().showInternetAlert(getActivity(), internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
             }
         }
 
@@ -484,26 +484,4 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         dialogFragment.show(getActivity().getSupportFragmentManager(), "error_fragment");
     }
 
-    private String getInternetCheckMessage(String lang_short_name) {
-
-        String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_short_name) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
-
-        List<AlertMessage> alertMessageArrayList = NissanApp.getInstance().getAlertMessageGlobalArrayList();
-        if (alertMessageArrayList == null || alertMessageArrayList.size() == 0) {
-            Type type = new TypeToken<ArrayList<AlertMessage>>() {
-            }.getType();
-            alertMessageArrayList = new Gson().fromJson(new PreferenceUtil(getActivity()).retrieveMultiLangData(key_global_alert_message), type);
-            NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageArrayList);
-        }
-
-
-        for (int i = 0; i < alertMessageArrayList.size(); i++) {
-
-            if (alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.ALERT_MSG_TYPE_INTERNET))
-                return alertMessageArrayList.get(i).getMsg();
-
-        }
-
-        return getResources().getString(R.string.internet_connect);
-    }
 }

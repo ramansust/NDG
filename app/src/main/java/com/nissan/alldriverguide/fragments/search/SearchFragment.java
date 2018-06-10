@@ -48,7 +48,7 @@ public class SearchFragment extends Fragment {
 
     private EditText getSearchKeyword;
     private ImageView imageViewClear;
-    private TextView tvClearRecentSearch;
+    private TextView tvClearRecentSearch, tvSectionHeader;
     private LinearLayout linearLayoutNoContent;
     private RelativeLayout relativeLayoutSectionHeader;
     private CommonDao commonDao;
@@ -93,10 +93,17 @@ public class SearchFragment extends Fragment {
 
         commonDao = CommonDao.getInstance();
         getSearchKeyword = (EditText) layout.findViewById(R.id.input_search);
-        getSearchKeyword.setHint(getResources().getString(R.string.search_box_hint).toUpperCase());// set hint text  allCaps
+        String search_tag_hint = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.SEARCH_HINT);
+        String clear_text = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.CLEAR);
+        String recent_search_text = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.RECENT_SEARCH);
+        getSearchKeyword.setHint(search_tag_hint.isEmpty() ? getResources().getString(R.string.search_box_hint).toUpperCase() : search_tag_hint.toUpperCase());// set hint text  allCaps
 
         imageViewClear = (ImageView) layout.findViewById(R.id.imageViewClearButton);
         tvClearRecentSearch = (TextView) layout.findViewById(R.id.tvClearSearch);
+        tvSectionHeader = (TextView) layout.findViewById(R.id.tvSectionHeader);
+
+        tvClearRecentSearch.setText(clear_text.isEmpty() ? resources.getString(R.string.clear) : clear_text);
+        tvSectionHeader.setText(recent_search_text.isEmpty() ? resources.getString(R.string.recent_search) : recent_search_text);
 
         relativeLayoutSectionHeader = (RelativeLayout) layout.findViewById(R.id.rlSectionHeader);
         //this is from top recent fragment
