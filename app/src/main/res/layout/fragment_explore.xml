@@ -73,11 +73,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/relative_top"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/relative_blind_spot_top"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true">
 
@@ -92,8 +92,8 @@
 
             <TextView
                 android:id="@+id/txt_blind_spot_ar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/ar_back"
+                android:layout_height="@dimen/ar_back"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:background="@color/white"
