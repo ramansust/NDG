@@ -259,7 +259,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
     private void changeGlobalAlertMsg(final LanguageInfo info, final LanguageList selectedModelClass){
-        new ApiCall().postGlobalAlertMsg("e224fb09fb8daee4", NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang())+"", new CompleteAlertAPI() {
+        new ApiCall().postGlobalAlertMsg("e224fb09fb8daee4", selectedModelClass.getLanguageId()+"", new CompleteAlertAPI() {
             @Override
             public void onDownloaded(GlobalMsgResponse responseInfo) {
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
