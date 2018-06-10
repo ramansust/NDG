@@ -22,8 +22,6 @@ import android.widget.TextView;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.adapter.LanguageSelectionAdapter;
@@ -39,6 +37,7 @@ import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.AlertMessage;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
+import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
@@ -53,7 +52,6 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,8 +111,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             public void languageListResponse(LanguageListResponse languageListResponse) {
 
                 languageListResponses = languageListResponse;
-
-
+                
                 languageName = new String[languageListResponses.getLanguageList().size()];
                 languageShortName = new String[languageListResponses.getLanguageList().size()];
                 cancelLangDownload = new String[languageListResponses.getLanguageList().size()];
@@ -130,22 +127,22 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     languageName[i] = (languageListResponse.getLanguageList().get(i).getLanguageName());
                     languageShortName[i] = (languageListResponse.getLanguageList().get(i).getLanguageShortcode());
 
-                    List<AlertMessage> alertMessages = languageListResponse.getLanguageList().get(i).getAlertMessage();
-                    msg = null;
-                    for (int j = 0; j < alertMessages.size(); j++) {
-                         msg = alertMessages.get(j);
-                        Log.e("ListResponse: ", msg.getMsg());
-                    }
+//                    List<AlertMessage> alertMessages = languageListResponse.getLanguageList().get(i).getAlertMessage();
+//                    msg = null;
+//                    for (int j = 0; j < alertMessages.size(); j++) {
+//                         msg = alertMessages.get(j);
+//                        Log.e("ListResponse: ", msg.getMsg());
+//                    }
+//
+//                    List<AlertMessage> alertType= languageListResponse.getLanguageList().get(i).getAlertMessage();
+//                    type = null;
+//                    for (int k = 0; k < alertType.size(); k++) {
+//                        type = alertType.get(k);
+//                        Log.e("ListResponse: ", type.getType());
+//                    }
 
-                    List<AlertMessage> alertType= languageListResponse.getLanguageList().get(i).getAlertMessage();
-                    type = null;
-                    for (int k = 0; k < alertType.size(); k++) {
-                        type = alertType.get(k);
-                        Log.e("ListResponse: ", type.getType());
-                    }
-
-                    cancelLangDownload[i] = (languageListResponse.getLanguageList().get(i).getCancel());
-                    okLangDownload[i] = (languageListResponse.getLanguageList().get(i).getOk());
+//                    cancelLangDownload[i] = (languageListResponse.getLanguageList().get(i).getCancel());
+//                    okLangDownload[i] = (languageListResponse.getLanguageList().get(i).getOk());
 
                     if("xxxhdpi".contains(deviceDensity)){
                         langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
@@ -236,11 +233,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
         if (NissanApp.getInstance().createPath(Values.PATH)) {
             if (DetectConnection.checkInternetConnection(getApplicationContext())) {
-                Log.e("internet on", "onItemClick: ");
-//                showCarDownloadDialogForSingleCar(info, languageModel);
                 changeGlobalAlertMsg(info, languageModel);
             } else {
-//                NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, getResources().getString(R.string.internet_connect));
                 String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
                 NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
             }
