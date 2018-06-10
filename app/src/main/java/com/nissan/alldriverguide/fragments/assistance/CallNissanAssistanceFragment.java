@@ -265,17 +265,11 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
             }
         });
 
-//        if (list.get(position).getNationalNumber().isEmpty()) {
-//            ((LinearLayout) dialog.findViewById(R.id.linear_national)).setVisibility(View.GONE);
-//        }
-        if (list.get(position).getNationalNumber() == null) {
+        if (list.get(position).getNationalNumber().isEmpty()) {
             ((LinearLayout) dialog.findViewById(R.id.linear_national)).setVisibility(View.GONE);
         }
 
-//        if (list.get(position).getInternationalNumber().isEmpty()) {
-//            ((LinearLayout) dialog.findViewById(R.id.linear_international)).setVisibility(View.GONE);
-//        }
-        if (list.get(position).getInternationalNumber() == null) {
+        if (list.get(position).getInternationalNumber().isEmpty()) {
             ((LinearLayout) dialog.findViewById(R.id.linear_international)).setVisibility(View.GONE);
         }
 

@@ -184,9 +184,11 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
      */
     private void startVideo() {
 
-        Log.e("Video Tag",""+NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl());
-        Uri video = Uri.parse(NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl());
-        videoView.setVideoURI(video);
+        if(NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl()!=null){
+            Log.e("Video Tag",""+NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl());
+            Uri video = Uri.parse(NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl());
+            videoView.setVideoURI(video);
+        }
         /*if (Values.carType == 1) {
             Uri video = Uri.parse(qashqaiEURBaseURL + new PreferenceUtil(getApplicationContext()).getSelectedLang() + "/" + qashqaiEURVideoNameArray[Values.videoIndex] + new PreferenceUtil(getApplicationContext()).getSelectedLang().toString().toUpperCase() + ".mp4");
             videoView.setVideoURI(video);

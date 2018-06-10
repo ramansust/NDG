@@ -143,11 +143,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         String new_Lan = new PreferenceUtil(getActivity()).getSelectedLang();
 
         if (old_Lan.equalsIgnoreCase("null")) {
-
             check_Data();
-
         } else {
-
             new PreferenceUtil(getActivity()).deleteMultiLangData(preSharedpref_key);
             check_Data();
         }
@@ -167,6 +164,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         } else {
             header_text = exploreModel.getHeaderXhdpi();
         }
+
+        Log.e("HeaderText ",""+header_text);
     }
 
     public void check_Data() {
@@ -179,7 +178,13 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             NissanApp.getInstance().setExploreVideoList(videoList);
 
             loadData();
-            apiCall();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    apiCall();
+                }
+            });
+
 
         } else {
             apiCall();
@@ -195,7 +200,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             public void onDownloaded(ExploreTabModel responseInfo) {
                 Log.e("Success", "" + responseInfo.getStatusCode());
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
-
                     new PreferenceUtil(getActivity()).storeExploreDataList(responseInfo, sharedpref_key);
                     videoList.clear();
                     exploreModel = new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key);
@@ -358,7 +362,12 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Values.videoIndex = position;
         // here start the playing video for grid view item click
-        startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
+
+        if(NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl()!=null){
+            Log.e("Video URl",""+NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl());
+            startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
+        }
+
     }
 
     /**

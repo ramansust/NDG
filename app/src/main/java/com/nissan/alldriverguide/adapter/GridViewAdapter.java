@@ -79,6 +79,7 @@ public class GridViewAdapter extends BaseAdapter {
         } else {
             img_name = video_list.get(position).getThumbXhdpi();
         }
+
         Glide.with(context)
                 .load(img_name)
                 .into(viewHolder.imageView);
