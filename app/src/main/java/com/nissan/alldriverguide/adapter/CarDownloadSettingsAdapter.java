@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -36,8 +37,9 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
-import com.nissan.alldriverguide.multiLang.model.AlertMessage;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
+import com.nissan.alldriverguide.multiLang.model.LanguageList;
+import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
@@ -73,11 +75,11 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     private Dialog dialog;
     private ArrayList<LanguageInfo> languageList;
     // declare the languages full name string array
-    private String[] languageName = {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};
+    private String[] languageName ;/*= {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};*/
     // declare the language sort name string array
-    private String[] languageShortName = {"en", "de", "fr", "it", "es", "nl", "ru", "sv", "no", "pl", "fi", "pt"};
+    private String[] languageShortName; /*= {"en", "de", "fr", "it", "es", "nl", "ru", "sv", "no", "pl", "fi", "pt"};*/
     // declare the language flag int array
-    private int[] languageImage = {R.drawable.united_kingdom, R.drawable.germany, R.drawable.france, R.drawable.italy, R.drawable.spain, R.drawable.netherlands, R.drawable.russia, R.drawable.sweden, R.drawable.norway, R.drawable.poland, R.drawable.finland, R.drawable.portugal};
+    private int[] languageImage; /*= {R.drawable.united_kingdom, R.drawable.germany, R.drawable.france, R.drawable.italy, R.drawable.spain, R.drawable.netherlands, R.drawable.russia, R.drawable.sweden, R.drawable.norway, R.drawable.poland, R.drawable.finland, R.drawable.portugal};*/
     public String lang = "";
     private Resources resources;
     private DisplayMetrics metrics;
@@ -85,7 +87,12 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     private String[] carNames;
     public ProgressDialog progressDialog;
     private String internetCheckMessage = "";
-
+    private LanguageListResponse languageListResponses;
+    private String[] languageDialogDownloadConfirmation, languageDialogInternetCheck, languageDialogDownloading, languageDialogStartDownloading, languageDialogSync, cancelLangDownload, okLangDownload;
+    private String deviceDensity;
+    private String[] langFlagUri;
+    private LanguageInfo info;
+    List<LanguageList> languageLists = new ArrayList<>();
 
     public CarDownloadSettingsAdapter(AddCarFragment frag, Activity activity, Context context, ArrayList<CarInfo> list) {
         this.activity = activity;
@@ -97,6 +104,19 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         preferenceUtil = new PreferenceUtil(context);
 
         loadResource();
+//        progressDialog = new ProgressDialogController(this.activity).showDialog("adfkaljshfkj");
+        deviceDensity = NissanApp.getInstance().getDensityName(this.activity);
+//        getDataCarWise();
+        getCarList();
+    }
+
+    private void getCarList() {
+
+        Type type = new TypeToken<ArrayList<LanguageList>>() {
+        }.getType();
+        languageLists = new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData("LanguageList"), type);
+
+
     }
 
     @Override
@@ -779,7 +799,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 }
 
                 LanguageInfo info = (LanguageInfo) parent.getAdapter().getItem(position);
-                lang = languageShortName[info.getId()];
+                lang = getLanguageShortName(info.getName()); //languageShortName[info.getId()];
                 showCarDownloadDialogForSingleCar(carType, true);
             }
         });
@@ -788,25 +808,25 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 //
 //        for (int i = 0; i < languageName.length; i++) {
 //            LanguageInfo info = new LanguageInfo(i, languageName[i], false, languageImage[i]);
-//            /*if (carType == 2 || carType == 5) {
-//                if (i == 0 || i == 6) {
-//                    languageList.add(info);
-//                }
-//            } else if (carType == 14) {
-//                if (i == 0) {
-//                    languageList.add(info);
-//                    break;
-//                }
-//            } else {
-//                if (carType == 7 || carType == 8 || carType == 9) {
-//                    if (i != 6) {
-//                        languageList.add(info);
-//                    }
-//                } else {
-//                    languageList.add(info);
-//                }
-//            }*/
-//
+            /*if (carType == 2 || carType == 5) {
+                if (i == 0 || i == 6) {
+                    languageList.add(info);
+                }
+            } else if (carType == 14) {
+                if (i == 0) {
+                    languageList.add(info);
+                    break;
+                }
+            } else {
+                if (carType == 7 || carType == 8 || carType == 9) {
+                    if (i != 6) {
+                        languageList.add(info);
+                    }
+                } else {
+                    languageList.add(info);
+                }
+            }*/
+
 //            if (carType == 2 || carType == 5) {
 //                if (i == 0 || i == 6) {
 //                    languageList.add(info);
@@ -825,13 +845,79 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 //                }
 //            }
 //        }
-//        lstView.setAdapter(new LanguageSelectionAdapter(context, languageList, false));
-//        lstView.setDivider(null);
-//        ColorDrawable sage = new ColorDrawable(context.getResources().getColor(R.color.line_color));
-//        lstView.setDivider(sage);
-//        lstView.setDividerHeight(4);
+
+        String deviceDensity = NissanApp.getInstance().getDensityName(context);
+
+        String[] langFlagUri = new String[languageLists.size()];
+
+        String shortCode = "";
+
+        for (int i = 0; i < languageLists.size(); i++) {
+
+            if("xxxhdpi".contains(deviceDensity)){
+                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getXxxhdpi();
+            } else if("xxhdpi".contains(deviceDensity)){
+                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getXxhdpi();
+            }else if("xhdpi".contains(deviceDensity)){
+                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getXhdpi();
+            }else if("hdpi".contains(deviceDensity)){
+                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getHdpi();
+            }else if("mdpi".contains(deviceDensity)){
+                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getHdpi();
+            }else if("ldpi".contains(deviceDensity)){
+                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getLdpi();
+            }
+
+            LanguageInfo info = new LanguageInfo(i, languageLists.get(i).getLanguageName(), false, langFlagUri[i]);
+            shortCode = languageLists.get(i).getLanguageShortcode();
+
+
+            if (carType == 2 || carType == 5) {
+
+                if (shortCode.equalsIgnoreCase("en") || shortCode.equalsIgnoreCase("ru"))
+                    languageList.add(info);
+
+//                if (i == 0 || i == 6) {
+//                    languageList.add(info);
+//                }
+            } else {
+                if (carType == 7 || carType == 8 || carType == 9) {
+                    if (!shortCode.equalsIgnoreCase("ru") || !shortCode.equalsIgnoreCase("no")) {
+//                    if (i != 6 && i != 8) {
+                        languageList.add(info);
+                    }
+                } else if (carType == 1 || carType == 3 || carType == 4 || carType == 6 || carType == 10 || carType == 11 || carType == 12 || carType == 13) {
+//                    if (i != 8) {
+                    if (!shortCode.equalsIgnoreCase("no")) {
+                        languageList.add(info);
+                    }
+                } else {
+                    languageList.add(info);
+                }
+            }
+
+//            languageList.add(info);
+        }
+
+        lstView.setAdapter(new LanguageSelectionAdapter(context, languageList, false));
+        lstView.setDivider(null);
+        ColorDrawable sage = new ColorDrawable(context.getResources().getColor(R.color.line_color));
+        lstView.setDivider(sage);
+        lstView.setDividerHeight(4);
 
         dialog.show();
+    }
+
+    private String getLanguageShortName(String name) {
+
+        for (int i = 0; i < languageLists.size(); i++) {
+
+            if (name.equalsIgnoreCase(languageLists.get(i).getLanguageName()))
+                return languageLists.get(i).getLanguageShortcode();
+
+        }
+
+        return "";
     }
 
     private void errorFileDelete(int carType) {
@@ -925,5 +1011,67 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             frag.lstView.smoothScrollBy(2, 10);
         }
     }
+
+    /******************************************/
+/*
+    private void getDataCarWise() {
+        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", progressDialog , new InterfaceLanguageListResponse() {
+            @Override
+            public void languageListResponse(LanguageListResponse languageListResponse) {
+
+                languageListResponses = languageListResponse;
+
+
+                languageName = new String[languageListResponses.getLanguageList().size()];
+                languageShortName = new String[languageListResponses.getLanguageList().size()];
+                langFlagUri =  new String[languageListResponses.getLanguageList().size()];
+
+                for(int i = 0; i <languageListResponses.getLanguageList().size(); i++){
+                    NissanApp.getInstance().setAlertMessageCarWiseLangDownloadList(languageListResponses.getLanguageList().get(i).getAlertMessage());
+                    languageName[i] = (languageListResponse.getLanguageList().get(i).getLanguageName());
+                    languageShortName[i] = (languageListResponse.getLanguageList().get(i).getLanguageShortcode());
+                    Log.e("***n", "lang: "+languageName[i]);
+                    Log.e("***sn", "languageListResponse: "+languageShortName[i] );
+
+//                    List<AlertMessage> alertMessages = languageListResponse.getLanguageList().get(i).getAlertMessage();
+//                    msg = null;
+//                    for (int j = 0; j < alertMessages.size(); j++) {
+//                         msg = alertMessages.get(j);
+//                        Log.e("ListResponse: ", msg.getMsg());
+//                    }
+//
+//                    List<AlertMessage> alertType= languageListResponse.getLanguageList().get(i).getAlertMessage();
+//                    type = null;
+//                    for (int k = 0; k < alertType.size(); k++) {
+//                        type = alertType.get(k);
+//                        Log.e("ListResponse: ", type.getType());
+//                    }
+
+//                    cancelLangDownload[i] = (languageListResponse.getLanguageList().get(i).getCancel());
+//                    okLangDownload[i] = (languageListResponse.getLanguageList().get(i).getOk());
+
+                    if("xxxhdpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                    } else if("xxhdpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxhdpi();
+                    }else if("xhdpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXhdpi();
+                    }else if("hdpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getHdpi();
+                    }else if("mdpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getHdpi();
+                    }else if("ldpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getLdpi();
+                    }
+                }
+                for(int i=0; i<languageListResponse.getLanguageList().size(); i++){
+
+                }
+                LanguageSelectionDialog(final int carType)
+//                loadData(langFlagUri);
+            }
+        });
+    }
+*/
 
 }
