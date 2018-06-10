@@ -24,8 +24,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.MainActivity;
@@ -41,8 +39,9 @@ import com.nissan.alldriverguide.interfaces.CompleteAlertAPI;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
-import com.nissan.alldriverguide.multiLang.model.AlertMessage;
+import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
+import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
@@ -55,17 +54,15 @@ import com.nissan.alldriverguide.utils.Values;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LanguageFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     NissanDbHelper dbHelper;
     SQLiteDatabase sqliteDB;
-    private String[] languageName = {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};
-    private String[] languageShortName = {"en", "de", "fr", "it", "es", "nl", "ru", "sv", "no", "pl", "fi", "pt"};
-    private int[] languageImage = {R.drawable.united_kingdom, R.drawable.germany, R.drawable.france, R.drawable.italy, R.drawable.spain, R.drawable.netherlands, R.drawable.russia, R.drawable.sweden, R.drawable.norway, R.drawable.poland, R.drawable.finland, R.drawable.portugal};
+    private String[] languageName; /*= {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};*/
+    private String[] languageShortName; /*= {"en", "de", "fr", "it", "es", "nl", "ru", "sv", "no", "pl", "fi", "pt"};*/
+    private int[] languageImage; /*= {R.drawable.united_kingdom, R.drawable.germany, R.drawable.france, R.drawable.italy, R.drawable.spain, R.drawable.netherlands, R.drawable.russia, R.drawable.sweden, R.drawable.norway, R.drawable.poland, R.drawable.finland, R.drawable.portugal};*/
     private View view;
     private ListView lstView;
     private ImageButton btnBack;
@@ -83,6 +80,10 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     private ProgressDialog progressDialog;
     private Activity activity;
     private Context context;
+    private LanguageListResponse languageListResponses;
+
+    private String deviceDensity;
+    private String[] langFlagUri;
 
     public static Fragment newInstance() {
         Fragment frag = new LanguageFragment();
@@ -93,12 +94,13 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_language, container, false);
-
+        progressDialog = new ProgressDialogController(getActivity()).showDialog("Loading");
+        deviceDensity = NissanApp.getInstance().getDensityName(getActivity());
+        getDataCarWise();
         initViews(view);
         loadResource();
         setListener();
-        loadData();
-
+//        loadData();
 
         return view;
     }
@@ -119,22 +121,56 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         txtBackTitle.setTypeface(tf);
     }
 
+    private void getDataCarWise() {
+        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", progressDialog , new InterfaceLanguageListResponse() {
+            @Override
+            public void languageListResponse(LanguageListResponse languageListResponse) {
+
+                languageListResponses = languageListResponse;
+
+                languageName = new String[languageListResponses.getLanguageList().size()];
+                languageShortName = new String[languageListResponses.getLanguageList().size()];
+                langFlagUri =  new String[languageListResponses.getLanguageList().size()];
+
+                for(int i = 0; i <languageListResponses.getLanguageList().size(); i++){
+                    languageName[i] = (languageListResponse.getLanguageList().get(i).getLanguageName());
+                    languageShortName[i] = (languageListResponse.getLanguageList().get(i).getLanguageShortcode());
+
+                    if("xxxhdpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                    } else if("xxhdpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxhdpi();
+                    }else if("xhdpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXhdpi();
+                    }else if("hdpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getHdpi();
+                    }else if("mdpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getHdpi();
+                    }else if("ldpi".contains(deviceDensity)){
+                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getLdpi();
+                    }
+                }
+                loadData(langFlagUri);
+            }
+        });
+    }
     /**
      * Here added the language to list according to car type;
      */
-    private void loadData() {
+    private void loadData(String FlagUrl[]) {
         list = new ArrayList<>();
 
         for (int i = 0; i < languageName.length; i++) {
             boolean isDownloaded;
-            // here check the epub existence on sdCard location
-            // if available on sdCard isDownloaded true else false;
-//            if (NissanApp.getInstance().isEpubExists(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + languageShortName[i], languageShortName[i])) {
-//                isDownloaded = true;
-//            } else {
-//                isDownloaded = false;
-//            }
-//            LanguageInfo info = new LanguageInfo(i, languageName[i], isDownloaded, languageImage[i]);
+//             here check the epub existence on sdCard location
+//             if available on sdCard isDownloaded true else false;
+            if (NissanApp.getInstance().isEpubExists(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + languageShortName[i], languageShortName[i])) {
+                isDownloaded = true;
+            } else {
+                isDownloaded = false;
+            }
+            LanguageInfo info = new LanguageInfo(i, languageName[i], isDownloaded, FlagUrl[i]);
+            list.add(info);
 //            if (Values.carType == 2 || Values.carType == 5) { // car type Qashqai Rus space and X-Trail Rus space added only two language
 //                if (i == 0 || i == 6) {
 //                    list.add(info);
