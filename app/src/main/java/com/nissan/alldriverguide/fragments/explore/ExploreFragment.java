@@ -240,7 +240,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        txtViewExplore.setBackground(drawable);
+                        //txtViewExplore.setBackground(drawable);
+                        txtViewExplore.setBackgroundResource(R.drawable.micra_eng);
                     }
                 }
             });
