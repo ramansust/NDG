@@ -40,7 +40,7 @@ public class TutorialViewPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return imageId.length;
+        return tutorialTitles.length;
     }
 
     @Override
