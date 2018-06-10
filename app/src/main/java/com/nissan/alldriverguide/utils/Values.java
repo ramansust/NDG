@@ -112,6 +112,9 @@ public class Values {
     public static final int RATE_APP_FIRST_SESSION = 30;
     public static final int RATE_APP_SECOND_SESSION = 15;
 
+    public static final String TUTORIAL = "multi_lang_tutorial";
+    public static final String TAB_MENU = "multi_lang_tab_menu";
+    public static final String CAR_LANGUAGE_LIST= "multi_lang_list";
     public static final String TUTORIAL_KEY = "multi_lang_tutorial";
     public static final String TAB_MENU_KEY = "multi_lang_tab_menu";
 
@@ -121,6 +124,7 @@ public class Values {
     public static final String EPUBID = "0";
     public static final String GLOBAL_MSG_KEY = "multi_lang_globalmsg";
     public static final String GLOBAL_ALERT_MSG_KEY = "multi_lang_global_alert_msg";
+    public static final String CAR_WISE_LANG_DOWNLOAD_ALERT_MSG = "multi_lang_car_wise_dl_list_alert_msg";
 
     public static final String ALERT_MSG_TYPE_INTERNET = "internet_check";
     public static final String ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_1 = "download_car_guide1";
@@ -129,5 +133,34 @@ public class Values {
     public static final String ASSISTANCE_OBJ_STORE_KEY = "assistance";
     public static final String  DELETE_MESSAGE = "delete_message";
     public static final String  REGISTER_PUSH_MESSAGE = "register_push";
+    public static final String  ALREADY_READ_IT = "already read";
+    public static final String  CHANGING_FLAT_TYRE = "please_read";
+    public static final String  CONFIRM_EXIT_MESSAGE = "confirm_exit";
+    public static final String  LEARN_MORE_TITLE = "learn_more_title";
+    public static final String  WATCH_AGAIN_MSG = "watch_again";
+    public static final String  LEARN_MORE_MSG = "learn_more";
+    public static final String SEARCH_HINT = "search";
+    public static final String RECENT_SEARCH = "recent";
+    public static final String CLEAR = "clear";
+    public static final String  INTERNET_CHECK = "internet_check";
+    public static final String  DOWNLOADING = "downloading";
+    public static final String  STARTING_DOWNLOAD = "starting_download";
+    public static final String  DATA_SYNCING = "data_syncing";
+    public static final String  DOWNLOAD_CONFIRMATION = "dowload_confirmation";
 
+    public static final String  RATE_OUR_APP_YES = "rate_our_app_yes";
+    public static final String  RATE_ASK_ME_LATER = "rate_ask_me_later";
+    public static final String  RATE_NO_THANKS = "rate_no_thanks";
+    public static final String  RATE_OUR_APP_SUBTITLE = "rate_our_app_sub_title";
+
+    public static final String  FEEDBACK_TITLE = "feedback";
+    public static final String  TITLE_FIELD = "send_feedback_title";
+    public static final String  DESCRIPTION_FIELD = "send_feedback_description";
+    public static final String  SEND_FEEDBACK_BUTTON_TEXT = "send_feedback_button";
+    public static final String  SEND_FEEDBACK_COMPLETE_TOAST = "feedback_toast";
+
+    public static final String  NEXT = "next";
+
+    public static final String  NATIONAL_MSG = "national";
+    public static final String  INTERNATIONAL_MSG = "international";
 }

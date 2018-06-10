@@ -12,7 +12,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,7 +94,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 //        txtViewDriverGuide.setText(resources.getString(R.string.driver_guide));
         txtViewDriverGuide.setText(assistanceInfo.getAssistanceTitle());
 //        txt_title.setText(resources.getString(R.string.assistance));
-        txt_title.setText(resources.getString(R.string.assistance));
+//        txt_title.setText(resources.getString(R.string.assistance));
+        txt_title.setText(NissanApp.getInstance().getTabMenuArrayList().get(1).getTitle());
 //        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.assistance_array), assistanceImage);
         adapter = new AssistanceAdapter(getActivity().getApplicationContext(), assistanceArray, assistanceImage);
         lstView.setAdapter(adapter);
@@ -160,24 +160,26 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             @Override
             public void onDownloaded(AssistanceInfo responseInfo) {
 
-                if (preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY) == null) {
-                    preferenceUtil.storeAssistanceData(responseInfo, Values.ASSISTANCE_OBJ_STORE_KEY);
-                    NissanApp.getInstance().setAssistanceInfo(preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY));
-                    Log.e("onDownloaded: ", "Assistance data successfully inserted");
-                } else {
-                    NissanApp.getInstance().setAssistanceInfo(preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY));
-                }
+                if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
-                if (assistanceInfo == null) {
-                    assistanceInfo = preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY);
-                    List<Datum> list = assistanceInfo.getData();
-                    assistanceArray = new String[list.size()];
-                    for (int i = 0; i < list.size(); i++) {
-                        assistanceArray[i] = list.get(i).getTitle();
+                    if (preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY) == null) {
+                        preferenceUtil.storeAssistanceData(responseInfo, Values.ASSISTANCE_OBJ_STORE_KEY);
+                        NissanApp.getInstance().setAssistanceInfo(preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY));
+                    } else {
+                        NissanApp.getInstance().setAssistanceInfo(preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY));
                     }
-                }
 
-                loadData();
+                    if (assistanceInfo == null) {
+                        assistanceInfo = preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY);
+                        List<Datum> list = assistanceInfo.getData();
+                        assistanceArray = new String[list.size()];
+                        for (int i = 0; i < list.size(); i++) {
+                            assistanceArray[i] = list.get(i).getTitle();
+                        }
+                    }
+
+                    loadData();
+                }
             }
 
             @Override

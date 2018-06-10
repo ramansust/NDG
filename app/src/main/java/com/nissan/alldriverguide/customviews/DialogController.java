@@ -5,8 +5,12 @@ import android.app.Dialog;
 import android.app.ActionBar.LayoutParams;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Window;
+import android.widget.TextView;
 
 import com.nissan.alldriverguide.R;
+import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.utils.NissanApp;
+import com.nissan.alldriverguide.utils.Values;
 
 public class DialogController {
 
@@ -109,6 +113,14 @@ public class DialogController {
         dialog.setCancelable(false);
         dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        String rate_this_app_yes_text = NissanApp.getInstance().getAlertMessage(activity, new PreferenceUtil(activity).getSelectedLang(), Values.RATE_OUR_APP_YES);
+        String rate_ask_me_later_text = NissanApp.getInstance().getAlertMessage(activity, new PreferenceUtil(activity).getSelectedLang(), Values.RATE_ASK_ME_LATER);
+        String rate_no_thanks_text = NissanApp.getInstance().getAlertMessage(activity, new PreferenceUtil(activity).getSelectedLang(), Values.RATE_NO_THANKS);
+        String rate_our_app_subtitle = NissanApp.getInstance().getAlertMessage(activity, new PreferenceUtil(activity).getSelectedLang(), Values.RATE_OUR_APP_SUBTITLE);
+        ((TextView) dialog.findViewById(R.id.txt_view_rate_this_app)).setText(rate_this_app_yes_text.isEmpty() ? activity.getResources().getString(R.string.rate_our_app_yes) : rate_this_app_yes_text);
+        ((TextView) dialog.findViewById(R.id.txt_view_ask_me_later)).setText(rate_ask_me_later_text.isEmpty() ? activity.getResources().getString(R.string.rate_ask_me_later) : rate_ask_me_later_text);
+        ((TextView) dialog.findViewById(R.id.txt_view_no_thanks)).setText(rate_no_thanks_text.isEmpty() ? activity.getResources().getString(R.string.rate_no_thanks) : rate_no_thanks_text);
+        ((TextView) dialog.findViewById(R.id.txt_sub_title)).setText(rate_our_app_subtitle.isEmpty() ? activity.getResources().getString(R.string.rate_our_app_sub_title) : rate_our_app_subtitle);
         return dialog;
     }
 

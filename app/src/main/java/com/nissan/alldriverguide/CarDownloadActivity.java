@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -49,11 +50,9 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
-import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.AlertMessage;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
-import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.pushnotification.Config;
 import com.nissan.alldriverguide.pushnotification.NotificationUtils;
 import com.nissan.alldriverguide.retrofit.ApiCall;
@@ -122,7 +121,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     private long doubleClickPopup = 0;
     private List<LanguageList> languageLists;
-    private LanguageListResponse languageListResponses;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -161,14 +159,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 }
             }
         };
-
-        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", new InterfaceLanguageListResponse() {
-            @Override
-            public void languageListResponse(LanguageListResponse languageListResponse) {
-                languageListResponses = languageListResponse;
-                languageListResponses.getLanguageList().size();
-            }
-        });
     }
 
     /**
@@ -1019,6 +1009,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private void startCarAssetsDownload(String assetsSource, String assetsDestination, String langSource, String langDestination) {
         // downloadCarAssets method download car asset and language both
         new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(Values.carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
+            @SuppressLint("StaticFieldLeak")
             @Override
             public boolean onComplete(boolean b) {
                 if (b) {

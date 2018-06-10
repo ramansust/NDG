@@ -4,7 +4,6 @@ import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
-import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
 
@@ -83,10 +82,6 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("car_wise_language_list/")
     Call<LanguageListResponse> languageList(@Field("device_id") String device_id, @Field("car_id") String car_id);
-    // post Car wise language List
-    @FormUrlEncoded
-    @POST("car_wise_language_list/")
-    Call<LanguageList> postCarwiseLanguageList(@Field("device_id") String device_id, @Field("language_id") String language_id);
 
     // post Explore Tab Content
     @FormUrlEncoded

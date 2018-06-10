@@ -312,7 +312,8 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 
         TextView tv = (TextView) dialog.findViewById(R.id.txt_title);
         if (index == 2) {
-            tv.setText(R.string.alert_msg42);
+            String changingFlatTyre = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.CHANGING_FLAT_TYRE);
+            tv.setText(changingFlatTyre.isEmpty() ? getResources().getString(R.string.alert_msg42) : changingFlatTyre);
             tyre = "tyre gifs";
 
         } else if (index == 6) {
@@ -332,7 +333,8 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
         });
 
         Button dialogButton2 = (Button) dialog.findViewById(R.id.btn_already);
-        dialogButton2.setText(R.string.alert_msg41);
+        String alreadyReadIt = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.ALREADY_READ_IT);
+        dialogButton2.setText(alreadyReadIt.isEmpty() ? getResources().getString(R.string.alert_msg41) : alreadyReadIt+"shuvo");
 
         dialogButton2.setOnClickListener(new android.view.View.OnClickListener() {
             @Override

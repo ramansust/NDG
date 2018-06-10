@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.epub.XMLParser;
 import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.BuildConfig;
@@ -40,6 +42,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -62,8 +65,15 @@ public class NissanApp {
     private Configuration conf;
     private ArrayList<TabMenu> tabMenuArrayList;
     private ArrayList<Tutorial> tutorialArrayList;
-    private List<AlertMessage> alertMessageGlobalArrayList;
+    private List<AlertMessage> alertMessageGlobalArrayList, alertMessageCarWiseLangDownloadList;
     private List<GlobalMessage> globalMessageArrayList;
+    public List<AlertMessage> getAlertMessageCarWiseLangDownloadList() {
+        return alertMessageCarWiseLangDownloadList;
+    }
+
+    public void setAlertMessageCarWiseLangDownloadList(List<AlertMessage> alertMessageGlobalArrayList) {
+        this.alertMessageGlobalArrayList = alertMessageCarWiseLangDownloadList;
+    }
 
     public List<AlertMessage> getAlertMessageGlobalArrayList() {
         return alertMessageGlobalArrayList;
@@ -204,6 +214,7 @@ public class NissanApp {
     }
 
     /**
+     *
      * @param language_name compare with language sort name
      * @return Language full name as a string
      */
@@ -242,7 +253,7 @@ public class NissanApp {
     }
 
     /**
-     * @return Vuforia key
+     *@return Vuforia key
      */
     public String getVuforia_key() {
         return Vuforia_key;
@@ -280,7 +291,8 @@ public class NissanApp {
     }
 
     /**
-     * @param car  compare with car
+     *
+     * @param car compare with car
      * @param lang compare with language sort name
      * @return Language URL for specific car as a string
      */
@@ -676,6 +688,7 @@ public class NissanApp {
     }
 
     /**
+     *
      * @param path select car path location
      * @return true if car path is exist
      */
@@ -694,9 +707,8 @@ public class NissanApp {
 
     /**
      * display internet alert when internet is not available
-     *
      * @param activity getting activity
-     * @param msg      display internet alert text
+     * @param msg display internet alert text
      */
     public void showInternetAlert(Activity activity, String msg) {
         final Dialog dialog = new DialogController(activity).internetDialog();
@@ -786,6 +798,7 @@ public class NissanApp {
     }
 
     /**
+     *
      * @param carType for specific car epub
      * @return ePub folder ptah for specific car as a string
      */
@@ -857,7 +870,6 @@ public class NissanApp {
 
     /**
      * for getting local car asset URL
-     *
      * @param carType compare with specific car
      * @return specific car URL as a string
      */
@@ -936,8 +948,9 @@ public class NissanApp {
     }
 
     /**
+     *
      * @param activity
-     * @param lang     for localized language in Android configuration
+     * @param lang for localized language in Android configuration
      * @return Configuration by getting selected language
      */
     public Configuration changeLocalLanguage(Activity activity, String lang) {
@@ -985,7 +998,8 @@ public class NissanApp {
     }
 
     /**
-     * @param position  indicate the car id
+     *
+     * @param position indicate the car id
      * @param imageView set image by car id which display in list
      */
     public void setCarImage(int position, ImageView imageView) {
@@ -1118,7 +1132,7 @@ public class NissanApp {
                 imageView.setBackgroundResource(R.drawable.xtrail_2017_assistance);
                 break;
 
-            case 14:
+            case 14 :
                 imageView.setBackgroundResource(R.drawable.leaf_2017_assistance);
                 break;
 
@@ -1287,8 +1301,6 @@ public class NissanApp {
             langID = 11;
         } else if (language_name.equalsIgnoreCase("pt")) {
             langID = 12;
-        } else if (language_name.equalsIgnoreCase("null")) {
-            langID = 0;
         } else {
             langID = 1;
         }
@@ -1335,6 +1347,93 @@ public class NissanApp {
             return "mdpi";
         }
         return "ldpi";
+    }
+
+    public String getAlertMessage(Context context, String lang_short_name, String msg_type) {
+
+        String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_short_name) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
+
+        List<AlertMessage> alertMessageArrayList = NissanApp.getInstance().getAlertMessageGlobalArrayList();
+        if (alertMessageArrayList == null || alertMessageArrayList.size() == 0) {
+            Type type = new TypeToken<ArrayList<AlertMessage>>() {
+            }.getType();
+            alertMessageArrayList = new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData(key_global_alert_message), type);
+            NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageArrayList);
+        }
+
+
+        for (int i = 0; i < alertMessageArrayList.size(); i++) {
+
+            if (msg_type.equalsIgnoreCase(Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_1) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_1))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.DELETE_MESSAGE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.DELETE_MESSAGE))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.ALERT_MSG_TYPE_INTERNET) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.ALERT_MSG_TYPE_INTERNET))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.ALREADY_READ_IT) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.ALREADY_READ_IT))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.CHANGING_FLAT_TYRE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.CHANGING_FLAT_TYRE))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.CONFIRM_EXIT_MESSAGE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.CONFIRM_EXIT_MESSAGE))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.LEARN_MORE_TITLE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.LEARN_MORE_TITLE))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.WATCH_AGAIN_MSG) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.WATCH_AGAIN_MSG))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.LEARN_MORE_MSG) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.LEARN_MORE_MSG))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.RATE_OUR_APP_YES) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.RATE_OUR_APP_YES))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.RATE_ASK_ME_LATER) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.RATE_ASK_ME_LATER))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.RATE_NO_THANKS) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.RATE_NO_THANKS))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.RATE_OUR_APP_SUBTITLE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.RATE_OUR_APP_SUBTITLE))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.FEEDBACK_TITLE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.FEEDBACK_TITLE))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.TITLE_FIELD) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.TITLE_FIELD))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.DESCRIPTION_FIELD) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.DESCRIPTION_FIELD))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.SEND_FEEDBACK_BUTTON_TEXT) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.SEND_FEEDBACK_BUTTON_TEXT))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.SEND_FEEDBACK_COMPLETE_TOAST) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.SEND_FEEDBACK_COMPLETE_TOAST))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.NATIONAL_MSG) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.NATIONAL_MSG))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.INTERNATIONAL_MSG) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.INTERNATIONAL_MSG))
+                return alertMessageArrayList.get(i).getMsg();
+
+        }
+
+        return "";
+    }
+
+    public String getGlobalMessage(Context context, String lang_short_name, String msg_type) {
+
+        String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_short_name) + "_" + Values.GLOBAL_MSG_KEY;
+
+        List<GlobalMessage> globalMessageList = NissanApp.getInstance().getGlobalMessageArrayList();
+        if (globalMessageList == null || globalMessageList.size() == 0) {
+            Type type = new TypeToken<ArrayList<GlobalMessage>>() {
+            }.getType();
+            globalMessageList = new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData(key_global_message), type);
+            NissanApp.getInstance().setGlobalMessageArrayList(globalMessageList);
+        }
+
+        if (globalMessageList == null || globalMessageList.size() == 0)
+            return "";
+        if (msg_type.equalsIgnoreCase(Values.SEARCH_HINT))
+            return globalMessageList.get(0).getSearch();
+        if (msg_type.equalsIgnoreCase(Values.RECENT_SEARCH))
+            return globalMessageList.get(0).getRecent();
+        if (msg_type.equalsIgnoreCase(Values.CLEAR))
+            return globalMessageList.get(0).getClear();
+
+        return "";
     }
 
 }
