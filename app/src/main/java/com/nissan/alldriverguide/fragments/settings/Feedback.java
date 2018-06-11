@@ -135,6 +135,7 @@ public class Feedback extends Fragment implements View.OnClickListener {
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
+
                 String title = etTitle.getText().toString().trim();
                 String description = etDescription.getText().toString().trim();
 
@@ -153,8 +154,12 @@ public class Feedback extends Fragment implements View.OnClickListener {
                 } else {
                     etTitle.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.send_feedback_title_bg));
                     etDescription.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.send_feedback_title_bg));
-
-                    sendFeedback(title, description);
+                    if (DetectConnection.checkInternetConnection(getActivity())) {
+                        sendFeedback(title, description);
+                    }else {
+                            String internetCheckMessage = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+                            NissanApp.getInstance().showInternetAlert(this.getActivity(), internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
+                        }
                 }
 
                 break;
@@ -191,9 +196,6 @@ public class Feedback extends Fragment implements View.OnClickListener {
                     Log.e("onDownloaded: ", failedReason);
                 }
             });
-        }else {
-            String internetCheckMessage = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
-            NissanApp.getInstance().showInternetAlert(this.getActivity(), internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
         }
     }
 }
