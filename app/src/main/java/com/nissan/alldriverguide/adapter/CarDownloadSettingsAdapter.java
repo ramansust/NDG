@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,6 +110,19 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         deviceDensity = NissanApp.getInstance().getDensityName(this.activity);
 //        getDataCarWise();
         getCarList();
+
+        for (int i = 0; i < carNames.length; i++) {
+
+//            Log.e("carname", "_______" + carNames[i]);
+
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+
+//            Log.e("list_name", "_______" + list.get(i).getName());
+
+        }
+
     }
 
     private void getCarList() {
@@ -185,12 +199,12 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         } else if ("0".equalsIgnoreCase(list.get(position).getStatus())) {
             NissanApp.getInstance().setCarImage(list.get(position).getId(), viewHolder.imageView);
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
-/*            if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5) {
+            if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5) {
                 String name[] = (carNames[list.get(position).getId() - 1]).split(" ");
                 viewHolder.txtViewTitle.setText(name[0]);
             } else {
                 viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
-            }*/
+            }
         } else {
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
         }

@@ -223,7 +223,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 final Dialog dialog = new DialogController(activity).pushRegistrationDialog();
 
                 TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-                txtViewTitle.setText(getAlertMessage(preferenceUtil.getSelectedLang(), Values.REGISTER_PUSH_MESSAGE).isEmpty() ? getResources().getString(R.string.register_push) : getAlertMessage(preferenceUtil.getSelectedLang(), Values.REGISTER_PUSH_MESSAGE));
+                String pushTitle = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.REGISTER_PUSH_MESSAGE);
+                txtViewTitle.setText(pushTitle.isEmpty() ? getResources().getString(R.string.register_push) : pushTitle);
                 Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
                 Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
 
@@ -1178,26 +1179,5 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private void showErrorDialog(String msg) {
         DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
         dialogFragment.show(getSupportFragmentManager(), "error_fragment");
-    }
-
-    private String getAlertMessage(String lang_short_name, String msg_type) {
-
-        String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_short_name) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
-
-        List<AlertMessage> alertMessageArrayList = NissanApp.getInstance().getAlertMessageGlobalArrayList();
-        if (alertMessageArrayList == null || alertMessageArrayList.size() == 0) {
-            Type type = new TypeToken<ArrayList<AlertMessage>>() {
-            }.getType();
-            alertMessageArrayList = new Gson().fromJson(new PreferenceUtil(activity).retrieveMultiLangData(key_global_alert_message), type);
-            NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageArrayList);
-        }
-
-        for (int i = 0; i < alertMessageArrayList.size(); i++) {
-
-            if (msg_type.equalsIgnoreCase(Values.REGISTER_PUSH_MESSAGE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.REGISTER_PUSH_MESSAGE))
-                return alertMessageArrayList.get(i).getMsg();
-        }
-
-        return "";
     }
 }

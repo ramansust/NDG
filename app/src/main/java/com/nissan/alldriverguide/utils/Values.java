@@ -133,8 +133,10 @@ public class Values {
     public static final String ASSISTANCE_OBJ_STORE_KEY = "assistance";
     public static final String  DELETE_MESSAGE = "delete_message";
     public static final String  REGISTER_PUSH_MESSAGE = "register_push";
-    public static final String  ALREADY_READ_IT = "already read";
+    public static final String  ALREADY_READ_IT = "already_read";
+    public static final String  READ = "read";
     public static final String  CHANGING_FLAT_TYRE = "please_read";
+    public static final String  USING_TYRE_PUNCTURE = "please_read_tyre_puncture";
     public static final String  CONFIRM_EXIT_MESSAGE = "confirm_exit";
     public static final String  LEARN_MORE_TITLE = "learn_more_title";
     public static final String  WATCH_AGAIN_MSG = "watch_again";
