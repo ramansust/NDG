@@ -136,8 +136,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         preSharedpref_key = new PreferenceUtil(getActivity()).getPreviousLanguage() + "_" + Values.EXPLOREDATA;
         sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.EXPLOREDATA;
-        Log.e("Pre Shared Key", "---  " + preSharedpref_key);
-        Log.e("Cur Shared Key", "---  " + sharedpref_key);
 
         String old_Lan = new PreferenceUtil(getActivity()).getPreviousLanguage();
         String new_Lan = new PreferenceUtil(getActivity()).getSelectedLang();
@@ -152,29 +150,20 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     public void check_density() {
 
-        String method ;
         if (device_density.equalsIgnoreCase("xxxhdpi")) {
             header_text = exploreModel.getHeaderXxxhdpi();
-            method = "exploreModel.getHeaderXxxhdpi()"+ "   density  " +  device_density;
         } else if (device_density.equalsIgnoreCase("xxhdpi")) {
             header_text = exploreModel.getHeaderXxhdpi();
-            method = "exploreModel.getHeaderXxhdpi()"+ "   density  " +  device_density;
         } else if (device_density.equalsIgnoreCase("xhdpi")) {
             header_text = exploreModel.getHeaderXhdpi();
-            method = "exploreModel.getHeaderXhdpi()" + "   density  " +  device_density;
         } else if (device_density.equalsIgnoreCase("hdpi")) {
             header_text = exploreModel.getHeaderHdpi();
-            method = "exploreModel.getHeaderHdpi()"+ "   density  " +  device_density;
         } else if (device_density.equalsIgnoreCase("ldpi")) {
             header_text = exploreModel.getHeaderLdpi();
-            method = "exploreModel.getHeaderLdpi()"+ "   density  " +  device_density;
         } else {
             header_text = exploreModel.getHeaderXhdpi();
-            method = "else exploreModel.getHeaderXhdpi()"+ "   density  " +  device_density;
 
         }
-
-        Log.e("HeaderText ",""+header_text + "  method  ---  " + method);
     }
 
     public void check_Data() {
@@ -202,7 +191,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         new ApiCall().postExploreTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1", new CompleteExploreTabContent() {
             @Override
             public void onDownloaded(ExploreTabModel responseInfo) {
-                Log.e("Success", "" + responseInfo.getStatusCode());
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
                     new PreferenceUtil(getActivity().getApplicationContext()).storeExploreDataList(responseInfo, sharedpref_key);
                     videoList.clear();
@@ -216,7 +204,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
             @Override
             public void onFailed(String failedReason) {
-                Log.e("Error", "" + failedReason);
             }
         });
     }
@@ -354,7 +341,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 // here start the ImageTargetActivity class for AR
             case R.id.btn_blind_spot_ar:
-                Log.e("Blind SPot Click","   ---  " + btnBlindSpotAR);
                 startActivity(new Intent(getActivity(), ImageTargetActivity.class));
                 break;
 
@@ -368,8 +354,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         Values.videoIndex = position;
         // here start the playing video for grid view item click
 
-        if(NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl()!=null){
-            Log.e("Video URl",""+NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl());
+        if (NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl() != null) {
             startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
         }
 

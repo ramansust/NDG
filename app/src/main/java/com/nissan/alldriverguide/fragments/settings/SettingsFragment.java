@@ -111,8 +111,6 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
 
         } else {
             new PreferenceUtil(getActivity()).deleteMultiLangData(preSharedpref_key);
-            Log.e("Old Lan Not Null ", "--presha-  " + preSharedpref_key);
-            Log.e("Old Lan Not Null ", "--share-  " + sharedpref_key);
             check_Data();
         }
     }
@@ -123,7 +121,6 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         new ApiCall().postSettingTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "4", new CompleteSettingTabContent() {
             @Override
             public void onDownloaded(SettingsTabModel responseInfo) {
-                Log.e("SettingsFragment", "onDownloaded: "+responseInfo.getStatusCode());
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
                     settingList = new ArrayList<>();
                     settingList = responseInfo.getData();
@@ -139,7 +136,6 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
 
             @Override
             public void onFailed(String failedReason) {
-                Log.e("SettingsFragment", "onFailed: "+failedReason);
             }
         });
     }
