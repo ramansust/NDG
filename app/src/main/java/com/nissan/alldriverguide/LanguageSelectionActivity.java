@@ -178,6 +178,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             languageName[i] = (languageLists.get(i).getLanguageName());
             languageShortName[i] = (languageLists.get(i).getLanguageShortcode());
 
+            Log.e("--", ": "+languageName[i] );
             if("xxxhdpi".contains(deviceDensity)){
                 langFlagUri[i] = languageLists.get(i).getLanguageFlag().getXxxhdpi();
             } else if("xxhdpi".contains(deviceDensity)){
@@ -228,6 +229,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         for (int i = 0; i < languageName.length; i++) {
 
             LanguageInfo info = new LanguageInfo(i, languageName[i], false, FlagUrl[i]);
+            Log.e("**", "loadData: "+languageName[i]);
 //            list.add(info);
             // display 2 languages only for car type 2 and 5
             if (Values.carType == 2 || Values.carType == 5) {

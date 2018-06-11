@@ -117,6 +117,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
         if (preferenceUtil.retrieveAssistanceData(sharedpref_key) != null) {
             assistanceInfo = preferenceUtil.retrieveAssistanceData(sharedpref_key);
+            NissanApp.getInstance().setAssistanceInfo(preferenceUtil.retrieveAssistanceData(sharedpref_key)); //added by nirob
             Log.e("Local Check ", "  " + assistanceInfo.getSelectedCar());
             List<Datum> list = assistanceInfo.getData();
             assistanceArray = new String[list.size()];
