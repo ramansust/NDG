@@ -165,7 +165,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
      * Initialized all variable
      */
     private void getGlobalAlertMsg(){
-        new ApiCall().postGlobalAlertMsg("e224fb09fb8daee4", "1", new CompleteAlertAPI() {
+        new ApiCall().postGlobalAlertMsg(NissanApp.getInstance().getDeviceID(getApplicationContext()), "1", new CompleteAlertAPI() {
             @Override
             public void onDownloaded(GlobalMsgResponse responseInfo) {
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
@@ -914,10 +914,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     private void getRegIdForPush() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
-//        String regId = pref.getString("regId", null);
-        String regId = "e224fb09fb8daee4";//auve
-
-        Logger.error("Firebase reg id: " + NissanApp.getInstance().getDeviceID(getApplicationContext()), "_________" + regId);
+        String regId = pref.getString("regId", null);
 
         new ApiCall().postDeviceRegistrationForPush(NissanApp.getInstance().getDeviceID(getApplicationContext()), regId, Values.DEVICE_TYPE, new CompleteAPI() {
             @Override

@@ -122,7 +122,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     private void getDataCarWise() {
-        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", progressDialog , new InterfaceLanguageListResponse() {
+        new ApiCall().getLanguageList(NissanApp.getInstance().getDeviceID(getActivity()), ""+Values.carType, progressDialog , new InterfaceLanguageListResponse() {
             @Override
             public void languageListResponse(LanguageListResponse languageListResponse) {
 
@@ -257,7 +257,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
         final String lang_sort_name = languageShortName[list.get(position).getId()];
 
-        new ApiCall().postGlobalAlertMsg("e224fb09fb8daee4", NissanApp.getInstance().getLanguageID(lang_sort_name)+"", new CompleteAlertAPI() {
+        new ApiCall().postGlobalAlertMsg(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(lang_sort_name)+"", new CompleteAlertAPI() {
             @Override
             public void onDownloaded(GlobalMsgResponse responseInfo) {
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {

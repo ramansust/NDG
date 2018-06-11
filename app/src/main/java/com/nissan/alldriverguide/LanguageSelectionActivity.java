@@ -98,7 +98,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language_selection);
 
-        progressDialog = new ProgressDialogController(this).showDialog("adfkaljshfkj");
+        progressDialog = new ProgressDialogController(this).showDialog("");
         deviceDensity = NissanApp.getInstance().getDensityName(this);
         getDataCarWise();
         initViews();
@@ -106,12 +106,10 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
     private void getDataCarWise() {
-        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", progressDialog , new InterfaceLanguageListResponse() {
+        new ApiCall().getLanguageList(NissanApp.getInstance().getDeviceID(getApplicationContext()), Values.carType+"", progressDialog , new InterfaceLanguageListResponse() {
             @Override
             public void languageListResponse(LanguageListResponse languageListResponse) {
-
                 languageListResponses = languageListResponse;
-
 
                 languageName = new String[languageListResponses.getLanguageList().size()];
                 languageShortName = new String[languageListResponses.getLanguageList().size()];
@@ -127,23 +125,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     languageDialogSync = new String[languageListResponses.getLanguageList().get(i).getAlertMessage().size()];
                     languageName[i] = (languageListResponse.getLanguageList().get(i).getLanguageName());
                     languageShortName[i] = (languageListResponse.getLanguageList().get(i).getLanguageShortcode());
-
-//                    List<AlertMessage> alertMessages = languageListResponse.getLanguageList().get(i).getAlertMessage();
-//                    msg = null;
-//                    for (int j = 0; j < alertMessages.size(); j++) {
-//                         msg = alertMessages.get(j);
-//                        Log.e("ListResponse: ", msg.getMsg());
-//                    }
-//
-//                    List<AlertMessage> alertType= languageListResponse.getLanguageList().get(i).getAlertMessage();
-//                    type = null;
-//                    for (int k = 0; k < alertType.size(); k++) {
-//                        type = alertType.get(k);
-//                        Log.e("ListResponse: ", type.getType());
-//                    }
-
-//                    cancelLangDownload[i] = (languageListResponse.getLanguageList().get(i).getCancel());
-//                    okLangDownload[i] = (languageListResponse.getLanguageList().get(i).getOk());
 
                     if("xxxhdpi".contains(deviceDensity)){
                         langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
@@ -184,29 +165,29 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
      * Load the initial data into list
      */
     private void loadData(String FlagUrl[]) {
-        Log.e("***", "loadData: "+ languageName.length);
+
         for (int i = 0; i < languageName.length; i++) {
 
             LanguageInfo info = new LanguageInfo(i, languageName[i], false, FlagUrl[i]);
-            list.add(info);
+//            list.add(info);
             // display 2 languages only for car type 2 and 5
-//            if (Values.carType == 2 || Values.carType == 5) {
-//                if (i == 0 || i == 6) {
-//                    list.add(info);
-//                }
-//            } else {
-//                if (Values.carType == 7 || Values.carType == 8 || Values.carType == 9) {
-//                    if (i != 6 && i != 8) {
-//                        list.add(info);
-//                    }
-//                } else if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 6 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13) {
-//                    if (i != 8) {
-//                        list.add(info);
-//                    }
-//                } else {
-//                    list.add(info);
-//                }
-//            }
+            if (Values.carType == 2 || Values.carType == 5) {
+                if (i == 0 || i == 6) {
+                    list.add(info);
+                }
+            } else {
+                if (Values.carType == 7 || Values.carType == 8 || Values.carType == 9) {
+                    if (i != 6 && i != 8) {
+                        list.add(info);
+                    }
+                } else if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 6 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13) {
+                    if (i != 8) {
+                        list.add(info);
+                    }
+                } else {
+                    list.add(info);
+                }
+            }
         }
 
         adapter = new LanguageSelectionAdapter(getApplicationContext(), list, false);
@@ -259,7 +240,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
     private void changeGlobalAlertMsg(final LanguageInfo info, final LanguageList selectedModelClass){
-        new ApiCall().postGlobalAlertMsg("e224fb09fb8daee4", selectedModelClass.getLanguageId()+"", new CompleteAlertAPI() {
+        new ApiCall().postGlobalAlertMsg(NissanApp.getInstance().getDeviceID(getApplicationContext()), selectedModelClass.getLanguageId()+"", new CompleteAlertAPI() {
             @Override
             public void onDownloaded(GlobalMsgResponse responseInfo) {
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {

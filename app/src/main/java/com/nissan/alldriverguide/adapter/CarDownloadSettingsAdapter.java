@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -283,6 +284,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             public boolean onComplete(boolean status) {
                 if (status) {
                     activity.runOnUiThread(new Runnable() {
+                        @SuppressLint("StaticFieldLeak")
                         @Override
                         public void run() {
                             if (progressDialog != null) {
@@ -464,7 +466,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
     private void changeGlobalAlertMsg(){
 
-        new ApiCall().postGlobalAlertMsg("e224fb09fb8daee4", NissanApp.getInstance().getLanguageID(lang)+"", new CompleteAlertAPI() {
+        new ApiCall().postGlobalAlertMsg(NissanApp.getInstance().getDeviceID(context), NissanApp.getInstance().getLanguageID(lang)+"", new CompleteAlertAPI() {
             @Override
             public void onDownloaded(GlobalMsgResponse responseInfo) {
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
@@ -1011,67 +1013,5 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             frag.lstView.smoothScrollBy(2, 10);
         }
     }
-
-    /******************************************/
-/*
-    private void getDataCarWise() {
-        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", progressDialog , new InterfaceLanguageListResponse() {
-            @Override
-            public void languageListResponse(LanguageListResponse languageListResponse) {
-
-                languageListResponses = languageListResponse;
-
-
-                languageName = new String[languageListResponses.getLanguageList().size()];
-                languageShortName = new String[languageListResponses.getLanguageList().size()];
-                langFlagUri =  new String[languageListResponses.getLanguageList().size()];
-
-                for(int i = 0; i <languageListResponses.getLanguageList().size(); i++){
-                    NissanApp.getInstance().setAlertMessageCarWiseLangDownloadList(languageListResponses.getLanguageList().get(i).getAlertMessage());
-                    languageName[i] = (languageListResponse.getLanguageList().get(i).getLanguageName());
-                    languageShortName[i] = (languageListResponse.getLanguageList().get(i).getLanguageShortcode());
-                    Log.e("***n", "lang: "+languageName[i]);
-                    Log.e("***sn", "languageListResponse: "+languageShortName[i] );
-
-//                    List<AlertMessage> alertMessages = languageListResponse.getLanguageList().get(i).getAlertMessage();
-//                    msg = null;
-//                    for (int j = 0; j < alertMessages.size(); j++) {
-//                         msg = alertMessages.get(j);
-//                        Log.e("ListResponse: ", msg.getMsg());
-//                    }
-//
-//                    List<AlertMessage> alertType= languageListResponse.getLanguageList().get(i).getAlertMessage();
-//                    type = null;
-//                    for (int k = 0; k < alertType.size(); k++) {
-//                        type = alertType.get(k);
-//                        Log.e("ListResponse: ", type.getType());
-//                    }
-
-//                    cancelLangDownload[i] = (languageListResponse.getLanguageList().get(i).getCancel());
-//                    okLangDownload[i] = (languageListResponse.getLanguageList().get(i).getOk());
-
-                    if("xxxhdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
-                    } else if("xxhdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxhdpi();
-                    }else if("xhdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXhdpi();
-                    }else if("hdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getHdpi();
-                    }else if("mdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getHdpi();
-                    }else if("ldpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getLdpi();
-                    }
-                }
-                for(int i=0; i<languageListResponse.getLanguageList().size(); i++){
-
-                }
-                LanguageSelectionDialog(final int carType)
-//                loadData(langFlagUri);
-            }
-        });
-    }
-*/
 
 }

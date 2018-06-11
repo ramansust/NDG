@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -1153,6 +1154,7 @@ public class NissanApp {
      * @param context
      * @return device id as a string
      */
+    @SuppressLint("HardwareIds")
     public String getDeviceID(Context context) {
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
