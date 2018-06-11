@@ -1,6 +1,7 @@
 package com.nissan.alldriverguide.fragments.settings;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
@@ -19,6 +20,7 @@ import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
+import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.NissanApp;
@@ -35,6 +37,7 @@ public class Feedback extends Fragment implements View.OnClickListener {
     private EditText etTitle, etDescription;
     private TextView tvTitle, tvTitleField, tvDescriptionField;
     private PreferenceUtil preferenceUtil;
+    private long mLastClickTime;
 
     public static Fragment newInstance() {
         Fragment frag = new Feedback();
@@ -121,10 +124,17 @@ public class Feedback extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_back:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 ((MainActivity) getActivity()).onBackPressed();
                 break;
             case R.id.send_feedback_button:
-
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 String title = etTitle.getText().toString().trim();
                 String description = etDescription.getText().toString().trim();
 
@@ -160,28 +170,30 @@ public class Feedback extends Fragment implements View.OnClickListener {
      * @param description for send feedback edit text description
      */
     private void sendFeedback(String title, String description) {
+        if (DetectConnection.checkInternetConnection(getActivity())) {
+            new ApiCall().postAddFeedback(NissanApp.getInstance().getDeviceID(getActivity()), title, description, NissanApp.getInstance().getDeviceModel(), new CompleteAPI() {
+                @Override
+                public void onDownloaded(ResponseInfo responseInfo) {
+                    if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
 
-        new ApiCall().postAddFeedback(NissanApp.getInstance().getDeviceID(getActivity()), title, description, NissanApp.getInstance().getDeviceModel(), new CompleteAPI() {
-            @Override
-            public void onDownloaded(ResponseInfo responseInfo) {
-                if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
-
-                    preferenceUtil.setSessionOne(false);
-                    preferenceUtil.setSessionThree(false);
-                    preferenceUtil.setIsFirstTimeGreatNotGreat(false);
-                    preferenceUtil.resetUserNavigationCount();
-
-                    String toastMsg = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.SEND_FEEDBACK_COMPLETE_TOAST);
-
-                    Toast.makeText(getActivity(), toastMsg.isEmpty() ? getResources().getString(R.string.feedback_toast) : toastMsg, Toast.LENGTH_SHORT).show();
-                    getActivity().onBackPressed();
+                        preferenceUtil.setSessionOne(false);
+                        preferenceUtil.setSessionThree(false);
+                        preferenceUtil.setIsFirstTimeGreatNotGreat(false);
+                        preferenceUtil.resetUserNavigationCount();
+                        getActivity().onBackPressed();
+                        String toastMsg = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.SEND_FEEDBACK_COMPLETE_TOAST);
+                        Toast.makeText(getActivity(), toastMsg/*.isEmpty() ? getResources().getString(R.string.feedback_toast) : toastMsg*/, Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailed(String failedReason) {
-                Log.e("onDownloaded: ", failedReason);
-            }
-        });
+                @Override
+                public void onFailed(String failedReason) {
+                    Log.e("onDownloaded: ", failedReason);
+                }
+            });
+        }else {
+            String internetCheckMessage = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+            NissanApp.getInstance().showInternetAlert(this.getActivity(), internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
+        }
     }
 }

@@ -83,8 +83,7 @@
         <ImageView
             android:id="@+id/img_car_bg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/qashqai" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/txt_view_driver_guide"
@@ -109,7 +108,6 @@
             android:background="@color/black"
             android:paddingLeft="@dimen/margin_back"
             android:paddingRight="@dimen/margin_back"
-            android:text="Nissan Note"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white" />

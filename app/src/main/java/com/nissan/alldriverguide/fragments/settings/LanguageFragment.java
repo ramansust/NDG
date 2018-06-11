@@ -10,6 +10,7 @@ import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -91,6 +92,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     private String deviceDensity;
     private String[] langFlagUri;
     private List<LanguageList> languageLists = new ArrayList<>();
+    private long mLastClickTime;
 
     public static Fragment newInstance() {
         Fragment frag = new LanguageFragment();
@@ -545,7 +547,15 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_back:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
             case R.id.linear_back:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 ((MainActivity) getActivity()).onBackPressed();
                 break;
 

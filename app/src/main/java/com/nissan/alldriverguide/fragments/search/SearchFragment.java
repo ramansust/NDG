@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -198,11 +199,16 @@ public class SearchFragment extends Fragment {
 
     //end here
 
+    private long mLastClickTime;
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.imageViewClearButton:
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
                     String searchKeyword = getSearchKeyword.getText().toString().trim();
                     if (searchKeyword.length() > 0) {
                         getSearchKeyword.setText("");
@@ -210,7 +216,10 @@ public class SearchFragment extends Fragment {
                     break;
 
                 case R.id.tvClearSearch:
-
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
                     new deleteRecentSearches().execute();
 /*                    final Dialog dialog = new DialogController(getActivity()).langDialog();
 

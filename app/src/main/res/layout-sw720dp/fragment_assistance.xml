@@ -87,7 +87,6 @@
             android:layout_width="match_parent"
             android:layout_height="335dp"
             android:adjustViewBounds="true"
-            android:background="@drawable/note"
             android:scaleType="fitCenter" />
 
         <TextView
@@ -114,7 +113,6 @@
             android:background="@color/black"
             android:paddingLeft="@dimen/margin_back"
             android:paddingRight="@dimen/margin_back"
-            android:text="Nissan Note"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/white"
