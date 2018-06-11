@@ -202,8 +202,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         info = (LanguageInfo) parent.getAdapter().getItem(position);
 
-        selectedLangModel = getDataFromMainList(position);
-        preferenceUtil.setSelectedLang(selectedLangModel.getLanguageShortcode());
+        LanguageList languageModel = getDataFromMainList(position);
+        preferenceUtil.setSelectedLang(languageModel.getLanguageShortcode());
 
 
 //        preferenceUtil.setSelectedLang(languageShortName[info.getId()]); // here save the selected language sort name into preference
@@ -215,7 +215,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
         if (NissanApp.getInstance().createPath(Values.PATH)) {
             if (DetectConnection.checkInternetConnection(getApplicationContext())) {
-                changeGlobalAlertMsg(info);
+                changeGlobalAlertMsg(info, languageModel);
             } else {
                 String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
                 NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
@@ -240,9 +240,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
     private void changeGlobalAlertMsg(final LanguageInfo info, final LanguageList selectedModelClass){
-        new ApiCall().postGlobalAlertMsg(NissanApp.getInstance().getDeviceID(getApplicationContext()), selectedModelClass.getLanguageId()+"", new CompleteAlertAPI() {
-    private void changeGlobalAlertMsg(final LanguageInfo info){
-        new ApiCall().postGlobalAlertMsg("e224fb09fb8daee4", selectedLangModel.getLanguageId()+"", new CompleteAlertAPI() {
+        new ApiCall().postGlobalAlertMsg("e224fb09fb8daee4", selectedModelClass.getLanguageId()+"", new CompleteAlertAPI() {
             @Override
             public void onDownloaded(GlobalMsgResponse responseInfo) {
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
@@ -256,7 +254,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
                     NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
 
-                    showCarDownloadDialogForSingleCar();
+                    showCarDownloadDialogForSingleCar(info, selectedModelClass);
 
                 }
             }
@@ -277,13 +275,10 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
      */
     private void startCarDownloadProcedure() {
 
-        final String startingDownloadMsg = getAlertMessage(STARTING_DOWNLOAD);
-
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
-                progressDialog = new ProgressDialogController(activity).showDialog(startingDownloadMsg.isEmpty() ? resources.getString(R.string.start_download) : startingDownloadMsg);
+                progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.start_download));
             }
         });
 
@@ -327,8 +322,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                         public void run() {
 
                             if (progressDialog != null) {
-                                String dataSyncingMsg = getAlertMessage(DATA_SYNCING);
-                                progressDialog.setMessage(dataSyncingMsg.isEmpty() ? resources.getString(R.string.data_syncing) : dataSyncingMsg);
+                                progressDialog.setMessage(resources.getString(R.string.data_syncing));
                             }
 
                             new SearchDBAsync(LanguageSelectionActivity.this, preferenceUtil.getSelectedLang(), Values.carType) {
@@ -390,9 +384,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             public void downloadCompletion(Float aFloat) {
                 String formattedString = String.format("%.02f", aFloat);
                 if (progressDialog != null) {
-                    String downloadingMsg = getAlertMessage(DOWNLOADING);
-                    downloadingMsg =  downloadingMsg.isEmpty() ? getResources().getString(R.string.alert_downloading) : downloadingMsg;
-                    progressDialog.setMessage(carName + "\n" + downloadingMsg + formattedString + "%");
+                    progressDialog.setMessage(carName + "\n" + getResources().getString(R.string.alert_downloading) + formattedString + "%");
                 }
             }
 
@@ -404,11 +396,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     carName = NissanApp.getInstance().getCarName(Values.carType);
                 }
                 if (progressDialog == null) {
-
-                    String downloadingMsg = getAlertMessage(DOWNLOADING);
-                    downloadingMsg =  downloadingMsg.isEmpty() ? getResources().getString(R.string.alert_downloading) : downloadingMsg;
-
-                    progressDialog = new ProgressDialogController(LanguageSelectionActivity.this).downloadProgress(carName + "\n" + downloadingMsg);
+                    progressDialog = new ProgressDialogController(LanguageSelectionActivity.this).downloadProgress(carName + "\n" + getResources().getString(R.string.alert_downloading));
                 }
             }
         });
@@ -505,20 +493,20 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         tracker.send(new HitBuilders.AppViewBuilder().build());
     }
 
-    private void showCarDownloadDialogForSingleCar() {
+    private void showCarDownloadDialogForSingleCar(LanguageInfo info, LanguageList selectedModel) {
         final Dialog dialog = new DialogController(LanguageSelectionActivity.this).langDialog();
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
 
-        String downloadConfirmationText = getAlertMessage(Values.DOWNLOAD_CONFIRMATION);
+        String downloadConfirmationText = getAlertMessage(selectedModel, Values.DOWNLOAD_CONFIRMATION);
 
         txtViewTitle.setText(downloadConfirmationText.isEmpty() ? resources.getString(R.string.alert_msg22) : downloadConfirmationText);
 
 
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
-        btnCancel.setText(selectedLangModel.getCancel().isEmpty() ? resources.getString(R.string.button_CANCEL) : selectedLangModel.getCancel());
-        btnOk.setText(selectedLangModel.getOk().isEmpty() ? resources.getString(R.string.button_OK) : selectedLangModel.getOk());
+        btnCancel.setText(selectedModel.getCancel());
+        btnOk.setText(selectedModel.getOk());
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -538,17 +526,17 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         dialog.show();
     }
 
-    private String getAlertMessage(String msgType) {
+    private String getAlertMessage(LanguageList model, String downloadConfirmation) {
 
-        Log.e("model", "________" + selectedLangModel.getLanguageName());
+        Log.e("model", "________" + model.getLanguageName());
 
-        List<AlertMessage> alertMessageList = selectedLangModel.getAlertMessage();
+        List<AlertMessage> alertMessageList = model.getAlertMessage();
 
         if (alertMessageList == null || alertMessageList.size() == 0)
             return "";
 
         for (AlertMessage alertMsg : alertMessageList) {
-            if (alertMsg.getType().equalsIgnoreCase(msgType)) {
+            if (alertMsg.getType().equalsIgnoreCase(downloadConfirmation)) {
                 return alertMsg.getMsg();
             }
         }
