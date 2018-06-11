@@ -188,16 +188,13 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5) {
                 String name[] = (carNames[list.get(position).getId() - 1]).split(" ");
                 viewHolder.txtViewTitle.setText(name[0]);
-                Log.e("name","________" + name[0]);
             } else {
                 viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
-                Log.e("name2","________" + carNames[list.get(position).getId() - 1]);
             }
         } else if ("1".equalsIgnoreCase(list.get(position).getStatus())) {
             NissanApp.getInstance().setCarImage(list.get(position).getId(), viewHolder.imageView);
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
             viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
-            Log.e("name3","________" + carNames[list.get(position).getId() - 1]);
         } else if ("0".equalsIgnoreCase(list.get(position).getStatus())) {
             NissanApp.getInstance().setCarImage(list.get(position).getId(), viewHolder.imageView);
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
