@@ -1376,6 +1376,8 @@ public class NissanApp {
                 return alertMessageArrayList.get(i).getMsg();
             if (msg_type.equalsIgnoreCase(Values.CHANGING_FLAT_TYRE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.CHANGING_FLAT_TYRE))
                 return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.USING_TYRE_PUNCTURE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.USING_TYRE_PUNCTURE))
+                return alertMessageArrayList.get(i).getMsg();
             if (msg_type.equalsIgnoreCase(Values.CONFIRM_EXIT_MESSAGE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.CONFIRM_EXIT_MESSAGE))
                 return alertMessageArrayList.get(i).getMsg();
             if (msg_type.equalsIgnoreCase(Values.LEARN_MORE_TITLE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.LEARN_MORE_TITLE))
@@ -1405,6 +1407,10 @@ public class NissanApp {
             if (msg_type.equalsIgnoreCase(Values.NATIONAL_MSG) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.NATIONAL_MSG))
                 return alertMessageArrayList.get(i).getMsg();
             if (msg_type.equalsIgnoreCase(Values.INTERNATIONAL_MSG) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.INTERNATIONAL_MSG))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.READ) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.READ))
+                return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.REGISTER_PUSH_MESSAGE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.REGISTER_PUSH_MESSAGE))
                 return alertMessageArrayList.get(i).getMsg();
 
         }

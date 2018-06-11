@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -317,14 +318,16 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
             tyre = "tyre gifs";
 
         } else if (index == 6) {
-            tv.setText(R.string.alert_msg39);
+            String usingTyrePuncture = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.USING_TYRE_PUNCTURE);
+            tv.setText(usingTyrePuncture.isEmpty() ? getResources().getString(R.string.alert_msg39) : usingTyrePuncture);
             tyre = "repair kit";
         } else {
 
         }
 
         Button dialogButton = (Button) dialog.findViewById(R.id.btn_read);
-        dialogButton.setText(R.string.alert_msg40);
+        String readIt = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.READ);
+        dialogButton.setText(readIt.isEmpty() ? getResources().getString(R.string.alert_msg40) : readIt);
         dialogButton.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -334,7 +337,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 
         Button dialogButton2 = (Button) dialog.findViewById(R.id.btn_already);
         String alreadyReadIt = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.ALREADY_READ_IT);
-        dialogButton2.setText(alreadyReadIt.isEmpty() ? getResources().getString(R.string.alert_msg41) : alreadyReadIt+"shuvo");
+        dialogButton2.setText(alreadyReadIt.isEmpty() ? getResources().getString(R.string.alert_msg41) : alreadyReadIt);
 
         dialogButton2.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
