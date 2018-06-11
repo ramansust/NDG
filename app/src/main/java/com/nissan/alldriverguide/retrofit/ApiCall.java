@@ -2,7 +2,6 @@ package com.nissan.alldriverguide.retrofit;
 
 import android.app.ProgressDialog;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.nissan.alldriverguide.MyApplication;
 import com.nissan.alldriverguide.database.PreferenceUtil;
@@ -428,14 +427,14 @@ public class ApiCall {
                         progressDialog.dismiss();
                     } else {
                         progressDialog.dismiss();
-                        Toast.makeText(MyApplication.getAppContext(), "Response Failed", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(MyApplication.getAppContext(), "Something went wrong", Toast.LENGTH_LONG).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<LanguageListResponse> call, Throwable t) {
                     Log.e("Error___", "_______"+t.toString());
-                    Toast.makeText(MyApplication.getAppContext(), "onFailure",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MyApplication.getAppContext(), "Check your internet connection",Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
                 }
             });
