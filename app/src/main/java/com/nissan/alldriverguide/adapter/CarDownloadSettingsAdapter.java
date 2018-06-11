@@ -892,6 +892,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             shortCode = languageLists.get(i).getLanguageShortcode();
 
 
+
             if (carType == 2 || carType == 5) {
 
                 if (shortCode.equalsIgnoreCase("en") || shortCode.equalsIgnoreCase("ru"))
@@ -901,11 +902,17 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 //                    languageList.add(info);
 //                }
             } else {
+
                 if (carType == 7 || carType == 8 || carType == 9) {
-                    if (!shortCode.equalsIgnoreCase("ru") || !shortCode.equalsIgnoreCase("no")) {
+
+
+                    if (shortCode.equalsIgnoreCase("ru") || shortCode.equalsIgnoreCase("no")) {
 //                    if (i != 6 && i != 8) {
+
+                    } else {
                         languageList.add(info);
                     }
+
                 } else if (carType == 1 || carType == 3 || carType == 4 || carType == 6 || carType == 10 || carType == 11 || carType == 12 || carType == 13) {
 //                    if (i != 8) {
                     if (!shortCode.equalsIgnoreCase("no")) {
