@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:adjustViewBounds="true"
-        android:background="@drawable/micrak14_en_video_01" />
+        android:background="@drawable/video_default_thumbnail" />
 
     <TextView
         android:id="@+id/txt_video_title"

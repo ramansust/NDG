@@ -148,7 +148,7 @@ public class Values {
     public static final String  DOWNLOADING = "downloading";
     public static final String  STARTING_DOWNLOAD = "starting_download";
     public static final String  DATA_SYNCING = "data_syncing";
-    public static final String  DOWNLOAD_CONFIRMATION = "dowload_confirmation";
+    public static final String  DOWNLOAD_CONFIRMATION = "download_confirmation";
 
     public static final String  RATE_OUR_APP_YES = "rate_our_app_yes";
     public static final String  RATE_ASK_ME_LATER = "rate_ask_me_later";
