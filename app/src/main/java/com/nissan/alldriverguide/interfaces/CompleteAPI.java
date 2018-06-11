@@ -1,6 +1,7 @@
 package com.nissan.alldriverguide.interfaces;
 
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 
 /**
  * Created by mobioapp on 11/30/17.

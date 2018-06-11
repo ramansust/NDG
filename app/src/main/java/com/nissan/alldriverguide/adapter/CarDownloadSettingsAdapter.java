@@ -187,23 +187,28 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             NissanApp.getInstance().setPreviousCarImage(list.get(position).getId(), viewHolder.imageView);
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
             if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5) {
-                String name[] = (carNames[list.get(position).getId() - 1]).split(" ");
+                String name[] = list.get(position).getName().split(" "); //(carNames[list.get(position).getId() - 1]).split(" ");
                 viewHolder.txtViewTitle.setText(name[0]);
+//                viewHolder.txtViewTitle.setText(list.get(position).getName());
             } else {
-                viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
+//                viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
+                viewHolder.txtViewTitle.setText(list.get(position).getName());
             }
         } else if ("1".equalsIgnoreCase(list.get(position).getStatus())) {
             NissanApp.getInstance().setCarImage(list.get(position).getId(), viewHolder.imageView);
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
-            viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
+//            viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
+            viewHolder.txtViewTitle.setText(list.get(position).getName());
         } else if ("0".equalsIgnoreCase(list.get(position).getStatus())) {
             NissanApp.getInstance().setCarImage(list.get(position).getId(), viewHolder.imageView);
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
             if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5) {
-                String name[] = (carNames[list.get(position).getId() - 1]).split(" ");
+                String name[] = list.get(position).getName().split(" "); //(carNames[list.get(position).getId() - 1]).split(" ");
                 viewHolder.txtViewTitle.setText(name[0]);
+//                viewHolder.txtViewTitle.setText(list.get(position).getName());
             } else {
-                viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
+//                viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
+                viewHolder.txtViewTitle.setText(list.get(position).getName());
             }
         } else {
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
