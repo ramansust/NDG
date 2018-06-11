@@ -75,7 +75,6 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     private void check_Data() {
 
         if (new PreferenceUtil(getActivity()).retrieveSettingDataList(sharedpref_key) != null) {
-            Log.e("Load Setting db", " ---sharepref-----  " + sharedpref_key);
             settingList.clear();
             settingList = new PreferenceUtil(getActivity()).retrieveSettingDataList(sharedpref_key);
             Collections.sort(settingList, new Comparator<SettingsTabListModel>() {
@@ -109,8 +108,6 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
 
         } else {
             new PreferenceUtil(getActivity()).deleteMultiLangData(preSharedpref_key);
-            Log.e("Old Lan Not Null ", "--presha-  " + preSharedpref_key);
-            Log.e("Old Lan Not Null ", "--share-  " + sharedpref_key);
             check_Data();
         }
     }

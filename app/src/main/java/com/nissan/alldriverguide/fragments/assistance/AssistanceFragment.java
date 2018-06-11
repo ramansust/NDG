@@ -84,7 +84,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_assistance, container, false);
-
         initViews(view);
         loadResource();
         setListener();
@@ -96,17 +95,13 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
         preSharedpref_key = new PreferenceUtil(getActivity()).getPreviousLanguage() + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
         sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
-        Log.e("Pre Shared Key", "---  " + preSharedpref_key);
-        Log.e("Cur Shared Key", "---  " + sharedpref_key);
 
         String old_Lan = new PreferenceUtil(getActivity()).getPreviousLanguage();
         String new_Lan = new PreferenceUtil(getActivity()).getSelectedLang();
 
         if (old_Lan.equalsIgnoreCase("null")) {
-            Log.e("Old Lan", "---null  " + old_Lan + "  .. " + new_Lan);
             check_LocalData();
         } else {
-            Log.e("Old Lan", "---not null  " + old_Lan + "  .. " + new_Lan);
             new PreferenceUtil(getActivity()).deleteMultiLangData(preSharedpref_key);
             check_LocalData();
         }
@@ -118,7 +113,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         if (preferenceUtil.retrieveAssistanceData(sharedpref_key) != null) {
             assistanceInfo = preferenceUtil.retrieveAssistanceData(sharedpref_key);
             NissanApp.getInstance().setAssistanceInfo(preferenceUtil.retrieveAssistanceData(sharedpref_key)); //added by nirob
-            Log.e("Local Check ", "  " + assistanceInfo.getSelectedCar());
             List<Datum> list = assistanceInfo.getData();
             assistanceArray = new String[list.size()];
             for (int i = 0; i < list.size(); i++) {
@@ -139,14 +133,12 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             @Override
             public void onDownloaded(AssistanceInfo responseInfo) {
 
-                Log.e("OnSuccess", " ----- ");
                 if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
                     preferenceUtil.storeAssistanceData(responseInfo, sharedpref_key);
                     NissanApp.getInstance().setAssistanceInfo(preferenceUtil.retrieveAssistanceData(sharedpref_key));
 
                     assistanceInfo = preferenceUtil.retrieveAssistanceData(sharedpref_key);
-                    Log.e("Car Name", "  from api " + assistanceInfo.getSelectedCar());
                     List<Datum> list = assistanceInfo.getData();
                     assistanceArray = new String[list.size()];
                     for (int i = 0; i < list.size(); i++) {
@@ -159,7 +151,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
             @Override
             public void onFailed(String failedReason) {
-                Log.e("OnFailed", " ----- ");
+
             }
         });
     }
