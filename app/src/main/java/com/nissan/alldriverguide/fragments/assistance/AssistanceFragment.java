@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,9 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private long mLastClickTime = 0;
     private long doubleClickPopup = 0;
 
+    private String sharedpref_key;
+    private String preSharedpref_key;
+
     public static Fragment newInstance() {
         Fragment frag = new AssistanceFragment();
         return frag;
@@ -84,15 +88,88 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         initViews(view);
         loadResource();
         setListener();
-        postAssistanceData();
+        check_Data();
         return view;
+    }
+
+    public void check_Data() {
+
+        preSharedpref_key = new PreferenceUtil(getActivity()).getPreviousLanguage() + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
+        sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
+        Log.e("Pre Shared Key", "---  " + preSharedpref_key);
+        Log.e("Cur Shared Key", "---  " + sharedpref_key);
+
+        String old_Lan = new PreferenceUtil(getActivity()).getPreviousLanguage();
+        String new_Lan = new PreferenceUtil(getActivity()).getSelectedLang();
+
+        if (old_Lan.equalsIgnoreCase("null")) {
+            Log.e("Old Lan", "---null  " + old_Lan + "  .. " + new_Lan);
+            check_LocalData();
+        } else {
+            Log.e("Old Lan", "---not null  " + old_Lan + "  .. " + new_Lan);
+            new PreferenceUtil(getActivity()).deleteMultiLangData(preSharedpref_key);
+            check_LocalData();
+        }
+
+    }
+
+    private void check_LocalData() {
+
+        if (preferenceUtil.retrieveAssistanceData(sharedpref_key) != null) {
+            assistanceInfo = preferenceUtil.retrieveAssistanceData(sharedpref_key);
+            Log.e("Local Check ", "  " + assistanceInfo.getSelectedCar());
+            List<Datum> list = assistanceInfo.getData();
+            assistanceArray = new String[list.size()];
+            for (int i = 0; i < list.size(); i++) {
+                assistanceArray[i] = list.get(i).getTitle();
+            }
+            loadData();
+            postAssistanceData();
+
+        } else {
+//            Log.e("Api hit ", "  " + assistanceInfo.getSelectedCar());
+            postAssistanceData();
+        }
+    }
+
+    public void postAssistanceData() {
+        int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
+        new ApiCall().postAssistanceTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2", new CompleteAssistanceTabContent() {
+            @Override
+            public void onDownloaded(AssistanceInfo responseInfo) {
+
+                Log.e("OnSuccess", " ----- ");
+                if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
+
+                    preferenceUtil.storeAssistanceData(responseInfo, sharedpref_key);
+                    NissanApp.getInstance().setAssistanceInfo(preferenceUtil.retrieveAssistanceData(sharedpref_key));
+
+                    assistanceInfo = preferenceUtil.retrieveAssistanceData(sharedpref_key);
+                    Log.e("Car Name", "  from api " + assistanceInfo.getSelectedCar());
+                    List<Datum> list = assistanceInfo.getData();
+                    assistanceArray = new String[list.size()];
+                    for (int i = 0; i < list.size(); i++) {
+                        assistanceArray[i] = list.get(i).getTitle();
+                    }
+
+                    loadData();
+                }
+            }
+
+            @Override
+            public void onFailed(String failedReason) {
+                Log.e("OnFailed", " ----- ");
+            }
+        });
     }
 
     // here load the initial data
     private void loadData() {
         txtViewDriverGuide.setTypeface(Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "font/Nissan Brand Regular.otf"));
 //        txtViewDriverGuide.setText(resources.getString(R.string.driver_guide));
-        txtViewDriverGuide.setText(assistanceInfo.getAssistanceTitle());
+        if (assistanceInfo.getAssistanceTitle() != null) {
+            txtViewDriverGuide.setText(assistanceInfo.getAssistanceTitle());
+        }
 //        txt_title.setText(resources.getString(R.string.assistance));
 //        txt_title.setText(resources.getString(R.string.assistance));
         if (NissanApp.getInstance().getTabMenuArrayList() == null || NissanApp.getInstance().getTabMenuArrayList().size() == 0)
@@ -100,6 +177,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         else
             txt_title.setText(NissanApp.getInstance().getTabMenuArrayList().get(1).getTitle());
 //        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.assistance_array), assistanceImage);
+
+        /*Log.e("Car Name " ,"  ..  " + );*/
         adapter = new AssistanceAdapter(getActivity().getApplicationContext(), assistanceArray, assistanceImage);
         lstView.setAdapter(adapter);
 
@@ -130,7 +209,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private void initViews(View view) {
         context = getActivity().getApplicationContext();
         commonDao = CommonDao.getInstance();
-
         txtViewCarName = (TextView) view.findViewById(R.id.txt_view_car_name);
         txtViewDriverGuide = (TextView) view.findViewById(R.id.txt_view_driver_guide);
         imageView = (ImageView) view.findViewById(R.id.img_car_bg);
@@ -156,41 +234,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-    }
-
-    public void postAssistanceData() {
-        int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
-        new ApiCall().postAssistanceTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2", new CompleteAssistanceTabContent() {
-            @Override
-            public void onDownloaded(AssistanceInfo responseInfo) {
-
-                if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
-
-                    if (preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY) == null) {
-                        preferenceUtil.storeAssistanceData(responseInfo, Values.ASSISTANCE_OBJ_STORE_KEY);
-                        NissanApp.getInstance().setAssistanceInfo(preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY));
-                    } else {
-                        NissanApp.getInstance().setAssistanceInfo(preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY));
-                    }
-
-                    if (assistanceInfo == null) {
-                        assistanceInfo = preferenceUtil.retrieveAssistanceData(Values.ASSISTANCE_OBJ_STORE_KEY);
-                        List<Datum> list = assistanceInfo.getData();
-                        assistanceArray = new String[list.size()];
-                        for (int i = 0; i < list.size(); i++) {
-                            assistanceArray[i] = list.get(i).getTitle();
-                        }
-                    }
-
-                    loadData();
-                }
-            }
-
-            @Override
-            public void onFailed(String failedReason) {
-
-            }
-        });
     }
 
     @Override

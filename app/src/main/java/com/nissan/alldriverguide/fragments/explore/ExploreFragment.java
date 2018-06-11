@@ -187,12 +187,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             NissanApp.getInstance().setExploreVideoList(videoList);
 
             loadData();
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    apiCall();
-                }
-            });
+            apiCall();
 
 
         } else {
