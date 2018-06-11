@@ -110,7 +110,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
     private void getDataCarWise() {
-        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", progressDialog , new InterfaceLanguageListResponse() {
+        new ApiCall().getLanguageList("246E5A50-B79F-4019-82ED-877BF53FD617", "1", progressDialog , new InterfaceLanguageListResponse() {
             @Override
             public void languageListResponse(LanguageListResponse languageListResponse) {
 
@@ -149,18 +149,22 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 //                    cancelLangDownload[i] = (languageListResponse.getLanguageList().get(i).getCancel());
 //                    okLangDownload[i] = (languageListResponse.getLanguageList().get(i).getOk());
 
-                    if("xxxhdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
-                    } else if("xxhdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxhdpi();
-                    }else if("xhdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXhdpi();
-                    }else if("hdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getHdpi();
-                    }else if("mdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getHdpi();
-                    }else if("ldpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getLdpi();
+                    try{
+                        if("xxxhdpi".contains(deviceDensity)){
+                            langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
+                        } else if("xxhdpi".contains(deviceDensity)){
+                            langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxhdpi();
+                        }else if("xhdpi".contains(deviceDensity)){
+                            langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXhdpi();
+                        }else if("hdpi".contains(deviceDensity)){
+                            langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getHdpi();
+                        }else if("mdpi".contains(deviceDensity)){
+                            langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getHdpi();
+                        }else if("ldpi".contains(deviceDensity)){
+                            langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getLdpi();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
                 loadData(langFlagUri);
