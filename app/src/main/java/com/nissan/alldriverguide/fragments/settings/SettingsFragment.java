@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -22,7 +23,6 @@ import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.TutorialActivity;
 import com.nissan.alldriverguide.adapter.AssistanceAdapter;
-import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteSettingTabContent;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
@@ -54,6 +54,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     private ArrayList<SettingsTabListModel> settingList = new ArrayList<>();
     private String[] setting_names;
     private String preSharedpref_key;
+    private long mLastClickTime;
 
     public static Fragment newInstance() {
         Fragment frag = new SettingsFragment();
@@ -191,6 +192,11 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Fragment frag = null;
         /**
@@ -198,16 +204,28 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
          */
         switch (position) {
             case 0:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 frag = LanguageFragment.newInstance();
                 ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsForDownloadSection(Analytics.CHANGE_LANGUAGE));
                 break;
 
             case 1:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 frag = AddCarFragment.newInstance();
                 ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsForCarSection(Analytics.CAR_SELECTION));
                 break;
 
             case 2:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 startActivity(new Intent(getActivity(), TutorialActivity.class).putExtra("from", "fragment"));
                 getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromSettings(Analytics.TUTORIAL));
@@ -215,6 +233,10 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 break;
 
             case 3:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 // used for great or not great popup display
                 preferenceUtil.setSessionOne(false);
                 preferenceUtil.setSessionThree(false);
@@ -225,6 +247,10 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 break;
 
             case 4:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 frag = Feedback.newInstance();
                 break;
 
