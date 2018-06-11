@@ -76,7 +76,7 @@ public class LanguageSelectionAdapter extends BaseAdapter {
                 .load(list.get(position).getImage()) // image url
                 .placeholder(R.drawable.arrow) // any placeholder to load at start
                 .error(R.drawable.arrow)  // any image in case of error
-                .override(200, 200) // resizing
+                .override(180, 120) // resizing
                 .centerCrop()
                 .into(viewHolder.imageView);
 

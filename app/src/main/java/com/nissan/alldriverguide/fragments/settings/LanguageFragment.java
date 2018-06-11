@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.MainActivity;
@@ -41,6 +44,7 @@ import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
+import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
@@ -54,7 +58,9 @@ import com.nissan.alldriverguide.utils.Values;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LanguageFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
@@ -84,6 +90,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     private String deviceDensity;
     private String[] langFlagUri;
+    private List<LanguageList> languageLists = new ArrayList<>();
 
     public static Fragment newInstance() {
         Fragment frag = new LanguageFragment();
@@ -94,13 +101,12 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_language, container, false);
-        progressDialog = new ProgressDialogController(getActivity()).showDialog("Loading");
         deviceDensity = NissanApp.getInstance().getDensityName(getActivity());
-        getDataCarWise();
+
         initViews(view);
         loadResource();
+        getDataCarWise();
         setListener();
-//        loadData();
 
         return view;
     }
@@ -122,38 +128,83 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     private void getDataCarWise() {
-        new ApiCall().getLanguageList("e224fb09fb8daee4", "1", progressDialog , new InterfaceLanguageListResponse() {
-            @Override
-            public void languageListResponse(LanguageListResponse languageListResponse) {
+        if (DetectConnection.checkInternetConnection(getActivity())) {
 
-                languageListResponses = languageListResponse;
+            progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching your Language...");
 
-                languageName = new String[languageListResponses.getLanguageList().size()];
-                languageShortName = new String[languageListResponses.getLanguageList().size()];
-                langFlagUri =  new String[languageListResponses.getLanguageList().size()];
+            new ApiCall().getLanguageList(NissanApp.getInstance().getDeviceID(getActivity()), "" + Values.carType, progressDialog, new InterfaceLanguageListResponse() {
+                @Override
+                public void languageListResponse(LanguageListResponse languageListResponse) {
+                    languageLists = languageListResponse.getLanguageList();
+                    populateDataIntoList();
 
-                for(int i = 0; i <languageListResponses.getLanguageList().size(); i++){
-                    languageName[i] = (languageListResponse.getLanguageList().get(i).getLanguageName());
-                    languageShortName[i] = (languageListResponse.getLanguageList().get(i).getLanguageShortcode());
-
-                    if("xxxhdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxxhdpi();
-                    } else if("xxhdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXxhdpi();
-                    }else if("xhdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getXhdpi();
-                    }else if("hdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getHdpi();
-                    }else if("mdpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getHdpi();
-                    }else if("ldpi".contains(deviceDensity)){
-                        langFlagUri[i] = languageListResponse.getLanguageList().get(i).getLanguageFlag().getLdpi();
-                    }
                 }
-                loadData(langFlagUri);
+            });
+        }else{
+            Log.e("no", "internet: " );
+            languageLists = getDataFromSP();
+            if (languageLists == null || languageLists.size() == 0) {
+                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+//                NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
+                showNoInternetDialogue(internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
+            } else {
+                populateDataIntoList();
+            }
+        }
+    }
+    private List<LanguageList> getDataFromSP() {
+
+        Type type = new TypeToken<ArrayList<LanguageList>>() {
+        }.getType();
+        return new Gson().fromJson(new PreferenceUtil(this.getActivity()).retrieveMultiLangData("LanguageList"), type);
+
+    }
+    private void showNoInternetDialogue(String msg) {
+
+        final Dialog dialog = new DialogController(activity).internetDialog();
+
+        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        txtViewTitle.setText(msg);
+
+        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                getActivity().finish();
             }
         });
+
+        dialog.show();
+
     }
+    private void populateDataIntoList() {
+
+        languageName = new String[languageLists.size()];
+        languageShortName = new String[languageLists.size()];
+        langFlagUri =  new String[languageLists.size()];
+
+        for(int i = 0; i <languageLists.size(); i++){
+            languageName[i] = (languageLists.get(i).getLanguageName());
+            languageShortName[i] = (languageLists.get(i).getLanguageShortcode());
+
+            if("xxxhdpi".contains(deviceDensity)){
+                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getXxxhdpi();
+            } else if("xxhdpi".contains(deviceDensity)){
+                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getXxhdpi();
+            }else if("xhdpi".contains(deviceDensity)){
+                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getXhdpi();
+            }else if("hdpi".contains(deviceDensity)){
+                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getHdpi();
+            }else if("mdpi".contains(deviceDensity)){
+                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getHdpi();
+            }else if("ldpi".contains(deviceDensity)){
+                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getLdpi();
+            }
+        }
+        loadData(langFlagUri);
+    }
+
     /**
      * Here added the language to list according to car type;
      */
@@ -170,24 +221,24 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                 isDownloaded = false;
             }
             LanguageInfo info = new LanguageInfo(i, languageName[i], isDownloaded, FlagUrl[i]);
-            list.add(info);
-//            if (Values.carType == 2 || Values.carType == 5) { // car type Qashqai Rus space and X-Trail Rus space added only two language
-//                if (i == 0 || i == 6) {
-//                    list.add(info);
-//                }
-//            } else {
-//                if (Values.carType == 7 || Values.carType == 8 || Values.carType == 9) {
-//                    if (i != 6 && i != 8) { // 7,8 & 9 car added all language except 6 & 8 two language
-//                        list.add(info);
-//                    }
-//                } else if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 6 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13) {
-//                    if (i != 8) { // added except 8 index language
-//                        list.add(info);
-//                    }
-//                } else {
-//                    list.add(info);
-//                }
-//            }
+//            list.add(info);
+            if (Values.carType == 2 || Values.carType == 5) { // car type Qashqai Rus space and X-Trail Rus space added only two language
+                if (i == 0 || i == 6) {
+                    list.add(info);
+                }
+            } else {
+                if (Values.carType == 7 || Values.carType == 8 || Values.carType == 9) {
+                    if (i != 6 && i != 8) { // 7,8 & 9 car added all language except 6 & 8 two language
+                        list.add(info);
+                    }
+                } else if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 6 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13) {
+                    if (i != 8) { // added except 8 index language
+                        list.add(info);
+                    }
+                } else {
+                    list.add(info);
+                }
+            }
         }
 
         // set the adapter
@@ -257,7 +308,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
         final String lang_sort_name = languageShortName[list.get(position).getId()];
 
-        new ApiCall().postGlobalAlertMsg("e224fb09fb8daee4", NissanApp.getInstance().getLanguageID(lang_sort_name)+"", new CompleteAlertAPI() {
+        new ApiCall().postGlobalAlertMsg(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(lang_sort_name)+"", new CompleteAlertAPI() {
             @Override
             public void onDownloaded(GlobalMsgResponse responseInfo) {
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {

@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -27,9 +28,9 @@ import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.search.tab.WarningLightFragment;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.VideoInfo;
+import com.nissan.alldriverguide.multiLang.model.AlertMessage;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
-import com.nissan.alldriverguide.multiLang.model.AlertMessage;
 import com.nissan.alldriverguide.multiLang.model.GlobalMessage;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
 import com.nissan.alldriverguide.multiLang.model.Tutorial;
@@ -1153,6 +1154,7 @@ public class NissanApp {
      * @param context
      * @return device id as a string
      */
+    @SuppressLint("HardwareIds")
     public String getDeviceID(Context context) {
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
@@ -1358,6 +1360,8 @@ public class NissanApp {
             Type type = new TypeToken<ArrayList<AlertMessage>>() {
             }.getType();
             alertMessageArrayList = new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData(key_global_alert_message), type);
+            if (alertMessageArrayList == null || alertMessageArrayList.size() == 0)
+                return "";
             NissanApp.getInstance().setAlertMessageGlobalArrayList(alertMessageArrayList);
         }
 

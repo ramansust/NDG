@@ -28,15 +28,13 @@
                 android:id="@+id/img_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/qashqai" />
+                android:layout_alignParentTop="true" />
 
             <ImageView
                 android:id="@+id/img_view_border"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/car_border" />
+                android:layout_alignParentTop="true" />
 
             <TextView
                 android:id="@+id/txt_title"
