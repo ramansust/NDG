@@ -74,9 +74,14 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
 
     private void check_Data() {
 
-        if (new PreferenceUtil(getActivity()).retrieveSettingDataList(sharedpref_key) != null) {
-            settingList.clear();
-            settingList = new PreferenceUtil(getActivity()).retrieveSettingDataList(sharedpref_key);
+        settingList = preferenceUtil.retrieveSettingDataList(sharedpref_key);
+
+        if (settingList == null || settingList.size() == 0) {
+            apiCall();
+        } else {
+            Log.e("Load Setting db", " ---sharepref-----  " + sharedpref_key);
+            settingList = new ArrayList<>();
+            settingList = preferenceUtil.retrieveSettingDataList(sharedpref_key);
             Collections.sort(settingList, new Comparator<SettingsTabListModel>() {
                 @Override
                 public int compare(SettingsTabListModel lhs, SettingsTabListModel rhs) {
@@ -89,19 +94,17 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
             }
             loadData();
             apiCall();
-        } else {
-            apiCall();
         }
 
     }
 
     private void getSettingTabContent() {
 
-        preSharedpref_key = new PreferenceUtil(getActivity()).getPreviousLanguage() + "_" + Values.SETTINGDATA;
-        sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.SETTINGDATA;
+        preSharedpref_key = preferenceUtil.getPreviousLanguage() + "_" + Values.SETTINGDATA;
+        sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.SETTINGDATA;
 
-        String old_Lan = new PreferenceUtil(getActivity()).getPreviousLanguage();
-        String new_Lan = new PreferenceUtil(getActivity()).getSelectedLang();
+        String old_Lan = preferenceUtil.getPreviousLanguage();
+        String new_Lan = preferenceUtil.getSelectedLang();
 
         if (old_Lan.equalsIgnoreCase("null")) {
             check_Data();
@@ -113,18 +116,15 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     private void apiCall() {
-        int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
-        String language_name = new PreferenceUtil(getActivity()).getSelectedLang();
+        int language_ID = NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang());
+        String language_name = preferenceUtil.getSelectedLang();
         new ApiCall().postSettingTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "4", new CompleteSettingTabContent() {
             @Override
             public void onDownloaded(SettingsTabModel responseInfo) {
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
-
-                    new PreferenceUtil(getActivity()).storeSettingDataList(responseInfo.getData(), sharedpref_key);
-
-                    settingList.clear();
-                    settingList = new PreferenceUtil(getActivity()).retrieveSettingDataList(sharedpref_key);
-
+                    settingList = new ArrayList<>();
+                    settingList = responseInfo.getData();
+                    preferenceUtil.storeSettingDataList(settingList, sharedpref_key);
 
                     setting_names = new String[settingList.size()];
                     for (int i = 0; i < settingList.size(); i++) {
@@ -141,9 +141,20 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     private void loadData() {
-        txt_title.setText(resources.getString(R.string.settings));
-        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), setting_names, assistanceImage);
-        lstView.setAdapter(adapter);
+
+        String title = resources.getString(R.string.assistance);
+
+        if (NissanApp.getInstance().getTabMenuArrayList() != null || NissanApp.getInstance().getTabMenuArrayList().size() > 0)
+            NissanApp.getInstance().getTabMenuArrayList().get(3).getTitle();
+            txt_title.setText(title);
+
+        if (adapter == null || adapter.getCount() == 0) {
+            adapter = new AssistanceAdapter(getActivity().getApplicationContext(), setting_names, assistanceImage);
+            lstView.setAdapter(adapter);
+        } else {
+            adapter = new AssistanceAdapter(getActivity().getApplicationContext(), setting_names, assistanceImage);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void loadResource() {
