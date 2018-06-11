@@ -187,23 +187,28 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             NissanApp.getInstance().setPreviousCarImage(list.get(position).getId(), viewHolder.imageView);
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
             if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5) {
-                String name[] = (carNames[list.get(position).getId() - 1]).split(" ");
+                String name[] = list.get(position).getName().split(" "); //(carNames[list.get(position).getId() - 1]).split(" ");
                 viewHolder.txtViewTitle.setText(name[0]);
+//                viewHolder.txtViewTitle.setText(list.get(position).getName());
             } else {
-                viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
+//                viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
+                viewHolder.txtViewTitle.setText(list.get(position).getName());
             }
         } else if ("1".equalsIgnoreCase(list.get(position).getStatus())) {
             NissanApp.getInstance().setCarImage(list.get(position).getId(), viewHolder.imageView);
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
-            viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
+//            viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
+            viewHolder.txtViewTitle.setText(list.get(position).getName());
         } else if ("0".equalsIgnoreCase(list.get(position).getStatus())) {
             NissanApp.getInstance().setCarImage(list.get(position).getId(), viewHolder.imageView);
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
             if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5) {
-                String name[] = (carNames[list.get(position).getId() - 1]).split(" ");
+                String name[] = list.get(position).getName().split(" "); //(carNames[list.get(position).getId() - 1]).split(" ");
                 viewHolder.txtViewTitle.setText(name[0]);
+//                viewHolder.txtViewTitle.setText(list.get(position).getName());
             } else {
-                viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
+//                viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
+                viewHolder.txtViewTitle.setText(list.get(position).getName());
             }
         } else {
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
@@ -887,6 +892,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             shortCode = languageLists.get(i).getLanguageShortcode();
 
 
+
             if (carType == 2 || carType == 5) {
 
                 if (shortCode.equalsIgnoreCase("en") || shortCode.equalsIgnoreCase("ru"))
@@ -896,11 +902,17 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 //                    languageList.add(info);
 //                }
             } else {
+
                 if (carType == 7 || carType == 8 || carType == 9) {
-                    if (!shortCode.equalsIgnoreCase("ru") || !shortCode.equalsIgnoreCase("no")) {
+
+
+                    if (shortCode.equalsIgnoreCase("ru") || shortCode.equalsIgnoreCase("no")) {
 //                    if (i != 6 && i != 8) {
+
+                    } else {
                         languageList.add(info);
                     }
+
                 } else if (carType == 1 || carType == 3 || carType == 4 || carType == 6 || carType == 10 || carType == 11 || carType == 12 || carType == 13) {
 //                    if (i != 8) {
                     if (!shortCode.equalsIgnoreCase("no")) {

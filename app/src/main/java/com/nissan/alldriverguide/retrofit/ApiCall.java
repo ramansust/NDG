@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.nissan.alldriverguide.MyApplication;
 import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.interfaces.CarListACompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAlertAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAssistanceTabContent;
@@ -13,6 +14,8 @@ import com.nissan.alldriverguide.interfaces.CompleteSettingTabContent;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
+import com.nissan.alldriverguide.multiLang.model.CarList;
+import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
@@ -438,5 +441,30 @@ public class ApiCall {
                     progressDialog.dismiss();
                 }
             });
+    }
+
+    public void getCarList(final String device_id, final String language_id, final CarListACompleteAPI completeAPI) {
+
+        ApiService api = RetrofitClient.getApiService();
+
+        Call<CarListResponse> call = api.carList(device_id, language_id);
+
+        call.enqueue(new Callback<CarListResponse>() {
+
+            @Override
+            public void onResponse(Call<CarListResponse> call, Response<CarListResponse> response) {
+                Log.e("response.code(): ",""+ response.code() );
+                if (response.isSuccessful()) {
+                    CarListResponse carListResponse = response.body();
+                    completeAPI.onDownloaded(carListResponse);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CarListResponse> call, Throwable t) {
+                Log.e("Error___", "_______"+t.toString());
+                completeAPI.onFailed(t.toString());
+            }
+        });
     }
 }
