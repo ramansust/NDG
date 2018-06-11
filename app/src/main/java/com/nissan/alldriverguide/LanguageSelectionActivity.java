@@ -102,7 +102,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language_selection);
 
-        progressDialog = new ProgressDialogController(this).showDialog("adfkaljshfkj");
+        progressDialog = new ProgressDialogController(this).showDialog("Fetching your Language...");
         deviceDensity = NissanApp.getInstance().getDensityName(this);
         getDataCarWise();
         initViews();
