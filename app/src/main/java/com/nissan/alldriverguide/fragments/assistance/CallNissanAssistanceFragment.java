@@ -132,7 +132,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
 
                                 for (int k = 0; k < countryLists.size(); k++) {
 
-                                    countryName[k] = countryLists.get(k).getCountryName();
+                                    countryName[k] = countryLists.get(k).getCountryDisplayName();
 //                                    countrFlag[k] = countryLists.get(k).getThumbXhdpi();
                                     nationalNumber[k] = countryLists.get(k).getPhoneNational();
                                     internationalNumber[k] = countryLists.get(k).getPhoneInternational();
