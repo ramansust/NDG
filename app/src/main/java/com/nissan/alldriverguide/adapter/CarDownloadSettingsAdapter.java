@@ -512,9 +512,11 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
         if (isCarDownload) {
-            txtViewTitle.setText(context.getResources().getString(R.string.alert_msg22));
+            String downloadConfirmationMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DOWNLOAD_CONFIRMATION);
+            txtViewTitle.setText(downloadConfirmationMsg.isEmpty() ? resources.getString(R.string.alert_msg22) : downloadConfirmationMsg);
         } else {
-            txtViewTitle.setText(NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DELETE_MESSAGE).isEmpty() ? context.getResources().getString(R.string.alert_msg23) : NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DELETE_MESSAGE));
+            String deleteMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DELETE_MESSAGE);
+            txtViewTitle.setText(deleteMsg.isEmpty() ? resources.getString(R.string.alert_msg23) : deleteMsg);
         }
 
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
@@ -659,12 +661,9 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
 
-        String textMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2);
+        String downloadCarGuide2Msg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2);
 
-        if (TextUtils.isEmpty(textMsg))
-            textMsg = activity.getResources().getString(R.string.download_msg);
-
-        txtViewTitle.setText(textMsg);
+        txtViewTitle.setText(downloadCarGuide2Msg.isEmpty() ? resources.getString(R.string.download_msg) : downloadCarGuide2Msg);
 
         ImageButton btnEUR = (ImageButton) dialog.findViewById(R.id.btn_eur);
         ImageButton btnRUS = (ImageButton) dialog.findViewById(R.id.btn_rus);
