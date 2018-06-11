@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -106,6 +105,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
 
     public void callNissanAssistance() {
         List<Datum> list = NissanApp.getInstance().getAssistanceInfo().getData();
+
         if (list != null && list.size() > 0) {
             List<ChildNode> childNodes;
             List<CountryList> countryLists;
@@ -113,13 +113,29 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).getIndex() == 6) {
 
+                    if (list.get(i) == null || list.get(i).getChildNode() == null)
+                        return;
+
                     childNodes = list.get(i).getChildNode();
+
+                    if (childNodes == null || childNodes.size() == 0)
+                        return;
 
                     for (int j = 0; j < childNodes.size(); j++) {
 
+                        if (childNodes.get(j) == null || childNodes.get(j).getIndex() == null)
+                            return;
+
                         if (childNodes.get(j).getIndex() == 2) {
                             headerTitle = childNodes.get(j).getHeaderTitle();
+
+                            if (childNodes.get(j) == null || childNodes.get(j).getCountryList() == null)
+                                return;
+
                             countryLists = childNodes.get(j).getCountryList();
+
+                            if (countryLists == null || countryLists.size() == 0)
+                                return;
 
                             if (countryName == null && countrFlag == null &&
                                     nationalNumber == null && internationalNumber == null) {

@@ -67,7 +67,8 @@ public class AssistanceAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag ();
         }
 
-        viewHolder.imageView.setBackgroundResource(carImage[position]); // here set the car image
+        // imageView Logic for if left icon img in fixed size
+        viewHolder.imageView.setBackgroundResource(position < carImage.length ? carImage[position] : R.drawable.tyre); // here set the car image
         viewHolder.txtViewTitle.setTypeface(tf); // set the font for car name or nissan assistance
         viewHolder.txtViewTitle.setText(carName[position]); // set the car name
 
