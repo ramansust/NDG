@@ -165,7 +165,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
      * Load the initial data into list
      */
     private void loadData(String FlagUrl[]) {
-
+        Log.e("***", "loadData: "+ languageName.length);
         for (int i = 0; i < languageName.length; i++) {
 
             LanguageInfo info = new LanguageInfo(i, languageName[i], false, FlagUrl[i]);
