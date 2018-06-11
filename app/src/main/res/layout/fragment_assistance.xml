@@ -94,7 +94,6 @@
             android:background="@color/white"
             android:paddingLeft="@dimen/margin_back"
             android:paddingRight="@dimen/margin_back"
-            android:text="Driver's Guide"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/orange" />

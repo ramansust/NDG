@@ -350,8 +350,8 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         String downloadSureMsg = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.DOWNLOAD_SURE_MSG);
         txtViewTitle.setText(downloadSureMsg.isEmpty() ? getResources().getString(R.string.download_lang) : downloadSureMsg);
 
-        Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
-        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        Button btnCancel = dialog.findViewById(R.id.btn_cancel);
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -419,7 +419,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                                 try {
                                                                     // delete previous language directory
                                                                     FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType)));
-
+//************************(Here store the language short name after complete downloading language)*******************************************************************************************************************
                                                                     preferenceUtil.setSelectedLang(lang); // here store the language sort name
                                                                     ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));
                                                                     commonDao.updateLanguageStatus(getActivity().getBaseContext(), Values.carType, lang);
