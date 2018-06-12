@@ -5,38 +5,50 @@ import com.google.gson.annotations.SerializedName;
 
 public class TabMenu {
 
-@SerializedName("order")
-@Expose
-private Integer order;
-@SerializedName("title")
-@Expose
-private String title;
-@SerializedName("id")
-@Expose
-private Integer id;
+    @SerializedName("order")
+    @Expose
+    private Integer order;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
 
-public Integer getOrder() {
-return order;
-}
+    public String getIndex() {
+        return index;
+    }
 
-public void setOrder(Integer order) {
-this.order = order;
-}
+    public void setIndex(String index) {
+        this.index = index;
+    }
 
-public String getTitle() {
-return title;
-}
+    @SerializedName("index")
+    @Expose
+    private String index;
 
-public void setTitle(String title) {
-this.title = title;
-}
+    public Integer getOrder() {
+        return order;
+    }
 
-public Integer getId() {
-return id;
-}
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
 
-public void setId(Integer id) {
-this.id = id;
-}
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
 }
