@@ -130,30 +130,40 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     private void getDataCarWise() {
-        if (DetectConnection.checkInternetConnection(getActivity())) {
 
-            progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching your Language...");
+        adapter = new LanguageSelectionAdapter(getActivity().getApplicationContext(), new ArrayList<LanguageInfo>(), true);
+        lstView.setAdapter(adapter);
 
-            new ApiCall().getLanguageList(NissanApp.getInstance().getDeviceID(getActivity()), "" + Values.carType, progressDialog, new InterfaceLanguageListResponse() {
-                @Override
-                public void languageListResponse(LanguageListResponse languageListResponse) {
-                    languageLists = languageListResponse.getLanguageList();
-                    populateDataIntoList();
-
-                }
-            });
-        }else{
-            Log.e("no", "internet: " );
-            languageLists = getDataFromSP();
-            if (languageLists == null || languageLists.size() == 0) {
-                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
-//                NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
-                showNoInternetDialogue(internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
+        languageLists = getDataFromSP();
+        if (languageLists == null || languageLists.size() == 0) {
+            if (DetectConnection.checkInternetConnection(getActivity())) {
+                progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching your Language...");
+                callApiForLanguage();
             } else {
-                populateDataIntoList();
+                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+                showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
             }
+
+        } else {
+            populateDataIntoList();
+            callApiForLanguage();
         }
+
+
     }
+
+    private void callApiForLanguage() {
+        new ApiCall().getLanguageList(NissanApp.getInstance().getDeviceID(getActivity()), "" + Values.carType, progressDialog, new InterfaceLanguageListResponse() {
+            @Override
+            public void languageListResponse(LanguageListResponse languageListResponse) {
+                languageLists = languageListResponse.getLanguageList();
+                populateDataIntoList();
+
+            }
+        });
+    }
+
+
     private List<LanguageList> getDataFromSP() {
 
         Type type = new TypeToken<ArrayList<LanguageList>>() {
@@ -243,9 +253,8 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             }
         }
 
-        // set the adapter
-        adapter = new LanguageSelectionAdapter(getActivity().getApplicationContext(), list, true);
-        lstView.setAdapter(adapter);
+        adapter.setList(list);
+        adapter.notifyDataSetChanged();
     }
 
     /**
@@ -307,6 +316,13 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     private void changeGlobalAlertMsg(final int position){
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.start_download));
+            }
+        });
 
         final String lang_sort_name = languageShortName[list.get(position).getId()];
 
@@ -371,12 +387,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     private void startDownloadProcedure(final String lang, final int position) {
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.start_download));
-            }
-        });
 
         new ApiCall().postLanguageDownload(Values.carType + "", "" + NissanApp.getInstance().getLanguageID(lang), "0", NissanApp.getInstance().getDeviceID(getActivity()), new CompleteAPI() {
             @Override

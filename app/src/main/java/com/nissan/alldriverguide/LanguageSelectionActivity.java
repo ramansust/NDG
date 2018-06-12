@@ -601,8 +601,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
     private String getAlertMessage(String msgType) {
 
-        Log.e("model", "________" + selectedLangModel.getLanguageName());
-
         List<AlertMessage> alertMessageList = selectedLangModel.getAlertMessage();
 
         if (alertMessageList == null || alertMessageList.size() == 0)

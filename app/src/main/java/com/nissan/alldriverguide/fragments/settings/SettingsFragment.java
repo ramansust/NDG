@@ -27,6 +27,7 @@ import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteSettingTabContent;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
+import com.nissan.alldriverguide.multiLang.model.TabMenu;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.NissanApp;
@@ -143,10 +144,14 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
 
     private void loadData() {
 
-        String title = resources.getString(R.string.assistance);
-
-        if (NissanApp.getInstance().getTabMenuArrayList() != null && NissanApp.getInstance().getTabMenuArrayList().size() > 0)
-            NissanApp.getInstance().getTabMenuArrayList().get(3).getTitle();
+        String title = resources.getString(R.string.settings);
+        ArrayList<TabMenu> tabMenuArrayList = NissanApp.getInstance().getTabMenuArrayList();
+        if (tabMenuArrayList != null && tabMenuArrayList.size() > 0)
+            for (TabMenu tabMenu : tabMenuArrayList) {
+                if (!tabMenu.getIndex().isEmpty() && tabMenu.getIndex().equals("4"))
+                    title = tabMenu.getTitle();
+            }
+//            NissanApp.getInstance().getTabMenuArrayList().get(3).getTitle();
             txt_title.setText(title);
 
 //        if (adapter == null || adapter.getCount() == 0) {

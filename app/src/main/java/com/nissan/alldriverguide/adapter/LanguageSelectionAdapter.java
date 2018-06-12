@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.model.LanguageInfo;
+import com.nissan.alldriverguide.multiLang.model.LanguageList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -97,6 +99,10 @@ public class LanguageSelectionAdapter extends BaseAdapter {
         }
 
         return convertView;
+    }
+
+    public void setList(ArrayList<LanguageInfo> newList) {
+        this.list = newList;
     }
 
     static class ViewHolder {

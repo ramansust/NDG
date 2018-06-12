@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
