@@ -283,7 +283,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         info = (LanguageInfo) parent.getAdapter().getItem(position);
 
-        selectedLangModel = getDataFromMainList(position);
+        selectedLangModel = getDataFromMainList(languageName[info.getId()]);
         preferenceUtil.setSelectedLang(selectedLangModel.getLanguageShortcode());
 
 
@@ -307,12 +307,12 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         }
     }
 
-    private LanguageList getDataFromMainList(int position) {
+    private LanguageList getDataFromMainList(String selectedLanguageName) {
 
         if (languageLists != null && languageLists.size() > 0) {
             for (int i = 0; i < languageLists.size(); i++) {
                 Logger.error("list_lang_temp", "__________" + languageLists.get(i).getLanguageName());
-                if (list.get(position).getName().equalsIgnoreCase(languageLists.get(i).getLanguageName())) {
+                if (selectedLanguageName.equalsIgnoreCase(languageLists.get(i).getLanguageName())) {
                     return languageLists.get(i);
                 }
             }
