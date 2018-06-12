@@ -561,6 +561,8 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
+                ((MainActivity) getActivity()).onBackPressed();
+
             case R.id.linear_back:
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
                     return;
