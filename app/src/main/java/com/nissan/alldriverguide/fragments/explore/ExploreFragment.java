@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Debug;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.nissan.alldriverguide.ImageTargetActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.VideoPlayerActivity;
@@ -231,6 +233,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 }
             });
 
+            Log.e("Header text Explore",""+header_text);
+            //txtViewExplore.setImageURI(Uri.parse(header_text));
+
            /* Glide.with(this).load(header_Background).asBitmap().into(new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
@@ -310,7 +315,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
      */
     private void initViews(View view) {
 
-        txtViewExplore = (TextView) view.findViewById(R.id.txt_blind_spot_ar);
+        txtViewExplore = (TextView ) view.findViewById(R.id.txt_blind_spot_ar);
         relativeAR = (RelativeLayout) view.findViewById(R.id.relative_ar);
         relativeBlindSpot = (RelativeLayout) view.findViewById(R.id.relative_blind_spot);
 
