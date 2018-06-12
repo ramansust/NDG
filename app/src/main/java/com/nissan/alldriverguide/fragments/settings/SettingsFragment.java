@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.settings;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,8 +25,13 @@ import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.TutorialActivity;
 import com.nissan.alldriverguide.adapter.AssistanceAdapter;
+import com.nissan.alldriverguide.adapter.LanguageSelectionAdapter;
+import com.nissan.alldriverguide.customviews.DialogController;
+import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteSettingTabContent;
+import com.nissan.alldriverguide.internetconnection.DetectConnection;
+import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
@@ -69,13 +76,52 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         initViews(view);
         loadResource();
         setListener();
-        getSettingTabContent();
+//        getSettingTabContent();
         //loadData();
+        check_Data();
         return view;
     }
 
     private void check_Data() {
 
+        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), setting_names, assistanceImage);
+        lstView.setAdapter(adapter);
+
+        sharedpref_key = Values.carType + "_" + Values.SETTINGDATA;
+        settingList = preferenceUtil.retrieveSettingDataList(sharedpref_key);
+
+        if (settingList == null || settingList.size() == 0) {
+            if (DetectConnection.checkInternetConnection(getActivity())) {
+//                progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching your Language...");
+                apiCall();
+            } else {
+                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+                showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
+            }
+
+        } else {
+            Collections.sort(settingList, new Comparator<SettingsTabListModel>() {
+                @Override
+                public int compare(SettingsTabListModel lhs, SettingsTabListModel rhs) {
+                    return lhs.getIndex().compareTo(rhs.getIndex());
+                }
+            });
+            setting_names = new String[settingList.size()];
+            for (int i = 0; i < settingList.size(); i++) {
+                setting_names[i] = settingList.get(i).getTitle();
+            }
+            loadData();
+            apiCall();
+        }
+
+
+
+
+
+
+
+
+/*
         settingList = preferenceUtil.retrieveSettingDataList(sharedpref_key);
 
         if (settingList == null || settingList.size() == 0) {
@@ -97,6 +143,27 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
             loadData();
             apiCall();
         }
+*/
+
+    }
+
+    private void showNoInternetDialogue(String msg) {
+
+        final Dialog dialog = new DialogController(getActivity()).internetDialog();
+
+        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        txtViewTitle.setText(msg);
+
+        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                getActivity().finish();
+            }
+        });
+
+        dialog.show();
 
     }
 
@@ -157,8 +224,10 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         txt_title.setText(title);
 
 //        if (adapter == null || adapter.getCount() == 0) {
-        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), setting_names, assistanceImage);
-        lstView.setAdapter(adapter);
+//        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), setting_names, assistanceImage);
+//        lstView.setAdapter(adapter);
+        adapter.setList(setting_names, assistanceImage);
+        adapter.notifyDataSetChanged();
 //        } else {
 //            adapter = new AssistanceAdapter(getActivity().getApplicationContext(), setting_names, assistanceImage);
 //            adapter.notifyDataSetChanged();

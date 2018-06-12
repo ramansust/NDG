@@ -94,6 +94,12 @@ public class GridViewAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public void setList(ArrayList<ExploreTabVideoModel> videoList) {
+
+        this.video_list = videoList;
+
+    }
+
     static class ViewHolder {
         SimpleDraweeView imageView;
         TextView txtViewTitle;

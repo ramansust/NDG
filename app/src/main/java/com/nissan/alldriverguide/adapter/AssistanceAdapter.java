@@ -74,6 +74,13 @@ public class AssistanceAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public void setList(String[] setting_names, int[] assistanceImage) {
+
+        this.carName = setting_names;
+        this.carImage = assistanceImage;
+
+    }
+
     /**
      * this class for list item view initialization
      */

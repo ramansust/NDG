@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.explore;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -29,10 +30,13 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.nissan.alldriverguide.ImageTargetActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.VideoPlayerActivity;
+import com.nissan.alldriverguide.adapter.AssistanceAdapter;
 import com.nissan.alldriverguide.adapter.GridViewAdapter;
+import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
+import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
@@ -97,6 +101,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private RelativeLayout relativeBlindSpot;
 
     private GridView gridView;
+    private GridViewAdapter adapter;
 
     private Resources resources;
     private DisplayMetrics metrics;
@@ -135,8 +140,50 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private void getExploreTabContent() {
 
-        //progressDialog = new ProgressDialogController(getActivity()).showDialog(resources.getString(R.string.data_syncing));
+        adapter = new GridViewAdapter(getActivity().getApplicationContext(), new ArrayList<ExploreTabVideoModel>(), device_density);
+        gridView.setAdapter(adapter);
 
+        sharedpref_key = Values.carType + "_" + Values.EXPLOREDATA;
+        exploreModel = new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key);
+
+        if (exploreModel == null || exploreModel.getVideoList() == null) {
+            if (DetectConnection.checkInternetConnection(getActivity())) {
+                progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching data...");
+                apiCall();
+            } else {
+                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+                showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
+            }
+
+        } else {
+            check_density();
+            videoList = exploreModel.getVideoList();
+            NissanApp.getInstance().setExploreVideoList(videoList);
+
+            loadData();
+            apiCall();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
         preSharedpref_key = new PreferenceUtil(getActivity()).getPreviousLanguage() + "_" + Values.EXPLOREDATA;
         sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.EXPLOREDATA;
 
@@ -149,6 +196,29 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             new PreferenceUtil(getActivity()).deleteMultiLangData(preSharedpref_key);
             check_Data();
         }
+*/
+
+    }
+
+
+    private void showNoInternetDialogue(String msg) {
+
+        final Dialog dialog = new DialogController(getActivity()).internetDialog();
+
+        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        txtViewTitle.setText(msg);
+
+        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                getActivity().finish();
+            }
+        });
+
+        dialog.show();
+
     }
 
     public void check_density() {
@@ -197,11 +267,13 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
                     new PreferenceUtil(getActivity().getApplicationContext()).storeExploreDataList(responseInfo, sharedpref_key);
                     videoList.clear();
-                    exploreModel = new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key);
+                    exploreModel = responseInfo;
                     check_density();
                     videoList = exploreModel.getVideoList();
                     NissanApp.getInstance().setExploreVideoList(videoList);
                     loadData();
+                    if (progressDialog != null && progressDialog.isShowing())
+                        progressDialog.dismiss();
                 }
             }
 
@@ -248,7 +320,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 }
             });
 
-            gridView.setAdapter(new GridViewAdapter(getActivity().getApplicationContext(), videoList, device_density));
+
+            adapter.setList(videoList);
+            adapter.notifyDataSetChanged();
 
 
         } else {

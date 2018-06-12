@@ -39,6 +39,7 @@ import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.Datum;
+import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.DialogErrorFragment;
@@ -47,6 +48,8 @@ import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.SingleContentUpdating;
 import com.nissan.alldriverguide.utils.Values;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class AssistanceFragment extends Fragment implements AdapterView.OnItemClickListener {
@@ -93,6 +96,51 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     public void check_Data() {
 
+        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), assistanceArray, assistanceImage);
+        lstView.setAdapter(adapter);
+
+        sharedpref_key = Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
+        assistanceInfo = preferenceUtil.retrieveAssistanceData(sharedpref_key);
+
+        if (assistanceInfo == null || assistanceInfo.getData() == null) {
+            if (DetectConnection.checkInternetConnection(getActivity())) {
+//                progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching your Language...");
+                postAssistanceData();
+            } else {
+                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+                showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
+            }
+
+        } else {
+            NissanApp.getInstance().setAssistanceInfo(assistanceInfo); //added by nirob
+            List<Datum> list = assistanceInfo.getData();
+            assistanceArray = new String[list.size()];
+            for (int i = 0; i < list.size(); i++) {
+                assistanceArray[i] = list.get(i).getTitle();
+            }
+            loadData();
+            postAssistanceData();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
         preSharedpref_key = new PreferenceUtil(getActivity()).getPreviousLanguage() + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
         sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
 
@@ -105,6 +153,27 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             new PreferenceUtil(getActivity()).deleteMultiLangData(preSharedpref_key);
             check_LocalData();
         }
+*/
+
+    }
+
+    private void showNoInternetDialogue(String msg) {
+
+        final Dialog dialog = new DialogController(getActivity()).internetDialog();
+
+        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        txtViewTitle.setText(msg);
+
+        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                getActivity().finish();
+            }
+        });
+
+        dialog.show();
 
     }
 
@@ -136,9 +205,9 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
                     preferenceUtil.storeAssistanceData(responseInfo, sharedpref_key);
-                    NissanApp.getInstance().setAssistanceInfo(preferenceUtil.retrieveAssistanceData(sharedpref_key));
+                    NissanApp.getInstance().setAssistanceInfo(responseInfo);
 
-                    assistanceInfo = preferenceUtil.retrieveAssistanceData(sharedpref_key);
+                    assistanceInfo = responseInfo;
                     List<Datum> list = assistanceInfo.getData();
                     assistanceArray = new String[list.size()];
                     for (int i = 0; i < list.size(); i++) {
@@ -172,8 +241,10 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 //        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.assistance_array), assistanceImage);
 
         /*Log.e("Car Name " ,"  ..  " + );*/
-        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), assistanceArray, assistanceImage);
-        lstView.setAdapter(adapter);
+//        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), assistanceArray, assistanceImage);
+//        lstView.setAdapter(adapter);
+        adapter.setList(assistanceArray, assistanceImage);
+        adapter.notifyDataSetChanged();
 
         if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 //            txtViewCarName.setText(resources.getStringArray(R.array.car_names)[Values.carType - 1]);
