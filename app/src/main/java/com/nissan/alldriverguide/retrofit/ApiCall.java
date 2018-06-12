@@ -427,9 +427,9 @@ public class ApiCall {
                         LanguageListResponse languageListResponse = response.body();
                         interfaceLanguageListResponse.languageListResponse(languageListResponse);
                         new PreferenceUtil(MyApplication.getAppContext()).storeMultiLangData(languageListResponse.getLanguageList(), "LanguageList");
-                        progressDialog.dismiss();
+                        if (progressDialog != null && progressDialog.isShowing()) progressDialog.dismiss();
                     } else {
-                        progressDialog.dismiss();
+                        if (progressDialog != null && progressDialog.isShowing()) progressDialog.dismiss();
 //                        Toast.makeText(MyApplication.getAppContext(), "Something went wrong", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -438,7 +438,7 @@ public class ApiCall {
                 public void onFailure(Call<LanguageListResponse> call, Throwable t) {
                     Log.e("Error___", "_______"+t.toString());
 //                    Toast.makeText(MyApplication.getAppContext(), "Check your internet connection",Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
+                    if (progressDialog != null && progressDialog.isShowing()) progressDialog.dismiss();
                 }
             });
     }

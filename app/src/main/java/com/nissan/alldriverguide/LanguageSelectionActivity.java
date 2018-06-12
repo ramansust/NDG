@@ -113,32 +113,41 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
     private void getDataCarWise() {
 
-        if (DetectConnection.checkInternetConnection(getApplicationContext())) {
+        adapter = new LanguageSelectionAdapter(context, new ArrayList<LanguageInfo>(), false);
+        lstView.setAdapter(adapter);
+        lstView.setDivider(null);
+        ColorDrawable sage = new ColorDrawable(this.getResources().getColor(R.color.line_color));
+        lstView.setDivider(sage);
+        lstView.setDividerHeight(4);
 
-            progressDialog = new ProgressDialogController(this).showDialog("Fetching your Language...");
-
-            new ApiCall().getLanguageList(NissanApp.getInstance().getDeviceID(this)/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, Values.carType+"", progressDialog , new InterfaceLanguageListResponse() {
-                @Override
-                public void languageListResponse(LanguageListResponse languageListResponse) {
-                    languageLists = languageListResponse.getLanguageList();
-                    populateDataIntoList();
-                    Log.e("hit", "_____api");
-                }
-            });
-
+        languageLists = getDataFromSP();
+        if (languageLists == null || languageLists.size() == 0) {
+            if (DetectConnection.checkInternetConnection(activity)) {
+                progressDialog = new ProgressDialogController(activity).showDialog("Fetching your Language...");
+                callApiForLanguage();
+            } else {
+                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(activity, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+                showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
+            }
 
         } else {
-            // load from database if internet is not there
-            Log.e("hit", "_____sp");
-            languageLists = getDataFromSP();
-            if (languageLists == null || languageLists.size() == 0) {
-                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
-//                NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
-                showNoInternetDialogue(internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
-            } else {
+            populateDataIntoList();
+            list = new ArrayList<>();
+            callApiForLanguage();
+        }
+
+    }
+
+    private void callApiForLanguage() {
+
+        new ApiCall().getLanguageList(NissanApp.getInstance().getDeviceID(this)/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, Values.carType+"", progressDialog , new InterfaceLanguageListResponse() {
+            @Override
+            public void languageListResponse(LanguageListResponse languageListResponse) {
+                languageLists = languageListResponse.getLanguageList();
                 populateDataIntoList();
             }
-        }
+        });
+
     }
 
     private void showNoInternetDialogue(String msg) {
@@ -251,12 +260,9 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             }
         }
 
-        adapter = new LanguageSelectionAdapter(getApplicationContext(), list, false);
-        lstView.setAdapter(adapter);
-        lstView.setDivider(null);
-        ColorDrawable sage = new ColorDrawable(this.getResources().getColor(R.color.line_color));
-        lstView.setDivider(sage);
-        lstView.setDividerHeight(4);
+        adapter.setList(list);
+        adapter.notifyDataSetChanged();
+
     }
 
     @Override
@@ -600,8 +606,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
     private String getAlertMessage(String msgType) {
-
-        Log.e("model", "________" + selectedLangModel.getLanguageName());
 
         List<AlertMessage> alertMessageList = selectedLangModel.getAlertMessage();
 

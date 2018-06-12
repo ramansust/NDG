@@ -8,13 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.model.LanguageInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -71,15 +71,7 @@ public class LanguageSelectionAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag ();
         }
 
-//        viewHolder.imageView.setBackgroundResource(list.get(position).getImage());
-        Glide.with(context)
-                .load(list.get(position).getImage()) // image url
-                .placeholder(R.drawable.arrow) // any placeholder to load at start
-                .error(R.drawable.arrow)  // any image in case of error
-                .override(180, 120) // resizing
-                .centerCrop()
-                .into(viewHolder.imageView);
-
+        viewHolder.imageView.setImageURI(list.get(position).getImage());
         viewHolder.txtViewTitle.setTypeface(tf);
         viewHolder.txtViewTitle.setText(list.get(position).getName());
 
@@ -99,13 +91,17 @@ public class LanguageSelectionAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public void setList(ArrayList<LanguageInfo> newList) {
+        this.list = newList;
+    }
+
     static class ViewHolder {
-        ImageView imageView;
+        SimpleDraweeView imageView;
         TextView txtViewTitle;
         CheckBox checkBox;
 
         public ViewHolder (View view) {
-            imageView = (ImageView) view.findViewById(R.id.img_view);
+            imageView = (SimpleDraweeView) view.findViewById(R.id.img_view); // use fresco to load image
             txtViewTitle = (TextView) view.findViewById (R.id.txt_title);
             checkBox = (CheckBox) view.findViewById(R.id.check_box);
         }

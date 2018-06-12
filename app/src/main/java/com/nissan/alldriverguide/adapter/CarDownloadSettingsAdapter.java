@@ -111,18 +111,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 //        getDataCarWise();
         getCarList();
 
-        for (int i = 0; i < carNames.length; i++) {
-
-//            Log.e("carname", "_______" + carNames[i]);
-
-        }
-
-        for (int i = 0; i < list.size(); i++) {
-
-//            Log.e("list_name", "_______" + list.get(i).getName());
-
-        }
-
     }
 
     private void getCarList() {
@@ -130,7 +118,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         Type type = new TypeToken<ArrayList<LanguageList>>() {
         }.getType();
         languageLists = new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData("LanguageList"), type);
-
 
     }
 
