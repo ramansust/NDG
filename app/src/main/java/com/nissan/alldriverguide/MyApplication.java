@@ -23,6 +23,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        super.onCreate();
+        Fresco.initialize(this);
         MyApplication.context = getApplicationContext();
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                         .setDefaultFontPath("font/Nissan Brand Bold.otf")

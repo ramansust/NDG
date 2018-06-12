@@ -7,14 +7,15 @@
     android:paddingBottom="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_horizontal_margin">
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/img_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:background="@drawable/flag"/>
 
     <TextView
         android:id="@+id/txt_title"
