@@ -191,7 +191,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             postAssistanceData();
 
         } else {
-//            Log.e("Api hit ", "  " + assistanceInfo.getSelectedCar());
             postAssistanceData();
         }
     }
@@ -240,7 +239,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             txt_title.setText(NissanApp.getInstance().getTabMenuArrayList().get(1).getTitle());
 //        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.assistance_array), assistanceImage);
 
-        /*Log.e("Car Name " ,"  ..  " + );*/
 //        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), assistanceArray, assistanceImage);
 //        lstView.setAdapter(adapter);
         adapter.setList(assistanceArray, assistanceImage);

@@ -23,6 +23,7 @@ import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.retrofit.ApiCall;
+import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
@@ -193,7 +194,7 @@ public class Feedback extends Fragment implements View.OnClickListener {
 
                 @Override
                 public void onFailed(String failedReason) {
-                    Log.e("onDownloaded: ", failedReason);
+                    Logger.error("onFailed: ", failedReason);
                 }
             });
         }

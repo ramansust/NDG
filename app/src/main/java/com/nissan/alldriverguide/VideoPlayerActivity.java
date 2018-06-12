@@ -156,8 +156,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     private void startVideo() {
 
         if(NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl()!=null){
-            Log.e("Video Url",""+NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl());
-            Log.e("Video Tag",""+NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getTag());
             Uri video = Uri.parse(NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl());
             videoView.setVideoURI(video);
         }

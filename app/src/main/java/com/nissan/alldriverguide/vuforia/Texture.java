@@ -14,6 +14,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.nissan.alldriverguide.utils.Logger;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,8 +54,7 @@ public class Texture {
             return loadTextureFromIntBuffer(data, bitMap.getWidth(),
                     bitMap.getHeight());
         } catch (IOException e) {
-            Log.e(LOGTAG, "Failed to log texture '" + fileName + "' from APK");
-            Log.i(LOGTAG, e.getMessage());
+            Logger.error(LOGTAG, e.getMessage());
             return null;
         }
     }

@@ -184,7 +184,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
             @Override
             public void onFailed(String failedReason) {
-                Log.e("onDownloaded", "********Fail******");
+                Logger.error("onDownloaded", "********Fail******" + failedReason);
             }
         });
     }

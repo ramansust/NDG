@@ -20,6 +20,7 @@ import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
+import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.Values;
 
 import retrofit2.Call;
@@ -422,7 +423,7 @@ public class ApiCall {
 
                 @Override
                 public void onResponse(Call<LanguageListResponse> call, Response<LanguageListResponse> response) {
-                    Log.e("response.code(): ",""+ response.code() );
+                    Logger.error("response.code(): ",""+ response.code() );
                     if (response.isSuccessful()) {
                         LanguageListResponse languageListResponse = response.body();
                         interfaceLanguageListResponse.languageListResponse(languageListResponse);
@@ -436,7 +437,7 @@ public class ApiCall {
 
                 @Override
                 public void onFailure(Call<LanguageListResponse> call, Throwable t) {
-                    Log.e("Error___", "_______"+t.toString());
+                    Logger.error("Error___", "_______" + t.toString());
 //                    Toast.makeText(MyApplication.getAppContext(), "Check your internet connection",Toast.LENGTH_SHORT).show();
                     if (progressDialog != null && progressDialog.isShowing()) progressDialog.dismiss();
                 }
@@ -453,7 +454,7 @@ public class ApiCall {
 
             @Override
             public void onResponse(Call<CarListResponse> call, Response<CarListResponse> response) {
-                Log.e("response.code(): ",""+ response.code() );
+                Logger.error("response.code(): ",""+ response.code() );
                 if (response.isSuccessful()) {
                     CarListResponse carListResponse = response.body();
                     completeAPI.onDownloaded(carListResponse);
@@ -462,7 +463,7 @@ public class ApiCall {
 
             @Override
             public void onFailure(Call<CarListResponse> call, Throwable t) {
-                Log.e("Error___", "_______"+t.toString());
+                Logger.error("Error___", "_______"+t.toString());
                 completeAPI.onFailed(t.toString());
             }
         });

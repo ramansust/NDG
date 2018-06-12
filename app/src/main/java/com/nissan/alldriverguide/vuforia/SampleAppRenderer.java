@@ -16,6 +16,7 @@ import android.opengl.GLES20;
 import android.opengl.Matrix;
 import android.util.Log;
 
+import com.nissan.alldriverguide.utils.Logger;
 import com.vuforia.COORDINATE_SYSTEM_TYPE;
 import com.vuforia.CameraDevice;
 import com.vuforia.Device;
@@ -73,14 +74,14 @@ public class SampleAppRenderer {
         mRenderer = Renderer.getInstance();
 
         if (farPlane < nearPlane) {
-            Log.e(LOGTAG, "Far plane should be greater than near plane");
+            Logger.error(LOGTAG, "Far plane should be greater than near plane");
             throw new IllegalArgumentException();
         }
 
         setNearFarPlanes(nearPlane, farPlane);
 
         if (deviceMode != Device.MODE.MODE_AR && deviceMode != Device.MODE.MODE_VR) {
-            Log.e(LOGTAG, "Device mode should be Device.MODE.MODE_AR or Device.MODE.MODE_VR");
+            Logger.error(LOGTAG, "Device mode should be Device.MODE.MODE_AR or Device.MODE.MODE_VR");
             throw new IllegalArgumentException();
         }
 
@@ -215,7 +216,7 @@ public class SampleAppRenderer {
         // Bind the video bg texture and get the Texture ID from Vuforia
         videoBackgroundTex.setTextureUnit(vbVideoTextureUnit);
         if (!mRenderer.updateVideoBackgroundTexture(videoBackgroundTex)) {
-            Log.e(LOGTAG, "Unable to update video background texture");
+            Logger.error(LOGTAG, "Unable to update video background texture");
             return;
         }
 

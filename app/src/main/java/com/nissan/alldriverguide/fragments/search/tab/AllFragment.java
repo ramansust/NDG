@@ -80,7 +80,6 @@ public class AllFragment extends Fragment {
 
         // getting data from database that save in when car language is downloaded
         ArrayList<EpubModel> search_List = commondao.getEpubListByTag(getActivity(), key, Values.carType);
-//        Log.e("addData: ", "" + commondao.getAllEpubList(getActivity()).size());
 
         if (search_List.size() <= 0) {
             blankLayout.setVisibility(View.VISIBLE);

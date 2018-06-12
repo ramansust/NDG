@@ -187,7 +187,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             languageName[i] = (languageLists.get(i).getLanguageName());
             languageShortName[i] = (languageLists.get(i).getLanguageShortcode());
 
-            Log.e("--", ": "+languageName[i] );
             if("xxxhdpi".contains(deviceDensity)){
                 langFlagUri[i] = languageLists.get(i).getLanguageFlag().getXxxhdpi();
             } else if("xxhdpi".contains(deviceDensity)){
@@ -234,11 +233,9 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
      * Load the initial data into list
      */
     private void loadData(String FlagUrl[]) {
-        Log.e("***", "loadData: "+ languageName.length);
         for (int i = 0; i < languageName.length; i++) {
 
             LanguageInfo info = new LanguageInfo(i, languageName[i], false, FlagUrl[i]);
-            Log.e("**", "loadData: "+languageName[i]);
 //            list.add(info);
             // display 2 languages only for car type 2 and 5
             if (Values.carType == 2 || Values.carType == 5) {
@@ -282,7 +279,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
         if (NissanApp.getInstance().createPath(Values.PATH)) {
             if (DetectConnection.checkInternetConnection(getApplicationContext())) {
-                Log.e("changeglobal", "________hit");
                 showCarDownloadDialogForSingleCar();
 
             } else {
@@ -290,20 +286,21 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                 NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
             }
         } else {
-            Log.e("error in", "________path");
+            Logger.error("error in", "________path");
         }
     }
 
     private LanguageList getDataFromMainList(int position) {
 
-        Log.e("list_lang", "__________" + list.get(position).getName());
-
-        for (int i = 0; i < languageLists.size(); i++) {
-            Log.e("list_lang_temp", "__________" + languageLists.get(i).getLanguageName());
-            if (list.get(position).getName().equalsIgnoreCase(languageLists.get(i).getLanguageName())) {
-                return languageLists.get(i);
+        if (languageLists != null && languageLists.size() > 0) {
+            for (int i = 0; i < languageLists.size(); i++) {
+                Logger.error("list_lang_temp", "__________" + languageLists.get(i).getLanguageName());
+                if (list.get(position).getName().equalsIgnoreCase(languageLists.get(i).getLanguageName())) {
+                    return languageLists.get(i);
+                }
             }
         }
+
 
         return new LanguageList();
     }

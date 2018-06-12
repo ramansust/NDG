@@ -12,6 +12,8 @@ package com.nissan.alldriverguide.vuforia;
 import android.opengl.GLES20;
 import android.util.Log;
 
+import com.nissan.alldriverguide.utils.Logger;
+
 
 public class SampleUtils
 {
@@ -32,7 +34,7 @@ public class SampleUtils
                 0);
             if (glStatusVar[0] == GLES20.GL_FALSE)
             {
-                Log.e(LOGTAG, "Could NOT compile shader " + shaderType + " : "
+                Logger.error(LOGTAG, "Could NOT compile shader " + shaderType + " : "
                     + GLES20.glGetShaderInfoLog(shader));
                 GLES20.glDeleteShader(shader);
                 shader = 0;
@@ -69,7 +71,7 @@ public class SampleUtils
                 0);
             if (glStatusVar[0] == GLES20.GL_FALSE)
             {
-                Log.e(
+                Logger.error(
                     LOGTAG,
                     "Could NOT link program : "
                         + GLES20.glGetProgramInfoLog(program));
@@ -86,7 +88,7 @@ public class SampleUtils
     {
         for (int error = GLES20.glGetError(); error != 0; error = GLES20
             .glGetError())
-            Log.e(
+            Logger.error(
                 LOGTAG,
                 "After operation " + op + " got glError 0x"
                     + Integer.toHexString(error));

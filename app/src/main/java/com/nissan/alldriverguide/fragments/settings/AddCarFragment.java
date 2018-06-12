@@ -181,12 +181,11 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
                 @Override
                 public void onDownloaded(CarListResponse responseInfo) {
-                    Log.e("status", "_______" + responseInfo.getStatusCode());
+                    Logger.error("status", "_______" + responseInfo.getStatusCode());
                     if (responseInfo.getStatusCode().equals("200")) {
                         carListArrayList = responseInfo.getCarList();
                         preferenceUtil.storeMultiLangData(carListArrayList, "car_list_key");
                         replaceTheCarNames();
-                        Log.e("size", "_______" + carListArrayList.size());
                     }
                 }
 

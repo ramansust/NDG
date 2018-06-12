@@ -14,6 +14,8 @@ import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
 import android.util.Log;
 
+import com.nissan.alldriverguide.utils.Logger;
+
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
@@ -99,7 +101,7 @@ public class SampleApplicationGLView extends GLSurfaceView {
     private static void checkEglError(String prompt, EGL10 egl) {
         int error;
         while ((error = egl.eglGetError()) != EGL10.EGL_SUCCESS) {
-            Log.e(LOGTAG, String.format("%s: EGL error: 0x%x", prompt, error));
+            Logger.error(LOGTAG, String.format("%s: EGL error: 0x%x", prompt, error));
         }
     }
 

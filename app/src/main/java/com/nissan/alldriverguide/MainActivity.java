@@ -412,7 +412,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
                 transaction.addToBackStack("");
                 transaction.commit();
             } else { // this block for great or not great popup
-                Log.e("onBackPressed: ", "---" + preferenceUtil.getOpenCountForRateApp());
 
                 if (preferenceUtil.getIsFirstTimeGreatNotGreat() && preferenceUtil.getOpenCountForRateApp() >= Values.RATE_APP_FIRST_SESSION) {
 

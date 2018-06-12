@@ -19,6 +19,7 @@ import android.view.OrientationEventListener;
 import android.view.WindowManager;
 
 import com.nissan.alldriverguide.R;
+import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 import com.vuforia.CameraDevice;
@@ -116,7 +117,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
             vuforiaException = new SampleApplicationException(
                     SampleApplicationException.VUFORIA_ALREADY_INITIALIZATED,
                     logMessage);
-            Log.e(LOGTAG, logMessage);
+            Logger.error(LOGTAG, logMessage);
         }
 
         if (vuforiaException == null) {
@@ -128,7 +129,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
                 vuforiaException = new SampleApplicationException(
                         SampleApplicationException.INITIALIZATION_FAILURE,
                         logMessage);
-                Log.e(LOGTAG, logMessage);
+                Logger.error(LOGTAG, logMessage);
             }
         }
 
@@ -145,7 +146,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
         String error;
         if (mCameraRunning) {
             error = "Camera already running, unable to open again";
-            Log.e(LOGTAG, error);
+            Logger.error(LOGTAG, error);
             throw new SampleApplicationException(
                     SampleApplicationException.CAMERA_INITIALIZATION_FAILURE, error);
         }
@@ -153,7 +154,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
         mCamera = camera;
         if (!CameraDevice.getInstance().init(camera)) {
             error = "Unable to open camera device: " + camera;
-            Log.e(LOGTAG, error);
+            Logger.error(LOGTAG, error);
             throw new SampleApplicationException(
                     SampleApplicationException.CAMERA_INITIALIZATION_FAILURE, error);
         }
@@ -161,14 +162,14 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
         if (!CameraDevice.getInstance().selectVideoMode(
                 CameraDevice.MODE.MODE_DEFAULT)) {
             error = "Unable to set video mode";
-            Log.e(LOGTAG, error);
+            Logger.error(LOGTAG, error);
             throw new SampleApplicationException(
                     SampleApplicationException.CAMERA_INITIALIZATION_FAILURE, error);
         }
 
         if (!CameraDevice.getInstance().start()) {
             error = "Unable to start camera device: " + camera;
-            Log.e(LOGTAG, error);
+            Logger.error(LOGTAG, error);
             throw new SampleApplicationException(
                     SampleApplicationException.CAMERA_INITIALIZATION_FAILURE, error);
         }
@@ -190,7 +191,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
             vuforiaException = new SampleApplicationException(
                     SampleApplicationException.CAMERA_INITIALIZATION_FAILURE,
                     logMessage);
-            Log.e(LOGTAG, logMessage);
+            Logger.error(LOGTAG, logMessage);
         }
 
         if (vuforiaException != null) {
@@ -265,7 +266,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
             vuforiaException = new SampleApplicationException(
                     SampleApplicationException.INITIALIZATION_FAILURE,
                     logMessage);
-            Log.e(LOGTAG, logMessage);
+            Logger.error(LOGTAG, logMessage);
         }
 
         if (vuforiaException != null) {
@@ -386,7 +387,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
                     vuforiaException = new SampleApplicationException(
                             SampleApplicationException.TRACKERS_INITIALIZATION_FAILURE,
                             logMessage);
-                    Log.e(LOGTAG, logMessage);
+                    Logger.error(LOGTAG, logMessage);
                 }
             } else {
                 String logMessage;
@@ -397,7 +398,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
                 logMessage = getInitializationErrorString(mProgressValue);
 
                 // Log error:
-                Log.e(LOGTAG, "InitVuforiaTask.onPostExecute: " + logMessage
+                Logger.error(LOGTAG, "InitVuforiaTask.onPostExecute: " + logMessage
                         + " Exiting.");
 
                 vuforiaException = new SampleApplicationException(
@@ -456,7 +457,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
                     mLoadTrackerTask.execute();
                 } catch (Exception e) {
                     String logMessage = "Failed to load tracker data.";
-                    Log.e(LOGTAG, logMessage);
+                    Logger.error(LOGTAG, logMessage);
 
                     vuforiaException = new SampleApplicationException(
                             SampleApplicationException.LOADING_TRACKERS_FAILURE,
@@ -464,7 +465,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
                 }
             } else {
                 String logMessage = "Failed to load tracker data.";
-                Log.e(LOGTAG, logMessage);
+                Logger.error(LOGTAG, logMessage);
 
                 // Error loading dataset
                 vuforiaException = new SampleApplicationException(
@@ -500,7 +501,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
             if (!result) {
                 String logMessage = "Failed to load tracker data.";
                 // Error loading dataset
-                Log.e(LOGTAG, logMessage);
+                Logger.error(LOGTAG, logMessage);
                 vuforiaException = new SampleApplicationException(
                         SampleApplicationException.LOADING_TRACKERS_FAILURE,
                         logMessage);
@@ -533,7 +534,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
                 try {
                     startCameraAndTrackers(mCamera);
                 } catch (SampleApplicationException e) {
-                    Log.e(LOGTAG, "StartVuforiaTask.doInBackground: Could not start AR with exception: " + e);
+                    Logger.error(LOGTAG, "StartVuforiaTask.doInBackground: Could not start AR with exception: " + e);
                     vuforiaException = e;
                 }
             }

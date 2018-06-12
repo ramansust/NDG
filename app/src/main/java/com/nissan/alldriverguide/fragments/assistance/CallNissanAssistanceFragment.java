@@ -193,7 +193,6 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
 
     private void initViews(View view) {
         deviceDensity = NissanApp.getInstance().getDensityName(getActivity());
-        Log.e("initViews: ", deviceDensity);
         btnBack = (ImageButton) view.findViewById(R.id.btn_back);
         lstView = (ListView) view.findViewById(R.id.lst_view);
         txtViewTitle = (TextView) view.findViewById(R.id.txt_title);

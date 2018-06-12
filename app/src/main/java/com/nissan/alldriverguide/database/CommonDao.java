@@ -56,7 +56,6 @@ public class CommonDao {
         if (mCursor.moveToFirst()) {
             for (int i = 0; i < mCursor.getCount(); i++) {
                 EpubModel epubModule = getListFromCursor(mCursor);
-                Log.e("index_getEpubListByTag", "_________" + epubModule.getIndex());
                 listAllEpub.add(epubModule);
                 mCursor.moveToNext();
             }
@@ -457,7 +456,7 @@ public class CommonDao {
                 db.close();
 
             } catch (Exception e) {
-                Log.e("Problem", e + " ");
+                Logger.error("Problem", e + " ");
             }
             return newHeadId;
         } else {
@@ -510,7 +509,7 @@ public class CommonDao {
                 db.close();
 
             } catch (Exception e) {
-                Log.e("Problem Search ", e + " ");
+                Logger.error("Problem Search ", e + " ");
             }
             return newHeadId;
         } else {
@@ -561,7 +560,6 @@ public class CommonDao {
         ArrayList<SearchModel> List = new ArrayList<SearchModel>();
         SQLiteDatabase db = getWritableDatabase(context, NissanDbHelper.class);
         String selectQuery = "SELECT * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.CARTYPE + " = '" + carType + "' AND " + SearchTagTableDirectory.LANGUAGE_TYPE + " = '" + selectedLanguage + "' ORDER BY " + SearchTagTableDirectory.COUNT + " DESC limit 10";
-        Log.e("selectQuery_count", "_____________" + selectQuery);
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         try {
@@ -591,7 +589,6 @@ public class CommonDao {
         String selectQuery = "SELECT * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.CARTYPE + " = '" + carType + "' AND " + SearchTagTableDirectory.LANGUAGE_TYPE + " = '" + selectedLanguage + "' ORDER BY " + SearchTagTableDirectory.DATE + " DESC limit 10";
 
 //        String selectQuery = "SELECT * FROM search_info WHERE car_type = '13' ORDER BY datetime(date) ASC Limit 10";
-        Log.e("selectQuery", "_________" + selectQuery);
         Cursor cursor = db.rawQuery(selectQuery, null);
         try {
             if (cursor.moveToFirst()) {
@@ -637,7 +634,6 @@ public class CommonDao {
         ArrayList<SearchModel> List = new ArrayList<SearchModel>();
         SQLiteDatabase db = getWritableDatabase(context, NissanDbHelper.class);
         String selectQuery = "SELECT * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.CARTYPE + "= " + cartype;
-        Log.e("selectQuery", "_________" + selectQuery);
         Cursor cursor = db.rawQuery(selectQuery, null);
         try {
             if (cursor.moveToFirst()) {
@@ -690,7 +686,6 @@ public class CommonDao {
         values.put(SearchTagTableDirectory.COUNT, count);
         String whereClause = SearchTagTableDirectory.SEARCHTAG + " = '" + searchTag + "' AND " + SearchTagTableDirectory.CARTYPE + " = '" + carType + "' AND " + SearchTagTableDirectory.LANGUAGE_TYPE + " = '" + langType + "'";
         int result = db.update(SearchTagTableDirectory.TABLE_NAME, values, whereClause, null);
-        Log.e("updateSearchCount_query", "_______" + whereClause);
         if (db.isOpen()) {
             db.close();
         }
@@ -716,7 +711,7 @@ public class CommonDao {
                 db.close();
 
             } catch (Exception e) {
-                Log.e("Problem Search ", e + " ");
+                Logger.error("Problem Search ", e + " ");
             }
             return newHeadId;
         } else {

@@ -305,7 +305,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 }
             });
 
-            Log.e("Header text Explore",""+header_text);
             //txtViewExplore.setImageURI(Uri.parse(header_text));
 
            /* Glide.with(this).load(header_Background).asBitmap().into(new SimpleTarget<Bitmap>() {

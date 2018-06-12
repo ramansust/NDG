@@ -127,7 +127,6 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         if (settingList == null || settingList.size() == 0) {
             apiCall();
         } else {
-            Log.e("Load Setting db", " ---sharepref-----  " + sharedpref_key);
             settingList = new ArrayList<>();
             settingList = preferenceUtil.retrieveSettingDataList(sharedpref_key);
             Collections.sort(settingList, new Comparator<SettingsTabListModel>() {
