@@ -162,7 +162,11 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         getDataFromSP();
         if (carListArrayList == null || carListArrayList.size() == 0) {
-            callApiAndGetData();
+            if (DetectConnection.checkInternetConnection(getActivity())) {
+                callApiAndGetData();
+            } else {
+                loadData();
+            }
         } else {
             replaceTheCarNames();
         }
