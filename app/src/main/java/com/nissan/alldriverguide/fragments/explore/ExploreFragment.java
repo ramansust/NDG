@@ -115,7 +115,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private String header_Background;
     private ExploreTabModel exploreModel;
     private ProgressDialog progressDialog;
-    private String device_density;
+    private String device_density, internetCheckMessage = "";
 
     /**
      * Creating instance for this fragment
@@ -153,7 +153,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching data...");
                 apiCall();
             } else {
-                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+                internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
                 showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
             }
 
@@ -443,8 +443,14 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         Values.videoIndex = position;
         // here start the playing video for grid view item click
 
-        if (NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl() != null) {
-            startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
+        if (DetectConnection.checkInternetConnection(getActivity())) {
+
+            if (NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl() != null) {
+                startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
+            }
+
+        } else {
+            showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
         }
 
     }
