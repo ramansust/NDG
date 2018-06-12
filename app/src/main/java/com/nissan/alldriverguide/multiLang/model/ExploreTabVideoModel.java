@@ -20,6 +20,9 @@ public class ExploreTabVideoModel {
     @SerializedName("index")
     @Expose
     private Integer index;
+    @SerializedName("tag")
+    @Expose
+    private Integer tag;
     @SerializedName("thumb_ldpi")
     @Expose
     private String thumbLdpi;
@@ -102,6 +105,14 @@ public class ExploreTabVideoModel {
 
     public void setIndex(Integer index) {
         this.index = index;
+    }
+
+    public Integer getTag() {
+        return tag;
+    }
+
+    public void setTag(Integer tag) {
+        this.tag = tag;
     }
 
     public String getThumbLdpi() {

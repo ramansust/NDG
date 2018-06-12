@@ -35,12 +35,15 @@ import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
+import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ExploreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
@@ -237,6 +240,13 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     }
                 }
             });*/
+
+            Collections.sort(videoList, new Comparator<ExploreTabVideoModel>() {
+                @Override
+                public int compare(ExploreTabVideoModel lhs, ExploreTabVideoModel rhs) {
+                    return lhs.getIndex().compareTo(rhs.getIndex());
+                }
+            });
 
             gridView.setAdapter(new GridViewAdapter(getActivity().getApplicationContext(), videoList, device_density));
 

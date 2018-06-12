@@ -2,6 +2,7 @@ package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 
@@ -27,6 +29,7 @@ public class GridViewAdapter extends BaseAdapter {
     private ArrayList<ExploreTabVideoModel> video_list;
     private String device_density;
     private String img_name;
+    private Uri uri;
 
     public GridViewAdapter(Context context, ArrayList<ExploreTabVideoModel> video_list, String device_density) {
         this.context = context;
@@ -80,19 +83,23 @@ public class GridViewAdapter extends BaseAdapter {
             img_name = video_list.get(position).getThumbXhdpi();
         }
 
-        Glide.with(context)
+        uri = Uri.parse(img_name);
+
+        /*Glide.with(context)
                 .load(img_name)
-                .into(viewHolder.imageView);
+                .into(viewHolder.imageView);*/
+
+        viewHolder.imageView.setImageURI(uri);
 
         return convertView;
     }
 
     static class ViewHolder {
-        ImageView imageView;
+        SimpleDraweeView imageView;
         TextView txtViewTitle;
 
         public ViewHolder(View view) {
-            imageView = (ImageView) view.findViewById(R.id.img_view);
+            imageView = (SimpleDraweeView) view.findViewById(R.id.img_view);
             txtViewTitle = (TextView) view.findViewById(R.id.txt_video_title);
         }
     }
