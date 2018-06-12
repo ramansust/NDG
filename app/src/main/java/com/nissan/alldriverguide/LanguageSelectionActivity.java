@@ -239,18 +239,35 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 //            list.add(info);
             // display 2 languages only for car type 2 and 5
             if (Values.carType == 2 || Values.carType == 5) {
-                if (i == 0 || i == 6) {
+//                if (i == 0 || i == 6) {
+//                    list.add(info);
+//                }
+
+                if (languageShortName[i].equalsIgnoreCase("en") || languageShortName[i].equalsIgnoreCase("ru"))
                     list.add(info);
-                }
+
             } else {
                 if (Values.carType == 7 || Values.carType == 8 || Values.carType == 9) {
-                    if (i != 6 && i != 8) {
+//                    if (i != 6 && i != 8) {
+//                        list.add(info);
+//                    }
+
+                    if (languageShortName[i].equalsIgnoreCase("ru") || languageShortName[i].equalsIgnoreCase("no")) {
+//                    if (i != 6 && i != 8) {
+
+                    } else {
                         list.add(info);
                     }
+
                 } else if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 6 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13) {
-                    if (i != 8) {
+//                    if (i != 8) {
+//                        list.add(info);
+//                    }
+
+                    if (!languageShortName[i].equalsIgnoreCase("no")) {
                         list.add(info);
                     }
+
                 } else {
                     list.add(info);
                 }
