@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.model.CallInfo;
 
@@ -64,28 +63,7 @@ public class CallNumberAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag ();
         }
 
-//        viewHolder.imageView.setBackgroundResource(list.get(position).getFlag());
-//        Glide.with(context)
-//                .load(list.get(position).getFlag())
-//                .into(viewHolder.imageView);
-
-
-        Glide.with(context)
-                .load(list.get(position).getCountryFlag()) // image url
-                .placeholder(R.drawable.arrow) // any placeholder to load at start
-                .error(R.drawable.arrow)  // any image in case of error
-                .override(98, 65) // resizing
-                .centerCrop()
-                .into(viewHolder.imageView);
-
-/*        String imageBytes = list.get(position).getCountryFlag();
-        byte[] imageByteArray = Base64.decode(imageBytes, Base64.DEFAULT);
-        Glide.with(context)
-                .load(imageByteArray)
-                .asBitmap()
-                .placeholder(R.drawable.austria)
-                .into(viewHolder.imageView);*/
-
+        viewHolder.imageView.setImageURI(list.get(position).getCountryFlag());
         viewHolder.txtViewTitle.setTypeface(tf);
         viewHolder.txtViewTitle.setText(list.get(position).getCountryName());
 
@@ -93,12 +71,12 @@ public class CallNumberAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        ImageView imageView;
+        SimpleDraweeView imageView;
         TextView txtViewTitle;
         CheckBox checkBox;
 
         public ViewHolder (View view) {
-            imageView = (ImageView) view.findViewById(R.id.img_view);
+            imageView = (SimpleDraweeView) view.findViewById(R.id.img_view);
             txtViewTitle = (TextView) view.findViewById (R.id.txt_title);
             checkBox = (CheckBox) view.findViewById(R.id.check_box);
         }
