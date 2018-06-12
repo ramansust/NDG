@@ -113,7 +113,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
     private void getDataCarWise() {
 
-        adapter = new LanguageSelectionAdapter(context, new ArrayList<LanguageInfo>(), true);
+        adapter = new LanguageSelectionAdapter(context, new ArrayList<LanguageInfo>(), false);
         lstView.setAdapter(adapter);
         lstView.setDivider(null);
         ColorDrawable sage = new ColorDrawable(this.getResources().getColor(R.color.line_color));
