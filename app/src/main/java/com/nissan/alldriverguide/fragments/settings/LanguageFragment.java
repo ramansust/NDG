@@ -317,12 +317,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     private void changeGlobalAlertMsg(final int position){
 
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.start_download));
-            }
-        });
 
         final String lang_sort_name = languageShortName[list.get(position).getId()];
 
@@ -342,7 +336,8 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                     NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
                     NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
 
-                    startDownloadProcedure(lang_sort_name, position); // start language download procedure
+                     // start language download procedure
+                    dismissDialog();
 
                 }
             }
@@ -350,6 +345,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             @Override
             public void onFailed(String failedReason) {
                 Logger.error("changeGlobal", "********Fail******" + failedReason);
+                dismissDialog();
             }
         });
     }
@@ -380,13 +376,21 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                changeGlobalAlertMsg(position);
+//                changeGlobalAlertMsg(position);
+                startDownloadProcedure(lang, position);
             }
         });
         dialog.show();
     }
 
     private void startDownloadProcedure(final String lang, final int position) {
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.start_download));
+            }
+        });
 
         new ApiCall().postLanguageDownload(Values.carType + "", "" + NissanApp.getInstance().getLanguageID(lang), "0", NissanApp.getInstance().getDeviceID(getActivity()), new CompleteAPI() {
             @Override
@@ -453,7 +457,9 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                                 ((MainActivity) getActivity()).loadResource();
                                                                 ((MainActivity) getActivity()).setTabResources();
 
-                                                                dismissDialog();
+                                                                changeGlobalAlertMsg(position);
+
+
                                                             } else {
                                                                 showErrorDialog("Confirmation send error!");
                                                                 dismissDialog();
