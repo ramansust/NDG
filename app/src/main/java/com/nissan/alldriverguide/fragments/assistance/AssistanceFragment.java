@@ -12,7 +12,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
@@ -39,7 +39,6 @@ import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.Datum;
-import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.DialogErrorFragment;
@@ -48,8 +47,6 @@ import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.SingleContentUpdating;
 import com.nissan.alldriverguide.utils.Values;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class AssistanceFragment extends Fragment implements AdapterView.OnItemClickListener {
@@ -77,6 +74,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     private String sharedpref_key;
     private String preSharedpref_key;
+    private ProgressBar progress_bar;
 
     public static Fragment newInstance() {
         Fragment frag = new AssistanceFragment();
@@ -105,6 +103,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         if (assistanceInfo == null || assistanceInfo.getData() == null) {
             if (DetectConnection.checkInternetConnection(getActivity())) {
 //                progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching your Language...");
+                progress_bar.setVisibility(View.VISIBLE);
                 postAssistanceData();
             } else {
                 String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
@@ -191,6 +190,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             postAssistanceData();
 
         } else {
+            progress_bar.setVisibility(View.VISIBLE);
             postAssistanceData();
         }
     }
@@ -214,6 +214,10 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                     }
 
                     loadData();
+                    if(progress_bar != null){
+                        progress_bar.setVisibility(View.INVISIBLE);
+                    }
+
                 }
             }
 
@@ -273,6 +277,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         commonDao = CommonDao.getInstance();
         txtViewCarName = (TextView) view.findViewById(R.id.txt_view_car_name);
         txtViewDriverGuide = (TextView) view.findViewById(R.id.txt_view_driver_guide);
+        progress_bar = (ProgressBar) view.findViewById(R.id.progress_bar);
         imageView = (ImageView) view.findViewById(R.id.img_car_bg);
         lstView = (ListView) view.findViewById(R.id.lst_view);
         txt_title = (TextView) view.findViewById(R.id.txt_title);

@@ -18,8 +18,8 @@ public class RetrofitClient {
 //    private static final String ROOT_URL = "http://192.168.1.194:8000/api/"; // Local url
 //    private static final String ROOT_URL = "http://192.168.1.194:8001/api/"; // Local url
 //    private static final String ROOT_URL = "http://104.236.201.218:84/api/"; // Remote url //live url
-//    private static final String ROOT_URL = "http://192.168.1.194:8001/api/"; // Remote url //niloy pc url
-    private static final String ROOT_URL = "http://178.62.193.6:84/api/"; // Remote url //niloy pc url
+    private static final String ROOT_URL = "http://192.168.1.194:8001/api/"; // Remote url //niloy pc url
+//    private static final String ROOT_URL = "http://178.62.193.6:84/api/"; // Remote url //niloy pc url
 
 //    private static final String ROOT_URL = "http://178.62.193.6:84/api/"; // provided by rakib
 
