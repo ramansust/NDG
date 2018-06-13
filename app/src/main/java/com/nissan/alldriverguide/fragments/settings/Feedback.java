@@ -186,9 +186,11 @@ public class Feedback extends Fragment implements View.OnClickListener {
                         preferenceUtil.setSessionThree(false);
                         preferenceUtil.setIsFirstTimeGreatNotGreat(false);
                         preferenceUtil.resetUserNavigationCount();
-                        getActivity().onBackPressed();
-                        String toastMsg = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.SEND_FEEDBACK_COMPLETE_TOAST);
-                        Toast.makeText(getActivity(), toastMsg/*.isEmpty() ? getResources().getString(R.string.feedback_toast) : toastMsg*/, Toast.LENGTH_SHORT).show();
+                        if (getActivity() != null) {
+                            getActivity().onBackPressed();
+                            String toastMsg = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.SEND_FEEDBACK_COMPLETE_TOAST);
+                            Toast.makeText(getActivity(), toastMsg/*.isEmpty() ? getResources().getString(R.string.feedback_toast) : toastMsg*/, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
 
