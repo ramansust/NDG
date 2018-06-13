@@ -394,10 +394,16 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
                 if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getLangUrl())) {
 
+
+
                     String old_key_tutorial = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.TUTORIAL_KEY;
                     String old_key_tab = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.TAB_MENU_KEY;
                     String new_key_tutorial = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TUTORIAL_KEY;
                     String new_key_tab = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TAB_MENU_KEY;
+
+
+                    Logger.error("Old key" , " " + old_key_tutorial);
+                    Logger.error("New key" , " " + new_key_tutorial);
 
                     preferenceUtil.deleteMultiLangData(old_key_tab);
                     preferenceUtil.deleteMultiLangData(old_key_tutorial);
@@ -429,6 +435,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                                 try {
                                                                     // delete previous language directory
                                                                     FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType)));
+                                                                    Logger.error("File Delete" , "" + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType));
 //************************(Here store the language short name after complete downloading language)*******************************************************************************************************************
                                                                     preferenceUtil.setSelectedLang(lang); // here store the language sort name
                                                                     ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));
