@@ -18,7 +18,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
@@ -60,6 +62,11 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private ImageView imageView;
     private ListView lstView;
     private TextView txt_title;
+
+    private ProgressBar progressBar;
+    private LinearLayout layoutDataNotFound;
+    private TextView txtDataNotFound;
+
     private AssistanceAdapter adapter;
     private DisplayMetrics metrics;
     private PreferenceUtil preferenceUtil;
@@ -272,6 +279,10 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         imageView = (ImageView) view.findViewById(R.id.img_car_bg);
         lstView = (ListView) view.findViewById(R.id.lst_view);
         txt_title = (TextView) view.findViewById(R.id.txt_title);
+
+        progressBar = view.findViewById(R.id.prog_assistance);
+        layoutDataNotFound = view.findViewById(R.id.layout_assistance_data_not_found);
+        txtDataNotFound = view.findViewById(R.id.txt_assistance_data_not_found);
 
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
