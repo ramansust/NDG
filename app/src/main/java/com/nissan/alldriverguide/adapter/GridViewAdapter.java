@@ -2,7 +2,10 @@ package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.graphics.drawable.Animatable;
 import android.net.Uri;
+import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +14,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.controller.ControllerListener;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.image.ImageInfo;
 import com.nissan.alldriverguide.R;
+import com.nissan.alldriverguide.fragments.explore.ExploreFragment;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
+import com.nissan.alldriverguide.utils.Logger;
 
 import java.util.ArrayList;
 
@@ -28,7 +38,7 @@ public class GridViewAdapter extends BaseAdapter {
     private Typeface tfRegular;
     private ArrayList<ExploreTabVideoModel> video_list;
     private String device_density;
-    private String img_name;
+    private String img_name = "";
     private Uri uri;
 
     public GridViewAdapter(Context context, ArrayList<ExploreTabVideoModel> video_list, String device_density) {
@@ -89,10 +99,37 @@ public class GridViewAdapter extends BaseAdapter {
                 .load(img_name)
                 .into(viewHolder.imageView);*/
 
-        viewHolder.imageView.setImageURI(uri);
+        if(img_name.equalsIgnoreCase("")){
+            if(ExploreFragment.progress_bar != null){
+                ExploreFragment.progress_bar.setVisibility(View.INVISIBLE);
+            }
+        }else{
+            DraweeController controller = Fresco.newDraweeControllerBuilder()
+                    .setUri(uri)
+                    .setControllerListener(listener)
+                    .build();
+            viewHolder.imageView.setController(controller);
+        }
+        //viewHolder.imageView.setImageURI(uri);
 
         return convertView;
     }
+
+    ControllerListener listener = new BaseControllerListener<ImageInfo>() {
+
+        @Override
+        public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable animatable) {
+            //Action on final image load
+            if(ExploreFragment.progress_bar != null){
+                ExploreFragment.progress_bar.setVisibility(View.INVISIBLE);
+            }
+        }
+        @Override
+        public void onFailure(String id, Throwable throwable) {
+            //Action on failure
+        }
+
+    };
 
     public void setList(ArrayList<ExploreTabVideoModel> videoList) {
 

@@ -317,12 +317,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     private void changeGlobalAlertMsg(final int position){
 
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.start_download));
-            }
-        });
 
         final String lang_sort_name = languageShortName[list.get(position).getId()];
 
@@ -342,7 +336,8 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                     NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
                     NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
 
-                    startDownloadProcedure(lang_sort_name, position); // start language download procedure
+                     // start language download procedure
+                    dismissDialog();
 
                 }
             }
@@ -350,6 +345,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             @Override
             public void onFailed(String failedReason) {
                 Logger.error("changeGlobal", "********Fail******" + failedReason);
+                dismissDialog();
             }
         });
     }
@@ -380,7 +376,8 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                changeGlobalAlertMsg(position);
+//                changeGlobalAlertMsg(position);
+                startDownloadProcedure(lang, position);
             }
         });
         dialog.show();
@@ -388,16 +385,29 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     private void startDownloadProcedure(final String lang, final int position) {
 
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.start_download));
+            }
+        });
+
         new ApiCall().postLanguageDownload(Values.carType + "", "" + NissanApp.getInstance().getLanguageID(lang), "0", NissanApp.getInstance().getDeviceID(getActivity()), new CompleteAPI() {
             @Override
             public void onDownloaded(ResponseInfo responseInfo) {
 
                 if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getLangUrl())) {
 
+
+
                     String old_key_tutorial = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.TUTORIAL_KEY;
                     String old_key_tab = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.TAB_MENU_KEY;
                     String new_key_tutorial = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TUTORIAL_KEY;
                     String new_key_tab = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TAB_MENU_KEY;
+
+
+                    Logger.error("Old key" , " " + old_key_tutorial);
+                    Logger.error("New key" , " " + new_key_tutorial);
 
                     preferenceUtil.deleteMultiLangData(old_key_tab);
                     preferenceUtil.deleteMultiLangData(old_key_tutorial);
@@ -429,6 +439,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                                 try {
                                                                     // delete previous language directory
                                                                     FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType)));
+                                                                    Logger.error("File Delete" , "" + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType));
 //************************(Here store the language short name after complete downloading language)*******************************************************************************************************************
                                                                     preferenceUtil.setSelectedLang(lang); // here store the language sort name
                                                                     ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));
@@ -453,7 +464,9 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                                 ((MainActivity) getActivity()).loadResource();
                                                                 ((MainActivity) getActivity()).setTabResources();
 
-                                                                dismissDialog();
+                                                                changeGlobalAlertMsg(position);
+
+
                                                             } else {
                                                                 showErrorDialog("Confirmation send error!");
                                                                 dismissDialog();

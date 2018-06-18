@@ -32,7 +32,6 @@ import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.VideoPlayerActivity;
 import com.nissan.alldriverguide.adapter.GridViewAdapter;
 import com.nissan.alldriverguide.customviews.DialogController;
-import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
@@ -110,6 +109,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private ExploreTabModel exploreModel;
     private ProgressDialog progressDialog;
     private String device_density, internetCheckMessage = "";
+    public static ProgressBar progress_bar;
 
     private ProgressBar progressBar;
     private LinearLayout layoutDataNotFound;
@@ -143,12 +143,14 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         adapter = new GridViewAdapter(getActivity().getApplicationContext(), new ArrayList<ExploreTabVideoModel>(), device_density);
         gridView.setAdapter(adapter);
 
+
         sharedpref_key = Values.carType + "_" + Values.EXPLOREDATA;
         exploreModel = new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key);
 
         if (exploreModel == null || exploreModel.getVideoList() == null) {
             if (DetectConnection.checkInternetConnection(getActivity())) {
-                progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching data...");
+                //progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching data...");
+                progress_bar.setVisibility(View.VISIBLE);
                 apiCall();
             } else {
                 internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
@@ -272,8 +274,12 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     videoList = exploreModel.getVideoList();
                     NissanApp.getInstance().setExploreVideoList(videoList);
                     loadData();
-                    if (progressDialog != null && progressDialog.isShowing())
-                        progressDialog.dismiss();
+                    /*if (progressDialog != null && progressDialog.isShowing())
+                        progressDialog.dismiss();*/
+
+                    /*if(progress_bar !=null){
+                        progress_bar.setVisibility(View.INVISIBLE);
+                    }*/
                 }
             }
 
@@ -389,6 +395,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         txtViewExplore = (TextView ) view.findViewById(R.id.txt_blind_spot_ar);
         relativeAR = (RelativeLayout) view.findViewById(R.id.relative_ar);
         relativeBlindSpot = (RelativeLayout) view.findViewById(R.id.relative_blind_spot);
+        progress_bar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
         btnAR = (Button) view.findViewById(R.id.btn_ar);
         btnBlindSpotAR = (RelativeLayout) view.findViewById(R.id.btn_blind_spot_ar);
