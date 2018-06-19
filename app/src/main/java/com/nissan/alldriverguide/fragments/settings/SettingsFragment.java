@@ -286,17 +286,8 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
 
     private void loadData() {
 
-        String title = resources.getString(R.string.settings);
-        ArrayList<TabMenu> tabMenuArrayList = NissanApp.getInstance().getTabMenuArrayList();
-        if (tabMenuArrayList != null && tabMenuArrayList.size() > 0)
-            for (TabMenu tabMenu : tabMenuArrayList) {
-                if (tabMenu != null && tabMenu.getIndex() != null) {
-                    if (!tabMenu.getIndex().isEmpty() && tabMenu.getIndex().equals("4"))
-                        title = tabMenu.getTitle();
-                }
-            }
-//            NissanApp.getInstance().getTabMenuArrayList().get(3).getTitle();
-        txt_title.setText(title);
+        String title = NissanApp.getInstance().getTabTitle(getActivity(), "4");
+        txt_title.setText(title.isEmpty() ? resources.getString(R.string.settings) : title);
 
 //        if (adapter == null || adapter.getCount() == 0) {
 //        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), setting_names, assistanceImage);

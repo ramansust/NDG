@@ -96,8 +96,8 @@ public class SearchFragment extends Fragment {
         getSearchKeyword = (EditText) layout.findViewById(R.id.input_search);
         String search_tag_hint = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.SEARCH_HINT);
         String clear_text = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.CLEAR);
-        String recent_search_text = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.RECENT_SEARCH);
-        getSearchKeyword.setHint(search_tag_hint.isEmpty() ? getResources().getString(R.string.search_box_hint).toUpperCase() : search_tag_hint.toUpperCase());// set hint text  allCaps
+        String recent_search_text = NissanApp.getInstance().getAlertMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.SEARCH_BOX_HINT);
+        getSearchKeyword.setHint(search_tag_hint.isEmpty() ? resources.getString(R.string.search_box_hint).toUpperCase() : search_tag_hint.toUpperCase());// set hint text  allCaps
 
         imageViewClear = (ImageView) layout.findViewById(R.id.imageViewClearButton);
         tvClearRecentSearch = (TextView) layout.findViewById(R.id.tvClearSearch);

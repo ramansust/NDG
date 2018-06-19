@@ -930,7 +930,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
     private ArrayList<TabMenu> getDataFromStorage() {
 
-        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TAB_MENU_KEY;
+        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(this).getSelectedLang()) + "_" + Values.TAB_MENU_KEY;
 
         Type type = new TypeToken<ArrayList<TabMenu>>() {        }.getType();
         return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);
