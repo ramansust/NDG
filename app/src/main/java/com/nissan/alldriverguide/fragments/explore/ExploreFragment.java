@@ -8,20 +8,18 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Debug;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,30 +27,24 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.nissan.alldriverguide.ImageTargetActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.VideoPlayerActivity;
-import com.nissan.alldriverguide.adapter.AssistanceAdapter;
 import com.nissan.alldriverguide.adapter.GridViewAdapter;
 import com.nissan.alldriverguide.controller.TabContentController;
 import com.nissan.alldriverguide.customviews.DialogController;
-import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
-import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
 import com.nissan.alldriverguide.retrofit.ApiCall;
-import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 public class ExploreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, CompleteExploreTabContent {
 
@@ -121,6 +113,10 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private String device_density, internetCheckMessage = "";
     public static ProgressBar progress_bar;
     private TabContentController controller;
+
+    private ProgressBar progressBar;
+    private LinearLayout layoutDataNotFound;
+    private TextView txtDataNotFound;
 
     /**
      * Creating instance for this fragment
@@ -462,6 +458,10 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         btnBlindSpotAR = (RelativeLayout) view.findViewById(R.id.btn_blind_spot_ar);
 
         gridView = (GridView) view.findViewById(R.id.grid_view);
+
+        progressBar = view.findViewById(R.id.prog_explore);
+        layoutDataNotFound = view.findViewById(R.id.layout_explore_data_not_found);
+        txtDataNotFound = view.findViewById(R.id.txt_explore_data_not_found);
 
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);

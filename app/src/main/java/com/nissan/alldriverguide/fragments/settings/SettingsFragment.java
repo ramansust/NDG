@@ -12,26 +12,24 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.TutorialActivity;
 import com.nissan.alldriverguide.adapter.AssistanceAdapter;
-import com.nissan.alldriverguide.adapter.LanguageSelectionAdapter;
 import com.nissan.alldriverguide.customviews.DialogController;
-import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteSettingTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
-import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
@@ -54,6 +52,10 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     private View view;
     private ListView lstView;
     private TextView txt_title;
+
+    private ProgressBar progressBar;
+    private LinearLayout layoutDataNotFound;
+    private TextView txtDataNotFound;
 
     private AssistanceAdapter adapter;
 
@@ -244,6 +246,10 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     private void initViews(View view) {
         lstView = (ListView) view.findViewById(R.id.lst_view);
         txt_title = (TextView) view.findViewById(R.id.txt_title);
+
+        progressBar = view.findViewById(R.id.prog_settings);
+        layoutDataNotFound = view.findViewById(R.id.layout_settings_data_not_found);
+        txtDataNotFound = view.findViewById(R.id.txt_title_section);
 
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
