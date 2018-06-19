@@ -143,6 +143,8 @@ public class Values {
     public static final String  LEARN_MORE_MSG = "learn_more";
     public static final String SEARCH_HINT = "search";
     public static final String RECENT_SEARCH = "recent";
+    public static final String OK = "ok";
+    public static final String CANCEL = "cancel";
     public static final String CLEAR = "clear";
     public static final String  INTERNET_CHECK = "internet_check";
     public static final String  DOWNLOADING = "downloading";

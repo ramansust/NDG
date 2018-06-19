@@ -15,11 +15,11 @@ import retrofit2.Response;
  * Created by shubha on 6/19/18.
  */
 
-public class TabContentController implements Callback<ExploreTabModel> {
+public class ExploreTabContentController implements Callback<ExploreTabModel> {
 
     private static CompleteExploreTabContent listener = null;
 
-    public TabContentController(CompleteExploreTabContent interfaceExplore) {
+    public ExploreTabContentController(CompleteExploreTabContent interfaceExplore) {
 
         this.listener = interfaceExplore;
     }

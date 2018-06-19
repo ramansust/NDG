@@ -31,7 +31,7 @@ import com.nissan.alldriverguide.ImageTargetActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.VideoPlayerActivity;
 import com.nissan.alldriverguide.adapter.GridViewAdapter;
-import com.nissan.alldriverguide.controller.TabContentController;
+import com.nissan.alldriverguide.controller.ExploreTabContentController;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
@@ -112,11 +112,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private ProgressDialog progressDialog;
     private String device_density, internetCheckMessage = "";
     public static ProgressBar progress_bar;
-    private TabContentController controller;
-
-    private ProgressBar progressBar;
+    private ExploreTabContentController controller;
     private LinearLayout layoutDataNotFound;
-    private TextView txtDataNotFound;
 
     /**
      * Creating instance for this fragment
@@ -295,6 +292,11 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     @Override
     public void onDownloaded(ExploreTabModel responseInfo) {
         if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+            if (progressBar.getVisibility() == View.VISIBLE) {
+                progressBar.setVisibility(View.GONE);
+                layoutDataNotFound.setVisibility(View.GONE);
+                tvNoContent.setVisibility(View.GONE);
+            }
             new PreferenceUtil(getActivity().getApplicationContext()).storeExploreDataList(responseInfo, sharedpref_key);
             videoList.clear();
             exploreModel = responseInfo;
@@ -309,11 +311,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                         progress_bar.setVisibility(View.INVISIBLE);
                     }*/
         }
+
     }
 
     @Override
     public void onFailed(String failedReason) {
-
+        if (progressBar.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.GONE);
+            layoutDataNotFound.setVisibility(View.VISIBLE);
+            tvNoContent.setVisibility(View.VISIBLE);
+        }
     }
 
     private void apiCall() {
@@ -459,13 +466,13 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         gridView = (GridView) view.findViewById(R.id.grid_view);
 
-        progressBar = view.findViewById(R.id.prog_explore);
-        layoutDataNotFound = view.findViewById(R.id.layout_explore_data_not_found);
-        txtDataNotFound = view.findViewById(R.id.txt_explore_data_not_found);
+        progressBar = (ProgressBar) view.findViewById(R.id.prog_explore);
+        layoutDataNotFound = (LinearLayout) view.findViewById(R.id.layout_explore_data_not_found);
+        tvNoContent = (TextView) view.findViewById(R.id.txt_explore_data_not_found);
 
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        controller = new TabContentController(this);
+        controller = new ExploreTabContentController(this);
     }
 
     // load resources for language localized

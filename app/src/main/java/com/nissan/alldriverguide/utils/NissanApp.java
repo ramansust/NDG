@@ -1446,6 +1446,10 @@ public class NissanApp {
             return globalMessageList.get(0).getRecent();
         if (msg_type.equalsIgnoreCase(Values.CLEAR))
             return globalMessageList.get(0).getClear();
+        if (msg_type.equalsIgnoreCase(Values.OK))
+            return globalMessageList.get(0).getOk();
+        if (msg_type.equalsIgnoreCase(Values.CANCEL))
+            return globalMessageList.get(0).getCancel();
 
         return "";
     }

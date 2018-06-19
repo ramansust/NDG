@@ -26,6 +26,7 @@ import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.TutorialActivity;
 import com.nissan.alldriverguide.adapter.AssistanceAdapter;
+import com.nissan.alldriverguide.controller.SettingsTabContentController;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteSettingTabContent;
@@ -35,6 +36,7 @@ import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
+import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
@@ -42,7 +44,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class SettingsFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class SettingsFragment extends Fragment implements AdapterView.OnItemClickListener, CompleteSettingTabContent {
 
     private int[] assistanceImage = {R.drawable.change_language, R.drawable.add_extra_car, R.drawable.tutorial, R.drawable.rate_app, R.drawable.send_feedback, R.drawable.disclaimer};
 
@@ -55,7 +57,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
 
     private ProgressBar progressBar;
     private LinearLayout layoutDataNotFound;
-    private TextView txtDataNotFound;
+    private TextView tvNoContent;
 
     private AssistanceAdapter adapter;
 
@@ -65,6 +67,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     private String[] setting_names;
     private String preSharedpref_key;
     private long mLastClickTime;
+    private SettingsTabContentController controller;
 
     public static Fragment newInstance() {
         Fragment frag = new SettingsFragment();
@@ -92,6 +95,46 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         sharedpref_key = Values.carType + "_" + Values.SETTINGDATA;
         settingList = preferenceUtil.retrieveSettingDataList(sharedpref_key);
 
+        if (settingList != null && settingList.size() > 0) {
+            progressBar.setVisibility(View.GONE);
+            tvNoContent.setVisibility(View.GONE);
+            Collections.sort(settingList, new Comparator<SettingsTabListModel>() {
+                @Override
+                public int compare(SettingsTabListModel lhs, SettingsTabListModel rhs) {
+                    return lhs.getIndex().compareTo(rhs.getIndex());
+                }
+            });
+            setting_names = new String[settingList.size()];
+            for (int i = 0; i < settingList.size(); i++) {
+                setting_names[i] = settingList.get(i).getTitle();
+            }
+            loadData();
+        } else {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+        if (DetectConnection.checkInternetConnection(getActivity())) {
+
+            int language_ID = NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang());
+            controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "4");
+        } else {
+            progressBar.setVisibility(View.GONE);
+            String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+            showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
         if (settingList == null || settingList.size() == 0) {
             if (DetectConnection.checkInternetConnection(getActivity())) {
 //                progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching your Language...");
@@ -115,6 +158,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
             loadData();
             apiCall();
         }
+*/
 
 
 
@@ -185,6 +229,36 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         }
     }
 
+    @Override
+    public void onDownloaded(SettingsTabModel responseInfo) {
+        if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+            settingList = new ArrayList<>();
+            settingList = responseInfo.getData();
+            preferenceUtil.storeSettingDataList(settingList, sharedpref_key);
+
+            setting_names = new String[settingList.size()];
+            for (int i = 0; i < settingList.size(); i++) {
+                setting_names[i] = settingList.get(i).getTitle();
+            }
+            loadData();
+        }
+
+        if (progressBar.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.GONE);
+            tvNoContent.setVisibility(View.GONE);
+            layoutDataNotFound.setVisibility(View.GONE);
+        }
+
+    }
+
+    @Override
+    public void onFailed(String failedReason) {
+        Logger.error("SettingsTabFragment", "__________" + failedReason);
+        if (progressBar.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.GONE);
+        }
+    }
+
     private void apiCall() {
         int language_ID = NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang());
         String language_name = preferenceUtil.getSelectedLang();
@@ -247,13 +321,14 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         lstView = (ListView) view.findViewById(R.id.lst_view);
         txt_title = (TextView) view.findViewById(R.id.txt_title);
 
-        progressBar = view.findViewById(R.id.prog_settings);
-        layoutDataNotFound = view.findViewById(R.id.layout_settings_data_not_found);
-        txtDataNotFound = view.findViewById(R.id.txt_title_section);
+        progressBar = (ProgressBar) view.findViewById(R.id.prog_settings);
+        layoutDataNotFound = (LinearLayout) view.findViewById(R.id.layout_settings_data_not_found);
+        tvNoContent = (TextView) view.findViewById(R.id.txt_settings_data_not_found);
 
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
+        controller = new SettingsTabContentController(this);
     }
 
     @Override
@@ -350,5 +425,4 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
             ft.commit();
         }
     }
-
 }

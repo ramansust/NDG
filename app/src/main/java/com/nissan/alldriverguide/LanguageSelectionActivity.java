@@ -355,7 +355,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
         final String startingDownloadMsg = getAlertMessage(STARTING_DOWNLOAD);
 
-        runOnUiThread(new Runnable() {
+        activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
 
@@ -661,8 +661,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
             NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
             NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
-
-            startCarDownloadProcedure();
 
         }
     }
