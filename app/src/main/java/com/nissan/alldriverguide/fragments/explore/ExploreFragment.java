@@ -35,6 +35,7 @@ import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.VideoPlayerActivity;
 import com.nissan.alldriverguide.adapter.AssistanceAdapter;
 import com.nissan.alldriverguide.adapter.GridViewAdapter;
+import com.nissan.alldriverguide.controller.TabContentController;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
@@ -53,7 +54,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class ExploreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class ExploreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, CompleteExploreTabContent {
 
     // declare video thumb in an array
     private int[] qashqai_eur_thumbnil_array_en = {R.drawable.qashqai_eur_en_video_01, R.drawable.qashqai_eur_en_video_02};
@@ -108,7 +109,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private Resources resources;
     private DisplayMetrics metrics;
-    private TextView txtViewExplore;
+    private TextView txtViewExplore, tvNoContent;
+    private ProgressBar progressBar;
     private String sharedpref_key;
     private String preSharedpref_key;
     private ArrayList<ExploreTabVideoModel> videoList = new ArrayList<>();
@@ -118,6 +120,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private ProgressDialog progressDialog;
     private String device_density, internetCheckMessage = "";
     public static ProgressBar progress_bar;
+    private TabContentController controller;
 
     /**
      * Creating instance for this fragment
@@ -150,7 +153,36 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         sharedpref_key = Values.carType + "_" + Values.EXPLOREDATA;
         exploreModel = new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key);
+        if (exploreModel != null && exploreModel.getVideoList() != null && exploreModel.getVideoList().size() > 0) {
+            progressBar.setVisibility(View.GONE);
+            tvNoContent.setVisibility(View.GONE);
+            check_density();
+            videoList = exploreModel.getVideoList();
+            NissanApp.getInstance().setExploreVideoList(videoList);
 
+            loadData();
+        } else {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+        if (DetectConnection.checkInternetConnection(getActivity())) {
+            int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
+            controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1");
+        } else {
+            progressBar.setVisibility(View.GONE);
+            internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+            showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
+        }
+
+
+
+
+
+
+
+
+
+
+/*
         if (exploreModel == null || exploreModel.getVideoList() == null) {
             if (DetectConnection.checkInternetConnection(getActivity())) {
                 //progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching data...");
@@ -169,6 +201,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             loadData();
             apiCall();
         }
+*/
 
 
 
@@ -261,6 +294,30 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         } else {
             apiCall();
         }
+    }
+
+    @Override
+    public void onDownloaded(ExploreTabModel responseInfo) {
+        if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+            new PreferenceUtil(getActivity().getApplicationContext()).storeExploreDataList(responseInfo, sharedpref_key);
+            videoList.clear();
+            exploreModel = responseInfo;
+            check_density();
+            videoList = exploreModel.getVideoList();
+            NissanApp.getInstance().setExploreVideoList(videoList);
+            loadData();
+                    /*if (progressDialog != null && progressDialog.isShowing())
+                        progressDialog.dismiss();*/
+
+                    /*if(progress_bar !=null){
+                        progress_bar.setVisibility(View.INVISIBLE);
+                    }*/
+        }
+    }
+
+    @Override
+    public void onFailed(String failedReason) {
+
     }
 
     private void apiCall() {
@@ -408,6 +465,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        controller = new TabContentController(this);
     }
 
     // load resources for language localized
@@ -581,4 +639,5 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         }
         return array;
     }
+
 }

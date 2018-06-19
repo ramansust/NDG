@@ -23,7 +23,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -35,22 +34,20 @@ import android.widget.Toast;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.adapter.CarDownloadAdapter;
+import com.nissan.alldriverguide.controller.GlobalMessageController;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
-import com.nissan.alldriverguide.interfaces.CompleteAlertAPI;
+import com.nissan.alldriverguide.interfaces.InterfaceGlobalMessageResponse;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
-import com.nissan.alldriverguide.multiLang.model.AlertMessage;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.pushnotification.Config;
@@ -69,7 +66,6 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,8 +75,9 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-public class CarDownloadActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class CarDownloadActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, InterfaceGlobalMessageResponse {
 
+    private static final String TAG = "CarDownloadActivity";
     private ListView lstView;
     private TextView txtView_title;
     private CarDownloadAdapter adapter;
@@ -121,6 +118,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     private long doubleClickPopup = 0;
     private List<LanguageList> languageLists;
+    private GlobalMessageController globalMessageController;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -164,31 +162,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     /**
      * Initialized all variable
      */
-    private void getGlobalAlertMsg(){
-        new ApiCall().postGlobalAlertMsg(NissanApp.getInstance().getDeviceID(getApplicationContext()), "1", new CompleteAlertAPI() {
-            @Override
-            public void onDownloaded(GlobalMsgResponse responseInfo) {
-                if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
-
-                    String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.GLOBAL_MSG_KEY;
-                    String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
-
-                    preferenceUtil.storeMultiLangData(responseInfo.getAlertMessage(), key_global_alert_message);
-                    preferenceUtil.storeMultiLangData(responseInfo.getGlobalMessage(), key_global_message);
-
-                    NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
-                    NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
-
-                }
-            }
-
-            @Override
-            public void onFailed(String failedReason) {
-                Logger.error("onDownloaded", "********Fail******" + failedReason);
-            }
-        });
-    }
-
     private void initViews() {
         activity = CarDownloadActivity.this;
         context = getApplicationContext();
@@ -196,6 +169,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         lstView = (ListView) findViewById(R.id.lst_view);
         txtView_title = (TextView) findViewById(R.id.txtView_title);
         preferenceUtil = new PreferenceUtil(getApplicationContext());
+        globalMessageController = new GlobalMessageController(this);
     }
 
     private void setListener() {
@@ -371,8 +345,29 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     }
 
     @Override
+    public void onDownloaded(GlobalMsgResponse responseInfo) {
+        if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+
+            String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.GLOBAL_MSG_KEY;
+            String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
+
+            preferenceUtil.storeMultiLangData(responseInfo.getAlertMessage(), key_global_alert_message);
+            preferenceUtil.storeMultiLangData(responseInfo.getGlobalMessage(), key_global_message);
+
+            NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
+            NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
+
+        }
+    }
+
+    @Override
+    public void onFailed(String failedReason) {
+        Logger.error(TAG, "GlobalMsg_________" + failedReason);
+    }
+
+    @Override
     protected void onResume() {
-        getGlobalAlertMsg();
+        globalMessageController.callApi(NissanApp.getInstance().getDeviceID(getApplicationContext()), "1");
         if (preferenceUtil.getIsFirstTime()) {
             if (new File(Values.PATH).exists()) {
                 try {
@@ -926,7 +921,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                         new PreferenceUtil(getApplicationContext()).setPushRegistrationStatus(true);
                     }
 
-                    Logger.error("Device registration Successfull", "________________________________succesfull");
+                    Logger.error("Device registration Successfull", "________________________________successful");
                 }
             }
 

@@ -1,7 +1,10 @@
 package com.nissan.alldriverguide.multiLang.interfaces;
 
-import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
+import com.nissan.alldriverguide.multiLang.model.LanguageList;
+
+import java.util.List;
 
 public interface InterfaceLanguageListResponse {
-    void languageListResponse(LanguageListResponse languageListResponse);
+    void languageListDownloaded(List<LanguageList> languageLists);
+    void languageListFailed(String failedResponse);
 }

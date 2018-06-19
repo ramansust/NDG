@@ -9,7 +9,6 @@ import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,13 +27,14 @@ import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
+import com.nissan.alldriverguide.controller.GlobalMessageController;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.settings.AddCarFragment;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
-import com.nissan.alldriverguide.interfaces.CompleteAlertAPI;
+import com.nissan.alldriverguide.interfaces.InterfaceGlobalMessageResponse;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.LanguageInfo;
@@ -63,8 +63,9 @@ import java.util.List;
 /**
  * Created by raman on 1/19/17.
  */
-public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnClickListener {
+public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnClickListener, InterfaceGlobalMessageResponse {
 
+    private static final String TAG = "CarDownloadSettingsAdapter";
     private CommonDao commonDao;
     private Context context;
     private LayoutInflater inflater;
@@ -95,6 +96,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     private String[] langFlagUri;
     private LanguageInfo info;
     List<LanguageList> languageLists = new ArrayList<>();
+    private GlobalMessageController controller;
 
     public CarDownloadSettingsAdapter(AddCarFragment frag, Activity activity, Context context, ArrayList<CarInfo> list) {
         this.activity = activity;
@@ -104,7 +106,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         inflater = LayoutInflater.from(this.context);
         commonDao = CommonDao.getInstance();
         preferenceUtil = new PreferenceUtil(context);
-
+        controller = new GlobalMessageController(this);
         loadResource();
 //        progressDialog = new ProgressDialogController(this.activity).showDialog("adfkaljshfkj");
         deviceDensity = NissanApp.getInstance().getDensityName(this.activity);
@@ -264,6 +266,27 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onDownloaded(GlobalMsgResponse responseInfo) {
+        if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+
+            String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.GLOBAL_MSG_KEY;
+            String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
+
+            preferenceUtil.storeMultiLangData(responseInfo.getAlertMessage(), key_global_alert_message);
+            preferenceUtil.storeMultiLangData(responseInfo.getGlobalMessage(), key_global_message);
+
+            NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
+            NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
+
+        }
+    }
+
+    @Override
+    public void onFailed(String failedReason) {
+        Logger.error(TAG, "globalMsg____________" + failedReason);
     }
 
     static class ViewHolder {
@@ -470,34 +493,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         });
     }
 
-    private void changeGlobalAlertMsg(){
-
-        new ApiCall().postGlobalAlertMsg(NissanApp.getInstance().getDeviceID(context), NissanApp.getInstance().getLanguageID(lang)+"", new CompleteAlertAPI() {
-            @Override
-            public void onDownloaded(GlobalMsgResponse responseInfo) {
-                if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
-
-                    String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.GLOBAL_MSG_KEY;
-                    String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
-
-                    preferenceUtil.storeMultiLangData(responseInfo.getAlertMessage(), key_global_alert_message);
-                    preferenceUtil.storeMultiLangData(responseInfo.getGlobalMessage(), key_global_message);
-
-                    NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
-                    NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
-
-                    startCarDownloadProcedure();
-
-                }
-            }
-
-            @Override
-            public void onFailed(String failedReason) {
-                Logger.error("changeGlobal", "********Fail******" + failedReason);
-            }
-        });
-    }
-
     private void showCarDownloadDialogForSingleCar(final int carType, final boolean isCarDownload) {
         this.carType = carType;
         final Dialog dialog = new DialogController(activity).langDialog();
@@ -529,7 +524,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 // if isCarDownload = true then start car downloading process
                 if (isCarDownload) {
 
-                    changeGlobalAlertMsg();
+                    controller.callApi(NissanApp.getInstance().getDeviceID(context), NissanApp.getInstance().getLanguageID(lang)+"");
+                    startCarDownloadProcedure();
 
                 } else {
                     activity.runOnUiThread(new Runnable() {

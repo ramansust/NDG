@@ -15,7 +15,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -33,13 +33,15 @@ import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.LanguageSelectionAdapter;
+import com.nissan.alldriverguide.controller.GlobalMessageController;
+import com.nissan.alldriverguide.controller.LanguageSelectionController;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.NissanDbHelper;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
-import com.nissan.alldriverguide.interfaces.CompleteAlertAPI;
+import com.nissan.alldriverguide.interfaces.InterfaceGlobalMessageResponse;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
@@ -63,8 +65,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LanguageFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
+public class LanguageFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener, InterfaceLanguageListResponse, InterfaceGlobalMessageResponse {
 
+    private static final String TAG = "LanguageFragment";
     NissanDbHelper dbHelper;
     SQLiteDatabase sqliteDB;
     private String[] languageName; /*= {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};*/
@@ -91,8 +94,13 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     private String deviceDensity;
     private String[] langFlagUri;
-    private List<LanguageList> languageLists = new ArrayList<>();
+    private List<LanguageList> _languageLists = new ArrayList<>();
     private long mLastClickTime;
+    private LanguageSelectionController controller;
+    private GlobalMessageController controllerGlobalMsg;
+    private ProgressBar progressBar;
+    private TextView tvNoContent;
+    private int _pos = -1;
 
     public static Fragment newInstance() {
         Fragment frag = new LanguageFragment();
@@ -134,33 +142,44 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         adapter = new LanguageSelectionAdapter(getActivity().getApplicationContext(), new ArrayList<LanguageInfo>(), true);
         lstView.setAdapter(adapter);
 
-        languageLists = getDataFromSP();
-        if (languageLists == null || languageLists.size() == 0) {
-            if (DetectConnection.checkInternetConnection(getActivity())) {
-                progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching your Language...");
-                callApiForLanguage();
-            } else {
-                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
-                showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
-            }
-
-        } else {
+        _languageLists = getDataFromSP();
+        if (_languageLists != null && _languageLists.size() > 0) {
+            progressBar.setVisibility(View.GONE);
+            tvNoContent.setVisibility(View.GONE);
             populateDataIntoList();
-            callApiForLanguage();
+        } else {
+            progressBar.setVisibility(View.VISIBLE);
         }
-
-
+        if (DetectConnection.checkInternetConnection(activity)) {
+            controller.callApi(NissanApp.getInstance().getDeviceID(getActivity())/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, Values.carType + "");
+        } else {
+            progressBar.setVisibility(View.GONE);
+            String internetCheckMessage = NissanApp.getInstance().getAlertMessage(activity, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+            showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
+        }
     }
 
-    private void callApiForLanguage() {
-        new ApiCall().getLanguageList(NissanApp.getInstance().getDeviceID(getActivity()), "" + Values.carType, progressDialog, new InterfaceLanguageListResponse() {
-            @Override
-            public void languageListResponse(LanguageListResponse languageListResponse) {
-                languageLists = languageListResponse.getLanguageList();
-                populateDataIntoList();
-
+    @Override
+    public void languageListDownloaded(List<LanguageList> languageLists) {
+        if (languageLists != null && languageLists.size() > 0) {
+            if (progressBar.getVisibility() == View.VISIBLE) {
+                progressBar.setVisibility(View.GONE);
+                tvNoContent.setVisibility(View.GONE);
             }
-        });
+            new PreferenceUtil(getActivity()).storeMultiLangData(languageLists, "LanguageList");
+            this._languageLists = languageLists;
+            list = new ArrayList<>();
+            populateDataIntoList();
+        }
+    }
+
+    @Override
+    public void languageListFailed(String failedResponse) {
+        if (progressBar.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.GONE);
+            tvNoContent.setVisibility(View.VISIBLE);
+        }
+        Logger.error(TAG, ":callApiForLanguage______" + failedResponse);
     }
 
 
@@ -192,26 +211,26 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     }
     private void populateDataIntoList() {
 
-        languageName = new String[languageLists.size()];
-        languageShortName = new String[languageLists.size()];
-        langFlagUri =  new String[languageLists.size()];
+        languageName = new String[_languageLists.size()];
+        languageShortName = new String[_languageLists.size()];
+        langFlagUri =  new String[_languageLists.size()];
 
-        for(int i = 0; i <languageLists.size(); i++){
-            languageName[i] = (languageLists.get(i).getLanguageName());
-            languageShortName[i] = (languageLists.get(i).getLanguageShortcode());
+        for(int i = 0; i < _languageLists.size(); i++){
+            languageName[i] = (_languageLists.get(i).getLanguageName());
+            languageShortName[i] = (_languageLists.get(i).getLanguageShortcode());
 
             if("xxxhdpi".contains(deviceDensity)){
-                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getXxxhdpi();
+                langFlagUri[i] = _languageLists.get(i).getLanguageFlag().getXxxhdpi();
             } else if("xxhdpi".contains(deviceDensity)){
-                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getXxhdpi();
+                langFlagUri[i] = _languageLists.get(i).getLanguageFlag().getXxhdpi();
             }else if("xhdpi".contains(deviceDensity)){
-                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getXhdpi();
+                langFlagUri[i] = _languageLists.get(i).getLanguageFlag().getXhdpi();
             }else if("hdpi".contains(deviceDensity)){
-                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getHdpi();
+                langFlagUri[i] = _languageLists.get(i).getLanguageFlag().getHdpi();
             }else if("mdpi".contains(deviceDensity)){
-                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getHdpi();
+                langFlagUri[i] = _languageLists.get(i).getLanguageFlag().getHdpi();
             }else if("ldpi".contains(deviceDensity)){
-                langFlagUri[i] = languageLists.get(i).getLanguageFlag().getLdpi();
+                langFlagUri[i] = _languageLists.get(i).getLanguageFlag().getLdpi();
             }
         }
         loadData(langFlagUri);
@@ -277,12 +296,17 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         lstView = (ListView) view.findViewById(R.id.lst_view);
         txt_title = (TextView) view.findViewById(R.id.txt_title);
         txtBackTitle = (TextView) view.findViewById(R.id.txt_back_title);
+        tvNoContent = (TextView) view.findViewById(R.id.tvNoContent);
+        progressBar = (ProgressBar) view.findViewById(R.id.pbLanguageFragment);
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
         commonDao = CommonDao.getInstance();
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
         tf = Typeface.createFromAsset(getActivity().getAssets(), "font/Nissan Brand Regular.otf");
         dbHelper = new NissanDbHelper(getActivity());
         sqliteDB = dbHelper.getWritableDatabase();
+        controller = new LanguageSelectionController(this);
+        controllerGlobalMsg = new GlobalMessageController(this);
+        loadResource();
     }
 
     @Override
@@ -298,6 +322,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+        this._pos = position;
         if (list.get(position).isSelected()) {
             preferenceUtil.setSelectedLang(languageShortName[list.get(position).getId()]);
             loadResource();
@@ -315,39 +340,34 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     }
 
-    private void changeGlobalAlertMsg(final int position){
+    @Override
+    public void onDownloaded(GlobalMsgResponse responseInfo) {
 
+        final String lang_sort_name = languageShortName[list.get(_pos).getId()];
 
-        final String lang_sort_name = languageShortName[list.get(position).getId()];
+        if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
 
-        new ApiCall().postGlobalAlertMsg(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(lang_sort_name)+"", new CompleteAlertAPI() {
-            @Override
-            public void onDownloaded(GlobalMsgResponse responseInfo) {
-                if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+            preferenceUtil.setPreviousLanguage(Values.carType+"_"+NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
 
-                    preferenceUtil.setPreviousLanguage(Values.carType+"_"+NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
+            String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_sort_name) + "_" + Values.GLOBAL_MSG_KEY;
+            String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_sort_name) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
 
-                    String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_sort_name) + "_" + Values.GLOBAL_MSG_KEY;
-                    String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_sort_name) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
+            preferenceUtil.storeMultiLangData(responseInfo.getAlertMessage(), key_global_alert_message);
+            preferenceUtil.storeMultiLangData(responseInfo.getGlobalMessage(), key_global_message);
 
-                    preferenceUtil.storeMultiLangData(responseInfo.getAlertMessage(), key_global_alert_message);
-                    preferenceUtil.storeMultiLangData(responseInfo.getGlobalMessage(), key_global_message);
+            NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
+            NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
 
-                    NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
-                    NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
+            // start language download procedure
+            dismissDialog();
 
-                     // start language download procedure
-                    dismissDialog();
+        }
+    }
 
-                }
-            }
-
-            @Override
-            public void onFailed(String failedReason) {
-                Logger.error("changeGlobal", "********Fail******" + failedReason);
-                dismissDialog();
-            }
-        });
+    @Override
+    public void onFailed(String failedReason) {
+        Logger.error(TAG, "GlobalMsg__________" + failedReason);
+        dismissDialog();
     }
 
     /**
@@ -464,7 +484,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                                 ((MainActivity) getActivity()).loadResource();
                                                                 ((MainActivity) getActivity()).setTabResources();
 
-                                                                changeGlobalAlertMsg(position);
+                                                                controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(languageShortName[list.get(_pos).getId()])+"");
 
 
                                                             } else {
@@ -605,5 +625,4 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
         dialogFragment.show(getActivity().getSupportFragmentManager(), "error_fragment");
     }
-
 }

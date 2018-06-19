@@ -1,24 +1,16 @@
 package com.nissan.alldriverguide.retrofit;
 
-import android.app.ProgressDialog;
-import android.util.Log;
-
-import com.nissan.alldriverguide.MyApplication;
-import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CarListACompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
-import com.nissan.alldriverguide.interfaces.CompleteAlertAPI;
+import com.nissan.alldriverguide.interfaces.InterfaceGlobalMessageResponse;
 import com.nissan.alldriverguide.interfaces.CompleteAssistanceTabContent;
 import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.interfaces.CompleteSettingTabContent;
 import com.nissan.alldriverguide.model.ResponseInfo;
-import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
-import com.nissan.alldriverguide.multiLang.model.CarList;
 import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
-import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.Values;
@@ -292,34 +284,6 @@ public class ApiCall {
 
     }
 
-    // post Alert Msg
-    public void postGlobalAlertMsg(String device_id, String language_id, final CompleteAlertAPI completeAPI) {
-
-        //Creating an object of our api interface
-        ApiService api = RetrofitClient.getApiService();
-        Call<GlobalMsgResponse> call = api.postAlertMsg(device_id, language_id);
-        call.enqueue(new Callback<GlobalMsgResponse>() {
-            @Override
-            public void onResponse(Call<GlobalMsgResponse> call, Response<GlobalMsgResponse> response) {
-                if (response.isSuccessful()) {
-                    if (response != null) {
-                        completeAPI.onDownloaded(response.body());
-                    } else {
-                        completeAPI.onFailed(Values.FAILED_STATUS);
-                    }
-                } else {
-                    //do your failure work
-                }
-            }
-
-            @Override
-            public void onFailure(Call<GlobalMsgResponse> call, Throwable t) {
-                completeAPI.onFailed(t.getMessage());
-            }
-        });
-
-    }
-
     // post Car wise Language List
 //    public void postGlobalAlertMsg(String device_id, String language_id, final CompleteCarwiseLanguageListAPI completeAPI) {
 //
@@ -408,40 +372,6 @@ public class ApiCall {
                 completeAPI.onFailed(t.getMessage());
             }
         });
-    }
-
-    /*************************
-     * MultiLangual
-     **************************/
-    public void getLanguageList(final String device_id, final String car_id, final ProgressDialog progressDialog, final InterfaceLanguageListResponse interfaceLanguageListResponse) {
-
-        ApiService api = RetrofitClient.getApiService();
-
-        Call<LanguageListResponse> call = api.languageList(device_id, car_id);
-
-            call.enqueue(new Callback<LanguageListResponse>() {
-
-                @Override
-                public void onResponse(Call<LanguageListResponse> call, Response<LanguageListResponse> response) {
-                    Logger.error("response.code(): ",""+ response.code() );
-                    if (response.isSuccessful()) {
-                        LanguageListResponse languageListResponse = response.body();
-                        interfaceLanguageListResponse.languageListResponse(languageListResponse);
-                        new PreferenceUtil(MyApplication.getAppContext()).storeMultiLangData(languageListResponse.getLanguageList(), "LanguageList");
-                        if (progressDialog != null && progressDialog.isShowing()) progressDialog.dismiss();
-                    } else {
-                        if (progressDialog != null && progressDialog.isShowing()) progressDialog.dismiss();
-//                        Toast.makeText(MyApplication.getAppContext(), "Something went wrong", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<LanguageListResponse> call, Throwable t) {
-                    Logger.error("Error___", "_______" + t.toString());
-//                    Toast.makeText(MyApplication.getAppContext(), "Check your internet connection",Toast.LENGTH_SHORT).show();
-                    if (progressDialog != null && progressDialog.isShowing()) progressDialog.dismiss();
-                }
-            });
     }
 
     public void getCarList(final String device_id, final String language_id, final CarListACompleteAPI completeAPI) {
