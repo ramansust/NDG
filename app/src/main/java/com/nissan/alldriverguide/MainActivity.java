@@ -157,7 +157,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
     private void setTabNames() {
 
-        ArrayList<TabMenu> tabMenuArrayList = getDataFromStorage();
+        ArrayList<TabMenu> tabMenuArrayList = NissanApp.getInstance().getDataFromStorage();
 
         NissanApp.getInstance().setTabMenuArrayList(tabMenuArrayList);
 
@@ -926,15 +926,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
             }
         }
         return super.dispatchTouchEvent(event);
-    }
-
-    private ArrayList<TabMenu> getDataFromStorage() {
-
-        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TAB_MENU_KEY;
-
-        Type type = new TypeToken<ArrayList<TabMenu>>() {        }.getType();
-        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);
-
     }
 
 }
