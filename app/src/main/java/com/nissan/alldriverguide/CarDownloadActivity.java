@@ -34,20 +34,26 @@ import android.widget.Toast;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.adapter.CarDownloadAdapter;
+import com.nissan.alldriverguide.controller.CarListContentController;
 import com.nissan.alldriverguide.controller.GlobalMessageController;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.interfaces.CarListACompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.interfaces.InterfaceGlobalMessageResponse;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.model.CarList;
+import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.pushnotification.Config;
@@ -66,6 +72,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +82,7 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
-public class CarDownloadActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, InterfaceGlobalMessageResponse {
+public class CarDownloadActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, InterfaceGlobalMessageResponse, CarListACompleteAPI {
 
     private static final String TAG = "CarDownloadActivity";
     private ListView lstView;
@@ -119,6 +126,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private long doubleClickPopup = 0;
     private List<LanguageList> languageLists;
     private GlobalMessageController globalMessageController;
+    private CarListContentController carListContentController;
+    private List<CarList> carListArrayList = new ArrayList<>();
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -170,6 +179,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         txtView_title = (TextView) findViewById(R.id.txtView_title);
         preferenceUtil = new PreferenceUtil(getApplicationContext());
         globalMessageController = new GlobalMessageController(this);
+        carListContentController = new CarListContentController(this);
     }
 
     private void setListener() {
@@ -178,6 +188,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     private void loadData() {
         txtView_title.setText(getResources().getString(R.string.select_your_car));
+//        carListContentController.callApi(NissanApp.getInstance().getDeviceID(this), NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang())+"");
     }
 
     @Override
@@ -366,6 +377,16 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
 
         }
+    }
+
+    @Override
+    public void onDownloaded(CarListResponse responseInfo) {
+
+        if (responseInfo.getStatusCode().equals("200")) {
+            carListArrayList = responseInfo.getCarList();
+            preferenceUtil.storeMultiLangData(carListArrayList, "car_list_key");
+        }
+
     }
 
     @Override
@@ -999,6 +1020,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
             // set the adapter
             if (NissanApp.getInstance().getCarList() != null) {
+
+//                setCarImageAccordingToDeviceResolution();
+
                 adapter = new CarDownloadAdapter(getApplicationContext(), NissanApp.getInstance().getCarList());
                 lstView.setAdapter(adapter);
                 lstView.setDivider(null);
@@ -1006,6 +1030,20 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
         }
     }
+
+    private void setCarImageAccordingToDeviceResolution() {
+
+        Type type = new TypeToken<ArrayList<CarList>>() {
+        }.getType();
+
+        carListArrayList = new Gson().fromJson(preferenceUtil.retrieveMultiLangData("car_list_key"), type);
+
+        if (carListArrayList == null || carListArrayList.size() == 0)
+            carListContentController.callApi(NissanApp.getInstance().getDeviceID(this), NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang())+"");
+
+
+    }
+
 
     private void startCarAssetsDownload(String assetsSource, String assetsDestination, String langSource, String langDestination) {
         // downloadCarAssets method download car asset and language both
