@@ -524,8 +524,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
         txtViewTitle.setText(exitDialogueText.isEmpty() ? resources.getString(R.string.exit_alert) : exitDialogueText);
 
-        Logger.error("tags", "____" + okText +"___" +cancelText+"____" + exitDialogueText+"____" + preferenceUtil.getSelectedLang());
-
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
