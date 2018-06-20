@@ -759,6 +759,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         }
         Values.car_path = NissanApp.getInstance().getCarPath(Values.carType); // set the car path
         preferenceUtil.setSelectedLang(commonDao.getLanguageStatus(getBaseContext(), Values.carType)); // here save language sort name in preference that getting from db for further uses.
+        NissanApp.getInstance().setGlobalMessageArrayList(null);
+        NissanApp.getInstance().setAlertMessageGlobalArrayList(null);
         startActivity(new Intent(CarDownloadActivity.this, MainActivity.class)); // here redirect the landing page to Main activity if car is downloaded.
         overridePendingTransition(R.anim.left_in, R.anim.right_out);
     }
@@ -1108,6 +1110,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
                                             commonDao.updateAllPushContentStatusForSingleCar(context, Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
                                             dismissDialog();
+
+                                            NissanApp.getInstance().setGlobalMessageArrayList(null);
+                                            NissanApp.getInstance().setAlertMessageGlobalArrayList(null);
 
                                             // if car is first time downloaded then show the Tutorial Activity
                                             if (preferenceUtil.getIsFirstTime()) {
