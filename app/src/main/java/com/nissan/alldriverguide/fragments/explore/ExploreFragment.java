@@ -38,6 +38,7 @@ import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
+import com.nissan.alldriverguide.multiLang.model.TabMenu;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
@@ -101,7 +102,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private Resources resources;
     private DisplayMetrics metrics;
-    private TextView txtViewExplore, tvNoContent;
+    private TextView txtViewExplore, tvNoContent, tvPageTitle;
     private ProgressBar progressBar;
     private String sharedpref_key;
     private String preSharedpref_key;
@@ -135,7 +136,17 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         loadResource();
         setListener();
         getExploreTabContent();
+        showTitle();
+
         return view;
+    }
+
+    private void showTitle() {
+
+        String title = NissanApp.getInstance().getTabTitle(getActivity(), "1");
+
+        tvPageTitle.setText(title.isEmpty() ? resources.getString(R.string.explore) : title);
+
     }
 
     private void getExploreTabContent() {
@@ -358,10 +369,10 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
      */
     private void loadData() {
 
-        if (header_text != null) {
+        //old btn_ar visibility logic
+        /*if (header_text != null) {
             relativeBlindSpot.setVisibility(View.VISIBLE);
             relativeAR.setVisibility(View.GONE);
-
             Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
@@ -374,8 +385,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             });
 
             //txtViewExplore.setImageURI(Uri.parse(header_text));
-
-           /* Glide.with(this).load(header_Background).asBitmap().into(new SimpleTarget<Bitmap>() {
+           *//* Glide.with(this).load(header_Background).asBitmap().into(new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
@@ -383,7 +393,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                         btnBlindSpotAR.setBackground(drawable);
                     }
                 }
-            });*/
+            });*//*
 
             Collections.sort(videoList, new Comparator<ExploreTabVideoModel>() {
                 @Override
@@ -391,17 +401,14 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     return lhs.getIndex().compareTo(rhs.getIndex());
                 }
             });
-
-
             adapter.setList(videoList);
             adapter.notifyDataSetChanged();
-
 
         } else {
             relativeAR.setVisibility(View.VISIBLE);
             relativeBlindSpot.setVisibility(View.GONE);
 
-            /*Glide.with(this).load(header_Background).asBitmap().into(new SimpleTarget<Bitmap>() {
+            *//*Glide.with(this).load(header_Background).asBitmap().into(new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
@@ -409,16 +416,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                         btnAR.setBackground(drawable);
                     }
                 }
-            });*/
-        }
+            });*//*
+        }*/
 
         //old static Rohan
-        /*if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+        if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 
             btnAR.setBackgroundResource(R.drawable.ar_selector_new_car);
         } else {
             btnAR.setBackgroundResource(R.drawable.ar_selector);
-        }*/
+        }
 
         if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10) {
             btnBlindSpotAR.setBackgroundResource(R.drawable.explore_xtrail_eur);
@@ -427,17 +434,42 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         }
 
 //        if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10 || Values.carType == 11) {
-        /*if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+        if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
             relativeBlindSpot.setVisibility(View.VISIBLE);
             relativeAR.setVisibility(View.GONE);
 
-            //here set the adapter for grid view
+            if (header_text != null) {
+                /*relativeBlindSpot.setVisibility(View.VISIBLE);
+                relativeAR.setVisibility(View.GONE);*/
 
-            gridView.setAdapter(new GridViewAdapter(getActivity().getApplicationContext(), getThumbnilArray(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang())));
+                Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            txtViewExplore.setBackground(drawable);
+                            //txtViewExplore.setBackgroundResource(R.drawable.micra_eng);
+                        }
+                    }
+                });
+
+                Collections.sort(videoList, new Comparator<ExploreTabVideoModel>() {
+                    @Override
+                    public int compare(ExploreTabVideoModel lhs, ExploreTabVideoModel rhs) {
+                        return lhs.getIndex().compareTo(rhs.getIndex());
+                    }
+                });
+
+                adapter.setList(videoList);
+                adapter.notifyDataSetChanged();
+            }
+
+            //here set the adapter for grid view
+//            gridView.setAdapter(new GridViewAdapter(getActivity().getApplicationContext(), getThumbnilArray(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang())));
         } else {
             relativeAR.setVisibility(View.VISIBLE);
             relativeBlindSpot.setVisibility(View.GONE);
-        }*/
+        }
     }
 
     /**
@@ -457,6 +489,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private void initViews(View view) {
 
         txtViewExplore = (TextView ) view.findViewById(R.id.txt_blind_spot_ar);
+        tvPageTitle = (TextView ) view.findViewById(R.id.txt_title_explore);
+        txtViewExplore = (TextView) view.findViewById(R.id.txt_blind_spot_ar);
         relativeAR = (RelativeLayout) view.findViewById(R.id.relative_ar);
         relativeBlindSpot = (RelativeLayout) view.findViewById(R.id.relative_blind_spot);
         progress_bar = (ProgressBar) view.findViewById(R.id.progress_bar);

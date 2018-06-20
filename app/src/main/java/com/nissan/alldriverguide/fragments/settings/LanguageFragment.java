@@ -92,7 +92,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     private Context context;
     private LanguageListResponse languageListResponses;
 
-    private String deviceDensity;
+    private String deviceDensity, lang_sort_name = "";
     private String[] langFlagUri;
     private List<LanguageList> _languageLists = new ArrayList<>();
     private long mLastClickTime;
@@ -100,7 +100,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     private GlobalMessageController controllerGlobalMsg;
     private ProgressBar progressBar;
     private TextView tvNoContent;
-    private int _pos = -1;
 
     public static Fragment newInstance() {
         Fragment frag = new LanguageFragment();
@@ -322,14 +321,15 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        this._pos = position;
         if (list.get(position).isSelected()) {
             preferenceUtil.setSelectedLang(languageShortName[list.get(position).getId()]);
+            lang_sort_name = languageShortName[list.get(position).getId()];
             loadResource();
 
             ((MainActivity) getActivity()).setTabResources();
         } else {
             if (DetectConnection.checkInternetConnection(getActivity().getApplicationContext())) {
+                lang_sort_name = languageShortName[list.get(position).getId()];
                 showDownloadAlert(languageShortName[list.get(position).getId()], position);
             } else {
 //                NissanApp.getInstance().showInternetAlert(getActivity(), getResources().getString(R.string.internet_connect));
@@ -342,8 +342,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     @Override
     public void onDownloaded(GlobalMsgResponse responseInfo) {
-
-        final String lang_sort_name = languageShortName[list.get(_pos).getId()];
 
         if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
 
@@ -490,7 +488,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                                 ((MainActivity) getActivity()).loadResource();
                                                                 ((MainActivity) getActivity()).setTabResources();
 
-                                                                controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(languageShortName[list.get(_pos).getId()])+"");
+                                                                controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(lang_sort_name)+"");
 
 
                                                             } else {

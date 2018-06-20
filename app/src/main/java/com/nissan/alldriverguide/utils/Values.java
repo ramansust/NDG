@@ -171,4 +171,6 @@ public class Values {
     public static final String  YES = "yes";
     public static final String  NO = "no";
 
+    public static final String  SEARCH_BOX_HINT = "search_box_hint";
+
 }

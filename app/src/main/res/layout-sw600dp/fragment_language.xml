@@ -82,6 +82,30 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/tvNoContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Content available!"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:visibility="visible"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pbLanguageFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
     <include
         android:id="@+id/lst_view"
         layout="@layout/list_view"

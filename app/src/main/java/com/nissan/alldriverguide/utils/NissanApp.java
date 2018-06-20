@@ -22,6 +22,7 @@ import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.epub.XMLParser;
 import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.BuildConfig;
+import com.nissan.alldriverguide.MyApplication;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
@@ -1420,6 +1421,8 @@ public class NissanApp {
                 return alertMessageArrayList.get(i).getMsg();
             if (msg_type.equalsIgnoreCase(Values.DOWNLOAD_CONFIRMATION) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.DOWNLOAD_CONFIRMATION))
                 return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.SEARCH_BOX_HINT) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.SEARCH_BOX_HINT))
+                return alertMessageArrayList.get(i).getMsg();
 
         }
 
@@ -1452,6 +1455,34 @@ public class NissanApp {
             return globalMessageList.get(0).getCancel();
 
         return "";
+    }
+
+    public String getTabTitle(Context context, String index) {
+
+        ArrayList<TabMenu> tabMenuList = getTabMenuArrayList();
+
+        if (tabMenuList == null || tabMenuList.size() == 0) {
+            tabMenuList = getDataFromStorage(context);
+        }
+
+        if (tabMenuList == null || tabMenuList.size() == 0)
+            return "";
+
+        for (TabMenu tabMenu : tabMenuList) {
+            if (tabMenu.getIndex().equals(index))
+                return tabMenu.getTitle();
+        }
+
+        return "";
+    }
+
+    private ArrayList<TabMenu> getDataFromStorage(Context context) {
+
+        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(context).getSelectedLang()) + "_" + Values.TAB_MENU_KEY;
+
+        Type type = new TypeToken<ArrayList<TabMenu>>() {        }.getType();
+        return new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData(key), type);
+
     }
 
 }
