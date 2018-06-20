@@ -391,10 +391,13 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 final Dialog dialog = new DialogController(getActivity()).contentUpdateDialog();
 
                 TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-                txtViewTitle.setText(resources.getString(R.string.update_msg));
+//                txtViewTitle.setText(resources.getString(R.string.update_msg));
+                String updateMsg = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.UPDATE_MSG);
+                txtViewTitle.setText(updateMsg.isEmpty() ? getResources().getString(R.string.update_msg) : updateMsg);
+
 //TODO
-                String okText = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.OK);
-                String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.CANCEL);
+                String okText = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.YES);
+                String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.NO);
 
                 Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
 //                btnOk.setText(resources.getString(R.string.button_YES));
