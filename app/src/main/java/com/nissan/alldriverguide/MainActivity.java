@@ -197,6 +197,9 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
             ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(2).setVisibility(View.GONE);
             tabIndicator3.setVisibility(View.GONE);
         }
+
+        NissanApp.getInstance().setGlobalMessageArrayList(null);
+        NissanApp.getInstance().setAlertMessageGlobalArrayList(null);
     }
 
     /**
