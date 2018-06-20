@@ -143,7 +143,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private void showTitle() {
 
-        String title = NissanApp.getInstance().getTabTitle("1");
+        String title = NissanApp.getInstance().getTabTitle(getActivity(), "1");
 
         tvPageTitle.setText(title.isEmpty() ? resources.getString(R.string.explore) : title);
 

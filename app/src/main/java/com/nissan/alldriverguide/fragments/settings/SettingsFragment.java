@@ -286,7 +286,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
 
     private void loadData() {
 
-        String title = NissanApp.getInstance().getTabTitle("4");
+        String title = NissanApp.getInstance().getTabTitle(getActivity(), "4");
         txt_title.setText(title.isEmpty() ? resources.getString(R.string.settings) : title);
 
 //        if (adapter == null || adapter.getCount() == 0) {

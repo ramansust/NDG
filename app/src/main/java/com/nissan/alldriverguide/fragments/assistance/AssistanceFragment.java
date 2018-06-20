@@ -303,7 +303,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             txtViewDriverGuide.setText(assistanceInfo.getAssistanceTitle());
         }
 
-        String title = NissanApp.getInstance().getTabTitle("2");
+        String title = NissanApp.getInstance().getTabTitle(getActivity(), "2");
 
         txt_title.setText(title.isEmpty() ? resources.getString(R.string.assistance) : title);
 //        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.assistance_array), assistanceImage);

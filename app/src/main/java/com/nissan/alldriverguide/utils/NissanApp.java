@@ -1457,22 +1457,16 @@ public class NissanApp {
         return "";
     }
 
-    public ArrayList<TabMenu> getDataFromStorage() {
-
-        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(MyApplication.getAppContext()).getSelectedLang()) + "_" + Values.TAB_MENU_KEY;
-
-        Type type = new TypeToken<ArrayList<TabMenu>>() {        }.getType();
-        return new Gson().fromJson(new PreferenceUtil(MyApplication.getAppContext()).retrieveMultiLangData(key), type);
-
-    }
-
-    public String getTabTitle(String index) {
+    public String getTabTitle(Context context, String index) {
 
         ArrayList<TabMenu> tabMenuList = getTabMenuArrayList();
 
         if (tabMenuList == null || tabMenuList.size() == 0) {
-            tabMenuList = getDataFromStorage();
+            tabMenuList = getDataFromStorage(context);
         }
+
+        if (tabMenuList == null || tabMenuList.size() == 0)
+            return "";
 
         for (TabMenu tabMenu : tabMenuList) {
             if (tabMenu.getIndex().equals(index))
@@ -1480,6 +1474,15 @@ public class NissanApp {
         }
 
         return "";
+    }
+
+    private ArrayList<TabMenu> getDataFromStorage(Context context) {
+
+        String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(context).getSelectedLang()) + "_" + Values.TAB_MENU_KEY;
+
+        Type type = new TypeToken<ArrayList<TabMenu>>() {        }.getType();
+        return new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData(key), type);
+
     }
 
 }
