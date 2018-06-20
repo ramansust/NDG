@@ -890,8 +890,8 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         txtViewTitle.setText(exitDialogueText.isEmpty() ? resources.getString(R.string.exit_alert) : exitDialogueText);
 
         //TODO
-        String okText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.OK);
-        String cancelText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.CANCEL);
+        String okText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.YES);
+        String cancelText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.NO);
 
         Button btnNo = (Button) dialog.findViewById(R.id.btn_cancel);
 //        btnNo.setText(resources.getString(R.string.button_NO));

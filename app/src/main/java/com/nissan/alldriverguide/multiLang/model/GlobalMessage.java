@@ -36,6 +36,14 @@ public class GlobalMessage {
     @Expose
     private String next;
 
+    @SerializedName("no")
+    @Expose
+    private String no;
+
+    @SerializedName("yes")
+    @Expose
+    private String yes;
+
     public Integer getId() {
         return id;
     }
@@ -110,5 +118,22 @@ public class GlobalMessage {
 
     public String getNext() {
         return next;
+    }
+
+
+    public String getNo() {
+        return no;
+    }
+
+    public void setNo(String no) {
+        this.no = no;
+    }
+
+    public String getYes() {
+        return yes;
+    }
+
+    public void setYes(String yes) {
+        this.yes = yes;
     }
 }
