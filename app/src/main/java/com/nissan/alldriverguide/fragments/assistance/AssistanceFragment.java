@@ -394,7 +394,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
                 TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
                 txtViewTitle.setText(resources.getString(R.string.update_msg));
-
+//TODO
                 String okText = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.OK);
                 String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.CANCEL);
 

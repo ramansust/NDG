@@ -11,7 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,15 +34,12 @@ import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.interfaces.CarListACompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
-import com.nissan.alldriverguide.interfaces.CompleteSettingTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.model.CarList;
 import com.nissan.alldriverguide.multiLang.model.CarListResponse;
-import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
-import com.nissan.alldriverguide.multiLang.model.Tutorial;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
@@ -377,9 +373,13 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
                                 TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
                                 txtViewTitle.setText(resources.getString(R.string.update_msg));
+//TODO
+                                String okText = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.OK);
+                                String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.CANCEL);
 
                                 Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
-                                btnOk.setText(resources.getString(R.string.button_YES));
+//                                btnOk.setText(resources.getString(R.string.button_YES));
+                                btnOk.setText(okText.isEmpty() ? resources.getString(R.string.button_YES) : okText);
 
                                 btnOk.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -558,7 +558,8 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                 });
 
                                 Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
-                                btnCancel.setText(resources.getString(R.string.button_NO));
+//                                btnCancel.setText(resources.getString(R.string.button_NO));
+                                btnCancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_NO) : cancelText);
 
                                 btnCancel.setOnClickListener(new View.OnClickListener() {
                                     @Override
