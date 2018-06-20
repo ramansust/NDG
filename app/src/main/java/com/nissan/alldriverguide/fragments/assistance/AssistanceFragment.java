@@ -12,7 +12,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -396,8 +395,12 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
                 txtViewTitle.setText(resources.getString(R.string.update_msg));
 
+                String okText = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.OK);
+                String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.CANCEL);
+
                 Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
-                btnOk.setText(resources.getString(R.string.button_YES));
+//                btnOk.setText(resources.getString(R.string.button_YES));
+                btnOk.setText(okText.isEmpty() ? resources.getString(R.string.button_YES) : okText);
 
                 btnOk.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -560,7 +563,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 });
 
                 Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
-                btnCancel.setText(resources.getString(R.string.button_NO));
+//                btnCancel.setText(resources.getString(R.string.button_NO));
+                btnCancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_NO) : cancelText);
 
                 btnCancel.setOnClickListener(new View.OnClickListener() {
                     @Override

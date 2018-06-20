@@ -199,8 +199,16 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
                 String pushTitle = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.REGISTER_PUSH_MESSAGE);
                 txtViewTitle.setText(pushTitle.isEmpty() ? getResources().getString(R.string.register_push) : pushTitle);
+
+                //TODO
+                String okText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.OK);
+                String cancelText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.CANCEL);
+
                 Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
                 Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+
+                btnOk.setText(okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
+                btnCancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
 
                 btnCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -367,7 +375,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     protected void onResume() {
-        globalMessageController.callApi(NissanApp.getInstance().getDeviceID(getApplicationContext()), "1");
+        globalMessageController.callApi(NissanApp.getInstance().getDeviceID(getApplicationContext()), NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang())+"");
         if (preferenceUtil.getIsFirstTime()) {
             if (new File(Values.PATH).exists()) {
                 try {

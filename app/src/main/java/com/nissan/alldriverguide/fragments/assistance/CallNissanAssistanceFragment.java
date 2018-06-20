@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.assistance;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -228,6 +229,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         super.onSaveInstanceState(outState);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
         final Dialog dialog = new DialogController(getActivity()).callNumberDialog();

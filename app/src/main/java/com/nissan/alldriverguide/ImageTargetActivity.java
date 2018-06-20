@@ -807,20 +807,24 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         Logger.error(LOGTAG, "onBackPressed()");
         if (isDetected) {
 
-            if (inflatedLayout_second != null && inflatedLayout_second.isAttachedToWindow()) {
-                if (layoutCameraView != null) {
-                    layoutCameraView.removeView(inflatedLayout_second);
-                    inflatedLayout_second = null;
-                    layoutCameraView.addView(inflatedLayout);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                if (inflatedLayout_second != null && inflatedLayout_second.isAttachedToWindow()) {
+                    if (layoutCameraView != null) {
+                        layoutCameraView.removeView(inflatedLayout_second);
+                        inflatedLayout_second = null;
+                        layoutCameraView.addView(inflatedLayout);
+                    }
+                } else {
+                    if (inflatedLayout != null && inflatedLayout.isAttachedToWindow()) {
+                        if (layoutCameraView != null) {
+                            layoutCameraView.removeAllViews();
+                        }
+                        vuforiaAppSession.onResume();
+                        isDetected = false;
+                    } else {
+                        backButtonAlert();
+                    }
                 }
-            } else if (inflatedLayout != null && inflatedLayout.isAttachedToWindow()) {
-                if (layoutCameraView != null) {
-                    layoutCameraView.removeAllViews();
-                }
-                vuforiaAppSession.onResume();
-                isDetected = false;
-            } else {
-                backButtonAlert();
             }
 
         } else {
@@ -885,11 +889,18 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         String exitDialogueText = NissanApp.getInstance().getAlertMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.CONFIRM_EXIT_MESSAGE);
         txtViewTitle.setText(exitDialogueText.isEmpty() ? resources.getString(R.string.exit_alert) : exitDialogueText);
 
+        //TODO
+        String okText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.OK);
+        String cancelText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.CANCEL);
+
         Button btnNo = (Button) dialog.findViewById(R.id.btn_cancel);
-        btnNo.setText(resources.getString(R.string.button_NO));
+//        btnNo.setText(resources.getString(R.string.button_NO));
+        btnNo.setText(cancelText.isEmpty() ? resources.getString(R.string.button_NO) : cancelText);
 
         Button btnYes = (Button) dialog.findViewById(R.id.btn_ok);
-        btnYes.setText(resources.getString(R.string.button_YES));
+//        btnYes.setText(resources.getString(R.string.button_YES));
+        btnYes.setText(okText.isEmpty() ? resources.getString(R.string.button_YES) : okText);
+
 
         btnNo.setOnClickListener(new View.OnClickListener() {
             @Override

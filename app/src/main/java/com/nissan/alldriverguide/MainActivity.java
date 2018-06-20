@@ -18,7 +18,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,6 +44,7 @@ import com.nissan.alldriverguide.fragments.settings.Feedback;
 import com.nissan.alldriverguide.fragments.settings.SettingsFragment;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
 import com.nissan.alldriverguide.utils.Analytics;
+import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
@@ -511,12 +511,20 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
 
+        String okText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.OK);
+        String cancelText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.CANCEL);
+
         Button btnYes = (Button) dialog.findViewById(R.id.btn_ok);
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
 
+        btnYes.setText(okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
+        btnCancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
+
         String exitDialogueText = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.CONFIRM_EXIT_MESSAGE);
 
-        txtViewTitle.setText(exitDialogueText.isEmpty() ? getResources().getString(R.string.exit_alert) : exitDialogueText);
+        txtViewTitle.setText(exitDialogueText.isEmpty() ? resources.getString(R.string.exit_alert) : exitDialogueText);
+
+        Logger.error("tags", "____" + okText +"___" +cancelText+"____" + exitDialogueText+"____" + preferenceUtil.getSelectedLang());
 
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override

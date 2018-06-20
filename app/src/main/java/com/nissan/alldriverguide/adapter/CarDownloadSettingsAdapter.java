@@ -506,8 +506,15 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             txtViewTitle.setText(deleteMsg.isEmpty() ? resources.getString(R.string.alert_msg23) : deleteMsg);
         }
 
+        //TODO
+        String okText = NissanApp.getInstance().getGlobalMessage(context, new PreferenceUtil(context).getSelectedLang(), Values.OK);
+        String cancelText = NissanApp.getInstance().getGlobalMessage(context, new PreferenceUtil(context).getSelectedLang(), Values.CANCEL);
+
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+
+        btnOk.setText(okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
+        btnCancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
