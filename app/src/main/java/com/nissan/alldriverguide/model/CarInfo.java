@@ -13,6 +13,15 @@ public class CarInfo {
     private String selectedLanguage;
     private int selectedCar;
     private boolean isSection;
+    private String carImg = "";
+
+    public String getCarImg() {
+        return carImg;
+    }
+
+    public void setCarImg(String carImg) {
+        this.carImg = carImg;
+    }
 
     public String getVersionName() {
         return versionName;
