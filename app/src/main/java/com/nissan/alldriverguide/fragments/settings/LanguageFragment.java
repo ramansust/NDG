@@ -33,6 +33,7 @@ import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.LanguageSelectionAdapter;
+import com.nissan.alldriverguide.controller.CarListContentController;
 import com.nissan.alldriverguide.controller.GlobalMessageController;
 import com.nissan.alldriverguide.controller.LanguageSelectionController;
 import com.nissan.alldriverguide.customviews.DialogController;
@@ -40,12 +41,14 @@ import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.NissanDbHelper;
 import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.interfaces.CarListACompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.interfaces.InterfaceGlobalMessageResponse;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
+import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
@@ -65,7 +68,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LanguageFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener, InterfaceLanguageListResponse, InterfaceGlobalMessageResponse {
+public class LanguageFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener, InterfaceLanguageListResponse, InterfaceGlobalMessageResponse, CarListACompleteAPI {
 
     private static final String TAG = "LanguageFragment";
     NissanDbHelper dbHelper;
@@ -98,6 +101,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     private long mLastClickTime;
     private LanguageSelectionController controller;
     private GlobalMessageController controllerGlobalMsg;
+    private CarListContentController controllerCarList;
     private ProgressBar progressBar;
     private TextView tvNoContent;
 
@@ -305,6 +309,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         sqliteDB = dbHelper.getWritableDatabase();
         controller = new LanguageSelectionController(this);
         controllerGlobalMsg = new GlobalMessageController(this);
+        controllerCarList = new CarListContentController(this);
         loadResource();
     }
 
@@ -359,6 +364,14 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             // start language download procedure
             dismissDialog();
 
+        }
+    }
+
+    @Override
+    public void onDownloaded(CarListResponse responseInfo) {
+        if (responseInfo.getStatusCode().equals("200")) {
+            String car_list_key = Values.carType + "_" + Values.CAR_LIST_KEY;
+            preferenceUtil.storeMultiLangData(responseInfo.getCarList(), car_list_key);
         }
     }
 

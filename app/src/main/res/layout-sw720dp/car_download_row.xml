@@ -24,8 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/img_view"
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/ivMainCarImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -56,8 +56,8 @@
                 android:id="@+id/img_btn_delete_or_download"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/img_view"
-                android:layout_alignRight="@+id/img_view"
+                android:layout_alignBottom="@+id/ivMainCarImage"
+                android:layout_alignRight="@+id/ivMainCarImage"
                 android:layout_margin="@dimen/margin_left"
                 android:background="@drawable/download_selector" />
         </RelativeLayout>

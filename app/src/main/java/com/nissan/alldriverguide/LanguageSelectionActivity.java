@@ -28,12 +28,14 @@ import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.adapter.LanguageSelectionAdapter;
+import com.nissan.alldriverguide.controller.CarListContentController;
 import com.nissan.alldriverguide.controller.GlobalMessageController;
 import com.nissan.alldriverguide.controller.LanguageSelectionController;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.interfaces.CarListACompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.interfaces.InterfaceGlobalMessageResponse;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
@@ -41,6 +43,7 @@ import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.AlertMessage;
+import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.retrofit.ApiCall;
@@ -66,7 +69,7 @@ import static com.nissan.alldriverguide.utils.Values.DATA_SYNCING;
 import static com.nissan.alldriverguide.utils.Values.DOWNLOADING;
 import static com.nissan.alldriverguide.utils.Values.STARTING_DOWNLOAD;
 
-public class LanguageSelectionActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, InterfaceLanguageListResponse, InterfaceGlobalMessageResponse {
+public class LanguageSelectionActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, InterfaceLanguageListResponse, InterfaceGlobalMessageResponse, CarListACompleteAPI {
 
     private static final String TAG = "LanguageSelectionActivity";
     private String[] languageName;/*= {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};*/
@@ -95,6 +98,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private List<LanguageList> _languageLists = new ArrayList<>();
     private LanguageSelectionController controller;
     private GlobalMessageController controllerGlobalMsg;
+    private CarListContentController carListContentController;
     private ProgressBar progressBar;
     private TextView tvNoContent;
 
@@ -245,6 +249,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         deviceDensity = NissanApp.getInstance().getDensityName(activity);
         controller = new LanguageSelectionController(this);
         controllerGlobalMsg = new GlobalMessageController(this);
+        carListContentController = new CarListContentController(this);
         loadResource();
     }
 
@@ -314,7 +319,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         if (NissanApp.getInstance().createPath(Values.PATH)) {
             if (DetectConnection.checkInternetConnection(getApplicationContext())) {
                 showCarDownloadDialogForSingleCar();
-
+                carListContentController.callApi(NissanApp.getInstance().getDeviceID(this), selectedLangModel.getLanguageId()+"");
             } else {
                 String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
                 NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
@@ -660,6 +665,17 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
 
         }
+    }
+
+    @Override
+    public void onDownloaded(CarListResponse responseInfo) {
+
+        if (responseInfo.getStatusCode().equals("200")) {
+            String car_list_key = Values.carType + "_" + Values.CAR_LIST_KEY;
+            Logger.error("car_list_key", "__________" + car_list_key);
+            preferenceUtil.storeMultiLangData(responseInfo.getCarList(), car_list_key);
+        }
+
     }
 
     @Override

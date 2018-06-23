@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.MainActivity;
@@ -60,7 +61,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private View view;
     private TextView txtViewCarName;
     private TextView txtViewDriverGuide;
-    private ImageView imageView;
+    private SimpleDraweeView imageView;
     private ListView lstView;
     private TextView txt_title;
 
@@ -332,7 +333,37 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     // here set assistance car background according to car type
     private void setCarBackground(int index) {
-        NissanApp.getInstance().setCarImageAssistance(index, imageView);
+
+        String url = getURLAccordingToDensity(NissanApp.getInstance().getDensityName(getActivity()));
+
+        Logger.error("url" ,"___________" + url);
+
+        if (url.isEmpty())
+            NissanApp.getInstance().setCarImageAssistance(index, imageView);
+        else
+        imageView.setImageURI(url);
+
+//        NissanApp.getInstance().setCarImageAssistance(index, imageView);
+    }
+
+    private String getURLAccordingToDensity(String device_density) {
+
+        if (device_density.equalsIgnoreCase("xxxhdpi")) {
+            return assistanceInfo.getAssistanceImages().getAssistanceImgXxxhdpi();
+        } else if (device_density.equalsIgnoreCase("xxhdpi")) {
+            return assistanceInfo.getAssistanceImages().getAssistanceImgXxhdpi();
+        } else if (device_density.equalsIgnoreCase("xhdpi")) {
+            assistanceInfo.getAssistanceImages().getAssistanceImgXhdpi();
+        } else if (device_density.equalsIgnoreCase("hdpi")) {
+            assistanceInfo.getAssistanceImages().getAssistanceImgHdpi();
+        } else if (device_density.equalsIgnoreCase("ldpi")) {
+            assistanceInfo.getAssistanceImages().getAssistanceImgLdpi();
+        } else {
+            return assistanceInfo.getAssistanceImages().getAssistanceImgHdpi();
+
+        }
+
+        return "";
     }
 
     // here initialized all variable
@@ -341,7 +372,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         commonDao = CommonDao.getInstance();
         txtViewCarName = (TextView) view.findViewById(R.id.txt_view_car_name);
         txtViewDriverGuide = (TextView) view.findViewById(R.id.txt_view_driver_guide);
-        imageView = (ImageView) view.findViewById(R.id.img_car_bg);
+        imageView = (SimpleDraweeView) view.findViewById(R.id.img_car_bg);
         lstView = (ListView) view.findViewById(R.id.lst_view);
         txt_title = (TextView) view.findViewById(R.id.txt_title);
 

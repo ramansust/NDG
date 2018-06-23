@@ -94,7 +94,7 @@
         android:layout_below="@+id/relative_top"
         android:layout_centerHorizontal="true">
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/img_car_bg"
             android:layout_width="match_parent"
             android:layout_height="335dp"

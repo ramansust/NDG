@@ -31,6 +31,7 @@ import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.VideoInfo;
 import com.nissan.alldriverguide.multiLang.model.AlertMessage;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
+import com.nissan.alldriverguide.multiLang.model.CarList;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 import com.nissan.alldriverguide.multiLang.model.GlobalMessage;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
@@ -127,7 +128,7 @@ public class NissanApp {
         this.carList = carList;
     }
 
-    private ArrayList<Object> carList;
+    private ArrayList<Object> carList = new ArrayList<>();
 
     public ArrayList<CarInfo> getCarAllList() {
         return carAllList;
@@ -1423,6 +1424,8 @@ public class NissanApp {
                 return alertMessageArrayList.get(i).getMsg();
             if (msg_type.equalsIgnoreCase(Values.SEARCH_BOX_HINT) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.SEARCH_BOX_HINT))
                 return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.CAR_SELECTION_TITLE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.CAR_SELECTION_TITLE))
+                return alertMessageArrayList.get(i).getMsg();
 
         }
 
@@ -1483,6 +1486,24 @@ public class NissanApp {
         Type type = new TypeToken<ArrayList<TabMenu>>() {        }.getType();
         return new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData(key), type);
 
+    }
+
+    public String getURLAccordingToDensity(String device_density, CarList model) {
+
+        if (device_density.equalsIgnoreCase("xxxhdpi")) {
+            return model.getImgXXXhdpi();
+        } else if (device_density.equalsIgnoreCase("xxhdpi")) {
+            return model.getImgXXhdpi();
+        } else if (device_density.equalsIgnoreCase("xhdpi")) {
+            return model.getImgXhdpi();
+        } else if (device_density.equalsIgnoreCase("hdpi")) {
+            return model.getImgHdpi();
+        } else if (device_density.equalsIgnoreCase("ldpi")) {
+            return model.getImgLdpi();
+        } else {
+            return model.getImgHdpi();
+
+        }
     }
 
 }

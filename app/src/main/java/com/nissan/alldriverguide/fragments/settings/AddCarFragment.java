@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -52,7 +54,9 @@ import com.nissan.alldriverguide.utils.Values;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -91,6 +95,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_add_car, container, false);
@@ -98,7 +103,13 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         initViews(view);
         loadResource();
         setListener();
-        getCarNamesFromApiOrSP();
+        loadData();
+
+
+
+
+
+
         return view;
     }
 
@@ -110,7 +121,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
     private void loadData() {
 
-
+        getDataFromSP();
 
         final String ORDER = "102";
         Collections.sort(NissanApp.getInstance().getCarAllList(), new Comparator<CarInfo>() {
@@ -149,76 +160,73 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
             }
         }
 
+        replaceTheCarNamesAndImages();
+
         adapter = new CarDownloadSettingsAdapter(AddCarFragment.this, getActivity(), getActivity().getApplicationContext(), NissanApp.getInstance().getCarAllList());
         lstView.setAdapter(adapter);
         lstView.setDivider(null);
     }
 
-    private void getCarNamesFromApiOrSP() {
-
-        getDataFromSP();
-        if (carListArrayList == null || carListArrayList.size() == 0) {
-            if (DetectConnection.checkInternetConnection(getActivity())) {
-                callApiAndGetData();
-            } else {
-                loadData();
-            }
-        } else {
-            replaceTheCarNames();
-        }
-
-    }
-
-    private void callApiAndGetData() {
-
-
-            new ApiCall().getCarList(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang())+"", new CarListACompleteAPI() {
-
-
-                @Override
-                public void onDownloaded(CarListResponse responseInfo) {
-                    Logger.error("status", "_______" + responseInfo.getStatusCode());
-                    if (responseInfo.getStatusCode().equals("200")) {
-                        carListArrayList = responseInfo.getCarList();
-                        preferenceUtil.storeMultiLangData(carListArrayList, "car_list_key");
-                        replaceTheCarNames();
-                    }
-                }
-
-                @Override
-                public void onFailed(String failedReason) {
-                    Logger.error("AddCarFragment", "_______OnFailed: " + failedReason);
-                }
-
-
-            });
-    }
-
-    private void replaceTheCarNames() {
+    private void replaceTheCarNamesAndImages() {
 
         ArrayList<CarInfo> carInfoArrayList = NissanApp.getInstance().getCarAllList();
 
+        if (carInfoArrayList == null || carInfoArrayList.size() == 0)
+            return;
+        if (carListArrayList == null || carListArrayList.size() == 0)
+            return;
+
+
+/*
+        for (CarInfo car : carInfoArrayList) {
+            Logger.error("id_name", "__________" + car.getId() +"_____" + car.getName());
+        }
+*/
+
+        for (int i = 0; i < carInfoArrayList.size(); i++) {
+
+            for (CarList carListModel : carListArrayList) {
+                if (carListModel.getId() == null || carListModel.getId().isEmpty())
+                    continue;
+                if (carInfoArrayList.get(i).getId() == Integer.parseInt(carListModel.getId())) {
+                    carInfoArrayList.get(i).setName(carListModel.getCarDisplayName());
+                    carInfoArrayList.get(i).setCarImg(NissanApp.getInstance().getURLAccordingToDensity(NissanApp.getInstance().getDensityName(getActivity()), carListModel));
+                }
+            }
+
+        }
+
+
+/*
         for (CarList carListModel : carListArrayList) {
             for (int i = 0; i < carInfoArrayList.size(); i++) {
                 if (carListModel.getId() == null || carListModel.getId().isEmpty())
                     continue;
                 if (carInfoArrayList.get(i).getId() == Integer.parseInt(carListModel.getId())) {
-                    carInfoArrayList.get(i).setName(carListModel.getCarName());
+                    carInfoArrayList.get(i).setName(carListModel.getCarDisplayName());
+                    carInfoArrayList.get(i).setCarImg(NissanApp.getInstance().getURLAccordingToDensity(NissanApp.getInstance().getDensityName(getActivity()), carListModel));
                 }
             }
         }
+*/
+
         NissanApp.getInstance().setCarAllList(carInfoArrayList);
 
-        loadData();
+        for (CarInfo car : carInfoArrayList) {
+            Logger.error("sristi", "____" + car.getCarImg());
+        }
+
     }
 
 
     private void getDataFromSP() {
 
+        String car_list_key = Values.carType + "_" + Values.CAR_LIST_KEY;
+
         Type type = new TypeToken<ArrayList<CarList>>() {
         }.getType();
 
-        carListArrayList = new Gson().fromJson(preferenceUtil.retrieveMultiLangData("car_list_key"), type);
+        carListArrayList = new Gson().fromJson(preferenceUtil.retrieveMultiLangData(car_list_key), type);
 
     }
 
@@ -229,11 +237,13 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     public void loadResource() {
+        ((MainActivity) getActivity()).setTabResources();
         resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
-        txt_title.setText(resources.getString(R.string.add_extra_car));
+        String car_selection_title = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.CAR_SELECTION_TITLE);
+        txt_title.setText(car_selection_title.isEmpty() ? resources.getString(R.string.add_extra_car) : car_selection_title);
         txt_back_title.setText(resources.getString(R.string.back));
         txt_back_title.setTypeface(tf);
-        ((MainActivity) getActivity()).setTabResources();
+
     }
 
     private void initViews(View view) {
@@ -351,6 +361,8 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                             loadResource();
                             ((MainActivity) getActivity()).setTabResources();
                             adapter.loadResource();
+                            getDataFromSP();
+                            replaceTheCarNamesAndImages();
                             adapter.notifyDataSetChanged();
                         }
 
@@ -456,6 +468,8 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                                                                                         loadResource();
                                                                                                         ((MainActivity) getActivity()).setTabResources();
                                                                                                         adapter.loadResource();
+                                                                                                        getDataFromSP();
+                                                                                                        replaceTheCarNamesAndImages();
                                                                                                         adapter.notifyDataSetChanged();
                                                                                                     }
 
@@ -584,6 +598,8 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                         loadResource();
                                         ((MainActivity) getActivity()).setTabResources();
                                         adapter.loadResource();
+                                        getDataFromSP();
+                                        replaceTheCarNamesAndImages();
                                         adapter.notifyDataSetChanged();
                                     }
                                 });
@@ -603,6 +619,8 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                 loadResource();
                                 ((MainActivity) getActivity()).setTabResources();
                                 adapter.loadResource();
+                                getDataFromSP();
+                                replaceTheCarNamesAndImages();
                                 adapter.notifyDataSetChanged();
                             }
                         } else {
@@ -619,6 +637,8 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                             loadResource();
                             ((MainActivity) getActivity()).setTabResources();
                             adapter.loadResource();
+                            getDataFromSP();
+                            replaceTheCarNamesAndImages();
                             adapter.notifyDataSetChanged();
                         }
                     }

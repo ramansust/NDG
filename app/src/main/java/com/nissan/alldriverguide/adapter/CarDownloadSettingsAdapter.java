@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -21,24 +22,28 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
+import com.nissan.alldriverguide.controller.CarListContentController;
 import com.nissan.alldriverguide.controller.GlobalMessageController;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.settings.AddCarFragment;
+import com.nissan.alldriverguide.interfaces.CarListACompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.interfaces.InterfaceGlobalMessageResponse;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
@@ -63,7 +68,7 @@ import java.util.List;
 /**
  * Created by raman on 1/19/17.
  */
-public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnClickListener, InterfaceGlobalMessageResponse {
+public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnClickListener, InterfaceGlobalMessageResponse, CarListACompleteAPI {
 
     private static final String TAG = "CarDownloadSettingsAdapter";
     private CommonDao commonDao;
@@ -97,6 +102,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     private LanguageInfo info;
     List<LanguageList> languageLists = new ArrayList<>();
     private GlobalMessageController controller;
+    private CarListContentController carListContentController;
 
     public CarDownloadSettingsAdapter(AddCarFragment frag, Activity activity, Context context, ArrayList<CarInfo> list) {
         this.activity = activity;
@@ -107,6 +113,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         commonDao = CommonDao.getInstance();
         preferenceUtil = new PreferenceUtil(context);
         controller = new GlobalMessageController(this);
+        carListContentController = new CarListContentController(this);
         loadResource();
 //        progressDialog = new ProgressDialogController(this.activity).showDialog("adfkaljshfkj");
         deviceDensity = NissanApp.getInstance().getDensityName(this.activity);
@@ -184,12 +191,19 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 viewHolder.txtViewTitle.setText(list.get(position).getName());
             }
         } else if ("1".equalsIgnoreCase(list.get(position).getStatus())) {
-            NissanApp.getInstance().setCarImage(list.get(position).getId(), viewHolder.imageView);
+            if (list.get(position).getCarImg() == null || list.get(position).getCarImg().isEmpty())
+                NissanApp.getInstance().setCarImage(list.get(position).getId(), viewHolder.imageView);
+            else
+                viewHolder.imageView.setImageURI(list.get(position).getCarImg());
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
 //            viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
             viewHolder.txtViewTitle.setText(list.get(position).getName());
         } else if ("0".equalsIgnoreCase(list.get(position).getStatus())) {
-            NissanApp.getInstance().setCarImage(list.get(position).getId(), viewHolder.imageView);
+            if (list.get(position).getCarImg() == null || list.get(position).getCarImg().isEmpty())
+                NissanApp.getInstance().setCarImage(list.get(position).getId(), viewHolder.imageView);
+            else
+                viewHolder.imageView.setImageURI(list.get(position).getCarImg());
+
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
             if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5) {
                 String name[] = list.get(position).getName().split(" "); //(carNames[list.get(position).getId() - 1]).split(" ");
@@ -285,12 +299,20 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     }
 
     @Override
+    public void onDownloaded(CarListResponse responseInfo) {
+        if (responseInfo.getStatusCode().equals("200")) {
+            String car_list_key = Values.carType + "_" + Values.CAR_LIST_KEY;
+            preferenceUtil.storeMultiLangData(responseInfo.getCarList(), car_list_key);
+        }
+    }
+
+    @Override
     public void onFailed(String failedReason) {
         Logger.error(TAG, "globalMsg____________" + failedReason);
     }
 
     static class ViewHolder {
-        ImageView imageView;
+        SimpleDraweeView imageView;
         ImageView imageViewBorder;
         TextView txtViewTitle;
         ImageButton imgDeleteOrDownload;
@@ -298,7 +320,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         RelativeLayout relativeLayout;
 
         public ViewHolder(View view) {
-            imageView = (ImageView) view.findViewById(R.id.img_view);
+            imageView = (SimpleDraweeView) view.findViewById(R.id.ivMainCarImage);
             imageViewBorder = (ImageView) view.findViewById(R.id.img_view_border);
             txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
             imgDeleteOrDownload = (ImageButton) view.findViewById(R.id.img_btn_delete_or_download);
@@ -618,6 +640,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
             }
         });
+
+        carListContentController.callApi(NissanApp.getInstance().getDeviceID(context), NissanApp.getInstance().getLanguageID(lang)+"");
 
         new ApiCall().postCarDownload("" + carType, "" + NissanApp.getInstance().getLanguageID(lang), "0", NissanApp.getInstance().getDeviceID(context), new CompleteAPI() {
             @Override

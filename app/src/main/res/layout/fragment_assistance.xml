@@ -80,10 +80,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/relative_top">
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/img_car_bg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/leaf_2017_assistance"/>
 
         <TextView
             android:id="@+id/txt_view_driver_guide"
