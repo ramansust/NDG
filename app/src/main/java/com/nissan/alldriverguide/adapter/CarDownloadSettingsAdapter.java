@@ -180,7 +180,11 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         }
 
         if ("2".equalsIgnoreCase(list.get(position).getStatus())) {
-            NissanApp.getInstance().setPreviousCarImage(list.get(position).getId(), viewHolder.imageView);
+            if (list.get(position).getCarImg() == null || list.get(position).getCarImg().isEmpty())
+                NissanApp.getInstance().setPreviousCarImage(list.get(position).getId(), viewHolder.imageView);
+            else
+                viewHolder.imageView.setImageURI(list.get(position).getCarImg());
+
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
             if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5) {
                 String name[] = list.get(position).getName().split(" "); //(carNames[list.get(position).getId() - 1]).split(" ");
