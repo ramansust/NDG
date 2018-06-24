@@ -671,8 +671,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     public void onDownloaded(CarListResponse responseInfo) {
 
         if (responseInfo.getStatusCode().equals("200")) {
-            String car_list_key = Values.carType + "_" + Values.CAR_LIST_KEY;
-            Logger.error("car_list_key", "__________" + car_list_key);
+            String car_list_key = selectedLangModel.getLanguageShortcode() + "_" + Values.CAR_LIST_KEY + "_" + selectedLangModel.getLanguageId();
+            Logger.error(TAG, "car_list_key__________" + car_list_key);
             preferenceUtil.storeMultiLangData(responseInfo.getCarList(), car_list_key);
         }
 

@@ -412,11 +412,25 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     public void onDownloaded(CarListResponse responseInfo) {
 
         if (responseInfo.getStatusCode().equals("200")) {
+
+            carListArrayList = new ArrayList<>();
+
             carListArrayList = responseInfo.getCarList();
+
+            preferenceUtil.storeMultiLangData(carListArrayList, "en_" + Values.CAR_LIST_KEY + "_1");
             loadCarData();
             if (pbCarDownload != null && pbCarDownload.getVisibility() == View.VISIBLE) {
                 pbCarDownload.setVisibility(View.GONE);
             }
+
+            for (CarList car : carListArrayList) {
+                if (car.getCarUniqueName().equals("xtrail2017")) {
+                    Logger.error("image_name", "_________" + car.getImgXXhdpi());
+                } else if (car.getCarUniqueName().equals("leaf2017")) {
+                    Logger.error("image_name", "_________" + car.getImgXXhdpi());
+                }
+            }
+
         }
 
     }
@@ -432,30 +446,30 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     @Override
     protected void onResume() {
 
+        carListContentController = new CarListContentController(this);
+
         globalMessageController.callApi(NissanApp.getInstance().getDeviceID(getApplicationContext()), NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "");
-
-        Logger.error("hello", "______" + Values.carType);
-
-        String sharedpref_key = Values.carType + "_" + Values.CAR_LIST_KEY;
-        Type type = new TypeToken<ArrayList<CarList>>() {
-        }.getType();
-
-        carListArrayList = new Gson().fromJson(preferenceUtil.retrieveMultiLangData(sharedpref_key), type);
 
         adapter = new CarDownloadAdapter(getApplicationContext(), NissanApp.getInstance().getCarList());
         lstView.setAdapter(adapter);
 
+        String sharedpref_key = "en_" + Values.CAR_LIST_KEY + "_1";
+        Type type = new TypeToken<ArrayList<CarList>>() {
+        }.getType();
+        carListArrayList = new Gson().fromJson(preferenceUtil.retrieveMultiLangData(sharedpref_key), type);
 
 
         if (carListArrayList != null && carListArrayList.size() > 0) {
-            Logger.error("device_bikri", "__________" + carListArrayList.size());
             loadCarData();
-        }else {
-            if (DetectConnection.checkInternetConnection(getApplicationContext())) {
-                pbCarDownload.setVisibility(View.VISIBLE);
-                carListContentController.callApi(NissanApp.getInstance().getDeviceID(this), NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "");
-            } else
-                loadCarData();
+        } else {
+            pbCarDownload.setVisibility(View.VISIBLE);
+        }
+
+        if (DetectConnection.checkInternetConnection(getApplicationContext())) {
+            carListContentController.callApi(NissanApp.getInstance().getDeviceID(this), "1");
+        } else {
+            if (pbCarDownload.getVisibility() == View.VISIBLE) pbCarDownload.setVisibility(View.GONE);
+            Toast.makeText(activity, "No Internet!", Toast.LENGTH_SHORT).show();
         }
 
         super.onResume();
@@ -479,6 +493,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         // TODO Auto-generated method stub
         super.onStop();
         GoogleAnalytics.getInstance(this).reportActivityStop(this);
+        if (carListContentController != null) {
+            carListContentController.removeListener();
+        }
     }
 
     private void sendMsgToGoogleAnalytics(String msgName) {
@@ -597,8 +614,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
         btnOk.setText(resources.getString(R.string.button_YES));
-
-        Logger.error("Epub_id____" + stringBuilder, "LANG_ID _____" + selectedLang);
 
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -817,7 +832,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 } else {
                     showErrorDialog("No content found.");
                     dismissDialog();
-                    Logger.error("cardownloadactivity_problem", "__________" + "postcardownload");
                 }
             }
 
@@ -1061,17 +1075,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             // set the adapter
             if (NissanApp.getInstance().getCarList() != null) {
 
-//                Logger.error("size_before", "_________" + NissanApp.getInstance().getCarList().size());
-
                 setCarImageAccordingToDeviceResolution();
-
-                for (Object obj : NissanApp.getInstance().getCarList()) {
-                    if (obj.getClass() == CarInfo.class) {
-                        Logger.error("car_name", "______" + ((CarInfo) obj).getName() + "_____" + ((CarInfo) obj).getCarImg());
-                    } else {
-                        Logger.error("else", "______" + obj.toString());
-                    }
-                }
 
 //                Logger.error("size_after", "_________" + NissanApp.getInstance().getCarList().size());
                 adapter.setList(NissanApp.getInstance().getCarList());
@@ -1181,7 +1185,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                                             }
 
                                             commonDao.updateAllPushContentStatusForSingleCar(context, Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
-                                            carListApiKeyChange();
                                             dismissDialog();
 
                                             // if car is first time downloaded then show the Tutorial Activity
@@ -1272,23 +1275,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 }
             }
         });
-    }
-
-    private void carListApiKeyChange() {
-
-        String sharedpref_key = Values.carType + "_" + Values.CAR_LIST_KEY;
-        Type type = new TypeToken<ArrayList<CarList>>() {
-        }.getType();
-
-        carListArrayList = new Gson().fromJson(preferenceUtil.retrieveMultiLangData(sharedpref_key), type);
-
-        if (carListArrayList == null || carListArrayList.size() == 0) {
-            sharedpref_key = "0_" + Values.CAR_LIST_KEY;
-            carListArrayList = new Gson().fromJson(preferenceUtil.retrieveMultiLangData(sharedpref_key), type);
-            preferenceUtil.deleteMultiLangData(sharedpref_key);
-            preferenceUtil.storeMultiLangData(carListArrayList, Values.carType + "_" + Values.CAR_LIST_KEY);
-        }
-
     }
 
     private void errorFileDelete(int carType) {

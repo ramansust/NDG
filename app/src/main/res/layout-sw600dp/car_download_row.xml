@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:background="@drawable/qashqai" />
+                android:background="@drawable/car_download_place_holder" />
 
             <ImageView
                 android:id="@+id/img_view_border"

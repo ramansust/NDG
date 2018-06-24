@@ -112,7 +112,7 @@ public class Values {
     public static final int RATE_APP_FIRST_SESSION = 30;
     public static final int RATE_APP_SECOND_SESSION = 15;
 
-    public static final String CAR_LIST_KEY = "car_list";
+    public static final String CAR_LIST_KEY = "car_list_data";
     public static final String TUTORIAL = "multi_lang_tutorial";
     public static final String TAB_MENU = "multi_lang_tab_menu";
     public static final String CAR_LANGUAGE_LIST= "multi_lang_list";

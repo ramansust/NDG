@@ -105,11 +105,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         setListener();
         loadData();
 
-
-
-
-
-
         return view;
     }
 
@@ -212,22 +207,42 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         NissanApp.getInstance().setCarAllList(carInfoArrayList);
 
-        for (CarInfo car : carInfoArrayList) {
-            Logger.error("sristi", "____" + car.getCarImg());
-        }
-
     }
 
 
     private void getDataFromSP() {
 
-        String car_list_key = Values.carType + "_" + Values.CAR_LIST_KEY;
+        String car_list_key = preferenceUtil.getSelectedLang() + "_" + Values.CAR_LIST_KEY + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang());
+
+        Logger.error("AddCarFragment", "car_list_key__________" + car_list_key);
 
         Type type = new TypeToken<ArrayList<CarList>>() {
         }.getType();
 
         carListArrayList = new Gson().fromJson(preferenceUtil.retrieveMultiLangData(car_list_key), type);
 
+        car_list_key = "en_" + Values.CAR_LIST_KEY + "_1";
+
+        ArrayList<CarList> carListArrayListEng = new Gson().fromJson(preferenceUtil.retrieveMultiLangData(car_list_key), type);
+
+        if (carListArrayListEng != null && carListArrayListEng.size() > 0) {
+            if (carListArrayList != null && carListArrayList.size() > 0) {
+                for (int i = 0; i < carListArrayListEng.size(); i++) {
+
+                    for (int j = 0; j < carListArrayList.size(); j++) {
+                        if (carListArrayListEng.get(i).getCarUniqueName().equals(carListArrayList.get(j).getCarUniqueName())) {
+                            carListArrayList.get(j).setImgHdpi(carListArrayListEng.get(i).getImgHdpi());
+                            carListArrayList.get(j).setImgLdpi(carListArrayListEng.get(i).getImgLdpi());
+                            carListArrayList.get(j).setImgXhdpi(carListArrayListEng.get(i).getImgXhdpi());
+                            carListArrayList.get(j).setImgXXhdpi(carListArrayListEng.get(i).getImgXXhdpi());
+                            carListArrayList.get(j).setImgXXXhdpi(carListArrayListEng.get(i).getImgXXXhdpi());
+                        }
+
+                    }
+
+                }
+            }
+        }
     }
 
     private void setListener() {
@@ -243,7 +258,8 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         txt_title.setText(car_selection_title.isEmpty() ? resources.getString(R.string.add_extra_car) : car_selection_title);
         txt_back_title.setText(resources.getString(R.string.back));
         txt_back_title.setTypeface(tf);
-
+        getDataFromSP();
+        replaceTheCarNamesAndImages();
     }
 
     private void initViews(View view) {

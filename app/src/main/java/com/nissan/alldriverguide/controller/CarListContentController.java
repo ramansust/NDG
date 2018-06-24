@@ -1,5 +1,7 @@
 package com.nissan.alldriverguide.controller;
 
+import android.util.Log;
+
 import com.nissan.alldriverguide.interfaces.CarListACompleteAPI;
 import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.retrofit.ApiService;
@@ -23,6 +25,7 @@ public class CarListContentController implements Callback<CarListResponse> {
     }
 
     public void callApi(String device_id, String language_id) {
+
         ApiService api = RetrofitClient.getApiService();
 
         Call<CarListResponse> call = api.carList(device_id, language_id);
@@ -49,5 +52,9 @@ public class CarListContentController implements Callback<CarListResponse> {
         if (this.listener != null && t != null && t.getMessage() != null) {
             this.listener.onFailed(t.getMessage());
         }
+    }
+
+    public void removeListener() {
+        this.listener = null;
     }
 }

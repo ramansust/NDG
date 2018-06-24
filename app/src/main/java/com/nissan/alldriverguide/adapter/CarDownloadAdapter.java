@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.model.CarInfo;
+import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
@@ -101,8 +102,9 @@ public class CarDownloadAdapter extends BaseAdapter {
 //                NissanApp.getInstance().setCarImage(info.getId(), imageView);
                 if (info.getCarImg() == null || info.getCarImg().isEmpty())
                     NissanApp.getInstance().setCarImage(info.getId(), imageView);
-                else
+                else {
                     imageView.setImageURI(info.getCarImg());
+                }
                 // set the already downloaded section background colour
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
                 // set the car name for already downloaded car
