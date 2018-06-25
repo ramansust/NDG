@@ -100,7 +100,7 @@
             android:layout_height="335dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/leaf_2017_assistance"/>
+            android:background="@drawable/car_download_place_holder"/>
 
         <TextView
             android:id="@+id/txt_view_driver_guide"
