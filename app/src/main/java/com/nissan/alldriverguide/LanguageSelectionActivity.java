@@ -319,7 +319,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         if (NissanApp.getInstance().createPath(Values.PATH)) {
             if (DetectConnection.checkInternetConnection(getApplicationContext())) {
                 showCarDownloadDialogForSingleCar();
-                carListContentController.callApi(NissanApp.getInstance().getDeviceID(this), selectedLangModel.getLanguageId()+"");
             } else {
                 String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
                 NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
@@ -582,6 +581,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
     private void showCarDownloadDialogForSingleCar() {
+        carListContentController = new CarListContentController(this);
         final Dialog dialog = new DialogController(LanguageSelectionActivity.this).langDialog();
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
@@ -607,6 +607,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                carListContentController.callApi(NissanApp.getInstance().getDeviceID(activity), selectedLangModel.getLanguageId()+"");
                 controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(activity)/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, selectedLangModel.getLanguageId()+"");
                 startCarDownloadProcedure();
 
@@ -672,7 +673,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
         if (responseInfo.getStatusCode().equals("200")) {
             String car_list_key = selectedLangModel.getLanguageShortcode() + "_" + Values.CAR_LIST_KEY + "_" + selectedLangModel.getLanguageId();
-            Logger.error(TAG, "car_list_key__________" + car_list_key);
+            Logger.error("Language_fragment", "car_list_key__________" + car_list_key);
             preferenceUtil.storeMultiLangData(responseInfo.getCarList(), car_list_key);
         }
 

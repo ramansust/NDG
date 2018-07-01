@@ -423,14 +423,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 pbCarDownload.setVisibility(View.GONE);
             }
 
-            for (CarList car : carListArrayList) {
-                if (car.getCarUniqueName().equals("xtrail2017")) {
-                    Logger.error("image_name", "_________" + car.getImgXXhdpi());
-                } else if (car.getCarUniqueName().equals("leaf2017")) {
-                    Logger.error("image_name", "_________" + car.getImgXXhdpi());
-                }
-            }
-
         }
 
     }

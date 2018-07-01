@@ -129,6 +129,7 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
             for (int i = 0; i < files.length; i++) {
                 // here add the epub name in arrayList
                 listOfFiles.add(files[i].getName());
+                Logger.error("file_name", "_______" + files[i].getName());
             }
         }
     }

@@ -30,6 +30,7 @@ public class CarListContentController implements Callback<CarListResponse> {
 
         Call<CarListResponse> call = api.carList(device_id, language_id);
         call.enqueue(this);
+
     }
 
     @Override
