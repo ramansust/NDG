@@ -101,7 +101,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
         txtViewTitle.setText(getArguments().getString(TITLE));
 //        txtViewTitle.setTypeface(tf);
-        txtHeaderTitle.setText(headerTitle);
+        txtHeaderTitle.setText(headerTitle.isEmpty() ? resources.getString(R.string.registered_country_name) : headerTitle);
     }
 
     public void callNissanAssistance() {

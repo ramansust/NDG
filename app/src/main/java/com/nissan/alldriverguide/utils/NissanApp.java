@@ -1426,6 +1426,8 @@ public class NissanApp {
                 return alertMessageArrayList.get(i).getMsg();
             if (msg_type.equalsIgnoreCase(Values.CAR_SELECTION_TITLE) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.CAR_SELECTION_TITLE))
                 return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.STARTING_DOWNLOAD) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.STARTING_DOWNLOAD))
+                return alertMessageArrayList.get(i).getMsg();
 
         }
 

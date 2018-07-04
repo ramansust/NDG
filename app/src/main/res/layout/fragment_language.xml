@@ -94,7 +94,7 @@
             android:text="No Content available!"
             android:textSize="18sp"
             android:textColor="@color/black"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
 
     </LinearLayout>
 

@@ -190,7 +190,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
         Type type = new TypeToken<ArrayList<LanguageList>>() {
         }.getType();
-        return new Gson().fromJson(new PreferenceUtil(this.getActivity()).retrieveMultiLangData("LanguageList"), type);
+        return new Gson().fromJson(new PreferenceUtil(this.getActivity()).retrieveMultiLangData(Values.carType + "_" + Values.CAR_LANGUAGE_LIST), type);
 
     }
     private void showNoInternetDialogue(String msg) {

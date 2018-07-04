@@ -313,12 +313,14 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         adapter.setList(assistanceArray, assistanceImage);
         adapter.notifyDataSetChanged();
 
+        String car_name = assistanceInfo.getSelectedCar();
+
         if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 //            txtViewCarName.setText(resources.getStringArray(R.array.car_names)[Values.carType - 1]);
-            txtViewCarName.setText(assistanceInfo.getSelectedCar());
+            txtViewCarName.setText(car_name.isEmpty() ? resources.getStringArray(R.array.car_names)[Values.carType - 1] : car_name);
         } else {
 //            txtViewCarName.setText("NISSAN " + resources.getStringArray(R.array.car_names)[Values.carType - 1]);
-            txtViewCarName.setText("NISSAN " + assistanceInfo.getSelectedCar());
+            txtViewCarName.setText("NISSAN " + (car_name.isEmpty() ? resources.getStringArray(R.array.car_names)[Values.carType - 1] : car_name));
         }
         setCarBackground(Values.carType);
     }
@@ -353,14 +355,11 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         } else if (device_density.equalsIgnoreCase("xxhdpi")) {
             return assistanceInfo.getAssistanceImages().getAssistanceImgXxhdpi();
         } else if (device_density.equalsIgnoreCase("xhdpi")) {
-            assistanceInfo.getAssistanceImages().getAssistanceImgXhdpi();
+            return assistanceInfo.getAssistanceImages().getAssistanceImgXhdpi();
         } else if (device_density.equalsIgnoreCase("hdpi")) {
-            assistanceInfo.getAssistanceImages().getAssistanceImgHdpi();
-        } else if (device_density.equalsIgnoreCase("ldpi")) {
-            assistanceInfo.getAssistanceImages().getAssistanceImgLdpi();
-        } else {
             return assistanceInfo.getAssistanceImages().getAssistanceImgHdpi();
-
+        } else if (device_density.equalsIgnoreCase("ldpi")) {
+            return assistanceInfo.getAssistanceImages().getAssistanceImgLdpi();
         }
 
         return "";

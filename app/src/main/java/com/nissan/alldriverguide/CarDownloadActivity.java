@@ -143,7 +143,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         setContentView(R.layout.activity_car_download);
         Logger.error("device_id", NissanApp.getInstance().getDeviceID(this));
 
-//        getGlobalAlertMsg();
         initViews();
         setListener();
         loadData();
@@ -1229,6 +1228,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             @Override
             public boolean urlReachable(boolean b) {
                 errorFileDelete(Values.carType);
+                Logger.error("urlReachable", "_________" + b);
                 return false;
             }
 

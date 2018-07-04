@@ -7,7 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -21,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
@@ -31,6 +31,7 @@ import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.controller.CarListContentController;
 import com.nissan.alldriverguide.controller.GlobalMessageController;
+import com.nissan.alldriverguide.controller.LanguageSelectionController;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.CommonDao;
@@ -43,6 +44,7 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
@@ -65,10 +67,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static com.nissan.alldriverguide.utils.Values.STARTING_DOWNLOAD;
+
 /**
  * Created by raman on 1/19/17.
  */
-public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnClickListener, InterfaceGlobalMessageResponse, CarListACompleteAPI {
+public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnClickListener, InterfaceGlobalMessageResponse, CarListACompleteAPI, InterfaceLanguageListResponse {
 
     private static final String TAG = "CarDownloadSettingsAdapter";
     private CommonDao commonDao;
@@ -103,6 +107,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     List<LanguageList> languageLists = new ArrayList<>();
     private GlobalMessageController controller;
     private CarListContentController carListContentController;
+    private LanguageSelectionController controllerLanguageSelection;
+    private int selectedCarType = -1;
 
     public CarDownloadSettingsAdapter(AddCarFragment frag, Activity activity, Context context, ArrayList<CarInfo> list) {
         this.activity = activity;
@@ -112,21 +118,33 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         inflater = LayoutInflater.from(this.context);
         commonDao = CommonDao.getInstance();
         preferenceUtil = new PreferenceUtil(context);
-        controller = new GlobalMessageController(this);
-        carListContentController = new CarListContentController(this);
+//        controller = new GlobalMessageController(this);
+//        carListContentController = new CarListContentController(this);
+//        controllerLanguageSelection = new LanguageSelectionController(this);
         loadResource();
 //        progressDialog = new ProgressDialogController(this.activity).showDialog("adfkaljshfkj");
         deviceDensity = NissanApp.getInstance().getDensityName(this.activity);
 //        getDataCarWise();
-        getCarList();
+
 
     }
 
-    private void getCarList() {
+    private void getCarList(String carId) {
 
         Type type = new TypeToken<ArrayList<LanguageList>>() {
         }.getType();
-        languageLists = new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData("LanguageList"), type);
+        languageLists = new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData(carId + "_" + Values.CAR_LANGUAGE_LIST), type);
+
+        if (languageLists == null || languageLists.size() == 0) {
+            if (DetectConnection.checkInternetConnection(context)) {
+                controllerLanguageSelection = new LanguageSelectionController(this);
+                controllerLanguageSelection.callApi(NissanApp.getInstance().getDeviceID(context)/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, carId);
+            } else {
+                Toast.makeText(context, "No Internet!", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            showLanguageDialog(Integer.parseInt(carId));
+        }
 
     }
 
@@ -268,6 +286,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                             if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5) {
                                 showCarDownloadDialog(list.get(position).getId());
                             } else {
+                                selectedCarType = list.get(position).getId();
                                 LanguageSelectionDialog(list.get(position).getId());
                             }
                         } else {
@@ -306,14 +325,28 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     public void onDownloaded(CarListResponse responseInfo) {
         if (responseInfo.getStatusCode().equals("200")) {
             String car_list_key = lang + "_" + Values.CAR_LIST_KEY + "_" + NissanApp.getInstance().getLanguageID(lang);
-            Logger.error(TAG, "car_list_key________" + car_list_key);
             preferenceUtil.storeMultiLangData(responseInfo.getCarList(), car_list_key);
-        }
+        } else
+            Logger.error(TAG, "CarListResponse_status________" + responseInfo.getStatusCode());
     }
 
     @Override
     public void onFailed(String failedReason) {
         Logger.error(TAG, "globalMsg____________" + failedReason);
+    }
+
+    @Override
+    public void languageListDownloaded(List<LanguageList> languageListsTemp) {
+        if (languageListsTemp != null && languageListsTemp.size() > 0) {
+            preferenceUtil.storeMultiLangData(languageListsTemp, selectedCarType + "_" + Values.CAR_LANGUAGE_LIST);
+            this.languageLists = languageListsTemp;
+            showLanguageDialog(selectedCarType);
+        }
+    }
+
+    @Override
+    public void languageListFailed(String failedResponse) {
+        Logger.error(TAG, "languageListFailed__________" + failedResponse);
     }
 
     static class ViewHolder {
@@ -521,6 +554,9 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     }
 
     private void showCarDownloadDialogForSingleCar(final int carType, final boolean isCarDownload) {
+
+        controller = new GlobalMessageController(this);
+
         this.carType = carType;
         final Dialog dialog = new DialogController(activity).langDialog();
 
@@ -637,16 +673,24 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
     private void startCarDownloadProcedure() {
 
+
+
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
 
-                progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.start_download));
+                final String startingDownloadMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), STARTING_DOWNLOAD);
+
+                progressDialog = new ProgressDialogController(activity).showDialog(startingDownloadMsg.isEmpty() ? resources.getString(R.string.start_download) : startingDownloadMsg);
 
             }
         });
 
+
+        carListContentController = new CarListContentController(this);
+
         carListContentController.callApi(NissanApp.getInstance().getDeviceID(context), NissanApp.getInstance().getLanguageID(lang)+"");
+
 
         new ApiCall().postCarDownload("" + carType, "" + NissanApp.getInstance().getLanguageID(lang), "0", NissanApp.getInstance().getDeviceID(context), new CompleteAPI() {
             @Override
@@ -654,15 +698,13 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
                 String old_key_tutorial = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.TUTORIAL_KEY;
                 String old_key_tab = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.TAB_MENU_KEY;
-                String new_key_tutorial = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TUTORIAL_KEY;
-                String new_key_tab = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TAB_MENU_KEY;
+                String new_key_tutorial = carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TUTORIAL_KEY;
+                String new_key_tab = carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TAB_MENU_KEY;
 
                 preferenceUtil.deleteMultiLangData(old_key_tab);
                 preferenceUtil.deleteMultiLangData(old_key_tutorial);
                 preferenceUtil.storeMultiLangData(responseInfo.getTutorials(), new_key_tutorial);
                 preferenceUtil.storeMultiLangData(responseInfo.getTabMenu(), new_key_tab);
-
-
 
                 if (AppConfig.IS_APP_ONLINE ? Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getAssetsUrl()) && !TextUtils.isEmpty(responseInfo.getLangUrl()) : Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
                     startCarAssetsDownload(AppConfig.IS_APP_ONLINE ? responseInfo.getAssetsUrl() : NissanApp.getInstance().getAssetsURL(carType), Values.PATH, AppConfig.IS_APP_ONLINE ? responseInfo.getLangUrl() : NissanApp.getInstance().getLanguageURL((carType), lang), NissanApp.getInstance().getCarPath(carType), false);
@@ -674,6 +716,10 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
             @Override
             public void onFailed(String failedReason) {
+
+                if (progressDialog != null && progressDialog.isShowing())
+                    progressDialog.dismiss();
+
                 frag.showErrorDialog(failedReason);
             }
         });
@@ -759,8 +805,10 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             public void onClick(View v) {
                 dialog.dismiss();
                 if (carType == 1 || carType == 4) {
+                    selectedCarType = carType;
                     LanguageSelectionDialog(carType);
                 } else {
+                    selectedCarType = carType - 1;
                     LanguageSelectionDialog(carType - 1);
                 }
             }
@@ -770,9 +818,12 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+
                 if (carType == 2 || carType == 5) {
+                    selectedCarType = carType;
                     LanguageSelectionDialog(carType);
                 } else {
+                    selectedCarType = carType + 1;
                     LanguageSelectionDialog(carType + 1);
                 }
             }
@@ -788,6 +839,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                         position++;
                         showCarDownloadDialogForSingleCar(carType, false);
                     } else {
+                        selectedCarType = carType;
                         LanguageSelectionDialog(carType);
                     }
                 } else {
@@ -795,6 +847,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                         position--;
                         showCarDownloadDialogForSingleCar(carType - 1, false);
                     } else {
+                        selectedCarType = carType - 1;
                         LanguageSelectionDialog(carType - 1);
                     }
                 }
@@ -810,6 +863,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                         position--;
                         showCarDownloadDialogForSingleCar(carType, false);
                     } else {
+                        selectedCarType = carType;
                         LanguageSelectionDialog(carType);
                     }
                 } else {
@@ -817,6 +871,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                         position++;
                         showCarDownloadDialogForSingleCar(carType + 1, false);
                     } else {
+                        selectedCarType = carType + 1;
                         LanguageSelectionDialog(carType + 1);
                     }
                 }
@@ -827,6 +882,14 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     }
 
     private void LanguageSelectionDialog(final int carType) {
+
+        getCarList(carType+"");
+
+    }
+
+
+    private void showLanguageDialog(final int carType) {
+
         dialog = new DialogController(activity).languageSelectionDialog();
         ListView lstView = (ListView) dialog.findViewById(R.id.lst_view);
 
@@ -952,6 +1015,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         lstView.setDividerHeight(4);
 
         dialog.show();
+
     }
 
     private String getLanguageShortName(String name) {

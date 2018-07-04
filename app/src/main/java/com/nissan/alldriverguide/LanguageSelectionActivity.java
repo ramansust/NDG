@@ -155,7 +155,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                 progressBar.setVisibility(View.GONE);
                 tvNoContent.setVisibility(View.GONE);
             }
-            new PreferenceUtil(MyApplication.getAppContext()).storeMultiLangData(languageLists, "LanguageList");
+            new PreferenceUtil(MyApplication.getAppContext()).storeMultiLangData(languageLists, Values.carType + "_" + Values.CAR_LANGUAGE_LIST);
             _languageLists = languageLists;
             list = new ArrayList<>();
             populateDataIntoList();
