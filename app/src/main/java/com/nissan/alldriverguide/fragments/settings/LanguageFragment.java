@@ -516,7 +516,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
                                                         @Override
                                                         public void onFailed(String failedReason) {
-                                                            showErrorDialog("Confirmation send error, " + failedReason);
+                                                            showErrorDialog("Confirmation send error");
                                                             dismissDialog();
                                                             Logger.error("failed_to_send", "______confirmation-LanguageFragment" + failedReason);
                                                         }
@@ -597,7 +597,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             @Override
             public void onFailed(String failedReason) {
                 dismissDialog();
-                showErrorDialog(failedReason);
+                showErrorDialog(resources.getString(R.string.failed_to_connect_server));
                 Logger.error("Language downloading failed", "____________" + failedReason);
             }
         });

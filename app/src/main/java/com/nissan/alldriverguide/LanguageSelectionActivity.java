@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -383,7 +382,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
             @Override
             public void onFailed(String failedReason) {
-                showErrorDialog(failedReason);
+                showErrorDialog(resources.getString(R.string.failed_to_connect_server));
                 dismissDialog();
                 Logger.error("Car downloading failed", "____________" + failedReason);
             }
@@ -528,7 +527,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
             @Override
             public void onFailed(String failedReason) {
-                showErrorDialog(failedReason);
+                showErrorDialog(resources.getString(R.string.failed_to_connect_server));
                 dismissDialog();
                 Logger.error("Car download confirmation failed", "_____________" + failedReason);
             }

@@ -659,7 +659,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                         public void onFailed(String failedReason) {
                             if (progressDialog != null)
                                 progressDialog.dismiss();
-                            frag.showErrorDialog(failedReason);
+                            frag.showErrorDialog(resources.getString(R.string.failed_to_connect_server));
                             Logger.error("Car deleting", "____________" + failedReason);
                         }
                     });
@@ -720,7 +720,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 if (progressDialog != null && progressDialog.isShowing())
                     progressDialog.dismiss();
 
-                frag.showErrorDialog(failedReason);
+                frag.showErrorDialog(resources.getString(R.string.failed_to_connect_server));
             }
         });
 

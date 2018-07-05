@@ -261,4 +261,5 @@
     <string name="previous_car">Previous Car</string>
     <string name="available_for_download_car">Available for Download</string>
 
+    <string name="failed_to_connect_server">Failed to connect to server</string>
 </resources>

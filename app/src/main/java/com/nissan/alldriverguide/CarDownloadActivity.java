@@ -23,7 +23,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -422,6 +421,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 pbCarDownload.setVisibility(View.GONE);
             }
 
+        } else {
+            showErrorDialog(resources.getString(R.string.failed_to_connect_server));
         }
 
     }
@@ -429,6 +430,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onFailed(String failedReason) {
         Logger.error(TAG, "GlobalMsg_________" + failedReason);
+        showErrorDialog(resources.getString(R.string.failed_to_connect_server));
         if (pbCarDownload != null && pbCarDownload.getVisibility() == View.VISIBLE) {
             pbCarDownload.setVisibility(View.GONE);
         }
