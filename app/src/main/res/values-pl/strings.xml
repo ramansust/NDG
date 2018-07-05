@@ -119,7 +119,7 @@
     <string name="download_driver_guide">Pobierz instrukcję obsługi</string>
     <string name="driver_guide">INSTRUKCJA OBSŁUGI</string>
     <string name="select_language">Select Language (wybr jezyka)</string>
-    <string name="select_language_landing">Select Language (wybr jezyka)</string>
+    <string name="select_language_landing">Select Language</string>
     <string name="confirm_language">Potwierdź wybór języka</string>
     <string name="button_OK">OK</string>
     <string name="button_CANCEL">ANULUJ</string>

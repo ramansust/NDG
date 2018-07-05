@@ -107,9 +107,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         sharedpref_key = Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
         assistanceInfo = preferenceUtil.retrieveAssistanceData(sharedpref_key);
 
-//        Log.e("assistanceInfo", "_______" + assistanceInfo);
-//        Log.e("assistanceInfo_size", "_______" + assistanceInfo.getData().size());
-
         if (assistanceInfo != null && assistanceInfo.getData() != null && assistanceInfo.getData().size() > 0) {
             progressBar.setVisibility(View.GONE);
             tvNoContent.setVisibility(View.GONE);
@@ -131,71 +128,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
             showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
         }
-
-
-
-
-
-
-
-
-
-
-/*
-        if (assistanceInfo == null || assistanceInfo.getData() == null) {
-            if (DetectConnection.checkInternetConnection(getActivity())) {
-//                progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching your Language...");
-                progress_bar.setVisibility(View.VISIBLE);
-                postAssistanceData();
-            } else {
-                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
-                showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
-            }
-
-        } else {
-            NissanApp.getInstance().setAssistanceInfo(assistanceInfo); //added by nirob
-            List<Datum> list = assistanceInfo.getData();
-            assistanceArray = new String[list.size()];
-            for (int i = 0; i < list.size(); i++) {
-                assistanceArray[i] = list.get(i).getTitle();
-            }
-            loadData();
-            postAssistanceData();
-        }
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-        preSharedpref_key = new PreferenceUtil(getActivity()).getPreviousLanguage() + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
-        sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
-
-        String old_Lan = new PreferenceUtil(getActivity()).getPreviousLanguage();
-        String new_Lan = new PreferenceUtil(getActivity()).getSelectedLang();
-
-        if (old_Lan.equalsIgnoreCase("null")) {
-            check_LocalData();
-        } else {
-            new PreferenceUtil(getActivity()).deleteMultiLangData(preSharedpref_key);
-            check_LocalData();
-        }
-*/
 
     }
 
@@ -626,35 +558,38 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
      */
     private void loadDesireFragment(int position) {
         Fragment frag = null;
+
+        String pageTitle = assistanceArray[position].isEmpty() ? ((resources.getStringArray(R.array.assistance_array))[position]) : assistanceArray[position];
+
         switch (position) {
             case 0:
                 ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.WARNING_LIGHT));
-                frag = CombimeterFragment.newInstance();
+                frag = CombimeterFragment.newInstance(pageTitle);
                 break;
 
             case 1:
                 if (Values.carType == 14) {
-                    frag = HomePageFragment.newInstance((resources.getStringArray(R.array.assistance_array))[position]);
+                    frag = HomePageFragment.newInstance(pageTitle);
                 } else {
-                    frag = ListFragment.newInstance((resources.getStringArray(R.array.assistance_array))[position]);
+                    frag = ListFragment.newInstance(pageTitle);
                 }
                 break;
 
             case 2:
-                frag = ListFragment.newInstance((resources.getStringArray(R.array.assistance_array))[position]);
+                frag = ListFragment.newInstance(pageTitle);
                 break;
 
             case 3:
-                frag = ListFragment.newInstance((resources.getStringArray(R.array.assistance_array))[position]);
+                frag = ListFragment.newInstance(pageTitle);
                 break;
 
             case 4:
-                frag = ListFragment.newInstance((resources.getStringArray(R.array.assistance_array))[position]);
+                frag = ListFragment.newInstance(pageTitle);
                 break;
 
             case 5:
 //                frag = NissanAssistanceFragment.newInstance(resources.getStringArray(R.array.assistance_array)[position]);
-                frag = NissanAssistanceFragment.newInstance(assistanceArray[position]);
+                frag = NissanAssistanceFragment.newInstance(pageTitle);
                 break;
 
             default:
