@@ -473,7 +473,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             @Override
             public void init() {
                 if (Values.carType == 11) {
-                    carName = "All New Nissan Micra";
+//                    carName = "All New Nissan Micra";
+                    carName = "Nissan Micra";
                 } else {
                     carName = NissanApp.getInstance().getCarName(Values.carType);
                 }

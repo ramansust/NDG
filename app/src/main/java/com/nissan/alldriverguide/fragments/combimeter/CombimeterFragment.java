@@ -280,7 +280,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
             try {
                 counter = Integer.parseInt(output[1]);
 
-                button.setBackgroundDrawable(d);
+                button.setBackground(d);
 
                 button.setLayoutParams(llp2);
 

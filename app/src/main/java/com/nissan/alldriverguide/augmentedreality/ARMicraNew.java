@@ -225,7 +225,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_auto_ac_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_ac_auto_left.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_ac_auto_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -234,7 +234,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_auto_ac_middle, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_ac_auto_middle.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_ac_auto_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -242,7 +242,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_auto_ac_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_ac_auto_right.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_ac_auto_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
                     //manual ac
@@ -250,7 +250,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_manual_ac_type_a_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_ac_manual_type_a_left.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_ac_manual_type_a_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -258,7 +258,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_manual_ac_type_a_middle, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_ac_manual_type_a_middle.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_ac_manual_type_a_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -266,7 +266,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_manual_ac_type_a_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_ac_manual_type_a_right.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_ac_manual_type_a_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -275,7 +275,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_radio_wo_navi_type_a_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_radio_wo_navi_type_a_left.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_radio_wo_navi_type_a_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -283,7 +283,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_radio_wo_navi_type_a_middle_1, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_radio_wo_navi_type_a_middle.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_radio_wo_navi_type_a_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -291,7 +291,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_radio_wo_navi_type_a_right_1, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_radio_wo_navi_type_a_right.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_radio_wo_navi_type_a_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -300,7 +300,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_radio_wo_navi_type_b_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_radio_wo_navi_type_b_left.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_radio_wo_navi_type_b_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -308,7 +308,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_radio_wo_navi_type_b_middle, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_radio_wo_navi_type_b_middle.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_radio_wo_navi_type_b_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -316,7 +316,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_radio_wo_navi_type_b_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_radio_wo_navi_type_b_right.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_radio_wo_navi_type_b_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -325,7 +325,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_radio_w_navi_type_b_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_radio_navi_type_b_left.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_radio_navi_type_b_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -333,7 +333,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_radio_w_navi_type_b_middle, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_radio_navi_type_b_middle.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_radio_navi_type_b_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -341,7 +341,32 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.micra_new_radio_w_navi_type_b_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "micra_k14_radio_navi_type_b_right.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_radio_navi_type_b_right.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
+                        break;
+
+                    // radio with navi type c
+                    case R.id.micra_new_radio_with_navi_type_c_main_left:
+
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.micrak14_radio_navi_type_c_left, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_radio_navi_type_c_left.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
+                        break;
+
+                    case R.id.micra_new_radio_with_navi_type_c_main_middle:
+
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.micrak14_radio_navi_type_c_middle, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_radio_navi_type_c_middle.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
+                        break;
+
+                    case R.id.micra_new_radio_with_navi_type_c_main_right:
+
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.micrak14_radio_navi_type_c_right, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "micrak14_radio_navi_type_c_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -393,7 +418,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.START_STOP_IGNITION;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_start_stop_ignition, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_start_stop_ignition.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_start_stop_ignition.png");
 
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
@@ -414,7 +439,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.AUTO_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_auto_ac_main, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_ac_auto_main.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_ac_auto_main.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -438,7 +463,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.AUTO_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_auto_ac_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_ac_auto_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_ac_auto_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -458,7 +483,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.AUTO_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_auto_ac_middle, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_ac_auto_middle.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_ac_auto_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -478,7 +503,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.AUTO_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_auto_ac_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_ac_auto_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_ac_auto_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -498,7 +523,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.COMBINATION_METER;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_combimeter_main, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_combimeter.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_combimeter.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -518,7 +543,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.MANUAL_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_manual_ac_main_type_a, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_ac_manual_main_type_a.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_ac_manual_main_type_a.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -542,7 +567,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.MANUAL_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_manual_ac_type_a_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_ac_manual_type_a_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_ac_manual_type_a_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -562,7 +587,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.MANUAL_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_manual_ac_type_a_middle, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_ac_manual_type_a_middle.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_ac_manual_type_a_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -582,7 +607,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.MANUAL_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_manual_ac_type_a_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_ac_manual_type_a_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_ac_manual_type_a_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -602,7 +627,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_radio_wo_navi_type_a_main_1, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_radio_wo_navi_type_a_main.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_wo_navi_type_a_main.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -624,7 +649,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_radio_wo_navi_type_a_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_radio_wo_navi_type_a_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_wo_navi_type_a_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -642,7 +667,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_radio_wo_navi_type_a_middle_1, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_radio_wo_navi_type_a_middle.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_wo_navi_type_a_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -660,7 +685,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_radio_wo_navi_type_a_right_1, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_radio_wo_navi_type_a_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_wo_navi_type_a_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -680,7 +705,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_radio_wo_navi_type_b_main, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_radio_wo_navi_type_b_main.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_wo_navi_type_b_main.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -702,7 +727,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_radio_wo_navi_type_b_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_radio_wo_navi_type_b_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_wo_navi_type_b_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -720,7 +745,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_radio_wo_navi_type_b_middle, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_radio_wo_navi_type_b_middle.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_wo_navi_type_b_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -738,7 +763,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_radio_wo_navi_type_b_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_radio_wo_navi_type_b_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_wo_navi_type_b_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -758,7 +783,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_radio_w_navi_type_b_main, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_radio_navi_type_b_main.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_navi_type_b_main.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -780,11 +805,11 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_radio_w_navi_type_b_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_radio_navi_type_b_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_navi_type_b_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    }  else if (userDataToCompare.equalsIgnoreCase("radio_with_navi_type_b_middle_01")
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_with_navi_type_b_middle_01")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_b_middle_02")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_b_middle_03")) {
 
@@ -798,7 +823,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_radio_w_navi_type_b_middle, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_radio_navi_type_b_middle.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_navi_type_b_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -816,11 +841,101 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_radio_w_navi_type_b_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_radio_navi_type_b_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_navi_type_b_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } //end radio panel
+                    }
+                    // radio with navi type C
+                    else if (userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_main_01")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_main_02")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_main_03")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_main_04")) {
+
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.micrak14_radio_navi_type_c_main, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_navi_type_c_main.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.micra_new_radio_with_navi_type_c_main_left));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.micra_new_radio_with_navi_type_c_main_middle));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.micra_new_radio_with_navi_type_c_main_right));
+
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_left_01")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_left_02")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_left_03")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_left_04")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_left_05")) {
+
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.micrak14_radio_navi_type_c_left, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_navi_type_c_left.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_middle_01")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_middle_02")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_middle_03")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_middle_04")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_middle_05")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_middle_06")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_middle_07")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_middle_08")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_middle_09")) {
+
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.micrak14_radio_navi_type_c_middle, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_navi_type_c_middle.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_right_01")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_right_02")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_right_03")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_right_04")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_type_c_right_05")) {
+
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.micrak14_radio_navi_type_c_right, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_radio_navi_type_c_right.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    }
+                    //end radio panel
                     else if (userDataToCompare.equalsIgnoreCase("steering_left_1")
                             || userDataToCompare.equalsIgnoreCase("steering_left_2")
                             || userDataToCompare.equalsIgnoreCase("steering_left_3")) {
@@ -836,7 +951,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.STEERING_LEFT;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_steering_view_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_steering_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_steering_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -855,7 +970,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.STEERING_RIGHT;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_steering_view_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_steering_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_steering_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -875,7 +990,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.TRIP_RESET;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_trip_reset, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_tripreset_switch.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_tripreset_switch.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -896,7 +1011,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.MIXED_PANEL;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.micra_new_mixed_panel, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "micra_k14_multi_switch.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "micrak14_multi_switch.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 

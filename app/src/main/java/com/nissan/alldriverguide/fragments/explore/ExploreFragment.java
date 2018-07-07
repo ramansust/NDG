@@ -38,7 +38,6 @@ import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
-import com.nissan.alldriverguide.multiLang.model.TabMenu;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
