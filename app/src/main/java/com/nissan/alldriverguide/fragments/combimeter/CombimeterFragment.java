@@ -36,9 +36,10 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
     private ScrollView scrollView;
     private int width = 0;
     private LinearLayout mainLinearLayout;
-    private TextView txt_back_title;
+    private TextView txt_title, txt_back_title;
     private Typeface tf;
     private String drawable_folder = Values.car_path + "/combimeter_button"; // combimiter path from sdCard
+    private static final String TITLE = "title";
 
     // Combimeter color list
     private ArrayList<String> list_red;
@@ -49,8 +50,11 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
     private ArrayList<String> list_gray;
     private ArrayList<String> list_cyan;
 
-    public static Fragment newInstance() {
+    public static Fragment newInstance(String title) {
         Fragment frag = new CombimeterFragment();
+        Bundle args = new Bundle();
+        args.putString(TITLE, title);
+        frag.setArguments(args);
         return frag;
     }
 
@@ -75,6 +79,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
     private void loadData() {
 
         txt_back_title.setTypeface(tf);
+        txt_title.setText(getArguments().get(TITLE).toString());
 
         list_red = new ArrayList<String>();
         list_orange = new ArrayList<String>();
@@ -132,6 +137,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
     private void initViews(View view) {
         btnBack = (ImageButton) view.findViewById(R.id.btn_back);
         txt_back_title = (TextView) view.findViewById(R.id.txt_back_title);
+        txt_title = (TextView) view.findViewById(R.id.txt_title);
         scrollView = (ScrollView) view.findViewById(R.id.scroll_view);
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
         tf = Typeface.createFromAsset(getActivity().getAssets(), "font/Nissan Brand Regular.otf"); //initialize typeface here.

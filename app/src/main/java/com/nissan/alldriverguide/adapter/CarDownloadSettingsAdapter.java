@@ -971,10 +971,11 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             }
 
             LanguageInfo info = new LanguageInfo(i, languageLists.get(i).getLanguageName(), false, langFlagUri[i]);
-            shortCode = languageLists.get(i).getLanguageShortcode();
+//            shortCode = languageLists.get(i).getLanguageShortcode();
+            languageList.add(info);
 
 
-
+/*
             if (carType == 2 || carType == 5) {
 
                 if (shortCode.equalsIgnoreCase("en") || shortCode.equalsIgnoreCase("ru"))
@@ -1004,8 +1005,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                     languageList.add(info);
                 }
             }
+*/
 
-//            languageList.add(info);
         }
 
         lstView.setAdapter(new LanguageSelectionAdapter(context, languageList, false));

@@ -246,6 +246,9 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         list = new ArrayList<>();
 
         for (int i = 0; i < languageName.length; i++) {
+
+
+
             boolean isDownloaded;
 //             here check the epub existence on sdCard location
 //             if available on sdCard isDownloaded true else false;
@@ -255,7 +258,9 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                 isDownloaded = false;
             }
             LanguageInfo info = new LanguageInfo(i, languageName[i], isDownloaded, FlagUrl[i]);
-//            list.add(info);
+            list.add(info);
+
+/*
             if (Values.carType == 2 || Values.carType == 5) { // car type Qashqai Rus space and X-Trail Rus space added only two language
                 if (i == 0 || i == 6) {
                     list.add(info);
@@ -266,6 +271,9 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                         list.add(info);
                     }
                 } else if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 6 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13) {
+
+                    Logger.error("lang_name", "____________" + languageName[i] + "_____" + i);
+
                     if (i != 8) { // added except 8 index language
                         list.add(info);
                     }
@@ -273,7 +281,10 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                     list.add(info);
                 }
             }
+*/
+
         }
+
 
         adapter.setList(list);
         adapter.notifyDataSetChanged();

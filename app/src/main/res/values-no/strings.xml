@@ -118,7 +118,7 @@
 	<string name="download_driver_guide">Last ned førerhåndbok</string>
 	<string name="driver_guide">FØRERHÅNDBOK</string>
 	<string name="select_language">Velg språk</string>
-	<string name="select_language_landing">Velg språk</string>
+	<string name="select_language_landing">Select Language</string>
 	<string name="confirm_language">Bekreft språk</string>
 	<string name="button_OK">OK</string>
 	<string name="button_CANCEL">AVBRYT</string>
