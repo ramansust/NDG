@@ -778,6 +778,8 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                     } else if (userDataToCompare.equalsIgnoreCase ("park_assist_1")
                             || userDataToCompare.equalsIgnoreCase ("park_assist_2")
+                            || userDataToCompare.equalsIgnoreCase ("park_assist_6")
+                            || userDataToCompare.equalsIgnoreCase ("park_assist_7")
                             || userDataToCompare.equalsIgnoreCase ("park_assist_3")) {
 
                         try {
