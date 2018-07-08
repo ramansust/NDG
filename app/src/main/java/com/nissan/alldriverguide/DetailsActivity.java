@@ -87,6 +87,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         webView.getSettings().setBuiltInZoomControls(true);
         webView.clearCache(true);
         webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webView.getSettings().setDefaultTextEncodingName("utf-8");
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClient() {
             @Override

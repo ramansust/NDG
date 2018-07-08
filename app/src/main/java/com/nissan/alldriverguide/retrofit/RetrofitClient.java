@@ -14,9 +14,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
 
     // new api online URL
-//    private static final String ROOT_URL = "http://104.236.201.218:84/api/"; //Live url
-    private static final String ROOT_URL = "http://192.168.1.194:8001/api/"; //Local url
-//    private static final String ROOT_URL = "http://178.62.193.6:84/api/"; //UAT url
+//    private static final String ROOT_URL = "http://104.236.201.218:84/api/"; // Remote url //live url
+    private static final String ROOT_URL = "http://192.168.1.194:8001/api/"; // Remote url //niloy pc url
+//    private static final String ROOT_URL = "http://178.62.193.6:84/api/"; // dev server / test server
 
 
     /**

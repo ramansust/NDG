@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -52,6 +53,7 @@ import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
+import com.nissan.alldriverguide.utils.DialogErrorFragment;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.SearchDBAsync;
@@ -87,7 +89,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     private Dialog dialog;
     private ArrayList<LanguageInfo> languageList;
     // declare the languages full name string array
-    private String[] languageName ;/*= {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};*/
+    private String[] languageName;/*= {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};*/
     // declare the language sort name string array
     private String[] languageShortName; /*= {"en", "de", "fr", "it", "es", "nl", "ru", "sv", "no", "pl", "fi", "pt"};*/
     // declare the language flag int array
@@ -134,6 +136,9 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         Type type = new TypeToken<ArrayList<LanguageList>>() {
         }.getType();
         languageLists = new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData(carId + "_" + Values.CAR_LANGUAGE_LIST), type);
+
+        Logger.error("carId", "___________" + carId);
+
 
         if (languageLists == null || languageLists.size() == 0) {
             if (DetectConnection.checkInternetConnection(context)) {
@@ -337,11 +342,36 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
     @Override
     public void languageListDownloaded(List<LanguageList> languageListsTemp) {
+
+        Logger.error("languageListDownloaded", "___________called");
+
         if (languageListsTemp != null && languageListsTemp.size() > 0) {
             preferenceUtil.storeMultiLangData(languageListsTemp, selectedCarType + "_" + Values.CAR_LANGUAGE_LIST);
             this.languageLists = languageListsTemp;
             showLanguageDialog(selectedCarType);
+        } else {
+            String noContentMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.NO_CONTENT_FOUND);
+            showNoContentDialogue(noContentMsg.isEmpty() ? resources.getString(R.string.no_content_found_url) : noContentMsg);
         }
+    }
+
+    private void showNoContentDialogue(String msg) {
+
+        final Dialog dialog = new DialogController(activity).internetDialog();
+
+        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        txtViewTitle.setText(msg);
+
+        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
     }
 
     @Override
@@ -594,14 +624,15 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 // if isCarDownload = true then start car downloading process
                 if (isCarDownload) {
 
-                    controller.callApi(NissanApp.getInstance().getDeviceID(context), NissanApp.getInstance().getLanguageID(lang)+"");
+                    controller.callApi(NissanApp.getInstance().getDeviceID(context), NissanApp.getInstance().getLanguageID(lang) + "");
                     startCarDownloadProcedure();
 
                 } else {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.start_car_delete));
+                            String car_delete_msg = NissanApp.getInstance().getAlertMessage(context, lang, Values.CAR_DELETE);
+                            progressDialog = new ProgressDialogController(activity).showDialog(car_delete_msg.isEmpty() ? resources.getString(R.string.start_car_delete) : car_delete_msg);
                         }
                     });
 
@@ -674,7 +705,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     private void startCarDownloadProcedure() {
 
 
-
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -689,7 +719,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         carListContentController = new CarListContentController(this);
 
-        carListContentController.callApi(NissanApp.getInstance().getDeviceID(context), NissanApp.getInstance().getLanguageID(lang)+"");
+        carListContentController.callApi(NissanApp.getInstance().getDeviceID(context), NissanApp.getInstance().getLanguageID(lang) + "");
 
 
         new ApiCall().postCarDownload("" + carType, "" + NissanApp.getInstance().getLanguageID(lang), "0", NissanApp.getInstance().getDeviceID(context), new CompleteAPI() {
@@ -883,7 +913,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
     private void LanguageSelectionDialog(final int carType) {
 
-        getCarList(carType+"");
+        getCarList(carType + "");
 
     }
 
@@ -956,17 +986,17 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         for (int i = 0; i < languageLists.size(); i++) {
 
-            if("xxxhdpi".contains(deviceDensity)){
+            if ("xxxhdpi".contains(deviceDensity)) {
                 langFlagUri[i] = languageLists.get(i).getLanguageFlag().getXxxhdpi();
-            } else if("xxhdpi".contains(deviceDensity)){
+            } else if ("xxhdpi".contains(deviceDensity)) {
                 langFlagUri[i] = languageLists.get(i).getLanguageFlag().getXxhdpi();
-            }else if("xhdpi".contains(deviceDensity)){
+            } else if ("xhdpi".contains(deviceDensity)) {
                 langFlagUri[i] = languageLists.get(i).getLanguageFlag().getXhdpi();
-            }else if("hdpi".contains(deviceDensity)){
+            } else if ("hdpi".contains(deviceDensity)) {
                 langFlagUri[i] = languageLists.get(i).getLanguageFlag().getHdpi();
-            }else if("mdpi".contains(deviceDensity)){
+            } else if ("mdpi".contains(deviceDensity)) {
                 langFlagUri[i] = languageLists.get(i).getLanguageFlag().getHdpi();
-            }else if("ldpi".contains(deviceDensity)){
+            } else if ("ldpi".contains(deviceDensity)) {
                 langFlagUri[i] = languageLists.get(i).getLanguageFlag().getLdpi();
             }
 

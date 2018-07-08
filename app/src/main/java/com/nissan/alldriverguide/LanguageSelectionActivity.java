@@ -149,15 +149,19 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
     @Override
     public void languageListDownloaded(List<LanguageList> languageLists) {
+
+        if (progressBar.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.GONE);
+        }
+
         if (languageLists != null && languageLists.size() > 0) {
-            if (progressBar.getVisibility() == View.VISIBLE) {
-                progressBar.setVisibility(View.GONE);
-                tvNoContent.setVisibility(View.GONE);
-            }
+            tvNoContent.setVisibility(View.GONE);
             new PreferenceUtil(MyApplication.getAppContext()).storeMultiLangData(languageLists, Values.carType + "_" + Values.CAR_LANGUAGE_LIST);
             _languageLists = languageLists;
             list = new ArrayList<>();
             populateDataIntoList();
+        } else {
+            tvNoContent.setVisibility(View.VISIBLE);
         }
     }
 
@@ -477,7 +481,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             @Override
             public void init() {
                 if (Values.carType == 11) {
-                    carName = "All New Nissan Micra";
+//                    carName = "All New Nissan Micra";
+                    carName = "Nissan Micra";
                 } else {
                     carName = NissanApp.getInstance().getCarName(Values.carType);
                 }
@@ -585,6 +590,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
     private void showCarDownloadDialogForSingleCar() {
         carListContentController = new CarListContentController(this);
+        controllerGlobalMsg = new GlobalMessageController(this);
         final Dialog dialog = new DialogController(LanguageSelectionActivity.this).langDialog();
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
@@ -667,6 +673,12 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
             NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
             NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
+            for (AlertMessage alertMsg : responseInfo.getAlertMessage()) {
+                if (alertMsg.getType().equalsIgnoreCase("next")) {
+                    Logger.error("global_msg", "__________" + alertMsg.getMsg());
+                }
+            }
+
 
         }
     }
