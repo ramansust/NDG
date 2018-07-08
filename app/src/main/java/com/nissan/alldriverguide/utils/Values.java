@@ -151,6 +151,7 @@ public class Values {
     public static final String  DOWNLOADING = "downloading";
     public static final String  STARTING_DOWNLOAD = "starting_download";
     public static final String  DATA_SYNCING = "data_syncing";
+    public static final String  CAR_DELETE = "start_car_delete";
     public static final String  DOWNLOAD_CONFIRMATION = "download_confirmation";
 
     public static final String  RATE_OUR_APP_YES = "rate_our_app_yes";
@@ -175,4 +176,5 @@ public class Values {
 
     public static final String  SEARCH_BOX_HINT = "search_box_hint";
     public static final String  CAR_SELECTION_TITLE = "add_extra_car";
+    public static final String  NO_CONTENT_FOUND = "no_content_found_url";
 }
