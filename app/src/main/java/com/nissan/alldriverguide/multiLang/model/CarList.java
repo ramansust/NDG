@@ -43,6 +43,12 @@ public class CarList {
     @SerializedName("car_download_img_hdpi_img")
     @Expose
     private String imgHdpi;
+    @SerializedName("car_download_img_large_mdpi")
+    @Expose
+    private String imgLargeMdpi;
+    @SerializedName("car_download_img_xlarge_mdpi")
+    @Expose
+    private String imgXLargeMdpi;
 
     public String getImgLdpi() {
         return imgLdpi;
@@ -132,5 +138,19 @@ public class CarList {
         this.carUniqueName = carUniqueName;
     }
 
+    public String getImgLargeMdpi() {
+        return imgLargeMdpi;
+    }
 
+    public void setImgLargeMdpi(String imgLargeMdpi) {
+        this.imgLargeMdpi = imgLargeMdpi;
+    }
+
+    public String getImgXLargeMdpi() {
+        return imgXLargeMdpi;
+    }
+
+    public void setImgXLargeMdpi(String imgXLargeMdpi) {
+        this.imgXLargeMdpi = imgXLargeMdpi;
+    }
 }

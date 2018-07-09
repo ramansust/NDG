@@ -41,6 +41,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
+
 public class SearchFragment extends Fragment {
 
     public static SearchFragment newInstance() {
@@ -205,7 +207,7 @@ public class SearchFragment extends Fragment {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.imageViewClearButton:
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
                         return;
                     }
                     mLastClickTime = SystemClock.elapsedRealtime();
@@ -216,7 +218,7 @@ public class SearchFragment extends Fragment {
                     break;
 
                 case R.id.tvClearSearch:
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
                         return;
                     }
                     mLastClickTime = SystemClock.elapsedRealtime();

@@ -119,15 +119,19 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             loadData();
         } else {
             progressBar.setVisibility(View.VISIBLE);
+
+            if (!DetectConnection.checkInternetConnection(getActivity())) {
+                progressBar.setVisibility(View.GONE);
+                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+                showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
+                return;
+            }
+
         }
-        if (DetectConnection.checkInternetConnection(getActivity())) {
+
             int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
             controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2");
-        } else {
-            progressBar.setVisibility(View.GONE);
-            String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
-            showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
-        }
+
 
     }
 
@@ -162,7 +166,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private void showNoInternetDialogue(String msg) {
 
         final Dialog dialog = new DialogController(getActivity()).internetDialog();
-
+        dialog.setCancelable(false);
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(msg);
 

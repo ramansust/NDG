@@ -85,6 +85,8 @@ import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
+
 public class CarDownloadActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, InterfaceGlobalMessageResponse, CarListACompleteAPI {
 
     private static final String TAG = "CarDownloadActivity";
@@ -197,7 +199,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
         // Preventing multiple clicks, using threshold of 1 second
-        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
             return;
         }
         mLastClickTime = SystemClock.elapsedRealtime();
@@ -692,7 +694,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (SystemClock.elapsedRealtime() - doubleClickPopup < 1000) {
+                if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
                     return;
                 }
                 doubleClickPopup = SystemClock.elapsedRealtime();
@@ -860,7 +862,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (SystemClock.elapsedRealtime() - doubleClickPopup < 1000) {
+                if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
                     return;
                 }
                 doubleClickPopup = SystemClock.elapsedRealtime();
@@ -1181,7 +1183,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                     for (CarList carListModel : carListArrayList) {
 
                         if (info.getId() == Integer.parseInt(carListModel.getId())) {
-                            carImageURL = NissanApp.getInstance().getURLAccordingToDensity(device_density, carListModel);
+                            carImageURL = NissanApp.getInstance().getURLAccordingToDensity(this, device_density, carListModel);
                             info.setCarImg(carImageURL);
                             info.setName(carListModel.getCarName());
                             mainList.set(i, info);
