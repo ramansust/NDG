@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -28,6 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -56,6 +59,8 @@ import com.nissan.alldriverguide.utils.Values;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class ExploreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, CompleteExploreTabContent {
 
@@ -575,7 +580,12 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
                         // permission is granted
-                        startActivity(new Intent(getActivity(), ImageTargetActivity.class));
+                        if (ContextCompat.checkSelfPermission(getActivity(), WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                            startActivity(new Intent(getActivity(), ImageTargetActivity.class));
+                        } else {
+                            Toast.makeText(getActivity(), "Turn on storage and camera permissions both", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
 
                     @Override
