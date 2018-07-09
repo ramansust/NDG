@@ -550,8 +550,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                     requestCameraPermission();
-//                    startActivity(new Intent(getActivity(), ImageTargetActivity.class));
-
                 } else {
                     startActivity(new Intent(getActivity(), ImageTargetActivity.class));
                 }
