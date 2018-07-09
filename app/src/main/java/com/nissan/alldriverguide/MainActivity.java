@@ -44,7 +44,6 @@ import com.nissan.alldriverguide.fragments.settings.Feedback;
 import com.nissan.alldriverguide.fragments.settings.SettingsFragment;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
 import com.nissan.alldriverguide.utils.Analytics;
-import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
@@ -103,7 +102,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         setTabResources();
         setListener();
         loadData();
-        assurePermissionForMarshmallowAndOver();
+//        assurePermissionForMarshmallowAndOver();
     }
 
     @Override

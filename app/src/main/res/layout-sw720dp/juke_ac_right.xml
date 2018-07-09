@@ -6,6 +6,97 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/popupLayout2"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight=".65"
+                android:clickable="true"
+                android:onClick="buttonEvent"
+                android:tag="84" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight=".7"
+                android:clickable="true"
+                android:onClick="buttonEvent"
+                android:tag="82" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight=".7"
+                android:clickable="true"
+                android:onClick="buttonEvent"
+                android:tag="83" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight=".65"
+                android:clickable="true"
+                android:onClick="buttonEvent"
+                android:tag="43" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".45" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="55dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="80dp"
+                android:layout_weight="1.49"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="buttonEvent"
+                android:tag="85" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/popupLayout"
         android:layout_width="400dp"
         android:layout_height="426dp"
@@ -94,98 +185,5 @@
                 android:layout_weight=".5" />
         </LinearLayout>
     </LinearLayout>
-
-<!--
-    <LinearLayout
-        android:id="@+id/popupLayout2"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.2" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight=".65"
-                android:clickable="true"
-                android:onClick="buttonEvent"
-                android:tag="84" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight=".7"
-                android:clickable="true"
-                android:onClick="buttonEvent"
-                android:tag="82" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight=".7"
-                android:clickable="true"
-                android:onClick="buttonEvent"
-                android:tag="83" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight=".65"
-                android:clickable="true"
-                android:onClick="buttonEvent"
-                android:tag="43" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".45" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="55dp"
-                android:layout_height="0dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="80dp"
-                android:layout_weight="1.49"
-                android:clickable="true"
-                android:gravity="center"
-                android:onClick="buttonEvent"
-                android:tag="85" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".5" />
-        </LinearLayout>
-    </LinearLayout>
--->
 
 </LinearLayout>
