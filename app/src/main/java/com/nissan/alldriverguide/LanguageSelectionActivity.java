@@ -673,12 +673,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
             NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
             NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
-            for (AlertMessage alertMsg : responseInfo.getAlertMessage()) {
-                if (alertMsg.getType().equalsIgnoreCase("next")) {
-                    Logger.error("global_msg", "__________" + alertMsg.getMsg());
-                }
-            }
-
 
         }
     }

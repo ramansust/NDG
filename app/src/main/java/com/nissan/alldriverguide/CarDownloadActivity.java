@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -135,12 +136,19 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
+    public boolean isTablet(Context context) {
+        boolean xlarge = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_XLARGE);
+        boolean large = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);
+        return (xlarge || large);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_download);
         Logger.error("device_id", NissanApp.getInstance().getDeviceID(this));
+        Logger.error("device_density", NissanApp.getInstance().getDensityName(this));
+        Logger.error("device", "__________" + isTablet(getApplicationContext()));
 
         initViews();
         setListener();
@@ -1100,9 +1108,10 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                     for (CarList carListModel : carListArrayList) {
 
                         if (info.getId() == Integer.parseInt(carListModel.getId())) {
-                            carImageURL = NissanApp.getInstance().getURLAccordingToDensity(device_density, carListModel);
+                            carImageURL = NissanApp.getInstance().getURLAccordingToDensity(this, device_density, carListModel);
                             info.setCarImg(carImageURL);
                             info.setName(carListModel.getCarName());
+//                            Logger.error("carImageURL", "_______" + carImageURL + "_____" + info.getName());
                             mainList.set(i, info);
                         }
                     }

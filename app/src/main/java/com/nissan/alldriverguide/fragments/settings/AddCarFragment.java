@@ -185,7 +185,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                     continue;
                 if (carInfoArrayList.get(i).getId() == Integer.parseInt(carListModel.getId())) {
                     carInfoArrayList.get(i).setName(carListModel.getCarDisplayName());
-                    carInfoArrayList.get(i).setCarImg(NissanApp.getInstance().getURLAccordingToDensity(NissanApp.getInstance().getDensityName(getActivity()), carListModel));
+                    carInfoArrayList.get(i).setCarImg(NissanApp.getInstance().getURLAccordingToDensity(getActivity(), NissanApp.getInstance().getDensityName(getActivity()), carListModel));
                 }
             }
 

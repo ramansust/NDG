@@ -1497,22 +1497,34 @@ public class NissanApp {
 
     }
 
-    public String getURLAccordingToDensity(String device_density, CarList model) {
+    public String getURLAccordingToDensity(Context context, String device_density, CarList model) {
 
-        if (device_density.equalsIgnoreCase("xxxhdpi")) {
-            return model.getImgXXXhdpi();
-        } else if (device_density.equalsIgnoreCase("xxhdpi")) {
-            return model.getImgXXhdpi();
-        } else if (device_density.equalsIgnoreCase("xhdpi")) {
-            return model.getImgXhdpi();
-        } else if (device_density.equalsIgnoreCase("hdpi")) {
-            return model.getImgHdpi();
-        } else if (device_density.equalsIgnoreCase("ldpi")) {
-            return model.getImgLdpi();
+        boolean xlarge = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_XLARGE);
+        boolean large = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);
+
+        if (large || xlarge) {
+            if (large) {
+                    return model.getImgLargeMdpi();
+            } else {
+                return model.getImgXLargeMdpi();
+            }
         } else {
-            return model.getImgHdpi();
-
+            if (device_density.equalsIgnoreCase("xxxhdpi")) {
+                return model.getImgXXXhdpi();
+            } else if (device_density.equalsIgnoreCase("xxhdpi")) {
+                return model.getImgXXhdpi();
+            } else if (device_density.equalsIgnoreCase("xhdpi")) {
+                return model.getImgXhdpi();
+            } else if (device_density.equalsIgnoreCase("hdpi")) {
+                return model.getImgHdpi();
+            } else if (device_density.equalsIgnoreCase("ldpi")) {
+                return model.getImgLdpi();
+            } else {
+                return model.getImgHdpi();
+            }
         }
+
+
     }
 
 }
