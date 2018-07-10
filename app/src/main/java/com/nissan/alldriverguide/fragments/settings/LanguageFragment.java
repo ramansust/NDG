@@ -152,14 +152,16 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             populateDataIntoList();
         } else {
             progressBar.setVisibility(View.VISIBLE);
+            if (!DetectConnection.checkInternetConnection(activity)) {
+                progressBar.setVisibility(View.GONE);
+                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(activity, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+                showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
+                return;
+            }
         }
-        if (DetectConnection.checkInternetConnection(activity)) {
+
             controller.callApi(NissanApp.getInstance().getDeviceID(getActivity())/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, Values.carType + "");
-        } else {
-            progressBar.setVisibility(View.GONE);
-            String internetCheckMessage = NissanApp.getInstance().getAlertMessage(activity, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
-            showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
-        }
+
     }
 
     @Override
@@ -205,7 +207,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                getActivity().finish();
+                getActivity().onBackPressed();
             }
         });
 

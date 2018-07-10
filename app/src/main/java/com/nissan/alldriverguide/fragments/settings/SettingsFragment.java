@@ -44,6 +44,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
+
 public class SettingsFragment extends Fragment implements AdapterView.OnItemClickListener, CompleteSettingTabContent {
 
     private int[] assistanceImage = {R.drawable.change_language, R.drawable.add_extra_car, R.drawable.tutorial, R.drawable.rate_app, R.drawable.send_feedback, R.drawable.disclaimer};
@@ -111,91 +113,24 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
             loadData();
         } else {
             progressBar.setVisibility(View.VISIBLE);
+            if (!DetectConnection.checkInternetConnection(getActivity())) {
+                progressBar.setVisibility(View.GONE);
+                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+                showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
+                return;
+            }
         }
-        if (DetectConnection.checkInternetConnection(getActivity())) {
 
             int language_ID = NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang());
             controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "4");
-        } else {
-            progressBar.setVisibility(View.GONE);
-            String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
-            showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
-        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-        if (settingList == null || settingList.size() == 0) {
-            if (DetectConnection.checkInternetConnection(getActivity())) {
-//                progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching your Language...");
-                apiCall();
-            } else {
-                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
-                showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
-            }
-
-        } else {
-            Collections.sort(settingList, new Comparator<SettingsTabListModel>() {
-                @Override
-                public int compare(SettingsTabListModel lhs, SettingsTabListModel rhs) {
-                    return lhs.getIndex().compareTo(rhs.getIndex());
-                }
-            });
-            setting_names = new String[settingList.size()];
-            for (int i = 0; i < settingList.size(); i++) {
-                setting_names[i] = settingList.get(i).getTitle();
-            }
-            loadData();
-            apiCall();
-        }
-*/
-
-
-
-
-
-
-
-
-/*
-        settingList = preferenceUtil.retrieveSettingDataList(sharedpref_key);
-
-        if (settingList == null || settingList.size() == 0) {
-            apiCall();
-        } else {
-            settingList = new ArrayList<>();
-            settingList = preferenceUtil.retrieveSettingDataList(sharedpref_key);
-            Collections.sort(settingList, new Comparator<SettingsTabListModel>() {
-                @Override
-                public int compare(SettingsTabListModel lhs, SettingsTabListModel rhs) {
-                    return lhs.getIndex().compareTo(rhs.getIndex());
-                }
-            });
-            setting_names = new String[settingList.size()];
-            for (int i = 0; i < settingList.size(); i++) {
-                setting_names[i] = settingList.get(i).getTitle();
-            }
-            loadData();
-            apiCall();
-        }
-*/
 
     }
 
     private void showNoInternetDialogue(String msg) {
 
         final Dialog dialog = new DialogController(getActivity()).internetDialog();
-
+        dialog.setCancelable(false);
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(msg);
 
@@ -351,7 +286,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
          */
         switch (position) {
             case 0:
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
@@ -360,7 +295,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 break;
 
             case 1:
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
@@ -369,7 +304,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 break;
 
             case 2:
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
@@ -380,7 +315,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 break;
 
             case 3:
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
@@ -394,7 +329,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 break;
 
             case 4:
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();

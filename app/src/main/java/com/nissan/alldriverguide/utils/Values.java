@@ -16,7 +16,7 @@ public class Values {
 
     //Folder Name of cars in sdcard
     public static final String qashqai_folder = "/qashqai";
-    public static final String qashqai_folder_rus = "/qashqai_rus";
+    public static final String qashqai_folder_rus = "/qashqairus";
     public static final String juke_folder = "/juke";
     public static final String xtrail_folder = "/xtrail";
     public static final String xtrail_folder_rus = "/xtrail_rus";
@@ -177,4 +177,6 @@ public class Values {
     public static final String  SEARCH_BOX_HINT = "search_box_hint";
     public static final String  CAR_SELECTION_TITLE = "add_extra_car";
     public static final String  NO_CONTENT_FOUND = "no_content_found_url";
+
+    public static final long DEFAULT_CLICK_TIMEOUT = 1000;
 }

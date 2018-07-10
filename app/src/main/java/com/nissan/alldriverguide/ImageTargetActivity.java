@@ -68,6 +68,8 @@ import com.vuforia.Vuforia;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
+
 public class ImageTargetActivity extends AppCompatActivity implements SampleApplicationControl {
     private static final String LOGTAG = "ImageTargets";
 
@@ -841,7 +843,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
      */
     public void buttonEvent(View b) {
         // Preventing multiple clicks, using threshold of 1 second
-        if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
             return;
         }
         mLastClickTime = SystemClock.elapsedRealtime();
@@ -927,7 +929,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     public void showInfo() {
         // Preventing multiple clicks, using threshold of 1 second
-        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
             return;
         }
         mLastClickTime = SystemClock.elapsedRealtime();

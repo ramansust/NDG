@@ -63,6 +63,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
+
 public class AddCarFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     private View view;
@@ -412,7 +414,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                 btnOk.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        if (SystemClock.elapsedRealtime() - doubleClickPopup < 1000) {
+                                        if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
                                             return;
                                         }
                                         doubleClickPopup = SystemClock.elapsedRealtime();
@@ -594,7 +596,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                 btnCancel.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        if (SystemClock.elapsedRealtime() - doubleClickPopup < 1000) {
+                                        if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
                                             return;
                                         }
                                         doubleClickPopup = SystemClock.elapsedRealtime();

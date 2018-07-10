@@ -28,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -178,79 +179,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             loadData();
         } else {
             progressBar.setVisibility(View.VISIBLE);
-        }
-        if (DetectConnection.checkInternetConnection(getActivity())) {
-            int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
-            controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1");
-        } else {
-            progressBar.setVisibility(View.GONE);
-            internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
-            showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
-        }
-
-
-
-
-
-
-
-
-
-
-/*
-        if (exploreModel == null || exploreModel.getVideoList() == null) {
-            if (DetectConnection.checkInternetConnection(getActivity())) {
-                //progressDialog = new ProgressDialogController(this.getActivity()).showDialog("Fetching data...");
-                progress_bar.setVisibility(View.VISIBLE);
-                apiCall();
-            } else {
+            if (!DetectConnection.checkInternetConnection(getActivity())) {
+                progressBar.setVisibility(View.GONE);
                 internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
                 showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
+                return;
             }
-
-        } else {
-            check_density();
-            videoList = exploreModel.getVideoList();
-            NissanApp.getInstance().setExploreVideoList(videoList);
-
-            loadData();
-            apiCall();
         }
-*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-        preSharedpref_key = new PreferenceUtil(getActivity()).getPreviousLanguage() + "_" + Values.EXPLOREDATA;
-        sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()) + "_" + Values.EXPLOREDATA;
-
-        String old_Lan = new PreferenceUtil(getActivity()).getPreviousLanguage();
-        String new_Lan = new PreferenceUtil(getActivity()).getSelectedLang();
-
-        if (old_Lan.equalsIgnoreCase("null")) {
-            check_Data();
-        } else {
-            new PreferenceUtil(getActivity()).deleteMultiLangData(preSharedpref_key);
-            check_Data();
-        }
-*/
+            int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
+            controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1");
 
     }
 
@@ -258,7 +196,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private void showNoInternetDialogue(String msg) {
 
         final Dialog dialog = new DialogController(getActivity()).internetDialog();
-
+        dialog.setCancelable(false);
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(msg);
 
@@ -639,7 +577,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             }
 
         } else {
-            showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
+            Toast.makeText(getActivity(), internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage, Toast.LENGTH_SHORT).show();
         }
 
     }
