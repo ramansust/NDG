@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
@@ -13,12 +14,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import android.provider.Settings;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +39,12 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.adapter.CarDownloadAdapter;
@@ -79,10 +86,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
-
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static android.Manifest.permission.CAMERA;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class CarDownloadActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, InterfaceGlobalMessageResponse, CarListACompleteAPI {
 
@@ -136,24 +139,17 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
-    public boolean isTablet(Context context) {
-        boolean xlarge = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_XLARGE);
-        boolean large = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);
-        return (xlarge || large);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_download);
         Logger.error("device_id", NissanApp.getInstance().getDeviceID(this));
-        Logger.error("device_density", NissanApp.getInstance().getDensityName(this));
-        Logger.error("device", "__________" + isTablet(getApplicationContext()));
 
         initViews();
         setListener();
         loadData();
-        assurePermissionForMarshmallowAndOver();
+//        assurePermissionForMarshmallowAndOver();
         getRegIdForPush();
         loadResource(preferenceUtil.getSelectedLang());
 
@@ -250,13 +246,86 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
 
             } else {
-                goForNormalOperation(position, parent);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestStoragePermission(position, parent);
+                } else {
+                    goForNormalOperation(position, parent);
+                }
             }
 
         } else {
-            goForNormalOperation(position, parent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestStoragePermission(position, parent);
+            } else {
+                goForNormalOperation(position, parent);
+            }
         }
 
+    }
+
+    /**
+     * Requesting camera permission
+     * This uses single permission model from dexter
+     * Once the permission granted, opens the camera
+     * On permanent denial opens settings dialog
+     */
+    private void requestStoragePermission(final int position, final AdapterView<?> parent) {
+        Dexter.withActivity(this)
+                .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        // permission is granted
+                        goForNormalOperation(position, parent);
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        // check for permanent denial of permission
+                        if (response.isPermanentlyDenied()) {
+                            showSettingsDialog();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
+    }
+
+    /**
+     * Showing Alert Dialog with Settings option
+     * Navigates user to app settings
+     * NOTE: Keep proper title and message depending on your app
+     */
+    private void showSettingsDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(CarDownloadActivity.this);
+        builder.setTitle("Need Permissions");
+        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
+        builder.setPositiveButton("GOTO SETTINGS", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                openSettings();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+
+    }
+
+    // navigating user to app settings
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        startActivityForResult(intent, 101);
     }
 
     private void registerForPush(final int position, final AdapterView<?> parent) {
@@ -271,7 +340,12 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                         progressDialog.dismiss();
                     Logger.error("Device registration Successful", "________________________________" + "refresh token");
                     new PreferenceUtil(getApplicationContext()).setPushRegistrationStatus(true);
-                    goForNormalOperation(position, parent);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestStoragePermission(position, parent);
+                    } else {
+                        goForNormalOperation(position, parent);
+                    }
                 }
             }
 
@@ -469,7 +543,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         if (DetectConnection.checkInternetConnection(getApplicationContext())) {
             carListContentController.callApi(NissanApp.getInstance().getDeviceID(this), "1");
         } else {
-            if (pbCarDownload.getVisibility() == View.VISIBLE) pbCarDownload.setVisibility(View.GONE);
+            if (pbCarDownload.getVisibility() == View.VISIBLE)
+                pbCarDownload.setVisibility(View.GONE);
             Toast.makeText(activity, "No Internet!", Toast.LENGTH_SHORT).show();
         }
 
@@ -846,141 +921,141 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     }
 
-    private void assurePermissionForMarshmallowAndOver() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!checkPermissionAll()) {
-                requestPermissionAll();
-            }
-        }
-    }
-
-    private boolean checkPermissionAll() {
-        int result = ContextCompat.checkSelfPermission(getApplicationContext(), ACCESS_FINE_LOCATION);
-        int result1 = ContextCompat.checkSelfPermission(getApplicationContext(), CAMERA);
-        int result2 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
-
-        return result == PackageManager.PERMISSION_GRANTED
-                && result1 == PackageManager.PERMISSION_GRANTED
-                && result2 == PackageManager.PERMISSION_GRANTED;
-    }
-
-    private void requestPermissionAll() {
-        ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION, CAMERA, WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE_ALL);
-    }
-
-    private void requestPermission(final String PERMISSION_NAME, final int PERMISSION_CODE) {
-        ActivityCompat.requestPermissions(this, new String[]{PERMISSION_NAME}, PERMISSION_CODE);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_REQUEST_CODE_ALL:
-                if (grantResults.length > 0) {
-
-                    boolean locationAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    boolean cameraAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-                    boolean storageAccepted = grantResults[2] == PackageManager.PERMISSION_GRANTED;
-
-                    if (locationAccepted && cameraAccepted && storageAccepted) {
-
-                    } else {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)
-                                    || shouldShowRequestPermissionRationale(CAMERA)
-                                    || shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE)) {
-                                showMessageOKCancel("You need to allow all of the permissions",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermissions(new String[]{ACCESS_FINE_LOCATION, CAMERA, WRITE_EXTERNAL_STORAGE},
-                                                            PERMISSION_REQUEST_CODE_ALL);
-                                                }
-                                            }
-                                        });
-                                return;
-                            }
-                        }
-
-                    }
-                }
-                break;
-
-            case PERMISSION_REQUEST_CODE_CAMERA:
-                if (grantResults.length > 0) {
-                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    if (cameraAccepted) {
-
-                    } else {
-
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (shouldShowRequestPermissionRationale(CAMERA)) {
-                                showMessageOKCancel("You need to allow access to CAMERA",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermission(CAMERA, PERMISSION_REQUEST_CODE_CAMERA);
-                                                }
-                                            }
-                                        });
-                                return;
-                            }
-                        }
-                    }
-                }
-                break;
-
-            case PERMISSION_REQUEST_CODE_STORAGE:
-                if (grantResults.length > 0) {
-                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    if (cameraAccepted) {
-
-                    } else {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE)) {
-                                showMessageOKCancel("You need to allow access to SD card.",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermission(WRITE_EXTERNAL_STORAGE, PERMISSION_REQUEST_CODE_STORAGE);
-                                                }
-                                            }
-                                        });
-                                return;
-                            }
-                        }
-                    }
-                }
-                break;
-
-            case PERMISSION_REQUEST_CODE_ACCESS_FINE_LOCATION:
-                if (grantResults.length > 0) {
-                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    if (cameraAccepted) {
-
-                    } else {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)) {
-                                showMessageOKCancel("You need to allow access to location data",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermission(ACCESS_FINE_LOCATION, PERMISSION_REQUEST_CODE_ACCESS_FINE_LOCATION);
-                                                }
-                                            }
-                                        });
-                                return;
-                            }
-                        }
-                    }
-                }
-                break;
-        }
-    }
+//    private void assurePermissionForMarshmallowAndOver() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            if (!checkPermissionAll()) {
+//                requestPermissionAll();
+//            }
+//        }
+//    }
+//
+//    private boolean checkPermissionAll() {
+//        int result = ContextCompat.checkSelfPermission(getApplicationContext(), ACCESS_FINE_LOCATION);
+//        int result1 = ContextCompat.checkSelfPermission(getApplicationContext(), CAMERA);
+//        int result2 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+//
+//        return result == PackageManager.PERMISSION_GRANTED
+//                && result1 == PackageManager.PERMISSION_GRANTED
+//                && result2 == PackageManager.PERMISSION_GRANTED;
+//    }
+//
+//    private void requestPermissionAll() {
+//        ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION, CAMERA, WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE_ALL);
+//    }
+//
+//    private void requestPermission(final String PERMISSION_NAME, final int PERMISSION_CODE) {
+//        ActivityCompat.requestPermissions(this, new String[]{PERMISSION_NAME}, PERMISSION_CODE);
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+//        switch (requestCode) {
+//            case PERMISSION_REQUEST_CODE_ALL:
+//                if (grantResults.length > 0) {
+//
+//                    boolean locationAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+//                    boolean cameraAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+//                    boolean storageAccepted = grantResults[2] == PackageManager.PERMISSION_GRANTED;
+//
+//                    if (locationAccepted && cameraAccepted && storageAccepted) {
+//
+//                    } else {
+//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                            if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)
+//                                    || shouldShowRequestPermissionRationale(CAMERA)
+//                                    || shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE)) {
+//                                showMessageOKCancel("You need to allow all of the permissions",
+//                                        new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                                                    requestPermissions(new String[]{ACCESS_FINE_LOCATION, CAMERA, WRITE_EXTERNAL_STORAGE},
+//                                                            PERMISSION_REQUEST_CODE_ALL);
+//                                                }
+//                                            }
+//                                        });
+//                                return;
+//                            }
+//                        }
+//
+//                    }
+//                }
+//                break;
+//
+//            case PERMISSION_REQUEST_CODE_CAMERA:
+//                if (grantResults.length > 0) {
+//                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+//                    if (cameraAccepted) {
+//
+//                    } else {
+//
+//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                            if (shouldShowRequestPermissionRationale(CAMERA)) {
+//                                showMessageOKCancel("You need to allow access to CAMERA",
+//                                        new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                                                    requestPermission(CAMERA, PERMISSION_REQUEST_CODE_CAMERA);
+//                                                }
+//                                            }
+//                                        });
+//                                return;
+//                            }
+//                        }
+//                    }
+//                }
+//                break;
+//
+//            case PERMISSION_REQUEST_CODE_STORAGE:
+//                if (grantResults.length > 0) {
+//                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+//                    if (cameraAccepted) {
+//
+//                    } else {
+//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                            if (shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE)) {
+//                                showMessageOKCancel("You need to allow access to SD card.",
+//                                        new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                                                    requestPermission(WRITE_EXTERNAL_STORAGE, PERMISSION_REQUEST_CODE_STORAGE);
+//                                                }
+//                                            }
+//                                        });
+//                                return;
+//                            }
+//                        }
+//                    }
+//                }
+//                break;
+//
+//            case PERMISSION_REQUEST_CODE_ACCESS_FINE_LOCATION:
+//                if (grantResults.length > 0) {
+//                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+//                    if (cameraAccepted) {
+//
+//                    } else {
+//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                            if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)) {
+//                                showMessageOKCancel("You need to allow access to location data",
+//                                        new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                                                    requestPermission(ACCESS_FINE_LOCATION, PERMISSION_REQUEST_CODE_ACCESS_FINE_LOCATION);
+//                                                }
+//                                            }
+//                                        });
+//                                return;
+//                            }
+//                        }
+//                    }
+//                }
+//                break;
+//        }
+//    }
 
 
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
@@ -1111,7 +1186,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                             carImageURL = NissanApp.getInstance().getURLAccordingToDensity(this, device_density, carListModel);
                             info.setCarImg(carImageURL);
                             info.setName(carListModel.getCarName());
-//                            Logger.error("carImageURL", "_______" + carImageURL + "_____" + info.getName());
                             mainList.set(i, info);
                         }
                     }

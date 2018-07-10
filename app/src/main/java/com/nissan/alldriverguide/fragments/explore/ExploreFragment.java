@@ -1,17 +1,22 @@
 package com.nissan.alldriverguide.fragments.explore;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +32,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 import com.nissan.alldriverguide.ImageTargetActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.VideoPlayerActivity;
@@ -48,6 +59,7 @@ import java.util.Comparator;
 
 public class ExploreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, CompleteExploreTabContent {
 
+    private static final String TAG = "ExploreFragment";
     // declare video thumb in an array
     private int[] qashqai_eur_thumbnil_array_en = {R.drawable.qashqai_eur_en_video_01, R.drawable.qashqai_eur_en_video_02};
     private int[] qashqai_eur_thumbnil_array_fr = {R.drawable.qashqai_eur_fr_video_01, R.drawable.qashqai_eur_fr_video_02};
@@ -533,15 +545,86 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_ar:
-
                 // here start the ImageTargetActivity class for AR
             case R.id.btn_blind_spot_ar:
-                startActivity(new Intent(getActivity(), ImageTargetActivity.class));
+
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    requestCameraPermission();
+                } else {
+                    startActivity(new Intent(getActivity(), ImageTargetActivity.class));
+                }
                 break;
 
             default:
                 break;
         }
+    }
+
+
+
+    /**
+     * Requesting camera permission
+     * This uses single permission model from dexter
+     * Once the permission granted, opens the camera
+     * On permanent denial opens settings dialog
+     */
+    private void requestCameraPermission() {
+        Dexter.withActivity(getActivity())
+                .withPermission(Manifest.permission.CAMERA)
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        // permission is granted
+                        startActivity(new Intent(getActivity(), ImageTargetActivity.class));
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        // check for permanent denial of permission
+                        if (response.isPermanentlyDenied()) {
+                            showSettingsDialog();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
+    }
+
+    /**
+     * Showing Alert Dialog with Settings option
+     * Navigates user to app settings
+     * NOTE: Keep proper title and message depending on your app
+     */
+    private void showSettingsDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Need Permissions");
+        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
+        builder.setPositiveButton("GOTO SETTINGS", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                openSettings();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+
+    }
+
+    // navigating user to app settings
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
+        intent.setData(uri);
+        startActivityForResult(intent, 101);
     }
 
     @Override
