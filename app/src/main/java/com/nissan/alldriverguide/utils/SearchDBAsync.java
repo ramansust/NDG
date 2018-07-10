@@ -89,6 +89,7 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
                 try {
                     // After extracting and cashing epub data, downloaded epub has been force deleted.
                     FileUtils.forceDelete(new File(ePubPath));
+                    Logger.error("Path_Epub", "_____" + "deleted!");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -128,7 +129,9 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
         if(files != null && files.length > 0) {
             for (int i = 0; i < files.length; i++) {
                 // here add the epub name in arrayList
-                listOfFiles.add(files[i].getName());
+                if(files[i].getName().contains(".epub")) {
+                    listOfFiles.add(files[i].getName());
+                }
                 Logger.error("file_name", "_______" + files[i].getName());
             }
         }
