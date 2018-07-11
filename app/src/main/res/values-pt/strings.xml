@@ -223,4 +223,11 @@
     <string name="send_feedback_description">Descrição</string>
     <string name="send_feedback_button">Enviar feedback</string>
 
+    <string name="new_nissan_connect">Novo Nissanconnect </string>
+    <string name="update_your_map">Actualize O Seu Mapa</string>
+    <string name="discover_your_vehicle">Descubra A Tecnologia Do Seu Veículo</string>
+    <string name="updating_map_data">Actualizar Dados De Mapas</string>
+    <string name="web_view_call_nissan_link_popup">Já consultou a página de apoio e seguiu os passos indicados?</string>
+
+
 </resources>

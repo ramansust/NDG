@@ -1,20 +1,29 @@
 package com.nissan.alldriverguide.fragments.assistance;
 
+import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -23,6 +32,7 @@ import android.widget.TextView;
 import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
+import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.Logger;
@@ -47,6 +57,8 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
     private ArrayList<EpubInfo> list;
     private static final String TITLE = "title";
     private Typeface tf;
+    private DisplayMetrics metrics;
+    private Resources resources;
 
     public static Fragment newInstance(int index, String title) {
         Fragment frag = new DetailsFragment();
@@ -85,6 +97,10 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
         tf = Typeface.createFromAsset(getActivity().getAssets(), "font/Nissan Brand Regular.otf"); //initialize typeface here.
         txt_back_title.setTypeface(tf);
+        metrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang()));
+
     }
 
     private void setListener() {
@@ -277,6 +293,12 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_back:
+                if (webView.canGoBack()) {
+                    webView.goBack();
+                } else {
+                    ((MainActivity) getActivity()).onBackPressed();
+                }
+                break;
             case R.id.linear_back:
                 ((MainActivity) getActivity()).onBackPressed();
                 break;
@@ -311,8 +333,116 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                 if (progressBar != null)
                     progressBar.setVisibility(View.GONE);
             }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+                if (url != null && url.startsWith("http")) {
+                    return false;
+
+                } else if (url != null && url.startsWith("file")) {
+
+                    if (new PreferenceUtil(getActivity()).isCallNissan()) {
+                        emptyWebVieLinkwAlert();
+                    } else {
+                        nissanCallFragment();
+                    }
+                    return true;
+                }
+                return false;
+            }
+
+
+            @TargetApi(Build.VERSION_CODES.N)
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                String url = request.getUrl().toString();
+
+                if (url != null && url.startsWith("http")) {
+                    return false;
+
+                } else if (url != null && url.startsWith("file")) {
+
+                    if (new PreferenceUtil(getActivity()).isCallNissan()) {
+                        emptyWebVieLinkwAlert();
+                    } else {
+                        nissanCallFragment();
+                    }
+                    return true;
+                }
+                return false;
+
+                // Return false means, web view will handle the link
+                // Return true means, leave the current web view and handle the url itself
+            }
         });
+
+
+        webView.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    WebView webView = (WebView) v;
+
+                    switch (keyCode) {
+                        case KeyEvent.KEYCODE_BACK:
+                            if (webView.canGoBack()) {
+                                webView.goBack();
+                                return true;
+                            }
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
+
     }
+
+    public void emptyWebVieLinkwAlert() {
+        final Dialog dialog = new DialogController(getActivity()).langDialog();
+
+        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        txtViewTitle.setText(resources.getString(R.string.web_view_call_nissan_link_popup));
+
+        Button btnYes = (Button) dialog.findViewById(R.id.btn_cancel);
+        btnYes.setText(resources.getString(R.string.button_YES));
+
+        Button btnNo = (Button) dialog.findViewById(R.id.btn_ok);
+        btnNo.setText(resources.getString(R.string.button_NO));
+
+        btnNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+
+        btnYes.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                new PreferenceUtil(getActivity()).setCallNissan(false);
+                nissanCallFragment();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void nissanCallFragment() {
+        Fragment frag = CallNissanAssistanceFragment.newInstance(resources.getStringArray(R.array.nissan_assistance_array)[1]);
+        if (frag != null) {
+            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+            ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
+            ft.replace(R.id.container, frag);
+            ft.addToBackStack(Values.tabExplore);
+            ft.commit();
+        }
+    }
+
 
     private int dp2px(Context context, float dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,

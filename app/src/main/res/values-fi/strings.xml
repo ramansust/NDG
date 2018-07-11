@@ -223,4 +223,11 @@
     <string name="send_feedback_description">Kuvaus</string>
     <string name="send_feedback_button">Lähetä palaute</string>
 
+    <string name="new_nissan_connect">Uusi Nissanconnect</string>
+    <string name="update_your_map">Päivitä Karttasi</string>
+    <string name="discover_your_vehicle">Tutustu Autosi Teknologiaan</string>
+    <string name="updating_map_data">Karttatietojen Päivittäminen</string>
+    <string name="web_view_call_nissan_link_popup">Oletko jo etsinyt neuvoja tukisivulta ja noudattanut sen ohjeita?</string>
+
+
 </resources>

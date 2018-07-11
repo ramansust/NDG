@@ -263,4 +263,11 @@
     <string name="send_feedback_description">Описание</string>
     <string name="send_feedback_button">Отправить комментарий</string>
 
+    <string name="new_nissan_connect">Новая Nissanconnect</string>
+    <string name="update_your_map">Обновите Вашу Карту</string>
+    <string name="discover_your_vehicle">Узнайте О Технологиях, Которыми Оснащен Ваш Автомобиль</string>
+    <string name="updating_map_data">Обновление Картографических Данных</string>
+    <string name="web_view_call_nissan_link_popup">Вы уже прочитали страницу с информацией для решения вопроса и выполнили указанные там действия?</string>
+
+
 </resources>

@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
@@ -25,10 +26,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.ImageTargetActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.VideoPlayerActivity;
@@ -48,6 +50,7 @@ import com.nissan.alldriverguide.adapter.GridViewAdapter;
 import com.nissan.alldriverguide.controller.ExploreTabContentController;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.fragments.assistance.DetailsFragment;
 import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
@@ -55,10 +58,13 @@ import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
+import com.nissan.alldriverguide.view.ScrollableGridView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
@@ -113,12 +119,12 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private RelativeLayout relativeAR;
     private RelativeLayout relativeBlindSpot;
 
-    private GridView gridView;
+    private ScrollableGridView gridView;
     private GridViewAdapter adapter;
 
     private Resources resources;
     private DisplayMetrics metrics;
-    private TextView txtViewExplore, tvNoContent, tvPageTitle;
+    private TextView txtViewExplore, tvNoContent, tvPageTitle, textViewMap;
     private ProgressBar progressBar;
     private String sharedpref_key;
     private String preSharedpref_key;
@@ -131,6 +137,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     public static ProgressBar progress_bar;
     private ExploreTabContentController controller;
     private LinearLayout layoutDataNotFound;
+    private LinearLayout mapView;
+    private List<EpubInfo> list;
 
     /**
      * Creating instance for this fragment
@@ -420,8 +428,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             //here set the adapter for grid view
 //            gridView.setAdapter(new GridViewAdapter(getActivity().getApplicationContext(), getThumbnilArray(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang())));
         } else {
+            mapView.setVisibility(View.GONE);
             relativeAR.setVisibility(View.VISIBLE);
             relativeBlindSpot.setVisibility(View.GONE);
+        }
+
+        if (Values.carType == 11) {
+            mapView.setVisibility(View.VISIBLE);
+            mapTextImage(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
+        } else {
+            mapView.setVisibility(View.GONE);
         }
     }
 
@@ -432,6 +448,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         btnAR.setOnClickListener(this);
         btnBlindSpotAR.setOnClickListener(this);
         gridView.setOnItemClickListener(this);
+        mapView.setOnClickListener(this);
     }
 
     /**
@@ -441,17 +458,22 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
      */
     private void initViews(View view) {
 
-        txtViewExplore = (TextView ) view.findViewById(R.id.txt_blind_spot_ar);
-        tvPageTitle = (TextView ) view.findViewById(R.id.txt_title_explore);
         txtViewExplore = (TextView) view.findViewById(R.id.txt_blind_spot_ar);
+        textViewMap = view.findViewById(R.id.txt_map);
+        tvPageTitle = (TextView ) view.findViewById(R.id.txt_title_explore);
+//        txtViewExplore = (TextView) view.findViewById(R.id.txt_blind_spot_ar);
         relativeAR = (RelativeLayout) view.findViewById(R.id.relative_ar);
         relativeBlindSpot = (RelativeLayout) view.findViewById(R.id.relative_blind_spot);
         progress_bar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
         btnAR = (Button) view.findViewById(R.id.btn_ar);
         btnBlindSpotAR = (RelativeLayout) view.findViewById(R.id.btn_blind_spot_ar);
+        mapView = (LinearLayout) view.findViewById(R.id.map_view);
+        gridView = (ScrollableGridView) view.findViewById(R.id.grid_view);
 
-        gridView = (GridView) view.findViewById(R.id.grid_view);
+        // this code for prevent scrollview bottom display
+        ScrollView scrollView = (ScrollView) view.findViewById(R.id.scroll_view);
+        scrollView.smoothScrollTo(0, 0);
 
         progressBar = (ProgressBar) view.findViewById(R.id.prog_explore);
         layoutDataNotFound = (LinearLayout) view.findViewById(R.id.layout_explore_data_not_found);
@@ -496,6 +518,21 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     startActivity(new Intent(getActivity(), ImageTargetActivity.class));
                 }
                 break;
+
+            case R.id.map_view:
+                if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
+                    list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
+                }
+                Values.ePubType = Values.HOMEPAGE_TYPE;
+
+                Fragment frag = DetailsFragment.newInstance(list.get(52).getIndex(), resources.getString(R.string.updating_map_data));
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
+                ft.replace(R.id.container, frag);
+                ft.addToBackStack(Values.tabExplore);
+                ft.commit();
+                break;
+
 
             default:
                 break;
@@ -709,5 +746,38 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         }
         return array;
     }
+
+    private void mapTextImage(String lang) {
+        if (Values.carType == 11) {
+            if(lang.equalsIgnoreCase("en")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_en);
+            } else if(lang.equalsIgnoreCase("de")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_de);
+            } else if(lang.equalsIgnoreCase("ru")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_ru);
+            } else if(lang.equalsIgnoreCase("sv")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_sv);
+            } else if(lang.equalsIgnoreCase("es")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_es);
+            } else if(lang.equalsIgnoreCase("nl")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_nl);
+            } else if(lang.equalsIgnoreCase("no")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_no);
+            } else if(lang.equalsIgnoreCase("fr")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_fr);
+            } else if(lang.equalsIgnoreCase("it")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_it);
+            } else if(lang.equalsIgnoreCase("pl")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_pl);
+            } else if(lang.equalsIgnoreCase("fi")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_fi);
+            } else if(lang.equalsIgnoreCase("pt")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_pt);
+            } else {
+
+            }
+        }
+    }
+
 
 }

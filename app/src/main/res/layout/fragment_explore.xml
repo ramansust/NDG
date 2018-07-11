@@ -24,157 +24,260 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/relative_ar"
+    <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/relative_top"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/txt_ar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginRight="@dimen/margin_left"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:background="@color/white"
-            android:padding="@dimen/margin_back"
-            android:text="@string/augmented_reality"
-            android:textColor="@color/orange" />
-
-        <TextView
-            android:id="@+id/txt_explore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/txt_ar"
-            android:layout_below="@+id/txt_ar"
-            android:layout_marginRight="@dimen/margin_left"
-            android:background="@color/black"
-            android:padding="@dimen/margin_back"
-            android:text="@string/explore_your_car"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn_ar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/ar_selector" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relative_blind_spot"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/relative_top"
-        android:visibility="visible">
+        android:fillViewport="true">
 
         <RelativeLayout
-            android:id="@+id/relative_blind_spot_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <RelativeLayout
-                android:id="@+id/btn_blind_spot_ar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/explore_micra_new" />
-
-            <TextView
-                android:id="@+id/txt_blind_spot_ar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_left"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="@color/black"
-                android:paddingLeft="@dimen/margin_back"
-                android:paddingRight="@dimen/margin_back"
-                android:textColor="@color/orange" />
-
-            <!--<LinearLayout
+                android:id="@+id/relative_ar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/txt_blind_spot_ar"
-                android:layout_below="@+id/txt_blind_spot_ar"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                android:layout_height="match_parent"
+                android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/txt_blind_spot_explore"
-                    android:layout_width="match_parent"
+                    android:id="@+id/txt_ar"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_left"
                     android:layout_marginRight="@dimen/margin_left"
-                    android:layout_weight="1"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@color/white"
+                    android:padding="@dimen/margin_back"
+                    android:text="@string/augmented_reality"
+                    android:textColor="@color/orange" />
+
+                <TextView
+                    android:id="@+id/txt_explore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/txt_ar"
+                    android:layout_below="@+id/txt_ar"
+                    android:layout_marginRight="@dimen/margin_left"
                     android:background="@color/black"
-                    android:paddingLeft="@dimen/margin_back"
-                    android:paddingRight="@dimen/margin_back"
+                    android:padding="@dimen/margin_back"
                     android:text="@string/explore_your_car"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
-                <TextView
+                <Button
+                    android:id="@+id/btn_ar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ar_selector" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_blind_spot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/relative_ar"
+                android:visibility="visible">
+
+                <RelativeLayout
+                    android:id="@+id/relative_blind_spot_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true">
+
+                    <RelativeLayout
+                        android:id="@+id/btn_blind_spot_ar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/explore_micra_new" />
+
+                    <TextView
+                        android:id="@+id/txt_blind_spot_ar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_left"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:background="@color/black"
+                        android:paddingLeft="@dimen/margin_back"
+                        android:paddingRight="@dimen/margin_back"
+                        android:textColor="@color/orange" />
+
+                    <!--<LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/txt_blind_spot_ar"
+                        android:layout_below="@+id/txt_blind_spot_ar"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/txt_blind_spot_explore"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/margin_left"
+                            android:layout_weight="1"
+                            android:background="@color/black"
+                            android:paddingLeft="@dimen/margin_back"
+                            android:paddingRight="@dimen/margin_back"
+                            android:text="@string/explore_your_car"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:visibility="invisible" />
+
+                    </LinearLayout>-->
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/map_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_below="@+id/relative_blind_spot_top"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/map" />
+
+                        <TextView
+                            android:id="@+id/txt_map"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_left"
+                            android:layout_marginTop="@dimen/activity_vertical_margin"
+                            android:background="@color/white"
+                            android:paddingLeft="@dimen/margin_back"
+                            android:paddingRight="@dimen/margin_back"
+                            android:textColor="@color/orange" />
+
+                        <!--                    <TextView
+                                                android:id="@+id/txt_view_driver_guide"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginLeft="@dimen/margin_left"
+                                                android:layout_marginTop="@dimen/activity_vertical_margin"
+                                                android:background="@color/white"
+                                                android:paddingLeft="@dimen/margin_back"
+                                                android:paddingRight="@dimen/margin_back"
+                                                android:text="@string/new_nissan_connect"
+                                                android:textAllCaps="true"
+                                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                                android:textColor="@color/orange"
+                                                android:textSize="15dp" />
+
+                                            <TextView
+                                                android:id="@+id/txt_view_car_name"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_alignLeft="@+id/txt_view_driver_guide"
+                                                android:layout_below="@+id/txt_view_driver_guide"
+                                                android:background="@color/black"
+                                                android:paddingLeft="@dimen/margin_back"
+                                                android:paddingRight="@dimen/margin_back"
+                                                android:text="@string/update_your_map"
+                                                android:textAllCaps="true"
+                                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                                android:textColor="@color/white"
+                                                android:textSize="22dp" />-->
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorWhite"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp">
+
+                        <View
+                            android:layout_width="70dp"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="@dimen/margin_back"
+                            android:alpha="255"
+                            android:background="@color/colorAccent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/txt_view_driver_guide"
+                            android:layout_below="@+id/txt_view_driver_guide"
+                            android:paddingLeft="@dimen/margin_back"
+                            android:paddingRight="@dimen/margin_back"
+                            android:text="@string/discover_your_vehicle"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/relative_blind_spot_top"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/black"
                     android:visibility="invisible" />
 
-            </LinearLayout>-->
+                <com.nissan.alldriverguide.view.ScrollableGridView
+                    android:id="@+id/grid_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/map_view"
+                    android:gravity="center"
+                    android:numColumns="2"
+                    android:scrollbars="none"
+                    android:stretchMode="columnWidth"></com.nissan.alldriverguide.view.ScrollableGridView>
 
+                <ProgressBar
+                    android:id="@+id/prog_explore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/layout_explore_data_not_found"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/txt_explore_data_not_found"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </RelativeLayout>
-
-
-        <ProgressBar
-        android:id="@+id/progress_bar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_below="@+id/relative_blind_spot_top"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:indeterminate="true"
-        android:visibility="invisible"
-        android:layout_centerInParent="true"
-        android:indeterminateTint="@color/black"
-        android:layout_gravity="center" />
-
-        <GridView
-            android:id="@+id/grid_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/relative_blind_spot_top"
-            android:gravity="center"
-            android:numColumns="2"
-            android:scrollbars="none"
-            android:stretchMode="columnWidth"></GridView>
-
-        <ProgressBar
-            android:id="@+id/prog_explore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone" />
-
-        <LinearLayout
-            android:id="@+id/layout_explore_data_not_found"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/txt_explore_data_not_found"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
+    </ScrollView>
 </RelativeLayout>
