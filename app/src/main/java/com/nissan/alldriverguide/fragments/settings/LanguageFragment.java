@@ -171,7 +171,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                 progressBar.setVisibility(View.GONE);
                 tvNoContent.setVisibility(View.GONE);
             }
-            new PreferenceUtil(getActivity()).storeMultiLangData(languageLists, "LanguageList");
+            new PreferenceUtil(getActivity()).storeMultiLangData(languageLists, Values.carType + "_" + Values.CAR_LANGUAGE_LIST);
             this._languageLists = languageLists;
             list = new ArrayList<>();
             populateDataIntoList();
@@ -489,9 +489,15 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
                                                             if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
                                                                 try {
-                                                                    // delete previous language directory
-                                                                    FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType)));
-                                                                    Logger.error("File Delete" , "" + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType));
+
+                                                                    if (!preferenceUtil.getSelectedLang().equals("") && !lang.equals("")) {
+                                                                        if (!preferenceUtil.getSelectedLang().equals(lang)) {
+                                                                            // delete previous language directory
+                                                                            FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType)));
+                                                                            Logger.error("File Delete" , "" + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType));
+                                                                        }
+                                                                    }
+
 //************************(Here store the language short name after complete downloading language)*******************************************************************************************************************
                                                                     preferenceUtil.setSelectedLang(lang); // here store the language sort name
                                                                     ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));

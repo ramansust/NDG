@@ -525,6 +525,10 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
                         }
                     });
+                } else {
+                    if (progressDialog != null && progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
                 }
                 return false;
             }
@@ -740,6 +744,9 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                     startCarAssetsDownload(AppConfig.IS_APP_ONLINE ? responseInfo.getAssetsUrl() : NissanApp.getInstance().getAssetsURL(carType), Values.PATH, AppConfig.IS_APP_ONLINE ? responseInfo.getLangUrl() : NissanApp.getInstance().getLanguageURL((carType), lang), NissanApp.getInstance().getCarPath(carType), false);
                 } else {
                     frag.showErrorDialog("Status OR URL not reachable");
+                    if (progressDialog != null && progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
                 }
 
             }
@@ -1063,7 +1070,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
     private void errorFileDelete(int carType) {
         try {
-            if (progressDialog != null) {
+            if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
             FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(carType)));

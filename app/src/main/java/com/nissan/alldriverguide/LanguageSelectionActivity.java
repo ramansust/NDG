@@ -235,7 +235,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
         Type type = new TypeToken<ArrayList<LanguageList>>() {
         }.getType();
-        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData("LanguageList"), type);
+        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(Values.carType + "_" + Values.CAR_LANGUAGE_LIST), type);
 
     }
 
