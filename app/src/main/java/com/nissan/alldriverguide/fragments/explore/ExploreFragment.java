@@ -459,7 +459,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private void initViews(View view) {
 
         txtViewExplore = (TextView) view.findViewById(R.id.txt_blind_spot_ar);
-        textViewMap = view.findViewById(R.id.txt_map);
+        textViewMap = (TextView) view.findViewById(R.id.txt_map);
         tvPageTitle = (TextView ) view.findViewById(R.id.txt_title_explore);
 //        txtViewExplore = (TextView) view.findViewById(R.id.txt_blind_spot_ar);
         relativeAR = (RelativeLayout) view.findViewById(R.id.relative_ar);
