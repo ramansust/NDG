@@ -131,7 +131,7 @@ public class WarningLightFragment extends Fragment {
 
         if (ePubInfoList != null && ePubInfoList.size() > 0) {
             // search tag contain for new four cars
-            if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+            /*if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 //            if(Values.carType == 14) {
                 for(int i = 0; i < (ePubInfoList.size() / 2); i++) {
                     int searchTagIndex = (i * 2) + 1;
@@ -154,7 +154,7 @@ public class WarningLightFragment extends Fragment {
                         }
                     }
                 }
-            }
+            }*/
 
             /*for(int i = 0; i < (ePubInfoList.size() / 2); i++) {
                 int searchTagIndex = (i * 2) + 1;
@@ -165,6 +165,19 @@ public class WarningLightFragment extends Fragment {
                     searchResultList.add(ePubInfoList.get(searchTagIndex - 1));
                 }
             }*/
+
+            for(int i = 0; i < (ePubInfoList.size() / 2); i++) {
+                int searchTagIndex = (i * 2) + 1;
+
+                // this condition remove the demo item from WarningLightFragment
+                if(!ePubInfoList.get(searchTagIndex - 1).getTitle().toLowerCase().contains("demo")) {
+                    if (ePubInfoList.get(searchTagIndex - 1).getTitle().toLowerCase().contains(keyWord.toLowerCase().trim()) || ePubInfoList.get(searchTagIndex).getTitle().toLowerCase().contains(keyWord.toLowerCase().trim())) {
+                        ePubInfoList.get(searchTagIndex - 1).setIndex((searchTagIndex - 1) / 2); // need to check again
+
+                        searchResultList.add(ePubInfoList.get(searchTagIndex - 1));
+                    }
+                }
+            }
 
         }
         return searchResultList;

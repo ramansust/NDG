@@ -352,6 +352,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
             default:
                 PreferenceUtil preferenceUtil = new PreferenceUtil(getApplicationContext());
                 int ePubIndex = 0;
+/*
                 if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 //                if(Values.carType == 14) {
                     ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
@@ -362,6 +363,9 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
                         ePubIndex = Integer.parseInt(v.getTag().toString());
                     }
                 }
+*/
+
+                ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
 
 //                ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
                 
