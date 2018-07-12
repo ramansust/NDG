@@ -264,5 +264,12 @@ Zie het volgende voorbeeld:</string>
     <string name="send_feedback_description">Beschrijving</string>
     <string name="send_feedback_button">Feedback verzenden</string>
 
+    <string name="new_nissan_connect">Nieuwe Nissanconnect</string>
+    <string name="update_your_map">Werk Uw Kaart Bij</string>
+    <string name="discover_your_vehicle">Ontdek De Technologie Van Uw Voertuig</string>
+    <string name="updating_map_data">Kaartgegevens Bijwerken</string>
+    <string name="web_view_call_nissan_link_popup">Heeft u de ondersteuningspagina al geraadpleegd en de stappen gevolgd?</string>
+
+
 </resources>
 

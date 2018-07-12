@@ -263,4 +263,11 @@ Vea el siguiente ejemplo:</string>
     <string name="send_feedback_description">Descripción</string>
     <string name="send_feedback_button">Enviar comentarios</string>
 
+    <string name="new_nissan_connect">Nuevo Nissanconnect</string>
+    <string name="update_your_map">Actualice Su Mapa</string>
+    <string name="discover_your_vehicle">Descubra La Tecnología De Su Vehículo.</string>
+    <string name="updating_map_data">Actualización De Datos Cartográficos.</string>
+    <string name="web_view_call_nissan_link_popup">¿Ha consultado ya la página de asistencia y seguido los pasos?</string>
+
+
 </resources>

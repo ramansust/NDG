@@ -220,4 +220,11 @@
 	<string name="send_feedback_description">Melding</string>
 	<string name="send_feedback_button">Send tilbakemelding</string>
 
+	<string name="new_nissan_connect">Nye Nissanconnect </string>
+	<string name="update_your_map">Oppdater Kartet Ditt</string>
+	<string name="discover_your_vehicle">Oppdag Bilens Teknologi.</string>
+	<string name="updating_map_data">Oppdatere Kartdata</string>
+	<string name="web_view_call_nissan_link_popup">Har du vært inne på brukerstøttesiden og fulgt trinnene?</string>
+
+
 </resources>

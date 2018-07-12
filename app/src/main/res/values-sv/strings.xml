@@ -260,4 +260,11 @@ Se följande exempel:</string>
     <string name="send_feedback_description">Beskrivning</string>
     <string name="send_feedback_button">Skicka feedback</string>
 
+    <string name="new_nissan_connect">Nya Nissanconnect </string>
+    <string name="update_your_map">Uppdatera Din Karta</string>
+    <string name="discover_your_vehicle">Upptäck Tekniken I Ditt Fordon</string>
+    <string name="updating_map_data">Uppdatera Kartdata.</string>
+    <string name="web_view_call_nissan_link_popup">Har du redan tittat på supportsidan och följt instruktionerna steg för steg?</string>
+
+
 </resources>

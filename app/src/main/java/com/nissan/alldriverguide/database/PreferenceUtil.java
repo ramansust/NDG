@@ -9,12 +9,7 @@ import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
-import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
-import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
-import com.nissan.alldriverguide.multiLang.model.Tutorial;
-
-import org.json.JSONArray;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -36,6 +31,8 @@ public class PreferenceUtil {
     private final String SESSION_ONE = "session_one";
     private final String SESSION_THREE = "session_three";
     private final String IS_GREAT = "is_great";
+
+    private final String IS_CALL_NISSAN = "is_call_nissan";
 
 
     public PreferenceUtil(Context mContext) {
@@ -303,6 +300,16 @@ public class PreferenceUtil {
         String json = sharedPreferences.getString(key, null);
         AssistanceInfo obj = gson.fromJson(json, AssistanceInfo.class);
         return obj;
+    }
+
+    public boolean isCallNissan() {
+        return sharedPreferences.getBoolean(IS_CALL_NISSAN, true);
+    }
+
+    public void setCallNissan(boolean isCallNissan) {
+        spEditor = sharedPreferences.edit();
+        spEditor.putBoolean(IS_CALL_NISSAN, isCallNissan);
+        spEditor.commit();
     }
 
 }
