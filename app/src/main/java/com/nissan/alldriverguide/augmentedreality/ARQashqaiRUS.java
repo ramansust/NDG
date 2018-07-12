@@ -223,84 +223,84 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                     case R.id.btn_radio_without_navi_full_left:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.qashqai_radio_wo_navi_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_wo_navi_left.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_rus_radio_wo_navi_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_without_navi_full_middle:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.qashqai_radio_wo_navi_middle, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_wo_navi_middle.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_rus_radio_wo_navi_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_without_navi_full_right:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_rus_radio_wo_navi_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_wo_navi_right.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_rus_radio_wo_navi_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_ac_left:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_rus_ac_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_ac_auto_left.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_rus_ac_auto_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_ac_middle:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_rus_ac_middle, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_ac_auto_middle.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_rus_ac_auto_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_ac_right:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_rus_ac_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_ac_auto_right.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_rus_ac_auto_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_with_navi_left:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_rus_radio_w_navi_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_navi_left.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_rus_radio_navi_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_with_navi_right:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_rus_radio_w_navi_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_navi_right.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_rus_radio_navi_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_with_navi_middle:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.radio_w_3, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_navi_middle.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_rus_radio_navi_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.xtrail_rus_ac_manual_main_left:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_rus_ac_manual_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_ac_manual_left.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_rus_ac_manual_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.xtrail_rus_ac_manual_main_middle:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_rus_ac_manual_middle, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_ac_manual_middle.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_rus_ac_manual_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.xtrail_rus_ac_manual_main_right:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_rus_ac_manual_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_ac_manual_right.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_rus_ac_manual_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -351,7 +351,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.STEERING_LEFT;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_steering_view_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_steering_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_steering_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -371,7 +371,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.STEERING_RIGHT;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_steering_view_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_steering_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_steering_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -390,7 +390,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_radio_without_navi_main, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_wo_navi_main.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_radio_wo_navi_main.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -414,7 +414,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.TRIP_RESET;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_tripreset_switch_rus, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_tripreset_switch.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_tripreset_switch.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -433,7 +433,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.COMBINATION_METER;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.combimeter_view, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_combimeter.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_combimeter.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -452,7 +452,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.PARKING_BRAKE;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_parking_brake, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_parking_brake.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_parking_brake.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -471,7 +471,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.START_STOP_IGNITION;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_start_stop_ignition, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_start_stop_ignition.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_start_stop_ignition.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -490,7 +490,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.MIXED_PANEL;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_mixed_panel, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_multi_switch.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_multi_switch.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -509,7 +509,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.AUTO_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_ac_main, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_ac_auto_main.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_ac_auto_main.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -532,7 +532,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.AUTO_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_ac_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_ac_auto_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_ac_auto_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -551,7 +551,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.AUTO_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_ac_middle, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_ac_auto_middle.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_ac_auto_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -570,7 +570,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.AUTO_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_ac_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_ac_auto_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_ac_auto_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -589,7 +589,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.MANUAL_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_ac_manual_middle, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_ac_manual_middle.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_ac_manual_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -608,7 +608,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.MANUAL_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_ac_manual_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_ac_manual_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_ac_manual_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -627,7 +627,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.MANUAL_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_ac_manual_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_ac_manual_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_ac_manual_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -647,7 +647,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.MANUAL_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_ac_manual_main, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_ac_manual_main.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_ac_manual_main.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -670,7 +670,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_radio_with_navi, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_navi_main.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_radio_navi_main.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -693,7 +693,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_radio_wo_navi_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_navi_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_radio_navi_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -712,7 +712,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_radio_wo_navi_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_navi_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_radio_navi_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -731,7 +731,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_radio_wo_navi_middle, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_wo_navi_middle.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_radio_wo_navi_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -750,7 +750,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_radio_w_navi_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_navi_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_radio_navi_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -769,7 +769,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_radio_w_navi_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_navi_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_radio_navi_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -788,7 +788,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.SUNROOF;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_sos, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_sos.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_sos.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -807,7 +807,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                         Values.ar_value = Analytics.ALL_MODE;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrail_rus_all_mode, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_all_mode.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_rus_all_mode.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
