@@ -34,6 +34,9 @@ import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.interfaces.CompleteAssistanceTabContent;
+import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
+import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
@@ -345,6 +348,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                     if (new PreferenceUtil(getActivity()).isCallNissan()) {
                         emptyWebVieLinkwAlert();
                     } else {
+                        postAssistanceData();
                         nissanCallFragment();
                     }
                     return true;
@@ -366,6 +370,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                     if (new PreferenceUtil(getActivity()).isCallNissan()) {
                         emptyWebVieLinkwAlert();
                     } else {
+                        postAssistanceData();
                         nissanCallFragment();
                     }
                     return true;
@@ -425,6 +430,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
             public void onClick(View v) {
                 dialog.dismiss();
                 new PreferenceUtil(getActivity()).setCallNissan(false);
+                postAssistanceData();
                 nissanCallFragment();
             }
         });
@@ -441,6 +447,25 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
             ft.addToBackStack(Values.tabExplore);
             ft.commit();
         }
+    }
+
+    public void postAssistanceData() {
+        int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
+        new ApiCall().postAssistanceTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2", new CompleteAssistanceTabContent() {
+            @Override
+            public void onDownloaded(AssistanceInfo responseInfo) {
+
+                if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
+                    new PreferenceUtil(getActivity()).storeAssistanceData(responseInfo, Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY);
+                    NissanApp.getInstance().setAssistanceInfo(responseInfo);
+                }
+            }
+
+            @Override
+            public void onFailed(String failedReason) {
+
+            }
+        });
     }
 
 
