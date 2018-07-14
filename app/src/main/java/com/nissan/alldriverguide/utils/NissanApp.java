@@ -1527,4 +1527,24 @@ public class NissanApp {
 
     }
 
+    public int getePubType(String ePubName) {
+        if(ePubName.contains("combimeter")) {
+            return 1;
+        } else if(ePubName.contains("homepage")) {
+            return 2;
+        } else if(ePubName.contains("tyre")) {
+            return 3;
+        } else if(ePubName.contains("engine")) {
+            return 4;
+        } else if(ePubName.contains("warranty")) {
+            return 5;
+        } else if(ePubName.contains("button")) {
+            return 6;
+        } else if(ePubName.contains("info")) {
+            return 7;
+        }
+
+        return 0;
+    }
+
 }

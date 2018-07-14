@@ -118,7 +118,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
         }
 
         // here compare with latest four cars
-        if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+        /*if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 //        if(Values.carType == 14) {
             if (list != null && list.size() > 0) {
                 // this snippet actually display qrg list without search tag
@@ -208,21 +208,23 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 
                 }
             }
-        }
+        }*/
 
-        /*if (list != null && list.size() > 0) {
+        if (list != null && list.size() > 0) {
+            // this snippet actually display qrg list without search tag
             int i = 0;
             Iterator<EpubInfo> epubInfo = list.iterator();
             while (epubInfo.hasNext()) {
                 i++;
                 epubInfo.next();
 
-                if(i % 2 == 0) {
+                if (i % 2 == 0) { // here remove the even number like(NKR) from list
                     epubInfo.remove();
                 }
             }
 
-            if(Values.ePubType == Values.HOMEPAGE_TYPE) {
+            // here remove some unusable html or epub index
+            if (Values.ePubType == Values.HOMEPAGE_TYPE) {
                 if (Values.carType == 11) {
                     list = list.subList(0, list.size() - 2);
                 } else if (Values.carType == 12) {
@@ -230,15 +232,13 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
                 } else if (Values.carType == 13) {
                     list = list.subList(0, 33);
                 }
-            } else if(Values.ePubType == Values.WARRANTY_TYPE) {
+            } else if (Values.ePubType == Values.WARRANTY_TYPE) {
                 list.remove(list.size() - 1);
             }
 
             adapter = new ListAdapter(getActivity().getApplicationContext(), list);
             lstView.setAdapter(adapter);
-        } else {
-
-        }*/
+        }
 
     }
 

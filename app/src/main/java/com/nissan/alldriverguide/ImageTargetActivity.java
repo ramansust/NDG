@@ -860,7 +860,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 PreferenceUtil preferenceUtil = new PreferenceUtil(getApplicationContext());
 
                 int ePubIndex = 0;
-                if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+/*                if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 //                if (Values.carType == 14) {
                     ePubIndex = (Integer.parseInt(b.getTag().toString()) * 2) + 1;
                 } else {
@@ -870,6 +870,8 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                         ePubIndex = Integer.parseInt(b.getTag().toString());
                     }
                 }
+*/
+                ePubIndex = (Integer.parseInt(b.getTag().toString()) * 2) + 1;
 
 //                ePubIndex = (Integer.parseInt(b.getTag().toString()) * 2) + 1;
 

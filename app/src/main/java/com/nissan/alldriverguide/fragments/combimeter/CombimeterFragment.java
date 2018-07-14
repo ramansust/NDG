@@ -174,7 +174,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
             default:
                 PreferenceUtil preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
                 int ePubIndex = 0;
-                if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+                /*if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 //                if(Values.carType == 14) {
                     ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
                 } else {
@@ -183,7 +183,9 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
                     } else {
                         ePubIndex = Integer.parseInt(v.getTag().toString());
                     }
-                }
+                }*/
+
+                ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
 
 //                ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
 

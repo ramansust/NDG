@@ -19,7 +19,7 @@ public class Values {
     public static final String qashqai_folder_rus = "/qashqairus";
     public static final String juke_folder = "/juke";
     public static final String xtrail_folder = "/xtrail";
-    public static final String xtrail_folder_rus = "/xtrail_rus";
+    public static final String xtrail_folder_rus = "/xtrailrus";
     public static final String pulsar_folder = "/pulsar";
     public static final String micra_folder = "/micra";
     public static final String note_folder = "/note";

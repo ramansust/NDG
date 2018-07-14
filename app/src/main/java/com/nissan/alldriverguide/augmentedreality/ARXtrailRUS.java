@@ -223,35 +223,35 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                     case R.id.btn_ac_full_left:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_ac_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_ac_auto_left.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_ac_auto_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_ac_full_middle:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_ac_mid, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_ac_auto_middle.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_ac_auto_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_ac_full_right:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_ac_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_ac_auto_right.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_ac_auto_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_without_left:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_navi_left.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_navi_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_without_right:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_navi_right.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_navi_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -259,63 +259,63 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         mActivity.layoutCameraView.removeAllViews();
                         Values.ar_value = Analytics.STEERING_LEFT;
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_steering_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_steering_left.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_steering_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_steering_full_right:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_steering_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_steering_right.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_steering_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_navi_full_left:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_wo_navi_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_wo_navi_left.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_wo_navi_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_navi_full_middle:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_wo_navi_mid, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_wo_navi_middle.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_wo_navi_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_navi_full_right:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_wo_navi_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_wo_navi_right.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_wo_navi_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_manual_full_top:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_manual_top, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_manual_top.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_manual_top.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_manual_full_left:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_manual_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_manual_left.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_manual_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_manual_full_middle:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_manual_middle, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_manual_middle.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_manual_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_manual_full_right:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_manual_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_manual_right.png");
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_rus_radio_manual_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
@@ -367,7 +367,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.AUTO_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_ac_full, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_ac_auto_main.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_ac_auto_main.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         //send google analytics
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
@@ -392,7 +392,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.AUTO_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_ac_mid, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_ac_auto_middle.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_ac_auto_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -412,7 +412,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.AUTO_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_ac_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_ac_auto_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_ac_auto_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -433,7 +433,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.AUTO_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_ac_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_ac_auto_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_ac_auto_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -452,7 +452,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.COMBINATION_METER;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_combi, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_combimeter.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_combimeter.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -471,7 +471,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.SWITCH;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_switch, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_multi_switch.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_multi_switch.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -491,7 +491,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_radio_full, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_navi_main.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_navi_main.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -514,7 +514,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_radio_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_navi_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_navi_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -534,7 +534,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_radio_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_navi_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_navi_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -553,7 +553,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.START_STOP_IGNITION;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_start_stop, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_start_stop_ignition.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_start_stop_ignition.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -573,7 +573,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.STEERING_FULL;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_steering_full, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_steering_main.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_steering_main.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -596,7 +596,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.STEERING_LEFT;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_steering_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_steering_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_steering_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -616,7 +616,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.STEERING_RIGHT;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_steering_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_steering_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_steering_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -636,7 +636,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.SUNROOF;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_sunroof_mid, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_sunroof.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_sunroof.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -656,7 +656,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_radio_wo_navi_full, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_wo_navi_main.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_wo_navi_main.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -680,7 +680,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_radio_wo_navi_mid, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_wo_navi_middle.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_wo_navi_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -700,7 +700,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_radio_wo_navi_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_wo_navi_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_wo_navi_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -720,7 +720,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_radio_manual_full, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_manual_main.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_manual_main.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -745,7 +745,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_radio_manual_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_manual_left.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_manual_left.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -765,7 +765,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_radio_manual_middle, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_manual_middle.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_manual_middle.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -785,7 +785,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_radio_manual_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_manual_right.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_manual_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -807,7 +807,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_radio_manual_top, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_manual_top.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_radio_manual_top.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -826,7 +826,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                         Values.ar_value = Analytics.MANUAL_AC;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.juke_ac_manual, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_ac_manual_main.png");
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_rus_ac_manual_main.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 

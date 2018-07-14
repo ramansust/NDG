@@ -188,6 +188,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
             tabTextViews[i].setText(tabNames[i]); // set the tab name in tab text
         }
 
+/*
         // For new four cars search tab visible else Invisible
         if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
             ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(2).setVisibility(View.VISIBLE);
@@ -196,6 +197,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
             ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(2).setVisibility(View.GONE);
             tabIndicator3.setVisibility(View.GONE);
         }
+*/
 
         NissanApp.getInstance().setGlobalMessageArrayList(null);
         NissanApp.getInstance().setAlertMessageGlobalArrayList(null);

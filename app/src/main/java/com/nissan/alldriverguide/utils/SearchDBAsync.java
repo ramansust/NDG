@@ -82,7 +82,8 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
                     return false; // if listOfEpub ArrayList doesn't have data and contain null value it's return false.
 
                 // This key is used for storing ArrayList in shared preference
-                String sharedPreferenceKey = carType + Values.UNDERSCORE + langType + Values.UNDERSCORE + epubType[i];
+//                String sharedPreferenceKey = carType + Values.UNDERSCORE + langType + Values.UNDERSCORE + epubType[i];
+                String sharedPreferenceKey = carType + Values.UNDERSCORE + langType + Values.UNDERSCORE + NissanApp.getInstance().getePubType(listOfFiles.get(i));
                 // Storing ArrayList in shared preference
                 new PreferenceUtil(activity.getApplicationContext()).storeSearchEpubList(listOfEpub, sharedPreferenceKey);
 
