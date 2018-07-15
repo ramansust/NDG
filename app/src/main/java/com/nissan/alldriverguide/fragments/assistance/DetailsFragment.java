@@ -34,6 +34,9 @@ import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.interfaces.CompleteAssistanceTabContent;
+import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
+import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
@@ -43,6 +46,8 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class DetailsFragment extends Fragment implements View.OnClickListener {
+    private static final String TAG = "DetailsFragment";
+
     private static final String EPUB_INDEX = "epub_index";
 
     private View view;
@@ -293,6 +298,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_back:
+                // action for app back button
                 if (webView.canGoBack()) {
                     webView.goBack();
                 } else {
@@ -334,6 +340,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                     progressBar.setVisibility(View.GONE);
             }
 
+            // this method call form below api level 24
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
@@ -352,7 +359,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                 return false;
             }
 
-
+            // this method call form api level 24
             @TargetApi(Build.VERSION_CODES.N)
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
@@ -378,6 +385,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
         });
 
 
+        // this method working for device back button
         webView.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -433,14 +441,51 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
     }
 
     private void nissanCallFragment() {
-        Fragment frag = CallNissanAssistanceFragment.newInstance(resources.getStringArray(R.array.nissan_assistance_array)[1]);
-        if (frag != null) {
-            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-            ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
-            ft.replace(R.id.container, frag);
-            ft.addToBackStack(Values.tabExplore);
-            ft.commit();
+        String sharedpref_key = Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
+        AssistanceInfo assistanceInfo = new PreferenceUtil(getActivity()).retrieveAssistanceData(sharedpref_key);
+
+        if (assistanceInfo != null && assistanceInfo.getData() != null && assistanceInfo.getData().size() > 0) {
+            NissanApp.getInstance().setAssistanceInfo(assistanceInfo);
+
+            Fragment frag = CallNissanAssistanceFragment.newInstance(resources.getStringArray(R.array.nissan_assistance_array)[1]);
+            if (frag != null) {
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
+                ft.replace(R.id.container, frag);
+                ft.addToBackStack(Values.tabExplore);
+                ft.commit();
+            }
+        } else {
+            postAssistanceData();
         }
+    }
+
+    public void postAssistanceData() {
+        int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
+        new ApiCall().postAssistanceTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2", new CompleteAssistanceTabContent() {
+            @Override
+            public void onDownloaded(AssistanceInfo responseInfo) {
+
+                if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
+                    new PreferenceUtil(getActivity()).storeAssistanceData(responseInfo, Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY);
+                    NissanApp.getInstance().setAssistanceInfo(responseInfo);
+
+                    Fragment frag = CallNissanAssistanceFragment.newInstance(resources.getStringArray(R.array.nissan_assistance_array)[1]);
+                    if (frag != null) {
+                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                        ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
+                        ft.replace(R.id.container, frag);
+                        ft.addToBackStack(Values.tabExplore);
+                        ft.commit();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailed(String failedReason) {
+
+            }
+        });
     }
 
 
