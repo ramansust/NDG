@@ -39,7 +39,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:text="TEXT PAGE"
+            android:text="@string/assistance"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/white"
