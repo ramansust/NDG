@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -277,9 +276,10 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         Logger.error("url" ,"___________" + url);
 
         if (url.isEmpty())
-            NissanApp.getInstance().setCarImageAssistance(index, imageView);
+            imageView.setBackgroundResource(R.drawable.car_download_place_holder);
+//            NissanApp.getInstance().setCarImageAssistance(index, imageView);
         else
-        imageView.setImageURI(url);
+            imageView.setImageURI(url);
 
 //        NissanApp.getInstance().setCarImageAssistance(index, imageView);
     }

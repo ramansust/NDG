@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,11 +41,12 @@ import java.util.List;
 import java.util.Locale;
 
 public class CallNissanAssistanceFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
+    private static final String TAG = "CallNissanAssistanceFra";
 
     private String[] countryNameFR = {"l' Allemagne", "l' Autriche", "la Belgique", "le Danemark", "l' Espagne", "l' Estonie", "la Finlande", "la France", "la Grèce", "la Hongrie", "l' Italie", "la Lettonie", "la Lituanie", "la Norvège", "les Pays-Bas", "la Pologne", "le Portugal", "la République Tchèque", "le Royaume-Uni", "la Slovaquie", "la Suède", "la Suisse"};
     private String[] countryName;
     private String[] countrFlag;
-    private int[] flag = {R.drawable.austria, R.drawable.belgium, R.drawable.czech_republic/*, R.drawable.denmark, R.drawable.estonia, R.drawable.finland, R.drawable.france, R.drawable.germany, R.drawable.greece, R.drawable.hungary, R.drawable.italy, R.drawable.latvia, R.drawable.lithuania, R.drawable.netherlands, R.drawable.norway, R.drawable.poland, R.drawable.portugal, R.drawable.slovakia, R.drawable.spain, R.drawable.sweden, R.drawable.switzerland, R.drawable.united_kingdom*/};
+//    private int[] flag = {R.drawable.austria, R.drawable.belgium, R.drawable.czech_republic/*, R.drawable.denmark, R.drawable.estonia, R.drawable.finland, R.drawable.france, R.drawable.germany, R.drawable.greece, R.drawable.hungary, R.drawable.italy, R.drawable.latvia, R.drawable.lithuania, R.drawable.netherlands, R.drawable.norway, R.drawable.poland, R.drawable.portugal, R.drawable.slovakia, R.drawable.spain, R.drawable.sweden, R.drawable.switzerland, R.drawable.united_kingdom*/};
     //    private String[] nationalNumber = {"0800215380", "0080050001001", "800232323"/*, "", "8006666", "", "0805112233", "08005894987", "2103428600", "0680333888", "800105800", "80003211", "880030725", "08000231513", "", "0801647726", "800200000", "0800112020", "900118119", "", "0800860900", "03301231231"*/};
     private String[] nationalNumber;
     private String[] internationalNumber;
@@ -129,7 +131,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
 
                         if (childNodes.get(j).getIndex() == 2) {
                             headerTitle = childNodes.get(j).getHeaderTitle();
-
+                            Log.e(TAG, "callNissanAssistance: " + headerTitle );
                             if (childNodes.get(j) == null || childNodes.get(j).getCountryList() == null)
                                 return;
 

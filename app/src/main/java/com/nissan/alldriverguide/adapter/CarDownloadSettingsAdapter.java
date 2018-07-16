@@ -7,7 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -53,7 +52,6 @@ import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
-import com.nissan.alldriverguide.utils.DialogErrorFragment;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.SearchDBAsync;
@@ -203,10 +201,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         }
 
         if ("2".equalsIgnoreCase(list.get(position).getStatus())) {
-            if (list.get(position).getCarImg() == null || list.get(position).getCarImg().isEmpty())
-                NissanApp.getInstance().setPreviousCarImage(list.get(position).getId(), viewHolder.imageView);
-            else
-                viewHolder.imageView.setImageURI(list.get(position).getCarImg());
+            viewHolder.imageView.setImageURI(list.get(position).getCarImg());
 
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
             if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5) {
@@ -218,18 +213,12 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 viewHolder.txtViewTitle.setText(list.get(position).getName());
             }
         } else if ("1".equalsIgnoreCase(list.get(position).getStatus())) {
-            if (list.get(position).getCarImg() == null || list.get(position).getCarImg().isEmpty())
-                NissanApp.getInstance().setCarImage(list.get(position).getId(), viewHolder.imageView);
-            else
-                viewHolder.imageView.setImageURI(list.get(position).getCarImg());
+            viewHolder.imageView.setImageURI(list.get(position).getCarImg());
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
 //            viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
             viewHolder.txtViewTitle.setText(list.get(position).getName());
         } else if ("0".equalsIgnoreCase(list.get(position).getStatus())) {
-            if (list.get(position).getCarImg() == null || list.get(position).getCarImg().isEmpty())
-                NissanApp.getInstance().setCarImage(list.get(position).getId(), viewHolder.imageView);
-            else
-                viewHolder.imageView.setImageURI(list.get(position).getCarImg());
+            viewHolder.imageView.setImageURI(list.get(position).getCarImg());
 
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
             if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5) {

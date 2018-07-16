@@ -72,45 +72,45 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private static final String TAG = "ExploreFragment";
     // declare video thumb in an array
-    private int[] qashqai_eur_thumbnil_array_en = {R.drawable.qashqai_eur_en_video_01, R.drawable.qashqai_eur_en_video_02};
-    private int[] qashqai_eur_thumbnil_array_fr = {R.drawable.qashqai_eur_fr_video_01, R.drawable.qashqai_eur_fr_video_02};
-    private int[] qashqai_eur_thumbnil_array_it = {R.drawable.qashqai_eur_it_video_01, R.drawable.qashqai_eur_it_video_02};
-
-    private int[] juke_thumbnil_array_en = {R.drawable.juke_en_video_01, R.drawable.juke_en_video_02};
-    private int[] juke_thumbnil_array_de = {R.drawable.juke_de_video_01, R.drawable.juke_de_video_02};
-    private int[] juke_thumbnil_array_fr = {R.drawable.juke_fr_video_01, R.drawable.juke_fr_video_02};
-    private int[] juke_thumbnil_array_it = {R.drawable.juke_it_video_01, R.drawable.juke_it_video_02};
-
-    private int[] xtrail_eur_thumbnil_array_en = {R.drawable.xtrail_eur_en_video_01, R.drawable.xtrail_eur_en_video_02};
-    private int[] xtrail_eur_thumbnil_array_fr = {R.drawable.xtrail_eur_fr_video_01, R.drawable.xtrail_eur_fr_video_02};
-    private int[] xtrail_eur_thumbnil_array_it = {R.drawable.xtrail_eur_it_video_01, R.drawable.xtrail_eur_it_video_02};
-
-    private int[] navara_thumbnil_array_en = {R.drawable.navara_en_video_01, R.drawable.navara_en_video_02};
-    private int[] navara_thumbnil_array_de = {R.drawable.navara_de_video_01, R.drawable.navara_de_video_02};
-    private int[] navara_thumbnil_array_it = {R.drawable.navara_it_video_01, R.drawable.navara_it_video_02};
-
-    private int[] micrak14_thumbnil_array_en = {R.drawable.micrak14_en_video_01, R.drawable.micrak14_en_video_02, R.drawable.micrak14_en_video_03, R.drawable.micrak14_en_video_04};
-    private int[] micrak14_thumbnil_array_de = {R.drawable.micrak14_de_video_01, R.drawable.micrak14_de_video_02, R.drawable.micrak14_de_video_03, R.drawable.micrak14_de_video_04};
-    private int[] micrak14_thumbnil_array_nl = {R.drawable.micrak14_nl_video_01, R.drawable.micrak14_nl_video_02, R.drawable.micrak14_nl_video_03, R.drawable.micrak14_nl_video_04};
-    private int[] micrak14_thumbnil_array_es = {R.drawable.micrak14_es_video_01, R.drawable.micrak14_es_video_02, R.drawable.micrak14_es_video_03, R.drawable.micrak14_es_video_04};
-    private int[] micrak14_thumbnil_array_fr = {R.drawable.micrak14_fr_video_01, R.drawable.micrak14_fr_video_02, R.drawable.micrak14_fr_video_03, R.drawable.micrak14_fr_video_04};
-    private int[] micrak14_thumbnil_array_it = {R.drawable.micrak14_it_video_01, R.drawable.micrak14_it_video_02, R.drawable.micrak14_it_video_03, R.drawable.micrak14_it_video_04};
-
-    private int[] qashqai_2017_thumbnil_array_en = {R.drawable.qashqai_2017_en_video_01, R.drawable.qashqai_2017_en_video_02, R.drawable.qashqai_2017_en_video_03, R.drawable.qashqai_2017_en_video_04, R.drawable.qashqai_2017_en_video_05, R.drawable.qashqai_2017_en_video_06};
-    private int[] qashqai_2017_thumbnil_array_de = {R.drawable.qashqai_2017_de_video_01, R.drawable.qashqai_2017_de_video_02, R.drawable.qashqai_2017_de_video_03, R.drawable.qashqai_2017_de_video_04, R.drawable.qashqai_2017_de_video_05, R.drawable.qashqai_2017_de_video_06};
-    private int[] qashqai_2017_thumbnil_array_es = {R.drawable.qashqai_2017_es_video_01, R.drawable.qashqai_2017_es_video_02, R.drawable.qashqai_2017_es_video_03, R.drawable.qashqai_2017_es_video_04, R.drawable.qashqai_2017_es_video_05, R.drawable.qashqai_2017_es_video_06};
-    private int[] qashqai_2017_thumbnil_array_fr = {R.drawable.qashqai_2017_fr_video_01, R.drawable.qashqai_2017_fr_video_02, R.drawable.qashqai_2017_fr_video_03, R.drawable.qashqai_2017_fr_video_04, R.drawable.qashqai_2017_fr_video_05, R.drawable.qashqai_2017_fr_video_06};
-    private int[] qashqai_2017_thumbnil_array_nl = {R.drawable.qashqai_2017_nl_video_01, R.drawable.qashqai_2017_nl_video_02, R.drawable.qashqai_2017_nl_video_03, R.drawable.qashqai_2017_nl_video_04, R.drawable.qashqai_2017_nl_video_05, R.drawable.qashqai_2017_nl_video_06};
-    private int[] qashqai_2017_thumbnil_array_sv = {R.drawable.qashqai_2017_sv_video_01, R.drawable.qashqai_2017_sv_video_02, R.drawable.qashqai_2017_sv_video_03, R.drawable.qashqai_2017_sv_video_04, R.drawable.qashqai_2017_sv_video_05, R.drawable.qashqai_2017_sv_video_06};
-
-    private int[] xtrail_2017_thumbnil_array_en = {R.drawable.xtrial_2017_en_video_01, R.drawable.xtrial_2017_en_video_02, R.drawable.xtrial_2017_en_video_03, R.drawable.xtrial_2017_en_video_04, R.drawable.xtrial_2017_en_video_05, R.drawable.xtrial_2017_en_video_06};
-
-    private int[] leaf_2017_thumbnil_array_en = {R.drawable.leaf2017_en_video_01, R.drawable.leaf2017_en_video_02, R.drawable.leaf2017_en_video_03};
-    private int[] leaf_2017_thumbnil_array_nl = {R.drawable.leaf2017_nl_video_01, R.drawable.leaf2017_nl_video_02, R.drawable.leaf2017_nl_video_03};
-    private int[] leaf_2017_thumbnil_array_de = {R.drawable.leaf2017_de_video_01, R.drawable.leaf2017_de_video_02, R.drawable.leaf2017_de_video_03};
-    private int[] leaf_2017_thumbnil_array_it = {R.drawable.leaf2017_it_video_01, R.drawable.leaf2017_it_video_02, R.drawable.leaf2017_it_video_03};
-    private int[] leaf_2017_thumbnil_array_no = {R.drawable.leaf2017_no_video_01, R.drawable.leaf2017_no_video_02, R.drawable.leaf2017_no_video_03};
-    private int[] leaf_2017_thumbnil_array_es = {R.drawable.leaf2017_es_video_01, R.drawable.leaf2017_es_video_02, R.drawable.leaf2017_es_video_03};
+//    private int[] qashqai_eur_thumbnil_array_en = {R.drawable.qashqai_eur_en_video_01, R.drawable.qashqai_eur_en_video_02};
+//    private int[] qashqai_eur_thumbnil_array_fr = {R.drawable.qashqai_eur_fr_video_01, R.drawable.qashqai_eur_fr_video_02};
+//    private int[] qashqai_eur_thumbnil_array_it = {R.drawable.qashqai_eur_it_video_01, R.drawable.qashqai_eur_it_video_02};
+//
+//    private int[] juke_thumbnil_array_en = {R.drawable.juke_en_video_01, R.drawable.juke_en_video_02};
+//    private int[] juke_thumbnil_array_de = {R.drawable.juke_de_video_01, R.drawable.juke_de_video_02};
+//    private int[] juke_thumbnil_array_fr = {R.drawable.juke_fr_video_01, R.drawable.juke_fr_video_02};
+//    private int[] juke_thumbnil_array_it = {R.drawable.juke_it_video_01, R.drawable.juke_it_video_02};
+//
+//    private int[] xtrail_eur_thumbnil_array_en = {R.drawable.xtrail_eur_en_video_01, R.drawable.xtrail_eur_en_video_02};
+//    private int[] xtrail_eur_thumbnil_array_fr = {R.drawable.xtrail_eur_fr_video_01, R.drawable.xtrail_eur_fr_video_02};
+//    private int[] xtrail_eur_thumbnil_array_it = {R.drawable.xtrail_eur_it_video_01, R.drawable.xtrail_eur_it_video_02};
+//
+//    private int[] navara_thumbnil_array_en = {R.drawable.navara_en_video_01, R.drawable.navara_en_video_02};
+//    private int[] navara_thumbnil_array_de = {R.drawable.navara_de_video_01, R.drawable.navara_de_video_02};
+//    private int[] navara_thumbnil_array_it = {R.drawable.navara_it_video_01, R.drawable.navara_it_video_02};
+//
+//    private int[] micrak14_thumbnil_array_en = {R.drawable.micrak14_en_video_01, R.drawable.micrak14_en_video_02, R.drawable.micrak14_en_video_03, R.drawable.micrak14_en_video_04};
+//    private int[] micrak14_thumbnil_array_de = {R.drawable.micrak14_de_video_01, R.drawable.micrak14_de_video_02, R.drawable.micrak14_de_video_03, R.drawable.micrak14_de_video_04};
+//    private int[] micrak14_thumbnil_array_nl = {R.drawable.micrak14_nl_video_01, R.drawable.micrak14_nl_video_02, R.drawable.micrak14_nl_video_03, R.drawable.micrak14_nl_video_04};
+//    private int[] micrak14_thumbnil_array_es = {R.drawable.micrak14_es_video_01, R.drawable.micrak14_es_video_02, R.drawable.micrak14_es_video_03, R.drawable.micrak14_es_video_04};
+//    private int[] micrak14_thumbnil_array_fr = {R.drawable.micrak14_fr_video_01, R.drawable.micrak14_fr_video_02, R.drawable.micrak14_fr_video_03, R.drawable.micrak14_fr_video_04};
+//    private int[] micrak14_thumbnil_array_it = {R.drawable.micrak14_it_video_01, R.drawable.micrak14_it_video_02, R.drawable.micrak14_it_video_03, R.drawable.micrak14_it_video_04};
+//
+//    private int[] qashqai_2017_thumbnil_array_en = {R.drawable.qashqai_2017_en_video_01, R.drawable.qashqai_2017_en_video_02, R.drawable.qashqai_2017_en_video_03, R.drawable.qashqai_2017_en_video_04, R.drawable.qashqai_2017_en_video_05, R.drawable.qashqai_2017_en_video_06};
+//    private int[] qashqai_2017_thumbnil_array_de = {R.drawable.qashqai_2017_de_video_01, R.drawable.qashqai_2017_de_video_02, R.drawable.qashqai_2017_de_video_03, R.drawable.qashqai_2017_de_video_04, R.drawable.qashqai_2017_de_video_05, R.drawable.qashqai_2017_de_video_06};
+//    private int[] qashqai_2017_thumbnil_array_es = {R.drawable.qashqai_2017_es_video_01, R.drawable.qashqai_2017_es_video_02, R.drawable.qashqai_2017_es_video_03, R.drawable.qashqai_2017_es_video_04, R.drawable.qashqai_2017_es_video_05, R.drawable.qashqai_2017_es_video_06};
+//    private int[] qashqai_2017_thumbnil_array_fr = {R.drawable.qashqai_2017_fr_video_01, R.drawable.qashqai_2017_fr_video_02, R.drawable.qashqai_2017_fr_video_03, R.drawable.qashqai_2017_fr_video_04, R.drawable.qashqai_2017_fr_video_05, R.drawable.qashqai_2017_fr_video_06};
+//    private int[] qashqai_2017_thumbnil_array_nl = {R.drawable.qashqai_2017_nl_video_01, R.drawable.qashqai_2017_nl_video_02, R.drawable.qashqai_2017_nl_video_03, R.drawable.qashqai_2017_nl_video_04, R.drawable.qashqai_2017_nl_video_05, R.drawable.qashqai_2017_nl_video_06};
+//    private int[] qashqai_2017_thumbnil_array_sv = {R.drawable.qashqai_2017_sv_video_01, R.drawable.qashqai_2017_sv_video_02, R.drawable.qashqai_2017_sv_video_03, R.drawable.qashqai_2017_sv_video_04, R.drawable.qashqai_2017_sv_video_05, R.drawable.qashqai_2017_sv_video_06};
+//
+//    private int[] xtrail_2017_thumbnil_array_en = {R.drawable.xtrial_2017_en_video_01, R.drawable.xtrial_2017_en_video_02, R.drawable.xtrial_2017_en_video_03, R.drawable.xtrial_2017_en_video_04, R.drawable.xtrial_2017_en_video_05, R.drawable.xtrial_2017_en_video_06};
+//
+//    private int[] leaf_2017_thumbnil_array_en = {R.drawable.leaf2017_en_video_01, R.drawable.leaf2017_en_video_02, R.drawable.leaf2017_en_video_03};
+//    private int[] leaf_2017_thumbnil_array_nl = {R.drawable.leaf2017_nl_video_01, R.drawable.leaf2017_nl_video_02, R.drawable.leaf2017_nl_video_03};
+//    private int[] leaf_2017_thumbnil_array_de = {R.drawable.leaf2017_de_video_01, R.drawable.leaf2017_de_video_02, R.drawable.leaf2017_de_video_03};
+//    private int[] leaf_2017_thumbnil_array_it = {R.drawable.leaf2017_it_video_01, R.drawable.leaf2017_it_video_02, R.drawable.leaf2017_it_video_03};
+//    private int[] leaf_2017_thumbnil_array_no = {R.drawable.leaf2017_no_video_01, R.drawable.leaf2017_no_video_02, R.drawable.leaf2017_no_video_03};
+//    private int[] leaf_2017_thumbnil_array_es = {R.drawable.leaf2017_es_video_01, R.drawable.leaf2017_es_video_02, R.drawable.leaf2017_es_video_03};
 
     private Button btnAR;
     private RelativeLayout btnBlindSpotAR;
@@ -628,10 +628,10 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     }
 
-    /**
+/*    *//**
      * @param lang for comparing language sort name
      * @return int array for specific language
-     */
+     *//*
     private int[] getThumbnilArray(String lang) {
         int[] array = new int[4];
         if (Values.carType == 1) {
@@ -745,7 +745,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         }
         return array;
-    }
+    }*/
 
     private void mapTextImage(String lang) {
         if (Values.carType == 11) {

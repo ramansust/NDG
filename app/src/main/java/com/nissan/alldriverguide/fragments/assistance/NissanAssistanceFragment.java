@@ -135,7 +135,8 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
 
     // set image background for assistance
     private void setCarBackground(int index) {
-        NissanApp.getInstance().setCarImageAssistance(index, imageView);
+        imageView.setBackgroundResource(R.drawable.car_download_place_holder);
+//        NissanApp.getInstance().setCarImageAssistance(index, imageView);
     }
 
     private void initViews(View view) {

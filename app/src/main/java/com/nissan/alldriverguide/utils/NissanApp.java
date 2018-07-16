@@ -22,7 +22,6 @@ import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.epub.XMLParser;
 import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.BuildConfig;
-import com.nissan.alldriverguide.MyApplication;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
@@ -1000,11 +999,11 @@ public class NissanApp {
         return DateFormat.getDateTimeInstance().format(new Date());
     }
 
-    /**
+/*    *//**
      *
      * @param position indicate the car id
      * @param imageView set image by car id which display in list
-     */
+     *//*
     public void setCarImage(int position, ImageView imageView) {
         switch (position) {
             case 1:
@@ -1060,9 +1059,9 @@ public class NissanApp {
             default:
                 break;
         }
-    }
+    }*/
 
-    public void setPreviousCarImage(int position, ImageView imageView) {
+/*    public void setPreviousCarImage(int position, ImageView imageView) {
         switch (position) {
             case 1:
             case 2:
@@ -1085,9 +1084,9 @@ public class NissanApp {
             default:
                 break;
         }
-    }
+    }*/
 
-    public void setCarImageAssistance(int position, ImageView imageView) {
+/*    public void setCarImageAssistance(int position, ImageView imageView) {
         switch (position) {
             case 1:
             case 2:
@@ -1142,7 +1141,7 @@ public class NissanApp {
             default:
                 break;
         }
-    }
+    }*/
 
     public String getVersionName() {
         return BuildConfig.VERSION_NAME;
