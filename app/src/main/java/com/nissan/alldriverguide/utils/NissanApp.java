@@ -34,6 +34,7 @@ import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.CarList;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 import com.nissan.alldriverguide.multiLang.model.GlobalMessage;
+import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
 import com.nissan.alldriverguide.multiLang.model.Tutorial;
 
@@ -70,6 +71,16 @@ public class NissanApp {
     private ArrayList<Tutorial> tutorialArrayList;
     private List<AlertMessage> alertMessageGlobalArrayList, alertMessageCarWiseLangDownloadList;
     private List<GlobalMessage> globalMessageArrayList;
+    private List<LanguageList> carWiseLanguageList;
+
+    public List<LanguageList> getCarWiseLanguageList() {
+        return carWiseLanguageList;
+    }
+
+    public void setCarWiseLanguageList(List<LanguageList> carWiseLanguageList) {
+        this.carWiseLanguageList = carWiseLanguageList;
+    }
+
     public List<AlertMessage> getAlertMessageCarWiseLangDownloadList() {
         return alertMessageCarWiseLangDownloadList;
     }
@@ -224,32 +235,43 @@ public class NissanApp {
     public String getLanguageName(String language_name) {
         String cn = "";
 
-        if (language_name.equalsIgnoreCase("en")) {
-            cn = "English";
-        } else if (language_name.equalsIgnoreCase("de")) {
-            cn = "Deutsch";
-        } else if (language_name.equalsIgnoreCase("fr")) {
-            cn = "Français";
-        } else if (language_name.equalsIgnoreCase("it")) {
-            cn = "Italiano";
-        } else if (language_name.equalsIgnoreCase("es")) {
-            cn = "Español";
-        } else if (language_name.equalsIgnoreCase("nl")) {
-            cn = "Nederlands";
-        } else if (language_name.equalsIgnoreCase("ru")) {
-            cn = "Русский";
-        } else if (language_name.equalsIgnoreCase("sv")) {
-            cn = "Svenska";
-        } else if (language_name.equalsIgnoreCase("no")) {
-            cn = "Norsk";
-        } else if (language_name.equalsIgnoreCase("pl")) {
-            cn = "Polski";
-        } else if (language_name.equalsIgnoreCase("fi")) {
-            cn = "Suomi";
-        } else if (language_name.equalsIgnoreCase("pt")) {
-            cn = "Português";
+
+        if (carWiseLanguageList == null || carWiseLanguageList.size() == 0) {
+
+            if (language_name.equalsIgnoreCase("en")) {
+                cn = "English";
+            } else if (language_name.equalsIgnoreCase("de")) {
+                cn = "Deutsch";
+            } else if (language_name.equalsIgnoreCase("fr")) {
+                cn = "Français";
+            } else if (language_name.equalsIgnoreCase("it")) {
+                cn = "Italiano";
+            } else if (language_name.equalsIgnoreCase("es")) {
+                cn = "Español";
+            } else if (language_name.equalsIgnoreCase("nl")) {
+                cn = "Nederlands";
+            } else if (language_name.equalsIgnoreCase("ru")) {
+                cn = "Русский";
+            } else if (language_name.equalsIgnoreCase("sv")) {
+                cn = "Svenska";
+            } else if (language_name.equalsIgnoreCase("no")) {
+                cn = "Norsk";
+            } else if (language_name.equalsIgnoreCase("pl")) {
+                cn = "Polski";
+            } else if (language_name.equalsIgnoreCase("fi")) {
+                cn = "Suomi";
+            } else if (language_name.equalsIgnoreCase("pt")) {
+                cn = "Português";
+            } else if (language_name.equalsIgnoreCase("DA")) {
+                cn = "Dansk";
+            } else {
+                cn = "English";
+            }
         } else {
-            cn = "English";
+            for (LanguageList langModel : carWiseLanguageList) {
+                if (langModel.getLanguageShortcode().equalsIgnoreCase(language_name))
+                    cn = langModel.getLanguageName();
+            }
         }
 
         return cn;
@@ -959,7 +981,6 @@ public class NissanApp {
     public Configuration changeLocalLanguage(Activity activity, String lang) {
 
         conf = activity.getResources().getConfiguration();
-
         if (!lang.equals("")) {
 
             if (lang.contentEquals("en")) {
@@ -990,6 +1011,7 @@ public class NissanApp {
                 conf.locale = new Locale(lang);
             }
         }
+//        conf.locale = new Locale(lang);
         return conf;
     }
 
@@ -1279,36 +1301,48 @@ public class NissanApp {
     }
 
     public int getLanguageID(String language_name) {
-        int langID;
+        int langID = 0;
 
-        if (language_name.equalsIgnoreCase("en")) {
-            langID = 1;
-        } else if (language_name.equalsIgnoreCase("de")) {
-            langID = 2;
-        } else if (language_name.equalsIgnoreCase("fr")) {
-            langID = 3;
-        } else if (language_name.equalsIgnoreCase("it")) {
-            langID = 4;
-        } else if (language_name.equalsIgnoreCase("es")) {
-            langID = 5;
-        } else if (language_name.equalsIgnoreCase("nl")) {
-            langID = 6;
-        } else if (language_name.equalsIgnoreCase("ru")) {
-            langID = 7;
-        } else if (language_name.equalsIgnoreCase("sv")) {
-            langID = 8;
-        } else if (language_name.equalsIgnoreCase("no")) {
-            langID = 9;
-        } else if (language_name.equalsIgnoreCase("pl")) {
-            langID = 10;
-        } else if (language_name.equalsIgnoreCase("fi")) {
-            langID = 11;
-        } else if (language_name.equalsIgnoreCase("pt")) {
-            langID = 12;
+        if (carWiseLanguageList == null || carWiseLanguageList.size() == 0) {
+
+            if (language_name.equalsIgnoreCase("en")) {
+                langID = 1;
+            } else if (language_name.equalsIgnoreCase("de")) {
+                langID = 2;
+            } else if (language_name.equalsIgnoreCase("fr")) {
+                langID = 3;
+            } else if (language_name.equalsIgnoreCase("it")) {
+                langID = 4;
+            } else if (language_name.equalsIgnoreCase("es")) {
+                langID = 5;
+            } else if (language_name.equalsIgnoreCase("nl")) {
+                langID = 6;
+            } else if (language_name.equalsIgnoreCase("ru")) {
+                langID = 7;
+            } else if (language_name.equalsIgnoreCase("sv")) {
+                langID = 8;
+            } else if (language_name.equalsIgnoreCase("no")) {
+                langID = 9;
+            } else if (language_name.equalsIgnoreCase("pl")) {
+                langID = 10;
+            } else if (language_name.equalsIgnoreCase("fi")) {
+                langID = 11;
+            } else if (language_name.equalsIgnoreCase("pt")) {
+                langID = 12;
+            } else if (language_name.equalsIgnoreCase("DA")) {
+                langID = 21;
+            } else {
+                langID = 1;
+            }
+
         } else {
-            langID = 1;
-        }
 
+            for (LanguageList languageModel : carWiseLanguageList) {
+                if (languageModel.getLanguageShortcode().equalsIgnoreCase(language_name)) {
+                    langID = languageModel.getLanguageId();
+                }
+            }
+        }
         return langID;
     }
 

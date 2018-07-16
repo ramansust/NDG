@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -158,6 +159,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
         if (languageLists != null && languageLists.size() > 0) {
             tvNoContent.setVisibility(View.GONE);
+            NissanApp.getInstance().setCarWiseLanguageList(languageLists);
             new PreferenceUtil(MyApplication.getAppContext()).storeMultiLangData(languageLists, Values.carType + "_" + Values.CAR_LANGUAGE_LIST);
             _languageLists = languageLists;
             list = new ArrayList<>();
@@ -323,7 +325,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         selectedLangModel = getDataFromMainList(languageName[info.getId()]);
         preferenceUtil.setSelectedLang(selectedLangModel.getLanguageShortcode());
 
-        preferenceUtil.setSelectedLang(languageShortName[info.getId()]); // here save the selected language sort name into preference
+//        preferenceUtil.setSelectedLang(languageShortName[info.getId()]); // here save the selected language sort name into preference
 
         if (NissanApp.getInstance().createPath(Values.PATH)) {
             if (DetectConnection.checkInternetConnection(getApplicationContext())) {
@@ -618,6 +620,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                Logger.error("lang_id", "__________" + selectedLangModel.getLanguageId());
                 carListContentController.callApi(NissanApp.getInstance().getDeviceID(activity), selectedLangModel.getLanguageId()+"");
                 controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(activity)/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, selectedLangModel.getLanguageId()+"");
                 startCarDownloadProcedure();
