@@ -82,6 +82,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private String sharedpref_key;
     private AssistanceTabContentController controller;
 
+    String url;
+
     public static Fragment newInstance() {
         Fragment frag = new AssistanceFragment();
         return frag;
@@ -271,7 +273,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     // here set assistance car background according to car type
     private void setCarBackground(int index) {
 
-        String url = getURLAccordingToDensity(NissanApp.getInstance().getDensityName(getActivity()));
+        url = getURLAccordingToDensity(NissanApp.getInstance().getDensityName(getActivity()));
 
         Logger.error("url" ,"___________" + url);
 
@@ -593,7 +595,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
             case 5:
 //                frag = NissanAssistanceFragment.newInstance(resources.getStringArray(R.array.assistance_array)[position]);
-                frag = NissanAssistanceFragment.newInstance(pageTitle);
+                frag = NissanAssistanceFragment.newInstance(pageTitle, url);
                 break;
 
             default:
