@@ -42,6 +42,7 @@ import com.nissan.alldriverguide.fragments.search.SearchFragment;
 import com.nissan.alldriverguide.fragments.search.tab.BaseTabFragmentActivity;
 import com.nissan.alldriverguide.fragments.settings.Feedback;
 import com.nissan.alldriverguide.fragments.settings.SettingsFragment;
+import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.NissanApp;
@@ -49,6 +50,7 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -198,7 +200,11 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
             tabIndicator3.setVisibility(View.GONE);
         }
 */
+        Type type = new TypeToken<ArrayList<LanguageList>>() {
+        }.getType();
+        List<LanguageList> carWiseLangList = new Gson().fromJson(preferenceUtil.retrieveMultiLangData(Values.carType + "_" + Values.CAR_LANGUAGE_LIST), type);
 
+        NissanApp.getInstance().setCarWiseLanguageList(carWiseLangList);
         NissanApp.getInstance().setGlobalMessageArrayList(null);
         NissanApp.getInstance().setAlertMessageGlobalArrayList(null);
     }
