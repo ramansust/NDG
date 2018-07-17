@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,7 +102,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
         txtViewTitle.setText(getArguments().getString(TITLE));
 //        txtViewTitle.setTypeface(tf);
-        txtHeaderTitle.setText(headerTitle.isEmpty() ? resources.getString(R.string.registered_country_name) : headerTitle);
+        txtHeaderTitle.setText(headerTitle == null || headerTitle.isEmpty() ? resources.getString(R.string.registered_country_name) : headerTitle);
     }
 
     public void callNissanAssistance() {
@@ -131,7 +130,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
 
                         if (childNodes.get(j).getIndex() == 2) {
                             headerTitle = childNodes.get(j).getHeaderTitle();
-                            Log.e(TAG, "callNissanAssistance: " + headerTitle );
+
                             if (childNodes.get(j) == null || childNodes.get(j).getCountryList() == null)
                                 return;
 
@@ -270,7 +269,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         });
 
         TextView txtInternational = (TextView) dialog.findViewById(R.id.txt_view_international);
-        txtInternational.setText(internationalText.isEmpty() ? "" : internationalText);
+        txtInternational.setText(internationalText == null || internationalText.isEmpty() ? "" : internationalText);
 
         TextView txtViewInternational = (TextView) dialog.findViewById(R.id.txt_view_international_number);
         txtViewInternational.setText(" " + list.get(position).getInternationalNumber());

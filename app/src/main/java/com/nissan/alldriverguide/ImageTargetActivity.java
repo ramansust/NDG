@@ -315,7 +315,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         super.onPause();
 
         if (mGlView != null) {
-            mGlView.setVisibility(View.INVISIBLE);
+//            mGlView.setVisibility(View.INVISIBLE); // This line for AR Black Screen
             mGlView.onPause();
         }
 
