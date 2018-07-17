@@ -178,5 +178,7 @@ public class Values {
     public static final String  CAR_SELECTION_TITLE = "add_extra_car";
     public static final String  NO_CONTENT_FOUND = "no_content_found_url";
 
+    public static final String  RECENT_SEARCH_ALERT = "recent_searches";
+
     public static final long DEFAULT_CLICK_TIMEOUT = 1000;
 }

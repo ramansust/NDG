@@ -1466,6 +1466,8 @@ public class NissanApp {
                 return alertMessageArrayList.get(i).getMsg();
             if (msg_type.equalsIgnoreCase(Values.NO_CONTENT_FOUND) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.NO_CONTENT_FOUND))
                 return alertMessageArrayList.get(i).getMsg();
+            if (msg_type.equalsIgnoreCase(Values.RECENT_SEARCH_ALERT) && alertMessageArrayList.get(i).getType().equalsIgnoreCase(Values.RECENT_SEARCH_ALERT))
+                return alertMessageArrayList.get(i).getMsg();
 
 
         }
@@ -1499,6 +1501,12 @@ public class NissanApp {
             return globalMessageList.get(0).getCancel();
         if (msg_type.equalsIgnoreCase(Values.NEXT))
             return globalMessageList.get(0).getNext();
+        if (msg_type.equalsIgnoreCase(Values.YES))
+            return globalMessageList.get(0).getYes();
+        if (msg_type.equalsIgnoreCase(Values.NO))
+            return globalMessageList.get(0).getNo();
+
+
 
         return "";
     }

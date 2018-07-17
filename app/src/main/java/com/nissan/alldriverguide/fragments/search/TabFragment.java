@@ -97,6 +97,7 @@ public class TabFragment extends Fragment {
         fragmentView = inflater.inflate(R.layout.fragment_search_tab, container, false);
 
         initializeView(fragmentView);
+        populateDataIntoView();
         dataPassing.onDataPass(keyword);
         addAllTabsInTabLayout();
         setListener();
@@ -104,6 +105,12 @@ public class TabFragment extends Fragment {
         setKeywordIfAvailable();
 
         return fragmentView;
+    }
+
+    private void populateDataIntoView() {
+
+        String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.CANCEL);
+        cancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
     }
 
     private void setKeywordIfAvailable() {
