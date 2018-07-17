@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -82,6 +81,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     private String sharedpref_key;
     private AssistanceTabContentController controller;
+
+    String url;
 
     public static Fragment newInstance() {
         Fragment frag = new AssistanceFragment();
@@ -272,14 +273,15 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     // here set assistance car background according to car type
     private void setCarBackground(int index) {
 
-        String url = getURLAccordingToDensity(NissanApp.getInstance().getDensityName(getActivity()));
+        url = getURLAccordingToDensity(NissanApp.getInstance().getDensityName(getActivity()));
 
         Logger.error("url" ,"___________" + url);
 
         if (url.isEmpty())
-            NissanApp.getInstance().setCarImageAssistance(index, imageView);
+            imageView.setBackgroundResource(R.drawable.car_download_place_holder);
+//            NissanApp.getInstance().setCarImageAssistance(index, imageView);
         else
-        imageView.setImageURI(url);
+            imageView.setImageURI(url);
 
 //        NissanApp.getInstance().setCarImageAssistance(index, imageView);
     }
@@ -593,7 +595,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
             case 5:
 //                frag = NissanAssistanceFragment.newInstance(resources.getStringArray(R.array.assistance_array)[position]);
-                frag = NissanAssistanceFragment.newInstance(pageTitle);
+                frag = NissanAssistanceFragment.newInstance(pageTitle, url);
                 break;
 
             default:

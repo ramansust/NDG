@@ -80,9 +80,10 @@
         android:layout_below="@+id/relative_top"
         android:gravity="center"
         android:padding="@dimen/margin_back"
-        android:text="@string/registered_country_name"
         android:textColor="@color/black"
         android:textStyle="bold" />
+
+    <!--android:text="@string/registered_country_name"-->
 
     <include
         android:id="@+id/lst_view"

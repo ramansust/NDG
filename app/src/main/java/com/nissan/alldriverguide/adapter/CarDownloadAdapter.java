@@ -14,8 +14,6 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.model.CarInfo;
-import com.nissan.alldriverguide.utils.Logger;
-import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
@@ -32,6 +30,7 @@ public class CarDownloadAdapter extends BaseAdapter {
 
     /**
      * Constructor
+     *
      * @param context
      * @param list
      */
@@ -83,10 +82,7 @@ public class CarDownloadAdapter extends BaseAdapter {
             // here compare the status for previous section
             if (Values.PREVIOUS_CAR.equalsIgnoreCase(info.getStatus())) {
                 // set the car images for previous section
-                if (info.getCarImg() == null || info.getCarImg().isEmpty())
-                    NissanApp.getInstance().setPreviousCarImage(info.getId(), imageView);
-                else
-                    imageView.setImageURI(info.getCarImg());
+                imageView.setImageURI(info.getCarImg());
                 // set the previous section background colour
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
                 // here actually display first car name for 4 cars that belong in previous section.
@@ -100,11 +96,8 @@ public class CarDownloadAdapter extends BaseAdapter {
             } else if (Values.ALREADY_DOWNLOADED.equalsIgnoreCase(info.getStatus())) {
                 // set the car images for already downloaded section
 //                NissanApp.getInstance().setCarImage(info.getId(), imageView);
-                if (info.getCarImg() == null || info.getCarImg().isEmpty())
-                    NissanApp.getInstance().setCarImage(info.getId(), imageView);
-                else {
-                    imageView.setImageURI(info.getCarImg());
-                }
+                imageView.setImageURI(info.getCarImg());
+
                 // set the already downloaded section background colour
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
                 // set the car name for already downloaded car
@@ -113,10 +106,7 @@ public class CarDownloadAdapter extends BaseAdapter {
             } else { // this section for available download
                 // set the car images for available downloaded section
 
-                if (info.getCarImg() == null || info.getCarImg().isEmpty())
-                    NissanApp.getInstance().setCarImage(info.getId(), imageView);
-                else
-                    imageView.setImageURI(info.getCarImg());
+                imageView.setImageURI(info.getCarImg());
                 // set the available downloaded section background colour
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
                 // set the car name for available downloaded car

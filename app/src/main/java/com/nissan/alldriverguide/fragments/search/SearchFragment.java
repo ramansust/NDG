@@ -276,7 +276,7 @@ public class SearchFragment extends Fragment {
                 if (getKeyword.equalsIgnoreCase("")) {
                     Toast.makeText(getActivity(), "Please Input Search Keyword", Toast.LENGTH_SHORT).show();
 
-                } else { // if search keyword is not blank
+                } else { // if search keyword is not empty
                     if (new NissanApp().insertSearchDataIntoDatabase(getActivity().getApplicationContext(), getKeyword)) {
                         long currentTime = System.currentTimeMillis(); //Calendar.getInstance().getTime();
 

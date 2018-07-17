@@ -13,11 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.AssistanceAdapter;
@@ -36,7 +36,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
     private View view;
     private TextView txtViewCarName;
     private TextView txtViewDriverGuide;
-    private ImageView imageView;
+    private SimpleDraweeView imageView;
     private ListView lstView;
     private TextView txtViewTitle;
 
@@ -49,12 +49,14 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
     public Resources resources;
     private PreferenceUtil preferenceUtil;
     private static final String TITLE = "title";
+    private static final String IMG_URL = "img_url";
     private String[] nissanAssistance;
 
-    public static Fragment newInstance(String title) {
+    public static Fragment newInstance(String title, String imgUrl) {
         Fragment frag = new NissanAssistanceFragment();
         Bundle args = new Bundle();
         args.putString(TITLE, title);
+        args.putString(IMG_URL, imgUrl);
         frag.setArguments(args);
         return frag;
     }
@@ -135,13 +137,19 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
 
     // set image background for assistance
     private void setCarBackground(int index) {
-        NissanApp.getInstance().setCarImageAssistance(index, imageView);
+        if (getArguments().get(IMG_URL).toString().isEmpty())
+            imageView.setBackgroundResource(R.drawable.car_download_place_holder);
+        else
+            imageView.setImageURI(getArguments().get(IMG_URL).toString());
+
+//        imageView.setBackgroundResource(R.drawable.car_download_place_holder);
+//        NissanApp.getInstance().setCarImageAssistance(index, imageView);
     }
 
     private void initViews(View view) {
         txtViewCarName = (TextView) view.findViewById(R.id.txt_view_car_name);
         txtViewDriverGuide = (TextView) view.findViewById(R.id.txt_view_driver_guide);
-        imageView = (ImageView) view.findViewById(R.id.img_car_bg);
+        imageView = (SimpleDraweeView) view.findViewById(R.id.img_car_bg);
         lstView = (ListView) view.findViewById(R.id.lst_view);
         txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
 
