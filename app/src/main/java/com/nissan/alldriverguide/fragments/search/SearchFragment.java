@@ -99,14 +99,14 @@ public class SearchFragment extends Fragment {
         String search_tag_hint = NissanApp.getInstance().getAlertMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.SEARCH_BOX_HINT);
         String clear_text = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.CLEAR);
         String recent_search_text = NissanApp.getInstance().getAlertMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.RECENT_SEARCH_ALERT);
-        getSearchKeyword.setHint(search_tag_hint.isEmpty() ? resources.getString(R.string.search_box_hint).toUpperCase() : search_tag_hint.toUpperCase());// set hint text  allCaps
+        getSearchKeyword.setHint(search_tag_hint == null || search_tag_hint.isEmpty() ? resources.getString(R.string.search_box_hint).toUpperCase() : search_tag_hint.toUpperCase());// set hint text  allCaps
 
         imageViewClear = (ImageView) layout.findViewById(R.id.imageViewClearButton);
         tvClearRecentSearch = (TextView) layout.findViewById(R.id.tvClearSearch);
         tvSectionHeader = (TextView) layout.findViewById(R.id.tvSectionHeader);
 
-        tvClearRecentSearch.setText(clear_text.isEmpty() ? resources.getString(R.string.clear) : clear_text);
-        tvSectionHeader.setText(recent_search_text.isEmpty() ? resources.getString(R.string.recent_search) : recent_search_text);
+        tvClearRecentSearch.setText(clear_text == null || clear_text.isEmpty() ? resources.getString(R.string.clear) : clear_text);
+        tvSectionHeader.setText(recent_search_text == null || recent_search_text.isEmpty() ? resources.getString(R.string.recent_search) : recent_search_text);
 
         relativeLayoutSectionHeader = (RelativeLayout) layout.findViewById(R.id.rlSectionHeader);
         //this is from top recent fragment
