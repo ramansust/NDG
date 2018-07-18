@@ -374,7 +374,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             CarInfo info = (CarInfo) parent.getAdapter().getItem(position);
             selectedLang = commonDao.getLanguageStatus(getApplicationContext(), info.getId());
 
-            if ("1".equalsIgnoreCase(info.getStatus())) { // status 1 means downloaded car
+            if ("1".equalsIgnoreCase(info.getStatus())) { // status 1 means downloaded car, 2 means previous car and 0 means available cars
                 carDownloadCheck(info.getId());
             } else {
                 if (info.getId() == 1 || info.getId() == 2 || info.getId() == 4 || info.getId() == 5) {
@@ -594,10 +594,11 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private void carDownloadCheck(final int position) {
         Values.carType = position; // set the car type
 
-        if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(Values.carType))) {
+        if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(Values.carType))) { // here check the file existence on mmc
             if (commonDao.getStatus(getBaseContext(), Values.carType) == 1) { // if car is downloaded (status 1 is used for downloaded car)
                 CarInfo info = commonDao.getCarInfo(getApplicationContext(), Values.carType);
                 if (info != null) {
+                    // this condition for force download and when update build version
                     if (!NissanApp.getInstance().getVersionName().equalsIgnoreCase(info.getVersionName()) || info.getVersionCode() != NissanApp.getInstance().getVersionCode()) {
                         if (DetectConnection.checkInternetConnection(getApplicationContext())) {
                             try {
@@ -639,7 +640,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                             goToNextPage(position);
                         }
 
-                    } else { // this block for when version code is same
+                    } else { // this block for when version code is same that means no update available
 
                         //check and get all the content update from database
                         final ArrayList<PushContentInfo> list = commonDao.getNotificationList(getApplicationContext(), Values.carType, NissanApp.getInstance().getLanguageID(commonDao.getLanguageStatus(getApplicationContext(), position)));
@@ -657,7 +658,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                     }
                 }
 
-            } else {
+            } else { // if car is not downloaded
                 try {
                     FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType)));
                 } catch (IOException e) {

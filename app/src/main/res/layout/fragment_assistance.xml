@@ -119,6 +119,7 @@
         layout="@layout/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:listitem="@layout/assistance_row"
         android:layout_below="@+id/relative_middle"
         android:layout_marginLeft="@dimen/list_margin"
         android:layout_marginRight="@dimen/list_margin" />
