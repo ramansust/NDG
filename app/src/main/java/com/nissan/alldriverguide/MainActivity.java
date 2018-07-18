@@ -151,8 +151,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
         setTabNames();
-
-        //tabNames = resources.getStringArray(R.array.tab_names);
         setupTabLayout();
     }
 
@@ -190,16 +188,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
             tabTextViews[i].setText(tabNames[i]); // set the tab name in tab text
         }
 
-/*
-        // For new four cars search tab visible else Invisible
-        if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
-            ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(2).setVisibility(View.VISIBLE);
-            tabIndicator3.setVisibility(View.VISIBLE);
-        } else {
-            ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(2).setVisibility(View.GONE);
-            tabIndicator3.setVisibility(View.GONE);
-        }
-*/
         Type type = new TypeToken<ArrayList<LanguageList>>() {
         }.getType();
         List<LanguageList> carWiseLangList = new Gson().fromJson(preferenceUtil.retrieveMultiLangData(Values.carType + "_" + Values.CAR_LANGUAGE_LIST), type);
@@ -331,26 +319,21 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
     public void selectFragment(int tab) {
         Fragment frag = null;
-        String tag = null;
         // init corresponding fragment
         switch (tab) {
             case 0:
-                tag = Values.tabExplore;
                 frag = ExploreFragment.newInstance();
                 break;
 
             case 1:
-                tag = Values.tabAssistance;
                 frag = AssistanceFragment.newInstance();
                 break;
 
             case 2:
-                tag = Values.tabSearch;
                 frag = SearchFragment.newInstance();
                 break;
 
             case 3:
-                tag = Values.tabSettings;
                 frag = SettingsFragment.newInstance();
                 break;
         }
@@ -451,46 +434,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
                         backAlert();
                     }
                 }
-
-
-/*                if (preferenceUtil.isGreat()) {
-
-                    if (preferenceUtil.getIsFirstTimeGreatNotGreat() && preferenceUtil.getOpenCountForRateApp() >= Values.RATE_APP_FIRST_SESSION) {
-                        greatNotGreat();
-                        preferenceUtil.setIsFirstTimeGreatNotGreat(false);
-
-                    } else if (!preferenceUtil.getIsFirstTimeGreatNotGreat()) {
-                        if (preferenceUtil.getSessionOne() && preferenceUtil.getOpenCountForRateApp() >= 15) {
-                            rateOurApp();
-                        } else if (preferenceUtil.getSessionThree() && preferenceUtil.getOpenCountForRateApp() >= 45) {
-                            rateOurApp();
-                        } else {
-                            backAlert();
-                        }
-
-                    } else {
-                        backAlert();
-                    }
-
-                } else {
-
-                    if (preferenceUtil.getIsFirstTimeGreatNotGreat() && preferenceUtil.getOpenCountForRateApp() >= Values.RATE_APP_FIRST_SESSION) {
-                        greatNotGreat();
-                        preferenceUtil.setIsFirstTimeGreatNotGreat(false);
-
-                    } else if (!preferenceUtil.getIsFirstTimeGreatNotGreat()) {
-                        if (preferenceUtil.getSessionOne() && preferenceUtil.getOpenCountForRateApp() >= 15) {
-                            feedBack();
-                        } else if (preferenceUtil.getSessionThree() && preferenceUtil.getOpenCountForRateApp() >= 75) {
-                            feedBack();
-                        } else {
-                            backAlert();
-                        }
-
-                    } else {
-                        backAlert();
-                    }
-                }*/
             }
         } else {
             if (new PreferenceUtil(getApplicationContext()).getOpenCountForRateApp() >= Values.RATE_APP_DIVISOR) {
@@ -521,8 +464,8 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
 
-        String okText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.OK);
-        String cancelText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.CANCEL);
+        String okText = NissanApp.getInstance().getGlobalMessage(this).getOk();
+        String cancelText = NissanApp.getInstance().getGlobalMessage(this).getCancel();
 
         Button btnYes = (Button) dialog.findViewById(R.id.btn_ok);
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
@@ -738,34 +681,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         tracker.enableAdvertisingIdCollection(true);
         // Send a screen view.
         tracker.send(new HitBuilders.AppViewBuilder().build());
-    }
-
-    private void assurePermissionForMarshmallowAndOver() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!checkPermissionAll()) {
-                requestPermissionAll();
-            }
-        }
-    }
-
-    private boolean checkPermissionAll() {
-        int result = ContextCompat.checkSelfPermission(getApplicationContext(), ACCESS_FINE_LOCATION);
-        int result1 = ContextCompat.checkSelfPermission(getApplicationContext(), CAMERA);
-        int result2 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
-
-        return result == PackageManager.PERMISSION_GRANTED
-                && result1 == PackageManager.PERMISSION_GRANTED
-                && result2 == PackageManager.PERMISSION_GRANTED;
-    }
-
-    private void requestPermissionAll() {
-        ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION, CAMERA, WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE_ALL);
-    }
-
-    private boolean checkPermission(final String PERMISSION_NAME) {
-        int result = ContextCompat.checkSelfPermission(getApplicationContext(), PERMISSION_NAME);
-        return result == PackageManager.PERMISSION_GRANTED;
     }
 
     private void requestPermission(final String PERMISSION_NAME, final int PERMISSION_CODE) {

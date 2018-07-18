@@ -11,7 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -34,14 +32,12 @@ import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.PreferenceUtil;
-import com.nissan.alldriverguide.interfaces.CarListACompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.model.CarList;
-import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
@@ -54,9 +50,7 @@ import com.nissan.alldriverguide.utils.Values;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -404,8 +398,8 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                 TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
                                 txtViewTitle.setText(resources.getString(R.string.update_msg));
 //TODO
-                                String okText = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.YES);
-                                String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.NO);
+                                String okText = NissanApp.getInstance().getGlobalMessage(getActivity().getApplicationContext()).getYes();
+                                String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity().getApplicationContext()).getNo();
 
                                 Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
 //                                btnOk.setText(resources.getString(R.string.button_YES));

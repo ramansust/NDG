@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_left"
-            android:text="fasdfa"
+            android:text="@string/internet_connect"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:background="@color/background"

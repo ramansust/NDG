@@ -44,6 +44,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
+import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
 public class SettingsFragment extends Fragment implements AdapterView.OnItemClickListener, CompleteSettingTabContent {
 
@@ -63,16 +64,13 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     private AssistanceAdapter adapter;
 
     private String sharedpref_key;
-    private ProgressDialog progressDialog;
     private ArrayList<SettingsTabListModel> settingList = new ArrayList<>();
     private String[] setting_names;
-    private String preSharedpref_key;
     private long mLastClickTime;
     private SettingsTabContentController controller;
 
     public static Fragment newInstance() {
-        Fragment frag = new SettingsFragment();
-        return frag;
+        return new SettingsFragment();
     }
 
     @Override
@@ -82,8 +80,6 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         initViews(view);
         loadResource();
         setListener();
-//        getSettingTabContent();
-        //loadData();
         check_Data();
         return view;
     }
@@ -123,7 +119,6 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
             int language_ID = NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang());
             controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "4");
 
-
     }
 
     private void showNoInternetDialogue(String msg) {
@@ -146,26 +141,9 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
 
     }
 
-    private void getSettingTabContent() {
-
-        preSharedpref_key = preferenceUtil.getPreviousLanguage() + "_" + Values.SETTINGDATA;
-        sharedpref_key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.SETTINGDATA;
-
-        String old_Lan = preferenceUtil.getPreviousLanguage();
-        String new_Lan = preferenceUtil.getSelectedLang();
-
-        if (old_Lan.equalsIgnoreCase("null")) {
-            check_Data();
-
-        } else {
-            new PreferenceUtil(getActivity()).deleteMultiLangData(preSharedpref_key);
-            check_Data();
-        }
-    }
-
     @Override
     public void onDownloaded(SettingsTabModel responseInfo) {
-        if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+        if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
             settingList = new ArrayList<>();
             settingList = responseInfo.getData();
             preferenceUtil.storeSettingDataList(settingList, sharedpref_key);
@@ -193,45 +171,13 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         }
     }
 
-    private void apiCall() {
-        int language_ID = NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang());
-        String language_name = preferenceUtil.getSelectedLang();
-        new ApiCall().postSettingTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "4", new CompleteSettingTabContent() {
-            @Override
-            public void onDownloaded(SettingsTabModel responseInfo) {
-                if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
-                    settingList = new ArrayList<>();
-                    settingList = responseInfo.getData();
-                    preferenceUtil.storeSettingDataList(settingList, sharedpref_key);
-
-                    setting_names = new String[settingList.size()];
-                    for (int i = 0; i < settingList.size(); i++) {
-                        setting_names[i] = settingList.get(i).getTitle();
-                    }
-                    loadData();
-                }
-            }
-
-            @Override
-            public void onFailed(String failedReason) {
-            }
-        });
-    }
-
     private void loadData() {
 
         String title = NissanApp.getInstance().getTabTitle(getActivity(), "4");
-        txt_title.setText(title.isEmpty() ? resources.getString(R.string.settings) : title);
+        txt_title.setText(title == null || title.isEmpty() ? resources.getString(R.string.settings) : title);
 
-//        if (adapter == null || adapter.getCount() == 0) {
-//        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), setting_names, assistanceImage);
-//        lstView.setAdapter(adapter);
         adapter.setList(setting_names, assistanceImage);
         adapter.notifyDataSetChanged();
-//        } else {
-//            adapter = new AssistanceAdapter(getActivity().getApplicationContext(), setting_names, assistanceImage);
-//            adapter.notifyDataSetChanged();
-//        }
     }
 
     private void loadResource() {

@@ -8,9 +8,6 @@ public class GlobalMessage {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("search")
-    @Expose
-    private String search;
     @SerializedName("other")
     @Expose
     private String other;
@@ -26,16 +23,12 @@ public class GlobalMessage {
     @SerializedName("clear")
     @Expose
     private String clear;
-    @SerializedName("recent")
-    @Expose
-    private String recent;
     @SerializedName("cancel")
     @Expose
     private String cancel;
     @SerializedName("next")
     @Expose
     private String next;
-
     @SerializedName("no")
     @Expose
     private String no;
@@ -50,14 +43,6 @@ public class GlobalMessage {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getSearch() {
-        return search;
-    }
-
-    public void setSearch(String search) {
-        this.search = search;
     }
 
     public String getOther() {
@@ -98,14 +83,6 @@ public class GlobalMessage {
 
     public void setClear(String clear) {
         this.clear = clear;
-    }
-
-    public String getRecent() {
-        return recent;
-    }
-
-    public void setRecent(String recent) {
-        this.recent = recent;
     }
 
     public String getCancel() {

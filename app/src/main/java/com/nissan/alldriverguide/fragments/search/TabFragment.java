@@ -109,8 +109,8 @@ public class TabFragment extends Fragment {
 
     private void populateDataIntoView() {
 
-        String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.CANCEL);
-        cancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
+        String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity()).getCancel();
+        cancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
     }
 
     private void setKeywordIfAvailable() {

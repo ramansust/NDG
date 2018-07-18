@@ -14,6 +14,26 @@ public class AlertMessage {
     @SerializedName("other")
     @Expose
     private Object other;
+
+    public AlertMessage(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AlertMessage that = (AlertMessage) o;
+
+        return type != null ? type.equals(that.type) : that.type == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return type != null ? type.hashCode() : 0;
+    }
+
     @SerializedName("type")
     @Expose
     private String type;

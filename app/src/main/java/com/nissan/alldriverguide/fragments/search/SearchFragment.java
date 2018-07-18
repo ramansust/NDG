@@ -52,21 +52,17 @@ public class SearchFragment extends Fragment {
     private EditText getSearchKeyword;
     private ImageView imageViewClear;
     private TextView tvClearRecentSearch, tvSectionHeader;
-    private LinearLayout linearLayoutNoContent;
     private RelativeLayout relativeLayoutSectionHeader;
     private CommonDao commonDao;
     private String getKeyword = "";
-
 
     //this is from top recent search fragment
     private String[] sectionHeader;
 
     private RecyclerView recyclerView;
     public Map<String, List<Object>> dataMap;
-    private static final int NUM_COLUMNS = 3;
 
     private TopRecentAdapter adapter;
-//    private ArrayList<SearchModel> countWise_List, dateWise_List;
     private ArrayList<SearchModel> dateWise_List;
 
     private String selectedLanguage = "";
@@ -81,7 +77,6 @@ public class SearchFragment extends Fragment {
 
         initAll(layout);
         setListener();
-//        startUp();
         addData();
         return layout;
     }
@@ -96,34 +91,28 @@ public class SearchFragment extends Fragment {
 
         commonDao = CommonDao.getInstance();
         getSearchKeyword = (EditText) layout.findViewById(R.id.input_search);
-        String search_tag_hint = NissanApp.getInstance().getAlertMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.SEARCH_BOX_HINT);
-        String clear_text = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.CLEAR);
-        String recent_search_text = NissanApp.getInstance().getAlertMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.RECENT_SEARCH_ALERT);
-        getSearchKeyword.setHint(search_tag_hint == null || search_tag_hint.isEmpty() ? resources.getString(R.string.search_box_hint).toUpperCase() : search_tag_hint.toUpperCase());// set hint text  allCaps
-
         imageViewClear = (ImageView) layout.findViewById(R.id.imageViewClearButton);
         tvClearRecentSearch = (TextView) layout.findViewById(R.id.tvClearSearch);
         tvSectionHeader = (TextView) layout.findViewById(R.id.tvSectionHeader);
-
-        tvClearRecentSearch.setText(clear_text == null || clear_text.isEmpty() ? resources.getString(R.string.clear) : clear_text);
-        tvSectionHeader.setText(recent_search_text == null || recent_search_text.isEmpty() ? resources.getString(R.string.recent_search) : recent_search_text);
-
         relativeLayoutSectionHeader = (RelativeLayout) layout.findViewById(R.id.rlSectionHeader);
-        //this is from top recent fragment
-        linearLayoutNoContent = (LinearLayout) layout.findViewById(R.id.linearLayoutNoContent);
-        dataMap = new LinkedHashMap<>();
         recyclerView = (RecyclerView) layout.findViewById(R.id.rv_top_recent);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(null);
-
-
-//        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(NUM_COLUMNS, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setLayoutManager(new FlowLayoutManager().removeItemPerLineLimit());
+
+        //this is from top recent fragment
+        dataMap = new LinkedHashMap<>();
+
+        String search_tag_hint = NissanApp.getInstance().getAlertMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.SEARCH_BOX_HINT);
+        String clear_text = NissanApp.getInstance().getGlobalMessage(getActivity()).getClear();
+        String recent_search_text = NissanApp.getInstance().getAlertMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.RECENT_SEARCH_ALERT);
+
+        getSearchKeyword.setHint(search_tag_hint == null || search_tag_hint.isEmpty() ? resources.getString(R.string.search_box_hint).toUpperCase() : search_tag_hint.toUpperCase());// set hint text  allCaps
+        tvClearRecentSearch.setText(clear_text == null || clear_text.isEmpty() ? resources.getString(R.string.clear) : clear_text);
+        tvSectionHeader.setText(recent_search_text == null || recent_search_text.isEmpty() ? resources.getString(R.string.recent_search) : recent_search_text);
+
         selectedLanguage = new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang();
         sectionHeader = new String[]{resources.getString(R.string.recent_searches)};
-//        sectionHeader = new String[]{resources.getString(R.string.top_search), resources.getString(R.string.recent_search)};
-        //end here
-
     }
 
     @Override
@@ -142,17 +131,13 @@ public class SearchFragment extends Fragment {
 
     //this is from top recent fragment
     public void addData() {
-//        countWise_List = commonDao.getCountWiseList(getActivity().getApplicationContext(), Values.carType, selectedLanguage);
         dateWise_List = commonDao.getDateWiseList(getActivity().getApplicationContext(), Values.carType, selectedLanguage);
-//        dateWise_List = commonDao.getTotalList(getActivity().getApplicationContext(), Values.carType);
 
         if (dateWise_List != null && dateWise_List.size() > 0 && dateWise_List.size() > 10) {
             dateWise_List = (ArrayList<SearchModel>) dateWise_List.subList(0, 9);
         }
 
-//        if (countWise_List.size() <= 0 && dateWise_List.size() <= 0) {
         if (dateWise_List != null && dateWise_List.size() <= 0) {
-//            linearLayoutNoContent.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
             relativeLayoutSectionHeader.setVisibility(View.GONE);
         } else {
@@ -162,13 +147,6 @@ public class SearchFragment extends Fragment {
                     list = new ArrayList<>();
                     dataMap.put(section, list);
                 }
-
-                /*if (section.equalsIgnoreCase(getResources().getString(R.string.top_search))) {
-                    list.addAll(countWise_List);
-                } else {
-                    list.addAll(dateWise_List);
-                }*/
-
                 list.addAll(dateWise_List);
             }
             setAdapter();
@@ -176,7 +154,7 @@ public class SearchFragment extends Fragment {
     }
 
     private void setAdapter() {
-        List<Object> items = new ArrayList<Object>();
+        List<Object> items = new ArrayList<>();
 
 
         for (Map.Entry<String, List<Object>> entry : dataMap.entrySet()) {
@@ -185,7 +163,6 @@ public class SearchFragment extends Fragment {
             items.addAll(list);
         }
 
-//        adapter = new TopRecentAdapter(getActivity(), countWise_List, dateWise_List);
         adapter = new TopRecentAdapter(getActivity(), dateWise_List);
         recyclerView.setAdapter(adapter);
     }
@@ -223,34 +200,6 @@ public class SearchFragment extends Fragment {
                     }
                     mLastClickTime = SystemClock.elapsedRealtime();
                     new deleteRecentSearches().execute();
-/*                    final Dialog dialog = new DialogController(getActivity()).langDialog();
-
-                    TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-
-                    Button btnYes = (Button) dialog.findViewById(R.id.btn_ok);
-                    Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
-
-                    txtViewTitle.setText(getResources().getString(R.string.search_delete_alert));
-
-                    btnYes.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-
-                            new deleteRecentSearches().execute();
-
-                        }
-                    });
-
-                    btnCancel.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                                dialog.dismiss();
-                        }
-                    });
-
-                    dialog.show();*/
 
                     break;
             }
