@@ -217,8 +217,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 txtViewTitle.setText(pushTitle.isEmpty() ? getResources().getString(R.string.register_push) : pushTitle);
 
                 //TODO
-                String okText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.OK);
-                String cancelText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.CANCEL);
+                String okText = NissanApp.getInstance().getGlobalMessage(this).getOk();
+                String cancelText = NissanApp.getInstance().getGlobalMessage(this).getCancel();
 
                 Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
                 Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);

@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -51,6 +50,9 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.util.List;
 
+import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
+import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
+
 public class AssistanceFragment extends Fragment implements AdapterView.OnItemClickListener, CompleteAssistanceTabContent {
 
     private Context context;
@@ -65,7 +67,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private TextView txt_title;
 
     private ProgressBar progressBar;
-    private LinearLayout layoutDataNotFound;
     private TextView tvNoContent;
 
     private AssistanceAdapter adapter;
@@ -82,7 +83,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private String sharedpref_key;
     private AssistanceTabContentController controller;
 
-    String url;
+    private String url;
 
     public static Fragment newInstance() {
         Fragment frag = new AssistanceFragment();
@@ -130,16 +131,15 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
         }
 
-            int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
-            controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2");
-
+        int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
+        controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2");
 
     }
 
 
     @Override
     public void onDownloaded(AssistanceInfo responseInfo) {
-        if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
+        if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
             preferenceUtil.storeAssistanceData(responseInfo, sharedpref_key);
             NissanApp.getInstance().setAssistanceInfo(responseInfo);
@@ -152,7 +152,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             }
 
             loadData();
-            if(progressBar.getVisibility() == View.VISIBLE){
+            if (progressBar.getVisibility() == View.VISIBLE) {
                 progressBar.setVisibility(View.GONE);
             }
 
@@ -184,82 +184,29 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     }
 
-    private void check_LocalData() {
-
-        if (preferenceUtil.retrieveAssistanceData(sharedpref_key) != null) {
-            assistanceInfo = preferenceUtil.retrieveAssistanceData(sharedpref_key);
-            NissanApp.getInstance().setAssistanceInfo(preferenceUtil.retrieveAssistanceData(sharedpref_key)); //added by nirob
-            List<Datum> list = assistanceInfo.getData();
-            assistanceArray = new String[list.size()];
-            for (int i = 0; i < list.size(); i++) {
-                assistanceArray[i] = list.get(i).getTitle();
-            }
-            loadData();
-            postAssistanceData();
-
-        } else {
-            postAssistanceData();
-        }
-    }
-
-    public void postAssistanceData() {
-        int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
-        new ApiCall().postAssistanceTabContent(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2", new CompleteAssistanceTabContent() {
-            @Override
-            public void onDownloaded(AssistanceInfo responseInfo) {
-
-                if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
-
-                    preferenceUtil.storeAssistanceData(responseInfo, sharedpref_key);
-                    NissanApp.getInstance().setAssistanceInfo(responseInfo);
-
-                    assistanceInfo = responseInfo;
-                    List<Datum> list = assistanceInfo.getData();
-                    assistanceArray = new String[list.size()];
-                    for (int i = 0; i < list.size(); i++) {
-                        assistanceArray[i] = list.get(i).getTitle();
-                    }
-
-                    loadData();
-
-                }
-            }
-
-            @Override
-            public void onFailed(String failedReason) {
-
-            }
-        });
-    }
-
     // here load the initial data
     private void loadData() {
         txtViewDriverGuide.setTypeface(Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "font/Nissan Brand Regular.otf"));
-//        txtViewDriverGuide.setText(resources.getString(R.string.driver_guide));
-        if (assistanceInfo.getAssistanceTitle() != null) {
-            txtViewDriverGuide.setText(assistanceInfo.getAssistanceTitle());
+        if (assistanceInfo != null && assistanceInfo.getAssistanceTitle() != null) {
+            txtViewDriverGuide.setText(assistanceInfo.getAssistanceTitle().isEmpty() ? resources.getString(R.string.driver_guide) : assistanceInfo.getAssistanceTitle());
         }
 
         String title = NissanApp.getInstance().getTabTitle(getActivity(), "2");
 
-        txt_title.setText(title.isEmpty() ? resources.getString(R.string.assistance) : title);
-//        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.assistance_array), assistanceImage);
+        txt_title.setText(title == null || title.isEmpty() ? resources.getString(R.string.assistance) : title);
 
-//        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), assistanceArray, assistanceImage);
-//        lstView.setAdapter(adapter);
         adapter.setList(assistanceArray, assistanceImage);
         adapter.notifyDataSetChanged();
 
         String car_name = assistanceInfo.getSelectedCar();
 
         if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
-//            txtViewCarName.setText(resources.getStringArray(R.array.car_names)[Values.carType - 1]);
-            txtViewCarName.setText(car_name.isEmpty() ? resources.getStringArray(R.array.car_names)[Values.carType - 1] : car_name);
+            txtViewCarName.setText(car_name == null || car_name.isEmpty() ? resources.getStringArray(R.array.car_names)[Values.carType - 1] : car_name);
         } else {
-//            txtViewCarName.setText("NISSAN " + resources.getStringArray(R.array.car_names)[Values.carType - 1]);
-            txtViewCarName.setText("NISSAN " + (car_name.isEmpty() ? resources.getStringArray(R.array.car_names)[Values.carType - 1] : car_name));
+            txtViewCarName.setText("NISSAN " + (car_name == null || car_name.isEmpty() ? resources.getStringArray(R.array.car_names)[Values.carType - 1] : car_name));
         }
-        setCarBackground(Values.carType);
+        txtViewCarName.setBackgroundResource(R.color.black);
+        setAssistanceCarBackgroundImage();
     }
 
     private void loadResource() {
@@ -271,19 +218,11 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     }
 
     // here set assistance car background according to car type
-    private void setCarBackground(int index) {
+    private void setAssistanceCarBackgroundImage() {
 
         url = getURLAccordingToDensity(NissanApp.getInstance().getDensityName(getActivity()));
 
-        Logger.error("url" ,"___________" + url);
-
-        if (url.isEmpty())
-            imageView.setBackgroundResource(R.drawable.car_download_place_holder);
-//            NissanApp.getInstance().setCarImageAssistance(index, imageView);
-        else
-            imageView.setImageURI(url);
-
-//        NissanApp.getInstance().setCarImageAssistance(index, imageView);
+        imageView.setImageURI(url);
     }
 
     private String getURLAccordingToDensity(String device_density) {
@@ -314,7 +253,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         txt_title = (TextView) view.findViewById(R.id.txt_title);
 
         progressBar = (ProgressBar) view.findViewById(R.id.prog_assistance);
-        layoutDataNotFound = (LinearLayout) view.findViewById(R.id.layout_assistance_data_not_found);
         tvNoContent = (TextView) view.findViewById(R.id.txt_assistance_data_not_found);
 
         metrics = new DisplayMetrics();
@@ -342,7 +280,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     @Override
     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
-        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
             return;
         }
         mLastClickTime = SystemClock.elapsedRealtime();
@@ -359,23 +297,22 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 final Dialog dialog = new DialogController(getActivity()).contentUpdateDialog();
 
                 TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-//                txtViewTitle.setText(resources.getString(R.string.update_msg));
                 String updateMsg = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.UPDATE_MSG);
-                txtViewTitle.setText(updateMsg.isEmpty() ? getResources().getString(R.string.update_msg) : updateMsg);
+                txtViewTitle.setText(updateMsg == null || updateMsg.isEmpty() ? getResources().getString(R.string.update_msg) : updateMsg);
 
 //TODO
-                String okText = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.YES);
-                String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.NO);
+                String okText = NissanApp.getInstance().getGlobalMessage(getActivity()).getYes();
+                String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity()).getNo();
 
                 Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
 //                btnOk.setText(resources.getString(R.string.button_YES));
-                btnOk.setText(okText.isEmpty() ? resources.getString(R.string.button_YES) : okText);
+                btnOk.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_YES) : okText);
 
                 btnOk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-                        if (SystemClock.elapsedRealtime() - doubleClickPopup < 1000) {
+                        if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
                             return;
                         }
                         doubleClickPopup = SystemClock.elapsedRealtime();
@@ -395,7 +332,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                                 public void onDownloaded(ResponseInfo responseInfo) {
 //                                Logger.error("status", "__________" + responseInfo.getStatusCode() + "____" + responseInfo.getMessage() + "____" + responseInfo.getUrl());;
 
-                                    if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getUrl())) {
+                                    if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getUrl())) {
                                         new MADownloadManager(getActivity(), getActivity().getApplicationContext()).downloadLanguage(false, "Language", responseInfo.getUrl(), NissanApp.getInstance().getCarPath(Values.carType), new DownloaderStatus() {
                                             @Override
                                             public boolean onComplete(boolean b) {
@@ -419,7 +356,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                                                                             public void onDownloaded(ResponseInfo responseInfo) {
                                                                                 Logger.error("confirmation", "__________" + responseInfo.getStatusCode() + "____" + responseInfo.getMessage() + "____" + responseInfo.getUrl());
 
-                                                                                if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
+                                                                                if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
                                                                                     ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));
 
                                                                                     commonDao.updateLanguageStatus(getActivity().getBaseContext(), Values.carType, preferenceUtil.getSelectedLang());
@@ -431,7 +368,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
                                                                                     loadDesireFragment(position);
                                                                                 } else {
-                                                                                    errorFileDelete(Values.carType);
+                                                                                    dismissDialogue();
                                                                                     showErrorDialog("Confirmation send failed error!");
                                                                                 }
 
@@ -440,13 +377,13 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                                                                             @Override
                                                                             public void onFailed(String failedReason) {
                                                                                 Logger.error("onFailed", "__________" + failedReason);
-                                                                                errorFileDelete(Values.carType);
+                                                                                dismissDialogue();
                                                                                 showErrorDialog(failedReason);
                                                                             }
                                                                         });
 
                                                                     } else {
-                                                                        errorFileDelete(Values.carType);
+                                                                        dismissDialogue();
                                                                     }
 
                                                                 }
@@ -463,20 +400,20 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                                             @Override
                                             public int onError(int i) {
                                                 showErrorDialog("Error ! Unable to update content, Please try again.");
-                                                errorFileDelete(Values.carType);
+                                                dismissDialogue();
                                                 return 0;
                                             }
 
                                             @Override
                                             public boolean internetConnection(boolean b) {
                                                 showErrorDialog("No internet connection, please try again");
-                                                errorFileDelete(Values.carType);
+                                                dismissDialogue();
                                                 return false;
                                             }
 
                                             @Override
                                             public boolean urlReachable(boolean b) {
-                                                errorFileDelete(Values.carType);
+                                                dismissDialogue();
                                                 return false;
                                             }
 
@@ -512,7 +449,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                                         });
                                     } else {
                                         showErrorDialog("No content found.");
-                                        errorFileDelete(Values.carType);
+                                        dismissDialogue();
                                     }
                                 }
 
@@ -532,8 +469,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 });
 
                 Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
-//                btnCancel.setText(resources.getString(R.string.button_NO));
-                btnCancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_NO) : cancelText);
+                btnCancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_NO) : cancelText);
 
                 btnCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -565,7 +501,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private void loadDesireFragment(int position) {
         Fragment frag = null;
 
-        String pageTitle = assistanceArray[position].isEmpty() ? ((resources.getStringArray(R.array.assistance_array))[position]) : assistanceArray[position];
+        String pageTitle = assistanceArray[position] == null || assistanceArray[position].isEmpty() ? ((resources.getStringArray(R.array.assistance_array))[position]) : assistanceArray[position];
 
         switch (position) {
             case 0:
@@ -594,7 +530,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 break;
 
             case 5:
-//                frag = NissanAssistanceFragment.newInstance(resources.getStringArray(R.array.assistance_array)[position]);
                 frag = NissanAssistanceFragment.newInstance(pageTitle, url);
                 break;
 
@@ -611,7 +546,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         }
     }
 
-    private void errorFileDelete(int carType) {
+    private void dismissDialogue() {
         if (progressDialog != null) {
             progressDialog.dismiss();
         }

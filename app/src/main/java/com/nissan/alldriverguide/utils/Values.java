@@ -142,11 +142,7 @@ public class Values {
     public static final String  LEARN_MORE_TITLE = "learn_more_title";
     public static final String  WATCH_AGAIN_MSG = "watch_again";
     public static final String  LEARN_MORE_MSG = "learn_more";
-    public static final String SEARCH_HINT = "search";
-    public static final String RECENT_SEARCH = "recent";
-    public static final String OK = "ok";
-    public static final String CANCEL = "cancel";
-    public static final String CLEAR = "clear";
+
     public static final String  INTERNET_CHECK = "internet_check";
     public static final String  DOWNLOADING = "downloading";
     public static final String  STARTING_DOWNLOAD = "starting_download";
@@ -165,13 +161,11 @@ public class Values {
     public static final String  SEND_FEEDBACK_BUTTON_TEXT = "send_feedback_button";
     public static final String  SEND_FEEDBACK_COMPLETE_TOAST = "feedback_toast";
 
-    public static final String  NEXT = "next";
-
     public static final String  NATIONAL_MSG = "national";
     public static final String  INTERNATIONAL_MSG = "international";
     public static final String  DOWNLOAD_SURE_MSG = "sure_download";
-    public static final String  YES = "yes";
-    public static final String  NO = "no";
+
+
     public static final String  UPDATE_MSG = "update_msg";
 
     public static final String  SEARCH_BOX_HINT = "search_box_hint";
@@ -180,5 +174,14 @@ public class Values {
 
     public static final String  RECENT_SEARCH_ALERT = "recent_searches";
 
+    //this is the keys for the global message
+    public static final String  NEXT = "next";
+    public static final String CLEAR = "clear";
+    public static final String CANCEL = "cancel";
+    public static final String  NO = "no";
+    public static final String  YES = "yes";
+    public static final String OK = "ok";
+
     public static final long DEFAULT_CLICK_TIMEOUT = 1000;
+
 }

@@ -81,7 +81,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
      */
     private void loadData() {
 
-        String nextText = NissanApp.getInstance().getGlobalMessage(this, new PreferenceUtil(getApplicationContext()).getSelectedLang(), Values.NEXT);
+        String nextText = NissanApp.getInstance().getGlobalMessage(this).getNext();
 
         txtNext.setText(nextText.isEmpty() ? getResources().getString(R.string.button_next) : nextText);
 

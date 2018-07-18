@@ -593,8 +593,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         }
 
         //TODO
-        String okText = NissanApp.getInstance().getGlobalMessage(context, new PreferenceUtil(context).getSelectedLang(), Values.OK);
-        String cancelText = NissanApp.getInstance().getGlobalMessage(context, new PreferenceUtil(context).getSelectedLang(), Values.CANCEL);
+        String okText = NissanApp.getInstance().getGlobalMessage(context).getOk();
+        String cancelText = NissanApp.getInstance().getGlobalMessage(context).getCancel();
 
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
