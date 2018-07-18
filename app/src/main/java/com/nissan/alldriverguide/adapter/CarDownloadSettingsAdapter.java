@@ -586,10 +586,10 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
         if (isCarDownload) {
             String downloadConfirmationMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DOWNLOAD_CONFIRMATION);
-            txtViewTitle.setText(downloadConfirmationMsg.isEmpty() ? resources.getString(R.string.alert_msg22) : downloadConfirmationMsg);
+            txtViewTitle.setText(downloadConfirmationMsg == null || downloadConfirmationMsg.isEmpty() ? resources.getString(R.string.alert_msg22) : downloadConfirmationMsg);
         } else {
             String deleteMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DELETE_MESSAGE);
-            txtViewTitle.setText(deleteMsg.isEmpty() ? resources.getString(R.string.alert_msg23) : deleteMsg);
+            txtViewTitle.setText(deleteMsg == null || deleteMsg.isEmpty() ? resources.getString(R.string.alert_msg23) : deleteMsg);
         }
 
         //TODO
@@ -599,8 +599,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
 
-        btnOk.setText(okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
-        btnCancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
+        btnOk.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
+        btnCancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
