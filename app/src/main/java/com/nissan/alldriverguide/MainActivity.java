@@ -470,12 +470,12 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         Button btnYes = (Button) dialog.findViewById(R.id.btn_ok);
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
 
-        btnYes.setText(okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
-        btnCancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
+        btnYes.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
+        btnCancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
 
         String exitDialogueText = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.CONFIRM_EXIT_MESSAGE);
 
-        txtViewTitle.setText(exitDialogueText.isEmpty() ? resources.getString(R.string.exit_alert) : exitDialogueText);
+        txtViewTitle.setText(exitDialogueText == null || exitDialogueText.isEmpty() ? resources.getString(R.string.exit_alert) : exitDialogueText);
 
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
