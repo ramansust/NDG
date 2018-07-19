@@ -413,8 +413,8 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
 
-        btnOk.setText(okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
-        btnCancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
+        btnOk.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
+        btnCancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
