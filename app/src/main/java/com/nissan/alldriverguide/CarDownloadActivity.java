@@ -204,6 +204,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         }
         mLastClickTime = SystemClock.elapsedRealtime();
 
+
         Logger.error("push_sp_status", "___________" + new PreferenceUtil(context).getPushRegistrationStatus());
 
         if (!new PreferenceUtil(context).getPushRegistrationStatus()) {
@@ -223,8 +224,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
                 Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
 
-                btnOk.setText(okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
-                btnCancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
+                btnOk.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
+                btnCancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
 
                 btnCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -251,6 +252,11 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 } else {
                     goForNormalOperation(position, parent);
                 }
+
+
+
+
+
             }
 
         } else {
@@ -371,12 +377,20 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         selectedCarIndex = position;
         // class cast for CarInfo class
         if (parent.getAdapter().getItem(position).getClass() == CarInfo.class) {
+
             CarInfo info = (CarInfo) parent.getAdapter().getItem(position);
+
             selectedLang = commonDao.getLanguageStatus(getApplicationContext(), info.getId());
 
             if ("1".equalsIgnoreCase(info.getStatus())) { // status 1 means downloaded car, 2 means previous car and 0 means available cars
                 carDownloadCheck(info.getId());
             } else {
+
+                if (!DetectConnection.checkInternetConnection(context)) {
+                    showNoInternetDialogue("No Internet Connection. Please check your WIFI or cellular data network and try again.");
+                    return;
+                }
+
                 if (info.getId() == 1 || info.getId() == 2 || info.getId() == 4 || info.getId() == 5) {
                     showCarDownloadDialog(info.getId());
                 } else {
@@ -491,7 +505,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onDownloaded(CarListResponse responseInfo) {
 
-        if (responseInfo.getStatusCode().equals("200")) {
+        if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
             carListArrayList = new ArrayList<>();
 
@@ -504,7 +518,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             }
 
         } else {
-            showErrorDialog(resources.getString(R.string.failed_to_connect_server));
+//            showErrorDialog(resources.getString(R.string.failed_to_connect_server));
+            Logger.error(TAG, "CarListResponse______" + resources.getString(R.string.failed_to_connect_server));
         }
 
     }
@@ -512,7 +527,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onFailed(String failedReason) {
         Logger.error(TAG, "GlobalMsg_________" + failedReason);
-        showErrorDialog(resources.getString(R.string.failed_to_connect_server));
+        Logger.error(TAG, "OnFailed______" + resources.getString(R.string.failed_to_connect_server));
+//        showErrorDialog(resources.getString(R.string.failed_to_connect_server));
         if (pbCarDownload != null && pbCarDownload.getVisibility() == View.VISIBLE) {
             pbCarDownload.setVisibility(View.GONE);
         }
@@ -534,18 +550,19 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         carListArrayList = new Gson().fromJson(preferenceUtil.retrieveMultiLangData(sharedpref_key), type);
 
 
-        if (carListArrayList != null && carListArrayList.size() > 0) {
+//        if (carListArrayList != null && carListArrayList.size() > 0) {
             loadCarData();
-        } else {
+//        } else {
             pbCarDownload.setVisibility(View.VISIBLE);
-        }
+//        }
 
         if (DetectConnection.checkInternetConnection(getApplicationContext())) {
             carListContentController.callApi(NissanApp.getInstance().getDeviceID(this), "1");
         } else {
             if (pbCarDownload.getVisibility() == View.VISIBLE)
                 pbCarDownload.setVisibility(View.GONE);
-            Toast.makeText(activity, "No Internet!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(activity, getString(R.string.internet_connect), Toast.LENGTH_SHORT).show();
+//            showErrorDialog(getResources().getString(R.string.internet_connect));
         }
 
         super.onResume();
@@ -671,7 +688,25 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             startActivity(new Intent(CarDownloadActivity.this, LanguageSelectionActivity.class));
         }
     }
+    private void showNoInternetDialogue(String msg) {
 
+        final Dialog dialog = new DialogController(activity).internetDialog();
+
+        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        txtViewTitle.setText(msg);
+
+        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+
+        dialog.show();
+
+    }
     private void downloadContentUpdate(final ArrayList<PushContentInfo> list, final int position) {
 
         Logger.error("You have a update ", "Do you want ???");

@@ -121,6 +121,14 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         setAdapterFromDB();
     }
 
+    private List<LanguageList> getLanguageDataFromSP(Context context) {
+
+        Type type = new TypeToken<ArrayList<LanguageList>>() {
+        }.getType();
+        return new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData(Values.carType + "_" + Values.CAR_LANGUAGE_LIST), type);
+
+    }
+
     private void setAdapterFromDB() {
 
         adapter = new LanguageSelectionAdapter(context, new ArrayList<LanguageInfo>(), false);
@@ -130,7 +138,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         lstView.setDivider(sage);
         lstView.setDividerHeight(4);
 
-        _languageLists = getDataFromSP();
+        _languageLists = getLanguageDataFromSP(context);
         if (_languageLists != null && _languageLists.size() > 0) {
             progressBar.setVisibility(View.GONE);
             tvNoContent.setVisibility(View.GONE);
@@ -230,14 +238,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             }
         }
         loadData(langFlagUri);
-
-    }
-
-    private List<LanguageList> getDataFromSP() {
-
-        Type type = new TypeToken<ArrayList<LanguageList>>() {
-        }.getType();
-        return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(Values.carType + "_" + Values.CAR_LANGUAGE_LIST), type);
 
     }
 

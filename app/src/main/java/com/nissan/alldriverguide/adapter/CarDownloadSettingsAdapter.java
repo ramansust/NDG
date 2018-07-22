@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
+import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -67,6 +68,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 import static com.nissan.alldriverguide.utils.Values.STARTING_DOWNLOAD;
 
 /**
@@ -99,16 +101,13 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     private String[] carNames;
     public ProgressDialog progressDialog;
     private String internetCheckMessage = "";
-    private LanguageListResponse languageListResponses;
-    private String[] languageDialogDownloadConfirmation, languageDialogInternetCheck, languageDialogDownloading, languageDialogStartDownloading, languageDialogSync, cancelLangDownload, okLangDownload;
     private String deviceDensity;
-    private String[] langFlagUri;
-    private LanguageInfo info;
     List<LanguageList> languageLists = new ArrayList<>();
     private GlobalMessageController controller;
     private CarListContentController carListContentController;
     private LanguageSelectionController controllerLanguageSelection;
     private int selectedCarType = -1;
+    private long mLastClickTime = 0;
 
     public CarDownloadSettingsAdapter(AddCarFragment frag, Activity activity, Context context, ArrayList<CarInfo> list) {
         this.activity = activity;
@@ -118,14 +117,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         inflater = LayoutInflater.from(this.context);
         commonDao = CommonDao.getInstance();
         preferenceUtil = new PreferenceUtil(context);
-//        controller = new GlobalMessageController(this);
-//        carListContentController = new CarListContentController(this);
-//        controllerLanguageSelection = new LanguageSelectionController(this);
         loadResource();
-//        progressDialog = new ProgressDialogController(this.activity).showDialog("adfkaljshfkj");
         deviceDensity = NissanApp.getInstance().getDensityName(this.activity);
-//        getDataCarWise();
-
 
     }
 
@@ -262,6 +255,12 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_btn_delete_or_download:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 position = Integer.parseInt(v.getTag().toString());
 
                 // for downloaded car deleted action
