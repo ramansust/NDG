@@ -42,7 +42,7 @@ import java.util.Locale;
 public class CallNissanAssistanceFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
     private static final String TAG = "CallNissanAssistanceFra";
 
-    private String[] countryNameFR = {"l' Allemagne", "l' Autriche", "la Belgique", "le Danemark", "l' Espagne", "l' Estonie", "la Finlande", "la France", "la Grèce", "la Hongrie", "l' Italie", "la Lettonie", "la Lituanie", "la Norvège", "les Pays-Bas", "la Pologne", "le Portugal", "la République Tchèque", "le Royaume-Uni", "la Slovaquie", "la Suède", "la Suisse"};
+//    private String[] countryNameFR = {"l' Allemagne", "l' Autriche", "la Belgique", "le Danemark", "l' Espagne", "l' Estonie", "la Finlande", "la France", "la Grèce", "la Hongrie", "l' Italie", "la Lettonie", "la Lituanie", "la Norvège", "les Pays-Bas", "la Pologne", "le Portugal", "la République Tchèque", "le Royaume-Uni", "la Slovaquie", "la Suède", "la Suisse"};
     private String[] countryName;
     private String[] countrFlag;
 //    private int[] flag = {R.drawable.austria, R.drawable.belgium, R.drawable.czech_republic/*, R.drawable.denmark, R.drawable.estonia, R.drawable.finland, R.drawable.france, R.drawable.germany, R.drawable.greece, R.drawable.hungary, R.drawable.italy, R.drawable.latvia, R.drawable.lithuania, R.drawable.netherlands, R.drawable.norway, R.drawable.poland, R.drawable.portugal, R.drawable.slovakia, R.drawable.spain, R.drawable.sweden, R.drawable.switzerland, R.drawable.united_kingdom*/};
@@ -69,7 +69,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     private static final String TITLE = "title";
     private String headerTitle;
     private String deviceDensity;
-    private String nationalText, internationalText;
+    private String nationalText, internationalText, cancel;
 
     public static Fragment newInstance(String title) {
         Fragment frag = new CallNissanAssistanceFragment();
@@ -92,8 +92,11 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         loadResource();
 //        loadData();
 
+        // from alert msg
         nationalText = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.NATIONAL_MSG);
         internationalText = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.INTERNATIONAL_MSG);
+        // from global msg
+        cancel = NissanApp.getInstance().getGlobalMessage(getActivity()).getCancel();
 
         return view;
     }
@@ -238,7 +241,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         if ("fr".equalsIgnoreCase(preferenceUtil.getSelectedLang())) {
             TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
 //            txtViewTitle.setText(getResources().getString(R.string.telephone_number_for) + " " + countryNameFR[position]);
-            txtViewTitle.setText(getResources().getString(R.string.telephone_number_for) + " " + countryNameFR[position]);
+            txtViewTitle.setText(/*getResources().getString(R.string.telephone_number_for) + " " + */phonePopupText[position]);
         } else {
             TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
 //            txtViewTitle.setText(getResources().getString(R.string.telephone_number_for) + " " + list.get(position).getCountryName());
@@ -246,6 +249,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         }
 
         TextView btnCancel = (TextView) dialog.findViewById(R.id.btn_cancel);
+        btnCancel.setText(cancel);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
