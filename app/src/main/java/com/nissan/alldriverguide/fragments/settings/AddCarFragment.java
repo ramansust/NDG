@@ -84,10 +84,10 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
     private long doubleClickPopup = 0;
     private List<CarList> carListArrayList = new ArrayList<>();
+    private long mLastClickTime = 0;
 
     public static Fragment newInstance() {
-        Fragment frag = new AddCarFragment();
-        return frag;
+        return new AddCarFragment();
     }
 
 
@@ -281,6 +281,12 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+
         selectedCarIndex = position;
         CarInfo info = (CarInfo) parent.getAdapter().getItem(position);
         if ("1".equalsIgnoreCase(info.getStatus())) {

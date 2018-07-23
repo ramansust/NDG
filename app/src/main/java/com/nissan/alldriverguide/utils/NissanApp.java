@@ -97,6 +97,8 @@ public class NissanApp {
 
     public GlobalMessage getGlobalMessage(Context context) {
 
+
+
         if (globalMessageArrayList == null || globalMessageArrayList.size() == 0) {
             Type type = new TypeToken<ArrayList<GlobalMessage>>() {
             }.getType();
@@ -104,9 +106,9 @@ public class NissanApp {
             setGlobalMessageArrayList(globalMessageArrayList);
         }
 
-        if (globalMessageArrayList == null || globalMessageArrayList.size() == 0)
+        if (globalMessageArrayList == null || globalMessageArrayList.size() == 0) {
             return new GlobalMessage();
-
+        }
         return globalMessageArrayList.get(0);
     }
 
@@ -1397,6 +1399,7 @@ public class NissanApp {
 
         String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_short_name) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
 
+
         List<AlertMessage> alertMessageArrayList = NissanApp.getInstance().getAlertMessageGlobalArrayList();
         if (alertMessageArrayList == null || alertMessageArrayList.size() == 0) {
             Type type = new TypeToken<ArrayList<AlertMessage>>() {
@@ -1408,6 +1411,7 @@ public class NissanApp {
         }
 
         int searchIndex = alertMessageArrayList.indexOf(new AlertMessage(msg_type));
+
 
         if (searchIndex >= 0)
             return alertMessageArrayList.get(searchIndex).getMsg();

@@ -14,9 +14,6 @@ public class GlobalMessage {
     @SerializedName("msg")
     @Expose
     private String msg;
-    @SerializedName("reset")
-    @Expose
-    private String reset;
     @SerializedName("ok")
     @Expose
     private String ok;
@@ -59,14 +56,6 @@ public class GlobalMessage {
 
     public void setMsg(String msg) {
         this.msg = msg;
-    }
-
-    public String getReset() {
-        return reset;
-    }
-
-    public void setReset(String reset) {
-        this.reset = reset;
     }
 
     public String getOk() {

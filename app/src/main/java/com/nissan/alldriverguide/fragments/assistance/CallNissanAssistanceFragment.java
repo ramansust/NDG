@@ -258,7 +258,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         });
 
         TextView txtNational = (TextView) dialog.findViewById(R.id.txt_view_national);
-        txtNational.setText(nationalText.isEmpty() ? "" : nationalText);
+        txtNational.setText(nationalText);
 
         TextView txtViewNational = (TextView) dialog.findViewById(R.id.txt_view_national_number);
         txtViewNational.setText(" " + list.get(position).getNationalNumber());
@@ -273,7 +273,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         });
 
         TextView txtInternational = (TextView) dialog.findViewById(R.id.txt_view_international);
-        txtInternational.setText(internationalText == null || internationalText.isEmpty() ? "" : internationalText);
+        txtInternational.setText(internationalText);
 
         TextView txtViewInternational = (TextView) dialog.findViewById(R.id.txt_view_international_number);
         txtViewInternational.setText(" " + list.get(position).getInternationalNumber());
