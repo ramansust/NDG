@@ -495,6 +495,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                                     if (!preferenceUtil.getSelectedLang().equals("") && !lang.equals("")) {
                                                                         if (!preferenceUtil.getSelectedLang().equals(lang)) {
                                                                             // delete previous language directory
+                                                                            // eg. /storage/emulated/0/.AllDriverGuide/leaf2017/leaf2017_en
                                                                             FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType)));
                                                                             Logger.error("File Delete" , "" + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType));
                                                                         }

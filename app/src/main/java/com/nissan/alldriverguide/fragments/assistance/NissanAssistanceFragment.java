@@ -121,6 +121,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
 //            txtViewCarName.setText("NISSAN " + resources.getStringArray(R.array.car_names)[Values.carType - 1]);
             txtViewCarName.setText("NISSAN " + NissanApp.getInstance().assistanceInfo.getSelectedCar());
         }
+        txtViewCarName.setBackgroundResource(R.color.black);
         // set image background according to car type
         setCarBackground(Values.carType);
     }

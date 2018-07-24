@@ -42,6 +42,7 @@ public class CarDownloadAdapter extends BaseAdapter {
 
     public void setList(ArrayList<Object> _list) {
         this.list = _list;
+        notifyDataSetChanged();
     }
 
     @Override

@@ -650,6 +650,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private void errorFileDelete(int carType) {
         try {
             dismissDialog();
+            // delete the directory eg. /storage/emulated/0/.AllDriverGuide/xtrail2017
             FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(carType)));
         } catch (IOException e) {
             e.printStackTrace();

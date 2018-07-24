@@ -2,7 +2,6 @@ package com.nissan.alldriverguide.fragments.explore;
 
 import android.Manifest;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -55,7 +54,6 @@ import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
-import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 import com.nissan.alldriverguide.view.ScrollableGridView;
@@ -501,8 +499,11 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 textViewMap.setBackgroundResource(R.drawable.micra_map_fi);
             } else if(lang.equalsIgnoreCase("pt")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_pt);
+            } else if(lang.equalsIgnoreCase("da")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_da);
             } else {
-
+                // default english
+                textViewMap.setBackgroundResource(R.drawable.micra_map_en);
             }
         }
     }

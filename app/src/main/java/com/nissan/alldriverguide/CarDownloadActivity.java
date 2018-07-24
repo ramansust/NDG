@@ -542,8 +542,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
         globalMessageController.callApi(NissanApp.getInstance().getDeviceID(getApplicationContext()), NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "");
 
-        adapter = new CarDownloadAdapter(getApplicationContext(), NissanApp.getInstance().getCarList());
-        lstView.setAdapter(adapter);
+//        adapter = new CarDownloadAdapter(getApplicationContext(), NissanApp.getInstance().getCarList());
+//        lstView.setAdapter(adapter);
 
         String sharedpref_key = "en_" + Values.CAR_LIST_KEY + "_1";
         Type type = new TypeToken<ArrayList<CarList>>() {
@@ -1185,16 +1185,25 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                     }
                 }
             }
+            if (NissanApp.getInstance().getCarList() != null) {
+                setCarImageAccordingToDeviceResolution();
+            }
 
-            // set the adapter
+/*            // set the adapter
             if (NissanApp.getInstance().getCarList() != null) {
 
                 setCarImageAccordingToDeviceResolution();
 
 //                Logger.error("size_after", "_________" + NissanApp.getInstance().getCarList().size());
                 adapter.setList(NissanApp.getInstance().getCarList());
-                adapter.notifyDataSetChanged();
                 lstView.setDivider(null);
+            }*/
+            if (NissanApp.getInstance().getCarList() != null && adapter == null) {
+                adapter = new CarDownloadAdapter(getApplicationContext(), NissanApp.getInstance().getCarList());
+                lstView.setAdapter(adapter);
+                lstView.setDivider(null);
+            } else {
+                adapter.setList(NissanApp.getInstance().getCarList());
             }
 
         }
