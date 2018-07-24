@@ -86,6 +86,7 @@ import java.util.List;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
+import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
 public class CarDownloadActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, InterfaceGlobalMessageResponse, CarListACompleteAPI {
 
@@ -463,7 +464,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     public void onDownloaded(GlobalMsgResponse responseInfo) {
-        if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+        if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
             String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.GLOBAL_MSG_KEY;
             String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
@@ -692,6 +693,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
         final Dialog dialog = new DialogController(activity).internetDialog();
 
+        dialog.setCancelable(false);
+
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(msg);
 
@@ -700,7 +703,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                finish();
             }
         });
 

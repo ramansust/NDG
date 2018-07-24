@@ -70,6 +70,7 @@ import java.util.List;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 import static com.nissan.alldriverguide.utils.Values.STARTING_DOWNLOAD;
+import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
 /**
  * Created by raman on 1/19/17.
@@ -300,7 +301,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
     @Override
     public void onDownloaded(GlobalMsgResponse responseInfo) {
-        if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+        if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
             String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.GLOBAL_MSG_KEY;
             String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
@@ -316,7 +317,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
     @Override
     public void onDownloaded(CarListResponse responseInfo) {
-        if (responseInfo.getStatusCode().equals("200")) {
+        if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
             String car_list_key = lang + "_" + Values.CAR_LIST_KEY + "_" + NissanApp.getInstance().getLanguageID(lang);
             preferenceUtil.storeMultiLangData(responseInfo.getCarList(), car_list_key);
         } else

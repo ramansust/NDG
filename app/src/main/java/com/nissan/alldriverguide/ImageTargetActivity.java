@@ -891,7 +891,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
         String exitDialogueText = NissanApp.getInstance().getAlertMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.CONFIRM_EXIT_MESSAGE);
-        txtViewTitle.setText(exitDialogueText.isEmpty() ? resources.getString(R.string.exit_alert) : exitDialogueText);
+        txtViewTitle.setText(exitDialogueText == null || exitDialogueText.isEmpty() ? resources.getString(R.string.exit_alert) : exitDialogueText);
 
         //TODO
         String okText = NissanApp.getInstance().getGlobalMessage(this).getOk();
@@ -899,11 +899,11 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
         Button btnNo = (Button) dialog.findViewById(R.id.btn_cancel);
 //        btnNo.setText(resources.getString(R.string.button_NO));
-        btnNo.setText(cancelText.isEmpty() ? resources.getString(R.string.button_NO) : cancelText);
+        btnNo.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_NO) : cancelText);
 
         Button btnYes = (Button) dialog.findViewById(R.id.btn_ok);
 //        btnYes.setText(resources.getString(R.string.button_YES));
-        btnYes.setText(okText.isEmpty() ? resources.getString(R.string.button_YES) : okText);
+        btnYes.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_YES) : okText);
 
 
         btnNo.setOnClickListener(new View.OnClickListener() {

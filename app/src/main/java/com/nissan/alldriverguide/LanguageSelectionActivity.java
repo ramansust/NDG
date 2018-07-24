@@ -68,6 +68,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import static com.nissan.alldriverguide.utils.Values.DATA_SYNCING;
 import static com.nissan.alldriverguide.utils.Values.DOWNLOADING;
 import static com.nissan.alldriverguide.utils.Values.STARTING_DOWNLOAD;
+import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
 public class LanguageSelectionActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, InterfaceLanguageListResponse, InterfaceGlobalMessageResponse, CarListACompleteAPI {
 
@@ -668,7 +669,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
     @Override
     public void onDownloaded(GlobalMsgResponse responseInfo) {
-        if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+        if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
             String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.GLOBAL_MSG_KEY;
             String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.GLOBAL_ALERT_MSG_KEY;

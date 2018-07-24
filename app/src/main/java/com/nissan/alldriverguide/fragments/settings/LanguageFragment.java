@@ -68,6 +68,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
+
 public class LanguageFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener, InterfaceLanguageListResponse, InterfaceGlobalMessageResponse, CarListACompleteAPI {
 
     private static final String TAG = "LanguageFragment";
@@ -361,7 +363,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public void onDownloaded(GlobalMsgResponse responseInfo) {
 
-        if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
+        if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
             preferenceUtil.setPreviousLanguage(Values.carType+"_"+NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
 
@@ -382,7 +384,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     @Override
     public void onDownloaded(CarListResponse responseInfo) {
-        if (responseInfo.getStatusCode().equals("200")) {
+        if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
             String car_list_key = lang_sort_name + "_" + Values.CAR_LIST_KEY + "_" + NissanApp.getInstance().getLanguageID(lang_sort_name);
             Logger.error(TAG, "car_list_key__________" + car_list_key);
             preferenceUtil.storeMultiLangData(responseInfo.getCarList(), car_list_key);
@@ -448,7 +450,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             @Override
             public void onDownloaded(ResponseInfo responseInfo) {
 
-                if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getLangUrl())) {
+                if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getLangUrl())) {
 
 
 
@@ -487,7 +489,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                         @Override
                                                         public void onDownloaded(ResponseInfo responseInfo) {
 
-                                                            if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
+                                                            if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
                                                                 try {
 
                                                                     if (!preferenceUtil.getSelectedLang().equals("") && !lang.equals("")) {

@@ -97,6 +97,8 @@ public class NissanApp {
 
     public GlobalMessage getGlobalMessage(Context context) {
 
+
+
         if (globalMessageArrayList == null || globalMessageArrayList.size() == 0) {
             Type type = new TypeToken<ArrayList<GlobalMessage>>() {
             }.getType();
@@ -104,9 +106,9 @@ public class NissanApp {
             setGlobalMessageArrayList(globalMessageArrayList);
         }
 
-        if (globalMessageArrayList == null || globalMessageArrayList.size() == 0)
+        if (globalMessageArrayList == null || globalMessageArrayList.size() == 0) {
             return new GlobalMessage();
-
+        }
         return globalMessageArrayList.get(0);
     }
 
