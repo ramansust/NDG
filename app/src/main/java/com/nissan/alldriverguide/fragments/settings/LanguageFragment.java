@@ -68,6 +68,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
 public class LanguageFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener, InterfaceLanguageListResponse, InterfaceGlobalMessageResponse, CarListACompleteAPI {
@@ -341,6 +342,12 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+        if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+
+
         if (list.get(position).isSelected()) {
             preferenceUtil.setSelectedLang(languageShortName[list.get(position).getId()]);
             lang_sort_name = languageShortName[list.get(position).getId()];
@@ -369,7 +376,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
             String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_sort_name) + "_" + Values.GLOBAL_MSG_KEY;
             String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_sort_name) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
-
             preferenceUtil.storeMultiLangData(responseInfo.getAlertMessage(), key_global_alert_message);
             preferenceUtil.storeMultiLangData(responseInfo.getGlobalMessage(), key_global_message);
 
@@ -451,8 +457,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             public void onDownloaded(ResponseInfo responseInfo) {
 
                 if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getLangUrl())) {
-
-
 
                     String old_key_tutorial = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.TUTORIAL_KEY;
                     String old_key_tab = Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "_" + Values.TAB_MENU_KEY;

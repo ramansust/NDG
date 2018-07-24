@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +70,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     private static final String TITLE = "title";
     private String headerTitle;
     private String deviceDensity;
-    private String nationalText, internationalText;
+    private String nationalText = "", internationalText = "";
 
     public static Fragment newInstance(String title) {
         Fragment frag = new CallNissanAssistanceFragment();
@@ -254,7 +255,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         });
 
         TextView txtNational = (TextView) dialog.findViewById(R.id.txt_view_national);
-        txtNational.setText(nationalText.isEmpty() ? "" : nationalText);
+        txtNational.setText(nationalText);
 
         TextView txtViewNational = (TextView) dialog.findViewById(R.id.txt_view_national_number);
         txtViewNational.setText(" " + list.get(position).getNationalNumber());
@@ -269,7 +270,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         });
 
         TextView txtInternational = (TextView) dialog.findViewById(R.id.txt_view_international);
-        txtInternational.setText(internationalText == null || internationalText.isEmpty() ? "" : internationalText);
+        txtInternational.setText(internationalText);
 
         TextView txtViewInternational = (TextView) dialog.findViewById(R.id.txt_view_international_number);
         txtViewInternational.setText(" " + list.get(position).getInternationalNumber());
