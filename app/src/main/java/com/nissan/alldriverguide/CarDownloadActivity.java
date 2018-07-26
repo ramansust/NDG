@@ -23,6 +23,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -110,9 +111,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 //    private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
 //            "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan Qashqai"};
 
-    private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
+    private String[] carNames = null; /*{"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
             "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "New Nissan X-TRAIL", "New Nissan LEAF"};
-
+*/
     private int[] previousCarArray = {1, 2, 4, 5, 7, 9};
 //    private int[] previousCarArray = {1, 2, 7};
 
@@ -479,6 +480,17 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     }
 
     private void loadCarData() {
+
+
+        if (carListArrayList == null || carListArrayList.size() == 0)
+            return;
+
+        carNames = new String[carListArrayList.size()];
+
+        for (int i = 0; i < carListArrayList.size(); i++) {
+            carNames[i] = carListArrayList.get(i).getCarDisplayName();
+        }
+
         if (preferenceUtil.getIsFirstTime()) {
             if (new File(Values.PATH).exists()) {
                 try {
