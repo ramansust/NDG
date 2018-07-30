@@ -8,6 +8,7 @@ public class CallInfo {
     private String countryName;
     private int flag;
     private String countryFlag;
+    private String popupText;
 
     public String getCountryName() {
         return countryName;
@@ -40,11 +41,12 @@ public class CallInfo {
         this.internationalNumber = internationalNumber;
     }
 
-    public CallInfo(String countryName, String flag, String nationalNumber, String internationalNumber) {
+    public CallInfo(String countryName, String flag, String nationalNumber, String internationalNumber, String popupText) {
         this.countryName = countryName;
         this.countryFlag = flag;
         this.nationalNumber = nationalNumber;
         this.internationalNumber = internationalNumber;
+        this.popupText = popupText;
     }
 
     public String getNationalNumber() {

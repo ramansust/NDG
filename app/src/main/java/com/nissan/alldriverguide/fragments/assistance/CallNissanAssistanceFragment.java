@@ -34,6 +34,7 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -182,9 +183,10 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         list = new ArrayList<>();
 
         for (int i = 0; i < countryName.length; i++) {
-            CallInfo info = new CallInfo(countryName[i], countrFlag[i], nationalNumber[i], internationalNumber[i]);
+            CallInfo info = new CallInfo(countryName[i], countrFlag[i], nationalNumber[i], internationalNumber[i], phonePopupText[i]);
             list.add(info);
         }
+
 
         Collections.sort(list, new Comparator<CallInfo>() {
             @Override
@@ -245,6 +247,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         } else {
             TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
 //            txtViewTitle.setText(getResources().getString(R.string.telephone_number_for) + " " + list.get(position).getCountryName());
+            Arrays.sort(phonePopupText);
             txtViewTitle.setText(phonePopupText[position]);
         }
 
