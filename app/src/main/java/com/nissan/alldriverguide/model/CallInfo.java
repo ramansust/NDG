@@ -8,6 +8,11 @@ public class CallInfo {
     private String countryName;
     private int flag;
     private String countryFlag;
+
+    public String getPopupText() {
+        return popupText;
+    }
+
     private String popupText;
 
     public String getCountryName() {

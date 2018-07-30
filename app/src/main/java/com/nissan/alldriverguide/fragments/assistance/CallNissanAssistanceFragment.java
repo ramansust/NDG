@@ -34,7 +34,6 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.text.Collator;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -240,16 +239,9 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
         final Dialog dialog = new DialogController(getActivity()).callNumberDialog();
 
-        if ("fr".equalsIgnoreCase(preferenceUtil.getSelectedLang())) {
-            TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-//            txtViewTitle.setText(getResources().getString(R.string.telephone_number_for) + " " + countryNameFR[position]);
-            txtViewTitle.setText(/*getResources().getString(R.string.telephone_number_for) + " " + */phonePopupText[position]);
-        } else {
-            TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-//            txtViewTitle.setText(getResources().getString(R.string.telephone_number_for) + " " + list.get(position).getCountryName());
-            Arrays.sort(phonePopupText);
-            txtViewTitle.setText(phonePopupText[position]);
-        }
+        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        txtViewTitle.setText(list.get(position).getPopupText());
+
 
         TextView btnCancel = (TextView) dialog.findViewById(R.id.btn_cancel);
         btnCancel.setText(cancel);
