@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -20,6 +21,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
 /**
  * Created by rohan on 2/23/17.
@@ -45,6 +48,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
     private ArrayList<String> list_blue;
     private ArrayList<String> list_gray;
     private ArrayList<String> list_cyan;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -350,8 +354,6 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
                 break;
 
             default:
-                PreferenceUtil preferenceUtil = new PreferenceUtil(getApplicationContext());
-                int ePubIndex = 0;
 /*
                 if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 //                if(Values.carType == 14) {
@@ -364,8 +366,12 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
                     }
                 }
 */
+                if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
-                ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
+                int ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
 
 //                ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
                 

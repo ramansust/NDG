@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.model.EpubInfo;
+import com.nissan.alldriverguide.MyApplication;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
@@ -37,6 +38,8 @@ public class PreferenceUtil {
 
     public PreferenceUtil(Context mContext) {
         super();
+        if (mContext == null)
+            mContext = MyApplication.getAppContext();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 

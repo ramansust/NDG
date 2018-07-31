@@ -134,7 +134,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         gridView.setAdapter(adapter);
 
 
-        sharedpref_key = Values.carType + "_" + Values.EXPLOREDATA;
+        sharedpref_key = Values.carType + "_" + Values.EXPLORE_OBJ_STORE_KEY;
         exploreModel = new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key);
         if (exploreModel != null && exploreModel.getVideoList() != null && exploreModel.getVideoList().size() > 0) {
             progressBar.setVisibility(View.GONE);

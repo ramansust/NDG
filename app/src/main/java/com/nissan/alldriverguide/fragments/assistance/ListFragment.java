@@ -27,6 +27,7 @@ import com.nissan.alldriverguide.adapter.ListAdapter;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.Analytics;
+import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
