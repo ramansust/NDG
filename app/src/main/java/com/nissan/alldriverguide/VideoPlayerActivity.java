@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -21,7 +20,6 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.nissan.alldriverguide.database.PreferenceUtil;
-import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
@@ -29,6 +27,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class VideoPlayerActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener, View.OnClickListener, MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener {
 
+    private static final String TAG = "VideoPlayerActivity";
     private VideoView videoView;
     private ImageButton btnClose;
     private ProgressBar progressBar;
@@ -48,6 +47,8 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
 
     private Resources resources;
     private DisplayMetrics metrics;
+
+    private boolean executeOnResume = true;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -213,9 +214,16 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
 
     @Override
     public void onPrepared(MediaPlayer mp) {
-        progressBar.setVisibility(View.GONE);
-        if (videoView != null) {
-            videoView.start();
+        if (executeOnResume) {
+            progressBar.setVisibility(View.GONE);
+            if (videoView != null) {
+                videoView.start();
+            }
+        } else {
+            progressBar.setVisibility(View.GONE);
+            if (videoView != null) {
+                videoView.pause();
+            }
         }
     }
 
@@ -228,18 +236,33 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     protected void onResume() {
         super.onResume();
 
-        if(!videoView.isPlaying() && relativePopup.getVisibility() == View.INVISIBLE) {
-            progressBar.setVisibility(View.VISIBLE);
-        }
-
-        try {
-            if (videoView != null) {
-                videoView.seekTo(position);
-                videoView.start();
+        if (executeOnResume) { // first time true when activity call on create
+            if(!videoView.isPlaying() && relativePopup.getVisibility() == View.INVISIBLE) {
+                progressBar.setVisibility(View.VISIBLE);
             }
-        } catch (Exception e) {
-
+            try {
+                if (videoView != null) {
+                    videoView.seekTo(position);
+                    videoView.start();
+                }
+            } catch (Exception e) { }
+        } else { // else working when back from another activity
+            if(!videoView.isPlaying() && relativePopup.getVisibility() == View.INVISIBLE) {
+                progressBar.setVisibility(View.VISIBLE);
+            }
+            try {
+                if (videoView != null) {
+                    videoView.seekTo(position);
+                }
+            } catch (Exception e) { }
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //do not execute onResume code when back form another activity
+        executeOnResume = false;
     }
 
     @Override

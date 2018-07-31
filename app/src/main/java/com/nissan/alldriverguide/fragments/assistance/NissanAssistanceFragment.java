@@ -31,6 +31,7 @@ import java.util.List;
 
 public class NissanAssistanceFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
+    private static final String TAG = "NissanAssistanceFragmen";
     private int[] nissanNssistanceImage = {R.drawable.pickup, R.drawable.phone};
 
     private View view;
@@ -180,7 +181,8 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
 
         switch (position) {
             case 0:
-                frag = DetailsFragment.newInstance(0, resources.getStringArray(R.array.nissan_assistance_array)[position]);
+//                frag = DetailsFragment.newInstance(0, resources.getStringArray(R.array.nissan_assistance_array)[position]);
+                frag = DetailsFragment.newInstance(0, nissanAssistance[position]);
                 break;
 
             case 1:
