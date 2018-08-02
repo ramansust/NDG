@@ -131,11 +131,12 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         Logger.error("carId", "___________" + carId);
 
+//        showLanguageDialog(Integer.parseInt(carId));
 
         if (languageLists == null || languageLists.size() == 0) {
             if (DetectConnection.checkInternetConnection(context)) {
                 controllerLanguageSelection = new LanguageSelectionController(this);
-                controllerLanguageSelection.callApi(NissanApp.getInstance().getDeviceID(context)/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, carId);
+                controllerLanguageSelection.callApi(NissanApp.getInstance().getDeviceID(context), carId);
             } else {
                 Toast.makeText(context, "No Internet!", Toast.LENGTH_SHORT).show();
             }
@@ -340,7 +341,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             showLanguageDialog(selectedCarType);
         } else {
             String noContentMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.NO_CONTENT_FOUND);
-            showNoContentDialogue(noContentMsg.isEmpty() ? resources.getString(R.string.no_content_found_url) : noContentMsg);
+            showNoContentDialogue(noContentMsg == null || noContentMsg.isEmpty() ? resources.getString(R.string.no_content_found_url) : noContentMsg);
         }
     }
 
@@ -625,7 +626,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                         @Override
                         public void run() {
                             String car_delete_msg = NissanApp.getInstance().getAlertMessage(context, lang, Values.CAR_DELETE);
-                            progressDialog = new ProgressDialogController(activity).showDialog(car_delete_msg.isEmpty() ? resources.getString(R.string.start_car_delete) : car_delete_msg);
+                            progressDialog = new ProgressDialogController(activity).showDialog(car_delete_msg == null || car_delete_msg.isEmpty() ? resources.getString(R.string.start_car_delete) : car_delete_msg);
                         }
                     });
 
@@ -759,7 +760,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         String downloadCarGuide2Msg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2);
 
-        txtViewTitle.setText(downloadCarGuide2Msg.isEmpty() ? resources.getString(R.string.download_msg) : downloadCarGuide2Msg);
+        txtViewTitle.setText(downloadCarGuide2Msg == null || downloadCarGuide2Msg.isEmpty() ? resources.getString(R.string.download_msg) : downloadCarGuide2Msg);
 
         ImageButton btnEUR = (ImageButton) dialog.findViewById(R.id.btn_eur);
         ImageButton btnRUS = (ImageButton) dialog.findViewById(R.id.btn_rus);
@@ -916,6 +917,10 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
     private void showLanguageDialog(final int carType) {
 
+        if (languageLists == null || languageLists.size() == 0)
+            languageLists = new ArrayList<>();
+        languageList = new ArrayList<>();
+
         dialog = new DialogController(activity).languageSelectionDialog();
         ListView lstView = (ListView) dialog.findViewById(R.id.lst_view);
 
@@ -932,53 +937,9 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             }
         });
 
-        languageList = new ArrayList<>();
-//
-//        for (int i = 0; i < languageName.length; i++) {
-//            LanguageInfo info = new LanguageInfo(i, languageName[i], false, languageImage[i]);
-            /*if (carType == 2 || carType == 5) {
-                if (i == 0 || i == 6) {
-                    languageList.add(info);
-                }
-            } else if (carType == 14) {
-                if (i == 0) {
-                    languageList.add(info);
-                    break;
-                }
-            } else {
-                if (carType == 7 || carType == 8 || carType == 9) {
-                    if (i != 6) {
-                        languageList.add(info);
-                    }
-                } else {
-                    languageList.add(info);
-                }
-            }*/
-
-//            if (carType == 2 || carType == 5) {
-//                if (i == 0 || i == 6) {
-//                    languageList.add(info);
-//                }
-//            } else {
-//                if (carType == 7 || carType == 8 || carType == 9) {
-//                    if (i != 6 && i != 8) {
-//                        languageList.add(info);
-//                    }
-//                } else if (carType == 1 || carType == 3 || carType == 4 || carType == 6 || carType == 10 || carType == 11 || carType == 12 || carType == 13) {
-//                    if (i != 8) {
-//                        languageList.add(info);
-//                    }
-//                } else {
-//                    languageList.add(info);
-//                }
-//            }
-//        }
-
         String deviceDensity = NissanApp.getInstance().getDensityName(context);
 
         String[] langFlagUri = new String[languageLists.size()];
-
-        String shortCode = "";
 
         for (int i = 0; i < languageLists.size(); i++) {
 
@@ -997,42 +958,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             }
 
             LanguageInfo info = new LanguageInfo(i, languageLists.get(i).getLanguageName(), false, langFlagUri[i]);
-//            shortCode = languageLists.get(i).getLanguageShortcode();
             languageList.add(info);
-
-
-/*
-            if (carType == 2 || carType == 5) {
-
-                if (shortCode.equalsIgnoreCase("en") || shortCode.equalsIgnoreCase("ru"))
-                    languageList.add(info);
-
-//                if (i == 0 || i == 6) {
-//                    languageList.add(info);
-//                }
-            } else {
-
-                if (carType == 7 || carType == 8 || carType == 9) {
-
-
-                    if (shortCode.equalsIgnoreCase("ru") || shortCode.equalsIgnoreCase("no")) {
-//                    if (i != 6 && i != 8) {
-
-                    } else {
-                        languageList.add(info);
-                    }
-
-                } else if (carType == 1 || carType == 3 || carType == 4 || carType == 6 || carType == 10 || carType == 11 || carType == 12 || carType == 13) {
-//                    if (i != 8) {
-                    if (!shortCode.equalsIgnoreCase("no")) {
-                        languageList.add(info);
-                    }
-                } else {
-                    languageList.add(info);
-                }
-            }
-*/
-
         }
 
         lstView.setAdapter(new LanguageSelectionAdapter(context, languageList, false));
