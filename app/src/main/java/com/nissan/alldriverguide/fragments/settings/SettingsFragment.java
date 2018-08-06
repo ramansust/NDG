@@ -1,7 +1,6 @@
 package com.nissan.alldriverguide.fragments.settings;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -33,7 +32,6 @@ import com.nissan.alldriverguide.interfaces.CompleteSettingTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabListModel;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
-import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
@@ -89,7 +87,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         adapter = new AssistanceAdapter(getActivity().getApplicationContext(), setting_names, assistanceImage);
         lstView.setAdapter(adapter);
 
-        sharedpref_key = Values.carType + "_" + Values.SETTINGDATA;
+        sharedpref_key = Values.carType + "_" + Values.SETTING_OBJ_STORE_KEY;
         settingList = preferenceUtil.retrieveSettingDataList(sharedpref_key);
 
         if (settingList != null && settingList.size() > 0) {

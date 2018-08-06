@@ -120,8 +120,8 @@ public class Values {
     public static final String TAB_MENU_KEY = "multi_lang_tab_menu";
 
     public static final String GLOBALMSGKEY = "globalmsg";
-    public static final String EXPLOREDATA = "multi_lang_explore";
-    public static final String SETTINGDATA = "multi_lang_setting";
+    public static final String EXPLORE_OBJ_STORE_KEY = "multi_lang_explore";
+    public static final String SETTING_OBJ_STORE_KEY = "multi_lang_setting";
     public static final String EPUBID = "0";
     public static final String GLOBAL_MSG_KEY = "multi_lang_globalmsg";
     public static final String GLOBAL_ALERT_MSG_KEY = "multi_lang_global_alert_msg";

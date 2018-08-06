@@ -111,9 +111,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 //    private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
 //            "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan Qashqai"};
 
-    private String[] carNames = null; /*{"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
+    private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
             "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "New Nissan X-TRAIL", "New Nissan LEAF"};
-*/
     private int[] previousCarArray = {1, 2, 4, 5, 7, 9};
 //    private int[] previousCarArray = {1, 2, 7};
 
@@ -482,14 +481,14 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private void loadCarData() {
 
 
-        if (carListArrayList == null || carListArrayList.size() == 0)
-            return;
+//        if (carListArrayList == null || carListArrayList.size() == 0)
+//            return;
 
-        carNames = new String[carListArrayList.size()];
+//        carNames = new String[carListArrayList.size()];
 
-        for (int i = 0; i < carListArrayList.size(); i++) {
-            carNames[i] = carListArrayList.get(i).getCarDisplayName();
-        }
+//        for (int i = 0; i < carListArrayList.size(); i++) {
+//            carNames[i] = carListArrayList.get(i).getCarDisplayName();
+//        }
 
         if (preferenceUtil.getIsFirstTime()) {
             if (new File(Values.PATH).exists()) {
@@ -1244,7 +1243,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                         if (info.getId() == Integer.parseInt(carListModel.getId())) {
                             carImageURL = NissanApp.getInstance().getURLAccordingToDensity(this, device_density, carListModel);
                             info.setCarImg(carImageURL);
-                            info.setName(carListModel.getCarName());
+                            info.setName(carListModel.getCarDisplayName());
                             mainList.set(i, info);
                         }
                     }

@@ -114,6 +114,7 @@ public class NissanDbHelper extends SQLiteOpenHelper implements BaseDbHelper {
             // missing_column not there - add it
             db.execSQL(ADD_COLUMN_VERSION_CODE);
         }
+
     }
 
     private void manualOnCreate(SQLiteDatabase db) {

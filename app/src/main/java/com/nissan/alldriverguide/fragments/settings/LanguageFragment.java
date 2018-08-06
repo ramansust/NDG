@@ -530,7 +530,9 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                                 ((MainActivity) getActivity()).setTabResources();
 
                                                                 controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(lang_sort_name)+"");
-
+                                                                preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY);
+                                                                preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.EXPLORE_OBJ_STORE_KEY);
+                                                                preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.SETTING_OBJ_STORE_KEY);
 
                                                             } else {
                                                                 showErrorDialog("Confirmation send error!");
