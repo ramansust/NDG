@@ -39,11 +39,14 @@ import com.nissan.alldriverguide.fragments.search.tab.WarningLightFragment;
 import com.nissan.alldriverguide.fragments.search.tab.WarrantyFragment;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.SearchModel;
+import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
+import com.nissan.alldriverguide.multiLang.model.Datum;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.text.TextUtils.isEmpty;
 
@@ -54,6 +57,7 @@ import static android.text.TextUtils.isEmpty;
 
 public class TabFragment extends Fragment {
 
+    private static Context context;
     private CommonDao commondao;
     private TabLayout tabLayout;
     private View fragmentView, shadowView;
@@ -121,9 +125,11 @@ public class TabFragment extends Fragment {
 
     /**
      * Initialized all variable
+     *
      * @param v for fragment layout view
      */
     private void initializeView(View v) {
+        context = getActivity();
         commondao = CommonDao.getInstance();
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
         getSearchKeyword = (EditText) v.findViewById(R.id.input_search);
@@ -222,6 +228,7 @@ public class TabFragment extends Fragment {
 
     /**
      * Here indicate the search tab fragment
+     *
      * @param tabPosition identify the specific Fragment
      */
     private void setCurrentTabFragment(int tabPosition) {
@@ -517,6 +524,23 @@ public class TabFragment extends Fragment {
 
     public static String getTitleName(int _ePubType) {
 
+        AssistanceInfo assistanceInfo = NissanApp.getInstance().getAssistanceInfo();
+
+        if (assistanceInfo == null || assistanceInfo.getData() == null || assistanceInfo.getData().size() == 0)
+            assistanceInfo = new PreferenceUtil(context).retrieveAssistanceData(Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY);
+        if (assistanceInfo == null) return "";
+        List<Datum> assistanceTabList = assistanceInfo.getData();
+
+        for (Datum data : assistanceTabList) {
+            if (data.getIndex() == _ePubType)
+                return data.getTitle();
+        }
+
+
+
+
+
+/*
         if (_ePubType == Values.COMBIMETER_TYPE)
             return resources.getString(R.string.warning_lights);
         else if (_ePubType == Values.HOMEPAGE_TYPE)
@@ -527,6 +551,7 @@ public class TabFragment extends Fragment {
             return resources.getString(R.string.engine_compartment);
         else if (_ePubType == Values.WARRANTY_TYPE)
             return resources.getString(R.string.warranty);
+*/
 
         return "";
     }

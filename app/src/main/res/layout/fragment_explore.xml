@@ -34,7 +34,12 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
+            <ProgressBar
+                android:id="@+id/prog_explore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
             <RelativeLayout
                 android:id="@+id/relative_ar"
                 android:layout_width="match_parent"
@@ -81,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/relative_ar"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <RelativeLayout
                     android:id="@+id/relative_blind_spot_top"
@@ -254,12 +259,7 @@
                     android:scrollbars="none"
                     android:stretchMode="columnWidth"></com.nissan.alldriverguide.view.ScrollableGridView>
 
-                <ProgressBar
-                    android:id="@+id/prog_explore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:visibility="gone" />
+
 
                 <LinearLayout
                     android:id="@+id/layout_explore_data_not_found"

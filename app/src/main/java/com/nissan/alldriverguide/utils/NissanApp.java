@@ -201,8 +201,22 @@ public class NissanApp {
      * @return Full name of car
      */
     public String getCarName(int car) {
-
         String cn = "";
+        ArrayList<Object> carInfoList = NissanApp.getInstance().getCarList();
+
+        if (carInfoList != null && carInfoList.size() > 0) {
+            for (Object obj : carInfoList) {
+                if (CarInfo.class == obj.getClass()){
+                    CarInfo carInfo = (CarInfo) obj;
+                    if (carInfo.getId() == car) {
+                        cn = carInfo.getName();
+                    }
+                }
+            }
+        }
+
+/*
+
         if (car == 1) {
             cn = "Qashqai EUR";
         } else if (car == 2) {
@@ -234,6 +248,7 @@ public class NissanApp {
         } else {
             cn = "";
         }
+*/
 
         return cn;
     }
