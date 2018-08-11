@@ -21,6 +21,7 @@ import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.epub.XMLParser;
 import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.BuildConfig;
+import com.nissan.alldriverguide.MyApplication;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
@@ -68,8 +69,17 @@ public class NissanApp {
     private ArrayList<TabMenu> tabMenuArrayList;
     private ArrayList<Tutorial> tutorialArrayList;
     private List<AlertMessage> alertMessageGlobalArrayList, alertMessageCarWiseLangDownloadList;
+    private List<CarList> carListWAP;
     private List<GlobalMessage> globalMessageArrayList;
     private List<LanguageList> carWiseLanguageList;
+
+    public List<CarList> getCarListWAP() {
+        return carListWAP;
+    }
+
+    public void setCarListWAP(List<CarList> carListWAP) {
+        this.carListWAP = carListWAP;
+    }
 
     public List<LanguageList> getCarWiseLanguageList() {
         return carWiseLanguageList;
@@ -96,7 +106,6 @@ public class NissanApp {
     }
 
     public GlobalMessage getGlobalMessage(Context context) {
-
 
 
         if (globalMessageArrayList == null || globalMessageArrayList.size() == 0) {
@@ -202,16 +211,18 @@ public class NissanApp {
      */
     public String getCarName(int car) {
         String cn = "";
-        ArrayList<Object> carInfoList = NissanApp.getInstance().getCarList();
-
-        if (carInfoList != null && carInfoList.size() > 0) {
-            for (Object obj : carInfoList) {
-                if (CarInfo.class == obj.getClass()){
-                    CarInfo carInfo = (CarInfo) obj;
-                    if (carInfo.getId() == car) {
-                        cn = carInfo.getName();
-                    }
+        List<CarList> carLists = NissanApp.getInstance().getCarListWAP();
+        if (carLists == null || carLists.size() == 0) {
+            Type type = new TypeToken<ArrayList<CarList>>() {
+            }.getType();
+            carLists = new Gson().fromJson(new PreferenceUtil(MyApplication.getAppContext()).retrieveMultiLangData("en_" + Values.CAR_LIST_KEY + "_1"), type);
+        }
+        if (carLists != null && carLists.size() > 0) {
+            for (CarList obj : carLists) {
+                if (Integer.parseInt(obj.getId()) == car) {
+                    cn = obj.getCarDisplayName();
                 }
+
             }
         }
 

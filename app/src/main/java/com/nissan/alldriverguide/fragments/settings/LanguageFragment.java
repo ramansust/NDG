@@ -393,6 +393,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
             String car_list_key = lang_sort_name + "_" + Values.CAR_LIST_KEY + "_" + NissanApp.getInstance().getLanguageID(lang_sort_name);
             Logger.error(TAG, "car_list_key__________" + car_list_key);
+            NissanApp.getInstance().setCarListWAP(responseInfo.getCarList());
             preferenceUtil.storeMultiLangData(responseInfo.getCarList(), car_list_key);
         }
     }

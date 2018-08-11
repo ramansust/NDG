@@ -522,7 +522,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             carListArrayList = new ArrayList<>();
 
             carListArrayList = responseInfo.getCarList();
-
+            NissanApp.getInstance().setCarListWAP(carListArrayList);
             preferenceUtil.storeMultiLangData(carListArrayList, "en_" + Values.CAR_LIST_KEY + "_1");
             loadCarData();
             if (pbCarDownload != null && pbCarDownload.getVisibility() == View.VISIBLE) {

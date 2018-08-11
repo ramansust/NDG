@@ -320,6 +320,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     public void onDownloaded(CarListResponse responseInfo) {
         if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
             String car_list_key = lang + "_" + Values.CAR_LIST_KEY + "_" + NissanApp.getInstance().getLanguageID(lang);
+            NissanApp.getInstance().setCarListWAP(responseInfo.getCarList());
             preferenceUtil.storeMultiLangData(responseInfo.getCarList(), car_list_key);
         } else
             Logger.error(TAG, "CarListResponse_status________" + responseInfo.getStatusCode());

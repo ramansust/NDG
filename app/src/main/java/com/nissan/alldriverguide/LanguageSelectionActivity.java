@@ -690,6 +690,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         if (responseInfo.getStatusCode().equals("200")) {
             String car_list_key = selectedLangModel.getLanguageShortcode() + "_" + Values.CAR_LIST_KEY + "_" + selectedLangModel.getLanguageId();
             Logger.error("Language_fragment", "car_list_key__________" + car_list_key);
+            NissanApp.getInstance().setCarListWAP(responseInfo.getCarList());
             preferenceUtil.storeMultiLangData(responseInfo.getCarList(), car_list_key);
         }
 

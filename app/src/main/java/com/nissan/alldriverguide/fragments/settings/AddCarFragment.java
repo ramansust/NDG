@@ -409,7 +409,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
                                 Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
 //                                btnOk.setText(resources.getString(R.string.button_YES));
-                                btnOk.setText(okText.isEmpty() ? resources.getString(R.string.button_YES) : okText);
+                                btnOk.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_YES) : okText);
 
                                 btnOk.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -591,7 +591,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
                                 Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
 //                                btnCancel.setText(resources.getString(R.string.button_NO));
-                                btnCancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_NO) : cancelText);
+                                btnCancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_NO) : cancelText);
 
                                 btnCancel.setOnClickListener(new View.OnClickListener() {
                                     @Override
