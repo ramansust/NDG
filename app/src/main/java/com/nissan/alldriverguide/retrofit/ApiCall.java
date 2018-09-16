@@ -35,7 +35,7 @@ public class ApiCall {
 
         //Creating an object of our api interface
         ApiService api = RetrofitClient.getApiService();
-        Call<ResponseInfo> call = api.postCarDownload(car_id, lang_id, epub_id, device_id);
+        Call<ResponseInfo> call = api.postCarDownload(car_id, lang_id, epub_id, device_id, Values.APK_VERSION);
         call.enqueue(new Callback<ResponseInfo>() {
             @Override
             public void onResponse(Call<ResponseInfo> call, Response<ResponseInfo> response) {
@@ -122,7 +122,7 @@ public class ApiCall {
 
         //Creating an object of our api interface
         ApiService api = RetrofitClient.getApiService();
-        Call<ResponseInfo> call = api.postLanguageDownload(car_id, lang_id, epub_id, device_id);
+        Call<ResponseInfo> call = api.postLanguageDownload(car_id, lang_id, epub_id, device_id, Values.APK_VERSION);
         call.enqueue(new Callback<ResponseInfo>() {
             @Override
             public void onResponse(Call<ResponseInfo> call, Response<ResponseInfo> response) {
@@ -177,7 +177,7 @@ public class ApiCall {
     public void postDeviceRegistrationForPush(String device_id, String reg_id, String device_type, final CompleteAPI completeAPI) {
         //Creating an object of our api interface
         ApiService api = RetrofitClient.getApiService();
-        Call<ResponseInfo> call = api.postDeviceRegistrationForPush(device_id, "" + reg_id, device_type);
+        Call<ResponseInfo> call = api.postDeviceRegistrationForPush(device_id, "" + reg_id, device_type, Values.APK_VERSION);
         call.enqueue(new Callback<ResponseInfo>() {
             @Override
             public void onResponse(Call<ResponseInfo> call, Response<ResponseInfo> response) {

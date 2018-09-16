@@ -1,14 +1,21 @@
 package com.nissan.alldriverguide;
 
+import android.*;
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -25,6 +32,12 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.adapter.LanguageSelectionAdapter;
@@ -328,16 +341,13 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
 //        preferenceUtil.setSelectedLang(languageShortName[info.getId()]); // here save the selected language sort name into preference
 
-        if (NissanApp.getInstance().createPath(Values.PATH)) {
+
             if (DetectConnection.checkInternetConnection(getApplicationContext())) {
                 showCarDownloadDialogForSingleCar();
             } else {
                 String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
                 NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
             }
-        } else {
-            Logger.error("error in", "________path");
-        }
     }
 
     private LanguageList getDataFromMainList(String selectedLanguageName) {
@@ -365,6 +375,9 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
      * Start Car download procedure
      */
     private void startCarDownloadProcedure() {
+
+        carListContentController.callApi(NissanApp.getInstance().getDeviceID(activity), selectedLangModel.getLanguageId()+"");
+        controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(activity)/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, selectedLangModel.getLanguageId()+"");
 
         final String startingDownloadMsg = getAlertMessage(STARTING_DOWNLOAD);
 
@@ -440,35 +453,41 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             @Override
             public int onError(int i) {
                 errorFileDelete(Values.carType);
+                Logger.error("onError", "______" + i);
                 return 0;
             }
 
             @Override
             public boolean internetConnection(boolean b) {
+                Logger.error("internetConnection", "______" + b);
                 errorFileDelete(Values.carType);
                 return false;
             }
 
             @Override
             public boolean urlReachable(boolean b) {
+                Logger.error("urlReachable", "______" + b);
                 errorFileDelete(Values.carType);
                 return false;
             }
 
             @Override
             public boolean destinationExists(boolean b) {
+                Logger.error("destinationExists", "______" + b);
                 errorFileDelete(Values.carType);
                 return false;
             }
 
             @Override
             public boolean sourcePath(boolean b) {
+                Logger.error("sourcePath", "______" + b);
                 errorFileDelete(Values.carType);
                 return false;
             }
 
             @Override
             public boolean destinationPath(boolean b) {
+                Logger.error("destinationPath", "______" + b);
                 errorFileDelete(Values.carType);
                 return false;
             }
@@ -485,6 +504,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
             @Override
             public void init() {
+                Logger.error("init", "______" + "start");
                 if (Values.carType == 11) {
 //                    carName = "All New Nissan Micra";
                     carName = "Nissan Micra";
@@ -621,15 +641,87 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Logger.error("lang_id", "__________" + selectedLangModel.getLanguageId());
-                carListContentController.callApi(NissanApp.getInstance().getDeviceID(activity), selectedLangModel.getLanguageId()+"");
-                controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(activity)/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, selectedLangModel.getLanguageId()+"");
-                startCarDownloadProcedure();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestStoragePermission();
+                } else {
+                    Logger.error("lang_id", "__________" + selectedLangModel.getLanguageId());
+                    if (NissanApp.getInstance().createPath(Values.PATH)) {
+                        startCarDownloadProcedure();
+                    } else {
+                        Logger.error("error in", "________creating path");
+                    }
+                }
 
             }
         });
 
         dialog.show();
+    }
+
+
+
+    /**
+     * Requesting camera permission
+     * This uses single permission model from dexter
+     * Once the permission granted, opens the camera
+     * On permanent denial opens settings dialog
+     */
+    private void requestStoragePermission() {
+        Dexter.withActivity(this)
+                .withPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        // permission is granted
+                        if (NissanApp.getInstance().createPath(Values.PATH)) {
+                            startCarDownloadProcedure();
+                        } else {
+                            Logger.error("error in", "________path");
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        // check for permanent denial of permission
+                        if (response.isPermanentlyDenied()) {
+                            showSettingsDialog();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
+    }
+
+    private void showSettingsDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(LanguageSelectionActivity.this);
+        builder.setTitle("Need Permissions");
+        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
+        builder.setPositiveButton("GOTO SETTINGS", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                openSettings();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+
+    }
+
+    // navigating user to app settings
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        startActivityForResult(intent, 101);
     }
 
     private String getAlertMessage(String msgType) {

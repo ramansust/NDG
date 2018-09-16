@@ -34,16 +34,17 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/feedback_no_thanks"
+            android:id="@+id/feedback_yes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0.2dp"
             android:background="@color/background"
             android:gravity="center"
             android:padding="@dimen/margin_left"
-            android:text="@string/rate_no_thanks"
+            android:text="@string/send_feedback"
             android:textColor="@color/white"
-            android:textSize="@dimen/activity_horizontal_margin" />
+            android:textSize="@dimen/activity_horizontal_margin"
+            android:textStyle="bold"/>
 
         <View
             android:layout_width="match_parent"
@@ -73,14 +74,14 @@
 
 
         <TextView
-            android:id="@+id/feedback_yes"
+            android:id="@+id/feedback_no_thanks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0.2dp"
             android:background="@color/background"
             android:gravity="center"
             android:padding="@dimen/margin_left"
-            android:text="@string/send_feedback"
+            android:text="@string/rate_no_thanks"
             android:textColor="@color/white"
             android:textSize="@dimen/activity_horizontal_margin"
             android:layout_marginBottom="20dp" />

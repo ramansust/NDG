@@ -15,6 +15,7 @@ import retrofit2.http.POST;
 
 /**
  * Created by nirob on 10/18/17.
+ * Updated by Shuvo on 08/12/18.
  */
 
 public interface ApiService {
@@ -23,7 +24,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("car_download/")
     Call<ResponseInfo> postCarDownload(@Field("car_id") String car_id, @Field("language_id") String language_id,
-                                       @Field("epub_id") String ePub_id, @Field("device_id") String device_id);
+                                       @Field("epub_id") String ePub_id, @Field("device_id") String device_id, @Field("version") String version);
 
     // car downloading confirmation post
     @FormUrlEncoded
@@ -41,7 +42,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("language_download/")
     Call<ResponseInfo> postLanguageDownload(@Field("car_id") String car_id, @Field("language_id") String language_id,
-                                              @Field("epub_id") String ePub_id, @Field("device_id") String device_id);
+                                              @Field("epub_id") String ePub_id, @Field("device_id") String device_id, @Field("version") String version);
 
 
     // keyword search post (Language Fragment)
@@ -53,7 +54,7 @@ public interface ApiService {
     // device registration for push notification
     @FormUrlEncoded
     @POST("device/registration/")
-    Call<ResponseInfo> postDeviceRegistrationForPush(@Field("device_id") String device_id, @Field("fcm_reg_id") String reg_id, @Field("device_type") String device_type);
+    Call<ResponseInfo> postDeviceRegistrationForPush(@Field("device_id") String device_id, @Field("fcm_reg_id") String reg_id, @Field("device_type") String device_type, @Field("version") String version);
 
     // get content download
     @FormUrlEncoded

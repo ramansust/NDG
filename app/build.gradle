@@ -5,8 +5,7 @@ def NATIVE_LIB_DIR = 'build/lib'
 def JAR_DIR = 'build/java/vuforia'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
     sourceSets.main {
         jni.srcDirs = []
         jniLibs.srcDir "$VUFORIA_SDK_DIR/$NATIVE_LIB_DIR/"
@@ -15,8 +14,8 @@ android {
     defaultConfig {
         applicationId "com.nissan.alldriverguide"
         minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 54
+        targetSdkVersion 27
+        versionCode 53
         versionName "2.1.0"
     }
 
@@ -50,29 +49,35 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.google.android.gms:play-services-analytics:11.0.4'
-    compile 'com.google.firebase:firebase-messaging:11.0.4'
-    compile 'com.android.support:design:25.1.0'
-    compile 'com.android.support:support-v4:25.0.0'
-    compile files('libs/NDG_SDK.jar')
-    compile files("$VUFORIA_SDK_DIR/$JAR_DIR/Vuforia.jar")
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.google.android.gms:play-services-analytics:11.0.4'
+    implementation 'com.google.firebase:firebase-messaging:11.0.4'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation files('libs/NDG_SDK.jar')
+    implementation files("$VUFORIA_SDK_DIR/$JAR_DIR/Vuforia.jar")
     //for changing font for whole app
-    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
-    compile project(path: ':lib_viewpager_indicator')
+    implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
+    implementation project(path: ':lib_viewpager_indicator')
     // retrofit
-    compile 'com.google.code.gson:gson:2.6.2'
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-    compile 'com.afollestad:sectioned-recyclerview:0.5.0'
-    compile 'com.xiaofeng.android:flowlayoutmanager:1.2.3.2'
+    implementation 'com.google.code.gson:gson:2.6.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+    implementation 'com.afollestad:sectioned-recyclerview:0.5.0'
+    implementation 'com.xiaofeng.android:flowlayoutmanager:1.2.3.2'
 
-    compile 'com.facebook.fresco:fresco:0.13.0'
-    compile 'com.facebook.fresco:animated-gif:0.13.0'
-    compile 'com.facebook.fresco:animated-webp:0.13.0'
-    compile 'com.facebook.fresco:webpsupport:0.13.0'
-    compile 'com.github.bumptech.glide:glide:3.5.2'
+    implementation 'com.facebook.fresco:fresco:0.13.0'
+    implementation 'com.facebook.fresco:animated-gif:0.13.0'
+    implementation 'com.facebook.fresco:animated-webp:0.13.0'
+    implementation 'com.facebook.fresco:webpsupport:0.13.0'
+    implementation 'com.github.bumptech.glide:glide:3.5.2'
+
+    // dexter runtime permissions
     implementation 'com.karumi:dexter:4.2.0'
 
 }

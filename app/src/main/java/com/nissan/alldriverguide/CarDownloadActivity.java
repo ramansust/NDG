@@ -248,11 +248,16 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
 
             } else {
+
+                goForNormalOperation(position, parent);
+
+/*
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     requestStoragePermission(position, parent);
                 } else {
                     goForNormalOperation(position, parent);
                 }
+*/
 
 
 
@@ -261,11 +266,14 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             }
 
         } else {
+/*
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestStoragePermission(position, parent);
             } else {
                 goForNormalOperation(position, parent);
             }
+*/
+            goForNormalOperation(position, parent);
         }
 
     }
@@ -347,12 +355,15 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                         progressDialog.dismiss();
                     Logger.error("Device registration Successful", "________________________________" + "refresh token");
                     new PreferenceUtil(getApplicationContext()).setPushRegistrationStatus(true);
-
+                    goForNormalOperation(position, parent);
+/*
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         requestStoragePermission(position, parent);
                     } else {
                         goForNormalOperation(position, parent);
                     }
+*/
+
                 }
             }
 

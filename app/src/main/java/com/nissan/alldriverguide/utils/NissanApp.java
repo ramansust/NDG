@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -752,6 +753,7 @@ public class NissanApp {
      * @return true if car path is exist
      */
     public boolean createPath(String path) {
+
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -762,6 +764,7 @@ public class NissanApp {
         } else {
             return false;
         }
+
     }
 
     /**

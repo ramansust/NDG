@@ -126,27 +126,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                }
 
 //                if("11".equalsIgnoreCase(carId) || "12".equalsIgnoreCase(carId) || "13".equalsIgnoreCase(carId) || "14".equalsIgnoreCase(carId)) {
-                    if(array != null && array.length() > 0) {
-                        for(int i = 0; i < array.length(); i++) {
-                            String ePubId = array.get(i).toString();
-                            if(!isEmpty(carId) && !isEmpty(languageId) && !isEmpty(ePubId)) {
-                                try {
-                                    commonDao.makeAllPushEntryStatusChange(getBaseContext(), Integer.parseInt(carId), Integer.parseInt(languageId), Integer.parseInt(ePubId));
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-
-                                commonDao.insertNotificationData(getApplicationContext(), carId, languageId, ePubId);
-                            } else {
-                                Logger.error("Empty ID found", "_____________");
+                if(array != null && array.length() > 0) {
+                    for(int i = 0; i < array.length(); i++) {
+                        String ePubId = array.get(i).toString();
+                        if(!isEmpty(carId) && !isEmpty(languageId) && !isEmpty(ePubId)) {
+                            try {
+                                commonDao.makeAllPushEntryStatusChange(getBaseContext(), Integer.parseInt(carId), Integer.parseInt(languageId), Integer.parseInt(ePubId));
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                        }
-                    } else {
 
+                            commonDao.insertNotificationData(getApplicationContext(), carId, languageId, ePubId);
+                        } else {
+                            Logger.error("Empty ID found", "_____________");
+                        }
                     }
-                    if(!isEmpty(extras.getString("msg"))) {
-                        handleDataMessage(extras.getString("msg"));
-                    }
+                } else {
+
+                }
+                if(!isEmpty(extras.getString("msg"))) {
+                    handleDataMessage(extras.getString("msg"));
+                }
 //                }
 
                 Logger.error("CarFFFFFFFFFFFFFFFFFFFFFFF_id : " + carId + " Languag_id : " + languageId, "ePub_id : " +ePub_id);

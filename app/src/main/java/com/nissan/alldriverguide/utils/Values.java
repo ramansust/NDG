@@ -9,7 +9,8 @@ import java.util.ArrayList;
  */
 
 public class Values {
-    public static final String PATH = Environment.getExternalStorageDirectory() + "/.AllDriverGuide";
+    public static final String PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/.AllDriverGuide";
+    public static final String APK_VERSION = "2";
     public static String car_path = "";
     public static int carType = 0;
     public static int ePubType = 0;
