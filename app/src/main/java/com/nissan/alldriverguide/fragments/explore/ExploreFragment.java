@@ -17,15 +17,21 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -72,12 +78,10 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private static final String TAG = "ExploreFragment";
 
+    private Context mContext;
     private Button btnAR;
-    private RelativeLayout btnBlindSpotAR;
+    private RelativeLayout btnBlindSpotAR, relativeAR, relativeBlindSpot, rlMapView;
     private View view;
-
-    private RelativeLayout relativeAR;
-    private RelativeLayout relativeBlindSpot;
 
     private ScrollableGridView gridView;
     private GridViewAdapter adapter;
@@ -93,9 +97,11 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private String device_density, internetCheckMessage = "";
     public static ProgressBar progress_bar;
     private ExploreTabContentController controller;
-    private LinearLayout layoutDataNotFound;
+    private LinearLayout layoutDataNotFound, llLeftArrow, llRightArrow;
     private LinearLayout mapView;
     private List<EpubInfo> list;
+    private ViewPager viewPager;
+    private ImageView ivRight, ivLeft;
 
     /**
      * Creating instance for this fragment
@@ -155,8 +161,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             }
         }
 
-            int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
-            controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1");
+        int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
+        controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1");
 
     }
 
@@ -276,16 +282,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             }
 
         } else {
-            mapView.setVisibility(View.GONE);
+//            mapView.setVisibility(View.GONE);
             relativeAR.setVisibility(View.VISIBLE);
             relativeBlindSpot.setVisibility(View.GONE);
         }
 
         if (Values.carType == 11) {
-            mapView.setVisibility(View.VISIBLE);
-            mapTextImage(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
+            rlMapView.setVisibility(View.VISIBLE);
+//            mapTextImage(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
         } else {
-            mapView.setVisibility(View.GONE);
+            rlMapView.setVisibility(View.GONE);
         }
     }
 
@@ -296,7 +302,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         btnAR.setOnClickListener(this);
         btnBlindSpotAR.setOnClickListener(this);
         gridView.setOnItemClickListener(this);
-        mapView.setOnClickListener(this);
+        ivLeft.setOnClickListener(this);
+        ivRight.setOnClickListener(this);
+//        mapView.setOnClickListener(this);
     }
 
     /**
@@ -306,16 +314,17 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
      */
     private void initViews(View view) {
 
+        mContext = getActivity();
         txtViewExplore = (TextView) view.findViewById(R.id.txt_blind_spot_ar);
-        textViewMap = (TextView) view.findViewById(R.id.txt_map);
-        tvPageTitle = (TextView ) view.findViewById(R.id.txt_title_explore);
+
+        tvPageTitle = (TextView) view.findViewById(R.id.txt_title_explore);
         relativeAR = (RelativeLayout) view.findViewById(R.id.relative_ar);
         relativeBlindSpot = (RelativeLayout) view.findViewById(R.id.relative_blind_spot);
         progress_bar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
         btnAR = (Button) view.findViewById(R.id.btn_ar);
         btnBlindSpotAR = (RelativeLayout) view.findViewById(R.id.btn_blind_spot_ar);
-        mapView = (LinearLayout) view.findViewById(R.id.map_view);
+        rlMapView = (RelativeLayout) view.findViewById(R.id.rlMapView);
         gridView = (ScrollableGridView) view.findViewById(R.id.grid_view);
 
         // this code for prevent scrollview bottom display
@@ -329,6 +338,12 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         controller = new ExploreTabContentController(this);
+        viewPager = (ViewPager) view.findViewById(R.id.viewPager);
+        viewPager.setAdapter(new MyPagerAdapter());
+        llLeftArrow = view.findViewById(R.id.llLeftArrow);
+        llRightArrow = view.findViewById(R.id.llRightArrow);
+        ivRight = (ImageView) view.findViewById(R.id.ivRightArrow);
+        ivLeft = (ImageView) view.findViewById(R.id.ivLeftArrow);
     }
 
     // load resources for language localized
@@ -355,22 +370,55 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
+            case R.id.ivLeftArrow:
+
+                viewPager.setCurrentItem(getItem(-1), true);
+
+                if (viewPager.getCurrentItem() == 0) {
+                    llLeftArrow.setVisibility(View.GONE);
+                    llRightArrow.setVisibility(View.VISIBLE);
+                } else {
+                    llLeftArrow.setVisibility(View.VISIBLE);
+                    llRightArrow.setVisibility(View.GONE);
+                }
+
+                break;
+
+            case R.id.ivRightArrow:
+
+                viewPager.setCurrentItem(getItem(+1), true);
+
+                if (viewPager.getCurrentItem() == 1) {
+                    llRightArrow.setVisibility(View.GONE);
+                    llLeftArrow.setVisibility(View.VISIBLE);
+                } else {
+                    llRightArrow.setVisibility(View.VISIBLE);
+                    llLeftArrow.setVisibility(View.GONE);
+                }
+
+                break;
+
             case R.id.btn_ar:
                 // here start the ImageTargetActivity class for AR
             case R.id.btn_blind_spot_ar:
 
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     requestCameraPermission();
                 } else {
                     startActivity(new Intent(getActivity(), ImageTargetActivity.class));
                 }
                 break;
 
+/*
             case R.id.map_view:
                 if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
                     list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
                 }
                 Values.ePubType = Values.HOMEPAGE_TYPE;
+
+                if(list == null || list.size() == 0)
+                    return;
 
                 Fragment frag = DetailsFragment.newInstance(list.get(52).getIndex(), resources.getString(R.string.updating_map_data));
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
@@ -379,6 +427,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 ft.addToBackStack(Values.tabExplore);
                 ft.commit();
                 break;
+*/
 
 
             default:
@@ -387,6 +436,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     }
 
 
+    private int getItem(int i) {
+        return viewPager.getCurrentItem() + i;
+    }
 
     /**
      * Requesting camera permission
@@ -477,31 +529,31 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private void mapTextImage(String lang) {
         if (Values.carType == 11) {
-            if(lang.equalsIgnoreCase("en")) {
+            if (lang.equalsIgnoreCase("en")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_en);
-            } else if(lang.equalsIgnoreCase("de")) {
+            } else if (lang.equalsIgnoreCase("de")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_de);
-            } else if(lang.equalsIgnoreCase("ru")) {
+            } else if (lang.equalsIgnoreCase("ru")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_ru);
-            } else if(lang.equalsIgnoreCase("sv")) {
+            } else if (lang.equalsIgnoreCase("sv")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_sv);
-            } else if(lang.equalsIgnoreCase("es")) {
+            } else if (lang.equalsIgnoreCase("es")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_es);
-            } else if(lang.equalsIgnoreCase("nl")) {
+            } else if (lang.equalsIgnoreCase("nl")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_nl);
-            } else if(lang.equalsIgnoreCase("no")) {
+            } else if (lang.equalsIgnoreCase("no")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_no);
-            } else if(lang.equalsIgnoreCase("fr")) {
+            } else if (lang.equalsIgnoreCase("fr")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_fr);
-            } else if(lang.equalsIgnoreCase("it")) {
+            } else if (lang.equalsIgnoreCase("it")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_it);
-            } else if(lang.equalsIgnoreCase("pl")) {
+            } else if (lang.equalsIgnoreCase("pl")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_pl);
-            } else if(lang.equalsIgnoreCase("fi")) {
+            } else if (lang.equalsIgnoreCase("fi")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_fi);
-            } else if(lang.equalsIgnoreCase("pt")) {
+            } else if (lang.equalsIgnoreCase("pt")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_pt);
-            } else if(lang.equalsIgnoreCase("da")) {
+            } else if (lang.equalsIgnoreCase("da")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_da);
             } else {
                 // default english
@@ -510,5 +562,87 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         }
     }
 
+    private class MyPagerAdapter extends PagerAdapter {
+
+
+        //view inflating..
+        @Override
+        public Object instantiateItem(ViewGroup collection, int position) {
+
+            LayoutInflater inflater = LayoutInflater.from(mContext);
+            ViewGroup layout = null;
+
+            switch (position) {
+                case 0:
+                    layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_1,
+                            collection, false);
+
+                    textViewMap = (TextView) layout.findViewById(R.id.txt_map);
+                    mapView = (LinearLayout) layout.findViewById(R.id.map_view);
+                    mapTextImage(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
+
+                    mapView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
+                                list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
+                            }
+                            Values.ePubType = Values.HOMEPAGE_TYPE;
+
+                            if (list == null || list.size() == 0)
+                                return;
+
+                            Fragment frag = DetailsFragment.newInstance(list.get(52).getIndex(), resources.getString(R.string.updating_map_data));
+                            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                            ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
+                            ft.replace(R.id.container, frag);
+                            ft.addToBackStack(Values.tabExplore);
+                            ft.commit();
+                        }
+                    });
+                    break;
+                case 1:
+                    layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_2,
+                            collection, false);
+
+                    layout.findViewById(R.id.ivMap).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // here start the playing video for grid view item click
+
+                            if (DetectConnection.checkInternetConnection(getActivity())) {
+
+                                if (NissanApp.getInstance().getExploreVideoList().get(0).getVideoUrl() != null) {
+                                    startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
+                                }
+
+                            } else {
+                                Toast.makeText(getActivity(), internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+                    break;
+            }
+
+            collection.addView(layout);
+            return layout;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup collection, int position, Object view) {
+            collection.removeView((View) view);
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+    }
 
 }

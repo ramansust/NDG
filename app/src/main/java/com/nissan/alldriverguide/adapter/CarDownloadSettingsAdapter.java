@@ -585,7 +585,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         this.carType = carType;
         final Dialog dialog = new DialogController(activity).langDialog();
 
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         if (isCarDownload) {
             String downloadConfirmationMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DOWNLOAD_CONFIRMATION);
             txtViewTitle.setText(downloadConfirmationMsg == null || downloadConfirmationMsg.isEmpty() ? resources.getString(R.string.alert_msg22) : downloadConfirmationMsg);
@@ -598,8 +598,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         String okText = NissanApp.getInstance().getGlobalMessage(context).getOk();
         String cancelText = NissanApp.getInstance().getGlobalMessage(context).getCancel();
 
-        Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
-        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        Button btnCancel = dialog.findViewById(R.id.btn_cancel);
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
 
         btnOk.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
         btnCancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
