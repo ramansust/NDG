@@ -10,11 +10,16 @@ countries.
 package com.nissan.alldriverguide.vuforia;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
+import android.os.Build;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
+import android.view.WindowManager;
 
 import com.nissan.alldriverguide.utils.Logger;
 import com.vuforia.COORDINATE_SYSTEM_TYPE;
@@ -37,10 +42,12 @@ import com.vuforia.VideoBackgroundConfig;
 import com.vuforia.VideoMode;
 import com.vuforia.ViewList;
 
+import java.lang.ref.WeakReference;
+
 public class SampleAppRenderer {
 
     private static final String LOGTAG = "SampleAppRenderer";
-
+    private WeakReference<Activity> mActivityRef = null;
     private RenderingPrimitives mRenderingPrimitives = null;
     private SampleAppRendererControl mRenderingInterface = null;
     private Activity mActivity = null;
@@ -69,7 +76,7 @@ public class SampleAppRenderer {
     public SampleAppRenderer(SampleAppRendererControl renderingInterface, Activity activity, int deviceMode,
                              boolean stereo, float nearPlane, float farPlane) {
         mActivity = activity;
-
+        mActivityRef = new WeakReference<>(activity);
         mRenderingInterface = renderingInterface;
         mRenderer = Renderer.getInstance();
 
@@ -173,7 +180,7 @@ public class SampleAppRenderer {
 
             // Get projection matrix for the current view. COORDINATE_SYSTEM_CAMERA used for AR and
             // COORDINATE_SYSTEM_WORLD for VR
-            Matrix34F projMatrix = mRenderingPrimitives.getProjectionMatrix(viewID, COORDINATE_SYSTEM_TYPE.COORDINATE_SYSTEM_CAMERA,
+            Matrix34F projMatrix = mRenderingPrimitives.getProjectionMatrix(viewID,
                     state.getCameraCalibration());
 
             // Create GL matrix setting up the near and far planes
@@ -221,7 +228,7 @@ public class SampleAppRenderer {
         }
 
         float[] vbProjectionMatrix = Tool.convert2GLMatrix(
-                mRenderingPrimitives.getVideoBackgroundProjectionMatrix(currentView, COORDINATE_SYSTEM_TYPE.COORDINATE_SYSTEM_CAMERA)).getData();
+                mRenderingPrimitives.getVideoBackgroundProjectionMatrix(currentView)).getData();
 
         // Apply the scene scale on video see-through eyewear, to scale the video background and augmentation
         // so that the display lines up with the real world
@@ -341,7 +348,31 @@ public class SampleAppRenderer {
     private void storeScreenDimensions() {
         // Query display dimensions:
         Point size = new Point();
-        mActivity.getWindowManager().getDefaultDisplay().getRealSize(size);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+        {
+            mActivityRef.get().getWindowManager().getDefaultDisplay().getRealSize(size);
+        }
+        else
+        {
+            WindowManager windowManager = (WindowManager) mActivityRef.get().getSystemService(Context.WINDOW_SERVICE);
+
+            if (windowManager != null)
+            {
+                DisplayMetrics metrics = new DisplayMetrics();
+                Display display = windowManager.getDefaultDisplay();
+                display.getMetrics(metrics);
+
+                size.x = metrics.widthPixels;
+                size.y = metrics.heightPixels;
+            }
+            else
+            {
+                Log.e(LOGTAG, "Could not get display metrics!");
+                size.x = 0;
+                size.y = 0;
+            }
+        }
+
         mScreenWidth = size.x;
         mScreenHeight = size.y;
     }
@@ -349,7 +380,7 @@ public class SampleAppRenderer {
 
     // Stores the orientation depending on the current resources configuration
     private void updateActivityOrientation() {
-        Configuration config = mActivity.getResources().getConfiguration();
+        Configuration config = mActivityRef.get().getResources().getConfiguration();
 
         switch (config.orientation) {
             case Configuration.ORIENTATION_PORTRAIT:

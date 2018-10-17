@@ -140,7 +140,59 @@
 
                 </RelativeLayout>
 
-                <LinearLayout
+                <RelativeLayout
+                    android:id="@+id/rlMapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:layout_below="@+id/relative_blind_spot_top">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+
+                    <LinearLayout
+                        android:id="@+id/llLeftArrow"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/ivLeftArrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_back_new" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llRightArrow"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:id="@+id/ivRightArrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_forward_new" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <!--<LinearLayout
                     android:id="@+id/map_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -168,7 +220,7 @@
                             android:paddingRight="@dimen/margin_back"
                             android:textColor="@color/orange" />
 
-                        <!--                    <TextView
+                        &lt;!&ndash;                    <TextView
                                                 android:id="@+id/txt_view_driver_guide"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
@@ -196,7 +248,7 @@
                                                 android:textAllCaps="true"
                                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                                 android:textColor="@color/white"
-                                                android:textSize="22dp" />-->
+                                                android:textSize="22dp" />&ndash;&gt;
 
                     </RelativeLayout>
 
@@ -230,7 +282,40 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
+                </LinearLayout>-->
+
+                <LinearLayout
+                    android:id="@+id/llTitleVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rlMapView"
+                    android:background="@color/colorWhite"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+
+                    <View
+                        android:layout_width="70dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/margin_back"
+                        android:alpha="255"
+                        android:background="@color/colorAccent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/txt_view_driver_guide"
+                        android:layout_below="@+id/txt_view_driver_guide"
+                        android:paddingLeft="@dimen/margin_back"
+                        android:paddingRight="@dimen/margin_back"
+                        android:text="@string/discover_your_vehicle"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
+
 
                 <ProgressBar
                     android:id="@+id/progress_bar"
@@ -248,7 +333,7 @@
                     android:id="@+id/grid_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/map_view"
+                    android:layout_below="@+id/llTitleVideo"
                     android:gravity="center"
                     android:numColumns="2"
                     android:scrollbars="none"

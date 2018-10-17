@@ -74,7 +74,7 @@ import java.util.List;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
-public class ExploreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, CompleteExploreTabContent {
+public class ExploreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, CompleteExploreTabContent ,ViewPager.OnPageChangeListener{
 
     private static final String TAG = "ExploreFragment";
 
@@ -287,7 +287,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             relativeBlindSpot.setVisibility(View.GONE);
         }
 
-        if (Values.carType == 11) {
+        if (Values.carType == 11 || Values.carType == 12) {
             rlMapView.setVisibility(View.VISIBLE);
 //            mapTextImage(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
         } else {
@@ -304,6 +304,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         gridView.setOnItemClickListener(this);
         ivLeft.setOnClickListener(this);
         ivRight.setOnClickListener(this);
+        viewPager.setOnPageChangeListener(this);
 //        mapView.setOnClickListener(this);
     }
 
@@ -435,7 +436,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         }
     }
 
-
     private int getItem(int i) {
         return viewPager.getCurrentItem() + i;
     }
@@ -528,7 +528,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     }
 
     private void mapTextImage(String lang) {
-        if (Values.carType == 11) {
+        if (Values.carType == 11 || Values.carType == 12) {
             if (lang.equalsIgnoreCase("en")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_en);
             } else if (lang.equalsIgnoreCase("de")) {
@@ -560,6 +560,29 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 textViewMap.setBackgroundResource(R.drawable.micra_map_en);
             }
         }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+        //while swipes between pages, imgArrow is visible or gone
+        if (viewPager.getCurrentItem() == 0) {
+            llLeftArrow.setVisibility(View.GONE);
+            llRightArrow.setVisibility(View.VISIBLE);
+        } else {
+            llLeftArrow.setVisibility(View.VISIBLE);
+            llRightArrow.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 
     private class MyPagerAdapter extends PagerAdapter {
@@ -643,6 +666,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         public boolean isViewFromObject(View view, Object object) {
             return view == object;
         }
+
     }
 
 }
