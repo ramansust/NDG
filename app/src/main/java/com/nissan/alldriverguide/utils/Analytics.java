@@ -41,6 +41,10 @@ public class Analytics {
     public static final String EV_NAVI_SYSTEM = "ev navi system";
     public static final String ECO = "eco";
     public static final String PARKING_BRAKE = "parking brake";
+    public static final String AV_SYSTEM = "av system";
+    public static final String AV_SYSTEM_MIDDLE = "av system middle";
+    public static final String AV_SYSTEM_LEFT = "av system left";
+    public static final String AV_SYSTEM_RIGHT = "av system right";
     public static final String PARK_ASSIST = "park assist";
     public static final String INTELLIGENT_PARK_ASSIST = "intelligent park assist";
     public static final String ALL_MODE = "all mode";

@@ -285,6 +285,9 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         for (int i = 0; i < languageName.length; i++) {
 
             LanguageInfo info = new LanguageInfo(i, languageName[i], false, FlagUrl[i]);
+            Log.e("Language Name","" + info.getName());
+            Log.e("Language Name Short","" + info.getId());
+
             list.add(info);
 
 /*

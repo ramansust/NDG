@@ -403,7 +403,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                     return;
                 }
 
-                if (info.getId() == 1 || info.getId() == 2 || info.getId() == 4 || info.getId() == 5) {
+                if (info.getId() == 1 || info.getId() == 2 || info.getId() == 4 || info.getId() == 5 ) {
                     showCarDownloadDialog(info.getId());
                 } else {
                     carDownloadCheck(info.getId());

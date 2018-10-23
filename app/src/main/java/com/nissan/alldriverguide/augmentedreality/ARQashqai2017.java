@@ -332,6 +332,30 @@ public class ARQashqai2017 implements GLSurfaceView.Renderer, SampleAppRendererC
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
+                    case R.id.btn_av_system_full_left:
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(
+                                R.layout.qashqai_2017_av_system_left, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_2017_av_system_left.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
+                        break;
+
+                    case R.id.btn_av_system_full_middle:
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(
+                                R.layout.qashqai_2017_av_system_middle, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_2017_av_system_middle.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
+                        break;
+
+                    case R.id.btn_av_system_full_right:
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(
+                                R.layout.qashqai_2017_av_system_right, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "qashqai_2017_av_system_right.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
+                        break;
+
                     default:
                         break;
                 }
@@ -914,6 +938,97 @@ public class ARQashqai2017 implements GLSurfaceView.Renderer, SampleAppRendererC
                         setBackground(mActivity.inflatedLayout, drawables + "qashqai_2017_heated_seat_switches.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    } else if (userDataToCompare.equalsIgnoreCase("av_system_left_01")
+                            || userDataToCompare.equalsIgnoreCase("av_system_left_03")
+                            || userDataToCompare.equalsIgnoreCase("av_system_left_5")
+                            || userDataToCompare.equalsIgnoreCase("av_system_left_6")
+                            || userDataToCompare.equalsIgnoreCase("av_system_left_7")) {
+
+
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        Values.ar_value = Analytics.AV_SYSTEM_LEFT;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.qashqai_2017_av_system_left, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_2017_av_system_left.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    } else if (userDataToCompare.equalsIgnoreCase("av_system_middle_01")
+                            || userDataToCompare.equalsIgnoreCase("av_system_middle_02")
+                            || userDataToCompare.equalsIgnoreCase("av_system_middle_03")
+                            || userDataToCompare.equalsIgnoreCase("av_system_middle_04")) {
+
+
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        Values.ar_value = Analytics.AV_SYSTEM_MIDDLE;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.qashqai_2017_av_system_middle, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_2017_av_system_middle.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    } else if (userDataToCompare.equalsIgnoreCase("av_system_right_01")
+                            || userDataToCompare.equalsIgnoreCase("av_system_right_03")
+                            || userDataToCompare.equalsIgnoreCase("av_system_right_4")
+                            || userDataToCompare.equalsIgnoreCase("av_system_right_5")
+                            || userDataToCompare.equalsIgnoreCase("av_system_right_6")) {
+
+
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        Values.ar_value = Analytics.AV_SYSTEM_RIGHT;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.qashqai_2017_av_system_right, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_2017_av_system_right.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    } else if (userDataToCompare.equalsIgnoreCase("av_system_full_01")
+                            || userDataToCompare.equalsIgnoreCase("av_system_full_02")
+                            || userDataToCompare.equalsIgnoreCase("av_system_full_03")
+                            || userDataToCompare.equalsIgnoreCase("av_system_full_4")
+                            || userDataToCompare.equalsIgnoreCase("av_system_full_5")) {
+
+
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        Values.ar_value = Analytics.AV_SYSTEM;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.qashqai_2017_av_system_full, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai_2017_av_system_full.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_av_system_full_left));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_av_system_full_middle));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_av_system_full_right));
 
                     } else {
                         mActivity.isDetected = false;

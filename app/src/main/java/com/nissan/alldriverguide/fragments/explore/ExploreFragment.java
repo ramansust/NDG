@@ -88,7 +88,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private Resources resources;
     private DisplayMetrics metrics;
-    private TextView txtViewExplore, tvNoContent, tvPageTitle, textViewMap;
+    private TextView txtViewExplore, tvNoContent, tvPageTitle, textViewMap,textViewMap2;
     private ProgressBar progressBar;
     private String sharedpref_key;
     private ArrayList<ExploreTabVideoModel> videoList = new ArrayList<>();
@@ -555,7 +555,50 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 textViewMap.setBackgroundResource(R.drawable.micra_map_pt);
             } else if (lang.equalsIgnoreCase("da")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_da);
-            } else {
+            } else if (lang.equalsIgnoreCase("cs")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_cs);
+            } else if (lang.equalsIgnoreCase("hu")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_hu);
+            }else {
+                // default english
+                textViewMap.setBackgroundResource(R.drawable.micra_map_en);
+            }
+        }
+    }
+
+    private void mapTextImage2(String lang) {
+        if (Values.carType == 11 || Values.carType == 12) {
+            if (lang.equalsIgnoreCase("en")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_en);
+            } else if (lang.equalsIgnoreCase("de")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_de);
+            } else if (lang.equalsIgnoreCase("ru")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_ru);
+            } else if (lang.equalsIgnoreCase("sv")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_sv);
+            } else if (lang.equalsIgnoreCase("es")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_es);
+            } else if (lang.equalsIgnoreCase("nl")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_nl);
+            } else if (lang.equalsIgnoreCase("no")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_no);
+            } else if (lang.equalsIgnoreCase("fr")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_fr);
+            } else if (lang.equalsIgnoreCase("it")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_it);
+            } else if (lang.equalsIgnoreCase("pl")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_pl);
+            } else if (lang.equalsIgnoreCase("fi")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_fi);
+            } else if (lang.equalsIgnoreCase("pt")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_pt);
+            } else if (lang.equalsIgnoreCase("da")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_da);
+            } else if (lang.equalsIgnoreCase("cs")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_cs);
+            } else if (lang.equalsIgnoreCase("hu")) {
+                textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_hu);
+            }else {
                 // default english
                 textViewMap.setBackgroundResource(R.drawable.micra_map_en);
             }
@@ -627,6 +670,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 case 1:
                     layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_2,
                             collection, false);
+
+                    textViewMap2 = (TextView) layout.findViewById(R.id.txt_map);
+                    mapTextImage2(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
 
                     layout.findViewById(R.id.ivMap).setOnClickListener(new View.OnClickListener() {
                         @Override

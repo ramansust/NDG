@@ -12,6 +12,7 @@ import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -1368,7 +1369,11 @@ public class NissanApp {
                 langID = 12;
             } else if (language_name.equalsIgnoreCase("DA")) {
                 langID = 21;
-            } else {
+            } else if (language_name.equalsIgnoreCase("cs")) {
+                langID = 22;
+            }else if (language_name.equalsIgnoreCase("hu")) {
+                langID = 23;
+            }else {
                 langID = 1;
             }
 
