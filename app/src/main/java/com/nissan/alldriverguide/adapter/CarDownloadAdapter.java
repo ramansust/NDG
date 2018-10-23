@@ -1,6 +1,7 @@
 package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,11 +108,15 @@ public class CarDownloadAdapter extends BaseAdapter {
             } else { // this section for available download
                 // set the car images for available downloaded section
 
+
                 imageView.setImageURI(info.getCarImg());
                 // set the available downloaded section background colour
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
                 // set the car name for available downloaded car
                 txtViewTitle.setText(info.getName());
+                if(info.getId() == 13 || info.getId() == 15){
+                    txtViewTitle.setText("NEW NISSAN");
+                }
             }
 
             // this item layout is actually used in CarDownloadSettingsAdapter.java

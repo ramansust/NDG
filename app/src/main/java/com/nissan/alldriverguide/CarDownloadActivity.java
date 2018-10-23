@@ -112,7 +112,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 //            "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan Qashqai"};
 
     private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
-            "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "New Nissan X-TRAIL", "New Nissan LEAF"};
+            "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "New Nissan X-TRAIL", "New Nissan LEAF","New Nissan X-TRAIL RUS"};
     private int[] previousCarArray = {1, 2, 4, 5, 7, 9};
 //    private int[] previousCarArray = {1, 2, 7};
 
@@ -402,8 +402,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                     showNoInternetDialogue("No Internet Connection. Please check your WIFI or cellular data network and try again.");
                     return;
                 }
-
-                if (info.getId() == 1 || info.getId() == 2 || info.getId() == 4 || info.getId() == 5 ) {
+                //click for eur/rus by rohan
+                if (info.getId() == 1 || info.getId() == 2 || info.getId() == 4 || info.getId() == 5 || info.getId() == 13) {
                     showCarDownloadDialog(info.getId());
                 } else {
                     carDownloadCheck(info.getId());
@@ -443,6 +443,15 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 btnEUR.setEnabled(false);
             }
             if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType)) && commonDao.getStatus(getBaseContext(), carType) == 1) {
+                btnRUS.setAlpha(0.2f);
+                btnRUS.setEnabled(false);
+            }
+        } else if (carType == 13 || carType == 15) {//click for eur/rus by rohan
+            if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType)) && commonDao.getStatus(getBaseContext(), carType) == 1) {
+                btnEUR.setAlpha(0.2f);
+                btnEUR.setEnabled(false);
+            }
+            if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType + 2)) && commonDao.getStatus(getBaseContext(), carType) == 1) {
                 btnRUS.setAlpha(0.2f);
                 btnRUS.setEnabled(false);
             }
@@ -571,6 +580,16 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         Type type = new TypeToken<ArrayList<CarList>>() {
         }.getType();
         carListArrayList = new Gson().fromJson(preferenceUtil.retrieveMultiLangData(sharedpref_key), type);
+
+        /*for (CarList list:carListArrayList
+                ) {
+            Log.e("---Car name ",""+list.getCarName());
+            Log.e("---Car ID ",""+list.getId());
+            Log.e("---Car Display ",""+list.getCarDisplayName());
+            Log.e("---Car Details ",""+list.getCarDetails());
+            Log.e("---Car Unique ",""+list.getCarUniqueName());
+
+        }*/
 
 
 //        if (carListArrayList != null && carListArrayList.size() > 0) {
@@ -1159,7 +1178,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             if (preferenceUtil.getIsDatabaseEmpty()) {
                 for (int i = 0; i < carNames.length; i++) {
                     CarInfo carInfo;
-                    if (i == 1 || i == 4) { // this logic actually work for car id (2 & 5) since i start from 0
+                    //click for eur/rus by rohan
+                    if (i == 1 || i == 4 || i ==14) { // this logic actually work for car id (2 & 5) since i start from 0
                         carInfo = new CarInfo((i + 1), carNames[i], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "RUS", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                     } else {
                         carInfo = new CarInfo((i + 1), carNames[i], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "EUR", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
@@ -1193,6 +1213,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             // actually this looping and logic determine for section header
             for (int i = 0; i < NissanApp.getInstance().getCarList().size(); i++) {
                 CarInfo info = (CarInfo) NissanApp.getInstance().getCarList().get(i);
+
                 if ((Values.ALREADY_DOWNLOADED.equalsIgnoreCase(info.getStatus()))) {
                     if (!NissanApp.getInstance().getCarList().contains(resources.getString(R.string.downloaded_car))) {
                         NissanApp.getInstance().getCarList().add(i, resources.getString(R.string.downloaded_car));
