@@ -285,8 +285,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         for (int i = 0; i < languageName.length; i++) {
 
             LanguageInfo info = new LanguageInfo(i, languageName[i], false, FlagUrl[i]);
-            Log.e("Language Name","" + info.getName());
-            Log.e("Language Name Short","" + info.getId());
+            //Log.e("Language Name","" + info.getName());
+            //Log.e("Language Name Short","" + info.getId());
 
             list.add(info);
 
@@ -396,6 +396,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             @Override
             public void onDownloaded(ResponseInfo info) {
                 if (AppConfig.IS_APP_ONLINE ? Values.SUCCESS_STATUS.equalsIgnoreCase(info.getStatusCode()) && !TextUtils.isEmpty(info.getAssetsUrl()) && !TextUtils.isEmpty(info.getLangUrl()) : Values.SUCCESS_STATUS.equalsIgnoreCase(info.getStatusCode())) {
+                    Log.e("CarId"," "+Values.carType);
                     Log.e("server", "Asset URL: " + info.getAssetsUrl() + "\n Language URL: " + info.getLangUrl());
                     preferenceUtil.storeMultiLangData(info.getTutorials(), Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TUTORIAL_KEY);
                     preferenceUtil.storeMultiLangData(info.getTabMenu(), Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TAB_MENU_KEY);
@@ -539,6 +540,11 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                         if (commonDao.getStatus(getBaseContext(), Values.carType + 1) == 2) {
                             commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 1, "2", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                         }
+                    }else if(Values.carType == 13){//click eur/rus rohan
+                        if(commonDao.getStatus(getBaseContext(),Values.carType + 2)  == 0){
+                            Log.e("Car type LAn","-----"+Values.carType);
+                            commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 2, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                        }//click eur/rus rohan
                     }
                     commonDao.updateLanguageStatus(getBaseContext(), Values.carType, preferenceUtil.getSelectedLang());
 

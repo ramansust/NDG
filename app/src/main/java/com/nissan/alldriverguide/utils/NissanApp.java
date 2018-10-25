@@ -926,6 +926,9 @@ public class NissanApp {
             case 14:
                 path = Values.leaf_2017;
                 break;
+            case 15:
+                path = Values.xtrail_2017_rus;
+                break;
 
             default:
                 break;

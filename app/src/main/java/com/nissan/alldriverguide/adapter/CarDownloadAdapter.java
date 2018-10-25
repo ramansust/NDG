@@ -69,7 +69,6 @@ public class CarDownloadAdapter extends BaseAdapter {
 
         if (list.get(position).getClass() == CarInfo.class) {
             info = (CarInfo) list.get(position);
-
             // inflate list view item layout
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.car_download_row, parent, false);
@@ -114,8 +113,10 @@ public class CarDownloadAdapter extends BaseAdapter {
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
                 // set the car name for available downloaded car
                 txtViewTitle.setText(info.getName());
-                if(info.getId() == 13 || info.getId() == 15){
-                    txtViewTitle.setText("NEW NISSAN");
+                if(info.getId() == 13){
+                    //Set fixed name for both this car == NEW X-TRAIL  (EUR/RUS)
+                    String name[] = info.getName().split(" ");
+                    txtViewTitle.setText(name[0] + " " + name[2]);
                 }
             }
 

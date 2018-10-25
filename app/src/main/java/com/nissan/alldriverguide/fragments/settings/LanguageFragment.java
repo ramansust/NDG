@@ -250,10 +250,8 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
      */
     private void loadData(String FlagUrl[]) {
         list = new ArrayList<>();
-
+        Log.e("Car type","lang data "+Values.carType);
         for (int i = 0; i < languageName.length; i++) {
-
-
 
             boolean isDownloaded;
 //             here check the epub existence on sdCard location
@@ -607,6 +605,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                         @Override
                         public void downloadCompletion(Float aFloat) {
                             String formattedString = String.format("%.02f", aFloat);
+                            //Log.e("Car type Download",""+Values.carType );
                             if (progressDialog != null) {
                                 progressDialog.setMessage(activity.getResources().getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + getResources().getString(R.string.alert_download_complete) + formattedString + "%");
                             }

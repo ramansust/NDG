@@ -108,8 +108,9 @@
         <item>Navara</item>
         <item>All New Nissan Micra</item>
         <item>NOVYY NISSAN QASHQAI</item>
-        <item>NOVYY NISSAN X-TRAIL</item>
+        <item>NOVYY NISSAN X-TRAIL EUR</item>
         <item>New Nissan Leaf</item>
+        <item>NOVYY NISSAN X-TRAIL RUS</item>
     </string-array>
     <string-array name="assistance_array">
         <item>Световые сигнализаторы</item>

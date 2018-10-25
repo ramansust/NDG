@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -152,6 +153,12 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         }
 
         replaceTheCarNamesAndImages();
+        Log.e("List size " , " ---  " + NissanApp.getInstance().getCarAllList().size());
+        for (CarInfo list :NissanApp.getInstance().getCarAllList()
+             ) {
+            Log.e("Car Name list " , "--ID-- " + list.getId());
+            Log.e("Car Name list " , "--Name-- " + list.getName());
+        }
 
         adapter = new CarDownloadSettingsAdapter(AddCarFragment.this, getActivity(), getActivity().getApplicationContext(), NissanApp.getInstance().getCarAllList());
         lstView.setAdapter(adapter);
