@@ -153,12 +153,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         }
 
         replaceTheCarNamesAndImages();
-        Log.e("List size " , " ---  " + NissanApp.getInstance().getCarAllList().size());
-        for (CarInfo list :NissanApp.getInstance().getCarAllList()
-             ) {
-            Log.e("Car Name list " , "--ID-- " + list.getId());
-            Log.e("Car Name list " , "--Name-- " + list.getName());
-        }
 
         adapter = new CarDownloadSettingsAdapter(AddCarFragment.this, getActivity(), getActivity().getApplicationContext(), NissanApp.getInstance().getCarAllList());
         lstView.setAdapter(adapter);
@@ -317,7 +311,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     private void carDownloadCheck(final int position) {
-        Logger.error("Path is " + commonDao.getStatus(getActivity().getBaseContext(), position), "_____________" + NissanApp.getInstance().getCarPath(position));
+        Logger.error("Path is " + commonDao.getStatus(getActivity().getBaseContext(), position), "______frag_______" + NissanApp.getInstance().getCarPath(position));
         if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(position))) {
             if (commonDao.getStatus(getActivity().getBaseContext(), position) == 1) {
                 CarInfo info = commonDao.getCarInfo(getActivity().getApplicationContext(), position);

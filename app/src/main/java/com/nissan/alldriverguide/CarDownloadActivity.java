@@ -82,7 +82,9 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -112,7 +114,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 //            "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan Qashqai"};
 
     private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
-            "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "New Nissan X-TRAIL", "New Nissan LEAF","New Nissan X-TRAIL RUS"};
+            "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "New Nissan X-TRAIL", "New Nissan LEAF", "New Nissan X-TRAIL RUS"};
     private int[] previousCarArray = {1, 2, 4, 5, 7, 9};
 //    private int[] previousCarArray = {1, 2, 7};
 
@@ -258,9 +260,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                     goForNormalOperation(position, parent);
                 }
 */
-
-
-
 
 
             }
@@ -448,17 +447,15 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 btnRUS.setEnabled(false);
             }
         } else if (carType == 13) {//click for eur/rus by rohan
-            Log.e("EUR Click",""+carType);
             if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType)) && commonDao.getStatus(getBaseContext(), carType) == 1) {
                 btnEUR.setAlpha(0.2f);
                 btnEUR.setEnabled(false);
             }
-            if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType + 2)) && commonDao.getStatus(getBaseContext(), carType+2) == 1) {
+            if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType + 2)) && commonDao.getStatus(getBaseContext(), carType + 2) == 1) {
                 btnRUS.setAlpha(0.2f);
                 btnRUS.setEnabled(false);
             }
         } else if (carType == 15) {//click for eur/rus by rohan
-            Log.e("EUR Click",""+carType);
             if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType - 2)) && commonDao.getStatus(getBaseContext(), carType - 2) == 1) {
                 btnEUR.setAlpha(0.2f);
                 btnEUR.setEnabled(false);
@@ -472,11 +469,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         btnEUR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Log.e("EUR CAR","click  1" + "eur " + carType);
                 dialog.dismiss();//click for eur/rus by rohan
                 if (carType == 1 || carType == 4 || carType == 13) {
-                    Log.e("EUR CAR","click  " + "eur " + carType);
                     carDownloadCheck(carType);
                 }
             }
@@ -485,18 +479,14 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         btnRUS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("RUS CAR","click  2" + "rus " + carType);
                 dialog.dismiss();//click for eur/rus by rohan
-                if (carType == 2 || carType == 5 ) {
-                    Log.e("RUS CAR","click  " + "rus " + carType);
+                if (carType == 2 || carType == 5) {
                     carDownloadCheck(carType);
-                } else if(carType == 13){
-                    Log.e("RUS CAR","click  3" + "rus " + carType);
+                } else if (carType == 13) {
                     carDownloadCheck(carType + 2);
-                } else if(carType == 15){
-                    Log.e("RUS CAR","click  3" + "rus " + carType);
+                } else if (carType == 15) {
                     carDownloadCheck(carType);
-                }else {
+                } else {
                     carDownloadCheck(carType + 1);
                 }
             }
@@ -605,9 +595,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         carListArrayList = new Gson().fromJson(preferenceUtil.retrieveMultiLangData(sharedpref_key), type);
 
 //        if (carListArrayList != null && carListArrayList.size() > 0) {
-            loadCarData();
+        loadCarData();
 //        } else {
-            pbCarDownload.setVisibility(View.VISIBLE);
+        pbCarDownload.setVisibility(View.VISIBLE);
 //        }
 
         if (DetectConnection.checkInternetConnection(getApplicationContext())) {
@@ -740,10 +730,11 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 }
             }
         } else {
-            Log.e("Car Type","not is "+position + "type " + Values.carType);
+            Log.e("Car Type", "not is " + position + "type " + Values.carType);
             startActivity(new Intent(CarDownloadActivity.this, LanguageSelectionActivity.class));
         }
     }
+
     private void showNoInternetDialogue(String msg) {
 
         final Dialog dialog = new DialogController(activity).internetDialog();
@@ -764,6 +755,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         dialog.show();
 
     }
+
     private void downloadContentUpdate(final ArrayList<PushContentInfo> list, final int position) {
 
         Logger.error("You have a update ", "Do you want ???");
@@ -1254,16 +1246,104 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 //                Logger.error("size_after", "_________" + NissanApp.getInstance().getCarList().size());
                 adapter.setList(NissanApp.getInstance().getCarList());
                 lstView.setDivider(null);
-            }*/
+            }
+*/
+
+            ArrayList<Object> getList = NissanApp.getInstance().getCarList();
+            for (int k = 0; k < getList.size(); k++) {
+                if (getList.get(k).getClass() == CarInfo.class) {
+                    CarInfo info = (CarInfo) getList.get(k);
+                    Log.e("Car Id", "---" + info.getId());
+                    Log.e("Car Name", "---" + info.getName());
+                    Log.e("Car index", "---" + getList.indexOf(getList.get(k)));
+                }
+            }
+
+            CarInfo xtrailInfo = new CarInfo();
+            CarInfo leafInfo = new CarInfo();
+            int xtrailIndex = -1, leafIndex = -1;
+
+            if (xtrailLeafAvailableForDownload(getList)) {
+                for (int k = 0; k < getList.size(); k++) {
+                    if (getList.get(k).getClass() == CarInfo.class) {
+                        CarInfo info = (CarInfo) getList.get(k);
+
+                        if (info.getId() == 15) {
+                            xtrailInfo = info;
+                            xtrailIndex = k;
+                        }
+
+                        if (info.getId() == 14) {
+                            leafInfo = info;
+                            leafIndex = k;
+                        }
+
+
+/*
+                            Log.e("Car Id", "---" + info.getId());
+                            Log.e("Car Name", "---" + info.getName());
+                            Log.e("Car index", "---" + getList.indexOf(getList.get(k)));
+                            if (info.getId() == 15) {
+                                if (info.getStatus().equalsIgnoreCase(String.valueOf(0))) {
+                                    Log.e("Car Status", "--2--" + info.getStatus() + " --- " + getList.indexOf(getList.get(k)));
+                                    //getList.remove(getList.indexOf(getList.get(k)));
+                                    //getList.remove(info);
+                                    //getList.add(4,info);
+                                    //getList.re
+
+                                */
+/*if(info.getId() == 14){
+                                    int k = getList.indexOf(info.getId());
+                                    getList.add(k+1,info);
+                                }*//*
+
+
+                                }
+                            }
+*/
+
+                    }
+                }
+
+
+                getList.set(xtrailIndex, leafInfo);
+                getList.set(leafIndex, xtrailInfo);
+
+            }
+
+
+
             if (NissanApp.getInstance().getCarList() != null && adapter == null) {
-                adapter = new CarDownloadAdapter(getApplicationContext(), NissanApp.getInstance().getCarList());
+                adapter = new CarDownloadAdapter(getApplicationContext(), getList);
                 lstView.setAdapter(adapter);
                 lstView.setDivider(null);
             } else {
-                adapter.setList(NissanApp.getInstance().getCarList());
+                //adapter.setList(NissanApp.getInstance().getCarList());
+                adapter.setList(getList);
             }
 
         }
+    }
+
+    private boolean xtrailLeafAvailableForDownload(ArrayList<Object> getList) {
+
+
+        boolean isfifteenIdAvailable = false;
+
+        for (int k = 0; k < getList.size(); k++) {
+            if (getList.get(k).getClass() == CarInfo.class) {
+                CarInfo info = (CarInfo) getList.get(k);
+                if (info.getStatus().equals("0") && info.getId() == 14) {
+                    if (isfifteenIdAvailable)
+                        return true;
+                }
+
+                if (info.getStatus().equals("0") && info.getId() == 15) {
+                    isfifteenIdAvailable = true;
+                }
+            }
+        }
+        return false;
     }
 
     private void setCarImageAccordingToDeviceResolution() {

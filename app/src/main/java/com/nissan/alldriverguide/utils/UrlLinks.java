@@ -239,6 +239,9 @@ public class UrlLinks {
     public static final String XTRAIL_2017_FI = "http://192.168.1.253:5000/fbsharing/dITBZiLM";
     public static final String XTRAIL_2017_PT = "http://192.168.1.253:5000/fbsharing/v8NGFqqX";
 
+    public static final String XTRAIL_2017_RUS_LINK = "http://192.168.1.253:5000/fbsharing/MKgTKWmH";
+    public static final String XTRAIL_2017_RUS_EN = "http://192.168.1.253:5000/fbsharing/xfpPkoUD";
+
 
     public static final String PULSAR_LINK = "http://192.168.1.253:5000/fbsharing/9Tn8KfQm";
     public static final String PULSAR_EN = "http://192.168.1.253:5000/fbsharing/PmxETls8";

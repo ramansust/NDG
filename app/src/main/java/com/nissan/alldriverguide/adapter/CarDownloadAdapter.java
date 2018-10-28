@@ -113,7 +113,7 @@ public class CarDownloadAdapter extends BaseAdapter {
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
                 // set the car name for available downloaded car
                 txtViewTitle.setText(info.getName());
-                if(info.getId() == 13){
+                if(info.getId() == 13 || info.getId() ==15){
                     //Set fixed name for both this car == NEW X-TRAIL  (EUR/RUS)
                     String name[] = info.getName().split(" ");
                     txtViewTitle.setText(name[0] + " " + name[2]);

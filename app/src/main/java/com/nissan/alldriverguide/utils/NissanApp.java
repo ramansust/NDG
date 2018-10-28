@@ -743,6 +743,14 @@ public class NissanApp {
                 }
                 break;
 
+            case 15:
+
+                if (lang.contains("en")) {
+                    url = UrlLinks.XTRAIL_2017_RUS_EN;
+                }else{
+                    url = UrlLinks.XTRAIL_2017_RUS_EN;
+                }
+                break;
             default:
                 break;
         }
@@ -1000,6 +1008,10 @@ public class NissanApp {
 
             case 14:
                 assetsPath = UrlLinks.LEAF_2017_LINK;
+                break;
+
+            case 15:
+                assetsPath = UrlLinks.XTRAIL_2017_RUS_LINK;
                 break;
 
             default:

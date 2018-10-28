@@ -649,6 +649,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                         public void onDownloaded(ResponseInfo responseInfo) {
                             if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
                                 try {
+
+
                                     FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(list.get(position).getId())));
                                     ((MainActivity) activity).sendMsgToGoogleAnalytics(((MainActivity) activity).getAnalyticsForDelete(carNames[list.get(position).getId() - 1], Analytics.CAR_SELECTION + Analytics.DELETE));
                                     if (list.get(position).getId() == 2 || list.get(position).getId() == 5) {
