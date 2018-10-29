@@ -42,6 +42,7 @@ import com.nissan.alldriverguide.augmentedreality.ARQashqai2017;
 import com.nissan.alldriverguide.augmentedreality.ARQashqaiRUS;
 import com.nissan.alldriverguide.augmentedreality.ARXtrail;
 import com.nissan.alldriverguide.augmentedreality.ARXtrail2017;
+import com.nissan.alldriverguide.augmentedreality.ARXtrail2017Rus;
 import com.nissan.alldriverguide.augmentedreality.ARXtrailRUS;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
@@ -143,6 +144,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     private ARQashqai2017 mRendererQashqai2017;
     private ARXtrail2017 mRendererXtrail2017;
     private ARLeaf2017 mRendererLeaf2017;
+    private ARXtrail2017Rus mRendererXtrailRus2017;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,6 +160,8 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         resources = new Resources(getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(ImageTargetActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
 
         startLoadingAnimation();
+
+        Logger.error("Path ar",Values.carType + "     ------------" + NissanApp.getInstance().getCarPath(Values.carType));
 
         // Here added the vuforia xml in arrayList according to car type
         switch (Values.carType) {
@@ -215,6 +219,10 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
             case 14:
                 mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "leaf2017.xml");
+                break;
+
+            case 15:
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "xtrail2017_rus.xml");
                 break;
 
             default:
@@ -445,6 +453,11 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 mGlView.setRenderer(mRendererLeaf2017);
                 break;
 
+            case 15:
+                mRendererXtrailRus2017 = new ARXtrail2017Rus(this, vuforiaAppSession);
+                mGlView.setRenderer(mRendererXtrailRus2017);
+                break;
+
             default:
                 break;
 
@@ -653,6 +666,10 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
             case 14:
                 mRendererLeaf2017.updateConfiguration();
+                break;
+
+            case 15:
+                mRendererXtrailRus2017.updateConfiguration();
                 break;
 
 

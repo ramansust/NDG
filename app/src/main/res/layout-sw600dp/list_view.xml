@@ -5,7 +5,7 @@
     android:cacheColorHint="@android:color/transparent"
     android:divider="@drawable/gray_dash_line_list_view"
     android:dividerHeight="2dp"
-    android:listSelector="@android:color/transparent"
+    android:listSelector="@android:color/darker_gray"
     android:scrollbars="none">
 
 </ListView>
