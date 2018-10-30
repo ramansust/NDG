@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
-def VUFORIA_SDK_DIR = '/home/shubha/Desktop/vuforia-sdk-android-7-0-47'
+def VUFORIA_SDK_DIR = '/home/shubha/Desktop/vuforia-sdk-android-7-2-23'
 def NATIVE_LIB_DIR = 'build/lib'
-def JAR_DIR = 'build/java/vuforia'
+def JAR_DIR = 'build/java/Vuforia'
 
 android {
     compileSdkVersion 27

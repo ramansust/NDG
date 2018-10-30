@@ -24,6 +24,12 @@ import java.util.ArrayList;
  */
 public class CarDownloadAdapter extends BaseAdapter {
 
+    public interface OnItemClickListener {
+        void onItemClick(int carId, int pos);
+    }
+
+    private final OnItemClickListener listener;
+
     private Context context;
     private LayoutInflater inflater;
     public ArrayList<Object> list;
@@ -35,10 +41,11 @@ public class CarDownloadAdapter extends BaseAdapter {
      * @param context
      * @param list
      */
-    public CarDownloadAdapter(Context context, ArrayList<Object> list) {
+    public CarDownloadAdapter(Context context, ArrayList<Object> list, OnItemClickListener onItemClickListener) {
         this.context = context;
         this.list = list;
         inflater = LayoutInflater.from(this.context);
+        this.listener = onItemClickListener;
     }
 
     public void setList(ArrayList<Object> _list) {
@@ -79,6 +86,18 @@ public class CarDownloadAdapter extends BaseAdapter {
             ImageView imageViewBorder = (ImageView) view.findViewById(R.id.img_view_border);
             TextView txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
             ImageButton imgDeleteOrDownload = (ImageButton) view.findViewById(R.id.img_btn_delete_or_download);
+            imgDeleteOrDownload.setBackgroundResource(R.drawable.delete_selector);
+
+            imgDeleteOrDownload.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(info.getId(), position);
+                }
+            });
+
+            if (!((CarInfo) list.get(position)).getStatus().equals("1")){
+                imgDeleteOrDownload.setVisibility(View.INVISIBLE);
+            }
 
             // here compare the status for previous section
             if (Values.PREVIOUS_CAR.equalsIgnoreCase(info.getStatus())) {
@@ -116,13 +135,13 @@ public class CarDownloadAdapter extends BaseAdapter {
                 if(info.getId() == 13 || info.getId() ==15){
                     //Set fixed name for both this car == NEW X-TRAIL  (EUR/RUS)
                     String name[] = info.getName().split(" ");
-                    txtViewTitle.setText(name[0] + " " + name[2]);
+//                    txtViewTitle.setText(name[0] + " " + name[2]);
+                    txtViewTitle.setText(info.getName());
                 }
             }
 
             // this item layout is actually used in CarDownloadSettingsAdapter.java
             // so here these two id need to invisible
-            imgDeleteOrDownload.setVisibility(View.INVISIBLE);
             imageViewBorder.setVisibility(View.INVISIBLE);
         } else {
             // here inflate the item header like (available for download, previous model)
