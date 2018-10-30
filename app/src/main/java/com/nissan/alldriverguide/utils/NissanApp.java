@@ -653,7 +653,7 @@ public class NissanApp {
                 } else if (lang.contains("pt")) {
                     url = UrlLinks.MICRA_NEW_PT;
                 } else {
-
+                    url = UrlLinks.MICRA_NEW_EN;
                 }
                 break;
 
@@ -681,7 +681,7 @@ public class NissanApp {
                 } else if (lang.contains("pt")) {
                     url = UrlLinks.QASHQAI_2017_PT;
                 } else {
-
+                    url = UrlLinks.QASHQAI_2017_EN;
                 }
                 break;
 

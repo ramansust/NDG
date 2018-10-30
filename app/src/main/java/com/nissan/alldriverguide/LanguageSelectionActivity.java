@@ -337,6 +337,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
         info = (LanguageInfo) parent.getAdapter().getItem(position);
 
         selectedLangModel = getDataFromMainList(languageName[info.getId()]);

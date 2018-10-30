@@ -7,7 +7,6 @@
     android:divider="@drawable/gray_dash_line_list_view"
     android:dividerHeight="2dp"
     tools:listitem="@layout/assistance_row"
-    android:listSelector="@android:color/darker_gray"
-    android:scrollbars="none">
-
+    android:scrollbars="none"
+    android:listSelector="@drawable/list_bg">
 </ListView>
