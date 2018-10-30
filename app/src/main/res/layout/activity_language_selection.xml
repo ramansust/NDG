@@ -32,7 +32,7 @@
 
     <include
         android:id="@+id/lst_view"
-        layout="@layout/list_view"
+        layout="@layout/lanlist_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/linear_top"

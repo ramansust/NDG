@@ -1,11 +1,12 @@
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/dividedListStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:cacheColorHint="@android:color/transparent"
     android:divider="@drawable/gray_dash_line_list_view"
     android:dividerHeight="2dp"
-    android:listSelector="@drawable/list_bg"
-    android:scrollbars="none">
-
+    tools:listitem="@layout/assistance_row"
+    android:scrollbars="none"
+    android:listSelector="@drawable/lanlist_bg">
 </ListView>
