@@ -198,6 +198,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     private void loadData() {
         txtView_title.setText(getResources().getString(R.string.select_your_car));
+        Logger.error("List msg","------load-----");
     }
 
     @Override
@@ -512,6 +513,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
             NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
 
+            Logger.error("List msg","-----------");
+
         }
     }
 
@@ -612,6 +615,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 //            Toast.makeText(activity, getString(R.string.internet_connect), Toast.LENGTH_SHORT).show();
 //            showErrorDialog(getResources().getString(R.string.internet_connect));
         }
+
+        Logger.error("List msg","------onresume-----");
 
         super.onResume();
     }

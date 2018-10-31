@@ -136,7 +136,7 @@ public class CarDownloadAdapter extends BaseAdapter {
                     //Set fixed name for both this car == NEW X-TRAIL  (EUR/RUS)
                     String name[] = info.getName().split(" ");
 //                    txtViewTitle.setText(name[0] + " " + name[2]);
-                    txtViewTitle.setText(info.getName());
+                    txtViewTitle.setText("NEW X-TRAIL");
                 }
             }
 

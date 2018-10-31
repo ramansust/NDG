@@ -130,6 +130,7 @@ public class Values {
     public static final String CAR_WISE_LANG_DOWNLOAD_ALERT_MSG = "multi_lang_car_wise_dl_list_alert_msg";
 
     public static final String ALERT_MSG_TYPE_INTERNET = "internet_check";
+    public static final String ALERT_MSG_TYPE_LOADING_TEXT = "loading_text";
     public static final String ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_1 = "download_car_guide1";
     public static final String ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2 = "download_car_guide2";
 

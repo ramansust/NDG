@@ -682,10 +682,19 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                             // here start the playing video for grid view item click
 
                             if (DetectConnection.checkInternetConnection(getActivity())) {
+                                //just for rush
+                                if(Values.carType == 11){
+                                    if (NissanApp.getInstance().getExploreVideoList().get(4).getVideoUrl() != null) {
 
-                                if (NissanApp.getInstance().getExploreVideoList().get(0).getVideoUrl() != null) {
-                                    startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
+                                        startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
+                                    }
+                                }else{
+                                    if (NissanApp.getInstance().getExploreVideoList().get(0).getVideoUrl() != null) {
+
+                                        startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
+                                    }
                                 }
+
 
                             } else {
                                 Toast.makeText(getActivity(), internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage, Toast.LENGTH_SHORT).show();
