@@ -900,7 +900,13 @@ public class ARQashqai2017 implements GLSurfaceView.Renderer, SampleAppRendererC
 
                     } else if (userDataToCompare.equalsIgnoreCase("parking_brake_1")
                             || userDataToCompare.equalsIgnoreCase("parking_brake_2")
-                            || userDataToCompare.equalsIgnoreCase("parking_brake_3")) {
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_3")
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_4")
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_5")
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_6")
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_8")
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_9")
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_10")) {
 
 
                         try {

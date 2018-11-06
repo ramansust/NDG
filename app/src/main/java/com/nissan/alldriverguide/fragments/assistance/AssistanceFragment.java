@@ -203,7 +203,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
             txtViewCarName.setText(car_name == null || car_name.isEmpty() ? resources.getStringArray(R.array.car_names)[Values.carType - 1] : car_name);
         } else {
-            txtViewCarName.setText("NISSAN " + (car_name == null || car_name.isEmpty() ? resources.getStringArray(R.array.car_names)[Values.carType - 1] : car_name));
+            txtViewCarName.setText("" + (car_name == null || car_name.isEmpty() ? resources.getStringArray(R.array.car_names)[Values.carType - 1] : car_name));
         }
         txtViewCarName.setBackgroundResource(R.color.black);
         setAssistanceCarBackgroundImage();

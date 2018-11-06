@@ -115,7 +115,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 //            "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan Qashqai"};
 
     private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
-            "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "New Nissan X-TRAIL", "New Nissan LEAF", "New Nissan X-TRAIL RUS"};
+            "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "Nissan X-TRAIL", "New Nissan LEAF", "New Nissan X-TRAIL RUS"};
     private int[] previousCarArray = {1, 2, 4, 5, 7, 9};
 //    private int[] previousCarArray = {1, 2, 7};
 
@@ -1257,6 +1257,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 lstView.setDivider(null);
             }
 */
+
 
             boolean xtrailRus = false, xtrailEur = false;
             CarInfo xtrailRusInfo = new CarInfo();

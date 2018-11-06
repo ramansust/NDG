@@ -61,6 +61,7 @@ import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
+import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 import com.nissan.alldriverguide.view.ScrollableGridView;
@@ -74,7 +75,7 @@ import java.util.List;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
-public class ExploreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, CompleteExploreTabContent ,ViewPager.OnPageChangeListener{
+public class ExploreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, CompleteExploreTabContent, ViewPager.OnPageChangeListener {
 
     private static final String TAG = "ExploreFragment";
 
@@ -88,7 +89,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private Resources resources;
     private DisplayMetrics metrics;
-    private TextView txtViewExplore, tvNoContent, tvPageTitle, textViewMap,textViewMap2;
+    private TextView txtViewExplore, tvNoContent, tvPageTitle, textViewMap, textViewMap2;
     private ProgressBar progressBar;
     private String sharedpref_key;
     private ArrayList<ExploreTabVideoModel> videoList = new ArrayList<>();
@@ -258,7 +259,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
             if (header_text != null) {
 
-                Log.e("Header text","- -----  " + header_text);
+                Logger.error("Header text", "- -----  " + header_text);
 
                 Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
                     @Override
@@ -561,7 +562,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 textViewMap.setBackgroundResource(R.drawable.micra_map_cs);
             } else if (lang.equalsIgnoreCase("hu")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_hu);
-            }else {
+            } else {
                 // default english
                 textViewMap.setBackgroundResource(R.drawable.micra_map_en);
             }
@@ -600,7 +601,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_cs);
             } else if (lang.equalsIgnoreCase("hu")) {
                 textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_hu);
-            }else {
+            } else {
                 // default english
                 textViewMap.setBackgroundResource(R.drawable.micra_map_en);
             }
@@ -660,7 +661,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                             if (list == null || list.size() == 0)
                                 return;
 
-                            Fragment frag = DetailsFragment.newInstance(list.get(52).getIndex(), resources.getString(R.string.updating_map_data));
+                            Fragment frag = DetailsFragment.newInstance(list.get(Values.carType == 12 ? 58 : 52).getIndex(), resources.getString(R.string.updating_map_data));
                             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                             ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                             ft.replace(R.id.container, frag);
@@ -683,47 +684,55 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                             if (DetectConnection.checkInternetConnection(getActivity())) {
                                 //just for rush
-                                if(Values.carType == 11){
-                                    if (NissanApp.getInstance().getExploreVideoList().get(4).getVideoUrl() != null) {
 
-                                        startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
-                                    }
-                                }else{
-                                    if (NissanApp.getInstance().getExploreVideoList().get(0).getVideoUrl() != null) {
+                                int id = -1;
+                                if (videoList == null || videoList.size() == 0)
+                                    return;
+                                for (int i = 0; i < videoList.size(); i++) {
 
-                                        startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
+                                    if (videoList.get(i).getTag() == 997) {
+                                        id = i;
+                                        break;
                                     }
+
+
+                                }
+
+                                if (NissanApp.getInstance().getExploreVideoList().get(id).getVideoUrl() != null) {
+
+                                    startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
                                 }
 
 
                             } else {
+
                                 Toast.makeText(getActivity(), internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage, Toast.LENGTH_SHORT).show();
                             }
                         }
-                    });
+            });
 
-                    break;
-            }
+            break;
+        }
 
             collection.addView(layout);
             return layout;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup collection, int position, Object view) {
-            collection.removeView((View) view);
-        }
-
-        @Override
-        public int getCount() {
-            return 2;
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == object;
-        }
-
     }
+
+    @Override
+    public void destroyItem(ViewGroup collection, int position, Object view) {
+        collection.removeView((View) view);
+    }
+
+    @Override
+    public int getCount() {
+        return 2;
+    }
+
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
+        return view == object;
+    }
+
+}
 
 }
