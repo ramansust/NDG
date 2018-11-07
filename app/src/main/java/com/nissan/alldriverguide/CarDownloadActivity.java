@@ -475,6 +475,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onClick(View v) {
                 dialog.dismiss();//click for eur/rus by rohan
+
+                Log.e("carTypeEUR", "___________" + carType);
+
                 if (carType == 1 || carType == 4 || carType == 13) {
                     carDownloadCheck(carType);
                 }
@@ -485,6 +488,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onClick(View v) {
                 dialog.dismiss();//click for eur/rus by rohan
+
+                Log.e("carTypeRUS", "___________" + carType);
+
                 if (carType == 2 || carType == 5) {
                     carDownloadCheck(carType);
                 } else if (carType == 13) {
@@ -1015,152 +1021,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     }
 
-//    private void assurePermissionForMarshmallowAndOver() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if (!checkPermissionAll()) {
-//                requestPermissionAll();
-//            }
-//        }
-//    }
-//
-//    private boolean checkPermissionAll() {
-//        int result = ContextCompat.checkSelfPermission(getApplicationContext(), ACCESS_FINE_LOCATION);
-//        int result1 = ContextCompat.checkSelfPermission(getApplicationContext(), CAMERA);
-//        int result2 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
-//
-//        return result == PackageManager.PERMISSION_GRANTED
-//                && result1 == PackageManager.PERMISSION_GRANTED
-//                && result2 == PackageManager.PERMISSION_GRANTED;
-//    }
-//
-//    private void requestPermissionAll() {
-//        ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION, CAMERA, WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE_ALL);
-//    }
-//
-//    private void requestPermission(final String PERMISSION_NAME, final int PERMISSION_CODE) {
-//        ActivityCompat.requestPermissions(this, new String[]{PERMISSION_NAME}, PERMISSION_CODE);
-//    }
-//
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-//        switch (requestCode) {
-//            case PERMISSION_REQUEST_CODE_ALL:
-//                if (grantResults.length > 0) {
-//
-//                    boolean locationAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-//                    boolean cameraAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-//                    boolean storageAccepted = grantResults[2] == PackageManager.PERMISSION_GRANTED;
-//
-//                    if (locationAccepted && cameraAccepted && storageAccepted) {
-//
-//                    } else {
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                            if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)
-//                                    || shouldShowRequestPermissionRationale(CAMERA)
-//                                    || shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE)) {
-//                                showMessageOKCancel("You need to allow all of the permissions",
-//                                        new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface dialog, int which) {
-//                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                                                    requestPermissions(new String[]{ACCESS_FINE_LOCATION, CAMERA, WRITE_EXTERNAL_STORAGE},
-//                                                            PERMISSION_REQUEST_CODE_ALL);
-//                                                }
-//                                            }
-//                                        });
-//                                return;
-//                            }
-//                        }
-//
-//                    }
-//                }
-//                break;
-//
-//            case PERMISSION_REQUEST_CODE_CAMERA:
-//                if (grantResults.length > 0) {
-//                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-//                    if (cameraAccepted) {
-//
-//                    } else {
-//
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                            if (shouldShowRequestPermissionRationale(CAMERA)) {
-//                                showMessageOKCancel("You need to allow access to CAMERA",
-//                                        new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface dialog, int which) {
-//                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                                                    requestPermission(CAMERA, PERMISSION_REQUEST_CODE_CAMERA);
-//                                                }
-//                                            }
-//                                        });
-//                                return;
-//                            }
-//                        }
-//                    }
-//                }
-//                break;
-//
-//            case PERMISSION_REQUEST_CODE_STORAGE:
-//                if (grantResults.length > 0) {
-//                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-//                    if (cameraAccepted) {
-//
-//                    } else {
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                            if (shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE)) {
-//                                showMessageOKCancel("You need to allow access to SD card.",
-//                                        new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface dialog, int which) {
-//                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                                                    requestPermission(WRITE_EXTERNAL_STORAGE, PERMISSION_REQUEST_CODE_STORAGE);
-//                                                }
-//                                            }
-//                                        });
-//                                return;
-//                            }
-//                        }
-//                    }
-//                }
-//                break;
-//
-//            case PERMISSION_REQUEST_CODE_ACCESS_FINE_LOCATION:
-//                if (grantResults.length > 0) {
-//                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-//                    if (cameraAccepted) {
-//
-//                    } else {
-//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                            if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)) {
-//                                showMessageOKCancel("You need to allow access to location data",
-//                                        new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface dialog, int which) {
-//                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                                                    requestPermission(ACCESS_FINE_LOCATION, PERMISSION_REQUEST_CODE_ACCESS_FINE_LOCATION);
-//                                                }
-//                                            }
-//                                        });
-//                                return;
-//                            }
-//                        }
-//                    }
-//                }
-//                break;
-//        }
-//    }
-
-
-    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(CarDownloadActivity.this)
-                .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
-                .create()
-                .show();
-    }
-
     private void getRegIdForPush() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
         String regId = pref.getString("regId", null);
@@ -1247,18 +1107,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 setCarImageAccordingToDeviceResolution();
             }
 
-/*            // set the adapter
-            if (NissanApp.getInstance().getCarList() != null) {
-
-                setCarImageAccordingToDeviceResolution();
-
-//                Logger.error("size_after", "_________" + NissanApp.getInstance().getCarList().size());
-                adapter.setList(NissanApp.getInstance().getCarList());
-                lstView.setDivider(null);
-            }
-*/
-
-
+            getList = NissanApp.getInstance().getCarList();
             boolean xtrailRus = false, xtrailEur = false;
             CarInfo xtrailRusInfo = new CarInfo();
             getList = NissanApp.getInstance().getCarList();
@@ -1317,6 +1166,15 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
 
             if (NissanApp.getInstance().getCarList() != null && adapter == null) {
+
+
+
+                for (int k = 0; k < getList.size(); k++) {
+                    if (getList.get(k).getClass() == CarInfo.class) {
+                        Log.e("name_id_before_delete", "_____" + ((CarInfo)getList.get(k)).getName() + "_____" + ((CarInfo)getList.get(k)).getId());
+                    }
+                }
+
                 adapter = new CarDownloadAdapter(getApplicationContext(), getList, new CarDownloadAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(final int carId, final int position) {
@@ -1328,12 +1186,12 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                             }
                         });
 
+                        final int carIdFromList = ((CarInfo) getList.get(position)).getId();
 
                         Log.e("carId", "_________" + carId);
                         Log.e("langId", "_________" + NissanApp.getInstance().getLanguageID("en"));
                         Log.e("deviceId", "_________" +NissanApp.getInstance().getDeviceID(activity.getApplicationContext()));
                         Log.e("carId_from_list", "_________" +((CarInfo)getList.get(position)).getId());
-                        int list_car_id = ((CarInfo)getList.get(position)).getId();
 
                         new ApiCall().postCarDelete("" + carId, "" + NissanApp.getInstance().getLanguageID("en"), "0", NissanApp.getInstance().getDeviceID(activity.getApplicationContext()), new CompleteAPI() {
                             @Override
@@ -1348,45 +1206,94 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                                     try {
 
                                         FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(carId)));
-                                        ((MainActivity) activity).sendMsgToGoogleAnalytics(((MainActivity) activity).getAnalyticsForDelete(carNames[carId - 1], Analytics.CAR_SELECTION + Analytics.DELETE));
+//                                        ((CarD) activity).sendMsgToGoogleAnalytics(((MainActivity) activity).getAnalyticsForDelete(carNames[carId - 1], Analytics.CAR_SELECTION + Analytics.DELETE));
 
-                                        commonDao.updateDateAndStatus(context, carId, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-                                        getList = setStatus(getList, carId);
 
-/*
-                                        if (carId == 2 || carId == 5) {
-                                            if (commonDao.getStatus(context, carId - 1) == 2) {
-                                                commonDao.updateDateAndStatus(context, carId, "2", NissanApp.getInstance().getDateTime(), "RUS", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                        if (carIdFromList == 15) {
+                                            if (commonDao.getStatus(context, carIdFromList - 2) == 0) {
+                                                commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "RUS", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                                                 getList.remove(position);
                                             } else {
-                                                commonDao.updateDateAndStatus(context, carId, "2", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                                commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                                getList.remove(position);
+                                                ((CarInfo) getList.get(position)).setStatus("0");
+                                            }
+                                        }
+
+                                        if (carIdFromList == 13) {
+                                            commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                            if (commonDao.getStatus(context, carIdFromList + 2) == 0) {
+                                                commonDao.updateDateAndStatus(context, carIdFromList + 2, "0", NissanApp.getInstance().getDateTime(), "RUS", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+
+                                                getList.remove(position);
+
+
+
+                                            } else {
+                                                commonDao.updateDateAndStatus(context, carIdFromList + 2, "1", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                                ((CarInfo) getList.get(position)).setStatus("1");
+                                            }
+                                        }
+
+
+                                        if (carIdFromList == 2 || carIdFromList == 5) {
+                                            if (commonDao.getStatus(context, carIdFromList - 1) == 2) {
+                                                commonDao.updateDateAndStatus(context, carIdFromList, "2", NissanApp.getInstance().getDateTime(), "RUS", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                                getList.remove(position);
+                                            } else {
+                                                commonDao.updateDateAndStatus(context, carIdFromList, "2", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                                                 ((CarInfo) getList.get(position)).setStatus("2");
                                             }
                                         } else {
-                                            if (carId == 1 || carId == 4) {
-                                                commonDao.updateDateAndStatus(context, carId, "2", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-                                                if (commonDao.getStatus(context, carId + 1) == 2) {
-                                                    commonDao.updateDateAndStatus(context, carId + 1, "2", NissanApp.getInstance().getDateTime(), "RUS", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                            if (carIdFromList == 1 || carIdFromList == 4) {
+                                                commonDao.updateDateAndStatus(context, carIdFromList, "2", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                                if (commonDao.getStatus(context, carIdFromList + 1) == 2) {
+                                                    commonDao.updateDateAndStatus(context, carIdFromList + 1, "2", NissanApp.getInstance().getDateTime(), "RUS", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                                                     getList.remove(position);
                                                 } else {
-                                                    commonDao.updateDateAndStatus(context, carId + 1, "1", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                                    commonDao.updateDateAndStatus(context, carIdFromList + 1, "1", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                                                     ((CarInfo) getList.get(position)).setStatus("2");
                                                 }
                                             } else {
-                                                if (carId == 7 || carId == 9) {
-                                                    commonDao.updateDateAndStatus(context, carId, "2", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                                if (carIdFromList == 7 || carIdFromList == 9) {
+                                                    commonDao.updateDateAndStatus(context, carIdFromList, "2", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                                                     ((CarInfo) getList.get(position)).setStatus("2");
                                                 } else {
-                                                    commonDao.updateDateAndStatus(context, carId, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                                    commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                                                     ((CarInfo) getList.get(position)).setStatus("0");
                                                 }
                                             }
                                         }
-*/
 
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     } finally {
+
+
+                                        getList = new ArrayList<>();
+                                        getList = getData();
+
+                                        boolean euroAvailable = false;
+
+                                        for (int i = 0; i <getList.size(); i++) {
+                                            if (getList.get(i).getClass() == CarInfo.class) {
+                                                CarInfo info = ((CarInfo) getList.get(i));
+                                                if (info.getId() == 13 && info.getStatus().equals("0")) {
+                                                    euroAvailable = true;
+                                                }
+                                            }
+                                        }
+
+                                        for (int i = 0; i <getList.size(); i++) {
+                                            if (getList.get(i).getClass() == CarInfo.class) {
+                                                CarInfo info = ((CarInfo) getList.get(i));
+                                                if (euroAvailable) {
+                                                    if (info.getName().contains("RUS") && info.getId() == 15 && info.getStatus().equals("0"))
+                                                        getList.remove(info);
+                                                }
+                                            }
+                                        }
+
                                         adapter.setList(getList);
                                         if (progressDialog != null)
                                             progressDialog.dismiss();
@@ -1429,23 +1336,95 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         }
     }
 
-    private ArrayList<Object> setStatus(ArrayList<Object> list, int carId) {
+    private ArrayList<Object> getData() {
 
-        for (int i = 0; i < list.size(); i++) {
 
-            if (list.get(i) == CarInfo.class) {
-                CarInfo info = (CarInfo) list.get(i);
+        // here set the all ordered car list that getting from database as an object type
+        NissanApp.getInstance().setCarList(commonDao.getAllOderCarList(getBaseContext()));
+        // here set the all unordered car list that getting from database as a CarInfo object
+        NissanApp.getInstance().setCarAllList(commonDao.getAllCarList(getBaseContext()));
 
-                if (info.getId() == carId){
-                    info.setStatus("0");
-                    list.set(i, info);
+        // actually this looping and logic determine for section header
+        for (int i = 0; i < NissanApp.getInstance().getCarList().size(); i++) {
+            CarInfo info = (CarInfo) NissanApp.getInstance().getCarList().get(i);
+
+            if ((Values.ALREADY_DOWNLOADED.equalsIgnoreCase(info.getStatus()))) {
+                if (!NissanApp.getInstance().getCarList().contains(resources.getString(R.string.downloaded_car))) {
+                    NissanApp.getInstance().getCarList().add(i, resources.getString(R.string.downloaded_car));
+                }
+            } else if ((Values.PREVIOUS_CAR.equalsIgnoreCase(info.getStatus()))) {
+                if (!NissanApp.getInstance().getCarList().contains(resources.getString(R.string.previous_car))) {
+                    NissanApp.getInstance().getCarList().add(i, resources.getString(R.string.previous_car));
+                }
+            } else {
+                if (!NissanApp.getInstance().getCarList().contains(resources.getString(R.string.available_for_download_car))) {
+                    NissanApp.getInstance().getCarList().add(i, resources.getString(R.string.available_for_download_car));
+                }
+            }
+        }
+        if (NissanApp.getInstance().getCarList() != null) {
+            setCarImageAccordingToDeviceResolution();
+        }
+
+        getList = NissanApp.getInstance().getCarList();
+
+        boolean xtrailRus = false, xtrailEur = false;
+        CarInfo xtrailRusInfo = new CarInfo();
+        getList = NissanApp.getInstance().getCarList();
+        for (int k = 0; k < getList.size(); k++) {
+            if (getList.get(k).getClass() == CarInfo.class) {
+                CarInfo info = (CarInfo) getList.get(k);
+//                    Log.e("Car Id", "---" + info.getId());
+//                    Log.e("Car Name", "---" + info.getName());
+//                    Log.e("Car index", "---" + getList.indexOf(getList.get(k)));
+//                    Log.e("id_name", "_____" + info.getId() + "_" + info.getName());
+
+                if (info.getStatus().equals("0") && info.getId() == 13) {
+                    xtrailEur = true;
+                }
+
+                if (info.getStatus().equals("0") && info.getId() == 15) {
+                    xtrailRusInfo = info;
+                    xtrailRus = true;
                 }
 
             }
+        }
+
+        if (xtrailEur && xtrailRus){
+            getList.remove(xtrailRusInfo);
+        }
+
+        CarInfo xtrailInfo = new CarInfo();
+        CarInfo leafInfo = new CarInfo();
+        int xtrailIndex = -1, leafIndex = -1;
+
+        if (xtrailLeafAvailableForDownload(getList)) {
+            for (int k = 0; k < getList.size(); k++) {
+                if (getList.get(k).getClass() == CarInfo.class) {
+                    CarInfo info = (CarInfo) getList.get(k);
+
+                    if (info.getId() == 15) {
+                        xtrailInfo = info;
+                        xtrailIndex = k;
+                    }
+
+                    if (info.getId() == 14) {
+                        leafInfo = info;
+                        leafIndex = k;
+                    }
+
+                }
+            }
+
+
+            getList.set(xtrailIndex, leafInfo);
+            getList.set(leafIndex, xtrailInfo);
 
         }
 
-        return list;
+        return getList;
+
 
     }
 
@@ -1570,6 +1549,12 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
                                             commonDao.updateAllPushContentStatusForSingleCar(context, Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
                                             dismissDialog();
+
+                                            for (int k = 0; k < NissanApp.getInstance().getCarList().size(); k++) {
+                                                if (NissanApp.getInstance().getCarList().get(k).getClass() == CarInfo.class) {
+                                                    Log.e("name_id_after_download", "_____" + ((CarInfo)NissanApp.getInstance().getCarList().get(k)).getName() + "_____" + ((CarInfo)NissanApp.getInstance().getCarList().get(k)).getId() + "____");
+                                                }
+                                            }
 
                                             // if car is first time downloaded then show the Tutorial Activity
                                             if (preferenceUtil.getIsFirstTime()) {
