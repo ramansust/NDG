@@ -1253,13 +1253,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         }
 
-        for (int k = 0; k < list.size(); k++) {
-            Log.e("name_id_after_download_final", "_____" + list.get(k).getName() + "_____" + list.get(k).getId() + "____"+ list.get(k).getStatus());
-        }
-
-
-
-
         boolean isDownloaded = true;
         boolean isAvailable = true;
         boolean isPrevious = true;
