@@ -244,7 +244,6 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
 
         if ("fr".equalsIgnoreCase(preferenceUtil.getSelectedLang())) {
             TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-            Log.e(TAG, "onItemClick: " + countryNameFR[position]+" position= "+position);
             txtViewTitle.setText(list.get(position).getPopupText() + " " + countryNameFR[position]);
         } else {
             TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);

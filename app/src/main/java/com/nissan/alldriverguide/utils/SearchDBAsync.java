@@ -70,8 +70,8 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
                 // get the full epub path from sdCard by looping
                 String ePubPath = NissanApp.getInstance().getCarPath(carType) + NissanApp.getInstance().getePubFolderPath(carType) + Values.UNDERSCORE + langType + Values.SLASH + listOfFiles.get(i);
 
-                Logger.error("file_name", "_______" + listOfFiles.get(i));
-                Logger.error("Path_Epub", "" + ePubPath);
+//                Logger.error("file_name", "_______" + listOfFiles.get(i));
+//                Logger.error("Path_Epub", "" + ePubPath);
 
                 // here MAePubParser takes epub source path eg. /storage/emulated/0/.AllDriverGuide/qashqai2017/qashqai2017_en/homepage_en.epub
                 // this MAePubParser extract the epub to sdCard and destination folder define in library
@@ -90,7 +90,7 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
                 try {
                     // After extracting and cashing epub data, downloaded epub has been force deleted.
                     FileUtils.forceDelete(new File(ePubPath));
-                    Logger.error("Path_Epub", "_____" + "deleted!");
+//                    Logger.error("Path_Epub", "_____" + "deleted!");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -123,7 +123,7 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
         // crating language epub folder path (eg. /storage/emulated/0/.AllDriverGuide/micrak14/micrak14_pt).
         String path = NissanApp.getInstance().getCarPath(carType) + NissanApp.getInstance().getePubFolderPath(carType) + Values.UNDERSCORE + langType;
 
-        Logger.error("path", "___________" + path);
+//        Logger.error("path", "___________" + path);
 
         File directory = new File(path); // here select the language path
         File[] files = directory.listFiles(); // here get the 7 language epub list from sd card (that was downloaded). eg. button_pt.epub
@@ -133,7 +133,7 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
                 if(files[i].getName().contains(".epub")) {
                     listOfFiles.add(files[i].getName());
                 }
-                Logger.error("file_name", "_______" + files[i].getName());
+//                Logger.error("file_name", "_______" + files[i].getName());
             }
         }
     }

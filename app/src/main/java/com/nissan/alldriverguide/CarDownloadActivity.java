@@ -476,8 +476,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             public void onClick(View v) {
                 dialog.dismiss();//click for eur/rus by rohan
 
-                Log.e("carTypeEUR", "___________" + carType);
-
                 if (carType == 1 || carType == 4 || carType == 13) {
                     carDownloadCheck(carType);
                 }
@@ -488,8 +486,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onClick(View v) {
                 dialog.dismiss();//click for eur/rus by rohan
-
-                Log.e("carTypeRUS", "___________" + carType);
 
                 if (carType == 2 || carType == 5) {
                     carDownloadCheck(carType);
@@ -745,7 +741,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 }
             }
         } else {
-            Log.e("Car Type", "not is " + position + "type " + Values.carType);
             startActivity(new Intent(CarDownloadActivity.this, LanguageSelectionActivity.class));
         }
     }
@@ -1114,10 +1109,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             for (int k = 0; k < getList.size(); k++) {
                 if (getList.get(k).getClass() == CarInfo.class) {
                     CarInfo info = (CarInfo) getList.get(k);
-//                    Log.e("Car Id", "---" + info.getId());
-//                    Log.e("Car Name", "---" + info.getName());
-//                    Log.e("Car index", "---" + getList.indexOf(getList.get(k)));
-//                    Log.e("id_name", "_____" + info.getId() + "_" + info.getName());
 
                     if (info.getStatus().equals("0") && info.getId() == 13) {
                         xtrailEur = true;
@@ -1167,14 +1158,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
             if (NissanApp.getInstance().getCarList() != null && adapter == null) {
 
-
-
-                for (int k = 0; k < getList.size(); k++) {
-                    if (getList.get(k).getClass() == CarInfo.class) {
-                        Log.e("name_id_before_delete", "_____" + ((CarInfo)getList.get(k)).getName() + "_____" + ((CarInfo)getList.get(k)).getId());
-                    }
-                }
-
                 adapter = new CarDownloadAdapter(getApplicationContext(), getList, new CarDownloadAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(final int carId, final int position) {
@@ -1187,11 +1170,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                         });
 
                         final int carIdFromList = ((CarInfo) getList.get(position)).getId();
-
-                        Log.e("carId", "_________" + carId);
-                        Log.e("langId", "_________" + NissanApp.getInstance().getLanguageID("en"));
-                        Log.e("deviceId", "_________" +NissanApp.getInstance().getDeviceID(activity.getApplicationContext()));
-                        Log.e("carId_from_list", "_________" +((CarInfo)getList.get(position)).getId());
 
                         new ApiCall().postCarDelete("" + carId, "" + NissanApp.getInstance().getLanguageID("en"), "0", NissanApp.getInstance().getDeviceID(activity.getApplicationContext()), new CompleteAPI() {
                             @Override
@@ -1374,10 +1352,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         for (int k = 0; k < getList.size(); k++) {
             if (getList.get(k).getClass() == CarInfo.class) {
                 CarInfo info = (CarInfo) getList.get(k);
-//                    Log.e("Car Id", "---" + info.getId());
-//                    Log.e("Car Name", "---" + info.getName());
-//                    Log.e("Car index", "---" + getList.indexOf(getList.get(k)));
-//                    Log.e("id_name", "_____" + info.getId() + "_" + info.getName());
 
                 if (info.getStatus().equals("0") && info.getId() == 13) {
                     xtrailEur = true;
