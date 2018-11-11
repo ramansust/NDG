@@ -227,7 +227,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 viewHolder.txtViewTitle.setText(name[0]);
 //                viewHolder.txtViewTitle.setText(list.get(position).getName());
             } else if(list.get(position).getId() == 13 || list.get(position).getId() == 15){
-                viewHolder.txtViewTitle.setText("NEW XTRAIL");
+                viewHolder.txtViewTitle.setText("NISSAN X-TRAIL");
             } else {
 //                viewHolder.txtViewTitle.setText(carNames[list.get(position).getId() - 1]);
                 viewHolder.txtViewTitle.setText(list.get(position).getName());
@@ -1195,6 +1195,9 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     public void loadResource() {
         resources = new Resources(activity.getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(activity, preferenceUtil.getSelectedLang()));
         carNames = activity.getResources().getStringArray(R.array.car_names);
+        for (int i = 0; i < carNames.length; i++) {
+            Log.e("car_name", "____________" + carNames[i]);
+        }
         internetCheckMessage = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
     }
 

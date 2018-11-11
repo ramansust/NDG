@@ -111,7 +111,8 @@ Vea el siguiente ejemplo:</string>
         <item>NUEVO MICRA</item>
         <item>NUEVO NISSAN QASHQAI</item>
         <item>NUEVO NISSAN X-TRAIL</item>
-        <item>Nuevo Nissan Leaf</item>
+        <item>NUEVO Nissan Leaf</item>
+        <item>NUEVO NISSAN X-TRAIL RUS</item>
     </string-array>
     <string-array name="assistance_array">
         <item>Testigos</item>

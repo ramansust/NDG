@@ -240,7 +240,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private void loadData() {
 
         //old static Rohan
-        if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+        if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14 || Values.carType == 15) {
 
             btnAR.setBackgroundResource(R.drawable.ar_selector_new_car);
         } else {
@@ -249,11 +249,13 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10) {
             btnBlindSpotAR.setBackgroundResource(R.drawable.explore_xtrail_eur);
-        } else if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+        } else if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14|| Values.carType == 15) {
             btnBlindSpotAR.setBackgroundResource(R.drawable.explore_micra_new);
         }
 
-        if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
+        if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4
+                || Values.carType == 10 || Values.carType == 11 || Values.carType == 12
+                || Values.carType == 13 || Values.carType == 14 || Values.carType == 15) {
             relativeBlindSpot.setVisibility(View.VISIBLE);
             relativeAR.setVisibility(View.GONE);
 
