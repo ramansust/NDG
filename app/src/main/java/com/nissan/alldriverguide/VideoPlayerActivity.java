@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -50,6 +51,8 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
 
     private boolean executeOnResume = true;
 
+    private String from_where = "";
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
@@ -69,6 +72,12 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
         }
 
         setContentView(R.layout.activity_video_player);
+
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            from_where = getIntent().getExtras().getString("from_where");
+        }
+
+        Log.e("from_where", "___________" + from_where);
 
         initViews();
         loadResource();
@@ -98,9 +107,10 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
 
         txtViewWatchAgain = (TextView) findViewById(R.id.btn_watch_again);
         txtViewLearnMore = (TextView) findViewById(R.id.btn_learn_more);
-        txtViewTitle = (TextView) findViewById(R.id.txt_title);
 
         txtViewLearnMoreAlways = (TextView) findViewById(R.id.txt_view_learn_more);
+
+        txtViewTitle = (TextView) findViewById(R.id.txt_title);
 
         metrics = new DisplayMetrics();
         VideoPlayerActivity.this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -141,6 +151,11 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
         } else {
             txtViewLearnMore.setVisibility(View.VISIBLE);
             txtViewLearnMoreAlways.setVisibility(View.VISIBLE);
+        }
+
+        if (from_where.equals("map")){
+            txtViewLearnMore.setVisibility(View.GONE);
+            txtViewLearnMoreAlways.setVisibility(View.GONE);
         }
 
         progressBar.setVisibility(View.VISIBLE);

@@ -1,6 +1,5 @@
 package com.nissan.alldriverguide.fragments.explore;
 
-import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,11 +13,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
@@ -92,7 +88,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private TextView txtViewExplore, tvNoContent, tvPageTitle, textViewMap, textViewMap2;
     private ProgressBar progressBar;
     private String sharedpref_key;
-    private ArrayList<ExploreTabVideoModel> videoList = new ArrayList<>();
+    private ArrayList<ExploreTabVideoModel> videoList = null;
     private String header_text;
     private ExploreTabModel exploreModel;
     private String device_density, internetCheckMessage = "";
@@ -138,7 +134,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private void getExploreTabContent() {
 
-        adapter = new GridViewAdapter(getActivity().getApplicationContext(), new ArrayList<ExploreTabVideoModel>(), device_density);
+        videoList = new ArrayList<>();
+        adapter = new GridViewAdapter(getActivity().getApplicationContext(), videoList, device_density);
         gridView.setAdapter(adapter);
 
 
@@ -215,12 +212,26 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 tvNoContent.setVisibility(View.GONE);
             }
             new PreferenceUtil(getActivity().getApplicationContext()).storeExploreDataList(responseInfo, sharedpref_key);
-            videoList.clear();
+            videoList = new ArrayList<>();
             exploreModel = responseInfo;
             check_density();
             videoList = exploreModel.getVideoList();
             NissanApp.getInstance().setExploreVideoList(videoList);
             loadData();
+/*
+            if (adapter == null) {
+
+                if (videoList != null && videoList.size() > 0) {
+                    adapter = new GridViewAdapter(getActivity().getApplicationContext(), videoList, device_density);
+                    gridView.setAdapter(adapter);
+                }
+
+            } else {
+                adapter.setList(videoList);
+                adapter.notifyDataSetChanged();
+            }
+*/
+
         }
 
     }
@@ -333,9 +344,13 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         rlMapView = (RelativeLayout) view.findViewById(R.id.rlMapView);
         gridView = (ScrollableGridView) view.findViewById(R.id.grid_view);
 
+        gridView.setFocusable(false);
+
+/*
         // this code for prevent scrollview bottom display
         ScrollView scrollView = (ScrollView) view.findViewById(R.id.scroll_view);
         scrollView.smoothScrollTo(0, 0);
+*/
 
         progressBar = (ProgressBar) view.findViewById(R.id.prog_explore);
         layoutDataNotFound = (LinearLayout) view.findViewById(R.id.layout_explore_data_not_found);
@@ -687,22 +702,25 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                             if (DetectConnection.checkInternetConnection(getActivity())) {
                                 //just for rush
 
-                                int id = -1;
+                                int index = -1;
                                 if (videoList == null || videoList.size() == 0)
                                     return;
                                 for (int i = 0; i < videoList.size(); i++) {
 
+                                    Log.e("tag_url", "_____" + videoList.get(i).getTag() + "_____" + videoList.get(i).getVideoUrl());
+
                                     if (videoList.get(i).getTag() == 997) {
-                                        id = i;
+                                        index = i;
                                         break;
                                     }
 
-
                                 }
 
-                                if (NissanApp.getInstance().getExploreVideoList().get(id).getVideoUrl() != null) {
+                                Values.videoIndex = index;
 
-                                    startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
+                                if (NissanApp.getInstance().getExploreVideoList().get(index).getVideoUrl() != null) {
+
+                                    startActivity(new Intent(getActivity(), VideoPlayerActivity.class).putExtra("from_where", "map"));
                                 }
 
 

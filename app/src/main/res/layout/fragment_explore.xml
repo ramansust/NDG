@@ -33,7 +33,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ProgressBar
                 android:id="@+id/prog_explore"
@@ -114,37 +114,6 @@
                         android:paddingRight="@dimen/margin_back"
                         android:textColor="@color/orange" />
 
-                    <!--<LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/txt_blind_spot_ar"
-                        android:layout_below="@+id/txt_blind_spot_ar"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <TextView
-                            android:id="@+id/txt_blind_spot_explore"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/margin_left"
-                            android:layout_weight="1"
-                            android:background="@color/black"
-                            android:paddingLeft="@dimen/margin_back"
-                            android:paddingRight="@dimen/margin_back"
-                            android:text="@string/explore_your_car"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="@color/white"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:visibility="invisible" />
-
-                    </LinearLayout>-->
-
-
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -198,69 +167,7 @@
                     </LinearLayout>
 
                 </RelativeLayout>
-                <!--
-                                <LinearLayout
-                                    android:id="@+id/map_view"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/relative_blind_spot_top"
-                                    android:orientation="vertical"
-                                    android:visibility="visible">
 
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content">
-
-                                        <ImageView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/map" />
-
-                                        <TextView
-                                            android:id="@+id/txt_map"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="@dimen/margin_left"
-                                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                                            android:background="@color/white"
-                                            android:paddingLeft="@dimen/margin_back"
-                                            android:paddingRight="@dimen/margin_back"
-                                            android:textColor="@color/orange" />
-
-                                    </RelativeLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:background="@color/colorWhite"
-                                        android:gravity="center_vertical"
-                                        android:orientation="vertical"
-                                        android:paddingBottom="10dp"
-                                        android:paddingTop="10dp">
-
-                                        <View
-                                            android:layout_width="70dp"
-                                            android:layout_height="1dp"
-                                            android:layout_marginLeft="@dimen/margin_back"
-                                            android:alpha="255"
-                                            android:background="@color/colorAccent" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignLeft="@+id/txt_view_driver_guide"
-                                            android:layout_below="@+id/txt_view_driver_guide"
-                                            android:paddingLeft="@dimen/margin_back"
-                                            android:paddingRight="@dimen/margin_back"
-                                            android:text="@string/discover_your_vehicle"
-                                            android:textAllCaps="true"
-                                            android:textColor="@color/black"
-                                            android:textSize="16sp"
-                                            android:textStyle="bold" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
-                -->
                 <LinearLayout
                     android:id="@+id/llTitleVideo"
                     android:layout_width="match_parent"
@@ -275,17 +182,16 @@
                     <View
                         android:layout_width="70dp"
                         android:layout_height="1dp"
-                        android:layout_marginLeft="@dimen/margin_back"
+                        android:layout_marginStart="@dimen/margin_back"
+                        android:layout_marginEnd="@dimen/margin_back"
                         android:alpha="255"
                         android:background="@color/colorAccent" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/txt_view_driver_guide"
-                        android:layout_below="@+id/txt_view_driver_guide"
-                        android:paddingLeft="@dimen/margin_back"
-                        android:paddingRight="@dimen/margin_back"
+                        android:paddingStart="@dimen/margin_back"
+                        android:paddingEnd="@dimen/margin_back"
                         android:text="@string/discover_your_vehicle"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
