@@ -9,61 +9,78 @@
         android:id="@+id/linear_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/dialog_button_separator"
+        android:background="@color/white"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_header"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/popup_header_height"
+            android:background="@color/background"
+            android:gravity="center"
+            android:text="@string/attention"
+            android:textColor="@color/white"
+            android:textSize="@dimen/popup_header_text_size" />
 
         <TextView
             android:id="@+id/txt_sub_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/background"
+            android:background="@color/white"
             android:gravity="center"
             android:padding="30dp"
+            android:textStyle="normal"
             android:text="@string/great_not_great_text"
-            android:textColor="@color/white"
-            android:textSize="@dimen/activity_horizontal_margin" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/popup_body_text_size" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="2"
-            android:padding="15dp"
-            android:background="@color/background"
+            android:background="@color/white"
             android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.5"
+                android:gravity="center">
 
             <TextView
                 android:id="@+id/txt_not_great"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="0.2dp"
+                android:layout_width="@dimen/ok_cancel_popup_width"
+                android:layout_height="@dimen/ok_cancel_popup_height"
                 android:background="@color/background"
                 android:gravity="center"
                 android:text="@string/not_great"
+                android:layout_marginBottom="5dp"
                 android:textColor="@color/white"
-                android:textSize="@dimen/activity_horizontal_margin"
+                android:textSize="@dimen/pop_up_ok_cancel_text_size"
                 android:textStyle="bold" />
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:background="@color/white"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.5"
+                android:gravity="center">
 
             <TextView
                 android:id="@+id/txt_great"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="0.2dp"
+                android:layout_width="@dimen/ok_cancel_popup_width"
+                android:layout_height="@dimen/ok_cancel_popup_height"
                 android:background="@color/background"
                 android:gravity="center"
+                android:layout_marginBottom="5dp"
                 android:text="@string/great"
                 android:textColor="@color/white"
-                android:textSize="@dimen/activity_horizontal_margin"
+                android:textSize="@dimen/pop_up_ok_cancel_text_size"
                 android:textStyle="bold" />
 
+        </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

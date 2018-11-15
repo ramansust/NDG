@@ -269,5 +269,6 @@
     <string name="discover_your_vehicle">Discover your vehicle\'s technology</string>
     <string name="updating_map_data">Updating map data</string>
     <string name="web_view_call_nissan_link_popup">Have you already consulted the support page and followed the steps?</string>
+    <string name="attention">Attention!</string>
 
 </resources>
