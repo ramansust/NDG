@@ -122,11 +122,11 @@
                     android:layout_height="170dp"
                     android:layout_below="@+id/relative_blind_spot_top">
 
-                    <android.support.v4.view.ViewPager
+
+                    <com.nissan.alldriverguide.utils.CustomViewPager
                         android:id="@+id/viewPager"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
-
 
                     <LinearLayout
                         android:id="@+id/llLeftArrow"
@@ -134,8 +134,10 @@
                         android:layout_height="50dp"
                         android:orientation="horizontal"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:gravity="center"
                         android:visibility="gone">
 

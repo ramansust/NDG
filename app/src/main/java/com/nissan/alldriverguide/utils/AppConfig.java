@@ -7,5 +7,5 @@ package com.nissan.alldriverguide.utils;
 public class AppConfig {
     public static final boolean IS_DEBUGGABLE = true; // true means show the logger otherwise logger off
     public static final boolean IS_PRODUCTION_LINK = true;
-    public static final boolean IS_APP_ONLINE = true; // true means online. false means local
+    public static final boolean IS_APP_ONLINE = false; // true means online. false means local
 }

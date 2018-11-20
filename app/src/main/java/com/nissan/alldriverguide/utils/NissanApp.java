@@ -861,6 +861,7 @@ public class NissanApp {
             case 14:
                 carPath = Values.PATH + Values.leaf_2017;
                 break;
+
             case 15:
                 carPath = Values.PATH + Values.xtrail_2017_rus;
                 break;
@@ -934,6 +935,7 @@ public class NissanApp {
             case 14:
                 path = Values.leaf_2017;
                 break;
+
             case 15:
                 path = Values.xtrail_2017_rus;
                 break;

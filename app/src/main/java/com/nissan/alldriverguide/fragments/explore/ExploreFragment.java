@@ -23,6 +23,7 @@ import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -57,6 +58,7 @@ import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
+import com.nissan.alldriverguide.utils.CustomViewPager;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
@@ -97,7 +99,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private LinearLayout layoutDataNotFound, llLeftArrow, llRightArrow;
     private LinearLayout mapView;
     private List<EpubInfo> list;
-    private ViewPager viewPager;
+    private CustomViewPager viewPager;
     private ImageView ivRight, ivLeft;
 
     /**
@@ -320,7 +322,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         gridView.setOnItemClickListener(this);
         ivLeft.setOnClickListener(this);
         ivRight.setOnClickListener(this);
-        viewPager.setOnPageChangeListener(this);
+        viewPager.addOnPageChangeListener(this);
 //        mapView.setOnClickListener(this);
     }
 
@@ -359,12 +361,20 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         controller = new ExploreTabContentController(this);
-        viewPager = (ViewPager) view.findViewById(R.id.viewPager);
+        viewPager = (CustomViewPager) view.findViewById(R.id.viewPager);
         viewPager.setAdapter(new MyPagerAdapter());
+        viewPager.disableScroll(false);
         llLeftArrow = view.findViewById(R.id.llLeftArrow);
         llRightArrow = view.findViewById(R.id.llRightArrow);
         ivRight = (ImageView) view.findViewById(R.id.ivRightArrow);
         ivLeft = (ImageView) view.findViewById(R.id.ivLeftArrow);
+
+        if (Values.carType == 12) {
+            viewPager.disableScroll(true);
+            llLeftArrow.setVisibility(View.GONE);
+            llRightArrow.setVisibility(View.GONE);
+        }
+
     }
 
     // load resources for language localized
@@ -706,8 +716,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                                 if (videoList == null || videoList.size() == 0)
                                     return;
                                 for (int i = 0; i < videoList.size(); i++) {
-
-                                    Log.e("tag_url", "_____" + videoList.get(i).getTag() + "_____" + videoList.get(i).getVideoUrl());
 
                                     if (videoList.get(i).getTag() == 997) {
                                         index = i;

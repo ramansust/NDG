@@ -665,6 +665,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private void carDownloadCheck(final int position) {
         Values.carType = position; // set the car type
 
+        Log.e("Values.carType", "___________" + Values.carType);
+
         if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(Values.carType))) { // here check the file existence on mmc
             if (commonDao.getStatus(getBaseContext(), Values.carType) == 1) { // if car is downloaded (status 1 is used for downloaded car)
                 CarInfo info = commonDao.getCarInfo(getApplicationContext(), Values.carType);

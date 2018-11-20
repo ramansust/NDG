@@ -1,6 +1,7 @@
 package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,7 @@ public class CarDownloadAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     public ArrayList<Object> list;
     private CarInfo info = null;
+    private Typeface typeFaceBold;
 
     /**
      * Constructor
@@ -46,6 +48,7 @@ public class CarDownloadAdapter extends BaseAdapter {
         this.list = list;
         inflater = LayoutInflater.from(this.context);
         this.listener = onItemClickListener;
+        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf");
     }
 
     public void setList(ArrayList<Object> _list) {
@@ -87,6 +90,8 @@ public class CarDownloadAdapter extends BaseAdapter {
             TextView txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
             ImageButton imgDeleteOrDownload = (ImageButton) view.findViewById(R.id.img_btn_delete_or_download);
             imgDeleteOrDownload.setBackgroundResource(R.drawable.delete_selector);
+
+            txtViewTitle.setTypeface(typeFaceBold);
 
             imgDeleteOrDownload.setOnClickListener(new View.OnClickListener() {
                 @Override
