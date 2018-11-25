@@ -97,6 +97,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
                 if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.TYRE + Values.TOC_DIRECTORY).exists()) {
                     list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.TYRE);
                     ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.TYRE));
+
                 }
                 break;
 
@@ -118,99 +119,6 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
                 break;
         }
 
-        // here compare with latest four cars
-        /*if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
-//        if(Values.carType == 14) {
-            if (list != null && list.size() > 0) {
-                // this snippet actually display qrg list without search tag
-                int i = 0;
-                Iterator<EpubInfo> epubInfo = list.iterator();
-                while (epubInfo.hasNext()) {
-                    i++;
-                    epubInfo.next();
-
-                    if (i % 2 == 0) { // here remove the even number like(NKR) from list
-                        epubInfo.remove();
-                    }
-                }
-
-                // here remove some unusable html or epub index
-                if (Values.ePubType == Values.HOMEPAGE_TYPE) {
-                    if (Values.carType == 11) {
-                        list = list.subList(0, list.size() - 2);
-                    } else if (Values.carType == 12) {
-                        list = list.subList(0, list.size() - 2);
-                    } else if (Values.carType == 13) {
-                        list = list.subList(0, 33);
-                    }
-                } else if (Values.ePubType == Values.WARRANTY_TYPE) {
-                    list.remove(list.size() - 1);
-                }
-
-                adapter = new ListAdapter(getActivity().getApplicationContext(), list);
-                lstView.setAdapter(adapter);
-            } else {
-
-            }
-        } else {
-            // here compare three language that have search tag in epub
-            if (preferenceUtil.getSelectedLang().equalsIgnoreCase("pl") ||
-                    preferenceUtil.getSelectedLang().equalsIgnoreCase("fi") ||
-                    preferenceUtil.getSelectedLang().equalsIgnoreCase("pt")) {
-
-                if (list != null && list.size() > 0) {
-                    int i = 0;
-                    Iterator<EpubInfo> epubInfo = list.iterator();
-                    while (epubInfo.hasNext()) {
-                        i++;
-                        epubInfo.next();
-
-                        if (i % 2 == 0) {
-                            epubInfo.remove();
-                        }
-                    }
-
-                    if (Values.ePubType == Values.HOMEPAGE_TYPE) {
-                        if (Values.carType == 11) {
-                            list = list.subList(0, list.size() - 2);
-                        } else if (Values.carType == 12) {
-                            list = list.subList(0, list.size() - 2);
-                        } else if (Values.carType == 13) {
-                            list = list.subList(0, 33);
-                        }
-                    } else if (Values.ePubType == Values.WARRANTY_TYPE) {
-                        list.remove(list.size() - 1);
-                    }
-
-                    adapter = new ListAdapter(getActivity().getApplicationContext(), list);
-                    lstView.setAdapter(adapter);
-                } else {
-
-                }
-
-            } else {
-
-                // here for old car epub that have not contain search tag
-                if (list != null && list.size() > 0) {
-                    if (Values.ePubType == Values.HOMEPAGE_TYPE) {
-                        if (Values.carType == 11) {
-                            list = list.subList(0, list.size() - 2);
-                        } else if (Values.carType == 12) {
-                            list = list.subList(0, list.size() - 2);
-                        } else if (Values.carType == 13) {
-                            list = list.subList(0, 33);
-                        }
-                    } else if (Values.ePubType == Values.WARRANTY_TYPE) {
-                        list.remove(list.size() - 1);
-                    }
-                    adapter = new ListAdapter(getActivity().getApplicationContext(), list);
-                    lstView.setAdapter(adapter);
-                } else {
-
-                }
-            }
-        }*/
-
         if (list != null && list.size() > 0) {
             // this snippet actually display qrg list without search tag
             int i = 0;
@@ -222,6 +130,8 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
                 if (i % 2 == 0) { // here remove the even number like(NKR) from list
                     epubInfo.remove();
                 }
+
+
             }
 
             // here remove some unusable html or epub index
@@ -235,6 +145,16 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
                 }
             } else if (Values.ePubType == Values.WARRANTY_TYPE) {
                 list.remove(list.size() - 1);
+            } else if (Values.ePubType == Values.TYRE_TYPE) {
+                if (Values.carType == 15) {
+
+                    for (Iterator<EpubInfo> iterator = list.listIterator(); iterator.hasNext(); ) {
+                        EpubInfo info = iterator.next();
+                        if (info.getTitle().startsWith("3. ") || info.getTitle().startsWith("3.1. ") || info.getTitle().startsWith("3.2. ")) {
+                            iterator.remove();
+                        }
+                    }
+                }
             }
 
             adapter = new ListAdapter(getActivity().getApplicationContext(), list);

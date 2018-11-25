@@ -318,7 +318,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     // Called when the system is about to start resuming a previous activity.
     @SuppressLint("NewApi")
     @Override
-    protected void onPause() {
+    public void onPause() {
         Logger.debugging(LOGTAG, "onPause");
         super.onPause();
 
@@ -337,6 +337,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
             }
         }
 
+/*
         try {
             vuforiaAppSession.pauseAR();
         } catch (SampleApplicationException e) {
@@ -344,6 +345,8 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         } finally {
             isFromShowInfo = true;
         }
+*/
+
     }
 
     // The final call you receive before your activity is destroyed.

@@ -37,6 +37,7 @@ public class Analytics {
     public static final String HEATED_REAR = "heated rear";
     public static final String CONSOLE = "console";
     public static final String TRIP_RESET = "trip reset";
+    public static final String AUTOMATIC_DRIVE_POSITION = "automatic drive position";
     public static final String MIXED_PANEL = "mixed panel" ;
     public static final String EV_NAVI_SYSTEM = "ev navi system";
     public static final String ECO = "eco";

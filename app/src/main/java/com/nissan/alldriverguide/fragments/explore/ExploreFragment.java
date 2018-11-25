@@ -39,6 +39,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.facebook.common.util.UriUtil;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -675,6 +677,14 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                     textViewMap = (TextView) layout.findViewById(R.id.txt_map);
                     mapView = (LinearLayout) layout.findViewById(R.id.map_view);
+                    if (Values.carType == 12) {
+                        Uri uri = new Uri.Builder()
+                                .scheme(UriUtil.LOCAL_RESOURCE_SCHEME) // "res"
+                                .path(String.valueOf(R.drawable.map_new))
+                                .build();
+                        ((SimpleDraweeView) layout.findViewById(R.id.drawee_view_map_1)).setImageURI(uri);
+                    }
+
                     mapTextImage(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
 
                     mapView.setOnClickListener(new View.OnClickListener() {

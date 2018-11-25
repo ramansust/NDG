@@ -283,7 +283,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
             stopCamera();
         }
 
-        Vuforia.onPause();
+//        Vuforia.onPause();
     }
 
 

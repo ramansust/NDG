@@ -1246,6 +1246,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             public void onDownloaded(ResponseInfo responseInfo) {
 
                 Logger.error("car_delete", "_________" + "onDownloaded");
+                Logger.error("carId", "_________" + carId + "_____" + carIdFromList);
                 Logger.error("response_code", "_________" + responseInfo.getStatusCode());
 
 
@@ -1253,7 +1254,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
                     try {
 
-                        FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(carId)));
+                        FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(carIdFromList)));
 //                                        ((CarD) activity).sendMsgToGoogleAnalytics(((MainActivity) activity).getAnalyticsForDelete(carNames[carId - 1], Analytics.CAR_SELECTION + Analytics.DELETE));
 
 
