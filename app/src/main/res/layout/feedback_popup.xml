@@ -47,20 +47,12 @@
             android:id="@+id/feedback_yes"
             android:layout_width="250dp"
             android:layout_height="35dp"
-            android:layout_margin="5dp"
             android:background="@color/background"
             android:gravity="center"
             android:text="@string/send_feedback"
             android:textColor="@color/white"
             android:textSize="@dimen/pop_up_ok_cancel_text_size"
             android:textStyle="bold"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:background="@color/background"/>
 
         <TextView
             android:id="@+id/feedback_ask_me_later"
@@ -72,13 +64,6 @@
             android:text="@string/rate_ask_me_later"
             android:textColor="@color/white"
             android:textSize="@dimen/pop_up_ok_cancel_text_size" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:background="@color/background"/>
 
 
         <TextView

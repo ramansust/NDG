@@ -90,6 +90,12 @@ public class ApiCall {
     // post Car Delete status
     public void postCarDelete(String car_id, String lang_id, String epub_id, String device_id, final CompleteAPI completeAPI) {
 
+        Logger.error("car_id", "_________" + car_id);
+        Logger.error("lang_id", "_________" + lang_id);
+        Logger.error("epub_id", "_________" + epub_id);
+
+
+
         //Creating an object of our api interface
         ApiService api = RetrofitClient.getApiService();
         Call<ResponseInfo> call = api.postCarDeleteConfirmation(car_id, lang_id, epub_id, device_id);

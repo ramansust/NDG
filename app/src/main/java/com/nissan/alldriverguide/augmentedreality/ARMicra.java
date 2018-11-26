@@ -306,8 +306,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
                             ) {
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -326,8 +327,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -345,8 +347,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -365,8 +368,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -384,8 +388,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -403,8 +408,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -426,8 +432,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -445,8 +452,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -464,8 +472,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -483,8 +492,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -504,8 +514,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -523,8 +534,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -542,8 +554,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -562,8 +575,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
@@ -585,8 +599,9 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
+//                            vuforiaAppSession.pauseAR();
+                            mActivity.onPause();
+                        } catch (Exception e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }

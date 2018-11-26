@@ -457,7 +457,12 @@ public class ARQashqai2017 implements GLSurfaceView.Renderer, SampleAppRendererC
                     } else if (userDataToCompare.equalsIgnoreCase("automatic_drive_positioner_1")
                             || userDataToCompare.equalsIgnoreCase("automatic_drive_positioner_2")
                             || userDataToCompare.equalsIgnoreCase("automatic_drive_positioner_3")
-                            || userDataToCompare.equalsIgnoreCase("automatic_drive_positioner_4")) {
+                            || userDataToCompare.equalsIgnoreCase("automatic_drive_positioner_4")
+                            || userDataToCompare.equalsIgnoreCase("automatic_drive_positioner_5")
+                            || userDataToCompare.equalsIgnoreCase("automatic_drive_positioner_6")
+                            || userDataToCompare.equalsIgnoreCase("automatic_drive_positioner_7")
+                            || userDataToCompare.equalsIgnoreCase("automatic_drive_positioner_8")
+                            || userDataToCompare.equalsIgnoreCase("automatic_drive_positioner_9")) {
 
                         try {
                             mActivity.isDetected = true;

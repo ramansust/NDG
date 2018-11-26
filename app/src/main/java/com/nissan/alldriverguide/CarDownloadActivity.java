@@ -1241,13 +1241,14 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
         final int carIdFromList = ((CarInfo) getList.get(position)).getId();
 
-        new ApiCall().postCarDelete("" + carId, "" + NissanApp.getInstance().getLanguageID("en"), "0", NissanApp.getInstance().getDeviceID(activity.getApplicationContext()), new CompleteAPI() {
+
+        new ApiCall().postCarDelete("" + carIdFromList, "" + NissanApp.getInstance().getLanguageID("en"), "0", NissanApp.getInstance().getDeviceID(activity.getApplicationContext()), new CompleteAPI() {
             @Override
             public void onDownloaded(ResponseInfo responseInfo) {
 
-                Logger.error("car_delete", "_________" + "onDownloaded");
-                Logger.error("carId", "_________" + carId + "_____" + carIdFromList);
-                Logger.error("response_code", "_________" + responseInfo.getStatusCode());
+//                Logger.error("car_delete", "_________" + "onDownloaded");
+//                Logger.error("carId", "_________" + carId + "_____" + carIdFromList);
+//                Logger.error("response_code", "_________" + responseInfo.getStatusCode());
 
 
 

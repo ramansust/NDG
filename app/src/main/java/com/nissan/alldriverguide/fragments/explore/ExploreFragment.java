@@ -103,6 +103,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private List<EpubInfo> list;
     private CustomViewPager viewPager;
     private ImageView ivRight, ivLeft;
+    private PreferenceUtil preferenceUtil;
 
     /**
      * Creating instance for this fragment
@@ -264,7 +265,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10) {
             btnBlindSpotAR.setBackgroundResource(R.drawable.explore_xtrail_eur);
-        } else if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14|| Values.carType == 15) {
+        } else if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14 || Values.carType == 15) {
             btnBlindSpotAR.setBackgroundResource(R.drawable.explore_micra_new);
         }
 
@@ -336,6 +337,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private void initViews(View view) {
 
         mContext = getActivity();
+        preferenceUtil = new PreferenceUtil(mContext);
         txtViewExplore = (TextView) view.findViewById(R.id.txt_blind_spot_ar);
 
         tvPageTitle = (TextView) view.findViewById(R.id.txt_title_explore);
@@ -712,7 +714,19 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                             collection, false);
 
                     textViewMap2 = (TextView) layout.findViewById(R.id.txt_map);
-                    mapTextImage2(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
+//                    mapTextImage2(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
+
+
+
+/*
+                    Drawable drawable = getResources().getDrawable(getActivity().getResources()
+                            .getIdentifier("micra_map_2_" + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + ".png", "drawable-xhdpi", getActivity().getPackageName()));
+*/
+
+                    Logger.error("short_code", "______" + preferenceUtil.getSelectedLang());
+                    int drawable = mContext.getResources().getIdentifier("micra_map_2_" + preferenceUtil.getSelectedLang().toLowerCase(), "drawable", getActivity().getPackageName());
+
+                    ((ImageView) layout.findViewById(R.id.drawee_view_map_2)).setImageResource(drawable);
 
                     layout.findViewById(R.id.ivMap).setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -747,30 +761,30 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                                 Toast.makeText(getActivity(), internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage, Toast.LENGTH_SHORT).show();
                             }
                         }
-            });
+                    });
 
-            break;
-        }
+                    break;
+            }
 
             collection.addView(layout);
             return layout;
-    }
+        }
 
-    @Override
-    public void destroyItem(ViewGroup collection, int position, Object view) {
-        collection.removeView((View) view);
-    }
+        @Override
+        public void destroyItem(ViewGroup collection, int position, Object view) {
+            collection.removeView((View) view);
+        }
 
-    @Override
-    public int getCount() {
-        return 2;
-    }
+        @Override
+        public int getCount() {
+            return 2;
+        }
 
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return view == object;
-    }
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
 
-}
+    }
 
 }
