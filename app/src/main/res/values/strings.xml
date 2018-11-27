@@ -85,7 +85,7 @@
         <item>New Nissan QASHQAI</item>
         <item>New Nissan X-TRAIL EUR</item>
         <item>New Nissan Leaf</item>
-        <item>NEW NISSAN X-TRAIL RUS</item>
+        <item>NISSAN X-TRAIL RUS</item>
     </string-array>
     <string-array name="assistance_array">
         <item>Warning Lights</item>
@@ -270,5 +270,7 @@
     <string name="updating_map_data">Updating map data</string>
     <string name="web_view_call_nissan_link_popup">Have you already consulted the support page and followed the steps?</string>
     <string name="attention">Attention!</string>
+    <string name="internet_connection_interruption">Internet connection interrupted, Please try again later.</string>
+    <string name="download">Download!</string>
 
 </resources>

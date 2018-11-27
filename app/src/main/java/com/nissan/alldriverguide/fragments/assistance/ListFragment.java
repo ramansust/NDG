@@ -153,6 +153,10 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
                         if (info.getTitle().startsWith("3. ") || info.getTitle().startsWith("3.1. ") || info.getTitle().startsWith("3.2. ")) {
                             iterator.remove();
                         }
+
+                        if (info.getTitle().contains("4")){
+                            info.setTitle(info.getTitle().replace("4", "3"));
+                        }
                     }
                 }
             }

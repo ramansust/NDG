@@ -569,7 +569,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
                         @Override
                         public int onError(int i) {
-                            showErrorDialog("Unknown Error Occurred, Please try again later.");
+                            showErrorDialog(context.getResources().getString(R.string.internet_connection_interruption)); //"Hi Unknown Error Occurred, Please try again later.");
                             errorFileDelete(Values.carType);
                             return 0;
                         }

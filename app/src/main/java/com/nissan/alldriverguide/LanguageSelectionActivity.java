@@ -453,6 +453,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             @Override
             public int onError(int i) {
                 errorFileDelete(Values.carType);
+                showErrorDialog(context.getResources().getString(R.string.internet_connection_interruption));
                 Logger.error("onError", "______" + i);
                 return 0;
             }

@@ -208,10 +208,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         }
         mLastClickTime = SystemClock.elapsedRealtime();
 
-
-
-
-
         Logger.error("push_sp_status", "___________" + new PreferenceUtil(context).getPushRegistrationStatus());
 
         if (!new PreferenceUtil(context).getPushRegistrationStatus()) {

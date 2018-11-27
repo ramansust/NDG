@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.SystemClock;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -56,6 +57,7 @@ import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
+import com.nissan.alldriverguide.utils.DialogErrorFragment;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.SearchDBAsync;
@@ -562,6 +564,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             @Override
             public int onError(int i) {
                 errorFileDelete(carType);
+                showErrorDialog(context.getResources().getString(R.string.internet_connection_interruption));
                 return 0;
             }
 
@@ -611,6 +614,11 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 }
             }
         });
+    }
+
+    private void showErrorDialog(String msg) {
+        DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
+        dialogFragment.show(((FragmentActivity) activity).getSupportFragmentManager(), "error_fragment");
     }
 
     private void showCarDownloadDialogForSingleCar(final int carType, final boolean isCarDownload) {
