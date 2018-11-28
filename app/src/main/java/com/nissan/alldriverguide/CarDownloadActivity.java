@@ -1333,7 +1333,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                                 }
                             }
                         }
-
+                        getList = swapXtrailEurRusIfBothDownloaded(getList);
                         adapter.setList(getList);
                         if (progressDialog != null)
                             progressDialog.dismiss();
