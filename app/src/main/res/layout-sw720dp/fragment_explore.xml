@@ -154,12 +154,11 @@
 
                     <LinearLayout
                         android:id="@+id/llLeftArrow"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="60dp"
+                        android:layout_height="110dp"
                         android:orientation="horizontal"
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
                         android:gravity="center"
                         android:visibility="gone">
 
@@ -167,18 +166,18 @@
                             android:id="@+id/ivLeftArrow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_arrow_back_new" />
+                            android:src="@drawable/left_arrow_map" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/llRightArrow"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="60dp"
+                        android:layout_height="100dp"
                         android:orientation="horizontal"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
+
                         android:gravity="center"
                         android:visibility="visible">
 
@@ -186,7 +185,7 @@
                             android:id="@+id/ivRightArrow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_arrow_forward_new" />
+                            android:src="@drawable/right_arrow_map" />
 
                     </LinearLayout>
 

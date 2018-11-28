@@ -1152,6 +1152,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             }
 
 
+            getList = swapXtrailEurRusIfBothDownloaded(getList);
+
 
             if (NissanApp.getInstance().getCarList() != null && adapter == null) {
 
@@ -1167,14 +1169,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
                             NissanApp.getInstance().showInternetAlert(activity, internetCheckMessage.isEmpty() ? context.getResources().getString(R.string.internet_connect) : internetCheckMessage);
                         }
-
-
-
-
-
-
-
-
 
                     }
                 });
@@ -1451,6 +1445,61 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         return getList;
 
 
+    }
+
+    private ArrayList<Object> swapXtrailEurRusIfBothDownloaded(ArrayList<Object> getList) {
+
+        CarInfo xtrailEuroInfo = new CarInfo();
+        CarInfo xtrailRusInfo = new CarInfo();
+        CarInfo leaf2017Info = new CarInfo();
+        int xtrailEuroIndex = -1, xtrailRusIndex = -1, leaf2017Index = -1;
+        boolean xtrailRusDownloaded = false, xtrailEuroDownloaded = false, leaf2017Downloaded = false;
+
+        for (int k = 0; k < getList.size(); k++) {
+            if (getList.get(k).getClass() == CarInfo.class) {
+                CarInfo info = (CarInfo) getList.get(k);
+                if (info.getStatus().equals("1") && info.getId() == 13) {
+                    xtrailEuroInfo = info;
+                    xtrailEuroIndex = k;
+                    xtrailEuroDownloaded = true;
+                }
+
+                if (info.getStatus().equals("1") && info.getId() == 15) {
+                    xtrailRusInfo = info;
+                    xtrailRusIndex = k;
+                    xtrailRusDownloaded = true;
+                }
+
+                if (info.getStatus().equals("1") && info.getId() == 14) {
+                    Log.e("15", "____true!");
+                    leaf2017Info = info;
+                    leaf2017Index = k;
+                    leaf2017Downloaded = true;
+                }
+            }
+
+
+        }
+
+        if (xtrailEuroDownloaded && xtrailRusDownloaded) {
+            getList.set(xtrailEuroIndex, xtrailRusInfo);
+            getList.set(xtrailRusIndex, xtrailEuroInfo);
+        }
+
+        if (xtrailRusDownloaded && leaf2017Downloaded && xtrailEuroDownloaded) {
+            getList.set(xtrailRusIndex, leaf2017Info);
+            getList.set(leaf2017Index, xtrailEuroInfo);
+//            getList.set(xtrailRusIndex, xtrailRusInfo);
+        }
+
+        if (xtrailRusDownloaded && leaf2017Downloaded) {
+            if (!xtrailEuroDownloaded) {
+                getList.set(leaf2017Index, xtrailRusInfo);
+                getList.set(xtrailRusIndex, leaf2017Info);
+            }
+        }
+
+        return getList;
     }
 
     private boolean xtrailLeafAvailableForDownload(ArrayList<Object> getList) {
