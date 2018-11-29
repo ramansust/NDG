@@ -621,12 +621,15 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         final Dialog dialog = new DialogController(activity).carDownloadDialog();
 
         TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
+        TextView txtViewHeader = dialog.findViewById(R.id.txt_header);
         if (isCarDownload) {
             String downloadConfirmationMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DOWNLOAD_CONFIRMATION);
             txtViewTitle.setText(downloadConfirmationMsg == null || downloadConfirmationMsg.isEmpty() ? resources.getString(R.string.alert_msg22) : downloadConfirmationMsg);
+            txtViewHeader.setText(activity.getResources().getString(R.string.download));
         } else {
             String deleteMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DELETE_MESSAGE);
             txtViewTitle.setText(deleteMsg == null || deleteMsg.isEmpty() ? resources.getString(R.string.alert_msg23) : deleteMsg);
+            txtViewHeader.setText(activity.getResources().getString(R.string.attention));
         }
 
         //TODO
@@ -666,11 +669,11 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                         }
                     });
 
-                    Log.e("car_id", "______" + list.get(position).getId());
-                    Log.e("position", "______" + position);
+                    Logger.error("car_id", "______" + list.get(position).getId());
+                    Logger.error("position", "______" + position);
 
                     for (int k = 0; k < list.size(); k++) {
-                            Log.e("name_id_before_delete", "_____" + list.get(k).getName() + "_____" + list.get(k).getId() + "____" + list.get(k).getStatus());
+                            Logger.error("name_id_before_delete", "_____" + list.get(k).getName() + "_____" + list.get(k).getId() + "____" + list.get(k).getStatus());
                     }
 
 
@@ -685,40 +688,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
                                     int carIdFromList = list.get(position).getId();
 
-                                    Log.e("carIdFromList", "___________" + carIdFromList);
-
-/*
-
-                                    if (carIdFromList == 15) {
-                                        if (commonDao.getStatus(context, carIdFromList - 2) == 0) {
-                                            commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "RUS", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-                                            list.remove(position);
-                                        } else {
-                                            commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-                                            list.remove(position);
-                                            ((CarInfo) list.get(position)).setStatus("0");
-                                        }
-                                    }
-
-                                    if (carIdFromList == 13) {
-                                        commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-                                        if (commonDao.getStatus(context, carIdFromList + 2) == 0) {
-                                            commonDao.updateDateAndStatus(context, carIdFromList + 2, "0", NissanApp.getInstance().getDateTime(), "RUS", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-
-                                            list.remove(position);
-
-
-
-                                        } else {
-                                            commonDao.updateDateAndStatus(context, carIdFromList + 2, "1", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-                                            ((CarInfo) list.get(position)).setStatus("1");
-                                        }
-                                    }
-
-
-
-*/
-
+                                    Logger.error("carIdFromList", "___________" + carIdFromList);
 
                                     if (carIdFromList == 15) {
                                         if (commonDao.getStatus(context, carIdFromList - 2) == 0) {

@@ -9,6 +9,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -910,6 +911,9 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         final Dialog dialog = new DialogController(ImageTargetActivity.this).langDialog();
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewHeader = (TextView) dialog.findViewById(R.id.txt_header);
+        txtViewHeader.setTypeface(null, Typeface.BOLD);
+        txtViewTitle.setTypeface(null, Typeface.BOLD);
         String exitDialogueText = NissanApp.getInstance().getAlertMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.CONFIRM_EXIT_MESSAGE);
         txtViewTitle.setText(exitDialogueText == null || exitDialogueText.isEmpty() ? resources.getString(R.string.exit_alert) : exitDialogueText);
 
