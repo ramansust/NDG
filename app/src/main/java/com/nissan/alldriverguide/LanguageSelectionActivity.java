@@ -621,7 +621,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private void showCarDownloadDialogForSingleCar() {
         carListContentController = new CarListContentController(this);
         controllerGlobalMsg = new GlobalMessageController(this);
-        final Dialog dialog = new DialogController(LanguageSelectionActivity.this).langDialog();
+        final Dialog dialog = new DialogController(LanguageSelectionActivity.this).carDownloadDialog();
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
 

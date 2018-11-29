@@ -115,7 +115,8 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         getDataFromSP();
 
-        swapXtrailEurRusIfBothDownloaded(NissanApp.getInstance().getCarAllList());
+        swapXtrailRusleaf2017IfBothDownloaded();
+        swapXtrailEurRusIfBothDownloaded();
 
         final String ORDER = "102";
         Collections.sort(NissanApp.getInstance().getCarAllList(), new Comparator<CarInfo>() {
@@ -156,12 +157,20 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         replaceTheCarNamesAndImages();
 
+        ArrayList<CarInfo> list = NissanApp.getInstance().getCarAllList();
+
+        for (int i = 0; i < list.size(); i++) {
+            Log.e("list_id_before", "_____" + i + "_____" + list.get(i).getName());
+        }
+
         adapter = new CarDownloadSettingsAdapter(AddCarFragment.this, getActivity(), getActivity().getApplicationContext(), NissanApp.getInstance().getCarAllList());
         lstView.setAdapter(adapter);
         lstView.setDivider(null);
     }
 
-    private void swapXtrailEurRusIfBothDownloaded(ArrayList<CarInfo> getList) {
+    private void swapXtrailEurRusIfBothDownloaded() {
+
+        ArrayList<CarInfo> getList = NissanApp.getInstance().getCarAllList();
 
         CarInfo xtrailEuroInfo = new CarInfo();
         CarInfo xtrailRusInfo = new CarInfo();
@@ -194,25 +203,58 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
             }
         }
 
+
+        Log.e("leaf2017Downloaded", "______" + leaf2017Downloaded);
+        Log.e("xtrailRusDownloaded", "______" + xtrailRusDownloaded);
+        Log.e("xtrailEuroDownloaded", "______" + xtrailEuroDownloaded);
+
+
         if (xtrailEuroDownloaded && xtrailRusDownloaded) {
             getList.set(xtrailEuroIndex, xtrailRusInfo);
             getList.set(xtrailRusIndex, xtrailEuroInfo);
+            xtrailEuroDownloaded = false;
+            xtrailRusDownloaded = false;
         }
 
-        if (xtrailRusDownloaded && leaf2017Downloaded && xtrailEuroDownloaded) {
-            getList.set(xtrailRusIndex, leaf2017Info);
-            getList.set(leaf2017Index, xtrailEuroInfo);
-//            getList.set(xtrailRusIndex, xtrailRusInfo);
-        }
+        NissanApp.getInstance().setCarAllList(getList);
+//        return getList;
+    }
 
-        if (xtrailRusDownloaded && leaf2017Downloaded) {
-            if (!xtrailEuroDownloaded) {
-                getList.set(leaf2017Index, xtrailRusInfo);
-                getList.set(xtrailRusIndex, leaf2017Info);
+    private void swapXtrailRusleaf2017IfBothDownloaded() {
+
+        ArrayList<CarInfo> getList = NissanApp.getInstance().getCarAllList();
+
+        CarInfo xtrailEuroInfo = new CarInfo();
+        CarInfo xtrailRusInfo = new CarInfo();
+        CarInfo leaf2017Info = new CarInfo();
+        int xtrailEuroIndex = -1, xtrailRusIndex = -1, leaf2017Index = -1;
+        boolean xtrailRusDownloaded = false, xtrailEuroDownloaded = false, leaf2017Downloaded = false;
+
+        for (int k = 0; k < getList.size(); k++) {
+            CarInfo info = getList.get(k);
+
+            if (info.getStatus().equals("1") && info.getId() == 15) {
+                Log.e("15", "____true!");
+                xtrailRusInfo = info;
+                xtrailRusIndex = k;
+                xtrailRusDownloaded = true;
+            }
+
+            if (info.getStatus().equals("1") && info.getId() == 14) {
+                Log.e("14", "____true!");
+                leaf2017Info = info;
+                leaf2017Index = k;
+                leaf2017Downloaded = true;
             }
         }
 
+        Log.e("leaf2017Downloaded", "______" + leaf2017Downloaded);
+        Log.e("xtrailRusDownloaded", "______" + xtrailRusDownloaded);
 
+        if (leaf2017Downloaded && xtrailRusDownloaded) {
+            getList.set(leaf2017Index, xtrailRusInfo);
+            getList.set(xtrailRusIndex, leaf2017Info);
+        }
 
         NissanApp.getInstance().setCarAllList(getList);
 //        return getList;

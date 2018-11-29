@@ -70,6 +70,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -714,14 +715,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                             collection, false);
 
                     textViewMap2 = (TextView) layout.findViewById(R.id.txt_map);
-//                    mapTextImage2(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
-
-
-
-/*
-                    Drawable drawable = getResources().getDrawable(getActivity().getResources()
-                            .getIdentifier("micra_map_2_" + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + ".png", "drawable-xhdpi", getActivity().getPackageName()));
-*/
 
                     Logger.error("short_code", "______" + preferenceUtil.getSelectedLang());
                     int drawable = mContext.getResources().getIdentifier("micra_map_2_" + preferenceUtil.getSelectedLang().toLowerCase(), "drawable", getActivity().getPackageName());

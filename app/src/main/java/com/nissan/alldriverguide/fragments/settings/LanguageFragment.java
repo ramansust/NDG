@@ -408,7 +408,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
      * @param position adapter position
      */
     private void showDownloadAlert(final String lang, final int position) {
-        final Dialog dialog = new DialogController(getActivity()).langDialog();
+        final Dialog dialog = new DialogController(getActivity()).carDownloadDialog();
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
         String downloadSureMsg = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.DOWNLOAD_SURE_MSG);

@@ -1231,8 +1231,11 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
         final int carIdFromList = ((CarInfo) getList.get(position)).getId();
 
+        Logger.error("carIdFromList", "_________" + carIdFromList);
 
-        new ApiCall().postCarDelete("" + carIdFromList, "" + NissanApp.getInstance().getLanguageID("en"), "0", NissanApp.getInstance().getDeviceID(activity.getApplicationContext()), new CompleteAPI() {
+        Logger.error("selectedLang", "_________" + selectedLang);
+
+        new ApiCall().postCarDelete("" + carIdFromList, "" + NissanApp.getInstance().getLanguageID(commonDao.getLanguageStatus(getApplicationContext(), carIdFromList)), "0", NissanApp.getInstance().getDeviceID(activity.getApplicationContext()), new CompleteAPI() {
             @Override
             public void onDownloaded(ResponseInfo responseInfo) {
 
@@ -1350,7 +1353,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
                 Logger.error("car_delete", "_________" + "onFailed");
 
-                if (progressDialog != null)
+                if (progressDialog != null && progressDialog.isShowing())
                     progressDialog.dismiss();
                 showErrorDialog(resources.getString(R.string.failed_to_connect_server));
                 Logger.error("Car deleting", "____________" + failedReason);

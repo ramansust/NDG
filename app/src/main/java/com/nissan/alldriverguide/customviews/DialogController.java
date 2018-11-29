@@ -32,6 +32,19 @@ public class DialogController {
         return dialog;
     }
 
+    public Dialog carDownloadDialog() {
+        dialog = new Dialog(this.activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.download_lang_popup);
+        ((TextView) dialog.findViewById(R.id.txt_header)).setText(activity.getResources().getString(R.string.download));
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCancelable(true);
+        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        return dialog;
+    }
+
+
     public Dialog carDialog() {
         dialog = new Dialog(this.activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

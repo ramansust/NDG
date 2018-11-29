@@ -17,7 +17,7 @@
             android:layout_height="@dimen/popup_header_height"
             android:background="@color/background"
             android:gravity="center"
-            android:text="@string/download"
+            android:text="@string/attention"
             android:textColor="@color/white"
             android:textSize="@dimen/popup_header_text_size" />
 

@@ -24,8 +24,10 @@ import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.fragments.explore.ExploreFragment;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 import com.nissan.alldriverguide.utils.Logger;
+import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by raman on 1/19/17.
@@ -48,10 +50,24 @@ public class GridViewAdapter extends BaseAdapter {
         this.tf = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf");
         this.tfRegular = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Regular.otf");
         inflater = LayoutInflater.from(this.context);
+
+/*
+        if (Values.carType == 11) {
+            for (Iterator<ExploreTabVideoModel> iterator = this.video_list.listIterator(); iterator.hasNext(); ) {
+                ExploreTabVideoModel model = iterator.next();
+                if (model.getTag() == 997) {
+                    iterator.remove();
+                }
+            }
+        }
+*/
+
     }
 
     @Override
     public int getCount() {
+        if (Values.carType == 11)
+            return video_list != null ? video_list.size() - 1 : 0;
         return video_list != null ? video_list.size() : 0;
     }
 
@@ -94,10 +110,6 @@ public class GridViewAdapter extends BaseAdapter {
         }
 
         uri = Uri.parse(img_name);
-
-        /*Glide.with(context)
-                .load(img_name)
-                .into(viewHolder.imageView);*/
 
         if(img_name.equalsIgnoreCase("")){
             if(ExploreFragment.progress_bar != null){
