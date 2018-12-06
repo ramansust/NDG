@@ -75,7 +75,6 @@ public class TutorialViewPagerAdapter extends PagerAdapter {
         title.setTypeface(typeFaceBold);
 
         detail = (TextView) itemView.findViewById(R.id.txt_details);
-        Logger.error("tutorial_text", "______" + tutorialDetails[position]);
         detail.setText(tutorialDetails[position].replace("\\n", "\n"));
         detail.setTypeface(typeFaceNormal);
 

@@ -649,6 +649,20 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     requestStoragePermission();
                 } else {
+
+                    if (preferenceUtil.getIsFirstTime()) {
+                        if (new File(Values.PATH).exists()) {
+                            try {
+
+                                Logger.error("Values.PATH", "_________" + Values.PATH);
+
+                                FileUtils.deleteDirectory(new File(Values.PATH));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
                     Logger.error("lang_id", "__________" + selectedLangModel.getLanguageId());
                     if (NissanApp.getInstance().createPath(Values.PATH)) {
                         startCarDownloadProcedure();
@@ -678,6 +692,20 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
                         // permission is granted
+
+                        if (preferenceUtil.getIsFirstTime()) {
+                            if (new File(Values.PATH).exists()) {
+                                try {
+
+                                    Logger.error("Values.PATH", "_________" + Values.PATH);
+
+                                    FileUtils.deleteDirectory(new File(Values.PATH));
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
                         if (NissanApp.getInstance().createPath(Values.PATH)) {
                             startCarDownloadProcedure();
                         } else {

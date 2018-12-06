@@ -530,6 +530,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         if (preferenceUtil.getIsFirstTime()) {
             if (new File(Values.PATH).exists()) {
                 try {
+
+                    Logger.error("Values.PATH", "_________" + Values.PATH);
+
                     FileUtils.deleteDirectory(new File(Values.PATH));
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -671,6 +674,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                     if (!NissanApp.getInstance().getVersionName().equalsIgnoreCase(info.getVersionName()) || info.getVersionCode() != NissanApp.getInstance().getVersionCode()) {
                         if (DetectConnection.checkInternetConnection(getApplicationContext())) {
                             try {
+
                                 FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(position)));
                                 if (position == 2 || position == 5) {
                                     if (commonDao.getStatus(getApplicationContext(), position - 1) == 2) {
@@ -730,7 +734,11 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             } else { // if car is not downloaded
 
                 try {
+
+                    Logger.error("path", "__________" + NissanApp.getInstance().getCarPath(Values.carType));
+
                     FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType)));
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
