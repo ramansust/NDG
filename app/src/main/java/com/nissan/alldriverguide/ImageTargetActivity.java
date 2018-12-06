@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -301,8 +302,14 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
             mGlView.setVisibility(View.VISIBLE);
             mGlView.onResume();
         }
+
+
+        Log.e("isFromShowInfo", "_______" + isFromShowInfo);
+        Log.e("isDetected", "_______" + isDetected);
+
         if (isFromShowInfo && !isDetected) {
             isFromShowInfo = false;
+//            layoutCameraView.removeAllViews();
             vuforiaAppSession.onResume();
         }
     }
@@ -338,6 +345,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
             }
         }
 
+        isFromShowInfo = true;
 /*
         try {
             vuforiaAppSession.pauseAR();

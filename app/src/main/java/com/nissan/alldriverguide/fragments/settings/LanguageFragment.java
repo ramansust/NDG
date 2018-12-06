@@ -414,6 +414,8 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         String downloadSureMsg = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.DOWNLOAD_SURE_MSG);
         txtViewTitle.setText(downloadSureMsg.isEmpty() ? getResources().getString(R.string.download_lang) : downloadSureMsg);
 
+        ((TextView) dialog.findViewById(R.id.txt_header)).setText(activity.getResources().getString(R.string.change_language_popup_title));
+
         String okText = NissanApp.getInstance().getGlobalMessage(getActivity()).getOk();
         String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity()).getCancel();
 

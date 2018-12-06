@@ -137,8 +137,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         }.getType();
         languageLists = new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData(carId + "_" + Values.CAR_LANGUAGE_LIST), type);
 
-        Logger.error("carId", "___________" + carId);
-
 //        showLanguageDialog(Integer.parseInt(carId));
 
         if (languageLists == null || languageLists.size() == 0) {
@@ -289,10 +287,9 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                     }
 
                 } else { // for downloading car action
-                    Log.e("List from Click","----- "+list.get(position).getId());
                     if (NissanApp.getInstance().createPath(Values.PATH)) {
                         if (DetectConnection.checkInternetConnection(activity.getApplicationContext())) {
-                            if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5 || list.get(position).getId() ==13 || list.get(position).getId() ==15) {
+                            if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5 || list.get(position).getId() == 13 || list.get(position).getId() == 15) {
                                 showCarDownloadDialog(list.get(position).getId());
                             } else {
                                 selectedCarType = list.get(position).getId();
@@ -347,8 +344,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
     @Override
     public void languageListDownloaded(List<LanguageList> languageListsTemp) {
-
-        Logger.error("languageListDownloaded", "___________called");
 
         if (languageListsTemp != null && languageListsTemp.size() > 0) {
             preferenceUtil.storeMultiLangData(languageListsTemp, selectedCarType + "_" + Values.CAR_LANGUAGE_LIST);
@@ -441,13 +436,10 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                                                             commonDao.updateDateAndStatus(context, carType + 2, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                                                         }
                                                     } else if (carType == 15) {
-                                                        if (commonDao.getStatus(context, carType - 2) == 0) {
-                                                            commonDao.updateDateAndStatus(context, carType - 2, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-                                                        }
+//                                                        if (commonDao.getStatus(context, carType - 2) == 0) {
+//                                                            commonDao.updateDateAndStatus(context, carType - 2, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+//                                                        }
                                                     }
-
-                                                    Log.e("selectedCarPosition", "________" + selectedCarPosition);
-                                                    Log.e("position", "________" + position);
 
                                                     if (carType == 1 || carType == 2 || carType == 4 || carType == 5) {
                                                         if (carType == 1 || carType == 4) {
@@ -498,67 +490,66 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                                                             }
                                                         }
 
-                                                    } else if (carType == 13){
+                                                    } else if (carType == 13 || carType == 15){
 
-                                                        if (commonDao.getStatus(context, carType + 2) == 1) {
+                                                        if (carType == 13) {
+                                                            if (commonDao.getStatus(context, carType + 2) == 1) {
 
-                                                            list.get(selectedCarPosition).setSelectedCar(0);
-                                                            list.get(position).setSelectedCar(1);
-                                                            list.get(position).setName(commonDao.getCarName(context, carType));
-                                                            list.get(position).setStatus("1");
-                                                        } else {
-                                                            if (!isForceDownload) {
-                                                                CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-
-                                                                list.add(position, info);
-                                                                list.get(position + 1).setId(carType + 1);
-                                                            } else {
-                                                                list.get(position).setStatus("1");
+                                                                list.get(selectedCarPosition).setSelectedCar(0);
                                                                 list.get(position).setSelectedCar(1);
-                                                            }
+                                                                list.get(position).setName(commonDao.getCarName(context, carType));
+                                                                list.get(position).setStatus("1");
+                                                            } else {
 
-                                                            for (int i = 0; i < list.size(); i++) {
-                                                                if (list.get(i).getId() != carType) {
-                                                                    list.get(i).setSelectedCar(0);
+                                                                if (!isForceDownload) {
+
+                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+
+                                                                    list.add(position, info);
+                                                                    list.get(position + 1).setId(carType + 2);
+                                                                } else {
+                                                                    list.get(position).setStatus("1");
+                                                                    list.get(position).setSelectedCar(1);
+                                                                }
+
+                                                                for (int i = 0; i < list.size(); i++) {
+                                                                    if (list.get(i).getId() != carType) {
+                                                                        list.get(i).setSelectedCar(0);
+                                                                    }
+                                                                }
+                                                            }
+                                                        } else {
+                                                            if (commonDao.getStatus(context, carType - 2) == 1) {
+                                                                list.get(selectedCarPosition).setSelectedCar(0);
+                                                                list.get(position).setSelectedCar(1);
+                                                                list.get(position).setName(commonDao.getCarName(context, carType));
+                                                                list.get(position).setStatus("1");
+                                                            } else {
+                                                                if (!isForceDownload) {
+                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+
+                                                                    list.add(position + 1, info);
+                                                                } else {
+                                                                    list.get(position).setStatus("1");
+                                                                    list.get(position).setSelectedCar(1);
+                                                                }
+
+                                                                for (int i = 0; i < list.size(); i++) {
+                                                                    if (list.get(i).getId() != carType) {
+                                                                        list.get(i).setSelectedCar(0);
+                                                                    }
                                                                 }
                                                             }
                                                         }
 
-                                                    } else if (carType == 15){
 
-                                                        if (commonDao.getStatus(context, carType - 2) == 1) {
-
-                                                            list.get(selectedCarPosition).setSelectedCar(0);
-                                                            list.get(position).setSelectedCar(1);
-                                                            list.get(position).setName(commonDao.getCarName(context, carType));
-                                                            list.get(position).setStatus("1");
-                                                        } else {
-                                                            if (!isForceDownload) {
-                                                                CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-
-                                                                list.add(position, info);
-                                                                list.get(position + 1).setId(carType + 1);
-                                                            } else {
-                                                                list.get(position).setStatus("1");
-                                                                list.get(position).setSelectedCar(1);
-                                                            }
-
-                                                            for (int i = 0; i < list.size(); i++) {
-                                                                if (list.get(i).getId() != carType) {
-                                                                    list.get(i).setSelectedCar(0);
-                                                                }
-                                                            }
-                                                        }
 
                                                     } else {
-                                                        Logger.error("Car_name and status", "_________" + list.get(position).getName() +"______" + list.get(position).getStatus());
-                                                        Logger.error("Car_selected_name and status", "_________" + list.get(selectedCarPosition).getName() +"______" + list.get(selectedCarPosition).getStatus());
                                                         list.get(position).setStatus("1");
                                                         list.get(position).setSelectedCar(1);
                                                         list.get(selectedCarPosition).setSelectedCar(0);
                                                     }
 
-                                                    Logger.error("Car type " + carType, "___Position___" + position);
 
                                                     commonDao.updateLanguageStatus(context, carType, lang);
                                                     commonDao.updateAllPushContentStatusForSingleCar(context, carType, NissanApp.getInstance().getLanguageID(lang));
@@ -680,7 +671,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         } else {
             String deleteMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DELETE_MESSAGE);
             txtViewTitle.setText(deleteMsg == null || deleteMsg.isEmpty() ? resources.getString(R.string.alert_msg23) : deleteMsg);
-            txtViewHeader.setText(activity.getResources().getString(R.string.attention));
+            txtViewHeader.setText(activity.getResources().getString(R.string.delete));
         }
 
         //TODO
@@ -720,14 +711,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                         }
                     });
 
-                    Logger.error("car_id", "______" + list.get(position).getId());
-                    Logger.error("position", "______" + position);
-
-                    for (int k = 0; k < list.size(); k++) {
-                            Logger.error("name_id_before_delete", "_____" + list.get(k).getName() + "_____" + list.get(k).getId() + "____" + list.get(k).getStatus());
-                    }
-
-
                     new ApiCall().postCarDelete("" + carType, "" + NissanApp.getInstance().getLanguageID(commonDao.getLanguageStatus(context, carType)), "0", NissanApp.getInstance().getDeviceID(activity.getApplicationContext()), new CompleteAPI() {
                         @Override
                         public void onDownloaded(ResponseInfo responseInfo) {
@@ -739,25 +722,22 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
                                     int carIdFromList = list.get(position).getId();
 
-                                    Logger.error("carIdFromList", "___________" + carIdFromList);
-
                                     if (carIdFromList == 15) {
 
                                         if (commonDao.getStatus(context, carIdFromList - 2) == 0) {
                                             commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "RUS", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-                                            list.remove(position);
+//                                            list.remove(position);
                                         } else {
                                             commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-//                                            list.remove(position);
                                             list.get(position).setStatus("0");
                                         }
                                     }
+
 
                                     if (carIdFromList == 13) {
                                         commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                                         if (commonDao.getStatus(context, carIdFromList + 2) == 0) {
                                             commonDao.updateDateAndStatus(context, carIdFromList + 2, "0", NissanApp.getInstance().getDateTime(), "RUS", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-
 //                                            list.remove(position);
 
 
@@ -802,10 +782,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 } finally {
-
-                                    for (int k = 0; k < list.size(); k++) {
-                                        Log.e("name_id_after_delete", "_____" + list.get(k).getName() + "_____" + list.get(k).getId() + "____" + list.get(k).getStatus());
-                                    }
 
 
                                     adapterNotify(true);
@@ -907,8 +883,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         ImageButton imgBtnEur = (ImageButton) dialog.findViewById(R.id.img_btn_eur_delete_donwload);
         ImageButton imgBtnRus = (ImageButton) dialog.findViewById(R.id.img_btn_rus_delete_donwload);
 
-        Logger.error("Car Type is ", "_____________" + carType);
-
         if (carType == 1 || carType == 4) {
             if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType)) && commonDao.getStatus(context, carType) == 1) {
                 btnEUR.setAlpha(0.2f);
@@ -965,13 +939,11 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 imgBtnRus.setBackgroundResource(R.drawable.download_selector);
             }
         } else if (carType == 13) {//click rohan
-//            Log.e("All 13 Car type adapter","1 "+carType);
             if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType)) && commonDao.getStatus(context, carType) == 1) {
                 btnEUR.setAlpha(0.2f);
                 btnEUR.setEnabled(false);
                 imgBtnEur.setBackgroundResource(R.drawable.delete_selector);
                 if (list.get(carType - 1).getSelectedCar() == 1) {
-//                    Log.e("EUR 13 car type list","1 "+list.get(carType-1));
                     imgBtnEur.setAlpha(0.2f);
                     imgBtnEur.setEnabled(false);
                 } else {
@@ -981,12 +953,10 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 imgBtnEur.setBackgroundResource(R.drawable.download_selector);
             }
             if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType + 2)) && commonDao.getStatus(context, carType + 2) == 1) {
-//                Log.e("All 13 Car type adapter","2 "+carType + 2);
                 btnRUS.setAlpha(0.2f);
                 btnRUS.setEnabled(false);
                 imgBtnRus.setBackgroundResource(R.drawable.delete_selector);
                 if (list.get(carType -1).getSelectedCar() == 1) {
-//                    Log.e("RUS 13 car type list","2 "+list.get(carType -1));
                     imgBtnRus.setAlpha(0.2f);
                     imgBtnRus.setEnabled(false);
                 } else {
@@ -996,13 +966,11 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 imgBtnRus.setBackgroundResource(R.drawable.download_selector);
             }//click rohan
         } else if (carType == 15) {//click rohan
-//            Log.e("All 15 Car type adapter","1 "+carType );
             if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType -2 )) && commonDao.getStatus(context, carType-2) == 1) {
                 btnEUR.setAlpha(0.2f);
                 btnEUR.setEnabled(false);
                 imgBtnEur.setBackgroundResource(R.drawable.delete_selector);
                 if (list.get(carType - 3).getSelectedCar() == 1) {
-//                    Log.e("EUR 15 car type list","1 "+list.get(carType-3).getName());
                     imgBtnEur.setAlpha(0.2f);
                     imgBtnEur.setEnabled(false);
                 } else {
@@ -1012,12 +980,10 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 imgBtnEur.setBackgroundResource(R.drawable.download_selector);
             }
             if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType )) && commonDao.getStatus(context, carType ) == 1) {
-//                Log.e("All 15 Car type adapter","2 "+carType);
                 btnRUS.setAlpha(0.2f);
                 btnRUS.setEnabled(false);
                 imgBtnRus.setBackgroundResource(R.drawable.delete_selector);
                 if (list.get(carType -2).getSelectedCar() == 1) {
-//                    Log.e("RUS 15 car type list","2 "+list.get(carType - 2));
                     imgBtnRus.setAlpha(0.2f);
                     imgBtnRus.setEnabled(false);
                 } else {
@@ -1033,7 +999,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             public void onClick(View v) {
                 dialog.dismiss();
                 if (carType == 1 || carType == 4 || carType == 13) {//click rohan
-//                    Log.e("btnEUR","-- " + carType);
                     selectedCarType = carType;
                     LanguageSelectionDialog(carType);
                 } else {
@@ -1360,21 +1325,18 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             CarInfo info = getList.get(k);
 
             if (info.getStatus().equals("1") && info.getId() == 13) {
-                Log.e("13", "____true!");
                 xtrailEuroInfo = info;
                 xtrailEuroIndex = k;
                 xtrailEuroDownloaded = true;
             }
 
             if (info.getStatus().equals("1") && info.getId() == 15) {
-                Log.e("15", "____true!");
                 xtrailRusInfo = info;
                 xtrailRusIndex = k;
                 xtrailRusDownloaded = true;
             }
 
             if (info.getStatus().equals("1") && info.getId() == 14) {
-                Log.e("14", "____true!");
                 leaf2017Info = info;
                 leaf2017Index = k;
                 leaf2017Downloaded = true;
@@ -1404,14 +1366,12 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             CarInfo info = getList.get(k);
 
             if (info.getStatus().equals("1") && info.getId() == 15) {
-                Log.e("15", "____true!");
                 xtrailRusInfo = info;
                 xtrailRusIndex = k;
                 xtrailRusDownloaded = true;
             }
 
             if (info.getStatus().equals("1") && info.getId() == 14) {
-                Log.e("14", "____true!");
                 leaf2017Info = info;
                 leaf2017Index = k;
                 leaf2017Downloaded = true;
@@ -1459,8 +1419,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     private void getDataFromSP() {
 
         String car_list_key = preferenceUtil.getSelectedLang() + "_" + Values.CAR_LIST_KEY + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang());
-
-        Logger.error("AddCarFragment", "car_list_key__________" + car_list_key);
 
         Type type = new TypeToken<ArrayList<CarList>>() {
         }.getType();

@@ -115,8 +115,16 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         getDataFromSP();
 
+        Logger.error("loadData", "___________called!");
+
+        ArrayList<CarInfo> list_before = NissanApp.getInstance().getCarAllList();
+        for (int i = 0; i < list_before.size(); i++) {
+            Logger.error("list_car_name_before", "______" + list_before.get(i).getName());
+        }
+
         swapXtrailRusleaf2017IfBothDownloaded();
         swapXtrailEurRusIfBothDownloaded();
+
 
         final String ORDER = "102";
         Collections.sort(NissanApp.getInstance().getCarAllList(), new Comparator<CarInfo>() {
@@ -160,7 +168,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         ArrayList<CarInfo> list = NissanApp.getInstance().getCarAllList();
 
         for (int i = 0; i < list.size(); i++) {
-            Log.e("list_id_before", "_____" + i + "_____" + list.get(i).getName());
+            Logger.error("list_car_name_after", "______" + list.get(i).getName());
         }
 
         adapter = new CarDownloadSettingsAdapter(AddCarFragment.this, getActivity(), getActivity().getApplicationContext(), NissanApp.getInstance().getCarAllList());
@@ -174,40 +182,24 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         CarInfo xtrailEuroInfo = new CarInfo();
         CarInfo xtrailRusInfo = new CarInfo();
-        CarInfo leaf2017Info = new CarInfo();
-        int xtrailEuroIndex = -1, xtrailRusIndex = -1, leaf2017Index = -1;
-        boolean xtrailRusDownloaded = false, xtrailEuroDownloaded = false, leaf2017Downloaded = false;
+        int xtrailEuroIndex = -1, xtrailRusIndex = -1;
+        boolean xtrailRusDownloaded = false, xtrailEuroDownloaded = false;
 
         for (int k = 0; k < getList.size(); k++) {
             CarInfo info = getList.get(k);
 
             if (info.getStatus().equals("1") && info.getId() == 13) {
-                Log.e("13", "____true!");
                 xtrailEuroInfo = info;
                 xtrailEuroIndex = k;
                 xtrailEuroDownloaded = true;
             }
 
             if (info.getStatus().equals("1") && info.getId() == 15) {
-                Log.e("15", "____true!");
                 xtrailRusInfo = info;
                 xtrailRusIndex = k;
                 xtrailRusDownloaded = true;
             }
-
-            if (info.getStatus().equals("1") && info.getId() == 14) {
-                Log.e("14", "____true!");
-                leaf2017Info = info;
-                leaf2017Index = k;
-                leaf2017Downloaded = true;
-            }
         }
-
-
-        Log.e("leaf2017Downloaded", "______" + leaf2017Downloaded);
-        Log.e("xtrailRusDownloaded", "______" + xtrailRusDownloaded);
-        Log.e("xtrailEuroDownloaded", "______" + xtrailEuroDownloaded);
-
 
         if (xtrailEuroDownloaded && xtrailRusDownloaded) {
             getList.set(xtrailEuroIndex, xtrailRusInfo);
@@ -217,7 +209,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         }
 
         NissanApp.getInstance().setCarAllList(getList);
-//        return getList;
     }
 
     private void swapXtrailRusleaf2017IfBothDownloaded() {
@@ -234,22 +225,17 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
             CarInfo info = getList.get(k);
 
             if (info.getStatus().equals("1") && info.getId() == 15) {
-                Log.e("15", "____true!");
                 xtrailRusInfo = info;
                 xtrailRusIndex = k;
                 xtrailRusDownloaded = true;
             }
 
             if (info.getStatus().equals("1") && info.getId() == 14) {
-                Log.e("14", "____true!");
                 leaf2017Info = info;
                 leaf2017Index = k;
                 leaf2017Downloaded = true;
             }
         }
-
-        Log.e("leaf2017Downloaded", "______" + leaf2017Downloaded);
-        Log.e("xtrailRusDownloaded", "______" + xtrailRusDownloaded);
 
         if (leaf2017Downloaded && xtrailRusDownloaded) {
             getList.set(leaf2017Index, xtrailRusInfo);
@@ -268,13 +254,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
             return;
         if (carListArrayList == null || carListArrayList.size() == 0)
             return;
-
-
-/*
-        for (CarInfo car : carInfoArrayList) {
-            Logger.error("id_name", "__________" + car.getId() +"_____" + car.getName());
-        }
-*/
 
         for (int i = 0; i < carInfoArrayList.size(); i++) {
 
@@ -311,8 +290,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     private void getDataFromSP() {
 
         String car_list_key = preferenceUtil.getSelectedLang() + "_" + Values.CAR_LIST_KEY + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang());
-
-        Logger.error("AddCarFragment", "car_list_key__________" + car_list_key);
 
         Type type = new TypeToken<ArrayList<CarList>>() {
         }.getType();
@@ -356,8 +333,20 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         txt_title.setText(car_selection_title.isEmpty() ? resources.getString(R.string.add_extra_car) : car_selection_title);
         txt_back_title.setText(resources.getString(R.string.back));
         txt_back_title.setTypeface(tf);
+        NissanApp.getInstance().setCarAllList(commonDao.getAllCarList(getActivity().getApplicationContext()));
+        setPreviousCarSelection();
         getDataFromSP();
         replaceTheCarNamesAndImages();
+    }
+
+    private void setPreviousCarSelection() {
+
+
+        for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == Values.carType)
+                NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(1);
+        }
+
     }
 
     private void initViews(View view) {
@@ -412,7 +401,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     private void carDownloadCheck(final int position) {
-        Logger.error("Path is " + commonDao.getStatus(getActivity().getBaseContext(), position), "______frag_______" + NissanApp.getInstance().getCarPath(position));
         if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(position))) {
             if (commonDao.getStatus(getActivity().getBaseContext(), position) == 1) {
                 CarInfo info = commonDao.getCarInfo(getActivity().getApplicationContext(), position);
@@ -787,19 +775,15 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     private void startCarDownloadProcedure(final int position) {
         adapter.progressDialog = new ProgressDialogController(getActivity()).showDialog(getResources().getString(R.string.start_download));
 
-        Logger.error("cardownloadactivity_code", "__________" + "daat");
-
         new ApiCall().postCarDownload("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(adapter.lang), "0", NissanApp.getInstance().getDeviceID(getActivity()), new CompleteAPI() {
             @Override
             public void onDownloaded(ResponseInfo responseInfo) {
-                Logger.error("cardownloadactivity_code", "__________" + responseInfo.getStatusCode());
 
                 if (AppConfig.IS_APP_ONLINE ? Values.SUCCESS_STATUS.equals(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getAssetsUrl()) && !TextUtils.isEmpty(responseInfo.getLangUrl()) : Values.SUCCESS_STATUS.equals(responseInfo.getStatusCode())) {
                     adapter.startCarAssetsDownload(AppConfig.IS_APP_ONLINE ? responseInfo.getAssetsUrl() : NissanApp.getInstance().getAssetsURL(position), Values.PATH, AppConfig.IS_APP_ONLINE ? responseInfo.getLangUrl() : NissanApp.getInstance().getLanguageURL((position), adapter.lang), NissanApp.getInstance().getCarPath(Values.carType), true);
                 } else {
                     dismissDialog();
                     showErrorDialog("Status OR URL not reachable");
-                    Logger.error("cardownloadactivity_problem", "__________" + "postcardownload");
                 }
             }
 

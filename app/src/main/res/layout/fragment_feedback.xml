@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/send_feedback_title_bg"
                     android:cursorVisible="true"
-                    android:inputType="text"
+                    android:inputType="textMultiLine"
                     android:padding="10dp"
                     android:textColor="#363636"
                     android:textColorHint="#a69f9f"

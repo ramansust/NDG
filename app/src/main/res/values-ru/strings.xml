@@ -269,6 +269,7 @@
     <string name="discover_your_vehicle">Узнайте О Технологиях, Которыми Оснащен Ваш Автомобиль</string>
     <string name="updating_map_data">Обновление Картографических Данных</string>
     <string name="web_view_call_nissan_link_popup">Вы уже прочитали страницу с информацией для решения вопроса и выполнили указанные там действия?</string>
+    <string name="delete">Delete!</string>
 
 
 </resources>

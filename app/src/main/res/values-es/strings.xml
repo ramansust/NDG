@@ -269,6 +269,7 @@ Vea el siguiente ejemplo:</string>
     <string name="discover_your_vehicle">Descubra La Tecnología De Su Vehículo.</string>
     <string name="updating_map_data">Actualización De Datos Cartográficos.</string>
     <string name="web_view_call_nissan_link_popup">¿Ha consultado ya la página de asistencia y seguido los pasos?</string>
+    <string name="delete">Delete!</string>
 
 
 </resources>

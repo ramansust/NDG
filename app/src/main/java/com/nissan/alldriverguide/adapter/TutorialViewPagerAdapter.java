@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nissan.alldriverguide.R;
+import com.nissan.alldriverguide.utils.Logger;
 
 public class TutorialViewPagerAdapter extends PagerAdapter {
 
@@ -73,7 +75,8 @@ public class TutorialViewPagerAdapter extends PagerAdapter {
         title.setTypeface(typeFaceBold);
 
         detail = (TextView) itemView.findViewById(R.id.txt_details);
-        detail.setText(tutorialDetails[position]);
+        Logger.error("tutorial_text", "______" + tutorialDetails[position]);
+        detail.setText(tutorialDetails[position].replace("\\n", "\n"));
         detail.setTypeface(typeFaceNormal);
 
         container.addView(itemView);

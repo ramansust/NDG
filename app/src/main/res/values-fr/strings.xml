@@ -258,6 +258,7 @@
     <string name="discover_your_vehicle">Decouvrez La Technologie De Votre Vehicule</string>
     <string name="updating_map_data">Mise A Jour Des Donnees Cartographiques</string>
     <string name="web_view_call_nissan_link_popup">Avez-vous déjà consulté la page d\'aide et suivi les étapes?</string>
+    <string name="delete">Delete!</string>
 
 
 </resources>

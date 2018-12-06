@@ -270,6 +270,7 @@ Zie het volgende voorbeeld:</string>
     <string name="discover_your_vehicle">Ontdek De Technologie Van Uw Voertuig</string>
     <string name="updating_map_data">Kaartgegevens Bijwerken</string>
     <string name="web_view_call_nissan_link_popup">Heeft u de ondersteuningspagina al geraadpleegd en de stappen gevolgd?</string>
+    <string name="delete">Delete!</string>
 
 
 </resources>

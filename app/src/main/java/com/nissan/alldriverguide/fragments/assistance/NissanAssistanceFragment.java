@@ -114,14 +114,8 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
         adapter = new AssistanceAdapter(getActivity().getApplicationContext(), nissanAssistance, nissanNssistanceImage);
         lstView.setAdapter(adapter);
 
-        // condition for new four cars (eg. 11 = All New Nissan Micra, 12 = New Nissan QASHQAI etc...)
-        if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
-//            txtViewCarName.setText(resources.getStringArray(R.array.car_names)[Values.carType - 1]);
-            txtViewCarName.setText(NissanApp.getInstance().assistanceInfo.getSelectedCar());
-        } else {
-//            txtViewCarName.setText("NISSAN " + resources.getStringArray(R.array.car_names)[Values.carType - 1]);
-            txtViewCarName.setText("NISSAN " + NissanApp.getInstance().assistanceInfo.getSelectedCar());
-        }
+        txtViewCarName.setText(NissanApp.getInstance().assistanceInfo.getSelectedCar());
+
         txtViewCarName.setBackgroundResource(R.color.black);
         // set image background according to car type
         setCarBackground(Values.carType);

@@ -229,6 +229,7 @@
     <string name="discover_your_vehicle">Tutustu Autosi Teknologiaan</string>
     <string name="updating_map_data">Karttatietojen Päivittäminen</string>
     <string name="web_view_call_nissan_link_popup">Oletko jo etsinyt neuvoja tukisivulta ja noudattanut sen ohjeita?</string>
+    <string name="delete">Delete!</string>
 
 
 </resources>

@@ -1188,6 +1188,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
         TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
 
+        TextView txt_header = dialog.findViewById(R.id.txt_header);
+        txt_header.setText(activity.getResources().getString(R.string.delete));
+
             String deleteMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DELETE_MESSAGE);
             txtViewTitle.setText(deleteMsg == null || deleteMsg.isEmpty() ? resources.getString(R.string.alert_msg23) : deleteMsg);
 

@@ -16,7 +16,7 @@
 
     <string name="alert_msg39">Before using the tyre puncture repair kit, please read the “REPAIRING FLAT TYRE” instructions carefully.</string>
     <string name="alert_msg40">Read</string>
-    <string name="alert_msg41">I already read it</string>
+    <string name="alert_msg41">I have already read it</string>
     <string name="alert_msg42">Before changing a flat tyre, please read the “CHANGING FLAT TYRE” instructions carefully.</string>
 
     <string name="alert_msg22">Do you want to download this vehicle content? It may take several minutes based on the speed of your internet connection. It will be downloaded only once for each vehicle.</string>
@@ -144,6 +144,7 @@
     <string name="search">SEARCH</string>
     <string name="settings">SETTINGS</string>
     <string name="change_language">CHANGE LANGUAGE</string>
+    <string name="change_language_popup_title">Change Language</string>
     <string name="add_extra_car">Car selection</string>
     <string name="warning_lights">WARNING LIGHTS</string>
     <string name="quick_reference_guide">Quick Reference Guide</string>
@@ -272,5 +273,6 @@
     <string name="attention">Attention!</string>
     <string name="internet_connection_interruption">Internet connection interrupted, Please try again later.</string>
     <string name="download">Download!</string>
+    <string name="delete">Delete!</string>
 
 </resources>
