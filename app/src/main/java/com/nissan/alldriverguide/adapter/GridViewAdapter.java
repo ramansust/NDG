@@ -66,8 +66,12 @@ public class GridViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if (Values.carType == 11)
-            return video_list != null ? video_list.size() - 1 : 0;
+        if (Values.carType == 11) {
+            if (video_list != null && video_list.size() > 0) {
+                if (video_list.get(video_list.size() - 1).getTag() == 997)
+                    return  video_list.size() - 1;
+                }
+        }
         return video_list != null ? video_list.size() : 0;
     }
 

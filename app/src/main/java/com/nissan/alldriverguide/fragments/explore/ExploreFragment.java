@@ -299,6 +299,15 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     }
                 });
 
+                for (int i=0; i < videoList.size(); i++){
+
+                    if(videoList.get(i).getTag() == 997){
+                        ExploreTabVideoModel model = videoList.get(i);
+                        videoList.remove(i);
+                        videoList.add(model);
+                    }
+                }
+
                 adapter.setList(videoList);
                 adapter.notifyDataSetChanged();
             }
@@ -727,11 +736,12 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                             // here start the playing video for grid view item click
 
                             if (DetectConnection.checkInternetConnection(getActivity())) {
-                                //just for rush
+                                //just for rus
 
                                 int index = -1;
                                 if (videoList == null || videoList.size() == 0)
                                     return;
+
                                 for (int i = 0; i < videoList.size(); i++) {
 
                                     if (videoList.get(i).getTag() == 997) {
@@ -740,6 +750,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                                     }
 
                                 }
+
+                                if (index == -1)
+                                    return;
 
                                 Values.videoIndex = index;
 

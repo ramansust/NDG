@@ -83,7 +83,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
 
         String nextText = NissanApp.getInstance().getGlobalMessage(this).getNext();
 
-        txtNext.setText(nextText.isEmpty() ? getResources().getString(R.string.button_next) : nextText);
+        txtNext.setText(nextText == null || nextText.isEmpty() ? getResources().getString(R.string.button_next) : nextText);
 
         ArrayList<Tutorial> list = getDataFromStorage();
 
