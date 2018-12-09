@@ -130,6 +130,7 @@ public class Values {
     public static final String CAR_WISE_LANG_DOWNLOAD_ALERT_MSG = "multi_lang_car_wise_dl_list_alert_msg";
 
     public static final String ALERT_MSG_TYPE_INTERNET = "internet_check";
+    public static final String ALERT_MSG_TYPE_CHANGE_LANGUAGE = "change_language";
     public static final String ALERT_MSG_TYPE_LOADING_TEXT = "loading_text";
     public static final String ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_1 = "download_car_guide1";
     public static final String ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2 = "download_car_guide2";
@@ -152,6 +153,7 @@ public class Values {
     public static final String  DATA_SYNCING = "data_syncing";
     public static final String  CAR_DELETE = "start_car_delete";
     public static final String  DOWNLOAD_CONFIRMATION = "download_confirmation";
+    public static final String  SELECT_LANGUAGE = "select_language";
 
     public static final String  RATE_OUR_APP_YES = "rate_our_app_yes";
     public static final String  RATE_ASK_ME_LATER = "rate_ask_me_later";

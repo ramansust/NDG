@@ -86,6 +86,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     private long doubleClickPopup = 0;
     private List<CarList> carListArrayList = new ArrayList<>();
     private long mLastClickTime = 0;
+    private boolean isFirstTime = true;
 
     public static Fragment newInstance() {
         return new AddCarFragment();
@@ -333,18 +334,29 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         txt_title.setText(car_selection_title.isEmpty() ? resources.getString(R.string.add_extra_car) : car_selection_title);
         txt_back_title.setText(resources.getString(R.string.back));
         txt_back_title.setTypeface(tf);
-        NissanApp.getInstance().setCarAllList(commonDao.getAllCarList(getActivity().getApplicationContext()));
-        setPreviousCarSelection();
+        Logger.error("carType", "_________" + Values.carType);
+
+
+
+//        if (isFirstTime) {
+//            setPreviousCarSelection();
+            isFirstTime = false;
+//        }
         getDataFromSP();
         replaceTheCarNamesAndImages();
+
     }
 
     private void setPreviousCarSelection() {
 
 
         for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
-            if (NissanApp.getInstance().getCarAllList().get(i).getId() == Values.carType)
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == Values.carType) {
                 NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(1);
+            } else {
+                NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(0);
+            }
         }
 
     }
@@ -729,6 +741,9 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                 adapter.loadResource();
                                 getDataFromSP();
                                 replaceTheCarNamesAndImages();
+                                for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
+//                                    Logger.error("car_name_selection_status", "______" + NissanApp.getInstance().getCarAllList().get(i).getName() + "_____" + NissanApp.getInstance().getCarAllList().get(i).getSelectedCar());
+                                }
                                 adapter.notifyDataSetChanged();
                             }
                         } else {

@@ -1402,6 +1402,7 @@ public class NissanApp {
             for (LanguageList languageModel : carWiseLanguageList) {
                 if (languageModel.getLanguageShortcode().equalsIgnoreCase(language_name)) {
                     langID = languageModel.getLanguageId();
+                    Logger.error("langID", "_______" + langID);
                 }
             }
         }
@@ -1479,6 +1480,7 @@ public class NissanApp {
         ArrayList<TabMenu> tabMenuList = getTabMenuArrayList();
 
         if (tabMenuList == null || tabMenuList.size() == 0) {
+
             tabMenuList = getDataFromStorage(context);
         }
 

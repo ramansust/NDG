@@ -250,6 +250,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         /**
          * set selected car border and delete icon visible invisible
          */
+
         if (list.get(position).getSelectedCar() == 1 && "1".equalsIgnoreCase(list.get(position).getStatus())) {
             selectedCarPosition = position;
             viewHolder.imageViewBorder.setVisibility(View.VISIBLE);
@@ -875,7 +876,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         String downloadCarGuide2Msg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_DOWNLOAD_CAR_GUIDE_2);
 
-        txtViewTitle.setText(downloadCarGuide2Msg == null || downloadCarGuide2Msg.isEmpty() ? resources.getString(R.string.download_msg) : downloadCarGuide2Msg);
+        txtViewTitle.setText(downloadCarGuide2Msg == null || downloadCarGuide2Msg.isEmpty() ? resources.getString(R.string.download_msg) : downloadCarGuide2Msg.replace("\\n", "\n"));
 
         ImageButton btnEUR = (ImageButton) dialog.findViewById(R.id.btn_eur);
         ImageButton btnRUS = (ImageButton) dialog.findViewById(R.id.btn_rus);
@@ -1104,6 +1105,10 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         dialog = new DialogController(activity).languageSelectionDialog();
         ListView lstView = (ListView) dialog.findViewById(R.id.lst_view);
+
+        TextView tvSelectLanguageTitle = (TextView) dialog.findViewById(R.id.tvSelectLanguageTitle);
+        String selectLangTitle = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.SELECT_LANGUAGE);
+        tvSelectLanguageTitle.setText(selectLangTitle == null || selectLangTitle.isEmpty() ? resources.getString(R.string.select_language) : selectLangTitle);
 
         lstView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -1469,4 +1474,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         return false;
     }
 
+    public void setList(ArrayList<CarInfo> list) {
+        this.list = list;
+        notifyDataSetChanged();
+    }
 }

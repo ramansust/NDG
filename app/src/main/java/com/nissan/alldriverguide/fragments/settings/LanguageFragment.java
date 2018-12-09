@@ -139,7 +139,10 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
      */
     private void loadResource() {
         resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
-        txt_title.setText(resources.getString(R.string.change_language));
+
+        String changeLanguageTitle = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_CHANGE_LANGUAGE);
+
+        txt_title.setText(changeLanguageTitle == null || changeLanguageTitle.isEmpty() ? resources.getString(R.string.change_language) : changeLanguageTitle);
         txtBackTitle.setText(resources.getString(R.string.back));
         txtBackTitle.setTypeface(tf);
     }
@@ -446,10 +449,14 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     private void startDownloadProcedure(final String lang, final int position) {
 
+        final String downloadingMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DOWNLOADING);
+        final String startingToDownloadMessage = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.STARTING_DOWNLOAD);
+
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.start_download));
+
+                progressDialog = new ProgressDialogController(activity).showDialog(startingToDownloadMessage == null || startingToDownloadMessage.isEmpty() ? resources.getString(R.string.start_download) : startingToDownloadMessage);
             }
         });
 
@@ -607,7 +614,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                         public void downloadCompletion(Float aFloat) {
                             String formattedString = String.format("%.02f", aFloat);
                             if (progressDialog != null) {
-                                progressDialog.setMessage(activity.getResources().getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + getResources().getString(R.string.alert_download_complete) + formattedString + "%");
+                                progressDialog.setMessage(resources.getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + (downloadingMsg == null || downloadingMsg.isEmpty() ? resources.getString(R.string.alert_download_complete) : downloadingMsg) + formattedString + "%");
                             }
                         }
 
