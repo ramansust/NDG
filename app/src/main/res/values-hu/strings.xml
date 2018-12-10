@@ -270,5 +270,6 @@
     <string name="updating_map_data">Updating map data</string>
     <string name="web_view_call_nissan_link_popup">Have you already consulted the support page and followed the steps?</string>
     <string name="delete">Delete!</string>
+    <string name="loading">Loading...</string>
 
 </resources>

@@ -33,6 +33,9 @@ public class ApiCall {
     // post Car Download or Delete status
     public void postCarDownload(String car_id, String lang_id, String epub_id, String device_id, final CompleteAPI completeAPI) {
 
+        Logger.error("car_id","_________" + car_id);
+        Logger.error("lang_id","_________" + lang_id);
+
         //Creating an object of our api interface
         ApiService api = RetrofitClient.getApiService();
         Call<ResponseInfo> call = api.postCarDownload(car_id, lang_id, epub_id, device_id, Values.APK_VERSION);
@@ -264,6 +267,11 @@ public class ApiCall {
 
     // post add feedback
     public void postAddFeedback(String device_id, String title, String details, String os_version, final CompleteAPI completeAPI) {
+
+        Logger.error("device_id", "___________" + device_id);
+        Logger.error("title", "___________" + title);
+        Logger.error("details", "___________" + details);
+        Logger.error("os_version", "___________" + os_version);
 
         //Creating an object of our api interface
         ApiService api = RetrofitClient.getApiService();

@@ -120,7 +120,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         ArrayList<CarInfo> list_before = NissanApp.getInstance().getCarAllList();
         for (int i = 0; i < list_before.size(); i++) {
-            Logger.error("list_car_name_before", "______" + list_before.get(i).getName());
+            Logger.error("list_car_name_selected", "______" + list_before.get(i).getName() + "______" + list_before.get(i).getSelectedCar());
         }
 
         swapXtrailRusleaf2017IfBothDownloaded();
@@ -168,8 +168,13 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         ArrayList<CarInfo> list = NissanApp.getInstance().getCarAllList();
 
-        for (int i = 0; i < list.size(); i++) {
-            Logger.error("list_car_name_after", "______" + list.get(i).getName());
+        for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == Values.carType) {
+                NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(1);
+            } else {
+                NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(0);
+            }
         }
 
         adapter = new CarDownloadSettingsAdapter(AddCarFragment.this, getActivity(), getActivity().getApplicationContext(), NissanApp.getInstance().getCarAllList());
@@ -741,9 +746,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                 adapter.loadResource();
                                 getDataFromSP();
                                 replaceTheCarNamesAndImages();
-                                for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
-//                                    Logger.error("car_name_selection_status", "______" + NissanApp.getInstance().getCarAllList().get(i).getName() + "_____" + NissanApp.getInstance().getCarAllList().get(i).getSelectedCar());
-                                }
                                 adapter.notifyDataSetChanged();
                             }
                         } else {

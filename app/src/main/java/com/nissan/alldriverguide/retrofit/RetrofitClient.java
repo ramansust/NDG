@@ -3,6 +3,7 @@ package com.nissan.alldriverguide.retrofit;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -24,9 +25,14 @@ public class RetrofitClient {
      * Get Retrofit Instance
      */
     private static Retrofit getRetrofitInstance() {
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
         final OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(60 * 2, TimeUnit.SECONDS)
                 .connectTimeout(60 * 2, TimeUnit.SECONDS)
+//                .addInterceptor(interceptor)
                 .build();
 
         return new Retrofit.Builder()

@@ -274,5 +274,6 @@
     <string name="internet_connection_interruption">Internet connection interrupted, Please try again later.</string>
     <string name="download">Download!</string>
     <string name="delete">Delete!</string>
+    <string name="loading">Loading...</string>
 
 </resources>

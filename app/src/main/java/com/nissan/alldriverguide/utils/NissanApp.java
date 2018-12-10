@@ -1359,7 +1359,7 @@ public class NissanApp {
     }
 
     public int getLanguageID(String language_name) {
-        int langID = 0;
+        int langID = 1;
 
         if (carWiseLanguageList == null || carWiseLanguageList.size() == 0) {
 
@@ -1400,12 +1400,14 @@ public class NissanApp {
         } else {
 
             for (LanguageList languageModel : carWiseLanguageList) {
+
                 if (languageModel.getLanguageShortcode().equalsIgnoreCase(language_name)) {
                     langID = languageModel.getLanguageId();
-                    Logger.error("langID", "_______" + langID);
                 }
             }
         }
+
+
         return langID;
     }
 

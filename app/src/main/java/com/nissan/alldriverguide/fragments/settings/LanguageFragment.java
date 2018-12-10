@@ -69,6 +69,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.nissan.alldriverguide.utils.Values.DATA_SYNCING;
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
@@ -451,7 +452,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
         final String downloadingMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DOWNLOADING);
         final String startingToDownloadMessage = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.STARTING_DOWNLOAD);
-
+        final String dataSyncingMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), DATA_SYNCING);
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -489,7 +490,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                     @Override
                                     public void run() {
                                         if (progressDialog != null) {
-                                            progressDialog.setMessage(getResources().getString(R.string.data_syncing));
+                                            progressDialog.setMessage(dataSyncingMsg == null || dataSyncingMsg.isEmpty() ? activity.getResources().getString(R.string.data_syncing) : dataSyncingMsg);
                                         }
 
                                         new SearchDBAsync(getActivity(), lang, Values.carType) {
@@ -627,6 +628,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                     });
                 } else {
                     showErrorDialog("No content available!");
+                    dismissDialog();
                 }
             }
 

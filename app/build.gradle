@@ -77,7 +77,7 @@ dependencies {
     implementation 'com.facebook.fresco:animated-webp:0.13.0'
     implementation 'com.facebook.fresco:webpsupport:0.13.0'
     implementation 'com.github.bumptech.glide:glide:3.5.2'
-
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     // dexter runtime permissions
     implementation 'com.karumi:dexter:4.2.0'
 

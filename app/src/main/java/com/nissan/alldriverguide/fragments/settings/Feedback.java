@@ -190,6 +190,12 @@ public class Feedback extends Fragment implements View.OnClickListener {
             new ApiCall().postAddFeedback(NissanApp.getInstance().getDeviceID(getActivity()), title, description, NissanApp.getInstance().getDeviceModel(), new CompleteAPI() {
                 @Override
                 public void onDownloaded(ResponseInfo responseInfo) {
+                    if (progressDialog != null && progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
+
+                    Logger.error("onDownloaded: ", "______" + responseInfo.getStatusCode());
+
                     if (responseInfo.getStatusCode().equalsIgnoreCase("200")) {
 
                         preferenceUtil.setSessionOne(false);
@@ -209,6 +215,9 @@ public class Feedback extends Fragment implements View.OnClickListener {
 
                 @Override
                 public void onFailed(String failedReason) {
+                    if (progressDialog != null && progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
                     Logger.error("onFailed: ", failedReason);
                 }
             });
