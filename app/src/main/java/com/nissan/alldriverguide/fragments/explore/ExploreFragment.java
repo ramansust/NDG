@@ -90,7 +90,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private Resources resources;
     private DisplayMetrics metrics;
-    private TextView txtViewExplore, tvNoContent, tvPageTitle, textViewMap, textViewMap2;
+    private TextView txtViewExplore, txt_ar, tvNoContent, tvPageTitle, textViewMap, textViewMap2;
     private ProgressBar progressBar;
     private String sharedpref_key;
     private ArrayList<ExploreTabVideoModel> videoList = null;
@@ -197,16 +197,22 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         if (device_density.equalsIgnoreCase("xxxhdpi")) {
             header_text = exploreModel.getHeaderXxxhdpi();
+            Log.e(TAG, "check_density: xxxhdpi");
         } else if (device_density.equalsIgnoreCase("xxhdpi")) {
             header_text = exploreModel.getHeaderXxhdpi();
+            Log.e(TAG, "check_density: xxhdpi");
         } else if (device_density.equalsIgnoreCase("xhdpi")) {
             header_text = exploreModel.getHeaderXhdpi();
+            Log.e(TAG, "check_density: xhdpi " + header_text);
         } else if (device_density.equalsIgnoreCase("hdpi")) {
             header_text = exploreModel.getHeaderHdpi();
+            Log.e(TAG, "check_density: hdpi");
         } else if (device_density.equalsIgnoreCase("ldpi")) {
             header_text = exploreModel.getHeaderLdpi();
+            Log.e(TAG, "check_density: ldpi");
         } else {
             header_text = exploreModel.getHeaderXhdpi();
+            Log.e(TAG, "check_density: else");
 
         }
     }
@@ -280,7 +286,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
             if (header_text != null) {
 
-                Logger.error("Header text", "- -----  " + header_text);
+                Logger.error("aaaaaaaaaaaaa", "" + header_text);
 
                 Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
                     @Override
@@ -315,10 +321,38 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             }
 
         } else {
+
+            check_density();
+
+            Log.e(TAG, "getExploreTabContent: " + header_text);
+            Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        txt_ar.setBackground(drawable);
+//                            txtViewExplore.setBackgroundResource(R.color.black);
+                    }
+                }
+
+            });
 //            mapView.setVisibility(View.GONE);
             relativeAR.setVisibility(View.VISIBLE);
             relativeBlindSpot.setVisibility(View.GONE);
         }
+
+
+        Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    txtViewExplore.setBackground(drawable);
+//                            txtViewExplore.setBackgroundResource(R.color.black);
+                }
+            }
+
+        });
 
         if (Values.carType == 11 || Values.carType == 12) {
             rlMapView.setVisibility(View.VISIBLE);
@@ -351,6 +385,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         mContext = getActivity();
         preferenceUtil = new PreferenceUtil(mContext);
         txtViewExplore = (TextView) view.findViewById(R.id.txt_blind_spot_ar);
+        txt_ar = (TextView) view.findViewById(R.id.txt_ar);
 
         tvPageTitle = (TextView) view.findViewById(R.id.txt_title_explore);
         relativeAR = (RelativeLayout) view.findViewById(R.id.relative_ar);

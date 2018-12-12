@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +55,7 @@ import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
 public class AssistanceFragment extends Fragment implements AdapterView.OnItemClickListener, CompleteAssistanceTabContent {
-
+    private static final String TAG = "AssistanceFragment";
     private Context context;
     public Resources resources;
     private String[] assistanceArray;
