@@ -4,7 +4,10 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.graphics.drawable.Animatable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
@@ -22,7 +25,14 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.controller.ControllerListener;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.image.ImageInfo;
+import com.facebook.imagepipeline.request.BasePostprocessor;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.MainActivity;
@@ -48,6 +58,7 @@ import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.SingleContentUpdating;
 import com.nissan.alldriverguide.utils.Values;
+import com.vuforia.VIEW;
 
 import java.util.List;
 
@@ -68,7 +79,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private TextView txt_title;
 
     private ProgressBar progressBar;
-    private TextView tvNoContent;
+    private TextView tvNoContent,txtView_loadTxt;
 
     private AssistanceAdapter adapter;
     private DisplayMetrics metrics;
@@ -109,6 +120,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
         sharedpref_key = Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
         assistanceInfo = preferenceUtil.retrieveAssistanceData(sharedpref_key);
+
+        Logger.error("Alert msg" , "---- "  + NissanApp.getInstance().getAlertMessage(getActivity(),preferenceUtil.getSelectedLang(),Values.LOAD_TEXT_TITLE));
 
         if (assistanceInfo != null && assistanceInfo.getData() != null && assistanceInfo.getData().size() > 0) {
             progressBar.setVisibility(View.GONE);
@@ -207,6 +220,10 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             txtViewCarName.setText("" + (car_name == null || car_name.isEmpty() ? resources.getStringArray(R.array.car_names)[Values.carType - 1] : car_name));
         }
         txtViewCarName.setBackgroundResource(R.color.black);
+
+
+        String loadtext = NissanApp.getInstance().getAlertMessage(getActivity(),preferenceUtil.getSelectedLang(),Values.LOAD_TEXT_TITLE);
+        txtView_loadTxt.setText("" + (loadtext == null || loadtext.isEmpty() ? resources.getString(R.string.loading): loadtext));
         setAssistanceCarBackgroundImage();
     }
 
@@ -222,8 +239,26 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private void setAssistanceCarBackgroundImage() {
 
         url = getURLAccordingToDensity(NissanApp.getInstance().getDensityName(getActivity()));
+        //imageView.setImageURI(url);
 
-        imageView.setImageURI(url);
+        DraweeController controller = Fresco.newDraweeControllerBuilder().setImageRequest(
+                ImageRequestBuilder.newBuilderWithSource(Uri.parse(url))
+                        .setPostprocessor(new BasePostprocessor() {
+                            @Override
+                            public void process(Bitmap bitmap) {
+                                Log.e(TAG, "Postprocessor.process");
+                            }
+                        })
+                        .build())
+                .setControllerListener(new BaseControllerListener<ImageInfo>() {
+                    @Override
+                    public void onFinalImageSet(String id, ImageInfo imageInfo, Animatable animatable) {
+                        Log.e(TAG, "BaseControllerListener.onFinalImageSet");
+                        txtView_loadTxt.setVisibility(View.INVISIBLE);
+                    }
+                })
+                .build();
+        imageView.setController(controller);
     }
 
     private String getURLAccordingToDensity(String device_density) {
@@ -248,6 +283,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         context = getActivity().getApplicationContext();
         commonDao = CommonDao.getInstance();
         txtViewCarName = (TextView) view.findViewById(R.id.txt_view_car_name);
+        txtView_loadTxt = (TextView) view.findViewById(R.id.txtView_loading);
         txtViewDriverGuide = (TextView) view.findViewById(R.id.txt_view_driver_guide);
         imageView = (SimpleDraweeView) view.findViewById(R.id.img_car_bg);
         lstView = (ListView) view.findViewById(R.id.lst_view);

@@ -1065,7 +1065,11 @@ public class NissanApp {
                 conf.locale = new Locale("fi");
             } else if (lang.contentEquals("pt")) {
                 conf.locale = new Locale("pt");
-            } else {
+            } else if (lang.contentEquals("hu")) {
+                conf.locale = new Locale("hu");
+            } else if (lang.contentEquals("cs")) {
+                conf.locale = new Locale("cs");
+            }else {
                 conf.locale = new Locale(lang);
             }
         }

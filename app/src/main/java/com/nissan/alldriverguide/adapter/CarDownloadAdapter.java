@@ -2,7 +2,6 @@ package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +35,8 @@ public class CarDownloadAdapter extends BaseAdapter {
     public ArrayList<Object> list;
     private CarInfo info = null;
     private Typeface typeFaceBold;
+    TextView txtView_loading;
+    SimpleDraweeView imageView;
 
     /**
      * Constructor
@@ -85,9 +86,10 @@ public class CarDownloadAdapter extends BaseAdapter {
 
             // initialized list view item id
             RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.relative_car_download);
-            SimpleDraweeView imageView = (SimpleDraweeView) view.findViewById(R.id.ivMainCarImage);
+            imageView = (SimpleDraweeView) view.findViewById(R.id.ivMainCarImage);
             ImageView imageViewBorder = (ImageView) view.findViewById(R.id.img_view_border);
             TextView txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
+            txtView_loading = (TextView) view.findViewById(R.id.txtView_loading);
             ImageButton imgDeleteOrDownload = (ImageButton) view.findViewById(R.id.img_btn_delete_or_download);
             imgDeleteOrDownload.setBackgroundResource(R.drawable.delete_selector);
 
@@ -122,7 +124,6 @@ public class CarDownloadAdapter extends BaseAdapter {
                 // set the car images for already downloaded section
 //                NissanApp.getInstance().setCarImage(info.getId(), imageView);
                 imageView.setImageURI(info.getCarImg());
-
                 // set the already downloaded section background colour
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
                 // set the car name for already downloaded car
@@ -130,8 +131,6 @@ public class CarDownloadAdapter extends BaseAdapter {
 
             } else { // this section for available download
                 // set the car images for available downloaded section
-
-
                 imageView.setImageURI(info.getCarImg());
                 // set the available downloaded section background colour
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
@@ -148,6 +147,7 @@ public class CarDownloadAdapter extends BaseAdapter {
             // this item layout is actually used in CarDownloadSettingsAdapter.java
             // so here these two id need to invisible
             imageViewBorder.setVisibility(View.INVISIBLE);
+
         } else {
             // here inflate the item header like (available for download, previous model)
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

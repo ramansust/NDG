@@ -418,6 +418,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     private void carDownloadCheck(final int position) {
+
         if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(position))) {
             if (commonDao.getStatus(getActivity().getBaseContext(), position) == 1) {
                 CarInfo info = commonDao.getCarInfo(getActivity().getApplicationContext(), position);
@@ -465,7 +466,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                             } finally {
                                 adapter.carType = position;
                                 adapter.position = selectedCarIndex;
-
                                 adapter.lang = commonDao.getLanguageStatus(getActivity().getApplicationContext(), position);
                                 preferenceUtil.setSelectedLang(adapter.lang);
                                 resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), adapter.lang));
@@ -492,12 +492,12 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                         }
 
                     } else {
+
                         final ArrayList<PushContentInfo> list = commonDao.getNotificationList(getActivity().getApplicationContext(), position, NissanApp.getInstance().getLanguageID(commonDao.getLanguageStatus(getActivity().getApplicationContext(), position)));
 
                         if(DetectConnection.checkInternetConnection(getActivity().getApplicationContext())) {
                             if (list != null && list.size() > 0) {
                                 Logger.error("You have a update ", "Do you want ???");
-
                                 final StringBuilder stringBuilder = new StringBuilder();
 
                                 for (PushContentInfo pushContentInfo : list) {

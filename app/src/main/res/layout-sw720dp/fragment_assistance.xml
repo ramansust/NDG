@@ -98,7 +98,15 @@
             android:layout_height="335dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:background="@drawable/car_download_place_holder"/>
+            android:background="@drawable/holder_loadtext"/>
+
+        <TextView
+            android:id="@+id/txtView_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/gray_loadtext"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
             android:id="@+id/txt_view_driver_guide"

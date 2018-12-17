@@ -4,6 +4,6 @@
     <string name="updating_map_data">Opdatering Af Kortdata</string>
     <string name="discover_your_vehicle">Opdag Din Bils Teknologi</string>
     <string name="delete">Delete!</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Indlæser...</string>
     <string name="rate_our_app_sub_title">Godt at høre. Vil du bruge et minut på at bedømme vores app?</string>
 </resources>

@@ -164,6 +164,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         if (tabMenuArrayList != null && tabMenuArrayList.size() > 0) {
             for (int i = 0; i < tabMenuArrayList.size(); i++) {
                 tabNames[i] = tabMenuArrayList.get(i).getTitle();
+                Logger.error("Tab names" , "---- "  + tabNames[i]);
             }
         } else {
             tabNames = resources.getStringArray(R.array.tab_names);
@@ -863,6 +864,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     private ArrayList<TabMenu> getDataFromStorage() {
 
         String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(this).getSelectedLang()) + "_" + Values.TAB_MENU_KEY;
+        Logger.error("lan Key","----- " + key);
 
         Type type = new TypeToken<ArrayList<TabMenu>>() {        }.getType();
         return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);

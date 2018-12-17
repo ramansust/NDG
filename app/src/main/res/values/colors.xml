@@ -5,6 +5,7 @@
     <!--<color name="orange">#c71444</color>-->
     <color name="orange">#C3002F</color>
     <color name="orange_combimeter">#ffa500</color>
+    <color name="gray_loadtext">#757575</color>
     <color name="background">#C3002F</color>
     <color name="gray">#343434</color>
     <color name="gray_list_view">#ebebeb</color>

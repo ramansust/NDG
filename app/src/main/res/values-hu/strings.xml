@@ -111,10 +111,10 @@
         <item>Send feedback</item>
     </string-array>
     <string-array name="tab_names">
-        <item>Explore</item>
-        <item>Assistance</item>
-        <item>Search</item>
-        <item>Settings</item>
+        <item>FELFEDEZÉS</item>
+        <item>SEGÍTSÉG</item>
+        <item>KERESÉS</item>
+        <item>BEÁLLÍTÁSOK</item>
     </string-array>
 
     <string-array name="video_array_title">
@@ -137,14 +137,14 @@
     <string name="button_NO">No</string>
     <string name="button_next">Next</string>
 
-    <string name="explore">EXPLORE</string>
+    <string name="explore">FELFEDEZÉS</string>
     <string name="augmented_reality">Augmented Reality</string>
     <string name="explore_your_car">EXPLORE YOUR CAR</string>
-    <string name="assistance">ASSISTANCE</string>
-    <string name="search">SEARCH</string>
-    <string name="settings">SETTINGS</string>
+    <string name="assistance">SEGÍTSÉG</string>
+    <string name="search">KERESÉS</string>
+    <string name="settings">BEÁLLÍTÁSOK</string>
     <string name="change_language">CHANGE LANGUAGE</string>
-    <string name="add_extra_car">Car selection</string>
+    <string name="add_extra_car">Gépjármű kiválasztása</string>
     <string name="warning_lights">WARNING LIGHTS</string>
     <string name="quick_reference_guide">Quick Reference Guide</string>
 
@@ -270,6 +270,6 @@
     <string name="updating_map_data">Updating map data</string>
     <string name="web_view_call_nissan_link_popup">Have you already consulted the support page and followed the steps?</string>
     <string name="delete">Delete!</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Betöltés...</string>
 
 </resources>

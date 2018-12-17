@@ -397,6 +397,10 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     preferenceUtil.storeMultiLangData(info.getTutorials(), Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TUTORIAL_KEY);
                     preferenceUtil.storeMultiLangData(info.getTabMenu(), Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TAB_MENU_KEY);
 
+                    Logger.error("Is App online","----" + AppConfig.IS_APP_ONLINE);
+                    Logger.error("Asset url","----" + info.getAssetsUrl());
+                    Logger.error("Lan url","----" + info.getLangUrl());
+                    Logger.error("Language ","----" + preferenceUtil.getSelectedLang());
                     //call this after getting the asset link successfully
                     startCarAssetsDownload(AppConfig.IS_APP_ONLINE ? info.getAssetsUrl() : NissanApp.getInstance().getAssetsURL(Values.carType), Values.PATH, AppConfig.IS_APP_ONLINE ? info.getLangUrl() : NissanApp.getInstance().getLanguageURL((Values.carType), preferenceUtil.getSelectedLang()), NissanApp.getInstance().getCarPath(Values.carType));
                 } else {

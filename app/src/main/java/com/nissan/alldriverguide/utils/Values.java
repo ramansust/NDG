@@ -175,6 +175,7 @@ public class Values {
 
     public static final String  SEARCH_BOX_HINT = "search_box_hint";
     public static final String  CAR_SELECTION_TITLE = "add_extra_car";
+    public static final String  LOAD_TEXT_TITLE = "loading_text";
     public static final String  NO_CONTENT_FOUND = "no_content_found_url";
 
     public static final String  RECENT_SEARCH_ALERT = "recent_searches";
