@@ -679,6 +679,31 @@ public class CommonDao {
 
     }
 
+    public String getSearchTagFromDB(Context context, String tag, int carType, String languageType) {
+        String searchTag = "";
+        SQLiteDatabase db = getWritableDatabase(context, NissanDbHelper.class);
+        String selectQuery = "SELECT * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.SEARCHTAG + " = '" + tag + "' AND " + SearchTagTableDirectory.CARTYPE + " = '" + carType + "' AND " + SearchTagTableDirectory.LANGUAGE_TYPE + " = '" + languageType + "'";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    searchTag = cursor.getString(1);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+                if (db.isOpen()) {
+                    db.close();
+                }
+            }
+        }
+        return searchTag;
+    }
+
     public int updateSearchCountInSearchTable(Context context, int count, String date, String searchTag, int carType, String langType) {
         SQLiteDatabase db = getWritableDatabase(context, NissanDbHelper.class);
         ContentValues values = new ContentValues();

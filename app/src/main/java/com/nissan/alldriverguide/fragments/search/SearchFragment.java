@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,7 @@ import java.util.Map;
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
 public class SearchFragment extends Fragment {
+    private static final String TAG = "SearchFragment";
 
     public static SearchFragment newInstance() {
         return new SearchFragment();
@@ -64,6 +66,7 @@ public class SearchFragment extends Fragment {
 
     private TopRecentAdapter adapter;
     private ArrayList<SearchModel> dateWise_List;
+    List<SearchModel> searchTagDb;
 
     private String selectedLanguage = "";
 
@@ -238,6 +241,7 @@ public class SearchFragment extends Fragment {
                         } else {
                             SearchModel searchModel = new SearchModel(getKeyword, System.currentTimeMillis() + "", 1, Values.carType, lang_type);
                             new CommonDao().insertNewKeywordInSearchTable(getActivity().getApplicationContext(), searchModel, Values.carType, lang_type);
+
                         }
                     } else {
                         Logger.error("not found", "______search_result!");
