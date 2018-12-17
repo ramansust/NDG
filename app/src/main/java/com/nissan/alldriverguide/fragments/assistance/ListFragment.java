@@ -137,7 +137,8 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
             // here remove some unusable html or epub index
             if (Values.ePubType == Values.HOMEPAGE_TYPE) {
                 if (Values.carType == 11) {
-                    list = list.subList(0, list.size() - 2);
+//                    list = list.subList(0, list.size() - 2);
+                    list = list.subList(0, list.size());
                 } else if (Values.carType == 12) {
                     list = list.subList(0, list.size() - 2);
                 } else if (Values.carType == 13) {
