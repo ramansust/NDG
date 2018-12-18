@@ -129,7 +129,7 @@
     <string name="driver_guide">DRIVER\'S GUIDE</string>
     <string name="select_language">Select Language</string>
     <string name="select_language_landing">Select Language</string>
-    <string name="confirm_language">Confirm Language</string>
+    <string name="confirm_language">Nyelv megerősítése</string>
 
     <string name="button_OK">OK</string>
     <string name="button_CANCEL">CANCEL</string>
@@ -138,17 +138,17 @@
     <string name="button_next">Next</string>
 
     <string name="explore">FELFEDEZÉS</string>
-    <string name="augmented_reality">Augmented Reality</string>
-    <string name="explore_your_car">EXPLORE YOUR CAR</string>
+    <string name="augmented_reality">Kibővített valóság</string>
+    <string name="explore_your_car">GÉPJÁRMŰ FELFEDEZÉSE</string>
     <string name="assistance">SEGÍTSÉG</string>
     <string name="search">KERESÉS</string>
     <string name="settings">BEÁLLÍTÁSOK</string>
-    <string name="change_language">CHANGE LANGUAGE</string>
+    <string name="change_language">NYELV MÓDOSÍTÁSA</string>
     <string name="add_extra_car">Gépjármű kiválasztása</string>
-    <string name="warning_lights">WARNING LIGHTS</string>
-    <string name="quick_reference_guide">Quick Reference Guide</string>
+    <string name="warning_lights">FIGYELMEZTETŐ LÁMPÁK</string>
+    <string name="quick_reference_guide">Felhasználói útmutató</string>
 
-    <string name="alert_status">Status</string>
+    <string name="alert_status">Státusz</string>
     <string name="alert_download_complete">Download complete..</string>
     <string name="alert_downloading">Downloading..</string>
     <string name="no_content_found_top_recent_search">No Search Keyword Found</string>
