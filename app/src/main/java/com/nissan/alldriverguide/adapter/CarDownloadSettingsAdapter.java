@@ -1219,7 +1219,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-//            CarDownloadSettingsAdapter.this.notifyDataSetChanged();
             adapterNotify(true);
         }
     }
