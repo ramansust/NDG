@@ -154,22 +154,22 @@
     <string name="no_content_found_top_recent_search">No Search Keyword Found</string>
 
     <string-array name="tutorial_titles">
-        <item>Explore your vehicle </item>
-        <item>Warning lights </item>
-        <item>Quick Reference Guide and more </item>
+        <item>Gépjármű felfedezése </item>
+        <item>Figyelmeztető lámpák </item>
+        <item>Felhasználói útmutató és további elemek </item>
     </string-array>
     <string-array name="tutorial_details">
         <item>
-            Get to know all the controls your Nissan has to offer using Augmented Reality technology.
-            \n Simply point your smartphone camera at a control and click on the pop-up to access information.
+            Ismerje meg a Nissan által biztosított vezérlőelemeket a kibővített valóság technológia segítségével.
+            \n Irányítsa az okostelefonja kameráját az egyik vezérlőelemre, majd kattintson a felugró ablakra az információk megtekintéséhez.
         </item>
         <item>
-            Information on warning lights that may light up in the combination meter of your vehicle is made available to you at the touch of a button.
-            \n  Offering quick, simple, and easy access to all the information you need.
+            A kombinált műszerfalon esetlegesen kigyulladó figyelmeztető lámpákkal kapcsolatos információk gomblenyomást követően válnak elérhetővé.
+            \n  Gyors, egyszerű és könnyű hozzáférést biztosít az Ön számára a szükséges információkhoz.
         </item>
         <item>
-            Access an electronic version of your Quick Reference Guide to discover all the features of your Nissan.
-            \n  Important information about tyres, engines, warranty, etc. is also provided.
+            Tekintse meg a Felhasználói útmutató elektronikus változatát és fedezze fel a Nissan által biztosított funkciókat.
+            \n  Továbbá tartalmazza a gumiabroncsokkal, motorokkal, biztosításokkal, stb. kapcsolatos fontos információkat is.
         </item>
     </string-array>
 
@@ -225,7 +225,7 @@
 
     <string name="recent_searches">"Recent Searches"</string>
     <string name="no_content_found">"No Results"</string>
-    <string name="search_box_hint">Search</string>
+    <string name="search_box_hint">Keresés</string>
 
     <string name="data_syncing">Data Syncing...</string>
     <string name="start_download">Starting Download...</string>
@@ -251,12 +251,12 @@
     <string name="feedback_text">Please send us directly your feedback. Your opinion is truly valuable for us.</string>
     <string name="send_feedback">Send feedback</string>
     <string name="sending_feedback">Sending feedback...</string>
-    <string name="feedback_toast">Thanks for your feedback</string>
+    <string name="feedback_toast">Köszönjük a visszajelzését</string>
 
-    <string name="feedback">Feedback</string>
-    <string name="send_feedback_title">Title</string>
-    <string name="send_feedback_description">Description</string>
-    <string name="send_feedback_button">Submit Feedback</string>
+    <string name="feedback">Visszajelzés</string>
+    <string name="send_feedback_title">Cím</string>
+    <string name="send_feedback_description">Leírás</string>
+    <string name="send_feedback_button">Visszajelzés beküldése</string>
 
     <string name="downloaded_car">Downloaded Car</string>
     <string name="previous_car">Previous Car</string>
