@@ -105,6 +105,8 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         setTabResources();
         setListener();
         loadData();
+
+
 //        assurePermissionForMarshmallowAndOver();
     }
 
@@ -820,6 +822,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     @Override
     protected void onDestroy() {
         Values.ePubType = 0;
+        Values.sortedAlready = false;
         super.onDestroy();
     }
 
@@ -870,5 +873,4 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);
 
     }
-
 }

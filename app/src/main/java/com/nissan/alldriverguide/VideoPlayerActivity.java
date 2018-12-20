@@ -77,8 +77,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
             from_where = getIntent().getExtras().getString("from_where");
         }
 
-        Log.e("from_where", "___________" + from_where);
-
         initViews();
         loadResource();
         setListener();

@@ -246,14 +246,14 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                         .setPostprocessor(new BasePostprocessor() {
                             @Override
                             public void process(Bitmap bitmap) {
-                                Log.e(TAG, "Postprocessor.process");
+                                Logger.error(TAG, "Postprocessor.process");
                             }
                         })
                         .build())
                 .setControllerListener(new BaseControllerListener<ImageInfo>() {
                     @Override
                     public void onFinalImageSet(String id, ImageInfo imageInfo, Animatable animatable) {
-                        Log.e(TAG, "BaseControllerListener.onFinalImageSet");
+                        Logger.error(TAG, "BaseControllerListener.onFinalImageSet");
                         txtView_loadTxt.setVisibility(View.INVISIBLE);
                     }
                 })

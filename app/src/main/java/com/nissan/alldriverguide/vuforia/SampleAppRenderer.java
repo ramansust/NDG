@@ -367,7 +367,6 @@ public class SampleAppRenderer {
             }
             else
             {
-                Log.e(LOGTAG, "Could not get display metrics!");
                 size.x = 0;
                 size.y = 0;
             }

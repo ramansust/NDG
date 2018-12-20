@@ -339,9 +339,6 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
             handler.post(new Runnable() {
                 public void run() {
 
-
-                    //Log.e("userDataToCompare before if: ", userDataToCompare);
-
                     if (userDataToCompare.equalsIgnoreCase("all_mode_1")
                             || userDataToCompare.equalsIgnoreCase("all_mode_2")
                             || userDataToCompare.equalsIgnoreCase("all_mode_3")

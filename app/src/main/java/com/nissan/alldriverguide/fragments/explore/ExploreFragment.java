@@ -197,22 +197,22 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         if (device_density.equalsIgnoreCase("xxxhdpi")) {
             header_text = exploreModel.getHeaderXxxhdpi();
-            Log.e(TAG, "check_density: xxxhdpi");
+            Logger.error(TAG, "check_density: xxxhdpi");
         } else if (device_density.equalsIgnoreCase("xxhdpi")) {
             header_text = exploreModel.getHeaderXxhdpi();
-            Log.e(TAG, "check_density: xxhdpi");
+            Logger.error(TAG, "check_density: xxhdpi");
         } else if (device_density.equalsIgnoreCase("xhdpi")) {
             header_text = exploreModel.getHeaderXhdpi();
-            Log.e(TAG, "check_density: xhdpi " + header_text);
+            Logger.error(TAG, "check_density: xhdpi " + header_text);
         } else if (device_density.equalsIgnoreCase("hdpi")) {
             header_text = exploreModel.getHeaderHdpi();
-            Log.e(TAG, "check_density: hdpi");
+            Logger.error(TAG, "check_density: hdpi");
         } else if (device_density.equalsIgnoreCase("ldpi")) {
             header_text = exploreModel.getHeaderLdpi();
-            Log.e(TAG, "check_density: ldpi");
+            Logger.error(TAG, "check_density: ldpi");
         } else {
             header_text = exploreModel.getHeaderXhdpi();
-            Log.e(TAG, "check_density: else");
+            Logger.error(TAG, "check_density: else");
 
         }
     }
@@ -324,7 +324,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
             check_density();
 
-            Log.e(TAG, "getExploreTabContent: " + header_text);
+            Logger.error(TAG, "getExploreTabContent: " + header_text);
             Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {

@@ -59,6 +59,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
+import static com.nissan.alldriverguide.utils.Values.sortedAlready;
 
 public class AddCarFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
@@ -119,12 +120,12 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         Logger.error("loadData", "___________called!");
 
         ArrayList<CarInfo> list_before = NissanApp.getInstance().getCarAllList();
-        for (int i = 0; i < list_before.size(); i++) {
-            Logger.error("list_car_name_selected", "______" + list_before.get(i).getName() + "______" + list_before.get(i).getSelectedCar());
-        }
 
-        swapXtrailRusleaf2017IfBothDownloaded();
-        swapXtrailEurRusIfBothDownloaded();
+        if (!sortedAlready) {
+            swapXtrailRusleaf2017IfBothDownloaded();
+            swapXtrailEurRusIfBothDownloaded();
+            sortedAlready = true;
+        }
 
 
         final String ORDER = "102";
@@ -175,6 +176,10 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
             } else {
                 NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(0);
             }
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            Log.e("api_call_name_id", "______" + list.get(i).getName() + "______" + list.get(i).getId());
         }
 
         adapter = new CarDownloadSettingsAdapter(AddCarFragment.this, getActivity(), getActivity().getApplicationContext(), NissanApp.getInstance().getCarAllList());

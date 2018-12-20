@@ -664,8 +664,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private void carDownloadCheck(final int position) {
         Values.carType = position; // set the car type
 
-        Log.e("Values.carType", "___________" + Values.carType);
-
         if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(Values.carType))) { // here check the file existence on mmc
             if (commonDao.getStatus(getBaseContext(), Values.carType) == 1) { // if car is downloaded (status 1 is used for downloaded car)
                 CarInfo info = commonDao.getCarInfo(getApplicationContext(), Values.carType);
@@ -1485,7 +1483,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 }
 
                 if (info.getStatus().equals("1") && info.getId() == 14) {
-                    Log.e("15", "____true!");
                     leaf2017Info = info;
                     leaf2017Index = k;
                     leaf2017Downloaded = true;
@@ -1637,12 +1634,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
                                             commonDao.updateAllPushContentStatusForSingleCar(context, Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
                                             dismissDialog();
-
-                                            for (int k = 0; k < NissanApp.getInstance().getCarList().size(); k++) {
-                                                if (NissanApp.getInstance().getCarList().get(k).getClass() == CarInfo.class) {
-                                                    Log.e("name_id_after_download", "_____" + ((CarInfo)NissanApp.getInstance().getCarList().get(k)).getName() + "_____" + ((CarInfo)NissanApp.getInstance().getCarList().get(k)).getId() + "____");
-                                                }
-                                            }
 
                                             // if car is first time downloaded then show the Tutorial Activity
                                             if (preferenceUtil.getIsFirstTime()) {

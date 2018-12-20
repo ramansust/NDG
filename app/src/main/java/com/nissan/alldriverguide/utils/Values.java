@@ -14,6 +14,7 @@ public class Values {
     public static String car_path = "";
     public static int carType = 0;
     public static int ePubType = 0;
+    public static boolean sortedAlready = false;
 
     //Folder Name of cars in sdcard
     public static final String qashqai_folder = "/qashqai";

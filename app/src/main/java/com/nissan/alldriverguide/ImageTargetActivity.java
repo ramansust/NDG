@@ -303,10 +303,6 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
             mGlView.onResume();
         }
 
-
-        Log.e("isFromShowInfo", "_______" + isFromShowInfo);
-        Log.e("isDetected", "_______" + isDetected);
-
         if (isFromShowInfo && !isDetected) {
             isFromShowInfo = false;
 //            layoutCameraView.removeAllViews();
