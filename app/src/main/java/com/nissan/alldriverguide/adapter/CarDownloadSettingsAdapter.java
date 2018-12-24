@@ -738,7 +738,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                         }
                     });
 
-                    new ApiCall().postCarDelete("" + carType, "" + NissanApp.getInstance().getLanguageID(commonDao.getLanguageStatus(context, carType)), "0", NissanApp.getInstance().getDeviceID(activity.getApplicationContext()), new CompleteAPI() {
+                    new ApiCall().postCarDelete("" + carType, "" + NissanApp.getInstance().getLanguageIDForSettingsPage(carType+"", commonDao.getLanguageStatus(context, carType)), "0", NissanApp.getInstance().getDeviceID(activity.getApplicationContext()), new CompleteAPI() {
                         @Override
                         public void onDownloaded(ResponseInfo responseInfo) {
                             if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
@@ -1497,17 +1497,17 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     private boolean xtrailLeafAvailableForDownload(ArrayList<CarInfo> getList) {
 
 
-        boolean isfifteenIdAvailable = false;
+        boolean isFifteenIdAvailable = false;
 
         for (int k = 0; k < getList.size(); k++) {
             CarInfo info = getList.get(k);
             if (info.getStatus().equals("0") && info.getId() == 14) {
-                if (isfifteenIdAvailable)
+                if (isFifteenIdAvailable)
                     return true;
             }
 
             if (info.getStatus().equals("0") && info.getId() == 15) {
-                isfifteenIdAvailable = true;
+                isFifteenIdAvailable = true;
             }
 
         }

@@ -1415,6 +1415,26 @@ public class NissanApp {
         return langID;
     }
 
+    public int getLanguageIDForSettingsPage(String carType, String language_short_code) {
+
+        Type type = new TypeToken<ArrayList<LanguageList>>() {
+        }.getType();
+        List<LanguageList> carWiseLanguageList = new Gson().fromJson(new PreferenceUtil(MyApplication.getAppContext()).retrieveMultiLangData(carType + "_" + Values.CAR_LANGUAGE_LIST), type);
+
+        if (carWiseLanguageList != null && carWiseLanguageList.size() > 0) {
+
+            for (LanguageList languageModel : carWiseLanguageList) {
+
+                if (languageModel.getLanguageShortcode().equalsIgnoreCase(language_short_code)) {
+                    return languageModel.getLanguageId();
+                }
+            }
+
+        }
+
+        return 1;
+    }
+
     public int getEpubId(String name) {
         if (name.contains("combimeter"))
             return Values.COMBIMETER_TYPE;

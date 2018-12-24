@@ -472,7 +472,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                     String new_key_tutorial = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TUTORIAL_KEY;
                     String new_key_tab = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TAB_MENU_KEY;
 
-
                     Logger.error("Old key" , " " + old_key_tutorial);
                     Logger.error("New key" , " " + new_key_tutorial);
 

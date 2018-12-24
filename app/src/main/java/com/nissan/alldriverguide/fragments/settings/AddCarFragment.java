@@ -124,6 +124,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         if (!sortedAlready) {
             swapXtrailRusleaf2017IfBothDownloaded();
             swapXtrailEurRusIfBothDownloaded();
+            swapXtrailRusLeafIfBothAvailableForDownload();
             sortedAlready = true;
         }
 
@@ -178,13 +179,61 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
             }
         }
 
-        for (int i = 0; i < list.size(); i++) {
-            Log.e("api_call_name_id", "______" + list.get(i).getName() + "______" + list.get(i).getId());
-        }
-
         adapter = new CarDownloadSettingsAdapter(AddCarFragment.this, getActivity(), getActivity().getApplicationContext(), NissanApp.getInstance().getCarAllList());
         lstView.setAdapter(adapter);
         lstView.setDivider(null);
+    }
+
+    private void swapXtrailRusLeafIfBothAvailableForDownload() {
+        CarInfo xtrailInfo = new CarInfo();
+        CarInfo leafInfo = new CarInfo();
+        int xtrailIndex = -1, leafIndex = -1;
+
+        ArrayList<CarInfo> getList = NissanApp.getInstance().getCarAllList();
+
+        if (xtrailLeafAvailableForDownload(getList)) {
+            for (int k = 0; k < getList.size(); k++) {
+                CarInfo info = getList.get(k);
+
+                if (info.getId() == 15) {
+                    xtrailInfo = info;
+                    xtrailIndex = k;
+                }
+
+                if (info.getId() == 14) {
+                    leafInfo = info;
+                    leafIndex = k;
+                }
+
+
+            }
+
+
+            getList.set(xtrailIndex, leafInfo);
+            getList.set(leafIndex, xtrailInfo);
+
+            NissanApp.getInstance().setCarAllList(getList);
+
+        }
+    }
+
+    private boolean xtrailLeafAvailableForDownload(ArrayList<CarInfo> getList) {
+
+        boolean isFifteenIdAvailable = false;
+
+        for (int k = 0; k < getList.size(); k++) {
+            CarInfo info = getList.get(k);
+            if (info.getStatus().equals("0") && info.getId() == 14) {
+                if (isFifteenIdAvailable)
+                    return true;
+            }
+
+            if (info.getStatus().equals("0") && info.getId() == 15) {
+                isFifteenIdAvailable = true;
+            }
+
+        }
+        return false;
     }
 
     private void swapXtrailEurRusIfBothDownloaded() {
