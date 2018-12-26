@@ -90,6 +90,8 @@
         android:layout_marginTop="@dimen/margin_back"
         android:layout_marginRight="@dimen/margin_left"
         android:groupIndicator="@null"
+        android:dividerHeight="2dp"
+        android:divider="@color/white"
         android:scrollbars="none"></ExpandableListView>
 
     <ProgressBar

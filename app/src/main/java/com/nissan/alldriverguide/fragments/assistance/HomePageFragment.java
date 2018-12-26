@@ -70,6 +70,20 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
         setListener();
 
+/*
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
+
+                Logger.error("index", "_______" + index);
+
+                parent.setItemChecked(index, true);
+                return true;
+            }
+        });
+*/
+
         return view;
     }
 

@@ -2,6 +2,7 @@ package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<HomePageSectionInfo> listHeader;
     private HashMap<String, List<EpubInfo>> childList;
+    private Typeface typeFaceBold = null;
 
     /**
      * Declare Constructor
@@ -46,6 +48,7 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
      */
     public HomePageExpandableAdapter(Context context, List<HomePageEpubInfo> list) {
         this.context = context;
+        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf");
         loadData(list);
     }
 
@@ -154,6 +157,7 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
         }
 
         TextView txtViewHeaderTitle = (TextView) convertView.findViewById(R.id.txt_title_section);
+        txtViewHeaderTitle.setTypeface(typeFaceBold);
         txtViewHeaderTitle.setText(listHeader.get(groupPosition).getSectionTitle().toString());
 
         RelativeLayout relativeLayout = (RelativeLayout) convertView.findViewById(R.id.relative_header);
@@ -173,9 +177,10 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
         }
 
         final TextView txtViewTitle = (TextView) convertView.findViewById(R.id.txt_title);
+        txtViewTitle.setTypeface(typeFaceBold);
         txtViewTitle.setText("" + childList.get(listHeader.get(groupPosition).getSectionTitle().toString()).get(childPosition).getTitle());
 
-        ImageView imageViewDivider = (ImageView) convertView.findViewById(R.id.img_view_divider);;
+        ImageView imageViewDivider = (ImageView) convertView.findViewById(R.id.img_view_divider);
 
         if(childList.get(listHeader.get(groupPosition).getSectionTitle()).size() - 1 == childPosition) {
             imageViewDivider.setVisibility(View.INVISIBLE);
