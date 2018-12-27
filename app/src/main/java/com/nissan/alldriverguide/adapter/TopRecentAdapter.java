@@ -25,7 +25,7 @@ import java.util.List;
 public class TopRecentAdapter extends RecyclerView.Adapter<TopRecentAdapter.SimpleViewHolder> {
 
     private Context mContext;
-    private List<SearchModel> list1, list2, list3;
+    private List<String> list1, list2, list3;
 
     /**
      * Declare the constructor
@@ -33,11 +33,11 @@ public class TopRecentAdapter extends RecyclerView.Adapter<TopRecentAdapter.Simp
      * @param list2 need to a collection list
      */
 //    public TopRecentAdapter(Context mContext, List<SearchModel> list1, List<SearchModel> list2) {
-    public TopRecentAdapter(Context mContext, List<SearchModel> list2) {
+    public TopRecentAdapter(Context mContext, List<String> list2) {
         this.mContext = mContext;
 //        this.list1 = list1;
         this.list2 = list2;
-        list3 = new ArrayList<SearchModel>();
+        list3 = new ArrayList<>();
 //        list3.addAll(list1);
         list3.addAll(list2);
     }
@@ -51,7 +51,7 @@ public class TopRecentAdapter extends RecyclerView.Adapter<TopRecentAdapter.Simp
     @Override
     public void onBindViewHolder(SimpleViewHolder holder, int position) {
         holder.keyword.setTag("" + position);
-        holder.keyword.setText(list3.get(position).getSearchtag());
+        holder.keyword.setText(list3.get(position));
     }
 
     @Override
@@ -88,7 +88,7 @@ public class TopRecentAdapter extends RecyclerView.Adapter<TopRecentAdapter.Simp
                 keyword = list2.get(index - list1.size()).getSearchtag();
             }*/
 
-            keyword = list2.get(index).getSearchtag();
+            keyword = list2.get(index);
 
             Values.keyWord = keyword;
             new NissanApp().replaceFragment(fragmentTransaction, R.id.container, TabFragment.newInstance(keyword), Values.tabSearch);

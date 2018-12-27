@@ -614,7 +614,8 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                         public void downloadCompletion(Float aFloat) {
                             String formattedString = String.format("%.02f", aFloat);
                             if (progressDialog != null) {
-                                progressDialog.setMessage(resources.getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + (downloadingMsg == null || downloadingMsg.isEmpty() ? resources.getString(R.string.alert_download_complete) : downloadingMsg) + formattedString + "%");
+                                progressDialog.setMessage((downloadingMsg == null || downloadingMsg.isEmpty() ? resources.getString(R.string.alert_download_complete) : downloadingMsg) + formattedString + "%");
+                                //resources.getStringArray(R.array.car_names)[Values.carType - 1] + "\n" +
                             }
                         }
 

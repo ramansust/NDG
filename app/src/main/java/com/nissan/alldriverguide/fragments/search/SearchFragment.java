@@ -38,9 +38,11 @@ import com.nissan.alldriverguide.utils.Values;
 import com.xiaofeng.flowlayoutmanager.FlowLayoutManager;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
@@ -166,7 +168,32 @@ public class SearchFragment extends Fragment {
             items.addAll(list);
         }
 
-        adapter = new TopRecentAdapter(getActivity(), dateWise_List);
+/*
+        Object[] st = dateWise_List.toArray();
+        for (Object s : st) {
+            if (dateWise_List.indexOf(s) != dateWise_List.lastIndexOf(s)) {
+                dateWise_List.remove(dateWise_List.lastIndexOf(s));
+            }
+        }
+*/
+
+        ArrayList<String> dateWise_ListString = new ArrayList<>();
+
+        for (int i = 0; i < dateWise_List.size(); i++) {
+
+            dateWise_ListString.add(dateWise_List.get(i).getSearchtag());
+
+        }
+
+        Set<String> uniqueColorList = new HashSet<String>();
+        for (String color : dateWise_ListString) {
+            uniqueColorList.add(color.toLowerCase());
+        }
+
+        List<String> mainList = new ArrayList<String>();
+        mainList.addAll(uniqueColorList);
+
+        adapter = new TopRecentAdapter(getActivity(), mainList);
         recyclerView.setAdapter(adapter);
     }
 
