@@ -231,6 +231,6 @@
     <string name="web_view_call_nissan_link_popup">Oletko jo etsinyt neuvoja tukisivulta ja noudattanut sen ohjeita?</string>
     <string name="delete">Delete!</string>
     <string name="loading">Ladataan...</string>
-
+    <string name="download">Download!</string>
 
 </resources>

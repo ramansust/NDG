@@ -35,7 +35,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         if (refreshedToken != null && !isEmpty(refreshedToken)) {
 
             if (!refreshedToken.equals(previousRegisteredId)) {
-                new ApiCall().postDeviceRegistrationForPush(NissanApp.getInstance().getDeviceID(getApplicationContext()), previousRegisteredId, Values.DEVICE_TYPE, new CompleteAPI() {
+                new ApiCall().postDeviceRegistrationForPush(NissanApp.getInstance().getDeviceID(getApplicationContext()), refreshedToken, Values.DEVICE_TYPE, new CompleteAPI() {
                     @Override
                     public void onDownloaded(ResponseInfo responseInfo) {
                         if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {

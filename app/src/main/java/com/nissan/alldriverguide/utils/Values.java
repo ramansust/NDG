@@ -29,6 +29,7 @@ public class Values {
     public static final String navara_folder = "/navara";
     public static final String micra_new_folder = "/micrak14";
     public static final String qashqai_2017 = "/qashqai2017";
+    public static final String qashqai_2017_rus = "/qashqai2017rus";
     public static final String xtrail_2017 = "/xtrail2017";
     public static final String xtrail_2017_rus = "/xtrail2017rus";
     public static final String leaf_2017 = "/leaf2017";

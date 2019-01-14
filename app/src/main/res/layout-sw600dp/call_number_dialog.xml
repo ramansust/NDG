@@ -3,24 +3,23 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:orientation="vertical"
-        android:padding="@dimen/activity_vertical_margin">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/txt_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/popup_header_height_720dp"
             android:background="@color/background"
             android:gravity="center"
             android:padding="@dimen/margin_back"
             android:textColor="@color/white"
-            android:textSize="@dimen/dialog_text_size_title"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -43,18 +42,16 @@
                     android:id="@+id/txt_view_national"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+                    android:gravity="end"
                     android:text="@string/national"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dialog_text_size" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/txt_view_national_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:textColor="@color/blue"
-                    android:textSize="@dimen/dialog_text_size" />
+                    android:gravity="start"
+                    android:textColor="@color/blue" />
 
             </LinearLayout>
 
@@ -71,18 +68,16 @@
                     android:id="@+id/txt_view_international"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+                    android:gravity="end"
                     android:text="@string/international"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dialog_text_size" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/txt_view_international_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:textColor="@color/blue"
-                    android:textSize="@dimen/dialog_text_size" />
+                    android:gravity="start"
+                    android:textColor="@color/blue" />
 
             </LinearLayout>
 
@@ -96,14 +91,14 @@
 
             <TextView
                 android:id="@+id/btn_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="400dp"
+                android:layout_height="45dp"
                 android:background="@color/background"
-                android:padding="@dimen/margin_left"
                 android:text="@string/button_CANCEL"
+                android:gravity="center"
                 android:textAllCaps="true"
+                android:textSize="16sp"
                 android:textColor="@color/white"
-                android:textSize="@dimen/dialog_text_size"
                 android:textStyle="normal" />
         </LinearLayout>
     </LinearLayout>

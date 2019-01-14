@@ -117,10 +117,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         getDataFromSP();
 
-        Logger.error("loadData", "___________called!");
-
-        ArrayList<CarInfo> list_before = NissanApp.getInstance().getCarAllList();
-
         if (!sortedAlready) {
             swapXtrailRusleaf2017IfBothDownloaded();
             swapXtrailEurRusIfBothDownloaded();
@@ -264,8 +260,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         if (xtrailEuroDownloaded && xtrailRusDownloaded) {
             getList.set(xtrailEuroIndex, xtrailRusInfo);
             getList.set(xtrailRusIndex, xtrailEuroInfo);
-            xtrailEuroDownloaded = false;
-            xtrailRusDownloaded = false;
         }
 
         NissanApp.getInstance().setCarAllList(getList);
@@ -275,11 +269,10 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         ArrayList<CarInfo> getList = NissanApp.getInstance().getCarAllList();
 
-        CarInfo xtrailEuroInfo = new CarInfo();
         CarInfo xtrailRusInfo = new CarInfo();
         CarInfo leaf2017Info = new CarInfo();
-        int xtrailEuroIndex = -1, xtrailRusIndex = -1, leaf2017Index = -1;
-        boolean xtrailRusDownloaded = false, xtrailEuroDownloaded = false, leaf2017Downloaded = false;
+        int xtrailRusIndex = -1, leaf2017Index = -1;
+        boolean xtrailRusDownloaded = false, leaf2017Downloaded = false;
 
         for (int k = 0; k < getList.size(); k++) {
             CarInfo info = getList.get(k);

@@ -272,7 +272,7 @@ Zie het volgende voorbeeld:</string>
     <string name="web_view_call_nissan_link_popup">Heeft u de ondersteuningspagina al geraadpleegd en de stappen gevolgd?</string>
     <string name="delete">Delete!</string>
     <string name="loading">bezig met laden...</string>
-
+    <string name="download">Download!</string>
 
 </resources>
 

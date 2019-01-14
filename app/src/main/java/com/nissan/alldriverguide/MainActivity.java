@@ -106,8 +106,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         setListener();
         loadData();
 
-
-//        assurePermissionForMarshmallowAndOver();
     }
 
     @Override

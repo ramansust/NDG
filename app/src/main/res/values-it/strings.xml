@@ -262,6 +262,6 @@ Vedere l\'esempio seguente:</string>
     <string name="web_view_call_nissan_link_popup">Avete già consultato la pagina di supporto e seguito i passaggi?</string>
     <string name="delete">Delete!</string>
     <string name="loading">caricamento in corso...</string>
-
+    <string name="download">Download!</string>
 
 </resources>

@@ -231,6 +231,6 @@
     <string name="web_view_call_nissan_link_popup">Já consultou a página de apoio e seguiu os passos indicados?</string>
     <string name="delete">Delete!</string>
     <string name="loading">Carregando...</string>
-
+    <string name="download">Download!</string>
 
 </resources>

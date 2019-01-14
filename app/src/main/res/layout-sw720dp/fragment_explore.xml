@@ -33,7 +33,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+
+            <ProgressBar
+                android:id="@+id/prog_explore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
 
             <RelativeLayout
                 android:id="@+id/relative_ar"
@@ -50,22 +57,21 @@
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:background="@color/white"
                     android:padding="@dimen/margin_back"
-                    android:text="@string/augmented_reality"
                     android:textColor="@color/orange" />
 
-                <TextView
-                    android:id="@+id/txt_explore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/txt_ar"
-                    android:layout_below="@+id/txt_ar"
-                    android:layout_marginRight="@dimen/margin_left"
-                    android:background="@color/black"
-                    android:padding="@dimen/margin_back"
-                    android:text="@string/explore_your_car"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                <!--                <TextView
+                                    android:id="@+id/txt_explore"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignLeft="@+id/txt_ar"
+                                    android:layout_below="@+id/txt_ar"
+                                    android:layout_marginRight="@dimen/margin_left"
+                                    android:background="@color/black"
+                                    android:padding="@dimen/margin_back"
+                                    android:text="@string/explore_your_car"
+                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold" />-->
 
                 <Button
                     android:id="@+id/btn_ar"
@@ -107,181 +113,58 @@
                         android:paddingRight="@dimen/margin_back"
                         android:textColor="@color/orange" />
 
-                    <!--<LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/txt_blind_spot_ar"
-                        android:layout_below="@+id/txt_blind_spot_ar"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <TextView
-                            android:id="@+id/txt_blind_spot_explore"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/margin_left"
-                            android:layout_weight="1"
-                            android:background="@color/black"
-                            android:paddingLeft="@dimen/margin_back"
-                            android:paddingRight="@dimen/margin_back"
-                            android:text="@string/explore_your_car"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="@color/white"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:visibility="invisible" />
-
-                    </LinearLayout>-->
-
-
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/rlMapView"
                     android:layout_width="match_parent"
-                    android:layout_height="170dp"
+                    android:layout_height="270dp"
                     android:layout_below="@+id/relative_blind_spot_top">
 
-                    <android.support.v4.view.ViewPager
+
+                    <com.nissan.alldriverguide.utils.CustomViewPager
                         android:id="@+id/viewPager"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
-
                     <LinearLayout
                         android:id="@+id/llLeftArrow"
-                        android:layout_width="60dp"
-                        android:layout_height="110dp"
+                        android:layout_width="40dp"
+                        android:layout_height="70dp"
                         android:orientation="horizontal"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
                         android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/ivLeftArrow"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:src="@drawable/left_arrow_map" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/llRightArrow"
-                        android:layout_width="60dp"
-                        android:layout_height="100dp"
+                        android:layout_width="40dp"
+                        android:layout_height="70dp"
                         android:orientation="horizontal"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-
                         android:gravity="center"
                         android:visibility="visible">
 
                         <ImageView
                             android:id="@+id/ivRightArrow"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:src="@drawable/right_arrow_map" />
 
                     </LinearLayout>
 
                 </RelativeLayout>
-
-                <!--<LinearLayout
-                    android:id="@+id/map_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/relative_blind_spot_top"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/map" />
-
-                        <TextView
-                            android:id="@+id/txt_map"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/margin_left"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:background="@color/white"
-                            android:paddingLeft="@dimen/margin_back"
-                            android:paddingRight="@dimen/margin_back"
-                            android:textColor="@color/orange" />
-
-                        &lt;!&ndash;                    <TextView
-                                                android:id="@+id/txt_view_driver_guide"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginLeft="@dimen/margin_left"
-                                                android:layout_marginTop="@dimen/activity_vertical_margin"
-                                                android:background="@color/white"
-                                                android:paddingLeft="@dimen/margin_back"
-                                                android:paddingRight="@dimen/margin_back"
-                                                android:text="@string/new_nissan_connect"
-                                                android:textAllCaps="true"
-                                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                                android:textColor="@color/orange"
-                                                android:textSize="15dp" />
-
-                                            <TextView
-                                                android:id="@+id/txt_view_car_name"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_alignLeft="@+id/txt_view_driver_guide"
-                                                android:layout_below="@+id/txt_view_driver_guide"
-                                                android:background="@color/black"
-                                                android:paddingLeft="@dimen/margin_back"
-                                                android:paddingRight="@dimen/margin_back"
-                                                android:text="@string/update_your_map"
-                                                android:textAllCaps="true"
-                                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                                android:textColor="@color/white"
-                                                android:textSize="22dp" />&ndash;&gt;
-
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/colorWhite"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp">
-
-                        <View
-                            android:layout_width="70dp"
-                            android:layout_height="1dp"
-                            android:layout_marginLeft="@dimen/margin_back"
-                            android:alpha="255"
-                            android:background="@color/colorAccent" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignLeft="@+id/txt_view_driver_guide"
-                            android:layout_below="@+id/txt_view_driver_guide"
-                            android:paddingLeft="@dimen/margin_back"
-                            android:paddingRight="@dimen/margin_back"
-                            android:text="@string/discover_your_vehicle"
-                            android:textAllCaps="true"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                </LinearLayout>-->
 
                 <LinearLayout
                     android:id="@+id/llTitleVideo"
@@ -297,24 +180,22 @@
                     <View
                         android:layout_width="70dp"
                         android:layout_height="1dp"
-                        android:layout_marginLeft="@dimen/margin_back"
+                        android:layout_marginStart="@dimen/margin_back"
+                        android:layout_marginEnd="@dimen/margin_back"
                         android:alpha="255"
                         android:background="@color/colorAccent" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/txt_view_driver_guide"
-                        android:layout_below="@+id/txt_view_driver_guide"
-                        android:paddingLeft="@dimen/margin_back"
-                        android:paddingRight="@dimen/margin_back"
+                        android:paddingStart="@dimen/margin_back"
+                        android:paddingEnd="@dimen/margin_back"
                         android:text="@string/discover_your_vehicle"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
                 </LinearLayout>
-
 
                 <ProgressBar
                     android:id="@+id/progress_bar"
@@ -336,21 +217,15 @@
                     android:gravity="center"
                     android:numColumns="2"
                     android:scrollbars="none"
-                    android:stretchMode="columnWidth"></com.nissan.alldriverguide.view.ScrollableGridView>
+                    android:stretchMode="columnWidth" />
 
-                <ProgressBar
-                    android:id="@+id/prog_explore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:visibility="gone" />
 
                 <LinearLayout
                     android:id="@+id/layout_explore_data_not_found"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <TextView
                         android:id="@+id/txt_explore_data_not_found"

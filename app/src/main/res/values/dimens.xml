@@ -8,16 +8,22 @@
     <dimen name="margin_bottom_updated">40dp</dimen>
     <dimen name="margin_back">5dp</dimen>
     <dimen name="popup_header_text_size">18sp</dimen>
+    <dimen name="popup_header_text_size_720dp">26sp</dimen>
     <dimen name="popup_body_text_size">14sp</dimen>
+    <dimen name="popup_body_text_size_720dp">22sp</dimen>
     <dimen name="list_margin">20sp</dimen>
     <dimen name="tutorial_title">20sp</dimen>
     <dimen name="tutorial_detail">15sp</dimen>
     <dimen name="pop_up_ok_cancel_text_size">14sp</dimen>
+    <dimen name="pop_up_ok_cancel_text_size_720dp">18sp</dimen>
     <dimen name="tab_title">13sp</dimen>
     <dimen name="ar_back">150dp</dimen>
     <dimen name="ok_cancel_popup_width">100dp</dimen>
     <dimen name="ok_cancel_popup_height">30dp</dimen>
+    <dimen name="ok_cancel_popup_width_720dp">220dp</dimen>
+    <dimen name="ok_cancel_popup_height_720dp">50dp</dimen>
     <dimen name="popup_header_height">35dp</dimen>
+    <dimen name="popup_header_height_720dp">50dp</dimen>
 
 
 </resources>

@@ -2,51 +2,55 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
-    android:padding="@dimen/activity_horizontal_margin">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/txt_header"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/popup_header_height_720dp"
+            android:text="@string/attention"
+            android:textColor="@color/white"
+            android:background="@color/background"
+            android:gravity="center"
+            android:textSize="@dimen/popup_header_text_size_720dp" />
 
         <TextView
             android:id="@+id/txt_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/margin_left"
-            android:layout_weight="1"
-            android:background="@color/background"
-            android:gravity="center"
             android:text="@string/internet_connect"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dialog_text_size_title"
-            android:textStyle="bold" />
+            android:textColor="@color/black"
+            android:textStyle="normal"
+            android:background="@color/white"
+            android:gravity="center"
+            android:textSize="@dimen/popup_body_text_size_720dp"
+            android:layout_margin="@dimen/activity_horizontal_margin"/>
 
         <LinearLayout
             android:id="@+id/linear_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/dialog_button_separator"
-            android:gravity="center"
             android:orientation="horizontal"
-            android:layout_margin="@dimen/margin_back">
-
+            android:gravity="center">
             <Button
                 android:id="@+id/btn_ok"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@color/background"
+                android:layout_width="@dimen/ok_cancel_popup_width_720dp"
+                android:layout_height="@dimen/ok_cancel_popup_height_720dp"
                 android:text="OK"
+                android:background="@color/background"
                 android:textColor="@color/white"
-                android:textSize="@dimen/dialog_text_size"
-                android:textStyle="bold" />
+                android:textSize="@dimen/pop_up_ok_cancel_text_size"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

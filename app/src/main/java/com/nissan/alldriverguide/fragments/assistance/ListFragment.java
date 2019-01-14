@@ -140,7 +140,8 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 //                    list = list.subList(0, list.size() - 2);
                     list = list.subList(0, list.size());
                 } else if (Values.carType == 12) {
-                    list = list.subList(0, list.size() - 2);
+//                    list = list.subList(0, list.size() - 2);
+                    list = list.subList(0, list.size());
                 } else if (Values.carType == 13) {
                     list = list.subList(0, 33);
                 }

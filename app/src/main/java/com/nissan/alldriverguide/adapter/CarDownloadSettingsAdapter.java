@@ -160,6 +160,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
                 controllerLanguageSelection = new LanguageSelectionController(this);
                 controllerLanguageSelection.callApi(NissanApp.getInstance().getDeviceID(context), carId);
+
             } else {
                 Toast.makeText(context, "No Internet!", Toast.LENGTH_SHORT).show();
             }

@@ -866,6 +866,10 @@ public class NissanApp {
                 carPath = Values.PATH + Values.xtrail_2017_rus;
                 break;
 
+            case 16:
+                carPath = Values.PATH + Values.qashqai_2017_rus;
+                break;
+
             default:
                 break;
         }
@@ -938,6 +942,10 @@ public class NissanApp {
 
             case 15:
                 path = Values.xtrail_2017_rus;
+                break;
+
+            case 16:
+                path = Values.qashqai_2017_rus;
                 break;
 
             default:

@@ -271,6 +271,6 @@
     <string name="web_view_call_nissan_link_popup">Вы уже прочитали страницу с информацией для решения вопроса и выполнили указанные там действия?</string>
     <string name="delete">Delete!</string>
     <string name="loading">загрузка ...</string>
-
+    <string name="download">Download!</string>
 
 </resources>
