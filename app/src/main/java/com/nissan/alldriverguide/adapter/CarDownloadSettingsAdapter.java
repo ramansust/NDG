@@ -479,7 +479,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                                                                 list.get(position).setStatus("1");
                                                             } else {
                                                                 if (!isForceDownload) {
-                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 0);
 
                                                                     list.add(position, info);
                                                                     list.get(position + 1).setId(carType + 1);
@@ -502,7 +502,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                                                                 list.get(position).setStatus("1");
                                                             } else {
                                                                 if (!isForceDownload) {
-                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 0);
 
                                                                     list.add(position + 1, info);
                                                                 } else {
@@ -531,7 +531,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
                                                                 if (!isForceDownload) {
 
-                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 0);
 
                                                                     list.add(position, info);
                                                                     list.get(position + 1).setId(carType + 2);
@@ -554,7 +554,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                                                                 list.get(position).setStatus("1");
                                                             } else {
                                                                 if (!isForceDownload) {
-                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 0);
 
                                                                     list.add(position + 1, info);
                                                                 } else {

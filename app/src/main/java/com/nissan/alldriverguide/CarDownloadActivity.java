@@ -82,6 +82,8 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -117,6 +119,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
             "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "Nissan X-TRAIL",
             "New Nissan LEAF", "New Nissan X-TRAIL RUS", "New Nissan QASHQAI RUS"};
+    private int[] indices = { 1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11 };
     private int[] previousCarArray = {1, 2, 4, 5, 7, 9};
 //    private int[] previousCarArray = {1, 2, 7};
 
@@ -1052,6 +1055,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         });
     }
 
+
     public class LoadDataBase extends AsyncTask<String, Void, String> {
 
         @Override
@@ -1062,9 +1066,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                     CarInfo carInfo;
                     //click for eur/rus by rohan
                     if (i == 1 || i == 4 || i == 14 || i == 15) { // this logic actually work for car id (2 & 5) since i start from 0
-                        carInfo = new CarInfo((i + 1), carNames[i], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "RUS", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                        carInfo = new CarInfo((i + 1), carNames[i], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "RUS", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), indices[i]);
                     } else {
-                        carInfo = new CarInfo((i + 1), carNames[i], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "EUR", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                        carInfo = new CarInfo((i + 1), carNames[i], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "EUR", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), indices[i]);
                     }
                     commonDao.insertInCarInfoTable(getBaseContext(), carInfo); // insert into database as a CarInfo object
                 }
@@ -1072,7 +1076,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             } else {
                 int lastID = commonDao.getLastID(getBaseContext());
                 for (int i = lastID; i < carNames.length; i++) {
-                    commonDao.insertInCarInfoTable(getBaseContext(), new CarInfo((lastID + 1), carNames[lastID], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "EUR", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode()));
+                    commonDao.insertInCarInfoTable(getBaseContext(), new CarInfo((lastID + 1), carNames[lastID], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "EUR", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), indices[i]));
                 }
             }
 
@@ -1087,14 +1091,42 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
         @Override
         protected void onPostExecute(String aVoid) {
+
+            ArrayList<Object> objectArrayList = commonDao.getAllOderCarList(getBaseContext());
+            ArrayList<CarInfo> carInfoArrayList = commonDao.getAllCarList(getBaseContext());
+
+            for (int i = 0; i < objectArrayList.size(); i++) {
+
+                if (objectArrayList.get(i).getClass() == CarInfo.class) {
+                    Logger.error("name_index", "_______" + ((CarInfo) objectArrayList.get(i)).getName() + "___" + ((CarInfo) objectArrayList.get(i)).getIndex());
+                }
+
+            }
+
+/*
+            Collections.sort(objectArrayList, new Comparator<Object>() {
+                public int compare(Object ideaVal1, Object ideaVal2) {
+                    // avoiding NullPointerException in case name is null
+                    Long idea1 = Long.valueOf(((CarInfo) ideaVal1).getIndex());
+                    Long idea2 = Long.valueOf(((CarInfo) ideaVal2).getIndex());
+                    return idea2.compareTo(idea1);
+                }
+            });
+*/
+
             // here set the all ordered car list that getting from database as an object type
-            NissanApp.getInstance().setCarList(commonDao.getAllOderCarList(getBaseContext()));
+            NissanApp.getInstance().setCarList(objectArrayList);
             // here set the all unordered car list that getting from database as a CarInfo object
-            NissanApp.getInstance().setCarAllList(commonDao.getAllCarList(getBaseContext()));
+            NissanApp.getInstance().setCarAllList(carInfoArrayList);
+
+
+
 
             // actually this looping and logic determine for section header
             for (int i = 0; i < NissanApp.getInstance().getCarList().size(); i++) {
                 CarInfo info = (CarInfo) NissanApp.getInstance().getCarList().get(i);
+
+//                Logger.error("id_car_name_index", "__________" + info.getId() + "_____" + info.getName() + "____" + info.getIndex());
 
                 if ((Values.ALREADY_DOWNLOADED.equalsIgnoreCase(info.getStatus()))) {
                     if (!NissanApp.getInstance().getCarList().contains(resources.getString(R.string.downloaded_car))) {
@@ -1114,6 +1146,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 setCarImageAccordingToDeviceResolution();
             }
 
+/*
             getList = NissanApp.getInstance().getCarList();
             boolean xtrailRus = false, xtrailEur = false;
             CarInfo xtrailRusInfo = new CarInfo();
@@ -1168,6 +1201,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
 
             getList = swapXtrailEurRusIfBothDownloaded(getList);
+*/
+
+
 
 
             if (NissanApp.getInstance().getCarList() != null && adapter == null) {
@@ -1191,7 +1227,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 lstView.setDivider(null);
             } else {
                 //adapter.setList(NissanApp.getInstance().getCarList());
-                adapter.setList(getList);
+                adapter.setList(NissanApp.getInstance().getCarList());
             }
 
         }
@@ -1247,7 +1283,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             }
         });
 
-        final int carIdFromList = ((CarInfo) getList.get(position)).getId();
+        final int carIdFromList = ((CarInfo) NissanApp.getInstance().getCarList().get(position)).getId();
+
+        NissanApp.getInstance().setCarWiseLanguageList(getLanguageDataFromDBAccordingToCar(carIdFromList));
 
         new ApiCall().postCarDelete("" + carIdFromList, "" + NissanApp.getInstance().getLanguageID(commonDao.getLanguageStatus(getApplicationContext(), carIdFromList)), "0", NissanApp.getInstance().getDeviceID(activity.getApplicationContext()), new CompleteAPI() {
             @Override
@@ -1771,4 +1809,13 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
         dialogFragment.show(getSupportFragmentManager(), "error_fragment");
     }
+
+    private List<LanguageList> getLanguageDataFromDBAccordingToCar(int carType) {
+
+        Type type = new TypeToken<ArrayList<LanguageList>>() {
+        }.getType();
+        return new Gson().fromJson(preferenceUtil.retrieveMultiLangData(carType + "_" + Values.CAR_LANGUAGE_LIST), type);
+
+    }
+
 }

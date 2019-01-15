@@ -15,7 +15,7 @@ import com.nissan.alldriverguide.utils.Logger;
 public class NissanDbHelper extends SQLiteOpenHelper implements BaseDbHelper {
 
     static final String DATABASE_NAME = "nissan.sqlite";
-    static final int DATABASE_VERSION = 3;
+    static final int DATABASE_VERSION = 4;
 
     private static final String CREATE_TABLE_QUERY = "CREATE TABLE " + CarInfoTableEntity.TABLE_NAME + " (" +
             CarInfoTableEntity._ID + INTEGER_PRIMARY + COMMA_SEP +
@@ -25,7 +25,8 @@ public class NissanDbHelper extends SQLiteOpenHelper implements BaseDbHelper {
             CarInfoTableEntity.REGION + TEXT_TYPE + COMMA_SEP +
             CarInfoTableEntity.LANGUAGE + TEXT_TYPE + COMMA_SEP +
             CarInfoTableEntity.VERSION_NAME + TEXT_TYPE + COMMA_SEP +
-            CarInfoTableEntity.VERSION_CODE + INTEGER_TYPE + ")";
+            CarInfoTableEntity.VERSION_CODE + INTEGER_TYPE + COMMA_SEP +
+            CarInfoTableEntity.LIST_INDEX + INTEGER_TYPE + ")";
 
     private static final String CREATE_EPUBTABLE_QUERY = "CREATE TABLE " + EpubInfoTableDirectory.TABLE_NAME + " (" +
             EpubInfoTableDirectory._ID + INTEGER_PRIMARY + COMMA_SEP +
@@ -57,6 +58,7 @@ public class NissanDbHelper extends SQLiteOpenHelper implements BaseDbHelper {
     private static final String DROP_EPUBTABLE_QUERY = "DROP TABLE IF EXISTS " + EpubInfoTableDirectory.TABLE_NAME;
     private static final String ADD_COLUMN_VERSION_NAME = "ALTER TABLE " + CarInfoTableEntity.TABLE_NAME + " ADD COLUMN " + CarInfoTableEntity.VERSION_NAME + TEXT_TYPE;
     private static final String ADD_COLUMN_VERSION_CODE = "ALTER TABLE " + CarInfoTableEntity.TABLE_NAME + " ADD COLUMN " + CarInfoTableEntity.VERSION_CODE + INTEGER_TYPE;
+    private static final String ADD_COLUMN_LIST_INDEX = "ALTER TABLE " + CarInfoTableEntity.TABLE_NAME + " ADD COLUMN " + CarInfoTableEntity.LIST_INDEX + INTEGER_TYPE;
 
     public NissanDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -113,6 +115,12 @@ public class NissanDbHelper extends SQLiteOpenHelper implements BaseDbHelper {
         if (columnIndex < 0) {
             // missing_column not there - add it
             db.execSQL(ADD_COLUMN_VERSION_CODE);
+        }
+
+        columnIndex = cursor.getColumnIndex(CarInfoTableEntity.LIST_INDEX);  // see if the column is there
+        if (columnIndex < 0) {
+            // missing_column not there - add it
+            db.execSQL(ADD_COLUMN_LIST_INDEX);
         }
 
     }

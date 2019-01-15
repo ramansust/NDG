@@ -80,14 +80,20 @@ public class CommonDao {
         ArrayList<Object> list = new ArrayList<>();
         SQLiteDatabase db = getWritableDatabase(context, NissanDbHelper.class);
 
-        Cursor cursor = db.rawQuery("SELECT * FROM car_info WHERE region = 'EUR' AND status = '1' ORDER BY _id ASC;", null);
-        Cursor cursor2 = db.rawQuery("SELECT * FROM car_info WHERE region = 'EUR' AND status = '0' ORDER BY _id ASC;", null);
-        Cursor cursor3 = db.rawQuery("SELECT * FROM car_info WHERE region = 'EUR' AND status = '2' ORDER BY _id ASC;", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM car_info WHERE region = 'EUR' AND status = '1' ORDER BY list_index ASC;", null);
+        Cursor cursor2 = db.rawQuery("SELECT * FROM car_info WHERE region = 'EUR' AND status = '0' ORDER BY list_index ASC;", null);
+        Cursor cursor3 = db.rawQuery("SELECT * FROM car_info WHERE region = 'EUR' AND status = '2' ORDER BY list_index ASC;", null);
+
+
 
         try {
             if (cursor.moveToFirst()) {
                 do {
-                    CarInfo info = new CarInfo(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), 0, cursor.getString(6), cursor.getInt(7));
+
+
+                    Logger.error("cursor_count", "_________" + cursor.getString(8) + "_____" + cursor.getString(1));
+
+                    CarInfo info = new CarInfo(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), 0, cursor.getString(6), cursor.getInt(7), cursor.getInt(8));
                     if (info.getId() >= 11) { // this condition is display for latest 4 cars (11,12,13,14) top in CarDownloadActivity.java
                         list.add(0, info);
                     } else {
@@ -106,7 +112,7 @@ public class CommonDao {
         try {
             if (cursor2.moveToFirst()) {
                 do {
-                    CarInfo info = new CarInfo(cursor2.getInt(0), cursor2.getString(1), cursor2.getString(2), cursor2.getString(3), cursor2.getString(4), cursor2.getString(5), 0, cursor2.getString(6), cursor2.getInt(7));
+                    CarInfo info = new CarInfo(cursor2.getInt(0), cursor2.getString(1), cursor2.getString(2), cursor2.getString(3), cursor2.getString(4), cursor2.getString(5), 0, cursor2.getString(6), cursor2.getInt(7), cursor2.getInt(8));
                     if (info.getId() >= 11) { // this condition is display for latest 4 cars (11,12,13,14) top in CarDownloadActivity.java
                         list.add(downloadCar, info);
                     } else {
@@ -125,7 +131,7 @@ public class CommonDao {
         try {
             if (cursor3.moveToFirst()) {
                 do {
-                    CarInfo info = new CarInfo(cursor3.getInt(0), cursor3.getString(1), cursor3.getString(2), cursor3.getString(3), cursor3.getString(4), cursor3.getString(5), 0, cursor3.getString(6), cursor3.getInt(7));
+                    CarInfo info = new CarInfo(cursor3.getInt(0), cursor3.getString(1), cursor3.getString(2), cursor3.getString(3), cursor3.getString(4), cursor3.getString(5), 0, cursor3.getString(6), cursor3.getInt(7), cursor3.getInt(8));
                     if (info.getId() >= 11) { // this condition is display for latest 4 cars (11,12,13,14) top in CarDownloadActivity.java
                         list.add(downloadCar, info);
                     } else {
@@ -228,7 +234,7 @@ public class CommonDao {
         try {
             if (cursor.moveToFirst()) {
                 do {
-                    CarInfo info = new CarInfo(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), 0, cursor.getString(6), cursor.getInt(7));
+                    CarInfo info = new CarInfo(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), 0, cursor.getString(6), cursor.getInt(7), cursor.getInt(8));
                     if (info.getId() >= 11) {
                         list.add(0, info);
                     } else {
@@ -259,7 +265,7 @@ public class CommonDao {
         try {
             if (cursor.moveToFirst()) {
                 for (int i = 0; i < cursor.getCount(); i++) {
-                    info = new CarInfo(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), 0, cursor.getString(6), cursor.getInt(7));
+                    info = new CarInfo(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), 0, cursor.getString(6), cursor.getInt(7), cursor.getInt(8));
                     cursor.moveToNext();
                 }
             }
@@ -414,7 +420,7 @@ public class CommonDao {
     }
 
     private ContentValues prepareMyTableListContentValues(CarInfo info) {
-        ContentValues headValues = new ContentValues(7);
+        ContentValues headValues = new ContentValues(8);
         headValues.put(CarInfoTableEntity.NAME, info.getName());
         headValues.put(CarInfoTableEntity.STATUS, info.getStatus());
         headValues.put(CarInfoTableEntity.DATE_TIME, info.getDateTime());
@@ -422,6 +428,7 @@ public class CommonDao {
         headValues.put(CarInfoTableEntity.LANGUAGE, info.getSelectedLanguage());
         headValues.put(CarInfoTableEntity.VERSION_NAME, info.getVersionName());
         headValues.put(CarInfoTableEntity.VERSION_CODE, info.getVersionCode());
+        headValues.put(CarInfoTableEntity.LIST_INDEX, info.getIndex());
 
         return headValues;
     }

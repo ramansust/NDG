@@ -14,6 +14,15 @@ public class CarInfo {
     private int selectedCar;
     private boolean isSection;
     private String carImg = "";
+    private int index;
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
     public String getCarImg() {
         return carImg;
@@ -46,7 +55,7 @@ public class CarInfo {
 
     }
 
-    public CarInfo(int id, String name, String status, String dateTime, String region, String language, int selectedCar, String versionName, int versionCode) {
+    public CarInfo(int id, String name, String status, String dateTime, String region, String language, int selectedCar, String versionName, int versionCode, int index) {
         this.id = id;
         this.name = name;
         this.status = status;
@@ -56,6 +65,7 @@ public class CarInfo {
         this.selectedCar = selectedCar;
         this.versionName = versionName;
         this.versionCode = versionCode;
+        this.index = index;
     }
 
     public int getId() {

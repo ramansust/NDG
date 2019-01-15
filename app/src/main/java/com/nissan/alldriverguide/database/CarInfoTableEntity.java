@@ -19,6 +19,7 @@ public class CarInfoTableEntity implements BaseColumns {
     public static final String LANGUAGE = "language";
     public static final String VERSION_NAME = "version_name";
     public static final String VERSION_CODE = "version_code";
+    public static final String LIST_INDEX = "list_index";
 
     public CarInfoTableEntity() {
 
