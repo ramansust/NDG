@@ -143,7 +143,7 @@ public class CarDownloadAdapter extends BaseAdapter {
                     txtViewTitle.setText("NISSAN X-TRAIL");
                 }
                 if (info.getId() == 12 || info.getId() == 16) {
-                    txtViewTitle.setText("NEW NISSAN QASHQAI");
+                    txtViewTitle.setText("NISSAN QASHQAI");
                 }
             }
 

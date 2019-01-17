@@ -117,13 +117,23 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         getDataFromSP();
 
+/*
         if (!sortedAlready) {
             swapXtrailRusleaf2017IfBothDownloaded();
             swapXtrailEurRusIfBothDownloaded();
             swapXtrailRusLeafIfBothAvailableForDownload();
             sortedAlready = true;
         }
+*/
 
+        Collections.sort(NissanApp.getInstance().getCarAllList(), new Comparator<CarInfo>() {
+            public int compare(CarInfo ideaVal1, CarInfo ideaVal2) {
+                // avoiding NullPointerException in case name is null
+                Long idea1 = Long.valueOf(ideaVal1.getIndex());
+                Long idea2 = Long.valueOf(ideaVal2.getIndex());
+                return idea2.compareTo(idea1);
+            }
+        });
 
         final String ORDER = "102";
         Collections.sort(NissanApp.getInstance().getCarAllList(), new Comparator<CarInfo>() {

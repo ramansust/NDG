@@ -41,6 +41,7 @@ import com.nissan.alldriverguide.augmentedreality.ARNote;
 import com.nissan.alldriverguide.augmentedreality.ARPulsar;
 import com.nissan.alldriverguide.augmentedreality.ARQashqai;
 import com.nissan.alldriverguide.augmentedreality.ARQashqai2017;
+import com.nissan.alldriverguide.augmentedreality.ARQashqai2017Rus;
 import com.nissan.alldriverguide.augmentedreality.ARQashqaiRUS;
 import com.nissan.alldriverguide.augmentedreality.ARXtrail;
 import com.nissan.alldriverguide.augmentedreality.ARXtrail2017;
@@ -147,6 +148,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     private ARXtrail2017 mRendererXtrail2017;
     private ARLeaf2017 mRendererLeaf2017;
     private ARXtrail2017Rus mRendererXtrailRus2017;
+    private ARQashqai2017Rus mRendererQashqaiRus2017;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -225,6 +227,10 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
             case 15:
                 mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "xtrail2017rus.xml");
+                break;
+
+            case 16:
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "qashqai2017rus.xml");
                 break;
 
             default:
@@ -464,6 +470,11 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
             case 15:
                 mRendererXtrailRus2017 = new ARXtrail2017Rus(this, vuforiaAppSession);
                 mGlView.setRenderer(mRendererXtrailRus2017);
+                break;
+
+            case 16:
+                mRendererQashqaiRus2017 = new ARQashqai2017Rus(this, vuforiaAppSession);
+                mGlView.setRenderer(mRendererQashqaiRus2017);
                 break;
 
             default:

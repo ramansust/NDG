@@ -90,9 +90,6 @@ public class CommonDao {
             if (cursor.moveToFirst()) {
                 do {
 
-
-                    Logger.error("cursor_count", "_________" + cursor.getString(8) + "_____" + cursor.getString(1));
-
                     CarInfo info = new CarInfo(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), 0, cursor.getString(6), cursor.getInt(7), cursor.getInt(8));
                     if (info.getId() >= 11) { // this condition is display for latest 4 cars (11,12,13,14) top in CarDownloadActivity.java
                         list.add(0, info);

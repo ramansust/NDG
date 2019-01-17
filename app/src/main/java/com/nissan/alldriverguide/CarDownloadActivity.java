@@ -521,8 +521,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
             NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
 
-            Logger.error("List msg","-----------");
-
         }
     }
 
@@ -626,8 +624,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 //            Toast.makeText(activity, getString(R.string.internet_connect), Toast.LENGTH_SHORT).show();
 //            showErrorDialog(getResources().getString(R.string.internet_connect));
         }
-
-        Logger.error("List msg","------onresume-----");
 
         super.onResume();
     }
@@ -1095,14 +1091,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             ArrayList<Object> objectArrayList = commonDao.getAllOderCarList(getBaseContext());
             ArrayList<CarInfo> carInfoArrayList = commonDao.getAllCarList(getBaseContext());
 
-            for (int i = 0; i < objectArrayList.size(); i++) {
-
-                if (objectArrayList.get(i).getClass() == CarInfo.class) {
-                    Logger.error("name_index", "_______" + ((CarInfo) objectArrayList.get(i)).getName() + "___" + ((CarInfo) objectArrayList.get(i)).getIndex());
-                }
-
-            }
-
 /*
             Collections.sort(objectArrayList, new Comparator<Object>() {
                 public int compare(Object ideaVal1, Object ideaVal2) {
@@ -1125,8 +1113,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             // actually this looping and logic determine for section header
             for (int i = 0; i < NissanApp.getInstance().getCarList().size(); i++) {
                 CarInfo info = (CarInfo) NissanApp.getInstance().getCarList().get(i);
-
-//                Logger.error("id_car_name_index", "__________" + info.getId() + "_____" + info.getName() + "____" + info.getIndex());
 
                 if ((Values.ALREADY_DOWNLOADED.equalsIgnoreCase(info.getStatus()))) {
                     if (!NissanApp.getInstance().getCarList().contains(resources.getString(R.string.downloaded_car))) {
@@ -1296,9 +1282,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
                         FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(carIdFromList)));
 //                        ((CarDownloadActivity) activity).sendMsgToGoogleAnalytics(((MainActivity) activity).getAnalyticsForDelete(carNames[carId - 1], Analytics.CAR_SELECTION + Analytics.DELETE));
-
-
-                        Logger.error("carIdFromList", "______________" + carIdFromList);
 
                         if (carIdFromList == 16) {
                             if (commonDao.getStatus(context, carIdFromList - 4) == 0) {
