@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -20,6 +21,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.text.SpannableString;
+import android.text.style.BackgroundColorSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -273,6 +276,12 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
             if (header_text != null) {
 
+/*
+                SpannableString str = new SpannableString(mContext.getResources().getString(R.string.combimeter_is_the_main));
+                str.setSpan(new BackgroundColorSpan(Color.YELLOW), 0, str.length(), 0);
+                txtViewExplore.setText(str);
+*/
+
                 Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
@@ -309,7 +318,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
             check_density();
 
-            Logger.error(TAG, "getExploreTabContent: " + header_text);
             Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
@@ -321,6 +329,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 }
 
             });
+
 //            mapView.setVisibility(View.GONE);
             relativeAR.setVisibility(View.VISIBLE);
             relativeBlindSpot.setVisibility(View.GONE);

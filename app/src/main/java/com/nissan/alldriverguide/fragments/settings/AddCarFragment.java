@@ -126,7 +126,92 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         }
 */
 
-        Collections.sort(NissanApp.getInstance().getCarAllList(), new Comparator<CarInfo>() {
+
+        for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 14) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(16);
+            }
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 13) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(15);
+            }
+
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 15) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(14);
+            }
+
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 12) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(13);
+            }
+
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 16) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(12);
+            }
+
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 11) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(11);
+            }
+
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 3) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(10);
+            }
+
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 6) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(9);
+            }
+
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 8) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(8);
+            }
+
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 10) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(7);
+            }
+
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 1) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(6);
+            }
+
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 2) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(5);
+            }
+
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 4) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(4);
+            }
+
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 5) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(3);
+            }
+
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 7) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(2);
+            }
+
+
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 9) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(1);
+            }
+
+
+        }
+
+
+         Collections.sort(NissanApp.getInstance().getCarAllList(), new Comparator<CarInfo>() {
             public int compare(CarInfo ideaVal1, CarInfo ideaVal2) {
                 // avoiding NullPointerException in case name is null
                 Long idea1 = Long.valueOf(ideaVal1.getIndex());

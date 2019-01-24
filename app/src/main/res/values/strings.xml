@@ -276,5 +276,6 @@
     <string name="download">Download!</string>
     <string name="delete">Delete!</string>
     <string name="loading">loading...</string>
+    <string name="combimeter_is_the_main">Combimeter is the main button I\'m the only thing you would want it</string>
 
 </resources>

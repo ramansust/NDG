@@ -1082,7 +1082,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 imgBtnRus.setBackgroundResource(R.drawable.download_selector);
             }//click rohan
         } else if (carType == 15) { //click rohan
-            if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType -2 )) && commonDao.getStatus(context, carType-2) == 1) {
+            if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType - 2 )) && commonDao.getStatus(context, carType - 2) == 1) {
                 btnEUR.setAlpha(0.2f);
                 btnEUR.setEnabled(false);
                 imgBtnEur.setBackgroundResource(R.drawable.delete_selector);
@@ -1109,6 +1109,13 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 imgBtnRus.setBackgroundResource(R.drawable.download_selector);
             }//click rohan
         }  else if (carType == 12) {//click rohan
+
+            Logger.error("carType", "_____" + carType);
+
+            for (CarInfo info: list) {
+                Logger.error("car_name_id_index", "_____" + info.getName() + "_____" + info.getId() + "______" + info.getIndex());
+            }
+
             if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType)) && commonDao.getStatus(context, carType) == 1) {
                 btnEUR.setAlpha(0.2f);
                 btnEUR.setEnabled(false);
@@ -1140,6 +1147,13 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 btnEUR.setAlpha(0.2f);
                 btnEUR.setEnabled(false);
                 imgBtnEur.setBackgroundResource(R.drawable.delete_selector);
+
+                Logger.error("carType", "_____" + carType);
+
+                for (CarInfo info: list) {
+                    Logger.error("car_name_id_index", "_____" + info.getName() + "_____" + info.getId() + "______" + info.getIndex());
+                }
+
                 if (list.get(carType - 3).getSelectedCar() == 1) {
                     imgBtnEur.setAlpha(0.2f);
                     imgBtnEur.setEnabled(false);

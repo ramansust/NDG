@@ -338,6 +338,27 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
+                    } else if (userDataToCompare.equalsIgnoreCase("combimeter_3")
+                            || userDataToCompare.equalsIgnoreCase("combimeter_2")
+                            || userDataToCompare.equalsIgnoreCase("combimeter_1")
+                            ) {
+
+
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        Values.ar_value = Analytics.STEERING_RIGHT;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.qashqai2017rus_combimeter_view, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai2017rus_combimeter.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
                     } else if (userDataToCompare.equalsIgnoreCase("steering_wheel_right_1")
                             || userDataToCompare.equalsIgnoreCase("steering_wheel_right_2")
                             || userDataToCompare.equalsIgnoreCase("steering_wheel_right_3")
@@ -414,7 +435,7 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                         Values.ar_value = Analytics.START_STOP_IGNITION;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.qashqai2017rus_start_stop_ignition, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "qashqai2017rus_start_stop_ignition");
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai2017rus_start_stop_ignition.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -441,9 +462,9 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase("ac_auto_full_01")
-                            || userDataToCompare.equalsIgnoreCase("ac_auto_full_02")
-                            || userDataToCompare.equalsIgnoreCase("ac_auto_full_03")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("ac_full_01")
+                            || userDataToCompare.equalsIgnoreCase("ac_full_02")
+                            || userDataToCompare.equalsIgnoreCase("ac_full_03")) {
 
 
                         try {
