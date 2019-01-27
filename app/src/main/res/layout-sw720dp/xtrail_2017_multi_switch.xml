@@ -7,23 +7,23 @@
 
     <LinearLayout
         android:id="@+id/popupLayout"
-        android:layout_width="700dp"
-        android:layout_height="380dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:weightSum="2">
+        android:weightSum="3">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.7"
             android:orientation="horizontal"
-            android:weightSum="8">
+            android:weightSum="7">
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".5"
+                android:layout_weight="0.5"
                 android:background="@android:color/transparent" />
 
             <Button
@@ -45,7 +45,7 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.1"
+                android:layout_weight="1.2"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
                 android:tag="28" />
@@ -69,31 +69,30 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.1"
-                android:background="@android:color/transparent"
-                android:onClick="buttonEvent"
-                android:tag="68" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".5"
+                android:layout_weight="0.5"
                 android:background="@android:color/transparent" />
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:orientation="horizontal"
-            android:weightSum="8">
+            android:weightSum="7">
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".5"
+                android:layout_weight="0.5"
                 android:background="@android:color/transparent" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:background="@android:color/transparent"
+                android:onClick="buttonEvent"
+                android:tag="68" />
 
             <Button
                 android:layout_width="0dp"
@@ -107,14 +106,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.2"
-                android:background="@android:color/transparent"
-                android:onClick="buttonEvent"
-                android:tag="35" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
                 android:tag="67" />
@@ -138,14 +129,69 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.1"
+                android:layout_weight="0.5"
+                android:background="@android:color/transparent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1.4"
+            android:weightSum="7">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
                 android:background="@android:color/transparent" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".5"
+                android:layout_weight="1.2"
+                android:background="@android:color/transparent"
+                android:onClick="buttonEvent"
+                android:tag="74"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:background="@android:color/transparent"
+                android:onClick="buttonEvent"
+                android:tag="73"/>
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
                 android:background="@android:color/transparent" />
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:background="@android:color/transparent" />
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:background="@android:color/transparent"
+                android:onClick="buttonEvent"
+                android:tag="35"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@android:color/transparent" />
+
 
         </LinearLayout>
 
