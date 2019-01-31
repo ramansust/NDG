@@ -118,7 +118,7 @@
                 <RelativeLayout
                     android:id="@+id/rlMapView"
                     android:layout_width="match_parent"
-                    android:layout_height="270dp"
+                    android:layout_height="170dp"
                     android:layout_below="@+id/relative_blind_spot_top">
 
 

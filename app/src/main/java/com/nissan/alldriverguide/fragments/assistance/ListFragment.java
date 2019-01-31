@@ -148,7 +148,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
             } else if (Values.ePubType == Values.WARRANTY_TYPE) {
                 list.remove(list.size() - 1);
             } else if (Values.ePubType == Values.TYRE_TYPE) {
-                if (Values.carType == 15) {
+                if (Values.carType == 15 || Values.carType == 16) {
 
                     for (Iterator<EpubInfo> iterator = list.listIterator(); iterator.hasNext(); ) {
                         EpubInfo info = iterator.next();
