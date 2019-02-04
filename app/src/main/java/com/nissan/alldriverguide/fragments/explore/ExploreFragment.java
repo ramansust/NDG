@@ -1,6 +1,8 @@
 package com.nissan.alldriverguide.fragments.explore;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,6 +20,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -42,6 +45,15 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.downloader.Error;
+import com.downloader.OnCancelListener;
+import com.downloader.OnDownloadListener;
+import com.downloader.OnPauseListener;
+import com.downloader.OnProgressListener;
+import com.downloader.OnStartOrResumeListener;
+import com.downloader.PRDownloader;
+import com.downloader.PRDownloaderConfig;
+import com.downloader.Progress;
 import com.facebook.common.util.UriUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.karumi.dexter.Dexter;
@@ -50,13 +62,18 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+import com.koushikdutta.ion.ProgressCallback;
 import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.ImageTargetActivity;
+import com.nissan.alldriverguide.PDFOpenActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.VideoPlayerActivity;
 import com.nissan.alldriverguide.adapter.GridViewAdapter;
 import com.nissan.alldriverguide.controller.ExploreTabContentController;
 import com.nissan.alldriverguide.customviews.DialogController;
+import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.assistance.DetailsFragment;
 import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
@@ -70,6 +87,7 @@ import com.nissan.alldriverguide.utils.Values;
 import com.nissan.alldriverguide.view.ScrollableGridView;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -108,6 +126,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private CustomViewPager viewPager;
     private ImageView ivRight, ivLeft;
     private PreferenceUtil preferenceUtil;
+    private ProgressDialog progressDialog = null;
 
     /**
      * Creating instance for this fragment
@@ -252,7 +271,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         //old static Rohan
         if (Values.carType == 11 || Values.carType == 12
-                || Values.carType == 16 ||Values.carType == 13
+                || Values.carType == 16 || Values.carType == 13
                 || Values.carType == 14 || Values.carType == 15) {
 
             btnAR.setBackgroundResource(R.drawable.ar_selector_new_car);
@@ -301,9 +320,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     }
                 });
 
-                for (int i=0; i < videoList.size(); i++){
+                for (int i = 0; i < videoList.size(); i++) {
 
-                    if(videoList.get(i).getTag() == 997){
+                    if (videoList.get(i).getTag() == 997) {
                         ExploreTabVideoModel model = videoList.get(i);
                         videoList.remove(i);
                         videoList.add(model);
@@ -454,6 +473,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 if (viewPager.getCurrentItem() == 0) {
                     llLeftArrow.setVisibility(View.GONE);
                     llRightArrow.setVisibility(View.VISIBLE);
+                } else if (viewPager.getCurrentItem() == 1) {
+                    llLeftArrow.setVisibility(View.VISIBLE);
+                    llRightArrow.setVisibility(View.VISIBLE);
                 } else {
                     llLeftArrow.setVisibility(View.VISIBLE);
                     llRightArrow.setVisibility(View.GONE);
@@ -465,12 +487,15 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 viewPager.setCurrentItem(getItem(+1), true);
 
-                if (viewPager.getCurrentItem() == 1) {
-                    llRightArrow.setVisibility(View.GONE);
-                    llLeftArrow.setVisibility(View.VISIBLE);
-                } else {
-                    llRightArrow.setVisibility(View.VISIBLE);
+                if (viewPager.getCurrentItem() == 0) {
                     llLeftArrow.setVisibility(View.GONE);
+                    llRightArrow.setVisibility(View.VISIBLE);
+                } else if (viewPager.getCurrentItem() == 1) {
+                    llLeftArrow.setVisibility(View.VISIBLE);
+                    llRightArrow.setVisibility(View.VISIBLE);
+                } else {
+                    llLeftArrow.setVisibility(View.VISIBLE);
+                    llRightArrow.setVisibility(View.GONE);
                 }
 
                 break;
@@ -692,6 +717,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         if (viewPager.getCurrentItem() == 0) {
             llLeftArrow.setVisibility(View.GONE);
             llRightArrow.setVisibility(View.VISIBLE);
+        } else if (viewPager.getCurrentItem() == 1) {
+            llLeftArrow.setVisibility(View.VISIBLE);
+            llRightArrow.setVisibility(View.VISIBLE);
         } else {
             llLeftArrow.setVisibility(View.VISIBLE);
             llRightArrow.setVisibility(View.GONE);
@@ -801,6 +829,103 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     });
 
                     break;
+                case 2:
+
+                    layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_3,
+                            collection, false);
+
+                    layout.findViewById(R.id.ivMap).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // here start the playing video for grid view item click
+
+
+                            String pdfPath = Values.car_path + File.separator + Values.MAP_PDF_FOLDER + File.separator;
+
+                            final File file_pdf_folder = new File(pdfPath);
+                            final File file_pdf = new File(pdfPath + Values.MAP_PDF_NAME);
+
+                            if (file_pdf_folder.isDirectory() && file_pdf_folder.exists()) {
+                                if (file_pdf.exists()) {
+                                    openPDFFile(file_pdf);
+                                    return;
+                                }
+                            } else {
+                                file_pdf_folder.mkdirs();
+                            }
+
+                            if (DetectConnection.checkInternetConnection(getActivity())) {
+
+                                progressDialog = new ProgressDialogController(getActivity()).showDialog(resources.getString(R.string.start_download));
+
+                                // Setting timeout globally for the download network requests:
+                                PRDownloaderConfig config = PRDownloaderConfig.newBuilder()
+                                        .setReadTimeout(30_000)
+                                        .setConnectTimeout(30_000)
+                                        .build();
+                                PRDownloader.initialize(getActivity(), config);
+
+
+                                PRDownloader.download("http://www.sciencemag.org/site/special/data/ScienceData-hi.pdf",
+                                        pdfPath, Values.MAP_PDF_NAME)
+                                        .build()
+                                        .setOnStartOrResumeListener(new OnStartOrResumeListener() {
+                                            @Override
+                                            public void onStartOrResume() {
+                                                progressDialog.setMessage(resources.getString(R.string.alert_downloading));
+                                            }
+                                        })
+                                        .setOnPauseListener(new OnPauseListener() {
+                                            @Override
+                                            public void onPause() {
+
+                                            }
+                                        })
+                                        .setOnCancelListener(new OnCancelListener() {
+                                            @Override
+                                            public void onCancel() {
+
+                                            }
+                                        })
+                                        .setOnProgressListener(new OnProgressListener() {
+                                            @Override
+                                            public void onProgress(Progress progress) {
+
+                                                long progressPercent = progress.currentBytes * 100 / progress.totalBytes;
+                                                progressDialog.setMessage(resources.getString(R.string.alert_downloading) + "  " + (int) progressPercent + "%");
+                                            }
+                                        })
+                                        .start(new OnDownloadListener() {
+                                            @Override
+                                            public void onDownloadComplete() {
+                                                if (progressDialog != null && progressDialog.isShowing()) {
+                                                    progressDialog.dismiss();
+                                                }
+                                                openPDFFile(file_pdf);
+                                            }
+
+                                            @Override
+                                            public void onError(Error error) {
+                                                if (progressDialog != null && progressDialog.isShowing()) {
+                                                    progressDialog.dismiss();
+                                                }
+                                                if (error.isConnectionError())
+                                                    Toast.makeText(mContext, "Connection error occurred!", Toast.LENGTH_SHORT).show();
+                                                if (error.isServerError())
+                                                    Toast.makeText(mContext, "Server error occurred!", Toast.LENGTH_SHORT).show();
+                                            }
+
+
+                                        });
+
+                            } else {
+
+                                Toast.makeText(getActivity(), internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+                    break;
             }
 
             collection.addView(layout);
@@ -814,13 +939,35 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
             return view == object;
         }
+
+    }
+
+    private void openPDFFile(File file_pdf) {
+
+//        startActivity(new Intent(getActivity(), PDFOpenActivity.class));
+
+                Intent target = new Intent(Intent.ACTION_VIEW);
+                Uri uri = FileProvider.getUriForFile(getActivity(),
+                        getActivity().getPackageName() + ".provider",
+                        file_pdf);
+                target.setDataAndType(uri,"application/pdf");
+                target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                Intent intent = Intent.createChooser(target, "Open File");
+                try {
+                    startActivity(intent);
+                } catch (Exception e) {
+                    // Instruct the user to install a PDF reader here, or something
+                    e.printStackTrace();
+                }
 
     }
 

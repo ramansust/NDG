@@ -30,6 +30,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
         <activity
             android:name=".LanguageSelectionActivity"
             android:label="@string/title_activity_language_selection"
@@ -65,6 +76,11 @@
         <activity
             android:name=".CombimeterActivity"
             android:label="@string/title_combimeter_main"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".PDFOpenActivity"
+            android:label="@string/pdf_open"
             android:screenOrientation="portrait" />
 
         <!-- Firebase Notifications -->

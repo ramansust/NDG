@@ -192,4 +192,7 @@ public class Values {
 
     public static final long DEFAULT_CLICK_TIMEOUT = 1000;
 
+    public static final String MAP_PDF_FOLDER = "micrak14_pdf";
+    public static final String MAP_PDF_NAME = "micrak14_map.pdf";
+
 }
