@@ -470,6 +470,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 viewPager.setCurrentItem(getItem(-1), true);
 
+/*
                 if (viewPager.getCurrentItem() == 0) {
                     llLeftArrow.setVisibility(View.GONE);
                     llRightArrow.setVisibility(View.VISIBLE);
@@ -480,6 +481,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     llLeftArrow.setVisibility(View.VISIBLE);
                     llRightArrow.setVisibility(View.GONE);
                 }
+*/
+
+                if (viewPager.getCurrentItem() == 0) {
+                    llLeftArrow.setVisibility(View.GONE);
+                    llRightArrow.setVisibility(View.VISIBLE);
+                } else {
+                    llLeftArrow.setVisibility(View.VISIBLE);
+                    llRightArrow.setVisibility(View.GONE);
+                }
+
 
                 break;
 
@@ -487,11 +498,21 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 viewPager.setCurrentItem(getItem(+1), true);
 
+/*
                 if (viewPager.getCurrentItem() == 0) {
                     llLeftArrow.setVisibility(View.GONE);
                     llRightArrow.setVisibility(View.VISIBLE);
                 } else if (viewPager.getCurrentItem() == 1) {
                     llLeftArrow.setVisibility(View.VISIBLE);
+                    llRightArrow.setVisibility(View.VISIBLE);
+                } else {
+                    llLeftArrow.setVisibility(View.VISIBLE);
+                    llRightArrow.setVisibility(View.GONE);
+                }
+*/
+
+                if (viewPager.getCurrentItem() == 0) {
+                    llLeftArrow.setVisibility(View.GONE);
                     llRightArrow.setVisibility(View.VISIBLE);
                 } else {
                     llLeftArrow.setVisibility(View.VISIBLE);
@@ -714,6 +735,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     public void onPageSelected(int position) {
 
         //while swipes between pages, imgArrow is visible or gone
+/*
         if (viewPager.getCurrentItem() == 0) {
             llLeftArrow.setVisibility(View.GONE);
             llRightArrow.setVisibility(View.VISIBLE);
@@ -724,6 +746,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             llLeftArrow.setVisibility(View.VISIBLE);
             llRightArrow.setVisibility(View.GONE);
         }
+*/
+
+        if (viewPager.getCurrentItem() == 0) {
+            llLeftArrow.setVisibility(View.GONE);
+            llRightArrow.setVisibility(View.VISIBLE);
+        } else {
+            llLeftArrow.setVisibility(View.VISIBLE);
+            llRightArrow.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -939,7 +971,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
 
         @Override

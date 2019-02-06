@@ -143,7 +143,8 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 //                    list = list.subList(0, list.size() - 2);
                     list = list.subList(0, list.size());
                 } else if (Values.carType == 13) {
-                    list = list.subList(0, 33);
+//                    list = list.subList(0, 33);
+                    list = list.subList(0, list.size());
                 }
             } else if (Values.ePubType == Values.WARRANTY_TYPE) {
                 list.remove(list.size() - 1);
