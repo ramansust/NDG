@@ -138,7 +138,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
         txtViewTitle.setText(learnMoreTitle.isEmpty() ? resources.getString(R.string.video_popup_msg) : learnMoreTitle);
         txtViewLearnMoreAlways.setText(learnMoreMsg.isEmpty() ? resources.getString(R.string.video_learn_more) : learnMoreMsg);
 
-        if (Values.carType == 12 || Values.carType == 13) { //for New Nissan QASHQAI and New Nissan X-TRAIL cars
+        if (Values.carType == 12 || Values.carType == 13 || Values.carType == 15 || Values.carType == 16) { //for New Nissan QASHQAI and New Nissan X-TRAIL cars
             if (Values.videoIndex == 5) { // for 6 number video index learn more button will hide
                 txtViewLearnMore.setVisibility(View.GONE);
                 txtViewLearnMoreAlways.setVisibility(View.GONE);

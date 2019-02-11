@@ -7,8 +7,8 @@
 
     <LinearLayout
         android:id="@+id/popupLayout"
-        android:layout_width="350dp"
-        android:layout_height="302dp"
+        android:layout_width="500dp"
+        android:layout_height="431dp"
         android:orientation="vertical"
         android:weightSum="3">
 
@@ -50,7 +50,7 @@
                         android:layout_weight=".8"
                         android:background="@android:color/transparent"
                         android:onClick="buttonEvent"
-                        android:tag="58" />
+                        android:tag="60" />
 
                 </LinearLayout>
 
@@ -72,7 +72,7 @@
                         android:layout_weight=".8"
                         android:background="@android:color/transparent"
                         android:onClick="buttonEvent"
-                        android:tag="57" />
+                        android:tag="59" />
 
                 </LinearLayout>
 
@@ -94,7 +94,7 @@
                         android:layout_weight=".8"
                         android:background="@android:color/transparent"
                         android:onClick="buttonEvent"
-                        android:tag="58" />
+                        android:tag="60" />
 
                 </LinearLayout>
 
@@ -133,7 +133,7 @@
                         android:layout_weight="1.7"
                         android:background="@android:color/transparent"
                         android:onClick="buttonEvent"
-                        android:tag="59" />
+                        android:tag="61" />
 
                     <Button
                         android:layout_width="0dp"
@@ -168,7 +168,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="60" />
+                android:tag="48" />
 
             <Button
                 android:layout_width="0dp"

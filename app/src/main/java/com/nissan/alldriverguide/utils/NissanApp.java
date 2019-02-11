@@ -1486,8 +1486,8 @@ public class NissanApp {
 
     public String getAlertMessage(Context context, String lang_short_name, String msg_type) {
 
-        String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_short_name) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
-
+        int language_id = getLanguageIDForSettingsPage(Values.carType+"", lang_short_name);
+        String key_global_alert_message = Values.carType + "_" + language_id + "_" + Values.GLOBAL_ALERT_MSG_KEY;
 
         List<AlertMessage> alertMessageArrayList = NissanApp.getInstance().getAlertMessageGlobalArrayList();
         if (alertMessageArrayList == null || alertMessageArrayList.size() == 0) {

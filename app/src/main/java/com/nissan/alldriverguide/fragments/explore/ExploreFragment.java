@@ -2,14 +2,12 @@ package com.nissan.alldriverguide.fragments.explore;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -24,12 +22,8 @@ import android.support.v4.content.FileProvider;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
-import android.text.SpannableString;
-import android.text.style.BackgroundColorSpan;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -38,7 +32,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,12 +55,8 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
-import com.koushikdutta.async.future.FutureCallback;
-import com.koushikdutta.ion.Ion;
-import com.koushikdutta.ion.ProgressCallback;
 import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.ImageTargetActivity;
-import com.nissan.alldriverguide.PDFOpenActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.VideoPlayerActivity;
 import com.nissan.alldriverguide.adapter.GridViewAdapter;
@@ -87,11 +76,9 @@ import com.nissan.alldriverguide.utils.Values;
 import com.nissan.alldriverguide.view.ScrollableGridView;
 
 import java.io.File;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -680,6 +667,14 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 textViewMap.setBackgroundResource(R.drawable.micra_map_cs);
             } else if (lang.equalsIgnoreCase("hu")) {
                 textViewMap.setBackgroundResource(R.drawable.micra_map_hu);
+            } else if (lang.equalsIgnoreCase("et")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_et);
+            }  else if (lang.equalsIgnoreCase("lv")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_lv);
+            } else if (lang.equalsIgnoreCase("lt")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_lt);
+            } else if (lang.equalsIgnoreCase("sk")) {
+                textViewMap.setBackgroundResource(R.drawable.micra_map_sk);
             } else {
                 // default english
                 textViewMap.setBackgroundResource(R.drawable.micra_map_en);

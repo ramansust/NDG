@@ -7,8 +7,8 @@
 
     <LinearLayout
         android:id="@+id/popupLayout"
-        android:layout_width="300dp"
-        android:layout_height="250dp"
+        android:layout_width="600dp"
+        android:layout_height="390dp"
         android:orientation="vertical"
         android:weightSum="2">
 
@@ -20,7 +20,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:paddingTop="30dp"
-            android:weightSum="3">
+            android:weightSum="5">
 
             <Button
                 android:layout_width="0dp"
@@ -28,7 +28,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="36"
+                android:tag="29"
                 android:text="" />
 
             <Button
@@ -36,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:tag="43"
+                android:tag="34"
                 android:text="" />
 
             <Button
@@ -45,7 +45,24 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="44"
+                android:tag="53"
+                android:text="" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:tag="55"
+                android:text="" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="buttonEvent"
+                android:tag="28"
                 android:text="" />
         </LinearLayout>
 
@@ -57,7 +74,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:paddingTop="10dp"
-            android:weightSum="3">
+            android:weightSum="5">
 
             <Button
                 android:layout_width="0dp"
@@ -65,7 +82,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="38"
+                android:tag="27"
                 android:text="" />
 
             <Button
@@ -74,7 +91,25 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="37"
+                android:tag="54"
+                android:text="" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="buttonEvent"
+                android:tag="56"
+                android:text="" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:tag="35"
                 android:text="" />
 
             <Button

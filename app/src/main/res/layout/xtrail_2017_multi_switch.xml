@@ -7,8 +7,8 @@
 
     <LinearLayout
         android:id="@+id/popupLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="225dp"
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="3">
@@ -76,7 +76,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.8"
+            android:layout_weight="0.5"
             android:orientation="horizontal"
             android:weightSum="7">
 
@@ -138,7 +138,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            android:layout_weight="1.4"
+            android:layout_weight="1.8"
             android:weightSum="7">
 
             <Button

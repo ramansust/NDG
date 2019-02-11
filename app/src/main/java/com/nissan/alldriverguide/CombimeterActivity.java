@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -23,6 +24,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
+import static com.nissan.alldriverguide.utils.Values.WARNING_LIGHTS;
 
 /**
  * Created by rohan on 2/23/17.
@@ -30,10 +32,12 @@ import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
 public class CombimeterActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private Context context;
+    private PreferenceUtil preferenceUtil;
     private ImageButton btnBack;
     private LinearLayout linearBack;
     private ScrollView scrollView;
-    private TextView txt_back_title;
+    private TextView txt_back_title, txt_title;
     private int width = 0;
     private LinearLayout mainLinearLayout;
     private String EPUB_INDEX = "epub_index";
@@ -108,6 +112,11 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
             loadCombiButtonsinGeneral(list_gray, Values.GRAY_TYPE);
         }
         scrollView.addView(mainLinearLayout);
+
+        String header_txt = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), WARNING_LIGHTS);
+
+        txt_title.setText(header_txt.isEmpty() ? getResources().getString(R.string.warning_lights) : header_txt);
+
     }
 
     /**
@@ -122,12 +131,17 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
      * Here initialized all view
      */
     private void initViews() {
+        context = CombimeterActivity.this;
+        preferenceUtil = new PreferenceUtil(context);
         btnBack = (ImageButton) findViewById(R.id.btn_back);
         linearBack = (LinearLayout) findViewById(R.id.linear_back);
         scrollView = (ScrollView) findViewById(R.id.scroll_view);
         txt_back_title = (TextView) findViewById(R.id.txt_back_title);
-        tf = Typeface.createFromAsset(getAssets(), "font/Nissan Brand Regular.otf"); //initialize typeface here.
+        txt_title = (TextView) findViewById(R.id.txt_title);
+        tf = Typeface.createFromAsset(getAssets(), "font/Nissan Brand Bold.otf"); //initialize typeface here.
         txt_back_title.setTypeface(tf);
+        txt_title.setTypeface(tf);
+
     }
 
     /**

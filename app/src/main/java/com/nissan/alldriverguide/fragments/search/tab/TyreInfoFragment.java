@@ -16,6 +16,7 @@ import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by shubha on 11/20/17.
@@ -70,6 +71,18 @@ public class TyreInfoFragment extends Fragment {
     }
 
     private void setAdapter(ArrayList<EpubInfo> ePubInfoArrayList) {
+
+        if (Values.carType == 15 || Values.carType == 16) {
+
+            for (Iterator<EpubInfo> iterator = ePubInfoArrayList.listIterator(); iterator.hasNext(); ) {
+                EpubInfo info = iterator.next();
+                if (info.getTitle().contains("REPAIRING")) {
+                    iterator.remove();
+                }
+
+            }
+        }
+
         adapter = new DataGridAdapter(getActivity(), ePubInfoArrayList, Values.TYRE_TYPE);
         listView.setAdapter(adapter);
     }

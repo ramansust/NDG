@@ -501,6 +501,27 @@ public class ARXtrail2017Rus implements GLSurfaceView.Renderer, SampleAppRendere
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
+                    } else if (userDataToCompare.equalsIgnoreCase("combimeter_3")
+                            || userDataToCompare.equalsIgnoreCase("combimeter_2")
+                            || userDataToCompare.equalsIgnoreCase("combimeter_1")
+                            || userDataToCompare.equalsIgnoreCase("combimeter_4")) {
+
+
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        Values.ar_value = Analytics.COMBINATION_METER;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.xtrailrus_2017_combimeter_view, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail2017rus_combimeter.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
                     } else if (userDataToCompare.equalsIgnoreCase("ac_right_1")
                             || userDataToCompare.equalsIgnoreCase("ac_right_2")
                             || userDataToCompare.equalsIgnoreCase("ac_right_3")) {

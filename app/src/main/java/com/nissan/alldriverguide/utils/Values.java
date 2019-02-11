@@ -156,6 +156,8 @@ public class Values {
     public static final String  CAR_DELETE = "start_car_delete";
     public static final String  DOWNLOAD_CONFIRMATION = "download_confirmation";
     public static final String  SELECT_LANGUAGE = "select_language";
+    public static final String  WARNING_LIGHTS = "warning_lights";
+    public static final String  REGISTERED_COUNTRY_NAME = "registered_country_name";
 
     public static final String  RATE_OUR_APP_YES = "rate_our_app_yes";
     public static final String  RATE_ASK_ME_LATER = "rate_ask_me_later";

@@ -42,6 +42,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
+import static com.nissan.alldriverguide.utils.Values.REGISTERED_COUNTRY_NAME;
+
 public class CallNissanAssistanceFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
     private static final String TAG = "CallNissanAssistanceFra";
 
@@ -70,7 +72,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     private TextView txtHeaderTitle;
     private Typeface tf;
     private static final String TITLE = "title";
-    private String headerTitle;
+    private String headerTitle, call_assistance_title;
     private String deviceDensity;
     private String nationalText, internationalText, cancel;
 
@@ -108,7 +110,13 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
         txtViewTitle.setText(getArguments().getString(TITLE));
 //        txtViewTitle.setTypeface(tf);
-        txtHeaderTitle.setText(headerTitle == null || headerTitle.isEmpty() ? resources.getString(R.string.registered_country_name) : headerTitle);
+
+        call_assistance_title = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), REGISTERED_COUNTRY_NAME);
+
+        txtHeaderTitle.setText(call_assistance_title == null || call_assistance_title.isEmpty() ? getActivity().getResources().getString(R.string.registered_country_name) : call_assistance_title);
+
+
+//        txtHeaderTitle.setText(headerTitle == null || headerTitle.isEmpty() ? resources.getString(R.string.registered_country_name) : headerTitle);
     }
 
     public void callNissanAssistance() {
