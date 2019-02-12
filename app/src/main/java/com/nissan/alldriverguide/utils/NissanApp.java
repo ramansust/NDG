@@ -1370,40 +1370,59 @@ public class NissanApp {
         return fileContent;
     }
 
-    public int getLanguageID(String language_name) {
+    public int getLanguageID(String language_short_code) {
+
+        Type type = new TypeToken<ArrayList<LanguageList>>() {
+        }.getType();
+        List<LanguageList> carWiseLanguageList = new Gson().fromJson(new PreferenceUtil(MyApplication.getAppContext()).retrieveMultiLangData(Values.carType + "_" + Values.CAR_LANGUAGE_LIST), type);
+
+        if (carWiseLanguageList != null && carWiseLanguageList.size() > 0) {
+
+            for (LanguageList languageModel : carWiseLanguageList) {
+
+                if (languageModel.getLanguageShortcode().equalsIgnoreCase(language_short_code)) {
+                    return languageModel.getLanguageId();
+                }
+            }
+
+        }
+
+        return 1;
+
+/*
         int langID = 1;
 
         if (carWiseLanguageList == null || carWiseLanguageList.size() == 0) {
 
-            if (language_name.equalsIgnoreCase("en")) {
+            if (language_short_code.equalsIgnoreCase("en")) {
                 langID = 1;
-            } else if (language_name.equalsIgnoreCase("de")) {
+            } else if (language_short_code.equalsIgnoreCase("de")) {
                 langID = 2;
-            } else if (language_name.equalsIgnoreCase("fr")) {
+            } else if (language_short_code.equalsIgnoreCase("fr")) {
                 langID = 3;
-            } else if (language_name.equalsIgnoreCase("it")) {
+            } else if (language_short_code.equalsIgnoreCase("it")) {
                 langID = 4;
-            } else if (language_name.equalsIgnoreCase("es")) {
+            } else if (language_short_code.equalsIgnoreCase("es")) {
                 langID = 5;
-            } else if (language_name.equalsIgnoreCase("nl")) {
+            } else if (language_short_code.equalsIgnoreCase("nl")) {
                 langID = 6;
-            } else if (language_name.equalsIgnoreCase("ru")) {
+            } else if (language_short_code.equalsIgnoreCase("ru")) {
                 langID = 7;
-            } else if (language_name.equalsIgnoreCase("sv")) {
+            } else if (language_short_code.equalsIgnoreCase("sv")) {
                 langID = 8;
-            } else if (language_name.equalsIgnoreCase("no")) {
+            } else if (language_short_code.equalsIgnoreCase("no")) {
                 langID = 9;
-            } else if (language_name.equalsIgnoreCase("pl")) {
+            } else if (language_short_code.equalsIgnoreCase("pl")) {
                 langID = 10;
-            } else if (language_name.equalsIgnoreCase("fi")) {
+            } else if (language_short_code.equalsIgnoreCase("fi")) {
                 langID = 11;
-            } else if (language_name.equalsIgnoreCase("pt")) {
+            } else if (language_short_code.equalsIgnoreCase("pt")) {
                 langID = 12;
-            } else if (language_name.equalsIgnoreCase("DA")) {
+            } else if (language_short_code.equalsIgnoreCase("DA")) {
                 langID = 21;
-            } else if (language_name.equalsIgnoreCase("cs")) {
+            } else if (language_short_code.equalsIgnoreCase("cs")) {
                 langID = 22;
-            }else if (language_name.equalsIgnoreCase("hu")) {
+            }else if (language_short_code.equalsIgnoreCase("hu")) {
                 langID = 23;
             }else {
                 langID = 1;
@@ -1413,7 +1432,7 @@ public class NissanApp {
 
             for (LanguageList languageModel : carWiseLanguageList) {
 
-                if (languageModel.getLanguageShortcode().equalsIgnoreCase(language_name)) {
+                if (languageModel.getLanguageShortcode().equalsIgnoreCase(language_short_code)) {
                     langID = languageModel.getLanguageId();
                 }
             }
@@ -1421,6 +1440,8 @@ public class NissanApp {
 
 
         return langID;
+*/
+
     }
 
     public int getLanguageIDForSettingsPage(String carType, String language_short_code) {

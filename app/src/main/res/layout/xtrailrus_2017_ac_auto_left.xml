@@ -32,8 +32,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:onClick="buttonEvent"
-                android:tag="47"/>
+                android:tag="40"/>
 
             <Button
                 android:layout_width="match_parent"

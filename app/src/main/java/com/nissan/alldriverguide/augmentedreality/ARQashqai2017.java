@@ -566,7 +566,12 @@ public class ARQashqai2017 implements GLSurfaceView.Renderer, SampleAppRendererC
                     } else if (userDataToCompare.equalsIgnoreCase("multiswitch_new_1")
                             || userDataToCompare.equalsIgnoreCase("multiswitch_new_2")
                             || userDataToCompare.equalsIgnoreCase("multiswitch_new_3")
-                            || userDataToCompare.equalsIgnoreCase("multiswitch_new_4"))  {
+                            || userDataToCompare.equalsIgnoreCase("multiswitch_new_4")
+                            || userDataToCompare.equalsIgnoreCase("mixed_panel_1")
+                            || userDataToCompare.equalsIgnoreCase("mixed_panel_2")
+                            || userDataToCompare.equalsIgnoreCase("mixed_panel_3")
+                            || userDataToCompare.equalsIgnoreCase("mixed_panel_4")
+                            || userDataToCompare.equalsIgnoreCase("mixed_panel_5"))  {
 
 
                         try {
@@ -585,7 +590,7 @@ public class ARQashqai2017 implements GLSurfaceView.Renderer, SampleAppRendererC
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase("mixed_panel_1")
+                    } /*else if (userDataToCompare.equalsIgnoreCase("mixed_panel_1")
                             || userDataToCompare.equalsIgnoreCase("mixed_panel_2")
                             || userDataToCompare.equalsIgnoreCase("mixed_panel_3")
                             || userDataToCompare.equalsIgnoreCase("mixed_panel_4")
@@ -608,7 +613,7 @@ public class ARQashqai2017 implements GLSurfaceView.Renderer, SampleAppRendererC
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase("ac_1")
+                    }*/ else if (userDataToCompare.equalsIgnoreCase("ac_1")
                             || userDataToCompare.equalsIgnoreCase("ac_2")
                             || userDataToCompare.equalsIgnoreCase("ac_3")) {
 

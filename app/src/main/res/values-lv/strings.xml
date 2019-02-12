@@ -1,0 +1,282 @@
+<resources>
+    <string name="app_name">NISSAN Driver’s Guide</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_language_selection">LanguageSelectionActivity</string>
+    <string name="title_activity_tutorial">TutorialActivity</string>
+    <string name="title_activity_car_download">CarDownloadActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_details_main">DetailsActivity</string>
+    <string name="title_combimeter_main">CombimeterActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_image_target">ImageTargetActivity</string>
+
+    <string name="alert_msg39">Before using the tyre puncture repair kit, please read the “REPAIRING FLAT TYRE” instructions carefully.</string>
+    <string name="alert_msg40">Read</string>
+    <string name="alert_msg41">I have already read it</string>
+    <string name="alert_msg42">Before changing a flat tyre, please read the “CHANGING FLAT TYRE” instructions carefully.</string>
+
+    <string name="alert_msg22">Do you want to download this vehicle content? It may take several minutes based on the speed of your internet connection. It will be downloaded only once for each vehicle.</string>
+    <string name="alert_msg23">Do you want to delete?</string>
+
+    // vuforia strings
+    <string name="INIT_ERROR">Error</string>
+    <string name="INIT_ERROR_DEVICE_NOT_SUPPORTED">Failed to initialize Vuforia. This device is not supported.</string>
+    <string name="INIT_ERROR_NO_CAMERA_ACCESS">Failed to initialize Vuforia. Camera not accessible</string>
+    <string name="INIT_LICENSE_ERROR_MISMATCH_KEY">Vuforia App key is not valid for this product. Please get a valid key, by logging into your account at developer.vuforia.com and choosing the right product type during project creation.</string>
+    <string name="INIT_LICENSE_ERROR_MISSING_KEY">Vuforia App key is missing. Please get a valid key, by logging into your account at developer.vuforia.com and creating a new project.</string>
+    <string name="INIT_LICENSE_ERROR_INVALID_KEY">Invalid Key used. Please make sure you are using a valid Vuforia App Key.</string>
+    <string name="INIT_LICENSE_ERROR_NO_NETWORK_TRANSIENT">Unable to contact server. Please try again later.</string>
+    <string name="INIT_LICENSE_ERROR_NO_NETWORK_PERMANENT">No network available. Please make sure you are connected to the Internet.</string>
+    <string name="INIT_LICENSE_ERROR_CANCELED_KEY">This app license key has been canceled and may no longer be used. Please get a new license key.</string>
+    <string name="INIT_LICENSE_ERROR_PRODUCT_TYPE_MISMATCH">Vuforia App key is not valid for this product. Please get a valid key, by logging into your account at developer.vuforia.com and choosing the right product type during project creation.</string>
+    <string name="INIT_LICENSE_ERROR_UNKNOWN_ERROR">Failed to initialize Vuforia.</string>
+    <string name="INIT_OBJECT_DATASET_NOT_FOUND_TITLE">Database not found</string>
+    <string name="INIT_OBJECT_DATASET_NOT_FOUND">Please scan an object and load a database</string>
+    <string name="menu_back">Vuforia Samples</string>
+    <string name="menu_extended_tracking">Extended Tracking</string>
+    <string name="menu_character_mode">Character Mode</string>
+    <string name="menu_flash">Flash</string>
+    <string name="menu_flash_error_on">Unable to turn on flash</string>
+    <string name="menu_flash_error_off">Unable to turn off flash</string>
+    <string name="menu_contAutofocus">Autofocus</string>
+    <string name="menu_contAutofocus_error_on">Unable to activate Continuous Auto-Focus</string>
+    <string name="menu_contAutofocus_error_off">Unable to deactivate Continuous Auto-Focus</string>
+    <string name="menu_datasets">DATASETS</string>
+    <string name="menu_camera">CAMERA</string>
+    <string name="menu_camera_front">Front</string>
+    <string name="menu_camera_back">Rear</string>
+    <string name="menu_button_red">Red</string>
+    <string name="menu_button_blue">Blue</string>
+    <string name="menu_button_yellow">Yellow</string>
+    <string name="menu_button_green">Green</string>
+    <!--start-->
+    <string name="title_activity_video_player">VideoPlayerActivity</string>
+    <string name="back">Back</string>
+    <string name="download_msg">Do you want to download \n this guide with EUR or \n with RUS specs?</string>
+    <string name="download_lang">Are you sure you want to download ?</string>
+    <string name="register_push">Do you want register for push service ?</string>
+    <string name="exit_alert">Are you sure you want to exit ?</string>
+    <string name="internet_connect">No Internet Connection. Please check your WIFI or cellular data network and try again.</string>
+    <string name="car_msg">Car Already Downloaded</string>
+    <string name="car_msg_download">Please download your car guide</string>
+    <string name="video_popup_msg">Want to learn more ? </string>
+    <string name="video_watch_again">Watch again</string>
+    <string name="video_learn_more">Learn more</string>
+
+    <string name="top_search">Top Searches</string>
+    <string name="recent_search">Recent Searches</string>
+
+    <string-array name="car_names">
+        <item>Qashqai EUR Specs</item>
+        <item>Qashqai RUS Specs</item>
+        <item>Juke</item>
+        <item>X-Trail EUR Specs</item>
+        <item>X-Trail RUS Specs</item>
+        <item>Pulsar</item>
+        <item>Micra</item>
+        <item>Note</item>
+        <item>Leaf</item>
+        <item>Navara</item>
+        <item>All New Nissan Micra</item>
+        <item>New Nissan QASHQAI</item>
+        <item>New Nissan X-TRAIL EUR</item>
+        <item>New Nissan Leaf</item>
+        <item>NISSAN X-TRAIL RUS</item>
+        <item>NISSAN QASHQAI RUS</item>
+    </string-array>
+    <string-array name="assistance_array">
+        <item>Warning Lights</item>
+        <item>Quick Reference Guide</item>
+        <item>Tyre Information</item>
+        <item>Engine Compartment</item>
+        <item>Warranty</item>
+        <item>Nissan Assistance</item>
+    </string-array>
+    <string-array name="assistance_array_temp">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string-array name="settings_array">
+        <item>Change language</item>
+        <item>Car selection</item>
+        <item>Tutorial</item>
+        <item>Rate the App</item>
+        <item>Send feedback</item>
+    </string-array>
+    <string-array name="tab_names">
+        <item>Explore</item>
+        <item>Assistance</item>
+        <item>Search</item>
+        <item>Settings</item>
+    </string-array>
+
+    <string-array name="video_array_title">
+        <item>Lane Departure Warning and Prevention</item>
+        <item>Intelligent Emergency Braking</item>
+        <item>Intelligent Around View Monitor</item>
+        <item>Display Audio With CarPlay</item>
+    </string-array>
+
+    <string name="select_your_car">Select Your Car</string>
+    <string name="download_driver_guide">Download Driver\'s Guide</string>
+    <string name="driver_guide">DRIVER\'S GUIDE</string>
+    <string name="select_language">Select Language</string>
+    <string name="select_language_landing">Select Language</string>
+    <string name="confirm_language">Confirm Language</string>
+
+    <string name="button_OK">OK</string>
+    <string name="button_CANCEL">CANCEL</string>
+    <string name="button_YES">Yes</string>
+    <string name="button_NO">No</string>
+    <string name="button_next">Next</string>
+
+    <string name="explore">EXPLORE</string>
+    <string name="augmented_reality">Augmented Reality</string>
+    <string name="explore_your_car">EXPLORE YOUR CAR</string>
+    <string name="assistance">ASSISTANCE</string>
+    <string name="search">SEARCH</string>
+    <string name="settings">SETTINGS</string>
+    <string name="change_language">MAINĪT VALODU</string>
+    <string name="change_language_popup_title">Change Language</string>
+    <string name="add_extra_car">Car selection</string>
+    <string name="warning_lights">WARNING LIGHTS</string>
+    <string name="quick_reference_guide">Quick Reference Guide</string>
+
+    <string name="alert_status">Status</string>
+    <string name="alert_download_complete">Download complete..</string>
+    <string name="alert_downloading">Downloading..</string>
+    <string name="no_content_found_top_recent_search">No Search Keyword Found</string>
+
+    <string-array name="tutorial_titles">
+        <item>Explore your vehicle </item>
+        <item>Warning lights </item>
+        <item>Quick Reference Guide and more </item>
+    </string-array>
+    <string-array name="tutorial_details">
+        <item>
+            Get to know all the controls your Nissan has to offer using Augmented Reality technology.
+            \n Simply point your smartphone camera at a control and click on the pop-up to access information.
+        </item>
+        <item>
+            Information on warning lights that may light up in the combination meter of your vehicle is made available to you at the touch of a button.
+            \n  Offering quick, simple, and easy access to all the information you need.
+        </item>
+        <item>
+            Access an electronic version of your Quick Reference Guide to discover all the features of your Nissan.
+            \n  Important information about tyres, engines, warranty, etc. is also provided.
+        </item>
+    </string-array>
+
+    <string name="all">All</string>
+    <string name="tyre_information">Tyre Information</string>
+    <string name="engine_compartment">Engine Compartment</string>
+    <string name="warranty">Warranty</string>
+
+    <string name="registered_country_name">In which country is your vehicle registered?</string>
+    <string name="telephone_number_for">Telephone numbers for</string>
+    <string name="national">National :</string>
+    <string name="international">International :</string>
+
+
+    <string-array name="country_for_call_array">
+        <item>Austria</item>
+        <item>Belgium</item>
+        <item>Czech Republic</item>
+        <item>Denmark</item>
+        <item>Estonia</item>
+        <item>Finland</item>
+        <item>France</item>
+        <item>Germany</item>
+        <item>Greece</item>
+        <item>Hungary</item>
+        <item>Italy</item>
+        <item>Latvia</item>
+        <item>Lithuania</item>
+        <item>Netherlands</item>
+        <item>Norway</item>
+        <item>Poland</item>
+        <item>Portugal</item>
+        <item>Slovakia</item>
+        <item>Spain</item>
+        <item>Sweden</item>
+        <item>Switzerland</item>
+        <item>United Kingdom</item>
+    </string-array>
+
+    <string-array name="nissan_assistance_array">
+        <item>Nissan Assistance Guide</item>
+        <item>Call Nissan Assistance</item>
+    </string-array>
+
+    <string name="update_msg">You have a update. Do you want to download it?</string>
+    <string name="register_push_dialog">"Registering your device on server.."</string>
+
+
+    <string name="no_content_found_url">"No content found."</string>
+    <string name="confirmation_failed">"Confirmation send error."</string>
+    <string name="device_reg_push">"Without registration you cannot download car."</string>
+    <string name="unable_to_update">"Unable to update content, Please try again."</string>
+
+    <string name="recent_searches">"Recent Searches"</string>
+    <string name="no_content_found">"No Results"</string>
+    <string name="search_box_hint">Search</string>
+
+    <string name="data_syncing">Data Syncing...</string>
+    <string name="start_download">Starting Download...</string>
+    <string name="start_car_delete">Starting Delete...</string>
+
+    <string name="search_delete_alert">Are you sure you want to delete all the searches ?</string>
+    <string name="search_delete_loader_message">Deleting your local searches...</string>
+    <string name="clear">CLEAR</string>
+    <string name="search_clear_success_message_toast">Successfully cleared your searches.</string>
+
+    <string name="rate_our_app">Rate This App</string>
+    <string name="rate_our_app_title">Rate My App</string>
+
+    <string name="great_not_great_text">How is your experience so far?</string>
+    <string name="great">Great</string>
+    <string name="not_great">Not Great</string>
+
+    <string name="rate_our_app_sub_title">Good to hear. Would you please take a minute to rate our app?</string>
+    <string name="rate_no_thanks">No Thanks</string>
+    <string name="rate_ask_me_later">Ask Me Later</string>
+    <string name="rate_our_app_yes">Yes, rate the app</string>
+
+    <string name="feedback_text">Please send us directly your feedback. Your opinion is truly valuable for us.</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="sending_feedback">Sending feedback...</string>
+    <string name="feedback_toast">Thanks for your feedback</string>
+
+    <string name="feedback">Feedback</string>
+    <string name="send_feedback_title">Title</string>
+    <string name="send_feedback_description">Description</string>
+    <string name="send_feedback_button">Submit Feedback</string>
+
+    <string name="downloaded_car">Downloaded Car</string>
+    <string name="previous_car">Previous Car</string>
+    <string name="available_for_download_car">Available for Download</string>
+
+    <string name="failed_to_connect_server">Failed to connect to server</string>
+
+    <string name="new_nissan_connect">New NissanConnect</string>
+    <string name="update_your_map">Update your map</string>
+    <string name="discover_your_vehicle">ATKLĀJIET, KĀDAS TEHNOLOĢIJAS IR JŪSU AUTOMAŠĪNĀ</string>
+    <string name="updating_map_data">Updating map data</string>
+    <string name="web_view_call_nissan_link_popup">Have you already consulted the support page and followed the steps?</string>
+    <string name="attention">Attention!</string>
+    <string name="internet_connection_interruption">Internet connection interrupted, Please try again later.</string>
+    <string name="download">Download!</string>
+    <string name="delete">Delete!</string>
+    <string name="loading">loading...</string>
+    <string name="combimeter_is_the_main">Combimeter is the main button I\'m the only thing you would want it</string>
+    <string name="pdf_open">PDF Open</string>
+
+</resources>
