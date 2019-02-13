@@ -930,15 +930,11 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         txtViewHeader.setTypeface(null, Typeface.BOLD);
         txtViewTitle.setTypeface(null, Typeface.BOLD);
         String exitDialogueText = NissanApp.getInstance().getAlertMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.CONFIRM_EXIT_MESSAGE);
-        Log.e("exitDialogue","___________" + exitDialogueText);
         txtViewTitle.setText(exitDialogueText == null || exitDialogueText.isEmpty() ? resources.getString(R.string.exit_alert) : exitDialogueText);
 
         //TODO
         String okText = NissanApp.getInstance().getGlobalMessage(this).getOk();
         String cancelText = NissanApp.getInstance().getGlobalMessage(this).getCancel();
-
-        Log.e("okText","___________" + okText);
-        Log.e("cancelText","___________" + cancelText);
 
         Button btnNo = (Button) dialog.findViewById(R.id.btn_cancel);
 //        btnNo.setText(resources.getString(R.string.button_NO));

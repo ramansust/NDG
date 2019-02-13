@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -48,30 +49,14 @@
                 android:layout_height="match_parent"
                 android:visibility="gone">
 
-                <TextView
-                    android:id="@+id/txt_ar"
+                <ImageView
+                    android:id="@+id/simple_drawee_view_ar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_left"
                     android:layout_marginRight="@dimen/margin_left"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:background="@color/white"
-                    android:padding="@dimen/margin_back"
-                    android:textColor="@color/orange" />
-
-                <!--                <TextView
-                                    android:id="@+id/txt_explore"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignLeft="@+id/txt_ar"
-                                    android:layout_below="@+id/txt_ar"
-                                    android:layout_marginRight="@dimen/margin_left"
-                                    android:background="@color/black"
-                                    android:padding="@dimen/margin_back"
-                                    android:text="@string/explore_your_car"
-                                    android:textAppearance="?android:attr/textAppearanceLarge"
-                                    android:textColor="@color/white"
-                                    android:textStyle="bold" />-->
+                    android:padding="@dimen/margin_back" />
 
                 <Button
                     android:id="@+id/btn_ar"
@@ -104,17 +89,14 @@
                         android:layout_alignParentTop="true"
                         android:background="@drawable/explore_micra_new" />
 
-                    <TextView
-                        android:id="@+id/txt_blind_spot_ar"
+                    <ImageView
+                        android:id="@+id/simple_drawee_view_blind_spot_ar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin_left"
                         android:layout_marginStart="@dimen/margin_left"
                         android:layout_marginEnd="@dimen/margin_left"
-                        android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:paddingLeft="@dimen/margin_back"
-                        android:paddingRight="@dimen/margin_back"
-                        android:textColor="@color/orange" />
+                        android:layout_marginTop="@dimen/activity_vertical_margin" />
 
                 </RelativeLayout>
 

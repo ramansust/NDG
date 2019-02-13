@@ -23,8 +23,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/micra_map_2_en"
             android:paddingLeft="@dimen/margin_back"
-            android:paddingRight="@dimen/margin_back"
-            android:textColor="@color/orange" />
+            android:paddingRight="@dimen/margin_back" />
 
     </RelativeLayout>
 

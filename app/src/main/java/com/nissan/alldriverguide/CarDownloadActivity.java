@@ -119,7 +119,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
             "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "Nissan X-TRAIL",
             "New Nissan LEAF", "New Nissan X-TRAIL RUS", "New Nissan QASHQAI RUS"};
-    private int[] indices = { 1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11 };
+    private int[] indices = {1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11};
     private int[] previousCarArray = {1, 2, 4, 5, 7, 9};
 //    private int[] previousCarArray = {1, 2, 7};
 
@@ -211,56 +211,74 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         }
         mLastClickTime = SystemClock.elapsedRealtime();
 
+
+
+/*
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestStoragePermission(position, parent);
+        } else {
+            goForNormalOperation(position, parent);
+        }
+*/
+
+        goForNormalOperation(position, parent);
         Logger.error("push_sp_status", "___________" + new PreferenceUtil(context).getPushRegistrationStatus());
 
-        if (!new PreferenceUtil(context).getPushRegistrationStatus()) {
+/*
+        if (preferenceUtil.getIsFirstTime()) {
+            if (!new PreferenceUtil(context).getPushRegistrationStatus()) {
 
-            if (DetectConnection.checkInternetConnection(context)) {
+                if (DetectConnection.checkInternetConnection(context)) {
 
-                final Dialog dialog = new DialogController(activity).pushRegistrationDialog();
+                    final Dialog dialog = new DialogController(activity).pushRegistrationDialog();
 
-                TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-                String pushTitle = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.REGISTER_PUSH_MESSAGE);
-                txtViewTitle.setText(pushTitle.isEmpty() ? getResources().getString(R.string.register_push) : pushTitle);
+                    TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+                    String pushTitle = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.REGISTER_PUSH_MESSAGE);
+                    txtViewTitle.setText(pushTitle.isEmpty() ? getResources().getString(R.string.register_push) : pushTitle);
 
-                //TODO
-                String okText = NissanApp.getInstance().getGlobalMessage(this).getOk();
-                String cancelText = NissanApp.getInstance().getGlobalMessage(this).getCancel();
+                    //TODO
+                    String okText = NissanApp.getInstance().getGlobalMessage(this).getOk();
+                    String cancelText = NissanApp.getInstance().getGlobalMessage(this).getCancel();
 
-                Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
-                Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+                    Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
+                    Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
 
-                btnOk.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
-                btnCancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
+                    btnOk.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
+                    btnCancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
 
-                btnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                        Toast.makeText(context, "Without registration you cannot download car", Toast.LENGTH_LONG).show();
-                    }
-                });
+                    btnCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            Toast.makeText(context, "Without registration you cannot download car", Toast.LENGTH_LONG).show();
+                        }
+                    });
 
-                btnOk.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                        progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.register_push_dialog));
-                        registerForPush(position, parent);
-                    }
-                });
-                dialog.show();
+                    btnOk.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.register_push_dialog));
+                            registerForPush(position, parent);
+                        }
+                    });
+                    dialog.show();
 
+
+                } else {
+
+                    goForNormalOperation(position, parent);
+
+                }
 
             } else {
-
-                goForNormalOperation(position, parent);
-
+                //goForNormalOperation(position, parent);
             }
 
         } else {
             goForNormalOperation(position, parent);
         }
+*/
 
     }
 
@@ -341,13 +359,15 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                         progressDialog.dismiss();
                     Logger.error("Device registration Successful", "________________________________" + "refresh token");
                     new PreferenceUtil(getApplicationContext()).setPushRegistrationStatus(true);
-                    goForNormalOperation(position, parent);
+//                    goForNormalOperation(position, parent);
 
+/*
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         requestStoragePermission(position, parent);
                     } else {
                         goForNormalOperation(position, parent);
                     }
+*/
 
                 }
             }
@@ -453,7 +473,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 btnRUS.setAlpha(0.2f);
                 btnRUS.setEnabled(false);
             }
-        }  else if (carType == 12) {//click for eur/rus by rohan
+        } else if (carType == 12) {//click for eur/rus by rohan
             if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType)) && commonDao.getStatus(getBaseContext(), carType) == 1) {
                 btnEUR.setAlpha(0.2f);
                 btnEUR.setEnabled(false);
@@ -1108,8 +1128,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             NissanApp.getInstance().setCarAllList(carInfoArrayList);
 
 
-
-
             // actually this looping and logic determine for section header
             for (int i = 0; i < NissanApp.getInstance().getCarList().size(); i++) {
                 CarInfo info = (CarInfo) NissanApp.getInstance().getCarList().get(i);
@@ -1190,8 +1208,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 */
 
 
-
-
             if (NissanApp.getInstance().getCarList() != null && adapter == null) {
 
                 adapter = new CarDownloadAdapter(getApplicationContext(), getList, new CarDownloadAdapter.OnItemClickListener() {
@@ -1228,8 +1244,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         TextView txt_header = dialog.findViewById(R.id.txt_header);
         txt_header.setText(activity.getResources().getString(R.string.delete));
 
-            String deleteMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DELETE_MESSAGE);
-            txtViewTitle.setText(deleteMsg == null || deleteMsg.isEmpty() ? resources.getString(R.string.alert_msg23) : deleteMsg);
+        String deleteMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DELETE_MESSAGE);
+        txtViewTitle.setText(deleteMsg == null || deleteMsg.isEmpty() ? resources.getString(R.string.alert_msg23) : deleteMsg);
 
 
         //TODO
@@ -1372,7 +1388,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
                         boolean euroAvailable = false;
 
-                        for (int i = 0; i <getList.size(); i++) {
+                        for (int i = 0; i < getList.size(); i++) {
                             if (getList.get(i).getClass() == CarInfo.class) {
                                 CarInfo info = ((CarInfo) getList.get(i));
                                 if (info.getId() == 13 && info.getStatus().equals("0")) {
@@ -1381,7 +1397,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                             }
                         }
 
-                        for (int i = 0; i <getList.size(); i++) {
+                        for (int i = 0; i < getList.size(); i++) {
                             if (getList.get(i).getClass() == CarInfo.class) {
                                 CarInfo info = ((CarInfo) getList.get(i));
                                 if (euroAvailable) {
@@ -1467,7 +1483,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             }
         }
 
-        if (xtrailEur && xtrailRus){
+        if (xtrailEur && xtrailRus) {
             getList.remove(xtrailRusInfo);
         }
 
