@@ -20,7 +20,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,8 +94,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private Resources resources;
     private DisplayMetrics metrics;
-    private TextView tvNoContent, tvPageTitle, textViewMap, textViewMap2;
-    private ImageView simple_drawee_view_explore, simple_drawee_view_ar;
+    private TextView tvNoContent, tvPageTitle, textViewMap2;
+    private ImageView simple_drawee_view_explore, simple_drawee_view_ar, imageViewMap;
     private ProgressBar progressBar;
     private String sharedpref_key;
     private ArrayList<ExploreTabVideoModel> videoList = null;
@@ -112,7 +111,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private ImageView ivRight, ivLeft;
     private PreferenceUtil preferenceUtil;
     private ProgressDialog progressDialog = null;
-    private int width = 200, height = 62;
+    private int width = 250, height = 78;
 
 
     /**
@@ -660,46 +659,46 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private void mapTextImage(String lang) {
         if (Values.carType == 11 || Values.carType == 12) {
             if (lang.equalsIgnoreCase("en")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_en);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_en);
             } else if (lang.equalsIgnoreCase("de")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_de);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_de);
             } else if (lang.equalsIgnoreCase("ru")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_ru);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_ru);
             } else if (lang.equalsIgnoreCase("sv")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_sv);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_sv);
             } else if (lang.equalsIgnoreCase("es")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_es);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_es);
             } else if (lang.equalsIgnoreCase("nl")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_nl);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_nl);
             } else if (lang.equalsIgnoreCase("no")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_no);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_no);
             } else if (lang.equalsIgnoreCase("fr")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_fr);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_fr);
             } else if (lang.equalsIgnoreCase("it")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_it);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_it);
             } else if (lang.equalsIgnoreCase("pl")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_pl);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_pl);
             } else if (lang.equalsIgnoreCase("fi")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_fi);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_fi);
             } else if (lang.equalsIgnoreCase("pt")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_pt);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_pt);
             } else if (lang.equalsIgnoreCase("da")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_da);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_da);
             } else if (lang.equalsIgnoreCase("cs")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_cs);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_cs);
             } else if (lang.equalsIgnoreCase("hu")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_hu);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_hu);
             } else if (lang.equalsIgnoreCase("et")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_et);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_et);
             }  else if (lang.equalsIgnoreCase("lv")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_lv);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_lv);
             } else if (lang.equalsIgnoreCase("lt")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_lt);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_lt);
             } else if (lang.equalsIgnoreCase("sk")) {
-                textViewMap.setBackgroundResource(R.drawable.micra_map_sk);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_sk);
             } else {
                 // default english
-                textViewMap.setBackgroundResource(R.drawable.micra_map_en);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_en);
             }
         }
     }
@@ -738,7 +737,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 textViewMap2.setBackgroundResource(R.drawable.qashqaimc_map_hu);
             } else {
                 // default english
-                textViewMap.setBackgroundResource(R.drawable.micra_map_en);
+                imageViewMap.setBackgroundResource(R.drawable.micra_map_en);
             }
         }
     }
@@ -795,7 +794,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_1,
                             collection, false);
 
-                    textViewMap = (TextView) layout.findViewById(R.id.txt_map);
+                    imageViewMap = (ImageView) layout.findViewById(R.id.txt_map);
                     mapView = (LinearLayout) layout.findViewById(R.id.map_view);
                     if (Values.carType == 12) {
                         Uri uri = new Uri.Builder()
@@ -831,7 +830,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_2,
                             collection, false);
 
-                    textViewMap2 = (TextView) layout.findViewById(R.id.txt_map);
+//                    textViewMap2 = (ImageView) layout.findViewById(R.id.txt_map);
 
                     Logger.error("short_code", "______" + preferenceUtil.getSelectedLang());
                     int drawable = mContext.getResources().getIdentifier("micra_map_2_" + preferenceUtil.getSelectedLang().toLowerCase(), "drawable", getActivity().getPackageName());
