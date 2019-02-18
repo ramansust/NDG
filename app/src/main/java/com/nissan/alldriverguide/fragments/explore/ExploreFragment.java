@@ -7,6 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,7 +36,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.downloader.Error;
 import com.downloader.OnCancelListener;
 import com.downloader.OnDownloadListener;
@@ -94,8 +98,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private Resources resources;
     private DisplayMetrics metrics;
-    private TextView tvNoContent, tvPageTitle, textViewMap2;
-    private ImageView simple_drawee_view_explore, simple_drawee_view_ar, imageViewMap;
+    private TextView tvNoContent, tvPageTitle, textViewMap2, simple_drawee_view_explore, simple_drawee_view_ar;
+    private ImageView imageViewMap;
     private ProgressBar progressBar;
     private String sharedpref_key;
     private ArrayList<ExploreTabVideoModel> videoList = null;
@@ -111,7 +115,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private ImageView ivRight, ivLeft;
     private PreferenceUtil preferenceUtil;
     private ProgressDialog progressDialog = null;
-    private int width = 250, height = 78;
+    private int width = 250, height = 50;
 
 
     /**
@@ -287,7 +291,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 Logger.error("header_text", "_________" + header_text);
 
-//                simple_drawee_view_explore.setImageURI(Uri.parse(header_text));
+                check_density();
+
 
 /*
                 SpannableString str = new SpannableString(mContext.getResources().getString(R.string.combimeter_is_the_main));
@@ -295,7 +300,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 txtViewExplore.setText(str);
 */
 
-/*
                 Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
@@ -306,9 +310,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     }
 
                 });
-*/
 
-                Glide.with(this).load(header_text).apply(new RequestOptions().override(convertToPX(width), convertToPX(height))).into(simple_drawee_view_explore);
+//                Glide.with(this).load(header_text).apply(new RequestOptions().override(convertToPX(width), convertToPX(height))).into(simple_drawee_view_explore);
 
                 Collections.sort(videoList, new Comparator<ExploreTabVideoModel>() {
                     @Override
@@ -334,32 +337,30 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
             check_density();
 
-            Glide.with(this).load(header_text).apply(new RequestOptions().override(convertToPX(width), convertToPX(height))).into(simple_drawee_view_ar);
+//            Glide.with(this).load(header_text).apply(new RequestOptions().override(convertToPX(width), convertToPX(height))).into(simple_drawee_view_ar);
 
-/*
-            .into(new SimpleTarget<Bitmap>() {
-                @Override
-                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        simple_drawee_view_ar.setBackground(drawable);
+            Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
+
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            simple_drawee_view_ar.setBackground(drawable);
+                        }
                     }
-                }
+
 
 
 
             });
-*/
 
-//            simple_drawee_view_ar.setImageURI(Uri.parse(header_text));
 
 //            mapView.setVisibility(View.GONE);
             relativeAR.setVisibility(View.VISIBLE);
             relativeBlindSpot.setVisibility(View.GONE);
         }
 
-
-/*
+        check_density();
         Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
@@ -370,11 +371,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             }
 
         });
-*/
 
-        Glide.with(this).load(header_text).apply(new RequestOptions().override(convertToPX(width), convertToPX(height))).into(simple_drawee_view_explore);
+//        Glide.with(this).load(header_text).apply(new RequestOptions().override(convertToPX(width), convertToPX(height))).into(simple_drawee_view_explore);
 
-//        simple_drawee_view_explore.setImageURI(Uri.parse(header_text));
 
         if (Values.carType == 11 || Values.carType == 12) {
             rlMapView.setVisibility(View.VISIBLE);
@@ -405,8 +404,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         mContext = getActivity();
         preferenceUtil = new PreferenceUtil(mContext);
-        simple_drawee_view_explore = (ImageView) view.findViewById(R.id.simple_drawee_view_blind_spot_ar);
-        simple_drawee_view_ar = (ImageView) view.findViewById(R.id.simple_drawee_view_ar);
+        simple_drawee_view_explore = (TextView) view.findViewById(R.id.simple_drawee_view_blind_spot_ar);
+        simple_drawee_view_ar = (TextView) view.findViewById(R.id.simple_drawee_view_ar);
 
         tvPageTitle = (TextView) view.findViewById(R.id.txt_title_explore);
         relativeAR = (RelativeLayout) view.findViewById(R.id.relative_ar);

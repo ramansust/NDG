@@ -211,74 +211,54 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         }
         mLastClickTime = SystemClock.elapsedRealtime();
 
-
-
-/*
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestStoragePermission(position, parent);
-        } else {
-            goForNormalOperation(position, parent);
-        }
-*/
-
-        goForNormalOperation(position, parent);
         Logger.error("push_sp_status", "___________" + new PreferenceUtil(context).getPushRegistrationStatus());
 
-/*
-        if (preferenceUtil.getIsFirstTime()) {
-            if (!new PreferenceUtil(context).getPushRegistrationStatus()) {
+        if (!new PreferenceUtil(context).getPushRegistrationStatus()) {
 
-                if (DetectConnection.checkInternetConnection(context)) {
+            if (DetectConnection.checkInternetConnection(context)) {
 
-                    final Dialog dialog = new DialogController(activity).pushRegistrationDialog();
+                final Dialog dialog = new DialogController(activity).pushRegistrationDialog();
 
-                    TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-                    String pushTitle = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.REGISTER_PUSH_MESSAGE);
-                    txtViewTitle.setText(pushTitle.isEmpty() ? getResources().getString(R.string.register_push) : pushTitle);
+                TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+                String pushTitle = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.REGISTER_PUSH_MESSAGE);
+                txtViewTitle.setText(pushTitle.isEmpty() ? getResources().getString(R.string.register_push) : pushTitle);
 
-                    //TODO
-                    String okText = NissanApp.getInstance().getGlobalMessage(this).getOk();
-                    String cancelText = NissanApp.getInstance().getGlobalMessage(this).getCancel();
+                //TODO
+                String okText = NissanApp.getInstance().getGlobalMessage(this).getOk();
+                String cancelText = NissanApp.getInstance().getGlobalMessage(this).getCancel();
 
-                    Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
-                    Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+                Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
+                Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
 
-                    btnOk.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
-                    btnCancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
+                btnOk.setText(okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
+                btnCancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
 
-                    btnCancel.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                            Toast.makeText(context, "Without registration you cannot download car", Toast.LENGTH_LONG).show();
-                        }
-                    });
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        Toast.makeText(context, "Without registration you cannot download car", Toast.LENGTH_LONG).show();
+                    }
+                });
 
-                    btnOk.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                            progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.register_push_dialog));
-                            registerForPush(position, parent);
-                        }
-                    });
-                    dialog.show();
+                btnOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.register_push_dialog));
+                        registerForPush(position, parent);
+                    }
+                });
+                dialog.show();
 
-
-                } else {
-
-                    goForNormalOperation(position, parent);
-
-                }
 
             } else {
-                //goForNormalOperation(position, parent);
+                goForNormalOperation(position, parent);
             }
 
         } else {
             goForNormalOperation(position, parent);
         }
-*/
 
     }
 
