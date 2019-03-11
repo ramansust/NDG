@@ -41,5 +41,6 @@
     <color name="tab_color">#7E7E7E</color>
 
     <color name="activated_color">#aaa</color>
+    <color name="red">#ff0000</color>
 
 </resources>

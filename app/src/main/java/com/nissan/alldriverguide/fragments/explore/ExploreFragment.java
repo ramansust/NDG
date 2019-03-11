@@ -7,9 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +20,8 @@ import android.support.v4.content.FileProvider;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,9 +35,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.downloader.Error;
 import com.downloader.OnCancelListener;
 import com.downloader.OnDownloadListener;
@@ -62,6 +59,7 @@ import com.nissan.alldriverguide.VideoPlayerActivity;
 import com.nissan.alldriverguide.adapter.GridViewAdapter;
 import com.nissan.alldriverguide.controller.ExploreTabContentController;
 import com.nissan.alldriverguide.customviews.DialogController;
+import com.nissan.alldriverguide.customviews.PaddingBackgroundColorSpan;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.assistance.DetailsFragment;
@@ -98,7 +96,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private Resources resources;
     private DisplayMetrics metrics;
-    private TextView tvNoContent, tvPageTitle, textViewMap2, simple_drawee_view_explore, simple_drawee_view_ar;
+    private TextView tvNoContent, tvPageTitle, textViewMap2, tvAugmentedReality, tvExploreYourCar, simple_drawee_view_ar;
     private ImageView imageViewMap;
     private ProgressBar progressBar;
     private String sharedpref_key;
@@ -115,7 +113,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private ImageView ivRight, ivLeft;
     private PreferenceUtil preferenceUtil;
     private ProgressDialog progressDialog = null;
-    private int width = 250, height = 50;
+    private Typeface typefaceRegular = null, typefaceBold = null;;
 
 
     /**
@@ -293,25 +291,31 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 check_density();
 
+                setTextToViews(tvAugmentedReality, resources.getString(R.string.augmented_reality), R.color.white);
+                setTextToViews(tvExploreYourCar, resources.getString(R.string.explore_your_car), R.color.black);
+
+
+
+
+
+
+
+
+
 
 /*
-                SpannableString str = new SpannableString(mContext.getResources().getString(R.string.combimeter_is_the_main));
-                str.setSpan(new BackgroundColorSpan(Color.YELLOW), 0, str.length(), 0);
-                txtViewExplore.setText(str);
-*/
-
                 Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                         Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                            simple_drawee_view_explore.setBackground(drawable);
+                            tvAugmentedReality.setBackground(drawable);
                         }
                     }
 
                 });
+*/
 
-//                Glide.with(this).load(header_text).apply(new RequestOptions().override(convertToPX(width), convertToPX(height))).into(simple_drawee_view_explore);
 
                 Collections.sort(videoList, new Comparator<ExploreTabVideoModel>() {
                     @Override
@@ -337,8 +341,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
             check_density();
 
-//            Glide.with(this).load(header_text).apply(new RequestOptions().override(convertToPX(width), convertToPX(height))).into(simple_drawee_view_ar);
 
+/*
             Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
 
                     @Override
@@ -353,26 +357,15 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
 
             });
+*/
 
 
-//            mapView.setVisibility(View.GONE);
             relativeAR.setVisibility(View.VISIBLE);
             relativeBlindSpot.setVisibility(View.GONE);
         }
 
         check_density();
-        Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    simple_drawee_view_explore.setBackground(drawable);
-                }
-            }
 
-        });
-
-//        Glide.with(this).load(header_text).apply(new RequestOptions().override(convertToPX(width), convertToPX(height))).into(simple_drawee_view_explore);
 
 
         if (Values.carType == 11 || Values.carType == 12) {
@@ -380,6 +373,19 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         } else {
             rlMapView.setVisibility(View.GONE);
         }
+    }
+
+    private void setTextToViews(TextView textView, String text, int backgroundColor) {
+        int padding = 20; // in pixels
+        textView.setShadowLayer(padding /* radius */, 0, 0, 0 /* transparent */);
+        textView.setPadding(padding, 0, padding, 0);
+
+        Spannable spannable = new SpannableString(text);
+        spannable.setSpan(new PaddingBackgroundColorSpan(
+                getResources().getColor(backgroundColor),
+                padding
+        ), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(spannable);
     }
 
     /**
@@ -404,7 +410,13 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         mContext = getActivity();
         preferenceUtil = new PreferenceUtil(mContext);
-        simple_drawee_view_explore = (TextView) view.findViewById(R.id.simple_drawee_view_blind_spot_ar);
+        typefaceBold = Typeface.createFromAsset(mContext.getAssets(),  "font/Nissan Brand Bold.otf");
+        typefaceRegular = Typeface.createFromAsset(mContext.getAssets(),  "font/Nissan Brand Regular.otf");
+
+        tvAugmentedReality = (TextView) view.findViewById(R.id.tvAugmentedReality);
+        tvAugmentedReality.setTypeface(typefaceRegular);
+        tvExploreYourCar = (TextView) view.findViewById(R.id.tvExploreYourCar);
+        tvExploreYourCar.setTypeface(typefaceBold);
         simple_drawee_view_ar = (TextView) view.findViewById(R.id.simple_drawee_view_ar);
 
         tvPageTitle = (TextView) view.findViewById(R.id.txt_title_explore);
@@ -477,18 +489,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 viewPager.setCurrentItem(getItem(-1), true);
 
-/*
-                if (viewPager.getCurrentItem() == 0) {
-                    llLeftArrow.setVisibility(View.GONE);
-                    llRightArrow.setVisibility(View.VISIBLE);
-                } else if (viewPager.getCurrentItem() == 1) {
-                    llLeftArrow.setVisibility(View.VISIBLE);
-                    llRightArrow.setVisibility(View.VISIBLE);
-                } else {
-                    llLeftArrow.setVisibility(View.VISIBLE);
-                    llRightArrow.setVisibility(View.GONE);
-                }
-*/
 
                 if (viewPager.getCurrentItem() == 0) {
                     llLeftArrow.setVisibility(View.GONE);
@@ -504,19 +504,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             case R.id.ivRightArrow:
 
                 viewPager.setCurrentItem(getItem(+1), true);
-
-/*
-                if (viewPager.getCurrentItem() == 0) {
-                    llLeftArrow.setVisibility(View.GONE);
-                    llRightArrow.setVisibility(View.VISIBLE);
-                } else if (viewPager.getCurrentItem() == 1) {
-                    llLeftArrow.setVisibility(View.VISIBLE);
-                    llRightArrow.setVisibility(View.VISIBLE);
-                } else {
-                    llLeftArrow.setVisibility(View.VISIBLE);
-                    llRightArrow.setVisibility(View.GONE);
-                }
-*/
 
                 if (viewPager.getCurrentItem() == 0) {
                     llLeftArrow.setVisibility(View.GONE);
