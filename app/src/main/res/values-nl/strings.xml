@@ -274,6 +274,8 @@ Zie het volgende voorbeeld:</string>
     <string name="delete">Delete!</string>
     <string name="loading">bezig met laden...</string>
     <string name="download">Download!</string>
+    <string name="nissan_door_to_door_nav_text">Nissan Door-To-Door Navigation App</string>
+    <string name="set_up_guide_text">Set Up Guide</string>
 
 </resources>
 

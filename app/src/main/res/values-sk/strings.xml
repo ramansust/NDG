@@ -266,8 +266,10 @@
 
     <string name="failed_to_connect_server">Failed to connect to server</string>
 
-    <string name="new_nissan_connect">New NissanConnect</string>
-    <string name="update_your_map">Update your map</string>
+    <string name="new_nissan_connect">NOVÝ NISSAN CONNECT</string>
+    <string name="update_your_map">AKTUALIZUJTE SI MAPU</string>
+    <string name="nissan_door_to_door_nav_text">APLIKÁCIA NAVIGÁCIE NISSAN DOOR-TO-DOOR (OD DVERÍ K DVERÁM)</string>
+    <string name="set_up_guide_text">SPRIEVODCA NASTAVENÍM</string>
     <string name="discover_your_vehicle">OBJAVTE TECHNOLÓGIU SVOJHO VOZIDLA</string>
     <string name="updating_map_data">Updating map data</string>
     <string name="web_view_call_nissan_link_popup">Have you already consulted the support page and followed the steps?</string>

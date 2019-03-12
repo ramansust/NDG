@@ -96,8 +96,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private Resources resources;
     private DisplayMetrics metrics;
-    private TextView tvNoContent, tvPageTitle, textViewMap2, tvAugmentedReality, tvExploreYourCar, simple_drawee_view_ar;
-    private ImageView imageViewMap;
+    private TextView tvNoContent, tvPageTitle, textViewMap2, tvAugmentedReality, tvExploreYourCar,
+            tvAugmentedRealityOldCar, tvExploreYourCarOldCar;
+    private TextView textViewNissanConnect, textViewUpdateYourMap, tvNissanDoorToDoor, tvSetUpGuide;
     private ProgressBar progressBar;
     private String sharedpref_key;
     private ArrayList<ExploreTabVideoModel> videoList = null;
@@ -291,8 +292,11 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 check_density();
 
-                setTextToViews(tvAugmentedReality, resources.getString(R.string.augmented_reality), R.color.white);
-                setTextToViews(tvExploreYourCar, resources.getString(R.string.explore_your_car), R.color.black);
+                String augmentedRealityText = NissanApp.getInstance().getAlertMessage(mContext,new PreferenceUtil(getActivity()).getSelectedLang(), Values.AUGMENTED_REALITY);
+                String exploreYourCarText = NissanApp.getInstance().getAlertMessage(mContext,new PreferenceUtil(getActivity()).getSelectedLang(), Values.EXPLORE_YOUR_CAR);
+
+                setTextToViews(tvAugmentedReality, augmentedRealityText == null || augmentedRealityText.isEmpty() ? resources.getString(R.string.augmented_reality) : augmentedRealityText, R.color.white);
+                setTextToViews(tvExploreYourCar, exploreYourCarText == null || exploreYourCarText.isEmpty() ? resources.getString(R.string.explore_your_car) : exploreYourCarText, R.color.black);
 
 
 
@@ -341,7 +345,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
             check_density();
 
-
+            setTextToViews(tvAugmentedRealityOldCar, resources.getString(R.string.augmented_reality), R.color.white);
+            setTextToViews(tvExploreYourCarOldCar, resources.getString(R.string.explore_your_car), R.color.black);
 /*
             Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
 
@@ -417,7 +422,10 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         tvAugmentedReality.setTypeface(typefaceRegular);
         tvExploreYourCar = (TextView) view.findViewById(R.id.tvExploreYourCar);
         tvExploreYourCar.setTypeface(typefaceBold);
-        simple_drawee_view_ar = (TextView) view.findViewById(R.id.simple_drawee_view_ar);
+        tvAugmentedRealityOldCar = (TextView) view.findViewById(R.id.tvAugmentedRealityOldCar);
+        tvAugmentedRealityOldCar.setTypeface(typefaceRegular);
+        tvExploreYourCarOldCar = (TextView) view.findViewById(R.id.tvExploreYourCarOldCar);
+        tvExploreYourCarOldCar.setTypeface(typefaceBold);
 
         tvPageTitle = (TextView) view.findViewById(R.id.txt_title_explore);
         relativeAR = (RelativeLayout) view.findViewById(R.id.relative_ar);
@@ -642,6 +650,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     }
 
+/*
     private void mapTextImage(String lang) {
         if (Values.carType == 11 || Values.carType == 12) {
             if (lang.equalsIgnoreCase("en")) {
@@ -727,6 +736,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             }
         }
     }
+*/
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -776,11 +786,15 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             ViewGroup layout = null;
 
             switch (position) {
+
                 case 0:
                     layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_1,
                             collection, false);
 
-                    imageViewMap = (ImageView) layout.findViewById(R.id.txt_map);
+                    textViewNissanConnect = (TextView) layout.findViewById(R.id.tvNewNissanConnect);
+                    textViewNissanConnect.setTypeface(typefaceRegular);
+                    textViewUpdateYourMap = (TextView) layout.findViewById(R.id.tvUpdateYourMap);
+                    textViewUpdateYourMap.setTypeface(typefaceBold);
                     mapView = (LinearLayout) layout.findViewById(R.id.map_view);
                     if (Values.carType == 12) {
                         Uri uri = new Uri.Builder()
@@ -790,7 +804,11 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                         ((SimpleDraweeView) layout.findViewById(R.id.drawee_view_map_1)).setImageURI(uri);
                     }
 
-                    mapTextImage(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
+
+                    setTextToViews(textViewNissanConnect, resources.getString(R.string.new_nissan_connect), R.color.white);
+                    setTextToViews(textViewUpdateYourMap, resources.getString(R.string.update_your_map), R.color.black);
+
+//                    mapTextImage(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
 
                     mapView.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -812,6 +830,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                         }
                     });
                     break;
+
                 case 1:
                     layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_2,
                             collection, false);
@@ -819,9 +838,15 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 //                    textViewMap2 = (ImageView) layout.findViewById(R.id.txt_map);
 
                     Logger.error("short_code", "______" + preferenceUtil.getSelectedLang());
-                    int drawable = mContext.getResources().getIdentifier("micra_map_2_" + preferenceUtil.getSelectedLang().toLowerCase(), "drawable", getActivity().getPackageName());
+//                    int drawable = mContext.getResources().getIdentifier("micra_map_2_" + preferenceUtil.getSelectedLang().toLowerCase(), "drawable", getActivity().getPackageName());
 
-                    ((ImageView) layout.findViewById(R.id.drawee_view_map_2)).setImageResource(drawable);
+                    tvNissanDoorToDoor = layout.findViewById(R.id.tvNewNissanDoorToDoor);
+                    tvSetUpGuide = layout.findViewById(R.id.tvSetupGuide);
+                    tvNissanDoorToDoor.setTypeface(typefaceRegular);
+                    tvSetUpGuide.setTypeface(typefaceBold);
+
+                    setTextToViews(tvNissanDoorToDoor, resources.getString(R.string.nissan_door_to_door_nav_text), R.color.white);
+                    setTextToViews(tvSetUpGuide, resources.getString(R.string.set_up_guide_text), R.color.black);
 
                     layout.findViewById(R.id.ivMap).setOnClickListener(new View.OnClickListener() {
                         @Override

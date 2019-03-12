@@ -279,4 +279,6 @@
     <string name="download">Download!</string>
     <string name="augmented_reality">AUGMENTED REALITY</string>
     <string name="explore_your_car">UDFORSK DIN BIL</string>
+    <string name="nissan_door_to_door_nav_text">Nissan Door-To-Door Navigation App</string>
+    <string name="set_up_guide_text">Set Up Guide</string>
 </resources>

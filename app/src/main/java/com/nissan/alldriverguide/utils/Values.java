@@ -182,6 +182,9 @@ public class Values {
     public static final String  LOAD_TEXT_TITLE = "loading_text";
     public static final String  NO_CONTENT_FOUND = "no_content_found_url";
 
+    public static final String  AUGMENTED_REALITY = "augmented_reality";
+    public static final String  EXPLORE_YOUR_CAR = "explore_your_car";
+
     public static final String  RECENT_SEARCH_ALERT = "recent_searches";
 
     //this is the keys for the global message
