@@ -266,9 +266,9 @@
 
     <string name="failed_to_connect_server">Failed to connect to server</string>
 
-    <string name="new_nissan_connect">NEW NISSAN CONNECT </string>
-    <string name="update_your_map">UPDATE YOUR MAP </string>
-    <string name="nissan_door_to_door_nav_text">NISSAN DOOR-TO-DOOR NAVIGATION APP </string>
+    <string name="new_nissan_connect">NEW NISSAN CONNECT</string>
+    <string name="update_your_map">UPDATE YOUR MAP</string>
+    <string name="nissan_door_to_door_nav_text">NISSAN DOOR-TO-DOOR NAVIGATION APP</string>
     <string name="set_up_guide_text">SET UP GUIDE</string>
     <string name="discover_your_vehicle">Discover your vehicle\'s technology</string>
     <string name="updating_map_data">Updating map data</string>

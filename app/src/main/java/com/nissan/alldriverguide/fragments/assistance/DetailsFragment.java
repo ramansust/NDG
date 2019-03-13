@@ -411,13 +411,17 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
         final Dialog dialog = new DialogController(getActivity()).langDialog();
 
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-        txtViewTitle.setText(resources.getString(R.string.web_view_call_nissan_link_popup));
+        String haveYouAlreadyText = NissanApp.getInstance().getAlertMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.HAVE_YOU_ALREADY_CONSULTED);
+        txtViewTitle.setText(haveYouAlreadyText == null || haveYouAlreadyText.isEmpty() ? resources.getString(R.string.web_view_call_nissan_link_popup) : haveYouAlreadyText);
+
+        String yesText = NissanApp.getInstance().getGlobalMessage(getActivity()).getYes();
+        String noText = NissanApp.getInstance().getGlobalMessage(getActivity()).getNo();
 
         Button btnYes = (Button) dialog.findViewById(R.id.btn_cancel);
-        btnYes.setText(resources.getString(R.string.button_YES));
+        btnYes.setText(yesText == null || yesText.isEmpty() ? resources.getString(R.string.button_YES) : yesText);
 
         Button btnNo = (Button) dialog.findViewById(R.id.btn_ok);
-        btnNo.setText(resources.getString(R.string.button_NO));
+        btnNo.setText(noText == null || noText.isEmpty() ? resources.getString(R.string.button_NO) : noText);
 
         btnNo.setOnClickListener(new View.OnClickListener() {
             @Override

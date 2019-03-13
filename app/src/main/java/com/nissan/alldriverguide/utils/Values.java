@@ -185,6 +185,14 @@ public class Values {
     public static final String  AUGMENTED_REALITY = "augmented_reality";
     public static final String  EXPLORE_YOUR_CAR = "explore_your_car";
 
+    public static final String  MAP_NISSAN_CONNECT = "map_nissan_connect";
+    public static final String  MAP_UPDATE_YOUR_MAP = "map_update_your_map";
+    public static final String  MAP_DOOR_TO_DOOR = "map_door_to_door";
+    public static final String  MAP_SET_UP_GUIDE = "map_set_up_guide";
+    public static final String  UPDATING_MAP_DATA = "updating_map_data";
+    public static final String  HAVE_YOU_ALREADY_CONSULTED = "have_you_already_consulted";
+    public static final String  DISCOVER_YOUR_VEHICLE_TECH = "discover_your_vehicle_tech";
+
     public static final String  RECENT_SEARCH_ALERT = "recent_searches";
 
     //this is the keys for the global message

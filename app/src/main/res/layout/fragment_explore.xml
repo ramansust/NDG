@@ -201,15 +201,14 @@
                         android:background="@color/colorAccent" />
 
                     <TextView
+                        android:id="@+id/tvDiscoverYourVehicle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingStart="@dimen/margin_back"
                         android:paddingEnd="@dimen/margin_back"
-                        android:text="@string/discover_your_vehicle"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <ProgressBar
