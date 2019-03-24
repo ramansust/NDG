@@ -57,7 +57,7 @@
                     android:layout_marginStart="@dimen/margin_left"
                     android:layout_marginEnd="@dimen/margin_left"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textAllCaps="true"
                     android:textColor="@color/orange" />
 
@@ -68,7 +68,7 @@
                     android:layout_marginLeft="@dimen/margin_left"
                     android:layout_marginStart="@dimen/margin_left"
                     android:layout_marginEnd="@dimen/margin_left"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textColor="@color/white"
                     android:textAllCaps="true"
                     android:layout_below="@id/tvAugmentedRealityOldCar"/>
@@ -112,7 +112,7 @@
                         android:layout_marginStart="@dimen/margin_left"
                         android:layout_marginEnd="@dimen/margin_left"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:textAllCaps="true"
                         android:textColor="@color/orange" />
 
@@ -123,7 +123,7 @@
                         android:layout_marginLeft="@dimen/margin_left"
                         android:layout_marginStart="@dimen/margin_left"
                         android:layout_marginEnd="@dimen/margin_left"
-                        android:textSize="20sp"
+                        android:textSize="22sp"
                         android:textColor="@color/white"
                         android:textAllCaps="true"
                         android:layout_below="@id/tvAugmentedReality"/>
@@ -208,7 +208,7 @@
                         android:paddingEnd="@dimen/margin_back"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="22sp" />
                 </LinearLayout>
 
                 <ProgressBar
