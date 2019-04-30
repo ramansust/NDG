@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/debug/shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/debug/shaders"/></dataSet></merger>

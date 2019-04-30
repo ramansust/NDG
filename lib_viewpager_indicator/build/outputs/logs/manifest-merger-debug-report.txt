@@ -1,37 +1,37 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:1-9:12
-INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:1-9:12
-INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:1-9:12
-INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:1-9:12
-INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:1-9:12
-INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:1-9:12
-INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:1-9:12
+ADDED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:1-9:12
+INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:1-9:12
+INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:1-9:12
+INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:1-9:12
+INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:1-9:12
+INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:1-9:12
+INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:1-9:12
 	package
-		ADDED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:4:5-37
-		INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml
-		INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml
+		ADDED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:4:5-37
+		INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml
+		INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml
 	android:versionName
-		ADDED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:6:5-32
-		INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml
-		INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml
+		ADDED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:6:5-32
+		INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml
+		INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:11-69
+		ADDED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:3:11-69
 	android:versionCode
-		ADDED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:5:5-29
-		INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml
-		INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml
+		ADDED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:5:5-29
+		INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml
+		INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml
 uses-sdk
-ADDED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:8:5-43
-INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:8:5-43
-INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:8:5-43
-INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:8:5-43
-INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:8:5-43
+ADDED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:8:5-43
+INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:8:5-43
+INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:8:5-43
+INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:8:5-43
+INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:8:5-43
 	android:targetSdkVersion
-		INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml
-		ADDED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:8:5-43
-		INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml
+		INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml
+		ADDED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:8:5-43
+		INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		ADDED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml:8:15-40
-		INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml
-		INJECTED from /media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/src/main/AndroidManifest.xml
+		ADDED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml:8:15-40
+		INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml
+		INJECTED from /Users/mobioapp/Desktop/ndg_europe-last/lib_viewpager_indicator/src/main/AndroidManifest.xml

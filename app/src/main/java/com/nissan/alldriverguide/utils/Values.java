@@ -33,6 +33,7 @@ public class Values {
     public static final String xtrail_2017 = "/xtrail2017";
     public static final String xtrail_2017_rus = "/xtrail2017rus";
     public static final String leaf_2017 = "/leaf2017";
+    public static final String leaf_2019 = "/leaf2019";
 
     public static String info = "/info_";
     public static String homepage = "/homepage_";

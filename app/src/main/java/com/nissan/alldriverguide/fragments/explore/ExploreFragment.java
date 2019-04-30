@@ -359,10 +359,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                             simple_drawee_view_ar.setBackground(drawable);
                         }
                     }
-
-
-
-
             });
 */
 
@@ -375,7 +371,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
 
 
-        if (Values.carType == 11 || Values.carType == 12) {
+        if (Values.carType == 11 || Values.carType == 12 || Values.carType == 16) {
             rlMapView.setVisibility(View.VISIBLE);
         } else {
             rlMapView.setVisibility(View.GONE);
@@ -465,11 +461,13 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         ivRight = (ImageView) view.findViewById(R.id.ivRightArrow);
         ivLeft = (ImageView) view.findViewById(R.id.ivLeftArrow);
 
-        if (Values.carType == 12) {
+
+        //commented for adding slider page on "NEW NISSAN CONNECT" viewpager for J11 MC(car type 12) : by Mostasim Billah
+        /* if (Values.carType == 12) {
             viewPager.disableScroll(true);
             llLeftArrow.setVisibility(View.GONE);
             llRightArrow.setVisibility(View.GONE);
-        }
+        }*/
 
     }
 
@@ -875,7 +873,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                                 for (int i = 0; i < videoList.size(); i++) {
 
-                                    if (videoList.get(i).getTag() == 997) {
+                                    if (videoList.get(i).getTag() == 997 // for MICRA K14 car
+                                            || videoList.get(i).getTag() == 80 // for Qashqai 2017 eur car
+                                            || videoList.get(i).getTag() == 46) { //tag 46 is added for demo purpose  Qashqai 2017 rus car : by Mostasim Billah
                                         index = i;
                                         break;
                                     }

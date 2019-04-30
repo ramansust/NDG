@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.model.CarInfo;
+import com.nissan.alldriverguide.model.parentCarList.Parent_car_list;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class CarDownloadAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     public ArrayList<Object> list;
     private CarInfo info = null;
+    private Parent_car_list parent_car_list=null;
     private Typeface typeFaceBold;
     TextView txtView_loading;
     SimpleDraweeView imageView;
@@ -78,78 +80,105 @@ public class CarDownloadAdapter extends BaseAdapter {
 
         View view = convertView;
 
-        if (list.get(position).getClass() == CarInfo.class) {
-            info = (CarInfo) list.get(position);
-            // inflate list view item layout
-            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.car_download_row, parent, false);
+        if (list.get(position).getClass() == CarInfo.class || list.get(position).getClass() == Parent_car_list.class) {
+            if (list.get(position).getClass() == CarInfo.class)
+            {
+                info = (CarInfo) list.get(position);
+                // inflate list view item layout
+                inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                view = inflater.inflate(R.layout.car_download_row, parent, false);
 
-            // initialized list view item id
-            RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.relative_car_download);
-            imageView = (SimpleDraweeView) view.findViewById(R.id.ivMainCarImage);
-            ImageView imageViewBorder = (ImageView) view.findViewById(R.id.img_view_border);
-            TextView txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
-            txtView_loading = (TextView) view.findViewById(R.id.txtView_loading);
-            ImageButton imgDeleteOrDownload = (ImageButton) view.findViewById(R.id.img_btn_delete_or_download);
-            imgDeleteOrDownload.setBackgroundResource(R.drawable.delete_selector);
+                // initialized list view item id
+                RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.relative_car_download);
+                imageView = (SimpleDraweeView) view.findViewById(R.id.ivMainCarImage);
+                ImageView imageViewBorder = (ImageView) view.findViewById(R.id.img_view_border);
+                TextView txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
+                txtView_loading = (TextView) view.findViewById(R.id.txtView_loading);
+                ImageButton imgDeleteOrDownload = (ImageButton) view.findViewById(R.id.img_btn_delete_or_download);
+                imgDeleteOrDownload.setBackgroundResource(R.drawable.delete_selector);
 
-            txtViewTitle.setTypeface(typeFaceBold);
+                txtViewTitle.setTypeface(typeFaceBold);
 
-            imgDeleteOrDownload.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onItemClick(info.getId(), position);
+                imgDeleteOrDownload.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        listener.onItemClick(info.getId(), position);
+                    }
+                });
+
+                if (!((CarInfo) list.get(position)).getStatus().equals("1")){
+                    imgDeleteOrDownload.setVisibility(View.INVISIBLE);
                 }
-            });
 
-            if (!((CarInfo) list.get(position)).getStatus().equals("1")){
-                imgDeleteOrDownload.setVisibility(View.INVISIBLE);
-            }
-
-            // here compare the status for previous section
-            if (Values.PREVIOUS_CAR.equalsIgnoreCase(info.getStatus())) {
-                // set the car images for previous section
-                imageView.setImageURI(info.getCarImg());
-                // set the previous section background colour
-                relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
-                // here actually display first car name for 4 cars that belong in previous section.
-                if (info.getId() == 1 || info.getId() == 2 || info.getId() == 4 || info.getId() == 5) {
-                    String name[] = info.getName().split(" ");
-                    txtViewTitle.setText(name[0]);
-                } else { // this for display full name for all car without 4 cars on top
-                    txtViewTitle.setText(info.getName());
-                }
-                // here compare the status for already download section
-            } else if (Values.ALREADY_DOWNLOADED.equalsIgnoreCase(info.getStatus())) {
-                // set the car images for already downloaded section
+                // here compare the status for previous section
+                if (Values.PREVIOUS_CAR.equalsIgnoreCase(info.getStatus())) {
+                    // set the car images for previous section
+                    imageView.setImageURI(info.getCarImg());
+                    // set the previous section background colour
+                    relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
+                    // here actually display first car name for 4 cars that belong in previous section.
+                    if (info.getId() == 1 || info.getId() == 2 || info.getId() == 4 || info.getId() == 5) {
+                        String name[] = info.getName().split(" ");
+                        txtViewTitle.setText(name[0]);
+                    } else { // this for display full name for all car without 4 cars on top
+                        txtViewTitle.setText(info.getName());
+                    }
+                    // here compare the status for already download section
+                } else if (Values.ALREADY_DOWNLOADED.equalsIgnoreCase(info.getStatus())) {
+                    // set the car images for already downloaded section
 //                NissanApp.getInstance().setCarImage(info.getId(), imageView);
-                imageView.setImageURI(info.getCarImg());
-                // set the already downloaded section background colour
-                relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
-                // set the car name for already downloaded car
-                txtViewTitle.setText(info.getName());
+                    imageView.setImageURI(info.getCarImg());
+                    // set the already downloaded section background colour
+                    relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
+                    // set the car name for already downloaded car
+                    txtViewTitle.setText(info.getName());
 
-            } else { // this section for available download
-                // set the car images for available downloaded section
-                imageView.setImageURI(info.getCarImg());
-                // set the available downloaded section background colour
+                } else { // this section for available download
+                    // set the car images for available downloaded section
+                    imageView.setImageURI(info.getCarImg());
+                    // set the available downloaded section background colour
+                    relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
+                    // set the car name for available downloaded car
+                    txtViewTitle.setText(info.getName());
+                    if(info.getId() == 13 || info.getId() == 15){
+                        //Set fixed name for both this car == NEW X-TRAIL  (EUR/RUS)
+                        String name[] = info.getName().split(" ");
+//                    txtViewTitle.setText(info.getName() == null || info.getName().isEmpty() ? "NEW NISSAN X-TRAIL" : name[1] + " " + name[2]);
+                        txtViewTitle.setText("NISSAN X-TRAIL");
+                    }
+                    if (info.getId() == 12 || info.getId() == 16) {
+                        txtViewTitle.setText("NISSAN QASHQAI");
+                    }
+                }
+
+                // this item layout is actually used in CarDownloadSettingsAdapter.java
+                // so here these two id need to invisible
+                imageViewBorder.setVisibility(View.INVISIBLE);
+            }else {
+                //this part is for Parent_car_list class : by MB
+                parent_car_list = (Parent_car_list) list.get(position);
+                // inflate list view item layout
+                inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                view = inflater.inflate(R.layout.car_download_row, parent, false);
+
+                // initialized list view item id
+                RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.relative_car_download);
+                imageView = (SimpleDraweeView) view.findViewById(R.id.ivMainCarImage);
+                ImageView imageViewBorder = (ImageView) view.findViewById(R.id.img_view_border);
+                TextView txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
+                txtView_loading = (TextView) view.findViewById(R.id.txtView_loading);
+                ImageButton imgDeleteOrDownload = (ImageButton) view.findViewById(R.id.img_btn_delete_or_download);
+                imgDeleteOrDownload.setBackgroundResource(R.drawable.delete_selector);
+
+                txtViewTitle.setTypeface(typeFaceBold);
+                imgDeleteOrDownload.setVisibility(View.INVISIBLE); //always invisible for parent car
+                imageView.setImageURI(parent_car_list.getCar_img());
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
                 // set the car name for available downloaded car
-                txtViewTitle.setText(info.getName());
-                if(info.getId() == 13 || info.getId() == 15){
-                    //Set fixed name for both this car == NEW X-TRAIL  (EUR/RUS)
-                    String name[] = info.getName().split(" ");
-//                    txtViewTitle.setText(info.getName() == null || info.getName().isEmpty() ? "NEW NISSAN X-TRAIL" : name[1] + " " + name[2]);
-                    txtViewTitle.setText("NISSAN X-TRAIL");
-                }
-                if (info.getId() == 12 || info.getId() == 16) {
-                    txtViewTitle.setText("NISSAN QASHQAI");
-                }
+                txtViewTitle.setText(parent_car_list.getCar_name());
+
             }
 
-            // this item layout is actually used in CarDownloadSettingsAdapter.java
-            // so here these two id need to invisible
-            imageViewBorder.setVisibility(View.INVISIBLE);
 
         } else {
             // here inflate the item header like (available for download, previous model)

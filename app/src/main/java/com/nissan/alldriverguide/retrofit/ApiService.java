@@ -1,6 +1,7 @@
 package com.nissan.alldriverguide.retrofit;
 
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.model.parentCarList.ParentCarListResponse;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
@@ -103,5 +104,16 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("get_tab_content/")
     Call<AssistanceInfo> postAssistanceContent(@Field("device_id") String device_id, @Field("language_id") String language_id, @Field("car_id") String car_id, @Field("epub_id") String epub_id, @Field("tab_id") String tab_id);
+
+
+    //Get parent car list response
+    @POST("parent_car_list/")
+    Call<ParentCarListResponse> parenCarList();
+
+    //Get child carb list with parent id
+    @FormUrlEncoded
+    @POST("car_list/")
+    Call<CarListResponse> getChildCarList(@Field("device_id") String device_id, @Field("language_id") String language_id,@Field("parent_car")String parent_car_id );
+
 
 }

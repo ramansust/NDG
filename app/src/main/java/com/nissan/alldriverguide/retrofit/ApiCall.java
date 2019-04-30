@@ -6,7 +6,9 @@ import com.nissan.alldriverguide.interfaces.InterfaceGlobalMessageResponse;
 import com.nissan.alldriverguide.interfaces.CompleteAssistanceTabContent;
 import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.interfaces.CompleteSettingTabContent;
+import com.nissan.alldriverguide.interfaces.ParentCarListCompleteAPI;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.model.parentCarList.ParentCarListResponse;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
@@ -409,6 +411,41 @@ public class ApiCall {
             public void onFailure(Call<CarListResponse> call, Throwable t) {
                 Logger.error("Error___", "_______"+t.toString());
                 completeAPI.onFailed(t.toString());
+            }
+        });
+    }
+
+    public void getParentCarList(final ParentCarListCompleteAPI parentCarListCompleteAPI)
+    {
+        ApiService api =RetrofitClient.getApiService();
+        Call<ParentCarListResponse> call = api.parenCarList();
+        call.enqueue(new Callback<ParentCarListResponse>() {
+            @Override
+            public void onResponse(Call<ParentCarListResponse> call, Response<ParentCarListResponse> response) {
+                ParentCarListResponse parentCarListResponse=response.body();
+                parentCarListCompleteAPI.onDownloaded(parentCarListResponse);
+            }
+
+            @Override
+            public void onFailure(Call<ParentCarListResponse> call, Throwable t) {
+                parentCarListCompleteAPI.onFailed(t.toString());
+            }
+        });
+    }
+    public void getChildCarList(String device_id, String language_id,String parentId,final CarListACompleteAPI carListACompleteAPI)
+    {
+        ApiService api =RetrofitClient.getApiService();
+        Call<CarListResponse> call = api.getChildCarList(device_id,language_id,parentId);
+        call.enqueue(new Callback<CarListResponse>() {
+            @Override
+            public void onResponse(Call<CarListResponse> call, Response<CarListResponse> response) {
+                CarListResponse carListResponse=response.body();
+                carListACompleteAPI.onDownloaded(carListResponse);
+            }
+
+            @Override
+            public void onFailure(Call<CarListResponse> call, Throwable t) {
+                carListACompleteAPI.onFailed(t.toString());
             }
         });
     }

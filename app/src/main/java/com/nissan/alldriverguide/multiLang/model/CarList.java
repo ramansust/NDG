@@ -49,6 +49,12 @@ public class CarList {
     @SerializedName("car_download_img_xlarge_mdpi")
     @Expose
     private String imgXLargeMdpi;
+    @SerializedName("car_model_version")
+    @Expose
+    private String car_model_version;
+    @SerializedName("parent_car_id")
+    @Expose
+    private String parent_car_id;
 
     public String getImgLdpi() {
         return imgLdpi;
@@ -152,5 +158,21 @@ public class CarList {
 
     public void setImgXLargeMdpi(String imgXLargeMdpi) {
         this.imgXLargeMdpi = imgXLargeMdpi;
+    }
+
+    public String getCar_model_version() {
+        return car_model_version;
+    }
+
+    public void setCar_model_version(String car_model_version) {
+        this.car_model_version = car_model_version;
+    }
+
+    public String getParent_car_id() {
+        return parent_car_id;
+    }
+
+    public void setParent_car_id(String parent_car_id) {
+        this.parent_car_id = parent_car_id;
     }
 }

@@ -15,6 +15,10 @@ public class CarInfo {
     private boolean isSection;
     private String carImg = "";
     private int index;
+    private String versionName;
+    private int versionCode;
+    private int parentCarId;
+    private String carModelVersion;
 
     public int getIndex() {
         return index;
@@ -48,8 +52,21 @@ public class CarInfo {
         this.versionCode = versionCode;
     }
 
-    private String versionName;
-    private int versionCode;
+    public int getParentCarId() {
+        return parentCarId;
+    }
+
+    public void setParentCarId(int parentCarId) {
+        this.parentCarId = parentCarId;
+    }
+
+    public String getCarModelVersion() {
+        return carModelVersion;
+    }
+
+    public void setCarModelVersion(String carModelVersion) {
+        this.carModelVersion = carModelVersion;
+    }
 
     public CarInfo() {
 

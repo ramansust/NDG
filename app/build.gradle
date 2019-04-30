@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
-def VUFORIA_SDK_DIR = '/home/shubha/Desktop/vuforia-sdk-android-7-2-23'
+def VUFORIA_SDK_DIR = '/Users/mobioapp/Desktop/vuforia-sdk-android-7-2-23'
 def NATIVE_LIB_DIR = 'build/lib'
-def JAR_DIR = 'build/java/Vuforia'
+def JAR_DIR = 'build/java/vuforia'
 
 android {
     compileSdkVersion 27
@@ -73,15 +73,16 @@ dependencies {
     implementation 'com.afollestad:sectioned-recyclerview:0.5.0'
     implementation 'com.xiaofeng.android:flowlayoutmanager:1.2.3.2'
 
-    implementation 'com.facebook.fresco:fresco:1.10.0'
-    implementation 'com.facebook.fresco:animated-gif:0.13.0'
-    implementation 'com.facebook.fresco:animated-webp:0.13.0'
-    implementation 'com.facebook.fresco:webpsupport:0.13.0'
-    implementation 'com.github.bumptech.glide:glide:3.5.2'
+    implementation 'com.facebook.fresco:fresco:1.13.0'
+    implementation 'com.facebook.fresco:animated-gif:1.13.0'
+    implementation 'com.facebook.fresco:animated-webp:1.13.0'
+    implementation 'com.facebook.fresco:webpsupport:1.13.0'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     // dexter runtime permissions
     implementation 'com.karumi:dexter:4.2.0'
     implementation 'com.mindorks.android:prdownloader:0.5.0'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
 
 }
 

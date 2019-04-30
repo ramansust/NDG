@@ -26,6 +26,7 @@ import com.nissan.alldriverguide.BuildConfig;
 import com.nissan.alldriverguide.MyApplication;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.customviews.DialogController;
+import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.search.tab.WarningLightFragment;
 import com.nissan.alldriverguide.model.CarInfo;
@@ -869,6 +870,9 @@ public class NissanApp {
             case 16:
                 carPath = Values.PATH + Values.qashqai_2017_rus;
                 break;
+            case 17:
+                carPath = Values.PATH + Values.leaf_2019;
+                break;
 
             default:
                 break;
@@ -946,6 +950,9 @@ public class NissanApp {
 
             case 16:
                 path = Values.qashqai_2017_rus;
+                break;
+            case 17:
+                path = Values.leaf_2019;
                 break;
 
             default:
@@ -1608,6 +1615,49 @@ public class NissanApp {
         }
 
         return 0;
+    }
+
+    public ArrayList<Object> getChildCars(int parentId)
+    {
+        ArrayList<Object> childCars=null;
+        if(carListWAP!=null)
+        {
+            childCars=new ArrayList<>();
+            for (CarList carList: carListWAP)
+            {
+                if (Integer.valueOf(carList.getParent_car_id())==parentId && carList.getCar_model_version().contains("new"))
+                {
+                    childCars.add(carList);
+                }
+            }
+        }
+        return childCars;
+    }
+    public int getCountTotalChildCarDownloaded(Context context,int parentId)
+    {
+        ArrayList<Object> childCars=new ArrayList<>();
+        CommonDao commonDao =CommonDao.getInstance();
+
+        if(carListWAP!=null)
+        {
+            for (CarList carList: carListWAP)
+            {
+                if (Integer.valueOf(carList.getParent_car_id())==parentId)
+                {
+                    CarInfo carInfo=new CarInfo() ;
+                    carInfo.setId(Integer.valueOf(carList.getId()));
+                    carInfo.setName(carList.getCarName());
+                    carInfo.setStatus(String.valueOf(commonDao.getStatus(context,Integer.valueOf(carList.getId()))));
+                    carInfo.setDateTime(NissanApp.getInstance().getDateTime());
+                    carInfo.setCarModelVersion(carList.getCar_model_version());
+                    carInfo.setCarImg(carList.getCarImg());
+                    carInfo.setParentCarId(Integer.valueOf(carList.getParent_car_id()));
+                    if (Integer.valueOf(carInfo.getStatus())==1)
+                        childCars.add(carInfo);
+                }
+            }
+        }
+        return childCars.size();
     }
 
 }

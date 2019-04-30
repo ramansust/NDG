@@ -341,6 +341,8 @@ public class CommonDao {
         return status;
     }
 
+
+
     public int getStatus(Context context, int id) {
         int status = 0;
         SQLiteDatabase db = getWritableDatabase(context, NissanDbHelper.class);
