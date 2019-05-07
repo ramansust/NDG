@@ -224,7 +224,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_ev_navi_system_left, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_2017_ev_navi_system_left.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_ev_navi_system_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -232,7 +232,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_ev_navi_system_middle, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_2017_ev_navi_system_middle.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_ev_navi_system_middle.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -240,7 +240,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_ev_navi_system_right, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_2017_ev_navi_system_right.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_ev_navi_system_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -248,7 +248,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_radio_w_navi_left, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_2017_navi_left.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_navi_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -256,7 +256,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_radio_w_navi_middle, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_2017_navi_middle.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_navi_middle.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -264,7 +264,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_radio_w_navi_right, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_2017_navi_right.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_navi_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -272,7 +272,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_radio_wo_navi_left, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_2017_radio_wo_navi_left.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_radio_wo_navi_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -280,7 +280,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_radio_wo_navi_middle, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_2017_radio_wo_navi_middle.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_radio_wo_navi_middle.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -288,7 +288,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_radio_wo_navi_right, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_2017_radio_wo_navi_right.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_radio_wo_navi_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -296,7 +296,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_nissan_connect_left, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_2017_nissan_connect_left.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_nissan_connect_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -304,7 +304,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_nissan_connect_middle, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_2017_nissan_connect_middle.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_nissan_connect_middle.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -312,7 +312,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_nissan_connect_right, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_2017_nissan_connect_right.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_nissan_connect_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -365,7 +365,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.START_STOP_IGNITION;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_power_switch, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_power_switch.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_power_switch.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -395,7 +395,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.AUTO_AC_TYPE_A;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_auto_ac_type_a, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_auto_ac_full_type_a.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_auto_ac_full_type_a.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -414,7 +414,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.AUTO_AC_TYPE_B;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_auto_ac_type_b, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_auto_ac_full_type_b.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_auto_ac_full_type_b.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -434,7 +434,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.HEATED_FRONT;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_heated_seats_front, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_heated_seats_front.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_heated_seats_front.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -453,7 +453,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.HEATED_REAR;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_heated_seats_rear, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_heated_seats_rear.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_heated_seats_rear.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -472,7 +472,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.SWITCH;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_multiswitch, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_multiswitch.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_multiswitch.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -491,7 +491,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_radio_w_navi_main, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_navi_full.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_navi_full.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -514,7 +514,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_radio_w_navi_left, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_navi_left.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_navi_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -534,7 +534,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_radio_w_navi_right, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_navi_right.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_navi_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -551,7 +551,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_radio_w_navi_middle, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_navi_middle.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_navi_middle.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -571,7 +571,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_radio_wo_navi_main, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_radio_wo_navi_full.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_radio_wo_navi_full.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -594,7 +594,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_radio_wo_navi_left, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_radio_wo_navi_left.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_radio_wo_navi_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -613,7 +613,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_radio_wo_navi_middle, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_radio_wo_navi_middle.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_radio_wo_navi_middle.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -632,7 +632,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_radio_wo_navi_right, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_radio_wo_navi_right.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_radio_wo_navi_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -652,7 +652,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.CONNECT;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_nissan_connect_main, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_nissan_connect_full.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_nissan_connect_full.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -675,7 +675,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.CONNECT;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_nissan_connect_left, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_nissan_connect_left.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_nissan_connect_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -694,7 +694,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.CONNECT;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_nissan_connect_middle, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_nissan_connect_middle.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_nissan_connect_middle.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -713,7 +713,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.CONNECT;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_nissan_connect_right, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_nissan_connect_right.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_nissan_connect_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -733,7 +733,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.STEERING_LEFT;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_steering_wheel_left, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_teering_wheel_left.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_teering_wheel_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -752,7 +752,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.STEERING_RIGHT;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_steering_wheel_right, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_teering_wheel_right.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_teering_wheel_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -772,7 +772,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.TRIP_RESET;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_tripreset, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_trip_reset.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_trip_reset.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -793,7 +793,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.PARK_ASSIST;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_park_assist, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_park_assist.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_park_assist.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -813,7 +813,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.PARKING_BRAKE;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_parking_brake, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_parking_brake.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_parking_brake.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -832,7 +832,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.INTELLIGENT_PARK_ASSIST;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_intelligent_park_assist, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_intelligent_park_assist.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_intelligent_park_assist.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -852,7 +852,7 @@ public class ARLeaf2017 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.COMBINATION_METER;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_combimeter, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_combimeter.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_combimeter.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 

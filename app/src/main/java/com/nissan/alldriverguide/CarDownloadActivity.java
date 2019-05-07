@@ -92,7 +92,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
-public class CarDownloadActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, InterfaceGlobalMessageResponse, CarListACompleteAPI {
+public class CarDownloadActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,
+        InterfaceGlobalMessageResponse, CarListACompleteAPI {
 
     private static final String TAG = "CarDownloadActivity";
     private ListView lstView;
@@ -1156,8 +1157,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 int firstCarindexForReplaceCarInfo=-1;
                 int childCarSize=0;
                 for (int i = 0; i < parent_car_lists.size(); i++) {
-                    Parent_car_list parenCar = parent_car_lists.get(i);
-                    if (parenCar.getChild_car_support() ) {
+                    Parent_car_list parentCar = parent_car_lists.get(i);
+                    if (parentCar.getChild_car_support() ) {
 
                         ArrayList<Object> carList = NissanApp.getInstance().getCarList();
                         //ArrayList<Object> carList2 = NissanApp.getInstance().getCarList();
@@ -1165,7 +1166,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                             Object obj = carList.get(j);
                             if (obj.getClass() == CarInfo.class) {
                                 CarInfo carInfo = (CarInfo) obj;
-                                if (carInfo.getParentCarId() == parenCar.getId()
+                                if (carInfo.getParentCarId() == parentCar.getId()
                                         && carInfo.getCarModelVersion().equalsIgnoreCase("new")
                                         && !carInfo.getStatus().equals(Values.ALREADY_DOWNLOADED)) {
                                     if (firstCarindexForReplaceCarInfo==-1){
@@ -1190,7 +1191,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                             //Object obj = iterator;
                             if (obj.getClass() == CarInfo.class) {
                                 CarInfo carInfo = (CarInfo) obj;
-                                if (carInfo.getParentCarId() == parenCar.getId()
+                                if (carInfo.getParentCarId() == parentCar.getId()
                                         && carInfo.getCarModelVersion().equalsIgnoreCase("new")
                                         && !carInfo.getStatus().equals(Values.ALREADY_DOWNLOADED)) {
 
@@ -1216,12 +1217,12 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                            }
 
                         }
-                        int totalChildCarSize=NissanApp.getInstance().getChildCars(Integer.valueOf(parenCar.getId()))!=null ? NissanApp.getInstance().getChildCars(Integer.valueOf(parenCar.getId())).size():-1;
+                        int totalChildCarSize=NissanApp.getInstance().getChildCars(Integer.valueOf(parentCar.getId()))!=null ? NissanApp.getInstance().getChildCars(Integer.valueOf(parentCar.getId())).size():-1;
                         int totalChildCarDownloaded= NissanApp.getInstance()
-                                .getCountTotalChildCarDownloaded(CarDownloadActivity.this,parenCar.getId());
+                                .getCountTotalChildCarDownloaded(CarDownloadActivity.this,parentCar.getId());
                         if (totalChildCarSize!=totalChildCarDownloaded && totalChildCarSize!=-1)
                         {
-                           NissanApp.getInstance().getCarList().add(firstCarindexForReplaceCarInfo+1,parenCar);
+                           NissanApp.getInstance().getCarList().add(firstCarindexForReplaceCarInfo+1,parentCar);
                         }
 
                     }

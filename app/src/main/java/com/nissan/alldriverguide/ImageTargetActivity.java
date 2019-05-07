@@ -34,6 +34,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.nissan.alldriverguide.augmentedreality.ARJuke;
 import com.nissan.alldriverguide.augmentedreality.ARLeaf;
 import com.nissan.alldriverguide.augmentedreality.ARLeaf2017;
+import com.nissan.alldriverguide.augmentedreality.ARLeaf2019;
 import com.nissan.alldriverguide.augmentedreality.ARMicra;
 import com.nissan.alldriverguide.augmentedreality.ARMicraNew;
 import com.nissan.alldriverguide.augmentedreality.ARNavara;
@@ -149,6 +150,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     private ARLeaf2017 mRendererLeaf2017;
     private ARXtrail2017Rus mRendererXtrailRus2017;
     private ARQashqai2017Rus mRendererQashqaiRus2017;
+    private ARLeaf2019 mRendererLeaf2019;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,7 +167,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
         startLoadingAnimation();
 
-        Logger.error("Path ar",Values.carType + "     ------------" + NissanApp.getInstance().getCarPath(Values.carType));
+        Logger.error("Path ar", Values.carType + "     ------------" + NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "leaf2017.xml");
 
         // Here added the vuforia xml in arrayList according to car type
         switch (Values.carType) {
@@ -231,6 +233,10 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
             case 16:
                 mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "qashqai2017rus.xml");
+                break;
+
+            case 17:
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "leaf2017.xml");
                 break;
 
             default:
@@ -477,6 +483,12 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 mGlView.setRenderer(mRendererQashqaiRus2017);
                 break;
 
+            case 17:
+                Logger.error("carPath", "_____" + Values.car_path);
+                mRendererLeaf2019 = new ARLeaf2019(this, vuforiaAppSession);
+                mGlView.setRenderer(mRendererLeaf2019);
+                break;
+
             default:
                 break;
 
@@ -678,7 +690,6 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 mRendererQashqai2017.updateConfiguration();
                 break;
 
-
             case 13:
                 mRendererXtrail2017.updateConfiguration();
                 break;
@@ -691,9 +702,17 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 mRendererXtrailRus2017.updateConfiguration();
                 break;
 
+            case 16:
+                mRendererQashqaiRus2017.updateConfiguration();
+                break;
 
-                default:
-                    break;
+            case 17:
+                mRendererLeaf2019.updateConfiguration();
+                break;
+
+
+            default:
+                break;
         }
 
         if (mContAutofocus) {
@@ -874,6 +893,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     /**
      * this method is used in xml onClick
      * here tag 1000 is used for .......
+     *
      * @param b need to get tag from button
      *          that set in xml (set tag).
      */
