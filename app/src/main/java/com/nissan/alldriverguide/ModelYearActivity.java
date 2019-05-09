@@ -72,7 +72,7 @@ import java.util.List;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
-public class ModelYearActivity extends AppCompatActivity implements CarListACompleteAPI ,ModelYearItemClcikListener{
+public class ModelYearActivity extends AppCompatActivity implements CarListACompleteAPI, ModelYearItemClcikListener {
     private static final String TAG = "ModelYearActivity";
 
 
@@ -89,31 +89,31 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
     List<CarList> carLists;
     private int selectedCarIndex = 0;
     private String selectedLang = "";
-    int parentCarId=-1;
+    int parentCarId = -1;
     private ArrayList<Object> getList = new ArrayList<>();
     private List<CarList> carListArrayList = new ArrayList<>();
     private DisplayMetrics metrics;
     private Tracker t;
     private ModelYearAdapter adapter;
-    ArrayList<Object> childCars=new ArrayList<>();
+    ArrayList<Object> childCars = new ArrayList<>();
     List<CarList> allCarList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_model_year);
 
-        Intent intent=getIntent();
-        parentCarId = intent.getIntExtra("parent_car_id",-1);
+        Intent intent = getIntent();
+        parentCarId = intent.getIntExtra("parent_car_id", -1);
 
         initViews();
 
-        if (parentCarId!=-1)
-        {
+        if (parentCarId != -1) {
             //new ApiCall().getChildCarList(NissanApp.getInstance().getDeviceID(this),"1",String.valueOf(parentCarId),this);
         }
-        allCarList=NissanApp.getInstance().getCarListWAP();
+        allCarList = NissanApp.getInstance().getCarListWAP();
 
-        loadChildCarList(allCarList,parentCarId);
+        loadChildCarList(allCarList, parentCarId);
 
         loadData(childCars);
 
@@ -121,65 +121,62 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 
     private void loadChildCarList(List<CarList> allCarList, int parentCarId) {
         childCars.clear();
-        for (CarList carList : allCarList)
-        {
-            if(Integer.valueOf(carList.getParent_car_id())==parentCarId && carList.getCar_model_version().equals("new"))
-            {
+        for (CarList carList : allCarList) {
+            if (Integer.valueOf(carList.getParent_car_id()) == parentCarId && carList.getCar_model_version().equals("new")) {
              /*carList.getId(),carList.getCarName(),
                         commonDao.getStatus(this,Integer.valueOf(carList.getId())),
                         NissanApp.getInstance().getDateTime(), */
-                CarInfo carInfo=new CarInfo() ;
+                CarInfo carInfo = new CarInfo();
                 carInfo.setId(Integer.valueOf(carList.getId()));
                 carInfo.setName(carList.getCarName());
-                carInfo.setStatus(String.valueOf(commonDao.getStatus(this,Integer.valueOf(carList.getId()))));
+                carInfo.setStatus(String.valueOf(commonDao.getStatus(this, Integer.valueOf(carList.getId()))));
                 carInfo.setDateTime(NissanApp.getInstance().getDateTime());
                 carInfo.setCarModelVersion(carList.getCar_model_version());
                 carInfo.setCarImg(carList.getCarImg());
                 carInfo.setParentCarId(Integer.valueOf(carList.getParent_car_id()));
-                if (Integer.valueOf(carInfo.getStatus())!=1)
+//                if (Integer.valueOf(carInfo.getStatus()) != 1)
                     childCars.add(carInfo);
             }
         }
-        if (childCars.size()==0)
+        if (childCars.size() == 0)
             finish();
     }
 
     private void initViews() {
         context = getApplicationContext();
         container = findViewById(R.id.model_container);
-        commonDao=CommonDao.getInstance();
+        commonDao = CommonDao.getInstance();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadChildCarList(allCarList,parentCarId);
+        loadChildCarList(allCarList, parentCarId);
         adapter.setList(childCars);
 
     }
 
     @Override
     public void onDownloaded(CarListResponse responseInfo) {
-        carLists=responseInfo.getCarList();
+        carLists = responseInfo.getCarList();
         loadCarList(carLists);
     }
 
     private void loadCarList(List<CarList> carLists) {
-        ArrayList<Object> modifiedCarList=new ArrayList<>();
+        ArrayList<Object> modifiedCarList = new ArrayList<>();
 
-        for (int i =0; i < carLists.size(); i++)
-        {
-            CarList carList=carLists.get(i);
-            CarInfo carInfo =new CarInfo(Integer.valueOf(carList.getId()),carList.getCarName(),
-                    Values.AVAILABLE_FOR_DOWNLOAD,NissanApp.getInstance().getDateTime(),
-                    "EUR","en",Values.CAR_NOT_SELECTED,
-                    NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(),i );
+        for (int i = 0; i < carLists.size(); i++) {
+            CarList carList = carLists.get(i);
+            CarInfo carInfo = new CarInfo(Integer.valueOf(carList.getId()), carList.getCarName(),
+                    Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(),
+                    "EUR", "en", Values.CAR_NOT_SELECTED,
+                    NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), i);
             modifiedCarList.add(carInfo);
         }
         loadData(modifiedCarList);
     }
-    private void loadData(ArrayList<Object> carLists)
-    {
+
+    private void loadData(ArrayList<Object> carLists) {
         View[] childViews = new View[1]; //we can have multiple child views
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -195,7 +192,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 
 
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-            DividerItemDecoration dividerItemDecoration=new DividerItemDecoration(recyclerView.getContext(),
+            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                     ((LinearLayoutManager) mLayoutManager).getOrientation());
             recyclerView.addItemDecoration(dividerItemDecoration);
             recyclerView.setLayoutManager(mLayoutManager);
@@ -207,17 +204,17 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 
         }
     }
+
     @Override
     public void onFailed(String failedReason) {
-        Log.d(TAG, "onFailed: "+ failedReason);
+        Log.d(TAG, "onFailed: " + failedReason);
     }
 
     @Override
     public void onItemClicked(RecyclerView.ViewHolder vh, Object item, final int position) {
-        CarInfo carInfo=null;
-        if (item.getClass()==CarInfo.class)
-        {
-            carInfo= (CarInfo) item;
+        CarInfo carInfo = null;
+        if (item.getClass() == CarInfo.class) {
+            carInfo = (CarInfo) item;
         }
         // TODO: 2019-04-25 Copy the code from CarDownloadActivity to handle the car download  procedure
         if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
@@ -266,15 +263,16 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 
 
             } else {
-                goForNormalOperation(position,item);
+                goForNormalOperation(position, item);
             }
 
         } else {
-            goForNormalOperation(position,item);
+            goForNormalOperation(position, item);
         }
 
         //Toast.makeText(ModelYearActivity.this, ""+carInfo.getName(), Toast.LENGTH_SHORT).show();
     }
+
     private void registerForPush(final int position) {
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
@@ -311,6 +309,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         });
 
     }
+
     private void goForNormalOperation(final int position, Object item) {
         selectedCarIndex = position;
 
@@ -340,12 +339,10 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
                     carDownloadCheck(info.getId());
                 }
             }
-        }
-        else if(item.getClass() == Parent_car_list.class)
-        {
-            Intent intent=new Intent(this,ModelYearActivity.class);
+        } else if (item.getClass() == Parent_car_list.class) {
+            Intent intent = new Intent(this, ModelYearActivity.class);
             Parent_car_list parent_car_list = (Parent_car_list) item;
-            intent.putExtra("parent_car_id",parent_car_list.getId());
+            intent.putExtra("parent_car_id", parent_car_list.getId());
             startActivity(intent);
         }
     }
@@ -436,6 +433,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         }
 
     }
+
     private void goToNextPage(int position) {
         for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
             if (NissanApp.getInstance().getCarAllList().get(i).getId() == position) {
@@ -449,6 +447,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         startActivity(new Intent(ModelYearActivity.this, MainActivity.class)); // here redirect the landing page to Main activity if car is downloaded.
         overridePendingTransition(R.anim.left_in, R.anim.right_out);
     }
+
     private void downloadContentUpdate(final ArrayList<PushContentInfo> list, final int position) {
 
         Logger.error("You have a update ", "Do you want ???");
@@ -519,42 +518,42 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
                                                                         stringBuilder.toString(),
                                                                         NissanApp.getInstance().getDeviceID(getApplicationContext()),
                                                                         new CompleteAPI() {
-                                                                    @Override
-                                                                    public void onDownloaded(ResponseInfo responseInfo) {
+                                                                            @Override
+                                                                            public void onDownloaded(ResponseInfo responseInfo) {
 
-                                                                        Logger.error("Status code _________", "__________________" + responseInfo.getStatusCode());
+                                                                                Logger.error("Status code _________", "__________________" + responseInfo.getStatusCode());
 
-                                                                        if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
+                                                                                if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
-                                                                            try {
+                                                                                    try {
 //                                                                                ((MainActivity) getApplicationContext()).sendMsgToGoogleAnalytics(((MainActivity) getApplicationContext()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));
-                                                                                commonDao.updateLanguageStatus(ModelYearActivity.this.getBaseContext(), Values.carType, selectedLang);
-                                                                                commonDao.deleteSingleCarEpub(ModelYearActivity.this, Values.carType);
+                                                                                        commonDao.updateLanguageStatus(ModelYearActivity.this.getBaseContext(), Values.carType, selectedLang);
+                                                                                        commonDao.deleteSingleCarEpub(ModelYearActivity.this, Values.carType);
 
-                                                                                for (PushContentInfo pushContentInfo : list) {
-                                                                                    commonDao.updatePushContentStatus(getApplicationContext(), Integer.parseInt(pushContentInfo.getCarId()), Integer.parseInt(pushContentInfo.getLangId()), Integer.parseInt(pushContentInfo.getePubId()));
+                                                                                        for (PushContentInfo pushContentInfo : list) {
+                                                                                            commonDao.updatePushContentStatus(getApplicationContext(), Integer.parseInt(pushContentInfo.getCarId()), Integer.parseInt(pushContentInfo.getLangId()), Integer.parseInt(pushContentInfo.getePubId()));
+                                                                                        }
+
+                                                                                    } catch (Exception e) {
+                                                                                        e.printStackTrace();
+                                                                                    } finally {
+                                                                                        if (progressDialog != null) {
+                                                                                            progressDialog.dismiss();
+                                                                                        }
+
+                                                                                        goToNextPage(position);
+                                                                                    }
+
+                                                                                } else {
+
                                                                                 }
-
-                                                                            } catch (Exception e) {
-                                                                                e.printStackTrace();
-                                                                            } finally {
-                                                                                if (progressDialog != null) {
-                                                                                    progressDialog.dismiss();
-                                                                                }
-
-                                                                                goToNextPage(position);
                                                                             }
 
-                                                                        } else {
-
-                                                                        }
-                                                                    }
-
-                                                                    @Override
-                                                                    public void onFailed(String failedReason) {
-                                                                        Logger.error("CarDownloadActivity", "_____download_confirmation_error->" + failedReason);
-                                                                    }
-                                                                });
+                                                                            @Override
+                                                                            public void onFailed(String failedReason) {
+                                                                                Logger.error("CarDownloadActivity", "_____download_confirmation_error->" + failedReason);
+                                                                            }
+                                                                        });
 
                                                             } else {
 
@@ -1018,6 +1017,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 
         dialog.show();
     }
+
     private ArrayList<Object> getData() {
 
 
@@ -1105,6 +1105,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 
 
     }
+
     private ArrayList<Object> swapXtrailEurRusIfBothDownloaded(ArrayList<Object> getList) {
 
         CarInfo xtrailEuroInfo = new CarInfo();
@@ -1178,6 +1179,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         }
         return false;
     }
+
     private void setCarImageAccordingToDeviceResolution() {
 
         String device_density = "", carImageURL = "";
@@ -1214,6 +1216,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 
         }
     }
+
     private void startCarAssetsDownload(String assetsSource, String assetsDestination, String langSource, String langDestination) {
         // downloadCarAssets method download car asset and language both
         new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(Values.carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
@@ -1368,10 +1371,12 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
             }
         });
     }
+
     private void showErrorDialog(String msg) {
         DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
         dialogFragment.show(getSupportFragmentManager(), "error_fragment");
     }
+
     private void sendMsgToGoogleAnalytics(String msgName) {
         // Get a Tracker (should auto-report)
         ((MyApplication) getApplication())
@@ -1388,9 +1393,11 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         // Send a screen view.
         t.send(new HitBuilders.AppViewBuilder().build());
     }
+
     private void loadResource(String lang) {
         resources = new Resources(getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(ModelYearActivity.this, lang));
     }
+
     private void errorFileDelete(int carType) {
         try {
             dismissDialog();

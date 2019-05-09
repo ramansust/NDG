@@ -2,6 +2,7 @@ package com.nissan.alldriverguide.fragments.settings;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Typeface;
@@ -27,6 +28,7 @@ import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.MainActivity;
+import com.nissan.alldriverguide.ModelYearActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.CarDownloadSettingsAdapter;
 import com.nissan.alldriverguide.customviews.DialogController;
@@ -38,6 +40,7 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
+import com.nissan.alldriverguide.model.parentCarList.Parent_car_list;
 import com.nissan.alldriverguide.multiLang.model.CarList;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
@@ -116,16 +119,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     private void loadData() {
 
         getDataFromSP();
-
-/*
-        if (!sortedAlready) {
-            swapXtrailRusleaf2017IfBothDownloaded();
-            swapXtrailEurRusIfBothDownloaded();
-            swapXtrailRusLeafIfBothAvailableForDownload();
-            sortedAlready = true;
-        }
-*/
-
 
         for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
 
@@ -215,8 +208,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         replaceTheCarNamesAndImages();
 
-        ArrayList<CarInfo> list = NissanApp.getInstance().getCarAllList();
-
         for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
 
             if (NissanApp.getInstance().getCarAllList().get(i).getId() == Values.carType) {
@@ -229,125 +220,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         adapter = new CarDownloadSettingsAdapter(AddCarFragment.this, getActivity(), getActivity().getApplicationContext(), NissanApp.getInstance().getCarAllList());
         lstView.setAdapter(adapter);
         lstView.setDivider(null);
-    }
-
-    private void swapXtrailRusLeafIfBothAvailableForDownload() {
-        CarInfo xtrailInfo = new CarInfo();
-        CarInfo leafInfo = new CarInfo();
-        int xtrailIndex = -1, leafIndex = -1;
-
-        ArrayList<CarInfo> getList = NissanApp.getInstance().getCarAllList();
-
-        if (xtrailLeafAvailableForDownload(getList)) {
-            for (int k = 0; k < getList.size(); k++) {
-                CarInfo info = getList.get(k);
-
-                if (info.getId() == 15) {
-                    xtrailInfo = info;
-                    xtrailIndex = k;
-                }
-
-                if (info.getId() == 14) {
-                    leafInfo = info;
-                    leafIndex = k;
-                }
-
-
-            }
-
-
-            getList.set(xtrailIndex, leafInfo);
-            getList.set(leafIndex, xtrailInfo);
-
-            NissanApp.getInstance().setCarAllList(getList);
-
-        }
-    }
-
-    private boolean xtrailLeafAvailableForDownload(ArrayList<CarInfo> getList) {
-
-        boolean isFifteenIdAvailable = false;
-
-        for (int k = 0; k < getList.size(); k++) {
-            CarInfo info = getList.get(k);
-            if (info.getStatus().equals("0") && info.getId() == 14) {
-                if (isFifteenIdAvailable)
-                    return true;
-            }
-
-            if (info.getStatus().equals("0") && info.getId() == 15) {
-                isFifteenIdAvailable = true;
-            }
-
-        }
-        return false;
-    }
-
-    private void swapXtrailEurRusIfBothDownloaded() {
-
-        ArrayList<CarInfo> getList = NissanApp.getInstance().getCarAllList();
-
-        CarInfo xtrailEuroInfo = new CarInfo();
-        CarInfo xtrailRusInfo = new CarInfo();
-        int xtrailEuroIndex = -1, xtrailRusIndex = -1;
-        boolean xtrailRusDownloaded = false, xtrailEuroDownloaded = false;
-
-        for (int k = 0; k < getList.size(); k++) {
-            CarInfo info = getList.get(k);
-
-            if (info.getStatus().equals("1") && info.getId() == 13) {
-                xtrailEuroInfo = info;
-                xtrailEuroIndex = k;
-                xtrailEuroDownloaded = true;
-            }
-
-            if (info.getStatus().equals("1") && info.getId() == 15) {
-                xtrailRusInfo = info;
-                xtrailRusIndex = k;
-                xtrailRusDownloaded = true;
-            }
-        }
-
-        if (xtrailEuroDownloaded && xtrailRusDownloaded) {
-            getList.set(xtrailEuroIndex, xtrailRusInfo);
-            getList.set(xtrailRusIndex, xtrailEuroInfo);
-        }
-
-        NissanApp.getInstance().setCarAllList(getList);
-    }
-
-    private void swapXtrailRusleaf2017IfBothDownloaded() {
-
-        ArrayList<CarInfo> getList = NissanApp.getInstance().getCarAllList();
-
-        CarInfo xtrailRusInfo = new CarInfo();
-        CarInfo leaf2017Info = new CarInfo();
-        int xtrailRusIndex = -1, leaf2017Index = -1;
-        boolean xtrailRusDownloaded = false, leaf2017Downloaded = false;
-
-        for (int k = 0; k < getList.size(); k++) {
-            CarInfo info = getList.get(k);
-
-            if (info.getStatus().equals("1") && info.getId() == 15) {
-                xtrailRusInfo = info;
-                xtrailRusIndex = k;
-                xtrailRusDownloaded = true;
-            }
-
-            if (info.getStatus().equals("1") && info.getId() == 14) {
-                leaf2017Info = info;
-                leaf2017Index = k;
-                leaf2017Downloaded = true;
-            }
-        }
-
-        if (leaf2017Downloaded && xtrailRusDownloaded) {
-            getList.set(leaf2017Index, xtrailRusInfo);
-            getList.set(xtrailRusIndex, leaf2017Info);
-        }
-
-        NissanApp.getInstance().setCarAllList(getList);
-//        return getList;
     }
 
     private void replaceTheCarNamesAndImages() {
@@ -371,20 +243,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
             }
 
         }
-
-
-/*
-        for (CarList carListModel : carListArrayList) {
-            for (int i = 0; i < carInfoArrayList.size(); i++) {
-                if (carListModel.getId() == null || carListModel.getId().isEmpty())
-                    continue;
-                if (carInfoArrayList.get(i).getId() == Integer.parseInt(carListModel.getId())) {
-                    carInfoArrayList.get(i).setName(carListModel.getCarDisplayName());
-                    carInfoArrayList.get(i).setCarImg(NissanApp.getInstance().getURLAccordingToDensity(NissanApp.getInstance().getDensityName(getActivity()), carListModel));
-                }
-            }
-        }
-*/
 
         NissanApp.getInstance().setCarAllList(carInfoArrayList);
 
@@ -447,20 +305,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 //        }
         getDataFromSP();
         replaceTheCarNamesAndImages();
-
-    }
-
-    private void setPreviousCarSelection() {
-
-
-        for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
-
-            if (NissanApp.getInstance().getCarAllList().get(i).getId() == Values.carType) {
-                NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(1);
-            } else {
-                NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(0);
-            }
-        }
 
     }
 
@@ -888,6 +732,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     private void startCarDownloadProcedure(final int position) {
+
         adapter.progressDialog = new ProgressDialogController(getActivity()).showDialog(getResources().getString(R.string.start_download));
 
         new ApiCall().postCarDownload("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(adapter.lang), "0", NissanApp.getInstance().getDeviceID(getActivity()), new CompleteAPI() {

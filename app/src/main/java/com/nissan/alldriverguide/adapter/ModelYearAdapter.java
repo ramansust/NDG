@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.interfaces.ModelYearItemClcikListener;
 import com.nissan.alldriverguide.model.CarInfo;
+import com.nissan.alldriverguide.utils.Logger;
+import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
 
@@ -21,10 +23,10 @@ public class ModelYearAdapter extends RecyclerView.Adapter<ModelYearAdapter.Mode
     private Typeface typeFaceBold;
     ModelYearItemClcikListener itemClcikListener;
 
-    public ModelYearAdapter(Context context, ArrayList<Object> list, ModelYearItemClcikListener itemClcikListener) {
+    public ModelYearAdapter(Context context, ArrayList<Object> list, ModelYearItemClcikListener itemClickListener) {
         this.context = context;
         this.list = list;
-        this.itemClcikListener = itemClcikListener;
+        this.itemClcikListener = itemClickListener;
         typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf");
     }
 
@@ -44,16 +46,17 @@ public class ModelYearAdapter extends RecyclerView.Adapter<ModelYearAdapter.Mode
 
     @Override
     public void onBindViewHolder(@NonNull final ModelYearViewHolder holder, final int position) {
-        if (list.get(position).getClass()==CarInfo.class)
-        {
-            final CarInfo carInfo= (CarInfo) list.get(position);
-            //holder.imageView.setImageURI(carInfo.getCarImg());
-            //holder.txtView_loading.setText(carInfo.getName());
+        if (list.get(position).getClass() == CarInfo.class) {
+            final CarInfo carInfo = (CarInfo) list.get(position);
             holder.txt_title.setText(carInfo.getName());
+            if (Values.ALREADY_DOWNLOADED.equals(carInfo.getStatus()))
+                holder.txt_title.setAlpha(0.5f);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemClcikListener.onItemClicked(holder,carInfo,position);
+                    if (Values.ALREADY_DOWNLOADED.equals(carInfo.getStatus()))
+                        return;
+                    itemClcikListener.onItemClicked(holder, carInfo, position);
                 }
             });
         }

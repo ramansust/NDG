@@ -32,6 +32,16 @@ public class DialogController {
         return dialog;
     }
 
+    public Dialog modelYearFeatureDialog() {
+        dialog = new Dialog(this.activity, R.style.PauseDialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.activity_model_year);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCancelable(true);
+        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        return dialog;
+    }
+
     public Dialog carDownloadDialog() {
         dialog = new Dialog(this.activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

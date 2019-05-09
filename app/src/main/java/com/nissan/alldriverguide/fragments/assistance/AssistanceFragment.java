@@ -547,7 +547,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 break;
 
             case 1:
-                if (Values.carType == 14) {
+                if (Values.carType == 14 || Values.carType == 17) {
                     frag = HomePageFragment.newInstance(pageTitle);
                 } else {
                     frag = ListFragment.newInstance(pageTitle);
