@@ -288,8 +288,10 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
     private int getParentCarListId() {
 
-        if (NissanApp.getInstance().getCarList() == null || NissanApp.getInstance().getCarList().size() == 0)
+        if (NissanApp.getInstance().getCarList() == null || NissanApp.getInstance().getCarList().size() == 0) {
+            Logger.error("getCarList", "___________null or size 0");
             return -1;
+        }
 
 
         for (int i = 0; i < NissanApp.getInstance().getCarList().size(); i++) {
@@ -298,7 +300,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             }
         }
 
-
+        Logger.error("Parent_car_list", "___________not found");
         return -1;
     }
 
@@ -366,8 +368,10 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         childCarsList = new ArrayList<>();
         int parentCarId = getParentCarListId();
-        if (parentCarId == -1)
+        if (parentCarId == -1) {
+            Logger.error("parentCarId", "________" + parentCarId + "____problem");
             return;
+        }
 
         for (CarList carList : NissanApp.getInstance().getCarListWAP()) {
             if(Integer.valueOf(carList.getParent_car_id()) == parentCarId && carList.getCar_model_version().equals("new")) {
