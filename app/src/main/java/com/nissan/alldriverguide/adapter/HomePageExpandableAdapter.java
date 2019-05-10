@@ -69,14 +69,14 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
             for (int i = 0; i < ePubList.size(); i++) { // looping for given arrayList
                 HomePageEpubInfo info = ePubList.get(i);
 
-                if (title.equalsIgnoreCase("")) {
+                if ("".equals(title)) {
                     title = info.getSectionTitle();
                     sectionInfo.setSectionTitle(info.getSectionTitle());
                     sectionInfo.setColorCode(info.getColorCode());
                     sectionInfo.setColorCodeItem(info.getColorCodeItem());
                 }
 
-                if (title.equalsIgnoreCase(info.getSectionTitle())) {
+                if (title != null && info.getSectionTitle() != null && title.equalsIgnoreCase(info.getSectionTitle())) {
                     itemList.add(info);
                     if(i == ePubList.size() - 1) {
                         childList.put(title, itemList);
@@ -158,7 +158,11 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
 
         TextView txtViewHeaderTitle = (TextView) convertView.findViewById(R.id.txt_title_section);
         txtViewHeaderTitle.setTypeface(typeFaceBold);
-        txtViewHeaderTitle.setText(listHeader.get(groupPosition).getSectionTitle().toString());
+        if(groupPosition < listHeader.size()){
+            //index exists
+            txtViewHeaderTitle.setText(listHeader.get(groupPosition).getSectionTitle() == null ? "" : listHeader.get(groupPosition).getSectionTitle());
+        }
+
 
         RelativeLayout relativeLayout = (RelativeLayout) convertView.findViewById(R.id.relative_header);
         if(listHeader.get(groupPosition).getColorCode() != null && !"".equalsIgnoreCase(listHeader.get(groupPosition).getColorCode())) {
