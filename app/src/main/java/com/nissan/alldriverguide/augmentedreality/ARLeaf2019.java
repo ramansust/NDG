@@ -230,7 +230,7 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_ev_navi_system_left, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_ev_navi_system_left.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2019_ev_navi_system_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -238,7 +238,7 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_ev_navi_system_middle, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_ev_navi_system_middle.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2019_ev_navi_system_middle.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -246,7 +246,7 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_ev_navi_system_right, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_ev_navi_system_right.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2019_ev_navi_system_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -254,7 +254,7 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_radio_w_navi_left, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_navi_left.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2019_navi_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -262,7 +262,7 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_radio_w_navi_middle, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_navi_middle.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2019_navi_middle.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -270,31 +270,31 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_radio_w_navi_right, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_navi_right.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2019_navi_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_wo_navi_left:
 
                         mActivity.layoutCameraView.removeAllViews ();
-                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_radio_wo_navi_left, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_radio_wo_navi_left.png");
+                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2019_radio_wo_navi_left, null, false);
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2019_radio_wo_navi_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_wo_navi_middle:
 
                         mActivity.layoutCameraView.removeAllViews ();
-                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_radio_wo_navi_middle, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_radio_wo_navi_middle.png");
+                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2019_radio_wo_navi_middle, null, false);
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2019_radio_wo_navi_middle.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_wo_navi_right:
 
                         mActivity.layoutCameraView.removeAllViews ();
-                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_radio_wo_navi_right, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_radio_wo_navi_right.png");
+                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2019_radio_wo_navi_right, null, false);
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2019_radio_wo_navi_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -302,7 +302,7 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_nissan_connect_left, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_nissan_connect_left.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2019_nissan_connect_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -310,7 +310,7 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_nissan_connect_middle, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_nissan_connect_middle.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2019_nissan_connect_middle.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -318,7 +318,7 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         mActivity.layoutCameraView.removeAllViews ();
                         mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_nissan_connect_right, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2017_nissan_connect_right.png");
+                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf2019_nissan_connect_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
 
@@ -354,11 +354,11 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
             handler.post(new Runnable() {
                 public void run() {
 
-                    if (userDataToCompare.equalsIgnoreCase ("power_switch_1")
-                            || userDataToCompare.equalsIgnoreCase ("power_switch_2")
-                            || userDataToCompare.equalsIgnoreCase ("power_switch_3")
-                            || userDataToCompare.equalsIgnoreCase ("power_switch_4")
-                            ) {
+                    if (userDataToCompare.equalsIgnoreCase ("leaf_2019_power_switch_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_power_switch_2")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_power_switch_3")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_power_switch_4")
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -371,24 +371,24 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.START_STOP_IGNITION;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_power_switch, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_2017_power_switch.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_power_switch.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("auto_ac_full_type_a_1")
-                            || userDataToCompare.equalsIgnoreCase ("auto_ac_full_type_a_2")
-                            || userDataToCompare.equalsIgnoreCase ("auto_ac_full_type_a_3")
-                            || userDataToCompare.equalsIgnoreCase ("auto_ac_left_type_a_1")
-                            || userDataToCompare.equalsIgnoreCase ("auto_ac_left_type_a_2")
-                            || userDataToCompare.equalsIgnoreCase ("auto_ac_left_type_a_3")
-                            || userDataToCompare.equalsIgnoreCase ("auto_ac_left_type_a_4")
-                            || userDataToCompare.equalsIgnoreCase ("auto_ac_middle_type_a_1")
-                            || userDataToCompare.equalsIgnoreCase ("auto_ac_middle_type_a_2")
-                            || userDataToCompare.equalsIgnoreCase ("auto_ac_middle_type_a_3")
-                            || userDataToCompare.equalsIgnoreCase ("auto_ac_right_type_a_1")
-                            || userDataToCompare.equalsIgnoreCase ("auto_ac_right_type_a_2")
-                            || userDataToCompare.equalsIgnoreCase ("auto_ac_right_type_a_3")
-                            ) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_full_type_a_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_full_type_a_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_full_type_a_03")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_left_type_a_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_left_type_a_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_left_type_a_03")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_left_type_a_04")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_middle_type_a_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_middle_type_a_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_middle_type_a_03")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_right_type_a_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_right_type_a_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_right_type_a_03")
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -401,13 +401,23 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.AUTO_AC_TYPE_A;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_auto_ac_type_a, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_auto_ac_full_type_a.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_auto_ac_full_type_a.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("auto_ac_full_type_b_1")
-                            || userDataToCompare.equalsIgnoreCase ("auto_ac_full_type_b_2")
-                            || userDataToCompare.equalsIgnoreCase ("auto_ac_full_type_b_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_full_type_b_1")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_full_type_b_2")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_full_type_b_3")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_right_type_b_1")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_right_type_b_2")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_right_type_b_3")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_middle_type_b_1")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_middle_type_b_2")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_middle_type_b_3")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_left_type_b_1")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_left_type_b_2")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_left_type_b_3")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_auto_ac_left_type_b_4")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -420,14 +430,14 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.AUTO_AC_TYPE_B;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_auto_ac_type_b, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_auto_ac_full_type_b.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_auto_ac_full_type_b.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("heated_seats_front_1")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seats_front_2")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seats_front_3")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seats_front_4")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_heated_seats_front_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_heated_seats_front_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_heated_seats_front_03")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_heated_seats_front_04")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -440,13 +450,13 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.HEATED_FRONT;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_heated_seats_front, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_heated_seats_front.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_heated_seats_front.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("heated_seats_rear_1")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seats_rear_2")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seats_rear_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_heated_seats_rear_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_heated_seats_rear_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_heated_seats_rear_03")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -459,13 +469,13 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.HEATED_REAR;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_heated_seats_rear, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_heated_seats_rear.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_heated_seats_rear.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("multiswitch_1")
-                            || userDataToCompare.equalsIgnoreCase ("multiswitch_2")
-                            || userDataToCompare.equalsIgnoreCase ("multiswitch_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_multiswitch_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_multiswitch_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_multiswitch_03")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -478,13 +488,13 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.SWITCH;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_multiswitch, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_multiswitch.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_multiswitch.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("navi_unit_full_1")
-                            || userDataToCompare.equalsIgnoreCase ("navi_unit_full_2")
-                            || userDataToCompare.equalsIgnoreCase ("navi_unit_full_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_navi_unit_full_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_navi_unit_full_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_navi_unit_full_03")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -497,7 +507,7 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_radio_w_navi_main, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_navi_full.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_navi_full.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -505,9 +515,9 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_radio_middle));
                         buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_radio_right));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("navi_unit_left_1")
-                            || userDataToCompare.equalsIgnoreCase ("navi_unit_left_2")
-                            || userDataToCompare.equalsIgnoreCase ("navi_unit_left_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_navi_unit_left_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_navi_unit_left_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_navi_unit_left_03")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -520,14 +530,14 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_radio_w_navi_left, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_navi_left.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_navi_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("navi_unit_right_1")
-                            || userDataToCompare.equalsIgnoreCase ("navi_unit_right_2")
-                            || userDataToCompare.equalsIgnoreCase ("navi_unit_right_3")) {
-                        
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_navi_unit_right_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_navi_unit_right_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_navi_unit_right_03")) {
+
 
                         try {
                             mActivity.isDetected = true;
@@ -540,11 +550,11 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_radio_w_navi_right, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_navi_right.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_navi_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("navi_unit_middle_1")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_navi_unit_middle_01")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -557,13 +567,15 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_radio_w_navi_middle, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_navi_middle.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_navi_middle.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("radio_wo_navi_full_1")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_full_2")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_full_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_03")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_04")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_05")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -576,8 +588,8 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         // iv.setImageResource(R.drawable.ferrari);
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
-                                R.layout.leaf_2017_radio_wo_navi_main, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_radio_wo_navi_full.png");
+                                R.layout.leaf_2019_radio_wo_navi_full, null, false);
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_radio_wo_navi_full.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -585,9 +597,11 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_radio_wo_navi_middle));
                         buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_radio_wo_navi_right));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("radio_wo_navi_left_1")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_left_2")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_left_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_left_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_left_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_left_03")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_left_04")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_left_05")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -599,14 +613,16 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
-                                R.layout.leaf_2017_radio_wo_navi_left, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_radio_wo_navi_left.png");
+                                R.layout.leaf_2019_radio_wo_navi_left, null, false);
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_radio_wo_navi_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("radio_wo_navi_middle_1")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_middle_2")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_middle_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_middle_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_middle_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_middle_03")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_middle_04")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_middle_05")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -618,14 +634,16 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
-                                R.layout.leaf_2017_radio_wo_navi_middle, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_radio_wo_navi_middle.png");
+                                R.layout.leaf_2019_radio_wo_navi_middle, null, false);
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_radio_wo_navi_middle.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("radio_wo_navi_right_1")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_right_2")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_right_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_right_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_right_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_right_03")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_right_04")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_radio_without_navi_leaf_2019_right_05")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -637,14 +655,14 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
-                                R.layout.leaf_2017_radio_wo_navi_right, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_radio_wo_navi_right.png");
+                                R.layout.leaf_2019_radio_wo_navi_right, null, false);
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_radio_wo_navi_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("nissan_connect_full_1")
-                            || userDataToCompare.equalsIgnoreCase ("nissan_connect_full_2")
-                            || userDataToCompare.equalsIgnoreCase ("nissan_connect_full_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_nissan_connect_full_1")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_nissan_connect_full_2")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_nissan_connect_full_3")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -658,7 +676,7 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.CONNECT;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_nissan_connect_main, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_nissan_connect_full.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_nissan_connect_full.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -666,9 +684,9 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_connect_middle));
                         buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_connect_right));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("nissan_connect_left_1")
-                            || userDataToCompare.equalsIgnoreCase ("nissan_connect_left_2")
-                            || userDataToCompare.equalsIgnoreCase ("nissan_connect_left_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_nissan_connect_left_1")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_nissan_connect_left_2")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_nissan_connect_left_3")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -681,13 +699,13 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.CONNECT;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_nissan_connect_left, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_nissan_connect_left.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_nissan_connect_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("nissan_connect_middle_1")
-                            || userDataToCompare.equalsIgnoreCase ("nissan_connect_middle_2")
-                            || userDataToCompare.equalsIgnoreCase ("nissan_connect_middle_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_nissan_connect_middle_1")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_nissan_connect_middle_2")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_nissan_connect_middle_3")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -700,13 +718,13 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.CONNECT;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_nissan_connect_middle, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_nissan_connect_middle.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_nissan_connect_middle.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("nissan_connect_right_1")
-                            || userDataToCompare.equalsIgnoreCase ("nissan_connect_right_2")
-                            || userDataToCompare.equalsIgnoreCase ("nissan_connect_right_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_nissan_connect_right_1")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_nissan_connect_right_2")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_nissan_connect_right_3")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -719,14 +737,14 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.CONNECT;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_nissan_connect_right, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_nissan_connect_right.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_nissan_connect_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("steering_wheel_left_1")
-                            || userDataToCompare.equalsIgnoreCase ("steering_wheel_left_2")
-                            || userDataToCompare.equalsIgnoreCase ("steering_wheel_left_3")
-                            || userDataToCompare.equalsIgnoreCase ("steering_wheel_left_4")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_steering_wheel_left_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_steering_wheel_left_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_steering_wheel_left_03")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_steering_wheel_left_04")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -739,13 +757,13 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.STEERING_LEFT;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_steering_wheel_left, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_teering_wheel_left.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_steering_wheel_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("steering_wheel_right_1")
-                            || userDataToCompare.equalsIgnoreCase ("steering_wheel_right_2")
-                            || userDataToCompare.equalsIgnoreCase ("steering_wheel_right_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_steering_wheel_right_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_steering_wheel_right_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_steering_wheel_right_03")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -758,14 +776,14 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.STEERING_RIGHT;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_steering_wheel_right, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_teering_wheel_right.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_steering_wheel_right.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("trip_reset_1")
-                            || userDataToCompare.equalsIgnoreCase ("trip_reset_2")
-                            || userDataToCompare.equalsIgnoreCase ("trip_reset_3")
-                            || userDataToCompare.equalsIgnoreCase ("trip_reset_4")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_trip_reset_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_trip_reset_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_trip_reset_03")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_trip_reset_04")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -778,15 +796,13 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.TRIP_RESET;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_tripreset, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_trip_reset.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_trip_reset.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("park_assist_1")
-                            || userDataToCompare.equalsIgnoreCase ("park_assist_2")
-                            || userDataToCompare.equalsIgnoreCase ("park_assist_6")
-                            || userDataToCompare.equalsIgnoreCase ("park_assist_7")
-                            || userDataToCompare.equalsIgnoreCase ("park_assist_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_park_assist_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_park_assist_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_park_assist_03")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -799,14 +815,14 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.PARK_ASSIST;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_park_assist, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_park_assist.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_park_assist.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("parking_brake_1")
-                            || userDataToCompare.equalsIgnoreCase ("parking_brake_2")
-                            || userDataToCompare.equalsIgnoreCase ("parking_brake_3")
-                            || userDataToCompare.equalsIgnoreCase ("parking_brake_4")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf-2017_parking_brake_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf-2017_parking_brake_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf-2017_parking_brake_03")
+                            || userDataToCompare.equalsIgnoreCase ("leaf-2017_parking_brake_04")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -819,13 +835,13 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.PARKING_BRAKE;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_parking_brake, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_parking_brake.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_parking_brake.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("intelligent_park_assist_1")
-                            || userDataToCompare.equalsIgnoreCase ("intelligent_park_assist_2")
-                            || userDataToCompare.equalsIgnoreCase ("intelligent_park_assist_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_intelligent_park_assist_01")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_intelligent_park_assist_02")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_intelligent_park_assist_03")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -838,14 +854,14 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.INTELLIGENT_PARK_ASSIST;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_intelligent_park_assist, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_intelligent_park_assist.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_intelligent_park_assist.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("combimeter_1")
-                            || userDataToCompare.equalsIgnoreCase ("combimeter_2")
-                            || userDataToCompare.equalsIgnoreCase ("combimeter_3")
-                            || userDataToCompare.equalsIgnoreCase ("combimeter_4")) {
+                    } else if (userDataToCompare.equalsIgnoreCase ("leaf_2019_combimeter_1")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_combimeter_2")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_combimeter_3")
+                            || userDataToCompare.equalsIgnoreCase ("leaf_2019_combimeter_4")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -858,7 +874,7 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                         Values.ar_value = Analytics.COMBINATION_METER;
                         mActivity.inflatedLayout = inflater.inflate (
                                 R.layout.leaf_2017_combimeter, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf2017_combimeter.png");
+                        setBackground (mActivity.inflatedLayout, drawables + "leaf2019_combimeter.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -878,3 +894,4 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
         mSampleAppRenderer.onConfigurationChanged(mActivity.mIsActive);
     }
 }
+

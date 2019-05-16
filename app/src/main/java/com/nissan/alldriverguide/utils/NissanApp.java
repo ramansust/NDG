@@ -752,6 +752,34 @@ public class NissanApp {
                     url = UrlLinks.XTRAIL_2017_RUS_EN;
                 }
                 break;
+            case 18:
+
+                if (lang.contains("en")) {
+                    url = UrlLinks.NAVARA_EN;
+                } else if (lang.contains("de")) {
+                    url = UrlLinks.NAVARA_DE;
+                } else if (lang.contains("es")) {
+                    url = UrlLinks.NAVARA_ES;
+                } else if (lang.contains("fr")) {
+                    url = UrlLinks.NAVARA_FR;
+                } else if (lang.contains("it")) {
+                    url = UrlLinks.NAVARA_IT;
+                } else if (lang.contains("nl")) {
+                    url = UrlLinks.NAVARA_NL;
+                } else if (lang.contains("ru")) {
+                    url = UrlLinks.NAVARA_RS;
+                } else if (lang.contains("sv")) {
+                    url = UrlLinks.NAVARA_SV;
+                } else if (lang.contains("pl")) {
+                    url = UrlLinks.NAVARA_PL;
+                } else if (lang.contains("fi")) {
+                    url = UrlLinks.NAVARA_FI;
+                } else if (lang.contains("pt")) {
+                    url = UrlLinks.NAVARA_PT;
+                } else {
+
+                }
+                break;
             default:
                 break;
         }
@@ -874,6 +902,9 @@ public class NissanApp {
             case 17:
                 carPath = Values.PATH + Values.leaf_2019;
                 break;
+            case 18:
+                carPath = Values.PATH + Values.navara_2019;
+                break;
 
             default:
                 break;
@@ -954,6 +985,9 @@ public class NissanApp {
                 break;
             case 17:
                 path = Values.leaf_2019;
+                break;
+            case 18:
+                path = Values.navara_2019;
                 break;
 
             default:

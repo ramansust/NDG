@@ -38,6 +38,7 @@ import com.nissan.alldriverguide.augmentedreality.ARLeaf2019;
 import com.nissan.alldriverguide.augmentedreality.ARMicra;
 import com.nissan.alldriverguide.augmentedreality.ARMicraNew;
 import com.nissan.alldriverguide.augmentedreality.ARNavara;
+import com.nissan.alldriverguide.augmentedreality.ARNavara2019;
 import com.nissan.alldriverguide.augmentedreality.ARNote;
 import com.nissan.alldriverguide.augmentedreality.ARPulsar;
 import com.nissan.alldriverguide.augmentedreality.ARQashqai;
@@ -151,6 +152,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     private ARXtrail2017Rus mRendererXtrailRus2017;
     private ARQashqai2017Rus mRendererQashqaiRus2017;
     private ARLeaf2019 mRendererLeaf2019;
+    private ARNavara2019 mRendererNavara2019;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,8 +168,6 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         resources = new Resources(getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(ImageTargetActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
 
         startLoadingAnimation();
-
-        Logger.error("Path ar", Values.carType + "     ------------" + NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "leaf2017.xml");
 
         // Here added the vuforia xml in arrayList according to car type
         switch (Values.carType) {
@@ -236,9 +236,11 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 break;
 
             case 17:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "leaf2017.xml");
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "leaf2019.xml");
                 break;
-
+            case 18:
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "navara.xml");
+                break;
             default:
                 break;
         }
@@ -488,6 +490,10 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 mRendererLeaf2019 = new ARLeaf2019(this, vuforiaAppSession);
                 mGlView.setRenderer(mRendererLeaf2019);
                 break;
+            case 18:
+                mRendererNavara2019 = new ARNavara2019(this, vuforiaAppSession);
+                mGlView.setRenderer(mRendererNavara2019);
+                break;
 
             default:
                 break;
@@ -709,7 +715,9 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
             case 17:
                 mRendererLeaf2019.updateConfiguration();
                 break;
-
+            case 18:
+                mRendererNavara2019.updateConfiguration();
+                break;
 
             default:
                 break;

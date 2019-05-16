@@ -118,8 +118,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
             "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "Nissan X-TRAIL",
-            "New Nissan LEAF", "New Nissan X-TRAIL RUS", "New Nissan QASHQAI RUS", "Leaf 2019"};
-    private int[] indices = {1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11, 16};
+            "New Nissan LEAF", "New Nissan X-TRAIL RUS", "New Nissan QASHQAI RUS", "Leaf 2019","Nissan Navara 2019"};
+    private int[] indices = {1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11, 16,17};
     private int[] previousCarArray = {1, 2, 4, 5, 7, 9};
     private List<Parent_car_list> parent_car_lists = null;
 //    private int[] previousCarArray = {1, 2, 7};

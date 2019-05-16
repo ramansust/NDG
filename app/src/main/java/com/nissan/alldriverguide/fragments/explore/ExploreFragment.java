@@ -274,7 +274,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             btnAR.setBackgroundResource(R.drawable.ar_selector);
         }
 
-        if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10) {
+        if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10|| Values.carType == 18) {
             btnBlindSpotAR.setBackgroundResource(R.drawable.explore_xtrail_eur);
         } else if (Values.carType == 11 || Values.carType == 12 || Values.carType == 16
                 || Values.carType == 13 || Values.carType == 14 || Values.carType == 15 || Values.carType == 17) {
@@ -283,7 +283,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4
                 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12
-                || Values.carType == 16
+                || Values.carType == 16|| Values.carType == 18
                 || Values.carType == 13 || Values.carType == 14 || Values.carType == 15 || Values.carType == 17) {
             relativeBlindSpot.setVisibility(View.VISIBLE);
             relativeAR.setVisibility(View.GONE);
