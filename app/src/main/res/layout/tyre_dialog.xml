@@ -65,7 +65,7 @@
             <Button
                 android:id="@+id/btn_already"
                 android:layout_width="250dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:background="@color/background"
                 android:text="@string/alert_msg41"

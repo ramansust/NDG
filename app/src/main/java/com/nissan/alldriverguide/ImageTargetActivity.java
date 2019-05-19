@@ -907,7 +907,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
      */
     public void buttonEvent(View b) {
         // Preventing multiple clicks, using threshold of 1 second
-        if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT*3) {
             return;
         }
         mLastClickTime = SystemClock.elapsedRealtime();
@@ -940,6 +940,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 //                ePubIndex = (Integer.parseInt(b.getTag().toString()) * 2) + 1;
 
                 // here specify the DetailsActivity for loading epub data
+                Logger.error("________EPUB Index________",ePubIndex+Values.ar_value);
                 Intent intentButton = new Intent(ImageTargetActivity.this, DetailsActivity.class);
                 intentButton.putExtra("epub_index", ePubIndex);
                 intentButton.putExtra("epub_title", "DETAILS");

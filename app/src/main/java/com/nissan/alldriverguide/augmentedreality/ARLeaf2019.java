@@ -253,7 +253,7 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
                     case R.id.btn_radio_left:
 
                         mActivity.layoutCameraView.removeAllViews ();
-                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2017_radio_w_navi_left, null, false);
+                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_2019_radio_w_navi_left, null, false);
                         setBackground (mActivity.inflatedLayout_second, drawables + "leaf2019_navi_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
                         break;
@@ -529,7 +529,7 @@ public class ARLeaf2019 implements GLSurfaceView.Renderer, SampleAppRendererCont
 
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate (
-                                R.layout.leaf_2017_radio_w_navi_left, null, false);
+                                R.layout.leaf_2019_radio_w_navi_left, null, false);
                         setBackground (mActivity.inflatedLayout, drawables + "leaf2019_navi_left.png");
                         mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));

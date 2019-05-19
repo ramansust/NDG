@@ -120,6 +120,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
     }
 
     private void loadChildCarList(List<CarList> allCarList, int parentCarId) {
+        int downloadedChildCar=0;
         childCars.clear();
         for (CarList carList : allCarList) {
             if (Integer.valueOf(carList.getParent_car_id()) == parentCarId && carList.getCar_model_version().equals("new")) {
@@ -134,11 +135,12 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
                 carInfo.setCarModelVersion(carList.getCar_model_version());
                 carInfo.setCarImg(carList.getCarImg());
                 carInfo.setParentCarId(Integer.valueOf(carList.getParent_car_id()));
-//                if (Integer.valueOf(carInfo.getStatus()) != 1)
-                    childCars.add(carInfo);
+                if (Values.ALREADY_DOWNLOADED.equals(carInfo.getStatus()))
+                    downloadedChildCar++;
+                childCars.add(carInfo);
             }
         }
-        if (childCars.size() == 0)
+        if (childCars.size() == downloadedChildCar)
             finish();
     }
 
@@ -212,6 +214,11 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 
     @Override
     public void onItemClicked(RecyclerView.ViewHolder vh, Object item, final int position) {
+
+        if (!DetectConnection.checkInternetConnection(context)) {
+            showNoInternetDialogue("No Internet Connection. Please check your WIFI or cellular data network and try again.");
+            return;
+        }
         CarInfo carInfo = null;
         if (item.getClass() == CarInfo.class) {
             carInfo = (CarInfo) item;

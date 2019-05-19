@@ -281,5 +281,6 @@
     <string name="loading">loading...</string>
     <string name="combimeter_is_the_main">Combimeter is the main button I\'m the only thing you would want it  </string>
     <string name="pdf_open">PDF Open</string>
+    <string name="select_model_year">Select model year</string>
 
 </resources>

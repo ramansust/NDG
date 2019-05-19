@@ -15,6 +15,7 @@ import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.model.HomePageEpubInfo;
 import com.nissan.alldriverguide.model.HomePageSectionInfo;
+import com.nissan.alldriverguide.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -166,7 +167,12 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
 
         RelativeLayout relativeLayout = (RelativeLayout) convertView.findViewById(R.id.relative_header);
         if(listHeader.get(groupPosition).getColorCode() != null && !"".equalsIgnoreCase(listHeader.get(groupPosition).getColorCode())) {
-            relativeLayout.setBackgroundColor(Color.parseColor("" + listHeader.get(groupPosition).getColorCode().trim()));
+            String colorCode = "#000000";
+            if (listHeader.get(groupPosition).getColorCode().startsWith("#")) {
+                colorCode = listHeader.get(groupPosition).getColorCode().trim();
+            }
+
+            relativeLayout.setBackgroundColor(Color.parseColor(colorCode));
         }
 
         return convertView;
