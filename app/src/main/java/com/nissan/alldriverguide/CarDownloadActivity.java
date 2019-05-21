@@ -843,7 +843,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
                                 Logger.error("content_url", "____________" + responseInfo.getUrl());
 
-                                new MADownloadManager(activity, getApplicationContext()).downloadLanguage(false, "Language", responseInfo.getUrl(), NissanApp.getInstance().getCarPath(Values.carType), new DownloaderStatus() {
+                                new MADownloadManager(
+                                        activity, getApplicationContext()).downloadLanguage(false, "Language", responseInfo.getUrl(), NissanApp.getInstance().getCarPath(Values.carType), new DownloaderStatus() {
                                     @Override
                                     public boolean onComplete(boolean b) {
                                         if (b) {

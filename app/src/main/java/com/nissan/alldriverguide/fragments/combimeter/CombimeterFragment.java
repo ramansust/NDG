@@ -21,6 +21,7 @@ import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.assistance.DetailsFragment;
+import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
@@ -186,6 +187,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
                     }
                 }*/
 
+                Logger.error("__MB__Tag__",v.getTag().toString());
                 ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
 
 //                ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
@@ -213,9 +215,11 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
         File dir = new File(drawable_folder + "/");
 
         if (dir.isDirectory()) {
+
             for (File file : dir.listFiles()) { // get all of the file from file path
                 if (file.toString().contains("combimeter_")) {
 
+                    Logger.error("___MB__",file.getName());
                     // here add the colors in ArrayList form combimeter folder
                     // comparing the naming convention like: _r = red, _y = blue, _grn = green etc.
                     if (file.getName().contains("_r")) {

@@ -115,6 +115,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private CarListContentController carListContentController;
     private ProgressBar progressBar;
     private TextView tvNoContent;
+    private boolean isActivityOnPaused=false;
 
     public LanguageSelectionActivity() {
     }
@@ -795,8 +796,12 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
     private void showErrorDialog(String msg) {
-        DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
-        dialogFragment.show(getSupportFragmentManager(), "error_fragment");
+        if (!isActivityOnPaused)
+        {
+            DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
+            dialogFragment.show(getSupportFragmentManager(), "error_fragment");
+        }
+
     }
 
     @Override
@@ -832,4 +837,15 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         Logger.error(TAG, "globalMessage__________" + failedReason);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isActivityOnPaused=true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isActivityOnPaused=false;
+    }
 }

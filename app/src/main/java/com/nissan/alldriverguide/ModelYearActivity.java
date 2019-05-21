@@ -70,6 +70,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
 public class ModelYearActivity extends AppCompatActivity implements CarListACompleteAPI, ModelYearItemClcikListener {
@@ -107,6 +109,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         parentCarId = intent.getIntExtra("parent_car_id", -1);
 
         initViews();
+        loadResource(preferenceUtil.getSelectedLang());
 
         if (parentCarId != -1) {
             //new ApiCall().getChildCarList(NissanApp.getInstance().getDeviceID(this),"1",String.valueOf(parentCarId),this);
@@ -148,6 +151,8 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         context = getApplicationContext();
         container = findViewById(R.id.model_container);
         commonDao = CommonDao.getInstance();
+        activity=ModelYearActivity.this;
+        preferenceUtil = new PreferenceUtil(getApplicationContext());
     }
 
     @Override
@@ -215,10 +220,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
     @Override
     public void onItemClicked(RecyclerView.ViewHolder vh, Object item, final int position) {
 
-        if (!DetectConnection.checkInternetConnection(context)) {
-            showNoInternetDialogue("No Internet Connection. Please check your WIFI or cellular data network and try again.");
-            return;
-        }
         CarInfo carInfo = null;
         if (item.getClass() == CarInfo.class) {
             carInfo = (CarInfo) item;
@@ -1377,6 +1378,10 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
                 }
             }
         });
+    }
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     private void showErrorDialog(String msg) {
