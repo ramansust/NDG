@@ -17,7 +17,15 @@
         android:src="@drawable/map_2"
         android:scaleType="fitXY"/>
 
-        <TextView
+        <ImageView
+            android:id="@+id/drawee_view_map_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/micra_map_2_en"
+            android:paddingLeft="@dimen/margin_back"
+            android:paddingRight="@dimen/margin_back"
+            android:layout_marginTop="8dp" />
+        <!-- <TextView
             android:id="@+id/tvNewNissanDoorToDoor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +52,7 @@
             android:textColor="@color/white"
             android:textAllCaps="true"
             android:layout_below="@id/tvNewNissanDoorToDoor"/>
-
+-->
     </RelativeLayout>
 
 </RelativeLayout>

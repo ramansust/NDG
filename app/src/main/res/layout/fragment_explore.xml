@@ -50,28 +50,13 @@
                 android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/tvAugmentedRealityOldCar"
+                    android:id="@+id/simple_drawee_view_ar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_left"
                     android:layout_marginLeft="@dimen/margin_left"
+                    android:layout_marginRight="@dimen/margin_left"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:layout_marginEnd="@dimen/margin_left"
-                    android:textAllCaps="true"
-                    android:textColor="@color/orange"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/tvExploreYourCarOldCar"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvAugmentedRealityOldCar"
-                    android:layout_marginStart="@dimen/margin_left"
-                    android:layout_marginLeft="@dimen/margin_left"
-                    android:layout_marginEnd="@dimen/margin_left"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="22sp" />
+                    android:padding="@dimen/margin_back" />
 
                 <Button
                     android:id="@+id/btn_ar"
@@ -99,34 +84,19 @@
                         android:id="@+id/btn_blind_spot_ar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
                         android:background="@drawable/explore_micra_new" />
 
                     <TextView
-                        android:id="@+id/tvAugmentedReality"
+                        android:id="@+id/simple_drawee_view_blind_spot_ar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/margin_left"
                         android:layout_marginLeft="@dimen/margin_left"
-                        android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:layout_marginEnd="@dimen/margin_left"
-                        android:textAllCaps="true"
-                        android:textColor="@color/orange"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvExploreYourCar"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tvAugmentedReality"
                         android:layout_marginStart="@dimen/margin_left"
-                        android:layout_marginLeft="@dimen/margin_left"
                         android:layout_marginEnd="@dimen/margin_left"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white"
-                        android:textSize="22sp" />
+                        android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
                 </RelativeLayout>
 
@@ -146,11 +116,11 @@
                         android:id="@+id/llLeftArrow"
                         android:layout_width="40dp"
                         android:layout_height="70dp"
-                        android:layout_alignParentStart="true"
+                        android:orientation="horizontal"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:orientation="horizontal"
                         android:visibility="gone">
 
                         <ImageView
@@ -165,10 +135,10 @@
                         android:id="@+id/llRightArrow"
                         android:layout_width="40dp"
                         android:layout_height="70dp"
+                        android:orientation="horizontal"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:orientation="horizontal"
                         android:visibility="visible">
 
                         <ImageView
@@ -189,8 +159,8 @@
                     android:background="@color/colorWhite"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp">
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
 
                     <View
                         android:layout_width="70dp"
@@ -201,14 +171,15 @@
                         android:background="@color/colorAccent" />
 
                     <TextView
-                        android:id="@+id/tvDiscoverYourVehicle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingStart="@dimen/margin_back"
                         android:paddingEnd="@dimen/margin_back"
+                        android:text="@string/discover_your_vehicle"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="22sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <ProgressBar
