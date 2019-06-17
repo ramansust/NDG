@@ -527,6 +527,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
     private void postCarDownloadSuccessfulStatus() {
+
         new ApiCall().postCarDownloadConfirmation(Values.carType + "", "" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()), "0", NissanApp.getInstance().getDeviceID(this), new CompleteAPI() {
             @Override
             public void onDownloaded(ResponseInfo responseInfo) {
@@ -626,6 +627,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
     private void showCarDownloadDialogForSingleCar() {
+
         carListContentController = new CarListContentController(this);
         controllerGlobalMsg = new GlobalMessageController(this);
         final Dialog dialog = new DialogController(LanguageSelectionActivity.this).carDownloadDialog();

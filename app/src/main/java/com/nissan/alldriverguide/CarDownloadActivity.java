@@ -339,7 +339,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
                     if (progressDialog != null)
                         progressDialog.dismiss();
-                    Logger.error("Device registration Successful", "________________________________" + "refresh token");
+                    Logger.error("CarDownloadActivity: Device registration Successful", "________________________________" + "refresh token");
                     new PreferenceUtil(getApplicationContext()).setPushRegistrationStatus(true);
 //                    goForNormalOperation(position, parent);
 
@@ -356,7 +356,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
             @Override
             public void onFailed(String failedReason) {
-                Logger.error("Device registration failed_refresh_token", "_____________________" + failedReason);
+                Logger.error("CarDownloadActivity: Device registration failed_refresh_token", "_____________________" + failedReason);
                 if (progressDialog != null)
                     progressDialog.dismiss();
                 Toast.makeText(context, "Failed Registration!", Toast.LENGTH_SHORT).show();
@@ -1050,6 +1050,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private void getRegIdForPush() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
         String regId = pref.getString("regId", null);
+//        String regId ="";
 
         new ApiCall().postDeviceRegistrationForPush(NissanApp.getInstance().getDeviceID(getApplicationContext()), regId, Values.DEVICE_TYPE, new CompleteAPI() {
             @Override
@@ -1060,13 +1061,13 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                         new PreferenceUtil(getApplicationContext()).setPushRegistrationStatus(true);
                     }
 
-                    Logger.error("Device registration Successful", "________________________________successful");
+                    Logger.error("CarDownloadActivity: Device registration Successful", "________________________________successful");
                 }
             }
 
             @Override
             public void onFailed(String failedReason) {
-                Logger.error("Device registration failed", "_____________________" + failedReason);
+                Logger.error("CarDownloadActivity: Device registration failed", "_____________________" + failedReason);
             }
         });
     }

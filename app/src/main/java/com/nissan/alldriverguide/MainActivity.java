@@ -64,8 +64,10 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     public TabLayout tabLayout;
     private Tracker tracker;
     private String[] tabNames = new String[4];
-    private int[] tabIconsSelected = {R.drawable.explore_selected, R.drawable.assistance_selected, R.drawable.search_pressed, R.drawable.settings_selected};
-    private int[] tabIconsUnSelected = {R.drawable.explore_unselected, R.drawable.assistance_unselected, R.drawable.search, R.drawable.settings_unselected};
+    private int[] tabIconsSelected = {R.drawable.explore_selected, R.drawable.assistance_selected, R.drawable.search_pressed,
+            R.drawable.settings_selected};
+    private int[] tabIconsUnSelected = {R.drawable.explore_unselected, R.drawable.assistance_unselected, R.drawable.search,
+            R.drawable.settings_unselected};
     // Start------------ For permission related constants
     private static final int PERMISSION_REQUEST_CODE_ALL = 200;
     private static final int PERMISSION_REQUEST_CODE_STORAGE = 201;

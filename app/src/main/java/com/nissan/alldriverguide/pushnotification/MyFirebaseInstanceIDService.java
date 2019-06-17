@@ -28,7 +28,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         super.onTokenRefresh();
         final String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
-        Logger.error(TAG, "Refreshed token:____" + refreshedToken);
+        Logger.error(TAG, "IDSERVICE: Refreshed token:____" + refreshedToken);
 
         String previousRegisteredId = getPreviousRegisteredIdFromPref();
 
@@ -39,7 +39,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
                     @Override
                     public void onDownloaded(ResponseInfo responseInfo) {
                         if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
-                            Logger.error("Device registration Successful", "________________________________" + "refresh token");
+                            Logger.error("IDSERVICE: Device registration Successful", "________________________________" + "refresh token");
                             // Saving reg id to shared preferences
                             storeRegIdInPref(refreshedToken);
 
@@ -53,7 +53,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
                     @Override
                     public void onFailed(String failedReason) {
-                        Logger.error("Device registration failed_refresh_token", "_____________________" + failedReason);
+                        Logger.error("IDSERVICE: Device registration failed_refresh_token", "_____________________" + failedReason);
                     }
                 });
             }
@@ -70,7 +70,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
     private void sendRegistrationToServer(final String token) {
         // sending gcm token to server
-        Logger.error(TAG, "sendRegistrationToServer: " + token);
+        Logger.error(TAG, "IDSERVICE: sendRegistrationToServer: " + token);
     }
 
     private void storeRegIdInPref(String token) {
