@@ -1052,7 +1052,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         String regId = pref.getString("regId", null);
 //        String regId ="";
 
-        new ApiCall().postDeviceRegistrationForPush(NissanApp.getInstance().getDeviceID(getApplicationContext()), regId, Values.DEVICE_TYPE, new CompleteAPI() {
+        new ApiCall().postDeviceRegistrationForPush(NissanApp.getInstance().getDeviceID(getApplicationContext()), null, Values.DEVICE_TYPE, new CompleteAPI() {
             @Override
             public void onDownloaded(ResponseInfo responseInfo) {
                 if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
