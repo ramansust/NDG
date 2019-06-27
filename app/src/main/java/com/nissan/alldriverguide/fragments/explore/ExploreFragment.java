@@ -410,7 +410,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
 
 
-        if (Values.carType == 11 || Values.carType == 12 ) {
+        if (Values.carType == 10|| Values.carType == 11 || Values.carType == 12 ) {
             rlMapView.setVisibility(View.VISIBLE);
         } else {
             rlMapView.setVisibility(View.GONE);
@@ -916,7 +916,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                                 for (int i = 0; i < videoList.size(); i++) {
 
-                                    if (videoList.get(i).getTag() == 997) { //video tag door to door MB
+                                    if (videoList.get(i).getTag() == 997 || videoList.get(i).getTag() == 46 ) { //video tag door to door MB
                                         index = i;
                                         break;
                                     }

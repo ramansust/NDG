@@ -220,6 +220,25 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
             public void onClick(View v) {
 
                 switch (v.getId()) {
+                    case R.id.btn_ivi_middle:
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.navara_ivi_middle, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "navara_ivi_middle.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
+                        break;
+                    case R.id.btn_ivi_left:
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.navara_ivi_left, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "navara_ivi_left.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
+                        break;
+                    case R.id.btn_ivi_right:
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.navara_ivi_right, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "navara_ivi_right.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
+                        break;
+
                     case R.id.btn_radio_wo_navi_middle:
 
                         mActivity.layoutCameraView.removeAllViews();
@@ -327,7 +346,7 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                     if (userDataToCompare.equalsIgnoreCase("start_stop_ignition_1")
                             || userDataToCompare.equalsIgnoreCase("start_stop_ignition_3")
                             || userDataToCompare.equalsIgnoreCase("start_stop_ignition_4")
-                            ) {
+                    ) {
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
@@ -347,7 +366,7 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             || userDataToCompare.equalsIgnoreCase("steering_left_3")
                             || userDataToCompare.equalsIgnoreCase("steering_left_4")
                             || userDataToCompare.equalsIgnoreCase("steering_left_5")
-                            ) {
+                    ) {
 
 
                         try {
@@ -370,7 +389,7 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             || userDataToCompare.equalsIgnoreCase("steering_right_4")
                             || userDataToCompare.equalsIgnoreCase("steering_right_5")
                             || userDataToCompare.equalsIgnoreCase("steering_right_6")
-                            ) {
+                    ) {
 
 
                         try {
@@ -390,7 +409,7 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                     } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_1")
                             || userDataToCompare.equalsIgnoreCase("radio_wo_navi_2")
                             || userDataToCompare.equalsIgnoreCase("radio_wo_navi_3")
-                            ) {
+                    ) {
 
 
                         try {
@@ -833,6 +852,96 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.navara_trip, null, false);
                         setBackground(mActivity.inflatedLayout, drawables + "navara_tripreset_switch.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    }
+                    // TODO: 2019-06-27 new AR item  by MB
+                    //new AR item
+                    else if (userDataToCompare.equalsIgnoreCase("ivi_full_1")
+                            || userDataToCompare.equalsIgnoreCase("ivi_full_2")
+                            || userDataToCompare.equalsIgnoreCase("ivi_full_3")
+                            || userDataToCompare.equalsIgnoreCase("ivi_full_4")
+                    ) {
+
+
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            e.printStackTrace();
+                        }
+
+                        Values.ar_value = Analytics.IVI;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.navara_ivi_full, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "navara_ivi_full.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_ivi_middle));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_ivi_left));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_ivi_right));
+
+                    } else if (userDataToCompare.equalsIgnoreCase("ivi_left_1")
+                            || userDataToCompare.equalsIgnoreCase("ivi_left_2")
+                            || userDataToCompare.equalsIgnoreCase("ivi_left_3")
+                            || userDataToCompare.equalsIgnoreCase("ivi_left_4")
+                            || userDataToCompare.equalsIgnoreCase("ivi_left_5")) {
+
+
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            e.printStackTrace();
+                        }
+
+                        Values.ar_value = Analytics.IVI;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.navara_ivi_left, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "navara_ivi_left.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    } else if (userDataToCompare.equalsIgnoreCase("ivi_middle_1")
+                            || userDataToCompare.equalsIgnoreCase("ivi_middle_2")
+                            || userDataToCompare.equalsIgnoreCase("ivi_middle_3")
+                            || userDataToCompare.equalsIgnoreCase("ivi_middle_4")) {
+
+
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            e.printStackTrace();
+                        }
+
+
+                        Values.ar_value = Analytics.IVI;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.navara_ivi_middle, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "navara_ivi_middle.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    } else if (userDataToCompare.equalsIgnoreCase("ivi_right_1")
+                            || userDataToCompare.equalsIgnoreCase("ivi_right_2")
+                            || userDataToCompare.equalsIgnoreCase("ivi_right_3")
+                            || userDataToCompare.equalsIgnoreCase("ivi_right_4")) {
+
+
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            e.printStackTrace();
+                        }
+
+                        Values.ar_value = Analytics.IVI;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.navara_ivi_right, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "navara_ivi_right.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 

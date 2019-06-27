@@ -30,6 +30,7 @@ public class Analytics {
     public static final String STEERING_RIGHT = "steering right";
     public static final String SUNROOF = "sunroof";
     public static final String RADIO_WO_NAVI = "radio without navigation";
+    public static final String IVI = "a ivi";
     public static final String CONNECT = "connect";
     public static final String RADIO_W_NAVI = "radio with navigation";
     public static final String MANUAL_AC = "manual ac";
