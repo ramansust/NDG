@@ -5,51 +5,91 @@
   ~ MobioApp
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical" >
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/popupLayout"
         android:layout_width="200dp"
         android:layout_height="402dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:weightSum="6">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:id="@+id/button10"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="44dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="3" />
+            android:tag="84"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.32"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:id="@+id/button11"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="2" />
+            android:tag="92"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.32"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button10" />
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:id="@+id/button13"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="1" />
+            android:tag="82"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button11" />
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
+            android:id="@+id/button14"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="0" />
-    </LinearLayout>
+            android:tag="81"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button13" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/button16"
+            android:layout_width="136dp"
+            android:layout_height="106dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="80"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.416"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button14"
+            app:layout_constraintVertical_bias="0.172" />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

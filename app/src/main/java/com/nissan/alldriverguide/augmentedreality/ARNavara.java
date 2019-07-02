@@ -351,7 +351,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -373,7 +372,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -396,7 +394,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -416,7 +413,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -440,7 +436,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -461,7 +456,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -482,7 +476,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -502,7 +495,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -527,7 +519,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -548,7 +539,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -569,7 +559,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -589,7 +578,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -613,7 +601,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -633,7 +620,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -653,7 +639,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -673,7 +658,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -696,7 +680,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -716,7 +699,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -738,7 +720,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -759,7 +740,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -780,7 +760,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -801,7 +780,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -822,7 +800,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -844,7 +821,6 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -856,12 +832,14 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
                     }
-                    // TODO: 2019-06-27 new AR item  by MB
-                    //new AR item
+                   /*
+                        new AR item IVI added by Mostasim Billah
+                    */
                     else if (userDataToCompare.equalsIgnoreCase("ivi_full_1")
                             || userDataToCompare.equalsIgnoreCase("ivi_full_2")
                             || userDataToCompare.equalsIgnoreCase("ivi_full_3")
                             || userDataToCompare.equalsIgnoreCase("ivi_full_4")
+                            || userDataToCompare.equalsIgnoreCase("ivi_full_5")
                     ) {
 
 
@@ -907,7 +885,8 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
                     } else if (userDataToCompare.equalsIgnoreCase("ivi_middle_1")
                             || userDataToCompare.equalsIgnoreCase("ivi_middle_2")
                             || userDataToCompare.equalsIgnoreCase("ivi_middle_3")
-                            || userDataToCompare.equalsIgnoreCase("ivi_middle_4")) {
+                            || userDataToCompare.equalsIgnoreCase("ivi_middle_4")
+                            || userDataToCompare.equalsIgnoreCase("ivi_middle_5")) {
 
 
                         try {

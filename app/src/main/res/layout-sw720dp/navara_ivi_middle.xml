@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (c) 27/6/2019
+  ~ Copyright (c) 30/6/2019
   ~ Mostasim Billah
   ~ MobioApp
   -->
@@ -13,8 +13,8 @@
 
     <LinearLayout
         android:id="@+id/popupLayout"
-        android:layout_width="350dp"
-        android:layout_height="220dp"
+        android:layout_width="700dp"
+        android:layout_height="420dp"
         android:gravity="center"
         android:onClick="buttonEvent"
         android:orientation="vertical"
