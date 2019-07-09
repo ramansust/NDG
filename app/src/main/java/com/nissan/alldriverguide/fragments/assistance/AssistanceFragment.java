@@ -3,6 +3,7 @@ package com.nissan.alldriverguide.fragments.assistance;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
@@ -47,11 +48,14 @@ import com.nissan.alldriverguide.fragments.combimeter.CombimeterFragment;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAssistanceTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
+import com.nissan.alldriverguide.model.DealerUrl;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.Datum;
 import com.nissan.alldriverguide.retrofit.ApiCall;
+import com.nissan.alldriverguide.retrofit.ApiService;
+import com.nissan.alldriverguide.retrofit.RetrofitClient;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.DialogErrorFragment;
 import com.nissan.alldriverguide.utils.Logger;
@@ -61,6 +65,10 @@ import com.nissan.alldriverguide.utils.Values;
 import com.vuforia.VIEW;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
@@ -96,6 +104,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private AssistanceTabContentController controller;
 
     private String url;
+    private DealerUrl dealerUrl;
 
     public static Fragment newInstance() {
         Fragment frag = new AssistanceFragment();
@@ -147,6 +156,24 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
         int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
         controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2");
+
+   /*     try{
+            Call<DealerUrl> dealerUrlCall=RetrofitClient.getApiService().getFindADealer(""+language_ID);
+            dealerUrlCall.enqueue(new Callback<DealerUrl>() {
+                @Override
+                public void onResponse(Call<DealerUrl> call, Response<DealerUrl> response) {
+                    dealerUrl = response.body();
+                }
+
+                @Override
+                public void onFailure(Call<DealerUrl> call, Throwable t) {
+                    Logger.error("ASSISTANCE TAB ERROR",t.getMessage());
+                }
+            });
+        }catch (Exception e){
+            Logger.error(TAG,e.toString());
+        }
+*/
 
     }
 
@@ -569,7 +596,16 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             case 5:
                 frag = NissanAssistanceFragment.newInstance(pageTitle, url);
                 break;
+         /*   case 6:
+                if (dealerUrl!=null && dealerUrl.getUrl()!=null)
+                {
+                    Intent openURL = new Intent(android.content.Intent.ACTION_VIEW);
+                    openURL.setData(Uri.parse(dealerUrl.getUrl()));
+                    startActivity(openURL);
+                }
 
+                break;
+*/
             default:
                 break;
         }

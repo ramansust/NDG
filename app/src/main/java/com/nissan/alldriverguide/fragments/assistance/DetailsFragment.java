@@ -344,6 +344,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
+                Logger.error("Details::url",url);
                 if (url != null && url.startsWith("http")) {
                     return false;
 

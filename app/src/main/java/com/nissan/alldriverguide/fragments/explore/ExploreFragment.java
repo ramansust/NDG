@@ -504,11 +504,11 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
 
         //commented for adding slider page on "NEW NISSAN CONNECT" viewpager for J11 MC(car type 12) : by Mostasim Billah
-        /* if (Values.carType == 12) {
+         if (Values.carType == 10) {
             viewPager.disableScroll(true);
             llLeftArrow.setVisibility(View.GONE);
             llRightArrow.setVisibility(View.GONE);
-        }*/
+        }
 
     }
 
@@ -868,7 +868,19 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                             //String updatingMapText = NissanApp.getInstance().getAlertMessage(mContext,new PreferenceUtil(getActivity()).getSelectedLang(), Values.UPDATING_MAP_DATA);
 
-                            Fragment frag = DetailsFragment.newInstance(list.get(Values.carType == 12 ? 58 : 52).getIndex(), resources.getString(R.string.updating_map_data));
+                            int epubIndex=52;
+                            if(Values.carType==12) {
+                                epubIndex=58;
+                            }
+                            else if(Values.carType == 10){
+                                epubIndex=46;
+                            }
+                            else if(Values.carType == 11){
+                                epubIndex=54;
+                            }else {
+                                epubIndex = 52;
+                            }
+                            Fragment frag = DetailsFragment.newInstance(list.get(epubIndex).getIndex(), resources.getString(R.string.updating_map_data));
                             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                             ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                             ft.replace(R.id.container, frag);
@@ -1027,10 +1039,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                                                 if (error.isServerError())
                                                     Toast.makeText(mContext, "Server error occurred!", Toast.LENGTH_SHORT).show();
                                             }
-
-
                                         });
-
                             } else {
 
                                 Toast.makeText(getActivity(), internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage, Toast.LENGTH_SHORT).show();
@@ -1081,7 +1090,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     // Instruct the user to install a PDF reader here, or something
                     e.printStackTrace();
                 }
-
     }
 
 }
