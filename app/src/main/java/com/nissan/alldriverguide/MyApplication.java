@@ -2,6 +2,7 @@ package com.nissan.alldriverguide;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDexApplication;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -14,7 +15,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 /*
  * Class for Google Analytics settings
  */
-public class MyApplication extends Application {
+public class MyApplication extends MultiDexApplication {
 
     // The following line should be changed to include the correct property id.
     public static final String PROPERTY_ID = "UA-57902793-1";// UA-57795549-1 (Main)

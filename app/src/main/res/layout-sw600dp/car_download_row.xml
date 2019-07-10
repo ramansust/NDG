@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relative_car_download"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:descendantFocusability="blocksDescendants"
     android:gravity="center"
     android:padding="@dimen/margin_left">
@@ -21,14 +21,23 @@
             android:visibility="gone"></RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/pp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/ivMainCarImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/img_view_border"
+                android:layout_alignRight="@+id/img_view_border"
+                android:layout_alignBottom="@+id/img_view_border"
+                android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="0dp"
                 android:background="@drawable/car_download_place_holder" />
 
             <ImageView

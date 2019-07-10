@@ -131,6 +131,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         this.activity = activity;
         this.context = context;
         this.list = list;
+
         this.frag = frag;
         inflater = LayoutInflater.from(this.context);
         commonDao = CommonDao.getInstance();
@@ -277,7 +278,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             viewHolder.imageViewBorder.setVisibility(View.VISIBLE);
             viewHolder.imgDeleteOrDownload.setVisibility(View.INVISIBLE);
         } else {
-            viewHolder.imageViewBorder.setVisibility(View.GONE);
+            viewHolder.imageViewBorder.setVisibility(View.INVISIBLE);
             viewHolder.imgDeleteOrDownload.setVisibility(View.VISIBLE);
         }
 
