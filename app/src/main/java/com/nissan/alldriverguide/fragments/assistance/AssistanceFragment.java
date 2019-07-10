@@ -266,7 +266,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private void setAssistanceCarBackgroundImage() {
 
         url = getURLAccordingToDensity(NissanApp.getInstance().getDensityName(getActivity()));
-        //imageView.setImageURI(url);
+
 
         DraweeController controller = Fresco.newDraweeControllerBuilder().setImageRequest(
                 ImageRequestBuilder.newBuilderWithSource(Uri.parse(url))
@@ -286,6 +286,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 })
                 .build();
         imageView.setController(controller);
+        //imageView.setImageURI(url);
+        Logger.error(TAG,url);
     }
 
     private String getURLAccordingToDensity(String device_density) {
@@ -300,7 +302,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             return assistanceInfo.getAssistanceImages().getAssistanceImgHdpi();
         } else if (device_density.equalsIgnoreCase("ldpi")) {
             return assistanceInfo.getAssistanceImages().getAssistanceImgLdpi();
-        }
+        } else if(device_density.equalsIgnoreCase("mdpi"))
+            return assistanceInfo.getAssistanceImages().getAssistanceImgHdpi();
 
         return "";
     }

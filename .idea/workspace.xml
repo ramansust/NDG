@@ -10,15 +10,16 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0001faa1-6346-4b3b-858c-480957c7e0f7" name="Default" comment="Nissan Leaf 2019 added with AR and ModelYear Feature integrate">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARNavara2019.java" afterDir="false" />
+    <list default="true" id="0001faa1-6346-4b3b-858c-480957c7e0f7" name="Default" comment="Navara2019 remove">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/interfaces/FindADealerCompleteAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/leaf2019_radio_wo_navi_full.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/leaf2019_radio_wo_navi_left.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/leaf2019_radio_wo_navi_middle.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/leaf2019_radio_wo_navi_right.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_wo_navi_full.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_wo_navi_left.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_wo_navi_middle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_wo_navi_right.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/navara_radio_full.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/navara_radio_left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/navara_radio_middle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/navara_radio_right.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
@@ -31,63 +32,71 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/__local_aars____home_nirob_vuforia_vuforia_sdk_android_7_0_43_build_java_vuforia_Vuforia_jar_unspecified_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/__local_aars____media_nirob_MyDrive1_AndroidUbuntu_AndroidStudioProjects_MA_Project_NDG_Online_Search_nissanauto_app_libs_NDG_SDK_jar_unspecified_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/__local_aars____media_nirob_MyDrive_AndroidUbuntu_AndroidStudioProjects_MA_Project_NDG_Online_Search_nissanauto_app_libs_NDG_SDK_jar_unspecified_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_afollestad_sectioned_recyclerview_0_5_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_animated_vector_drawable_25_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_appcompat_v7_25_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_design_25_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_recyclerview_v7_25_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_annotations_25_3_1_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_compat_25_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_core_ui_25_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_core_utils_25_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_fragment_25_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_media_compat_25_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_v4_19_1_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_v4_25_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_vector_drawable_25_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_transition_25_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_facebook_fresco_animated_base_0_13_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_facebook_fresco_animated_gif_0_13_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_facebook_fresco_animated_webp_0_13_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_facebook_fresco_drawee_0_13_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_facebook_fresco_fbcore_0_13_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_facebook_fresco_fresco_0_13_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_facebook_fresco_imagepipeline_0_13_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_facebook_fresco_imagepipeline_base_0_13_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_facebook_fresco_webpsupport_0_13_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_analytics_11_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_analytics_impl_11_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_base_11_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_basement_11_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_tagmanager_v4_impl_11_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_tasks_11_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_code_gson_gson_2_6_2_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_analytics_11_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_analytics_impl_11_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_common_11_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_core_11_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_iid_11_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_messaging_11_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_parse_bolts_bolts_tasks_1_4_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_squareup_okhttp3_okhttp_3_2_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_squareup_okio_okio_1_6_0_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_squareup_retrofit2_converter_gson_2_0_2_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_squareup_retrofit2_retrofit_2_0_2_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_xiaofeng_android_flowlayoutmanager_1_2_3_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/uk_co_chrisjenx_calligraphy_2_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_runtime_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_runtime_1_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_core_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_core_1_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_runtime_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_runtime_1_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_viewmodel_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_viewmodel_1_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_afollestad_sectioned_recyclerview_0_5_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_afollestad_sectioned_recyclerview_0_5_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_animated_vector_drawable_27_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_animated_vector_drawable_27_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_appcompat_v7_27_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_appcompat_v7_27_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_1_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_design_27_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_design_27_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_multidex_1_0_2_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_multidex_instrumentation_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_multidex_instrumentation_1_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_recyclerview_v7_27_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_recyclerview_v7_27_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_compat_27_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_compat_27_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_ui_27_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_ui_27_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_utils_27_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_utils_27_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_fragment_27_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_fragment_27_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_media_compat_27_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_media_compat_27_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_v4_27_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_v4_27_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_27_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_27_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_3_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_3_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_3_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_3_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_monitor_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_monitor_1_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_1_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_transition_27_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_transition_27_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_animated_base_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_animated_base_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_animated_drawable_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_animated_drawable_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_animated_gif_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_animated_gif_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_animated_webp_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_animated_webp_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_drawee_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_drawee_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_fbcore_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_fbcore_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_fresco_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_fresco_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_imagepipeline_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_imagepipeline_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_imagepipeline_base_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_imagepipeline_base_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_nativeimagefilters_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_nativeimagefilters_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_nativeimagetranscoder_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_nativeimagetranscoder_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_webpsupport_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_webpsupport_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_soloader_soloader_0_6_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_soloader_soloader_0_6_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_8_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_8_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_8_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_8_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_analytics_11_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_analytics_11_0_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_analytics_impl_11_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_analytics_impl_11_0_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_11_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_11_0_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_11_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_11_0_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tagmanager_v4_impl_11_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tagmanager_v4_impl_11_0_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_11_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_11_0_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_11_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_11_0_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_impl_11_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_impl_11_0_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_11_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_11_0_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_core_11_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_core_11_0_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_iid_11_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_iid_11_0_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_messaging_11_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_messaging_11_0_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_karumi_dexter_4_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_karumi_dexter_4_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mindorks_android_prdownloader_0_5_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mindorks_android_prdownloader_0_5_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_xiaofeng_android_flowlayoutmanager_1_2_3_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_xiaofeng_android_flowlayoutmanager_1_2_3_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__uk_co_chrisjenx_calligraphy_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__uk_co_chrisjenx_calligraphy_2_2_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/CarDownloadActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/CarDownloadActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/output.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/release/output.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/ImageTargetActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/ImageTargetActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARLeaf2019.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARLeaf2019.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/explore/ExploreFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/explore/ExploreFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/retrofit/RetrofitClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/retrofit/RetrofitClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/utils/NissanApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/utils/NissanApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/utils/Values.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/utils/Values.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/AssistanceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/AssistanceFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/retrofit/ApiCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/retrofit/ApiCall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/retrofit/ApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/retrofit/ApiService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib_viewpager_indicator/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/lib_viewpager_indicator/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib_viewpager_indicator/lib_viewpager_indicator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/lib_viewpager_indicator/lib_viewpager_indicator.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -126,21 +135,131 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARLeaf2019.java">
+      <file pinned="true" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/retrofit/RetrofitClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="790" column="64" lean-forward="true" selection-start-line="790" selection-start-column="64" selection-end-line="790" selection-end-column="64" />
+            <state relative-caret-position="40">
+              <caret line="28" column="7" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_wo_navi_middle.xml">
-          <provider editor-type-id="android-designer2" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/car_download_row.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/AssistanceFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+            <state relative-caret-position="175">
+              <caret line="288" column="10" selection-start-line="288" selection-start-column="10" selection-end-line="288" selection-end-column="10" />
+              <folding>
+                <element signature="e#11408#11668#0" expanded="true" />
+                <element signature="e#11667#11668#0" expanded="true" />
+                <element signature="e#11743#12115#0" expanded="true" />
+                <element signature="e#12114#12115#0" expanded="true" />
+                <element signature="class#17671:27920" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/multiLang/model/AssistanceImages.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="604">
+              <caret line="92" column="18" selection-start-line="92" selection-start-column="18" selection-end-line="92" selection-end-column="18" />
+              <folding>
+                <element signature="e#2523#2524#0" expanded="true" />
+                <element signature="e#2564#2565#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/car_download_row.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="121">
+              <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/car_download_row.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="30" column="43" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/adapter/CarDownloadSettingsAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="752">
+              <caret line="280" column="67" selection-start-line="280" selection-start-column="67" selection-end-line="280" selection-end-column="67" />
+              <folding>
+                <element signature="e#7174#7211#0" expanded="true" />
+                <element signature="e#7763#7764#0" expanded="true" />
+                <element signature="e#7816#7817#0" expanded="true" />
+                <element signature="e#7873#7874#0" expanded="true" />
+                <element signature="e#7914#7915#0" expanded="true" />
+                <element signature="e#7971#7972#0" expanded="true" />
+                <element signature="e#8002#8003#0" expanded="true" />
+                <element signature="e#14430#17250#0" />
+                <element signature="e#15274#15333#0" expanded="true" />
+                <element signature="e#16991#17050#0" expanded="true" />
+                <element signature="e#20296#20976#0" />
+                <element signature="e#21130#21786#1" />
+                <element signature="e#21798#22324#0" />
+                <element signature="e#22330#22466#0" />
+                <element signature="e#22472#23283#0" />
+                <element signature="e#23200#23250#0" expanded="true" />
+                <element signature="e#23289#23817#0" />
+                <element signature="e#23634#23784#0" expanded="true" />
+                <element signature="e#23783#23784#0" expanded="true" />
+                <element signature="e#23823#24079#0" />
+                <element signature="e#24928#51663#0" />
+                <element signature="e#25568#49534#0" expanded="true" />
+                <element signature="e#25889#25945#0" expanded="true" />
+                <element signature="e#49533#49534#0" expanded="true" />
+                <element signature="e#51669#51915#0" />
+                <element signature="e#51921#67120#0" />
+                <element signature="e#67126#70397#0" />
+                <element signature="e#70403#85482#0" />
+                <element signature="e#85488#85644#0" />
+                <element signature="e#85651#88731#0" />
+                <element signature="e#88737#89030#0" />
+                <element signature="e#89036#89311#0" />
+                <element signature="e#89373#89606#0" />
+                <element signature="e#89738#90152#0" />
+                <element signature="e#90158#95013#0" />
+                <element signature="e#92012#92307#0" expanded="true" />
+                <element signature="e#92306#92307#0" expanded="true" />
+                <element signature="e#95019#96417#0" />
+                <element signature="e#96423#97614#0" />
+                <element signature="e#98654#100293#0" />
+                <element signature="e#100299#100846#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/model/CarInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+              <folding>
+                <element signature="e#673#674#0" expanded="true" />
+                <element signature="e#702#703#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -152,120 +271,124 @@
       <list>
         <option value="Class" />
         <option value="layoutResourceFile" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>loadData</find>
-      <find>list</find>
-      <find>index =</find>
-      <find>img_view_git</find>
-      <find>draweeView</find>
-      <find>gif_index</find>
-      <find>ver</find>
-      <find>verti</find>
-      <find>scrollView</find>
-      <find>width</find>
-      <find>settag</find>
-      <find>loaddatabase</find>
-      <find>mRendererLeaf2017</find>
-      <find>connec</find>
-      <find>leaf_2017</find>
-      <find>url</find>
-      <find>10</find>
-      <find>failed to load</find>
-      <find>dial</find>
-      <find>leaf2019_intelligent_park_assist</find>
-      <find>dialog</find>
-      <find>Path ar:</find>
-      <find>leaf2017_intelligent_park_assist.png</find>
-      <find>path</find>
-      <find>log</find>
-      <find>Logger</find>
       <find>Logger.e</find>
       <find>_parking_brake_01</find>
       <find>leaf-2017_parking_brake_01</find>
       <find>leaf2019_steering_wheel</find>
+      <find>leaf_2019_radio_wo_navi_le</find>
+      <find>parking_ass</find>
+      <find>leaf_2019</find>
+      <find>learn</find>
+      <find>leaf2019_na</find>
+      <find>leaf2019_navi_full</find>
+      <find>leaf2019_navi_left</find>
+      <find>onitemcl</find>
+      <find>attacj</find>
+      <find>onpaus</find>
+      <find>onresume</find>
+      <find>oncrea</find>
+      <find>datewise</find>
+      <find>result</find>
+      <find>onActivity</find>
+      <find>reg</find>
+      <find>onres</find>
+      <find>regis</find>
+      <find>setadapter</find>
+      <find>msg</find>
+      <find>loading</find>
+      <find>logger</find>
+      <find>ar</find>
+      <find>Unable to enable continuous autofocus</find>
+      <find>adapter</find>
+      <find>list.get(position)</find>
     </findStrings>
     <replaceStrings>
       <replace>leaf_2017</replace>
       <replace>leaf2017</replace>
+      <replace>carInfo</replace>
     </replaceStrings>
   </component>
   <component name="GenerateSignedApkSettings">
-    <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/../nissan cragential/NissanDriverManual.keystore" />
+    <option name="KEY_STORE_PATH" value="$USER_HOME$/Downloads/key store/nissan cragential/NissanDriverManual.keystore" />
     <option name="KEY_ALIAS" value="DriverManual" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
+    <option name="BUILD_TARGET_KEY" value="apk" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ModelYearFeature" />
+        <entry key="$PROJECT_DIR$" value="navara_2019_car_add" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/settings/Feedback.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARQashqai2017.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARNote.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_wo_navi_left.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_model_year.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARLeaf2017.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/tyre_dialog.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_w_navi_left.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARLeaf2019.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/ModelYearActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/combimeter/CombimeterFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/mapview_page_1.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_explore.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/mapview_page_2.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/adapter/GridViewAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/pushnotification/MyFirebaseMessagingService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/database/CommonDao.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/search/TabFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/search/tab/WarrantyFragment.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/pushnotification/MyFirebaseInstanceIDService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/CarDownloadActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/fragment_explore.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/fragment_explore.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/video_row.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/video_row.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/utils/UrlLinks.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/SplashScreenActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/settings/SettingsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/search/SearchFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/language_selection_row.xml" />
-        <option value="$PROJECT_DIR$/../../../../Android/Sdk/sources/android-25/java/lang/String.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/settings/LanguageFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/database/CommonDao.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/utils/SearchDBAsync.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/download_lang_popup.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/car_download_row.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/settings/AddCarFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/adapter/CarDownloadSettingsAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_video_player.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/VideoPlayerActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/ListFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/DetailsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/DetailsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/AssistanceFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/TyreTransitionActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/adapter/CarDownloadAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/orange_dash_line.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/combimeter/CombimeterFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/utils/AppConfig.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_explore.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARLeaf2017.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/CarDownloadActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/utils/NissanApp.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/utils/Analytics.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/navara_radio_wo_navi_a_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/navara_ivi_full.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/navara_ivi_full.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARNavara.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/navara_ivi_middle.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/navara_ivi_middle.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/navara_ivi_left.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/navara_ivi_left.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/navara_ivi_right.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/navara_ivi_right.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/LanguageSelectionActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/utils/Values.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/DetailsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/explore/ExploreFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARNavara2019.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/model/DealerUrl.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/interfaces/FindADealerCompleteAPI.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/retrofit/ApiCall.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/retrofit/RetrofitClient.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/retrofit/ApiService.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/MyApplication.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/vuforia/SampleAppRenderer.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/ImageTargetActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_wo_navi_middle.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_wo_navi_full.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_wo_navi_left.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_wo_navi_right.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARLeaf2019.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/settings/AddCarFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/car_download_row.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/car_download_row.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/adapter/CarDownloadSettingsAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/AssistanceFragment.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="41" />
+    <option name="x" value="39" />
     <option name="y" value="23" />
-    <option name="width" value="1325" />
+    <option name="width" value="1327" />
     <option name="height" value="745" />
   </component>
   <component name="ProjectView">
@@ -273,17 +396,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ndg_europe-last" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -291,17 +404,24 @@
               <item name="ndg_europe-last" type="b2602c69:ProjectViewProjectNode" />
               <item name="ndg_europe-last" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
+            <path>
+              <item name="ndg_europe-last" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ndg_europe-last" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="AnalyzeApkAction.lastApkPath" value="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" />
     <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
     <property name="ExportApk.BuildType" value="release" />
+    <property name="ExportApk.BuildVariants" value="release" />
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.SignV1" value="true" />
     <property name="ExportApk.SignV2" value="true" />
@@ -313,10 +433,10 @@
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="$PROJECT_DIR$/../../../../Android/Sdk" />
     <property name="device.picker.selection" value="34edaee7" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../nissan cragential/NissanDriverManual.keystore" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Background" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="show.do.not.ask.upgrade.gradle.plugin" value="3.0.1" />
   </component>
   <component name="RecentsManager">
@@ -324,11 +444,11 @@
       <recent name="com.nissan.alldriverguide.augmentedreality" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout-sw720dp" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xlarge-mdpi" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -600,6 +720,7 @@
       </method>
     </configuration>
     <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <properties />
       <listeners />
@@ -618,20 +739,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1512409029193</updated>
-    </task>
-    <task id="LOCAL-00001" summary="add push notification when app running">
-      <created>1512424404413</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1512424404413</updated>
-    </task>
-    <task id="LOCAL-00002" summary="fixed tab icon position">
-      <created>1512517293280</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1512517293280</updated>
     </task>
     <task id="LOCAL-00003" summary="added layout and set tag for leaf_2017">
       <created>1513810211486</created>
@@ -878,7 +985,105 @@
       <option name="project" value="LOCAL" />
       <updated>1557204118124</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Leaf2019 AR issue resolved and Navara2019 Car added">
+      <created>1557983625210</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1557983625210</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Leaf2019 AR issue resolved and Navara2019 Car added">
+      <created>1557984302300</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1557984302300</updated>
+    </task>
+    <task id="LOCAL-00040" summary="code refactoring">
+      <created>1557985389288</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1557985389288</updated>
+    </task>
+    <task id="LOCAL-00041" summary="issue resolve">
+      <created>1558262136204</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1558262136204</updated>
+    </task>
+    <task id="LOCAL-00042" summary="crashed issue resolve">
+      <created>1558408388343</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1558408388343</updated>
+    </task>
+    <task id="LOCAL-00043" summary="bug fixed of slider page text to image in J11MC K14">
+      <created>1558686973621</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1558686973621</updated>
+    </task>
+    <task id="LOCAL-00044" summary="version code and name updated for release">
+      <created>1558846700570</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1558846700570</updated>
+    </task>
+    <task id="LOCAL-00045" summary="dev v2">
+      <created>1560746859747</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1560746859747</updated>
+    </task>
+    <task id="LOCAL-00046" summary="tab issue fixed">
+      <created>1561019051945</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1561019051946</updated>
+    </task>
+    <task id="LOCAL-00047" summary="version upadted">
+      <created>1561525926776</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1561525926776</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Navara IVI AR MODEL ADDED">
+      <created>1561637472925</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1561637472925</updated>
+    </task>
+    <task id="LOCAL-00049" summary="navara AR A-IVI layout design and tag added for popup images">
+      <created>1562046253708</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1562046253708</updated>
+    </task>
+    <task id="LOCAL-00050" summary="2.3.2 release">
+      <created>1562650503845</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1562650503847</updated>
+    </task>
+    <task id="LOCAL-00051" summary="tab ui fixed and crash issue fixed">
+      <created>1562742588468</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1562742588469</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TodoView">
@@ -891,33 +1096,32 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="41" y="23" width="1325" height="745" extended-state="0" />
-    <editor active="true" />
+    <frame x="39" y="23" width="1327" height="745" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48730963" visible="true" weight="0.18862042" />
-      <window_info id="Structure" order="1" weight="0.24941176" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Build Variants" order="3" sideWeight="0.51269037" side_tool="true" weight="0.2784314" />
-      <window_info id="Image Layers" order="4" />
-      <window_info id="Favorites" order="5" sideWeight="0.51269037" side_tool="true" weight="0.2784314" />
-      <window_info id="Captures" order="6" side_tool="true" weight="0.25" />
-      <window_info id="Capture Tool" order="7" />
-      <window_info id="Resources Explorer" order="8" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48131868" weight="0.23657587" />
+      <window_info id="Resources Explorer" order="1" weight="0.24824902" />
+      <window_info id="Structure" order="2" weight="0.24922119" />
+      <window_info id="Designer" order="3" />
+      <window_info id="Build Variants" order="4" sideWeight="0.5155925" side_tool="true" weight="0.23130842" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Favorites" order="6" sideWeight="0.51269037" side_tool="true" weight="0.27803737" />
+      <window_info id="Captures" order="7" sideWeight="0.51868135" side_tool="true" weight="0.22429906" />
+      <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32879046" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32879046" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.43174604" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.4873016" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996109" weight="0.61904764" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.42380953" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32879046" />
-      <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" weight="0.32879046" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50587314" side_tool="true" weight="0.32879046" />
-      <window_info anchor="bottom" id="Logcat" order="9" sideWeight="0.49411765" weight="0.46349207" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3270869" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" weight="0.32879046" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5003891" side_tool="true" weight="0.61904764" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="9" sideWeight="0.49416342" visible="true" weight="0.4047619" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.42698413" />
       <window_info anchor="bottom" id="Gradle Console" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32698414" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.2920635" />
       <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.49412686" weight="0.32879046" />
-      <window_info anchor="bottom" id="Build" order="14" weight="0.2936508" />
+      <window_info anchor="bottom" id="Build" order="14" sideWeight="0.4961059" weight="0.26031747" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -926,9 +1130,57 @@
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Gradle" order="6" weight="0.32967892" />
       <window_info anchor="right" id="Theme Preview" order="7" />
-      <window_info anchor="right" id="Preview" order="8" weight="0.28994545" />
-      <window_info anchor="right" id="Device File Explorer" order="9" side_tool="true" type="WINDOWED" weight="0.32941177" />
+      <window_info anchor="right" id="Preview" order="8" weight="0.28871596" />
+      <window_info anchor="right" x="463" y="453" width="773" height="301" id="Device File Explorer" order="9" side_tool="true" type="WINDOWED" weight="0.32941177" />
+      <window_info anchor="right" id="Assistant" order="10" weight="0.32943925" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48131868" weight="0.23657587" />
+      <window_info id="Resources Explorer" order="1" weight="0.24824902" />
+      <window_info id="Structure" order="2" weight="0.24922119" />
+      <window_info id="Designer" order="3" />
+      <window_info id="Build Variants" order="4" sideWeight="0.5155925" side_tool="true" weight="0.23130842" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Favorites" order="6" sideWeight="0.51269037" side_tool="true" weight="0.27803737" />
+      <window_info id="Captures" order="7" sideWeight="0.51868135" side_tool="true" weight="0.22429906" />
+      <window_info id="Capture Tool" order="8" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.4873016" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996109" weight="0.61904764" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.42380953" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32879046" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" weight="0.32879046" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5003891" side_tool="true" weight="0.61904764" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="9" sideWeight="0.49416342" visible="true" weight="0.4047619" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.42698413" />
+      <window_info anchor="bottom" id="Gradle Console" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.2920635" />
+      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.49412686" weight="0.32879046" />
+      <window_info anchor="bottom" id="Build" order="14" sideWeight="0.4961059" weight="0.26031747" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Dynamic Properties" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Gradle" order="6" weight="0.32967892" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info anchor="right" id="Preview" order="8" weight="0.28871596" />
+      <window_info anchor="right" x="463" y="453" width="773" height="301" id="Device File Explorer" order="9" side_tool="true" type="WINDOWED" weight="0.32941177" />
+      <window_info anchor="right" id="Assistant" order="10" weight="0.32943925" />
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -971,20 +1223,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="qrg child item bg change" />
-    <MESSAGE value="remove divider form expandable listview" />
-    <MESSAGE value="added two new detection popup and video thumb for leaf2017" />
-    <MESSAGE value="added two new layout for sw720 (multiswitch_new, steering_wheel_right_new) qashqai2017" />
-    <MESSAGE value="comment three language and rate our app feature and added clear btn translation" />
-    <MESSAGE value="hide search fragment clear button popup" />
-    <MESSAGE value="prepare for release apk (finish &amp; polish language, added default video thumb, added three language text image)" />
-    <MESSAGE value="added finish and polish language" />
-    <MESSAGE value="change Polish sort name (po to pl)" />
-    <MESSAGE value="change po to pl for string file" />
-    <MESSAGE value="remove big size flag from drawable" />
-    <MESSAGE value="bug fix rate app (rate us correct)." />
-    <MESSAGE value="added send feedback fragment in settings and added translation for rate the app" />
-    <MESSAGE value="change url for car asset and language" />
     <MESSAGE value="added submit api call, design submit layout, submit feedback button and edit text design &amp; added translation for rate our app" />
     <MESSAGE value="link updated" />
     <MESSAGE value="update translation language" />
@@ -996,436 +1234,466 @@
     <MESSAGE value="added inline documentation and update &#10;CarDownloadActivity and adapter static character" />
     <MESSAGE value="added default en video thumb for polish and finish language" />
     <MESSAGE value="Nissan Leaf 2019 added with AR and ModelYear Feature integrate" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nissan Leaf 2019 added with AR and ModelYear Feature integrate" />
+    <MESSAGE value="Leaf2019 AR issue resolved and Navara2019 Car added" />
+    <MESSAGE value="code refactoring" />
+    <MESSAGE value="issue resoove" />
+    <MESSAGE value="issue resolve" />
+    <MESSAGE value="crashed issue resolve" />
+    <MESSAGE value="bug fixed of slider page text to image in J11MC K14" />
+    <MESSAGE value="version code and name updated for release" />
+    <MESSAGE value="dev v2" />
+    <MESSAGE value="tab issue fixed" />
+    <MESSAGE value="version upadted" />
+    <MESSAGE value="Navara IVI AR MODEL ADDED" />
+    <MESSAGE value="navara AR A-IVI layout design and tag added for popup images" />
+    <MESSAGE value="2.3.2 release" />
+    <MESSAGE value="tab ui fixed and crash issue fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="tab ui fixed and crash issue fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/LanguageSelectionActivity.java</url>
-          <line>396</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/ImageTargetActivity.java</url>
+          <line>947</line>
           <properties />
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/LanguageSelectionActivity.java</url>
-          <line>402</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/HomePageFragment.java</url>
+          <line>158</line>
           <properties />
-          <option name="timeStamp" value="2" />
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/LanguageSelectionActivity.java</url>
-          <line>421</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/VideoPlayerActivity.java</url>
+          <line>138</line>
           <properties />
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/app/libs/NDG_SDK.jar!/com/mobioapp/infinitipacket/downloader/MADownloadManager.class</url>
-          <line>171</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/VideoPlayerActivity.java</url>
+          <line>134</line>
           <properties />
-          <option name="timeStamp" value="7" />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>jar://$PROJECT_DIR$/app/libs/NDG_SDK.jar!/com/mobioapp/infinitipacket/downloader/MADownloadManager.class</url>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/AssistanceFragment.java</url>
           <line>143</line>
-          <properties class="com.mobioapp.infinitipacket.downloader.MADownloadManager" method="downloadLang" />
-          <option name="timeStamp" value="5" />
+          <properties />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/AssistanceFragment.java</url>
+          <line>253</line>
+          <properties />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/AssistanceFragment.java</url>
+          <line>267</line>
+          <properties />
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/AssistanceFragment.java</url>
+          <line>294</line>
+          <properties />
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="app">
+        <watch expression="this.children" custom="org.w3c.dom.NodeList" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-27/android/os/Message.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/retrofit/ApiService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="531" selection-start-line="531" selection-end-line="531" />
+        <state relative-caret-position="1488">
+          <caret line="114" column="51" selection-start-line="114" selection-start-column="51" selection-end-line="114" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-27/android/os/Handler.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/model/DealerUrl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="107" selection-start-line="107" selection-end-line="107" />
-          <folding>
-            <element signature="e#31153#31154#0" expanded="true" />
-            <element signature="e#31191#31192#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="225">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-27/android/os/Looper.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="215" selection-start-line="215" selection-end-line="215" />
-          <folding>
-            <element signature="e#7564#7565#0" expanded="true" />
-            <element signature="e#7605#7606#0" expanded="true" />
-            <element signature="e#8167#8168#0" expanded="true" />
-            <element signature="e#8223#8224#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-185" />
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/app/libs/NDG_SDK.jar!/com/koushikdutta/ion/IonRequestBuilder.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="970" selection-start-line="970" selection-end-line="970" />
-          <folding>
-            <element signature="e#33933#34338#0" expanded="true" />
-            <element signature="e#34337#34338#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/libs/NDG_SDK.jar!/com/koushikdutta/async/AsyncServer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="800" selection-start-line="800" selection-end-line="800" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/libs/NDG_SDK.jar!/com/mobioapp/infinitipacket/downloader/MADownloadManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="146" selection-start-line="146" selection-end-line="146" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/utils/NissanApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="186" column="28" selection-start-line="186" selection-start-column="28" selection-end-line="186" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3629#3630#0" expanded="true" />
-            <element signature="e#3662#3663#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/utils/Values.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="42" column="53" lean-forward="true" selection-start-line="42" selection-start-column="53" selection-end-line="42" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/LanguageSelectionActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="421" selection-start-line="421" selection-end-line="421" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/DetailsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="236" column="152" selection-start-line="236" selection-start-column="150" selection-end-line="236" selection-end-column="152" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/HomePageFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/NissanAssistanceFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/ListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2710">
-          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/CallNissanAssistanceFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/AssistanceFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-473">
-          <caret line="548" column="18" selection-start-line="548" selection-start-column="18" selection-end-line="548" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/explore/ExploreFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7093">
-          <caret line="530" column="33" selection-start-line="530" selection-start-column="33" selection-end-line="530" selection-end-column="33" />
-          <folding>
-            <element signature="e#13802#14078#0" expanded="true" />
-            <element signature="e#14077#14078#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-27/java/lang/Cloneable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../vuforia-sdk-android-7-2-23/build/java/Vuforia/Vuforia.jar!/com/vuforia/State.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/MyApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-790">
-          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/button_rus.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values-sw720dp-mdpi/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARNavara2019.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="249" column="92" lean-forward="true" selection-start-line="249" selection-start-column="92" selection-end-line="249" selection-end-column="92" />
-          <folding>
-            <element signature="e#0#41898#0" expanded="true" />
-            <element signature="e#3522#3554#0" expanded="true" />
-            <element signature="e#5103#5427#0" expanded="true" />
-            <element signature="e#5426#5427#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARNavara.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-405">
-          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
-          <folding>
-            <element signature="e#5951#6882#0" expanded="true" />
-            <element signature="e#6881#6882#0" expanded="true" />
-            <element signature="e#7075#11681#0" expanded="true" />
-            <element signature="e#11680#11681#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/leaf_2017_intelligent_park_assist.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/activity_car_download.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/activity_car_download.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.0.2/2e1d97eec8a4c7517486234666d8b8245f63ae89/retrofit-2.0.2-sources.jar!/retrofit2/Retrofit.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/vuforia/SampleAppRendererControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1680">
-          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/retrofit/RetrofitClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/vuforia/SampleApplicationSession.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/vuforia/SampleApplicationControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+        <state relative-caret-position="90">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/vuforia/SampleApplicationException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="75">
+          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/vuforia/Texture.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/vuforia/SampleApplicationGLView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="26" column="60" lean-forward="true" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
+        <state relative-caret-position="92">
+          <caret line="128" column="35" selection-start-line="128" selection-start-column="35" selection-end-line="128" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/vuforia/SampleAppRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="152" column="75" lean-forward="true" selection-start-line="152" selection-start-column="75" selection-end-line="152" selection-end-column="75" />
+        <state relative-caret-position="88">
+          <caret line="141" column="85" selection-start-line="141" selection-start-column="83" selection-end-line="141" selection-end-column="85" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/vuforia/SampleUtils.java">
+    <entry file="jar://$PROJECT_DIR$/../vuforia-sdk-android-7-2-23/build/java/Vuforia/Vuforia.jar!/com/vuforia/CameraDevice.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-842">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        <state relative-caret-position="60">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARLeaf2017.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/explore/ExploreFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4665">
-          <caret line="343" selection-start-line="343" selection-end-line="343" />
+        <state relative-caret-position="6450">
+          <caret line="519" column="13" selection-start-line="519" selection-start-column="13" selection-end-line="519" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARNavara.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13365">
+          <caret line="923" column="85" selection-start-line="923" selection-start-column="85" selection-end-line="923" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/MyApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="57" column="56" selection-start-line="57" selection-start-column="56" selection-end-line="57" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/ImageTargetActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3405">
-          <caret line="303" column="31" selection-start-line="303" selection-start-column="31" selection-end-line="303" selection-end-column="31" />
+        <state relative-caret-position="9765">
+          <caret line="727" column="26" selection-start-line="727" selection-start-column="26" selection-end-line="727" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#30076#30077#0" expanded="true" />
+            <element signature="e#30116#30117#0" expanded="true" />
+            <element signature="e#30160#30161#0" expanded="true" />
+            <element signature="e#30229#30230#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="32" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="32" />
+        <state relative-caret-position="525">
+          <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/retrofit/ApiCall.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+        <state relative-caret-position="-52">
+          <caret line="446" selection-start-line="446" selection-end-line="446" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_assistance.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/car_download_row_title.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/car_download_row_title.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/car_download_row_title.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_car_download.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/fragment_add_car.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/settings/SettingsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5">
-          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+        <state relative-caret-position="271">
+          <caret line="244" column="34" selection-start-line="244" selection-start-column="34" selection-end-line="244" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/header.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/fragment_add_car.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_add_car.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.fresco/drawee/1.13.0/1299ee4b44abe47a0d5c0829c5145df327adf71c/drawee-1.13.0-sources.jar!/com/facebook/drawee/view/SimpleDraweeView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="151" column="14" selection-start-line="151" selection-start-column="14" selection-end-line="151" selection-end-column="14" />
           <folding>
-            <element signature="e#1549#1569#0" expanded="true" />
+            <element signature="e#4974#4975#0" expanded="true" />
+            <element signature="e#5012#5013#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/leaf_2017_ev_navi_system_main.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/CarDownloadActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-end-line="57" selection-end-column="15" />
+        <state relative-caret-position="435">
+          <caret line="1779" column="43" selection-start-line="1779" selection-start-column="43" selection-end-line="1779" selection-end-column="43" />
+          <folding>
+            <element signature="e#8778#8779#0" expanded="true" />
+            <element signature="e#8830#8831#0" expanded="true" />
+            <element signature="e#8957#11607#0" />
+            <element signature="e#11613#12944#0" />
+            <element signature="e#12950#13940#0" />
+            <element signature="e#13946#14244#0" />
+            <element signature="e#63539#64341#0" expanded="true" />
+            <element signature="e#64340#64341#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/leaf_2017_radio_wo_navi_left.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/utils/NissanApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="25" lean-forward="true" selection-end-line="49" />
+        <state relative-caret-position="176">
+          <caret line="160" column="16" selection-start-line="160" selection-start-column="16" selection-end-line="160" selection-end-column="16" />
+          <folding>
+            <element signature="e#6378#6379#0" expanded="true" />
+            <element signature="e#6416#6417#0" expanded="true" />
+            <element signature="e#6525#6526#0" expanded="true" />
+            <element signature="e#6558#6559#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/leaf2019_radio_wo_navi_left.png">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ar_selector_new_car.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ar_selector.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/download_pressed.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/leaf_2017_radio_wo_navi_middle.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/downloaded_car.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/only_ar_pressed.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/selector.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/settings_selected.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/homepage_row.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-27/java/util/Comparator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="37" column="18" lean-forward="true" selection-end-line="94" />
+        <state relative-caret-position="105">
+          <caret line="149" column="8" selection-start-line="149" selection-start-column="8" selection-end-line="149" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/leaf_2017_radio_wo_navi_right.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/retrofit/RetrofitClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="49" />
+        <state relative-caret-position="40">
+          <caret line="28" column="7" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_wo_navi_full.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/settings/AddCarFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+        <state relative-caret-position="311">
+          <caret line="233" column="59" selection-start-line="233" selection-start-column="59" selection-end-line="233" selection-end-column="59" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_wo_navi_left.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/adapter/CarDownloadAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="43" column="39" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
+        <state relative-caret-position="-283">
+          <caret line="50" column="13" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_wo_navi_right.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/car_download_row.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_assistance.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/fragment_assistance.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw720dp/fragment_assistance.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/model/CarInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="108">
+          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+          <folding>
+            <element signature="e#673#674#0" expanded="true" />
+            <element signature="e#702#703#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/augmentedreality/ARLeaf2019.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="790" column="64" lean-forward="true" selection-start-line="790" selection-start-column="64" selection-end-line="790" selection-end-column="64" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/car_download_row.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="30" column="43" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/leaf_2019_radio_wo_navi_middle.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-sw600dp/car_download_row.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/adapter/CarDownloadSettingsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="280" column="67" selection-start-line="280" selection-start-column="67" selection-end-line="280" selection-end-column="67" />
+          <folding>
+            <element signature="e#7174#7211#0" expanded="true" />
+            <element signature="e#7763#7764#0" expanded="true" />
+            <element signature="e#7816#7817#0" expanded="true" />
+            <element signature="e#7873#7874#0" expanded="true" />
+            <element signature="e#7914#7915#0" expanded="true" />
+            <element signature="e#7971#7972#0" expanded="true" />
+            <element signature="e#8002#8003#0" expanded="true" />
+            <element signature="e#14430#17250#0" />
+            <element signature="e#15274#15333#0" expanded="true" />
+            <element signature="e#16991#17050#0" expanded="true" />
+            <element signature="e#20296#20976#0" />
+            <element signature="e#21130#21786#1" />
+            <element signature="e#21798#22324#0" />
+            <element signature="e#22330#22466#0" />
+            <element signature="e#22472#23283#0" />
+            <element signature="e#23200#23250#0" expanded="true" />
+            <element signature="e#23289#23817#0" />
+            <element signature="e#23634#23784#0" expanded="true" />
+            <element signature="e#23783#23784#0" expanded="true" />
+            <element signature="e#23823#24079#0" />
+            <element signature="e#24928#51663#0" />
+            <element signature="e#25568#49534#0" expanded="true" />
+            <element signature="e#25889#25945#0" expanded="true" />
+            <element signature="e#49533#49534#0" expanded="true" />
+            <element signature="e#51669#51915#0" />
+            <element signature="e#51921#67120#0" />
+            <element signature="e#67126#70397#0" />
+            <element signature="e#70403#85482#0" />
+            <element signature="e#85488#85644#0" />
+            <element signature="e#85651#88731#0" />
+            <element signature="e#88737#89030#0" />
+            <element signature="e#89036#89311#0" />
+            <element signature="e#89373#89606#0" />
+            <element signature="e#89738#90152#0" />
+            <element signature="e#90158#95013#0" />
+            <element signature="e#92012#92307#0" expanded="true" />
+            <element signature="e#92306#92307#0" expanded="true" />
+            <element signature="e#95019#96417#0" />
+            <element signature="e#96423#97614#0" />
+            <element signature="e#98654#100293#0" />
+            <element signature="e#100299#100846#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.support/support-fragment/27.1.1/94732bda44fba11302c58e459b7c1f47e7521bf9/support-fragment-27.1.1-sources.jar!/android/support/v4/app/Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="2345" selection-start-line="2345" selection-end-line="2345" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/multiLang/model/AssistanceImages.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="604">
+          <caret line="92" column="18" selection-start-line="92" selection-start-column="18" selection-end-line="92" selection-end-column="18" />
+          <folding>
+            <element signature="e#2523#2524#0" expanded="true" />
+            <element signature="e#2564#2565#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nissan/alldriverguide/fragments/assistance/AssistanceFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="288" column="10" selection-start-line="288" selection-start-column="10" selection-end-line="288" selection-end-column="10" />
+          <folding>
+            <element signature="e#11408#11668#0" expanded="true" />
+            <element signature="e#11667#11668#0" expanded="true" />
+            <element signature="e#11743#12115#0" expanded="true" />
+            <element signature="e#12114#12115#0" expanded="true" />
+            <element signature="class#17671:27920" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="Copyright.UI">
+        <settings>
+          <last-edited>Mostasim Billah</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
