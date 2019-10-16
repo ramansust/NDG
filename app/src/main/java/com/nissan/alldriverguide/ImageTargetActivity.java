@@ -16,7 +16,6 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -49,6 +48,7 @@ import com.nissan.alldriverguide.augmentedreality.ARXtrail;
 import com.nissan.alldriverguide.augmentedreality.ARXtrail2017;
 import com.nissan.alldriverguide.augmentedreality.ARXtrail2017Rus;
 import com.nissan.alldriverguide.augmentedreality.ARXtrailRUS;
+import com.nissan.alldriverguide.augmentedreality.cars.ARLeaf2019Formated;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.Analytics;
@@ -77,53 +77,40 @@ import java.util.Vector;
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
 public class ImageTargetActivity extends AppCompatActivity implements SampleApplicationControl {
-    private static final String LOGTAG = "ImageTargets";
-
-    SampleApplicationSession vuforiaAppSession;
-
-    private DataSet mCurrentDataset;
-    private int mCurrentDatasetSelectionIndex = 0;
-    private ArrayList<String> mDatasetStrings = new ArrayList<String>();
-
-    // Our OpenGL view:
-    private SampleApplicationGLView mGlView;
-
-    // Our renderer:
-    //private ImageTargetRendererFerrari mRenderer;
-
-    private GestureDetector mGestureDetector;
-
-    // The textures we will use for rendering:
-    private Vector<Texture> mTextures;
-
-    private boolean mSwitchDatasetAsap = false;
-    private boolean mFlash = false;
-    private boolean mContAutofocus = false;
-    private boolean mExtendedTracking = false;
-
-    private View mFlashOptionView;
-    private RelativeLayout mUILayout;
-
-    public LoadingDialogHandler loadingDialogHandler = new LoadingDialogHandler(this);
-
-    // Alert Dialog used to display SDK errors
-    private AlertDialog mErrorDialog;
-
-    private boolean mIsDroidDevice = false;
+    private static final String LOG_TAG = "ImageTargets";
     public static boolean isFromShowInfo = false;
-    // Called when the activity first starts or the user navigates back to an activity.
-
     public static boolean isDetected = false;
-    public RelativeLayout layoutCameraView;
-    public ViewGroup layoutBackRefreshView;
-    public ImageView iv;
-
     //parentview
     public static View inflatedLayout = null;
     //childview
     public static View inflatedLayout_second;
+    public LoadingDialogHandler loadingDialogHandler = new LoadingDialogHandler(this);
 
+    // Our renderer:
+    //private ImageTargetRendererFerrari mRenderer;
+    public RelativeLayout layoutCameraView;
+    public ViewGroup layoutBackRefreshView;
+    public ImageView iv;
     public boolean mIsActive = false;
+    SampleApplicationSession vuforiaAppSession;
+    private DataSet mCurrentDataset;
+    private int mCurrentDatasetSelectionIndex = 0;
+    private ArrayList<String> mDatasetStrings = new ArrayList<String>();
+    // Our OpenGL view:
+    private SampleApplicationGLView mGlView;
+    private GestureDetector mGestureDetector;
+    // The textures we will use for rendering:
+    private Vector<Texture> mTextures;
+    private boolean mSwitchDatasetAsap = false;
+    // Called when the activity first starts or the user navigates back to an activity.
+    private boolean mFlash = false;
+    private boolean mContAutofocus = false;
+    private boolean mExtendedTracking = false;
+    private View mFlashOptionView;
+    private RelativeLayout mUILayout;
+    // Alert Dialog used to display SDK errors
+    private AlertDialog mErrorDialog;
+    private boolean mIsDroidDevice = false;
     private com.google.android.gms.analytics.Tracker tracker;
 
     private DisplayMetrics metrics;
@@ -152,6 +139,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     private ARXtrail2017Rus mRendererXtrailRus2017;
     private ARQashqai2017Rus mRendererQashqaiRus2017;
     private ARLeaf2019 mRendererLeaf2019;
+    private ARLeaf2019Formated mRendererLeaf2019Formated;
     private ARNavara2019 mRendererNavara2019;
 
     @Override
@@ -256,38 +244,6 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         mIsDroidDevice = Build.MODEL.toLowerCase().startsWith("droid");
     }
 
-    // Process Single Tap event to trigger autofocus
-    private class GestureListener extends
-            GestureDetector.SimpleOnGestureListener {
-        // Used to set autofocus one second after a manual focus is triggered
-        private final Handler autofocusHandler = new Handler();
-
-        @Override
-        public boolean onDown(MotionEvent e) {
-            return true;
-        }
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent e) {
-            // Generates a Handler to trigger autofocus
-            // after 1 second
-            autofocusHandler.postDelayed(new Runnable() {
-                public void run() {
-                    boolean result = CameraDevice.getInstance().setFocusMode(
-                            CameraDevice.FOCUS_MODE.FOCUS_MODE_TRIGGERAUTO);
-
-                    if (!result)
-                        Logger.error("SingleTapUp", "Unable to trigger focus");
-                }
-            }, 1000L);
-
-            return true;
-        }
-    }
-
-    // We want to load specific textures from the APK, which we will later use
-    // for rendering.
-
     private void loadTextures() {
         mTextures.add(Texture.loadTextureFromApk("TextureTeapotBrass.png",
                 getAssets()));
@@ -299,10 +255,13 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 getAssets()));
     }
 
+    // We want to load specific textures from the APK, which we will later use
+    // for rendering.
+
     // Called when the activity will start interacting with the user.
     @Override
     protected void onResume() {
-        Logger.debugging(LOGTAG, "onResume");
+        Logger.debugging(LOG_TAG, "onResume");
         super.onResume();
 
         // This is needed for some Droid devices to force portrait
@@ -327,7 +286,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     // Callback for configuration changes the activity handles itself
     @Override
     public void onConfigurationChanged(Configuration config) {
-        Logger.debugging(LOGTAG, "onConfigurationChanged");
+        Logger.debugging(LOG_TAG, "onConfigurationChanged");
         super.onConfigurationChanged(config);
 
         vuforiaAppSession.onConfigurationChanged();
@@ -337,7 +296,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     @SuppressLint("NewApi")
     @Override
     public void onPause() {
-        Logger.debugging(LOGTAG, "onPause");
+        Logger.debugging(LOG_TAG, "onPause");
         super.onPause();
 
         if (mGlView != null) {
@@ -360,7 +319,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         try {
             vuforiaAppSession.pauseAR();
         } catch (SampleApplicationException e) {
-            Logger.error(LOGTAG, e.getString());
+            Logger.error(LOG_TAG, e.getString());
         } finally {
             isFromShowInfo = true;
         }
@@ -371,13 +330,13 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     // The final call you receive before your activity is destroyed.
     @Override
     protected void onDestroy() {
-        Logger.debugging(LOGTAG, "onDestroy");
+        Logger.debugging(LOG_TAG, "onDestroy");
         super.onDestroy();
 
         try {
             vuforiaAppSession.stopAR();
         } catch (SampleApplicationException e) {
-            Logger.error(LOGTAG, e.getString());
+            Logger.error(LOG_TAG, e.getString());
         }
 
         // Unload texture:
@@ -389,7 +348,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     // Initializes AR application components.
     private void initApplicationAR() {
-        Logger.debugging(LOGTAG, "initApplicationAR()");
+        Logger.debugging(LOG_TAG, "initApplicationAR()");
 
         // Create OpenGL ES view:
         int depthSize = 16;
@@ -487,8 +446,10 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
             case 17:
                 Logger.error("carPath", "_____" + Values.car_path);
-                mRendererLeaf2019 = new ARLeaf2019(this, vuforiaAppSession);
-                mGlView.setRenderer(mRendererLeaf2019);
+//                mRendererLeaf2019 = new ARLeaf2019(this, vuforiaAppSession);
+//                mGlView.setRenderer(mRendererLeaf2019);
+                mRendererLeaf2019Formated = new ARLeaf2019Formated(this, vuforiaAppSession);
+                mGlView.setRenderer(mRendererLeaf2019Formated);
                 break;
             case 18:
                 mRendererNavara2019 = new ARNavara2019(this, vuforiaAppSession);
@@ -503,7 +464,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     }
 
     private void startLoadingAnimation() {
-        Logger.error(LOGTAG, "startLoadingAnimation()");
+        Logger.error(LOG_TAG, "startLoadingAnimation()");
 
         mUILayout = (RelativeLayout) View.inflate(this,
                 R.layout.camera_overlay, null);
@@ -527,7 +488,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     // Methods to load and destroy tracking data.
     @Override
     public boolean doLoadTrackersData() {
-        Logger.debugging(LOGTAG, "SampleApplicationControl override method:    doLoadTrackersData()");
+        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doLoadTrackersData()");
         TrackerManager tManager = TrackerManager.getInstance();
         ObjectTracker objectTracker = (ObjectTracker) tManager
                 .getTracker(ObjectTracker.getClassType());
@@ -556,7 +517,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
             String name = "" + trackable.getName();
             trackable.setUserData(name);
-            Logger.debugging(LOGTAG, "UserData:Set the following user data "
+            Logger.debugging(LOG_TAG, "UserData:Set the following user data "
                     + (String) trackable.getUserData());
         }
 
@@ -565,7 +526,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     @Override
     public boolean doUnloadTrackersData() {
-        Logger.debugging(LOGTAG, "SampleApplicationControl override method:    doUnloadTrackersData()");
+        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doUnloadTrackersData()");
 
 
         // Indicate if the trackers were unloaded correctly
@@ -593,7 +554,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     @Override
     public void onInitARDone(SampleApplicationException exception) {
-        Logger.debugging(LOGTAG, "SampleApplicationControl override method:    onInitARDone(SampleApplicationException exception)");
+        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    onInitARDone(SampleApplicationException exception)");
         if (exception == null) {
             initApplicationAR();
 
@@ -620,14 +581,14 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
             if (result)
                 mContAutofocus = true;
             else {
-                Logger.error(LOGTAG, "Unable to enable continuous autofocus");
+                Logger.error(LOG_TAG, "Unable to enable continuous autofocus");
             }
             // mSampleAppMenu = new SampleAppMenu(this, this, "Image Targets",
             // mGlView, mUILayout, null);
             // setSampleAppMenuSettings();
 
         } else {
-            Logger.error(LOGTAG, exception.getString());
+            Logger.error(LOG_TAG, exception.getString());
             showInitializationErrorMessage(exception.getString());
         }
     }
@@ -713,7 +674,8 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 break;
 
             case 17:
-                mRendererLeaf2019.updateConfiguration();
+//                mRendererLeaf2019.updateConfiguration();
+                mRendererLeaf2019Formated.updateConfiguration();
                 break;
             case 18:
                 mRendererNavara2019.updateConfiguration();
@@ -755,7 +717,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     // Shows initialization error messages as System dialogs
     public void showInitializationErrorMessage(String message) {
-        Logger.debugging(LOGTAG, "showInitializationErrorMessage(String message)");
+        Logger.debugging(LOG_TAG, "showInitializationErrorMessage(String message)");
         final String errorMessage = message;
         runOnUiThread(new Runnable() {
             public void run() {
@@ -786,7 +748,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     @Override
     public boolean doInitTrackers() {
-        Logger.debugging(LOGTAG, "SampleApplicationControl override method:    doInitTrackers()");
+        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doInitTrackers()");
 
         // Indicate if the trackers were initialized correctly
         boolean result = true;
@@ -797,18 +759,18 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         // Trying to initialize the image tracker
         tracker = tManager.initTracker(ObjectTracker.getClassType());
         if (tracker == null) {
-            Logger.error(LOGTAG,
+            Logger.error(LOG_TAG,
                     "Tracker not initialized. Tracker already initialized or the camera is already started");
             result = false;
         } else {
-            Logger.error(LOGTAG, "Tracker successfully initialized");
+            Logger.error(LOG_TAG, "Tracker successfully initialized");
         }
         return result;
     }
 
     @Override
     public boolean doStartTrackers() {
-        Logger.debugging(LOGTAG, "SampleApplicationControl override method:    doStartTrackers()");
+        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doStartTrackers()");
 
         // Indicate if the trackers were started correctly
         boolean result = true;
@@ -823,7 +785,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     @Override
     public boolean doStopTrackers() {
-        Logger.debugging(LOGTAG, "SampleApplicationControl override method:    doStopTrackers()");
+        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doStopTrackers()");
 
         // Indicate if the trackers were stopped correctly
         boolean result = true;
@@ -838,7 +800,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     @Override
     public boolean doDeinitTrackers() {
-        Logger.error(LOGTAG, "SampleApplicationControl override method:    doDeinitTrackers()");
+        Logger.error(LOG_TAG, "SampleApplicationControl override method:    doDeinitTrackers()");
 
         // Indicate if the trackers were deinitialized correctly
         boolean result = true;
@@ -849,18 +811,16 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         return result;
     }
 
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        Logger.error(LOGTAG, "onTouchEvent(MotionEvent event)");
+        Logger.error(LOG_TAG, "onTouchEvent(MotionEvent event)");
         return mGestureDetector.onTouchEvent(event);
     }
 
     boolean isExtendedTrackingActive() {
         return mExtendedTracking;
     }
-
 
     private void showToast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
@@ -869,7 +829,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     @Override
     public void onBackPressed() {
         // TODO Auto-generated method stub
-        Logger.error(LOGTAG, "onBackPressed()");
+        Logger.error(LOG_TAG, "onBackPressed()");
         if (isDetected) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -907,7 +867,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
      */
     public void buttonEvent(View b) {
         // Preventing multiple clicks, using threshold of 1 second
-        if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT*3) {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT * 3) {
             return;
         }
         mLastClickTime = SystemClock.elapsedRealtime();
@@ -940,7 +900,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 //                ePubIndex = (Integer.parseInt(b.getTag().toString()) * 2) + 1;
 
                 // here specify the DetailsActivity for loading epub data
-                Logger.error("________EPUB Index________",ePubIndex+Values.ar_value);
+                Logger.error("________EPUB Index________", ePubIndex + Values.ar_value);
                 Intent intentButton = new Intent(ImageTargetActivity.this, DetailsActivity.class);
                 intentButton.putExtra("epub_index", ePubIndex);
                 intentButton.putExtra("epub_title", "DETAILS");
@@ -1044,5 +1004,34 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     public String getGoogleAnalyticeName(String values) {
         return NissanApp.getInstance().getCarName(Values.carType) + Analytics.DOT + Values.tabExplore + Analytics.AUGMENTED_REALITY + Analytics.DOT + values + Analytics.DOT + NissanApp.getInstance().getLanguageName(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + Analytics.DOT + Analytics.PLATFORM + "";
+    }
+
+    // Process Single Tap event to trigger autofocus
+    private class GestureListener extends
+            GestureDetector.SimpleOnGestureListener {
+        // Used to set autofocus one second after a manual focus is triggered
+        private final Handler autofocusHandler = new Handler();
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            // Generates a Handler to trigger autofocus
+            // after 1 second
+            autofocusHandler.postDelayed(new Runnable() {
+                public void run() {
+                    boolean result = CameraDevice.getInstance().setFocusMode(
+                            CameraDevice.FOCUS_MODE.FOCUS_MODE_TRIGGERAUTO);
+
+                    if (!result)
+                        Logger.error("SingleTapUp", "Unable to trigger focus");
+                }
+            }, 1000L);
+
+            return true;
+        }
     }
 }
