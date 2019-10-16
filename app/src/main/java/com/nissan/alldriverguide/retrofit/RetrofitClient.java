@@ -21,7 +21,8 @@ public class RetrofitClient {
 //    private static final String ROOT_URL = "http://cdnuat.maruboshi.nl/api/"; // dev server /maruboshi
 //    private static final String ROOT_URL = "http://104.236.201.218:84/api/"; // Remote server second instance
 //    private static final String ROOT_URL = "http://213.136.27.240:8001/api/"; // Remote server second instance
-    private static final String ROOT_URL = "http://cdn.maruboshi.nl/api/"; // Remote server second instance
+    private static final String ROOT_URL = "http://cdnuat.maruboshi.nl/m2/api/"; // Remote server second instance
+//    private static final String ROOT_URL = "http://cdn.maruboshi.nl/api/"; // Remote server second instance
 
 
 
@@ -37,7 +38,7 @@ public class RetrofitClient {
         final OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(60 * 2, TimeUnit.SECONDS)
                 .connectTimeout(60 * 2, TimeUnit.SECONDS)
-//                .addInterceptor(interceptor)
+                .addInterceptor(interceptor)
                 .build();
 
         return new Retrofit.Builder()

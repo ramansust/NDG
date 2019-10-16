@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.retrofit;
 
+import com.nissan.alldriverguide.model.DealerUrl;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.model.parentCarList.ParentCarListResponse;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
@@ -9,6 +10,7 @@ import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
 
+import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -106,14 +108,18 @@ public interface ApiService {
     Call<AssistanceInfo> postAssistanceContent(@Field("device_id") String device_id, @Field("language_id") String language_id, @Field("car_id") String car_id, @Field("epub_id") String epub_id, @Field("tab_id") String tab_id);
 
 
-    //Get parent car list response
+    //Get parent car list response by Mostasim
     @POST("parent_car_list/")
     Call<ParentCarListResponse> parenCarList();
 
-    //Get child car list with parent id
+    //Get child car list with parent id by Mostasim
     @FormUrlEncoded
     @POST("car_list/")
     Call<CarListResponse> getChildCarList(@Field("device_id") String device_id, @Field("language_id") String language_id,@Field("parent_car")String parent_car_id );
 
+    //Api for Find A Deaeler by Mostasim
+    @FormUrlEncoded
+    @POST("dealer_url/")
+    Call<DealerUrl> getFindADealer(@Field("language_id") String language_id);
 
 }

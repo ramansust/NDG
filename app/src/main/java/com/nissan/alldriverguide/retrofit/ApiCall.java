@@ -2,11 +2,13 @@ package com.nissan.alldriverguide.retrofit;
 
 import com.nissan.alldriverguide.interfaces.CarListACompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
+import com.nissan.alldriverguide.interfaces.FindADealerCompleteAPI;
 import com.nissan.alldriverguide.interfaces.InterfaceGlobalMessageResponse;
 import com.nissan.alldriverguide.interfaces.CompleteAssistanceTabContent;
 import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.interfaces.CompleteSettingTabContent;
 import com.nissan.alldriverguide.interfaces.ParentCarListCompleteAPI;
+import com.nissan.alldriverguide.model.DealerUrl;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.model.parentCarList.ParentCarListResponse;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
@@ -449,4 +451,22 @@ public class ApiCall {
             }
         });
     }
+    public void getFindADealerUrl(String language_id, final FindADealerCompleteAPI findADealerCompleteAPI)
+    {
+        ApiService api =RetrofitClient.getApiService();
+        Call<DealerUrl> call = api.getFindADealer(language_id);
+        call.enqueue(new Callback<DealerUrl>() {
+            @Override
+            public void onResponse(Call<DealerUrl> call, Response<DealerUrl> response) {
+                DealerUrl dealerUrl=response.body();
+                findADealerCompleteAPI.onDownloaded(dealerUrl);
+            }
+
+            @Override
+            public void onFailure(Call<DealerUrl> call, Throwable t) {
+                findADealerCompleteAPI.onFailed(t.toString());
+            }
+        });
+    }
+
 }

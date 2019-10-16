@@ -35,6 +35,7 @@ android {
         debug {
             minifyEnabled false
             debuggable true
+            jniDebuggable = true
             ndk {
                 abiFilters "armeabi-v7a"
                 abiFilters "arm64-v8a"

@@ -96,6 +96,12 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         InterfaceGlobalMessageResponse, CarListACompleteAPI {
 
     private static final String TAG = "CarDownloadActivity";
+    // Start------------ For permission related constants
+    private static final int PERMISSION_REQUEST_CODE_ALL = 200;
+    private static final int PERMISSION_REQUEST_CODE_STORAGE = 201;
+    private static final int PERMISSION_REQUEST_CODE_CAMERA = 202;
+    private static final int PERMISSION_REQUEST_CODE_ACCESS_FINE_LOCATION = 203;
+    public Resources resources;
     private ListView lstView;
     private TextView txtView_title;
     private CarDownloadAdapter adapter;
@@ -104,31 +110,21 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private CommonDao commonDao;
     // variable to track event time
     private long mLastClickTime = 0;
-    private ArrayList<Object> getList = new ArrayList<>();
-
-    // Start------------ For permission related constants
-    private static final int PERMISSION_REQUEST_CODE_ALL = 200;
-    private static final int PERMISSION_REQUEST_CODE_STORAGE = 201;
-    private static final int PERMISSION_REQUEST_CODE_CAMERA = 202;
-    private static final int PERMISSION_REQUEST_CODE_ACCESS_FINE_LOCATION = 203;
     // End------------ For permission related constants
 
 //    private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
 //            "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan Qashqai"};
-
+    private ArrayList<Object> getList = new ArrayList<>();
     private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
             "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "Nissan X-TRAIL",
             "New Nissan LEAF", "New Nissan X-TRAIL RUS", "New Nissan QASHQAI RUS", "Leaf 2019"};
     private int[] indices = {1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11, 16};
     private int[] previousCarArray = {1, 2, 4, 5, 7, 9};
-    private List<Parent_car_list> parent_car_lists = null;
 //    private int[] previousCarArray = {1, 2, 7};
-
+    private List<Parent_car_list> parent_car_lists = null;
     private ProgressDialog progressDialog;
     private ProgressBar pbCarDownload;
     private int selectedCarIndex = 0;
-
-    public Resources resources;
     private DisplayMetrics metrics;
     private String selectedLang = "";
 
@@ -189,10 +185,10 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         activity = CarDownloadActivity.this;
         context = getApplicationContext();
         commonDao = CommonDao.getInstance();
-        lstView = (ListView) findViewById(R.id.lst_view);
-        txtView_title = (TextView) findViewById(R.id.txtView_title);
+        lstView = findViewById(R.id.lst_view);
+        txtView_title = findViewById(R.id.txtView_title);
         preferenceUtil = new PreferenceUtil(getApplicationContext());
-        pbCarDownload = (ProgressBar) findViewById(R.id.pbCarDownload);
+        pbCarDownload = findViewById(R.id.pbCarDownload);
         globalMessageController = new GlobalMessageController(this);
         carListContentController = new CarListContentController(this);
     }
@@ -1072,246 +1068,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         });
     }
 
-
-    public class LoadDataBase extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-
-            if (preferenceUtil.getIsDatabaseEmpty()) {
-                for (int i = 0; i < carNames.length; i++) {
-                    CarInfo carInfo;
-                    //click for eur/rus by rohan
-                    if (i == 1 || i == 4 || i == 14 || i == 15 || i == 16) { // this logic actually work for car id (2 & 5) since i start from 0
-                        carInfo = new CarInfo((i + 1), carNames[i], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "RUS", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), indices[i]);
-                    } else {
-                        carInfo = new CarInfo((i + 1), carNames[i], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "EUR", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), indices[i]);
-                    }
-                    commonDao.insertInCarInfoTable(getBaseContext(), carInfo); // insert into database as a CarInfo object
-                }
-                preferenceUtil.setIsDatabaseEmpty(false);
-            } else {
-                int lastID = commonDao.getLastID(getBaseContext());
-                for (int i = lastID; i < carNames.length; i++) {
-                    if (i == 16)
-                        commonDao.insertInCarInfoTable(getBaseContext(), new CarInfo((lastID + 1), carNames[lastID], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "RUS", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), indices[i]));
-                    else
-                        commonDao.insertInCarInfoTable(getBaseContext(), new CarInfo((lastID + 1), carNames[lastID], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "EUR", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), indices[i]));
-                }
-            }
-
-            // this
-            for (int i = 0; i < previousCarArray.length; i++) {
-                if (commonDao.getStatus(getBaseContext(), previousCarArray[i]) == 0) {
-                    commonDao.updateCarStatus(getBaseContext(), previousCarArray[i], 2);
-                }
-            }
-            return "Executed";
-        }
-
-        @Override
-        protected void onPostExecute(String aVoid) {
-
-            ArrayList<Object> objectArrayList = commonDao.getAllOderCarList(getBaseContext());
-            ArrayList<CarInfo> carInfoArrayList = commonDao.getAllCarList(getBaseContext());
-
-/*
-            Collections.sort(objectArrayList, new Comparator<Object>() {
-                public int compare(Object ideaVal1, Object ideaVal2) {
-                    // avoiding NullPointerException in case name is null
-                    Long idea1 = Long.valueOf(((CarInfo) ideaVal1).getIndex());
-                    Long idea2 = Long.valueOf(((CarInfo) ideaVal2).getIndex());
-                    return idea2.compareTo(idea1);
-                }
-            });
-*/
-
-            // here set the all ordered car list that getting from database as an object type
-            NissanApp.getInstance().setCarList(objectArrayList);
-            // here set the all unordered car list that getting from database as a CarInfo object
-            NissanApp.getInstance().setCarAllList(carInfoArrayList);
-
-
-            // actually this looping and logic determine for section header
-            for (int i = 0; i < NissanApp.getInstance().getCarList().size(); i++) {
-                CarInfo info = (CarInfo) NissanApp.getInstance().getCarList().get(i);
-
-                if ((Values.ALREADY_DOWNLOADED.equalsIgnoreCase(info.getStatus()))) {
-                    if (!NissanApp.getInstance().getCarList().contains(resources.getString(R.string.downloaded_car))) {
-                        NissanApp.getInstance().getCarList().add(i, resources.getString(R.string.downloaded_car));
-                    }
-                } else if ((Values.PREVIOUS_CAR.equalsIgnoreCase(info.getStatus()))) {
-                    if (!NissanApp.getInstance().getCarList().contains(resources.getString(R.string.previous_car))) {
-                        NissanApp.getInstance().getCarList().add(i, resources.getString(R.string.previous_car));
-                    }
-                } else {
-                    if (!NissanApp.getInstance().getCarList().contains(resources.getString(R.string.available_for_download_car))) {
-                        NissanApp.getInstance().getCarList().add(i, resources.getString(R.string.available_for_download_car));
-                    }
-                }
-            }
-            if (NissanApp.getInstance().getCarList() != null) {
-                setCarImageAccordingToDeviceResolution();
-            }
-
-            //For support Parent Car by Mostasim Billah
-            if (parent_car_lists != null) {
-                int firstCarindexForReplaceCarInfo = -1;
-                int childCarSize = 0;
-                for (int i = 0; i < parent_car_lists.size(); i++) {
-                    Parent_car_list parentCar = parent_car_lists.get(i);
-                    if (parentCar.getChild_car_support()) {
-
-                        ArrayList<Object> carList = NissanApp.getInstance().getCarList();
-                        //ArrayList<Object> carList2 = NissanApp.getInstance().getCarList();
-                   /*     for (int j = 0; j < carList.size(); j++) {
-                            Object obj = carList.get(j);
-                            if (obj.getClass() == CarInfo.class) {
-                                CarInfo carInfo = (CarInfo) obj;
-                                if (carInfo.getParentCarId() == parentCar.getId()
-                                        && carInfo.getCarModelVersion().equalsIgnoreCase("new")
-                                        && !carInfo.getStatus().equals(Values.ALREADY_DOWNLOADED)) {
-                                    if (firstCarindexForReplaceCarInfo==-1){
-                                            firstCarindexForReplaceCarInfo=j;
-                                    }
-                                    carList.remove(obj);
-                                    childCarSize++;
-
-                                }
-//                                if (firstCarindexForReplaceCarInfo==-1){
-//                                    firstCarindexForReplaceCarInfo=j;
-//                                }
-                            }
-                        }*/
-                        //carList.clear();
-                        //   carList.addAll(carList2);
-                        //  NissanApp.getInstance().setCarList(carList);
-                        Iterator<Object> iterator = carList.iterator();
-                        while (iterator.hasNext()) {
-                            Object obj = iterator.next(); // must be called before you can call i.remove()
-                            // Do something
-                            //Object obj = iterator;
-                            if (obj.getClass() == CarInfo.class) {
-                                CarInfo carInfo = (CarInfo) obj;
-                                if (carInfo.getParentCarId() == parentCar.getId()
-                                        && carInfo.getCarModelVersion().equalsIgnoreCase("new")
-                                        && !carInfo.getStatus().equals(Values.ALREADY_DOWNLOADED)) {
-
-                                    iterator.remove();
-                                    childCarSize++;
-
-                                }
-//                                if (firstCarindexForReplaceCarInfo==-1){
-//                                    firstCarindexForReplaceCarInfo=j;
-//                                }
-                            }
-                        }
-                        for (int m = 0; m < carList.size(); m++) {
-                            if (carList.get(m).getClass() == String.class) {
-                                String ob = (String) carList.get(m);
-
-                                if (ob.contains(resources.getString(R.string.available_for_download_car))) {
-                                    firstCarindexForReplaceCarInfo = m;
-                                }
-                            }
-
-                        }
-                        int totalChildCarSize = NissanApp.getInstance().getChildCars(Integer.valueOf(parentCar.getId())) != null ? NissanApp.getInstance().getChildCars(Integer.valueOf(parentCar.getId())).size() : -1;
-                        int totalChildCarDownloaded = NissanApp.getInstance()
-                                .getCountTotalChildCarDownloaded(CarDownloadActivity.this, parentCar.getId());
-                        if (totalChildCarSize != totalChildCarDownloaded && totalChildCarSize != -1) {
-                            NissanApp.getInstance().getCarList().add(firstCarindexForReplaceCarInfo + 1, parentCar);
-                        }
-
-                    }
-                }
-            }
-
-/*
-            getList = NissanApp.getInstance().getCarList();
-            boolean xtrailRus = false, xtrailEur = false;
-            CarInfo xtrailRusInfo = new CarInfo();
-            getList = NissanApp.getInstance().getCarList();
-            for (int k = 0; k < getList.size(); k++) {
-                if (getList.get(k).getClass() == CarInfo.class) {
-                    CarInfo info = (CarInfo) getList.get(k);
-
-                    if (info.getStatus().equals("0") && info.getId() == 13) {
-                        xtrailEur = true;
-                    }
-
-                    if (info.getStatus().equals("0") && info.getId() == 15) {
-                        xtrailRusInfo = info;
-                        xtrailRus = true;
-                    }
-
-                }
-            }
-
-            if (xtrailEur && xtrailRus){
-                getList.remove(xtrailRusInfo);
-            }
-
-            CarInfo xtrailInfo = new CarInfo();
-            CarInfo leafInfo = new CarInfo();
-            int xtrailIndex = -1, leafIndex = -1;
-
-            if (xtrailLeafAvailableForDownload(getList)) {
-                for (int k = 0; k < getList.size(); k++) {
-                    if (getList.get(k).getClass() == CarInfo.class) {
-                        CarInfo info = (CarInfo) getList.get(k);
-
-                        if (info.getId() == 15) {
-                            xtrailInfo = info;
-                            xtrailIndex = k;
-                        }
-
-                        if (info.getId() == 14) {
-                            leafInfo = info;
-                            leafIndex = k;
-                        }
-
-                    }
-                }
-
-
-                getList.set(xtrailIndex, leafInfo);
-                getList.set(leafIndex, xtrailInfo);
-
-            }
-
-
-            getList = swapXtrailEurRusIfBothDownloaded(getList);
-*/
-
-
-            if (NissanApp.getInstance().getCarList() != null && adapter == null) {
-
-                adapter = new CarDownloadAdapter(getApplicationContext(), getList, new CarDownloadAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(final int carId, final int position) {
-
-                        String internetCheckMessage = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
-
-                        if (DetectConnection.checkInternetConnection(activity.getApplicationContext())) {
-                            showCarDeleteDialog(carId, position);
-                        } else {
-
-                            NissanApp.getInstance().showInternetAlert(activity, internetCheckMessage.isEmpty() ? context.getResources().getString(R.string.internet_connect) : internetCheckMessage);
-                        }
-
-                    }
-                });
-                lstView.setAdapter(adapter);
-                lstView.setDivider(null);
-            } else {
-                //adapter.setList(NissanApp.getInstance().getCarList());
-                adapter.setList(NissanApp.getInstance().getCarList());
-            }
-
-        }
-    }
-
     private void showCarDeleteDialog(final int carType, final int position) {
 
         final Dialog dialog = new DialogController(activity).langDialog();
@@ -1968,6 +1724,245 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         }.getType();
         return new Gson().fromJson(preferenceUtil.retrieveMultiLangData(carType + "_" + Values.CAR_LANGUAGE_LIST), type);
 
+    }
+
+    public class LoadDataBase extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            if (preferenceUtil.getIsDatabaseEmpty()) {
+                for (int i = 0; i < carNames.length; i++) {
+                    CarInfo carInfo;
+                    //click for eur/rus by rohan
+                    if (i == 1 || i == 4 || i == 14 || i == 15 || i == 16) { // this logic actually work for car id (2 & 5) since i start from 0
+                        carInfo = new CarInfo((i + 1), carNames[i], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "RUS", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), indices[i]);
+                    } else {
+                        carInfo = new CarInfo((i + 1), carNames[i], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "EUR", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), indices[i]);
+                    }
+                    commonDao.insertInCarInfoTable(getBaseContext(), carInfo); // insert into database as a CarInfo object
+                }
+                preferenceUtil.setIsDatabaseEmpty(false);
+            } else {
+                int lastID = commonDao.getLastID(getBaseContext());
+                for (int i = lastID; i < carNames.length; i++) {
+                    if (i == 16)
+                        commonDao.insertInCarInfoTable(getBaseContext(), new CarInfo((lastID + 1), carNames[lastID], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "RUS", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), indices[i]));
+                    else
+                        commonDao.insertInCarInfoTable(getBaseContext(), new CarInfo((lastID + 1), carNames[lastID], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "EUR", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), indices[i]));
+                }
+            }
+
+            // this
+            for (int i = 0; i < previousCarArray.length; i++) {
+                if (commonDao.getStatus(getBaseContext(), previousCarArray[i]) == 0) {
+                    commonDao.updateCarStatus(getBaseContext(), previousCarArray[i], 2);
+                }
+            }
+            return "Executed";
+        }
+
+        @Override
+        protected void onPostExecute(String aVoid) {
+
+            ArrayList<Object> objectArrayList = commonDao.getAllOderCarList(getBaseContext());
+            ArrayList<CarInfo> carInfoArrayList = commonDao.getAllCarList(getBaseContext());
+
+/*
+            Collections.sort(objectArrayList, new Comparator<Object>() {
+                public int compare(Object ideaVal1, Object ideaVal2) {
+                    // avoiding NullPointerException in case name is null
+                    Long idea1 = Long.valueOf(((CarInfo) ideaVal1).getIndex());
+                    Long idea2 = Long.valueOf(((CarInfo) ideaVal2).getIndex());
+                    return idea2.compareTo(idea1);
+                }
+            });
+*/
+
+            // here set the all ordered car list that getting from database as an object type
+            NissanApp.getInstance().setCarList(objectArrayList);
+            // here set the all unordered car list that getting from database as a CarInfo object
+            NissanApp.getInstance().setCarAllList(carInfoArrayList);
+
+
+            // actually this looping and logic determine for section header
+            for (int i = 0; i < NissanApp.getInstance().getCarList().size(); i++) {
+                CarInfo info = (CarInfo) NissanApp.getInstance().getCarList().get(i);
+
+                if ((Values.ALREADY_DOWNLOADED.equalsIgnoreCase(info.getStatus()))) {
+                    if (!NissanApp.getInstance().getCarList().contains(resources.getString(R.string.downloaded_car))) {
+                        NissanApp.getInstance().getCarList().add(i, resources.getString(R.string.downloaded_car));
+                    }
+                } else if ((Values.PREVIOUS_CAR.equalsIgnoreCase(info.getStatus()))) {
+                    if (!NissanApp.getInstance().getCarList().contains(resources.getString(R.string.previous_car))) {
+                        NissanApp.getInstance().getCarList().add(i, resources.getString(R.string.previous_car));
+                    }
+                } else {
+                    if (!NissanApp.getInstance().getCarList().contains(resources.getString(R.string.available_for_download_car))) {
+                        NissanApp.getInstance().getCarList().add(i, resources.getString(R.string.available_for_download_car));
+                    }
+                }
+            }
+            if (NissanApp.getInstance().getCarList() != null) {
+                setCarImageAccordingToDeviceResolution();
+            }
+
+            //For support Parent Car by Mostasim Billah
+            if (parent_car_lists != null) {
+                int firstCarindexForReplaceCarInfo = -1;
+                int childCarSize = 0;
+                for (int i = 0; i < parent_car_lists.size(); i++) {
+                    Parent_car_list parentCar = parent_car_lists.get(i);
+                    if (parentCar.getChild_car_support()) {
+
+                        ArrayList<Object> carList = NissanApp.getInstance().getCarList();
+                        //ArrayList<Object> carList2 = NissanApp.getInstance().getCarList();
+                   /*     for (int j = 0; j < carList.size(); j++) {
+                            Object obj = carList.get(j);
+                            if (obj.getClass() == CarInfo.class) {
+                                CarInfo carInfo = (CarInfo) obj;
+                                if (carInfo.getParentCarId() == parentCar.getId()
+                                        && carInfo.getCarModelVersion().equalsIgnoreCase("new")
+                                        && !carInfo.getStatus().equals(Values.ALREADY_DOWNLOADED)) {
+                                    if (firstCarindexForReplaceCarInfo==-1){
+                                            firstCarindexForReplaceCarInfo=j;
+                                    }
+                                    carList.remove(obj);
+                                    childCarSize++;
+
+                                }
+//                                if (firstCarindexForReplaceCarInfo==-1){
+//                                    firstCarindexForReplaceCarInfo=j;
+//                                }
+                            }
+                        }*/
+                        //carList.clear();
+                        //   carList.addAll(carList2);
+                        //  NissanApp.getInstance().setCarList(carList);
+                        Iterator<Object> iterator = carList.iterator();
+                        while (iterator.hasNext()) {
+                            Object obj = iterator.next(); // must be called before you can call i.remove()
+                            // Do something
+                            //Object obj = iterator;
+                            if (obj.getClass() == CarInfo.class) {
+                                CarInfo carInfo = (CarInfo) obj;
+                                if (carInfo.getParentCarId() == parentCar.getId()
+                                        && carInfo.getCarModelVersion().equalsIgnoreCase("new")
+                                        && !carInfo.getStatus().equals(Values.ALREADY_DOWNLOADED)) {
+
+                                    iterator.remove();
+                                    childCarSize++;
+
+                                }
+//                                if (firstCarindexForReplaceCarInfo==-1){
+//                                    firstCarindexForReplaceCarInfo=j;
+//                                }
+                            }
+                        }
+                        for (int m = 0; m < carList.size(); m++) {
+                            if (carList.get(m).getClass() == String.class) {
+                                String ob = (String) carList.get(m);
+
+                                if (ob.contains(resources.getString(R.string.available_for_download_car))) {
+                                    firstCarindexForReplaceCarInfo = m;
+                                }
+                            }
+
+                        }
+                        int totalChildCarSize = NissanApp.getInstance().getChildCars(Integer.valueOf(parentCar.getId())) != null ? NissanApp.getInstance().getChildCars(Integer.valueOf(parentCar.getId())).size() : -1;
+                        int totalChildCarDownloaded = NissanApp.getInstance()
+                                .getCountTotalChildCarDownloaded(CarDownloadActivity.this, parentCar.getId());
+                        if (totalChildCarSize != totalChildCarDownloaded && totalChildCarSize != -1) {
+                            NissanApp.getInstance().getCarList().add(firstCarindexForReplaceCarInfo + 1, parentCar);
+                        }
+
+                    }
+                }
+            }
+
+/*
+            getList = NissanApp.getInstance().getCarList();
+            boolean xtrailRus = false, xtrailEur = false;
+            CarInfo xtrailRusInfo = new CarInfo();
+            getList = NissanApp.getInstance().getCarList();
+            for (int k = 0; k < getList.size(); k++) {
+                if (getList.get(k).getClass() == CarInfo.class) {
+                    CarInfo info = (CarInfo) getList.get(k);
+
+                    if (info.getStatus().equals("0") && info.getId() == 13) {
+                        xtrailEur = true;
+                    }
+
+                    if (info.getStatus().equals("0") && info.getId() == 15) {
+                        xtrailRusInfo = info;
+                        xtrailRus = true;
+                    }
+
+                }
+            }
+
+            if (xtrailEur && xtrailRus){
+                getList.remove(xtrailRusInfo);
+            }
+
+            CarInfo xtrailInfo = new CarInfo();
+            CarInfo leafInfo = new CarInfo();
+            int xtrailIndex = -1, leafIndex = -1;
+
+            if (xtrailLeafAvailableForDownload(getList)) {
+                for (int k = 0; k < getList.size(); k++) {
+                    if (getList.get(k).getClass() == CarInfo.class) {
+                        CarInfo info = (CarInfo) getList.get(k);
+
+                        if (info.getId() == 15) {
+                            xtrailInfo = info;
+                            xtrailIndex = k;
+                        }
+
+                        if (info.getId() == 14) {
+                            leafInfo = info;
+                            leafIndex = k;
+                        }
+
+                    }
+                }
+
+
+                getList.set(xtrailIndex, leafInfo);
+                getList.set(leafIndex, xtrailInfo);
+
+            }
+
+
+            getList = swapXtrailEurRusIfBothDownloaded(getList);
+*/
+
+
+            if (NissanApp.getInstance().getCarList() != null && adapter == null) {
+
+                adapter = new CarDownloadAdapter(getApplicationContext(), getList, new CarDownloadAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(final int carId, final int position) {
+
+                        String internetCheckMessage = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+
+                        if (DetectConnection.checkInternetConnection(activity.getApplicationContext())) {
+                            showCarDeleteDialog(carId, position);
+                        } else {
+
+                            NissanApp.getInstance().showInternetAlert(activity, internetCheckMessage.isEmpty() ? context.getResources().getString(R.string.internet_connect) : internetCheckMessage);
+                        }
+
+                    }
+                });
+                lstView.setAdapter(adapter);
+                lstView.setDivider(null);
+            } else {
+                //adapter.setList(NissanApp.getInstance().getCarList());
+                adapter.setList(NissanApp.getInstance().getCarList());
+            }
+
+        }
     }
 
 }

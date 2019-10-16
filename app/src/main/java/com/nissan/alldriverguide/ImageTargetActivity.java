@@ -619,9 +619,9 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
             if (result)
                 mContAutofocus = true;
-            else
+            else {
                 Logger.error(LOGTAG, "Unable to enable continuous autofocus");
-
+            }
             // mSampleAppMenu = new SampleAppMenu(this, this, "Image Targets",
             // mGlView, mUILayout, null);
             // setSampleAppMenuSettings();
