@@ -1,7 +1,8 @@
 /*
- * Copyright (c) 16/10/2019
+ * Copyright (c) 2/5/2019
  * Mostasim Billah
  * MobioApp
+ * Updated: 16/10/2019
  */
 
 package com.nissan.alldriverguide.augmentedreality.cars;
@@ -39,47 +40,47 @@ public class ARLeaf2019 extends ARCommon {
                         break;
 
                     case R.id.btn_ev_navi_middle:
-                        inflateSecondImage(R.layout.leaf_2017_ev_navi_system_middle,"leaf2019_ev_navi_system_middle.png");
+                        inflateSecondImage(R.layout.leaf_2017_ev_navi_system_middle, "leaf2019_ev_navi_system_middle.png");
                         break;
 
                     case R.id.btn_ev_navi_right:
-                        inflateSecondImage(R.layout.leaf_2017_ev_navi_system_right,"leaf2019_ev_navi_system_right.png");
+                        inflateSecondImage(R.layout.leaf_2017_ev_navi_system_right, "leaf2019_ev_navi_system_right.png");
                         break;
 
                     case R.id.btn_radio_left:
-                        inflateSecondImage(R.layout.leaf_2019_radio_w_navi_left,"leaf2019_navi_left.png");
+                        inflateSecondImage(R.layout.leaf_2019_radio_w_navi_left, "leaf2019_navi_left.png");
                         break;
 
                     case R.id.btn_radio_middle:
-                        inflateSecondImage(R.layout.leaf_2017_radio_w_navi_middle,"leaf2019_navi_middle.png");
+                        inflateSecondImage(R.layout.leaf_2017_radio_w_navi_middle, "leaf2019_navi_middle.png");
                         break;
 
                     case R.id.btn_radio_right:
-                        inflateSecondImage(R.layout.leaf_2017_radio_w_navi_right,"leaf2019_navi_right.png");
+                        inflateSecondImage(R.layout.leaf_2017_radio_w_navi_right, "leaf2019_navi_right.png");
                         break;
 
                     case R.id.btn_radio_wo_navi_left:
-                        inflateSecondImage(R.layout.leaf_2019_radio_wo_navi_left,"leaf2019_radio_wo_navi_left.png");
+                        inflateSecondImage(R.layout.leaf_2019_radio_wo_navi_left, "leaf2019_radio_wo_navi_left.png");
                         break;
 
                     case R.id.btn_radio_wo_navi_middle:
-                        inflateSecondImage(R.layout.leaf_2019_radio_wo_navi_middle,"leaf2019_radio_wo_navi_middle.png");
+                        inflateSecondImage(R.layout.leaf_2019_radio_wo_navi_middle, "leaf2019_radio_wo_navi_middle.png");
                         break;
 
                     case R.id.btn_radio_wo_navi_right:
-                        inflateSecondImage(R.layout.leaf_2019_radio_wo_navi_right,"leaf2019_radio_wo_navi_right.png");
+                        inflateSecondImage(R.layout.leaf_2019_radio_wo_navi_right, "leaf2019_radio_wo_navi_right.png");
                         break;
 
                     case R.id.btn_connect_left:
-                        inflateSecondImage(R.layout.leaf_2017_nissan_connect_left,"leaf2019_nissan_connect_left.png");
+                        inflateSecondImage(R.layout.leaf_2017_nissan_connect_left, "leaf2019_nissan_connect_left.png");
                         break;
 
                     case R.id.btn_connect_middle:
-                        inflateSecondImage(R.layout.leaf_2017_nissan_connect_middle,"leaf2019_nissan_connect_middle.png");
+                        inflateSecondImage(R.layout.leaf_2017_nissan_connect_middle, "leaf2019_nissan_connect_middle.png");
                         break;
 
                     case R.id.btn_connect_right:
-                        inflateSecondImage(R.layout.leaf_2017_nissan_connect_right,"leaf2019_nissan_connect_right.png");
+                        inflateSecondImage(R.layout.leaf_2017_nissan_connect_right, "leaf2019_nissan_connect_right.png");
                         break;
 
                     default:

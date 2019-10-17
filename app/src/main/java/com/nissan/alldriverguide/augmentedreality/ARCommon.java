@@ -181,7 +181,7 @@ public abstract class ARCommon implements GLSurfaceView.Renderer, SampleAppRende
         mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
     }
 
-    protected void inflateSecondImage(int layout, String imageSource){
+    protected void inflateSecondImage(int layout, String imageSource) {
         mActivity.layoutCameraView.removeAllViews();
         ImageTargetActivity.inflatedLayout_second = inflater.inflate(layout, null, false);
         setBackground(ImageTargetActivity.inflatedLayout_second, drawables + imageSource);

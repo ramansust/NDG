@@ -170,6 +170,7 @@ public class DataCheck {
                 "leaf_2019_combimeter_4"
         ));
     }
+
     public static class Qashqai2017 {
         public static final Set<String> STEERING_WHEEL_LEFT = new HashSet<>(Arrays.asList(
                 "steering_left_1",
