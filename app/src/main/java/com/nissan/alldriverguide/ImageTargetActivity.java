@@ -33,7 +33,6 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.nissan.alldriverguide.augmentedreality.ARJuke;
 import com.nissan.alldriverguide.augmentedreality.ARLeaf;
 import com.nissan.alldriverguide.augmentedreality.ARLeaf2017;
-import com.nissan.alldriverguide.augmentedreality.ARLeaf2019;
 import com.nissan.alldriverguide.augmentedreality.ARMicra;
 import com.nissan.alldriverguide.augmentedreality.ARMicraNew;
 import com.nissan.alldriverguide.augmentedreality.ARNavara;
@@ -41,14 +40,14 @@ import com.nissan.alldriverguide.augmentedreality.ARNavara2019;
 import com.nissan.alldriverguide.augmentedreality.ARNote;
 import com.nissan.alldriverguide.augmentedreality.ARPulsar;
 import com.nissan.alldriverguide.augmentedreality.ARQashqai;
-import com.nissan.alldriverguide.augmentedreality.ARQashqai2017;
 import com.nissan.alldriverguide.augmentedreality.ARQashqai2017Rus;
 import com.nissan.alldriverguide.augmentedreality.ARQashqaiRUS;
 import com.nissan.alldriverguide.augmentedreality.ARXtrail;
 import com.nissan.alldriverguide.augmentedreality.ARXtrail2017;
 import com.nissan.alldriverguide.augmentedreality.ARXtrail2017Rus;
 import com.nissan.alldriverguide.augmentedreality.ARXtrailRUS;
-import com.nissan.alldriverguide.augmentedreality.cars.ARLeaf2019Formated;
+import com.nissan.alldriverguide.augmentedreality.cars.ARLeaf2019;
+import com.nissan.alldriverguide.augmentedreality.cars.ARQashqai2017;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.Analytics;
@@ -139,7 +138,6 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     private ARXtrail2017Rus mRendererXtrailRus2017;
     private ARQashqai2017Rus mRendererQashqaiRus2017;
     private ARLeaf2019 mRendererLeaf2019;
-    private ARLeaf2019Formated mRendererLeaf2019Formated;
     private ARNavara2019 mRendererNavara2019;
 
     @Override
@@ -315,15 +313,6 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         }
 
         isFromShowInfo = true;
-/*
-        try {
-            vuforiaAppSession.pauseAR();
-        } catch (SampleApplicationException e) {
-            Logger.error(LOG_TAG, e.getString());
-        } finally {
-            isFromShowInfo = true;
-        }
-*/
 
     }
 
@@ -420,6 +409,8 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 break;
 
             case 12:
+                /*mRendererQashqai2017 = new ARQashqai2017(this, vuforiaAppSession);
+                mGlView.setRenderer(mRendererQashqai2017);*/
                 mRendererQashqai2017 = new ARQashqai2017(this, vuforiaAppSession);
                 mGlView.setRenderer(mRendererQashqai2017);
                 break;
@@ -448,8 +439,8 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 Logger.error("carPath", "_____" + Values.car_path);
 //                mRendererLeaf2019 = new ARLeaf2019(this, vuforiaAppSession);
 //                mGlView.setRenderer(mRendererLeaf2019);
-                mRendererLeaf2019Formated = new ARLeaf2019Formated(this, vuforiaAppSession);
-                mGlView.setRenderer(mRendererLeaf2019Formated);
+                mRendererLeaf2019 = new ARLeaf2019(this, vuforiaAppSession);
+                mGlView.setRenderer(mRendererLeaf2019);
                 break;
             case 18:
                 mRendererNavara2019 = new ARNavara2019(this, vuforiaAppSession);
@@ -654,6 +645,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 break;
 
             case 12:
+//                mRendererQashqai2017.updateConfiguration();
                 mRendererQashqai2017.updateConfiguration();
                 break;
 
@@ -675,7 +667,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
             case 17:
 //                mRendererLeaf2019.updateConfiguration();
-                mRendererLeaf2019Formated.updateConfiguration();
+                mRendererLeaf2019.updateConfiguration();
                 break;
             case 18:
                 mRendererNavara2019.updateConfiguration();
@@ -1003,6 +995,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     }
 
     public String getGoogleAnalyticeName(String values) {
+        Values.ar_value = values;
         return NissanApp.getInstance().getCarName(Values.carType) + Analytics.DOT + Values.tabExplore + Analytics.AUGMENTED_REALITY + Analytics.DOT + values + Analytics.DOT + NissanApp.getInstance().getLanguageName(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + Analytics.DOT + Analytics.PLATFORM + "";
     }
 

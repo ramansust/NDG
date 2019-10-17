@@ -170,4 +170,196 @@ public class DataCheck {
                 "leaf_2019_combimeter_4"
         ));
     }
+    public static class Qashqai2017 {
+        public static final Set<String> STEERING_WHEEL_LEFT = new HashSet<>(Arrays.asList(
+                "steering_left_1",
+                "steering_left_2",
+                "steering_left_3",
+                "steering_left_4",
+                "steering_left_5"
+        ));
+        public static final Set<String> STEERING_WHEEL_RIGHT_NEW = new HashSet<>(Arrays.asList(
+                "Steering_wheel_right_new_1",
+                "Steering_wheel_right_new_2",
+                "Steering_wheel_right_new_3"
+        ));
+        public static final Set<String> STEERING_WHEEL_RIGHT = new HashSet<>(Arrays.asList(
+                "steering_right_1",
+                "steering_right_2",
+                "steering_right_3",
+                "steering_right_4",
+                "steering_right_5"
+        ));
+        public static final Set<String> AUTOMATIC_DRIVE_POSITIONER = new HashSet<>(Arrays.asList(
+                "automatic_drive_positioner_1",
+                "automatic_drive_positioner_2",
+                "automatic_drive_positioner_3",
+                "automatic_drive_positioner_4",
+                "automatic_drive_positioner_05",
+                "automatic_drive_positioner_06",
+                "automatic_drive_positioner_07",
+                "automatic_drive_positioner_08",
+                "automatic_drive_positioner_09"
+        ));
+        public static final Set<String> PARKING_BUTTON = new HashSet<>(Arrays.asList(
+                "parking_button_01",
+                "parking_button_02",
+                "parking_button_03",
+                "parking_button_04"
+        ));
+        public static final Set<String> TRIP_RESET = new HashSet<>(Arrays.asList(
+                "trip_reset_1",
+                "trip_reset_2",
+                "trip_reset_3"
+        ));
+        public static final Set<String> COMBIMETER = new HashSet<>(Arrays.asList(
+                "combimeter_1",
+                "combimeter_2",
+                "combimeter_3"
+        ));
+        public static final Set<String> START_STOP_IGNITION = new HashSet<>(Arrays.asList(
+                "start_stop_ignition_1",
+                "start_stop_ignition_2",
+                "start_stop_ignition_3"
+        ));
+        public static final Set<String> MULTISWITCH_NEW = new HashSet<>(Arrays.asList(
+                "multiswitch_new_1",
+                "multiswitch_new_2",
+                "multiswitch_new_3",
+                "multiswitch_new_4",
+                "mixed_panel_1",
+                "mixed_panel_2",
+                "mixed_panel_3",
+                "mixed_panel_4",
+                "mixed_panel_5"
+        ));
+        public static final Set<String> AC = new HashSet<>(Arrays.asList(
+                "ac_1",
+                "ac_2",
+                "ac_3"
+        ));
+        public static final Set<String> AC_LEFT = new HashSet<>(Arrays.asList(
+                "ac_left_1",
+                "ac_left_2",
+                "ac_left_3"
+        ));
+        public static final Set<String> AC_MIDDLE = new HashSet<>(Arrays.asList(
+                "ac_middle_1",
+                "ac_middle_2",
+                "ac_middle_3"
+        ));
+        public static final Set<String> AC_RIGHT = new HashSet<>(Arrays.asList(
+                "ac_right_1",
+                "ac_right_2",
+                "ac_right_3"
+        ));
+        public static final Set<String> AC_MAN_MIDDLE = new HashSet<>(Arrays.asList(
+                "ac_man_middle_1",
+                "ac_man_middle_2",
+                "ac_man_middle_3",
+                "ac_man_middle_4"
+        ));
+        public static final Set<String> AC_MAN_LEFT = new HashSet<>(Arrays.asList(
+                "ac_man_left_1",
+                "ac_man_left_2",
+                "ac_man_left_3",
+                "ac_man_left_4",
+                "ac_man_left_5"
+        ));
+        public static final Set<String> AC_MAN_RIGHT = new HashSet<>(Arrays.asList(
+                "ac_man_right_1",
+                "ac_man_right_2",
+                "ac_man_right_3"
+        ));
+        public static final Set<String> AC_MAN = new HashSet<>(Arrays.asList(
+                "ac_man_1",
+                "ac_man_2",
+                "ac_man_3"
+        ));
+        public static final Set<String> RADIO_WO_NAVI = new HashSet<>(Arrays.asList(
+                "radio_wo_navi_1",
+                "radio_wo_navi_2",
+                "radio_wo_navi_3"
+        ));
+        public static final Set<String> RADIO_WO_NAVI_LEFT = new HashSet<>(Arrays.asList(
+                "radio_wo_navi_left_1",
+                "radio_wo_navi_left_2",
+                "radio_wo_navi_left_3"
+        ));
+        public static final Set<String> RADIO_WO_NAVI_RIGHT = new HashSet<>(Arrays.asList(
+                "radio_wo_navi_right_1",
+                "radio_wo_navi_right_2",
+                "radio_wo_navi_right_3"
+        ));
+        public static final Set<String> RADIO_WO_NAVI_MIDDLE = new HashSet<>(Arrays.asList(
+                "radio_wo_navi_middle_1",
+                "radio_wo_navi_middle_2",
+                "radio_wo_navi_middle_3"
+        ));
+        public static final Set<String> RADIO_NAVI = new HashSet<>(Arrays.asList(
+                "radio_navi_1",
+                "radio_navi_2",
+                "radio_navi_3"
+        ));
+        public static final Set<String> RADIO_NAVI_LEFT = new HashSet<>(Arrays.asList(
+                "radio_navi_left_1",
+                "radio_navi_left_2",
+                "radio_navi_left_3"
+        ));
+        public static final Set<String> RADIO_NAVI_RIGHT = new HashSet<>(Arrays.asList(
+                "radio_navi_right_1",
+                "radio_navi_right_2",
+                "radio_navi_right_3"
+        ));
+        public static final Set<String> RADIO_NAVI_MIDDLE = new HashSet<>(Arrays.asList(
+                "radio_navi_middle_1",
+                "radio_navi_middle_2",
+                "radio_navi_middle_3"
+        ));
+        public static final Set<String> PARKING_BRAKE = new HashSet<>(Arrays.asList(
+                "parking_brake_1",
+                "parking_brake_2",
+                "parking_brake_3",
+                "parking_brake_4",
+                "parking_brake_5",
+                "parking_brake_6",
+                "parking_brake_8",
+                "parking_brake_9",
+                "parking_brake_10"
+        ));
+        public static final Set<String> HEATED_FRONT_SEATS = new HashSet<>(Arrays.asList(
+                "heated_front_seats_1",
+                "heated_front_seats_2",
+                "heated_front_seats_3",
+                "heated_front_seats_4"
+        ));
+        public static final Set<String> AV_SYSTEM_LEFT = new HashSet<>(Arrays.asList(
+                "av_system_left_01",
+                "av_system_left_03",
+                "av_system_left_5",
+                "av_system_left_6",
+                "av_system_left_7"
+        ));
+        public static final Set<String> AV_SYSTEM_MIDDLE = new HashSet<>(Arrays.asList(
+                "av_system_middle_01",
+                "av_system_middle_02",
+                "av_system_middle_03",
+                "av_system_middle_04"
+        ));
+        public static final Set<String> AV_SYSTEM_RIGHT = new HashSet<>(Arrays.asList(
+                "av_system_right_01",
+                "av_system_right_03",
+                "av_system_right_4",
+                "av_system_right_5",
+                "av_system_right_6"
+        ));
+        public static final Set<String> AV_SYSTEM_FULL = new HashSet<>(Arrays.asList(
+                "av_system_full_01",
+                "av_system_full_02",
+                "av_system_full_03",
+                "av_system_full_4",
+                "av_system_full_5"
+        ));
+
+    }
 }
