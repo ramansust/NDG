@@ -103,7 +103,7 @@ public class ARLeaf2019 extends ARCommon {
 
             final String userDataToCompare = (String) trackable.getUserData();
 
-            Log.e("USER_DATA_MB", userDataToCompare.toString());
+            Log.e("USER_DATA_MB", userDataToCompare);
 
             Handler handler = new Handler(mActivity.getMainLooper());
             handler.post(new Runnable() {
