@@ -62,7 +62,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             @Override
             public void run () {
-                startActivity(new Intent(SplashScreenActivity.this, CarDownloadActivity.class));
+                startActivity(new Intent(SplashScreenActivity.this, CarDownloadActivityNew.class));
                 finish();
             }
         }, SPLASH_TIME_OUT);

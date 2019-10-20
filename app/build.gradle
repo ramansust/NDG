@@ -64,6 +64,11 @@ dependencies {
     implementation 'com.android.support:support-v4:27.1.1'
     implementation files('libs/NDG_SDK.jar')
     implementation files("$VUFORIA_SDK_DIR/$JAR_DIR/Vuforia.jar")
+
+    // ViewModel and LiveData
+    def lifecycle_version = "1.1.1"
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    
     //for changing font for whole app
     implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
     implementation project(path: ':lib_viewpager_indicator')

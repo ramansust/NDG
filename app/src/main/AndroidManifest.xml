@@ -40,6 +40,8 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
+        <activity android:name=".CarDownloadActivityNew"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".LanguageSelectionActivity"
             android:label="@string/title_activity_language_selection"

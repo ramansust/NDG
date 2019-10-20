@@ -404,14 +404,14 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private void showCarDownloadDialog(final int carType) {
         final Dialog dialog = new DialogController(CarDownloadActivity.this).carDialog();
 
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(getResources().getString(R.string.download_msg));
 
-        ImageButton btnEUR = (ImageButton) dialog.findViewById(R.id.btn_eur);
-        ImageButton btnRUS = (ImageButton) dialog.findViewById(R.id.btn_rus);
+        ImageButton btnEUR = dialog.findViewById(R.id.btn_eur);
+        ImageButton btnRUS = dialog.findViewById(R.id.btn_rus);
 
-        ImageButton imgBtnEur = (ImageButton) dialog.findViewById(R.id.img_btn_eur_delete_donwload);
-        ImageButton imgBtnRus = (ImageButton) dialog.findViewById(R.id.img_btn_rus_delete_donwload);
+        ImageButton imgBtnEur = dialog.findViewById(R.id.img_btn_eur_delete_donwload);
+        ImageButton imgBtnRus = dialog.findViewById(R.id.img_btn_rus_delete_donwload);
 
         imgBtnEur.setVisibility(View.GONE);
         imgBtnRus.setVisibility(View.GONE);

@@ -11,8 +11,7 @@
         android:layout_height="393dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:background="@drawable/leaf2019_radio_wo_navi_left"
-        android:weightSum="6" >
+        android:weightSum="6">
 
         <Button
             android:layout_width="match_parent"
@@ -61,6 +60,7 @@
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
             android:tag="3" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -68,6 +68,7 @@
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
             android:tag="4" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="0dp"
