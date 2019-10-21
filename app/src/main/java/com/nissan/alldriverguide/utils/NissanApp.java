@@ -7,12 +7,10 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
-import android.os.Environment;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -62,11 +60,10 @@ import java.util.Locale;
 public class NissanApp {
 
     public static NissanApp instance;
-
+    public AssistanceInfo assistanceInfo;
     //    public String Vuforia_key = "AZeJ28P/////AAAAAcTlmrGvj0ngjCcwQjIavJcqQvIaBitAo5eBTkG2cG4PyF+t82bIUefZWp/9apWQuelfAA08QuTLCad92KWOLHBY+d1EzDYRAVelFk0LDUkFeW7TrxowR1fPpEu1Axlxm9NA6j9YMSqfxxH/378ei+xhkeUqLJeSTThdQVIivZ2WjlE6hIhhwZS0nqh/0mHH92gbfzMcgdrLQ1uM5u0jIRn9yjbVw4/CzCtQzjYpRyqWRz+vhrGMFL9xKBqyTwRy2PKrR2/6T6xYER4ZyCddIGJD5zgrLxPkPp3dbFGslnmTU3ZZYijn2kMIROhcIZYmx8F59odWmfNh4lRcV91pK554tGieRVsWzFqB/APdo3Av"; // free
     // this key is used for vuforia sdk for AR
     private String Vuforia_key = "ATZPXEj/////AAAAAK8J10rSI0dLr0sGOY7rQdUf20QxKpYGh6/JG14CkV1pjGLTF81OoLa/hx0u5+ZWxIO2Iufir6M2cEX2zz7GY3UGxAsJ6mmtoricZVrENjMjGhzYpIE6Rbuk62hcaRcrdy9dFM1CITHzbDPEE7cEcY99HHSSLHzsfLR9Zlo/WNzc5aTcOoWl+hewMmLfyZdwK/KN36FlvLy0j4hzM68fitZSgXvo+Ed1gCDDpSTT+yfF4r8h11emgrs68kLzUl4WWH/xwZbupVQj4cyGag2sC3vu2b2qSuyABHXfTViQjsIqUL8r3I7wF6Xkio8XN+a6b1Y3IArX4FJ9XlB3VR6QxCyFjUYbh96CSBEDA3Q8Q5wd"; // Paid key for NDG
-
     private ArrayList<VideoInfo> list;
     private Configuration conf;
     private ArrayList<TabMenu> tabMenuArrayList;
@@ -75,6 +72,16 @@ public class NissanApp {
     private List<CarList> carListWAP;
     private List<GlobalMessage> globalMessageArrayList;
     private List<LanguageList> carWiseLanguageList;
+    private ArrayList<Object> carList = new ArrayList<>();
+    private ArrayList<ExploreTabVideoModel> exploreVideoList;
+    private ArrayList<CarInfo> carAllList;
+
+    public static NissanApp getInstance() {
+        if (instance == null) {
+            instance = new NissanApp();
+        }
+        return instance;
+    }
 
     public List<CarList> getCarListWAP() {
         return carListWAP;
@@ -128,8 +135,6 @@ public class NissanApp {
         this.globalMessageArrayList = globalMessageArrayList;
     }
 
-    public AssistanceInfo assistanceInfo;
-
     public AssistanceInfo getAssistanceInfo() {
         return assistanceInfo;
     }
@@ -162,8 +167,6 @@ public class NissanApp {
         this.carList = carList;
     }
 
-    private ArrayList<Object> carList = new ArrayList<>();
-
     public ArrayList<CarInfo> getCarAllList() {
         return carAllList;
     }
@@ -172,23 +175,12 @@ public class NissanApp {
         this.carAllList = carAllList;
     }
 
-    private ArrayList<ExploreTabVideoModel> exploreVideoList;
-
     public ArrayList<ExploreTabVideoModel> getExploreVideoList() {
         return exploreVideoList;
     }
 
     public void setExploreVideoList(ArrayList<ExploreTabVideoModel> exploreVideoList) {
         this.exploreVideoList = exploreVideoList;
-    }
-
-    private ArrayList<CarInfo> carAllList;
-
-    public static NissanApp getInstance() {
-        if (instance == null) {
-            instance = new NissanApp();
-        }
-        return instance;
     }
 
     public void destroyInstance() {
@@ -748,7 +740,7 @@ public class NissanApp {
 
                 if (lang.contains("en")) {
                     url = UrlLinks.XTRAIL_2017_RUS_EN;
-                }else{
+                } else {
                     url = UrlLinks.XTRAIL_2017_RUS_EN;
                 }
                 break;
@@ -903,7 +895,7 @@ public class NissanApp {
                 carPath = Values.PATH + Values.leaf_2019;
                 break;
             case 18:
-                carPath = Values.PATH + Values.navara_2019;
+                carPath = Values.PATH + Values.juke_2019;
                 break;
 
             default:
@@ -987,7 +979,7 @@ public class NissanApp {
                 path = Values.leaf_2019;
                 break;
             case 18:
-                path = Values.navara_2019;
+                path = Values.juke_2019;
                 break;
 
             default:
@@ -1119,7 +1111,7 @@ public class NissanApp {
                 conf.locale = new Locale("hu");
             } else if (lang.contentEquals("cs")) {
                 conf.locale = new Locale("cs");
-            }else {
+            } else {
                 conf.locale = new Locale(lang);
             }
         }
@@ -1134,7 +1126,7 @@ public class NissanApp {
         return DateFormat.getDateTimeInstance().format(new Date());
     }
 
-/*    */
+    /*    */
 
     /**
      * @param position  indicate the car id
@@ -1549,7 +1541,7 @@ public class NissanApp {
 
     public String getAlertMessage(Context context, String lang_short_name, String msg_type) {
 
-        int language_id = getLanguageIDForSettingsPage(Values.carType+"", lang_short_name);
+        int language_id = getLanguageIDForSettingsPage(Values.carType + "", lang_short_name);
         String key_global_alert_message = Values.carType + "_" + language_id + "_" + Values.GLOBAL_ALERT_MSG_KEY;
 
         List<AlertMessage> alertMessageArrayList = NissanApp.getInstance().getAlertMessageGlobalArrayList();
@@ -1652,42 +1644,35 @@ public class NissanApp {
         return 0;
     }
 
-    public ArrayList<Object> getChildCars(int parentId)
-    {
-        ArrayList<Object> childCars=null;
-        if(carListWAP!=null)
-        {
-            childCars=new ArrayList<>();
-            for (CarList carList: carListWAP)
-            {
-                if (Integer.valueOf(carList.getParent_car_id())==parentId && carList.getCar_model_version().contains("new"))
-                {
+    public ArrayList<Object> getChildCars(int parentId) {
+        ArrayList<Object> childCars = null;
+        if (carListWAP != null) {
+            childCars = new ArrayList<>();
+            for (CarList carList : carListWAP) {
+                if (Integer.valueOf(carList.getParent_car_id()) == parentId && carList.getCar_model_version().contains("new")) {
                     childCars.add(carList);
                 }
             }
         }
         return childCars;
     }
-    public int getCountTotalChildCarDownloaded(Context context,int parentId)
-    {
-        ArrayList<Object> childCars=new ArrayList<>();
-        CommonDao commonDao =CommonDao.getInstance();
 
-        if(carListWAP!=null)
-        {
-            for (CarList carList: carListWAP)
-            {
-                if (Integer.valueOf(carList.getParent_car_id())==parentId)
-                {
-                    CarInfo carInfo=new CarInfo() ;
+    public int getCountTotalChildCarDownloaded(Context context, int parentId) {
+        ArrayList<Object> childCars = new ArrayList<>();
+        CommonDao commonDao = CommonDao.getInstance();
+
+        if (carListWAP != null) {
+            for (CarList carList : carListWAP) {
+                if (Integer.valueOf(carList.getParent_car_id()) == parentId) {
+                    CarInfo carInfo = new CarInfo();
                     carInfo.setId(Integer.valueOf(carList.getId()));
                     carInfo.setName(carList.getCarName());
-                    carInfo.setStatus(String.valueOf(commonDao.getStatus(context,Integer.valueOf(carList.getId()))));
+                    carInfo.setStatus(String.valueOf(commonDao.getStatus(context, Integer.valueOf(carList.getId()))));
                     carInfo.setDateTime(NissanApp.getInstance().getDateTime());
                     carInfo.setCarModelVersion(carList.getCar_model_version());
                     carInfo.setCarImg(carList.getCarImg());
                     carInfo.setParentCarId(Integer.valueOf(carList.getParent_car_id()));
-                    if (Integer.valueOf(carInfo.getStatus())==1)
+                    if (Integer.valueOf(carInfo.getStatus()) == 1)
                         childCars.add(carInfo);
                 }
             }

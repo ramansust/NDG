@@ -39,7 +39,7 @@ public class Analytics {
     public static final String CONSOLE = "console";
     public static final String TRIP_RESET = "trip reset";
     public static final String AUTOMATIC_DRIVE_POSITION = "automatic drive position";
-    public static final String MIXED_PANEL = "mixed panel" ;
+    public static final String MIXED_PANEL = "mixed panel";
     public static final String EV_NAVI_SYSTEM = "ev navi system";
     public static final String ECO = "eco";
     public static final String PARKING_BRAKE = "parking brake";
@@ -53,7 +53,9 @@ public class Analytics {
 
     public static final String PLATFORM = "a";
 
-    public static final String CHANGE_LANGUAGE = ".change language" ;
+    public static final String CHANGE_LANGUAGE = ".change language";
     public static final String CAR_SELECTION = ".car selection";
     public static final String DELETE = ".delete";
+    public static final String SOS = "sos";
+    public static final String GEAR_SELECTOR = "gear selector";
 }

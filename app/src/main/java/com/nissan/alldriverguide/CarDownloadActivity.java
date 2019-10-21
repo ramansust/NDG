@@ -1,24 +1,19 @@
 package com.nissan.alldriverguide;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.provider.Settings;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -37,12 +32,6 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.adapter.CarDownloadAdapter;
@@ -116,9 +105,10 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
     private ArrayList<Object> getList = new ArrayList<>();
     private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
             "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "Nissan X-TRAIL",
-            "New Nissan LEAF", "New Nissan X-TRAIL RUS", "New Nissan QASHQAI RUS", "Leaf 2019"};
-    private int[] indices = {1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11, 16};
+            "New Nissan LEAF", "New Nissan X-TRAIL RUS", "New Nissan QASHQAI RUS", "Leaf 2019", "New Nissan Juke"};
+    private int[] indices = {1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11, 16, 17};
     private int[] previousCarArray = {1, 2, 4, 5, 7, 9};
+
     private List<Parent_car_list> parent_car_lists = null;
     private ProgressDialog progressDialog;
     private ProgressBar pbCarDownload;
@@ -159,18 +149,13 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                // checking for type intent filter
                 if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
-                    // gcm successfully registered
-                    // now subscribe to `global` topic to receive app wide notifications
-//                    FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
-//
-//                    displayFirebaseRegId();
+
+                    /*FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
+                    displayFirebaseRegId();*/
 
                 } else if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
-                    // new push notification is received
                     String message = intent.getStringExtra("message");
-//                    Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
                 }
             }
         };
@@ -257,71 +242,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     }
 
-    /**
-     * Requesting camera permission
-     * This uses single permission model from dexter
-     * Once the permission granted, opens the camera
-     * On permanent denial opens settings dialog
-     */
-    private void requestStoragePermission(final int position, final AdapterView<?> parent) {
-        Dexter.withActivity(this)
-                .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                .withListener(new PermissionListener() {
-                    @Override
-                    public void onPermissionGranted(PermissionGrantedResponse response) {
-                        // permission is granted
-                        goForNormalOperation(position, parent);
-                    }
-
-                    @Override
-                    public void onPermissionDenied(PermissionDeniedResponse response) {
-                        // check for permanent denial of permission
-                        if (response.isPermanentlyDenied()) {
-                            showSettingsDialog();
-                        }
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-                        token.continuePermissionRequest();
-                    }
-                }).check();
-    }
-
-    /**
-     * Showing Alert Dialog with Settings option
-     * Navigates user to app settings
-     * NOTE: Keep proper title and message depending on your app
-     */
-    private void showSettingsDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(CarDownloadActivity.this);
-        builder.setTitle("Need Permissions");
-        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
-        builder.setPositiveButton("GOTO SETTINGS", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-                openSettings();
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        builder.show();
-
-    }
-
-    // navigating user to app settings
-    private void openSettings() {
-        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        Uri uri = Uri.fromParts("package", getPackageName(), null);
-        intent.setData(uri);
-        startActivityForResult(intent, 101);
-    }
-
     private void registerForPush(final int position, final AdapterView<?> parent) {
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
@@ -334,16 +254,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                         progressDialog.dismiss();
                     Logger.error("CarDownloadActivity: Device registration Successful", "________________________________" + "refresh token");
                     new PreferenceUtil(getApplicationContext()).setPushRegistrationStatus(true);
-//                    goForNormalOperation(position, parent);
-
-/*
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestStoragePermission(position, parent);
-                    } else {
-                        goForNormalOperation(position, parent);
-                    }
-*/
-
                 }
             }
 
@@ -526,16 +436,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     private void loadCarData() {
 
-
-//        if (carListArrayList == null || carListArrayList.size() == 0)
-//            return;
-
-//        carNames = new String[carListArrayList.size()];
-
-//        for (int i = 0; i < carListArrayList.size(); i++) {
-//            carNames[i] = carListArrayList.get(i).getCarDisplayName();
-//        }
-
         if (preferenceUtil.getIsFirstTime()) {
             if (new File(Values.PATH).exists()) {
                 try {
@@ -603,27 +503,19 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
         globalMessageController.callApi(NissanApp.getInstance().getDeviceID(getApplicationContext()), NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()) + "");
 
-//        adapter = new CarDownloadAdapter(getApplicationContext(), NissanApp.getInstance().getCarList());
-//        lstView.setAdapter(adapter);
-
         String sharedpref_key = "en_" + Values.CAR_LIST_KEY + "_1";
         Type type = new TypeToken<ArrayList<CarList>>() {
         }.getType();
         carListArrayList = new Gson().fromJson(preferenceUtil.retrieveMultiLangData(sharedpref_key), type);
 
-//        if (carListArrayList != null && carListArrayList.size() > 0) {
         loadCarData();
-//        } else {
         pbCarDownload.setVisibility(View.VISIBLE);
-//        }
 
         if (DetectConnection.checkInternetConnection(getApplicationContext())) {
             carListContentController.callApi(NissanApp.getInstance().getDeviceID(this), "1");
         } else {
             if (pbCarDownload.getVisibility() == View.VISIBLE)
                 pbCarDownload.setVisibility(View.GONE);
-//            Toast.makeText(activity, getString(R.string.internet_connect), Toast.LENGTH_SHORT).show();
-//            showErrorDialog(getResources().getString(R.string.internet_connect));
         }
         new ApiCall().getParentCarList(new ParentCarListCompleteAPI() {
             @Override

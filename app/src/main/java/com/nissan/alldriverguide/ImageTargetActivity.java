@@ -47,6 +47,7 @@ import com.nissan.alldriverguide.augmentedreality.ARXtrail2017;
 import com.nissan.alldriverguide.augmentedreality.ARXtrail2017Rus;
 import com.nissan.alldriverguide.augmentedreality.ARXtrailRUS;
 import com.nissan.alldriverguide.augmentedreality.cars.ARLeaf2019;
+import com.nissan.alldriverguide.augmentedreality.cars.ARNewNissanJuke2019;
 import com.nissan.alldriverguide.augmentedreality.cars.ARQashqai2017;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
@@ -138,6 +139,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     private ARXtrail2017Rus mRendererXtrailRus2017;
     private ARQashqai2017Rus mRendererQashqaiRus2017;
     private ARLeaf2019 mRendererLeaf2019;
+    private ARNewNissanJuke2019 mRendererJuke2019;
     private ARNavara2019 mRendererNavara2019;
 
     @Override
@@ -443,8 +445,8 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 mGlView.setRenderer(mRendererLeaf2019);
                 break;
             case 18:
-                mRendererNavara2019 = new ARNavara2019(this, vuforiaAppSession);
-                mGlView.setRenderer(mRendererNavara2019);
+                mRendererJuke2019 = new ARNewNissanJuke2019(this, vuforiaAppSession);
+                mGlView.setRenderer(mRendererJuke2019);
                 break;
 
             default:
@@ -670,7 +672,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 mRendererLeaf2019.updateConfiguration();
                 break;
             case 18:
-                mRendererNavara2019.updateConfiguration();
+                mRendererJuke2019.updateConfiguration();
                 break;
 
             default:

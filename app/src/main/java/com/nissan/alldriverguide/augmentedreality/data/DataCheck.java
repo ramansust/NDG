@@ -363,4 +363,171 @@ public class DataCheck {
         ));
 
     }
+
+    public static class JukeF16 {
+
+        private static JukeF16 instance;
+        public final Set<String> SOS = new HashSet<>(Arrays.asList(
+                "sos_03",
+                "sos_02",
+                "sos_01",
+                "sos_05",
+                "sos_04"
+        ));
+        public final Set<String> GEAR_SELECTOR_PADDLES_RIGHT = new HashSet<>(Arrays.asList(
+                "gear_selector_paddles_right_04",
+                "gear_selector_paddles_right_03",
+                "gear_selector_paddles_right_02",
+                "gear_selector_paddles_right_01"
+        ));
+        public final Set<String> GEAR_SELECTOR_PADDLES_LEFT = new HashSet<>(Arrays.asList(
+                "gear_selector_paddles_left_04",
+                "gear_selector_paddles_left_03",
+                "gear_selector_paddles_left_02",
+                "gear_selector_paddles_left_01"
+        ));
+        public final Set<String> PARKING_BRAKE = new HashSet<>(Arrays.asList(
+                "parking_brake_03",
+                "parking_brake_01",
+                "parking_brake_07",
+                "parking_brake_04",
+                "parking_brake_05",
+                "parking_brake_02",
+                "parking_brake_06"
+        ));
+        public final Set<String> JUKE_COMBIMETER = new HashSet<>(Arrays.asList(
+                "juke_combimeter_05",
+                "juke_combimeter_04",
+                "juke_combimeter_03",
+                "juke_combimeter_02",
+                "juke_combimeter_01"
+        ));
+        public final Set<String> JUKE_STEERING_RIGHT = new HashSet<>(Arrays.asList(
+                "juke_steering_right_05",
+                "juke_steering_right_04",
+                "juke_steering_right_03",
+                "juke_steering_right_02",
+                "juke_steering_right_01"
+        ));
+        public final Set<String> JUKE_STEERING_LEFT = new HashSet<>(Arrays.asList(
+                "juke_steering_left_05",
+                "juke_steering_left_04",
+                "juke_steering_left_03",
+                "juke_steering_left_02",
+                "juke_steering_left_01"
+        ));
+        public final Set<String> JUKE_RADIO_WO_NAVI_RIGHT = new HashSet<>(Arrays.asList(
+                "juke_radio_wo_navi_right_03",
+                "juke_radio_wo_navi_right_02",
+                "juke_radio_wo_navi_right_01"
+        ));
+        public final Set<String> JUKE_RADIO_WO_NAVI_MIDDLE = new HashSet<>(Arrays.asList(
+                "juke_radio_wo_navi_middle_03",
+                "juke_radio_wo_navi_middle_02",
+                "juke_radio_wo_navi_middle_01"
+        ));
+        public final Set<String> JUKE_RADIO_WO_NAVI_LEFT = new HashSet<>(Arrays.asList(
+                "juke_radio_wo_navi_left_03",
+                "juke_radio_wo_navi_left_02",
+                "juke_radio_wo_navi_left_01"
+        ));
+        public final Set<String> JUKE_RADIO_WO_NAVI_FULL = new HashSet<>(Arrays.asList(
+                "juke_radio_wo_navi_full_04",
+                "juke_radio_wo_navi_full_03",
+                "juke_radio_wo_navi_full_02",
+                "juke_radio_wo_navi_full"
+        ));
+        public final Set<String> INSTRUMENT_PANEL = new HashSet<>(Arrays.asList(
+                "instrument_panel_06",
+                "instrument_panel_04",
+                "instrument_panel_03",
+                "instrument_panel_02",
+                "instrument_panel_01"
+        ));
+        public final Set<String> PUSH_BUTTON_IGNITION_SWITCH = new HashSet<>(Arrays.asList(
+                "push_button_ignition_switch_05",
+                "push_button_ignition_switch_04",
+                "push_button_ignition_switch_03",
+                "push_button_ignition_switch_02",
+                "push_button_ignition_switch_01"
+        ));
+        public final Set<String> JUKE_AC_MANUAL_RIGHT = new HashSet<>(Arrays.asList(
+                "juke_ac_manual_right_03",
+                "juke_ac_manual_right_02",
+                "juke_ac_manual_right_01"
+        ));
+        public final Set<String> JUKE_AC_MANUAL_MIDDLE = new HashSet<>(Arrays.asList(
+                "juke_ac_manual_middle_03",
+                "juke_ac_manual_middle_01",
+                "juke_ac_manual_middle_02"
+        ));
+        public final Set<String> JUKE_AC_MANUAL_LEFT = new HashSet<>(Arrays.asList(
+                "juke_ac_manual_left_03",
+                "juke_ac_manual_left_02",
+                "juke_ac_manual_left_01"
+        ));
+        public final Set<String> JUKE_AC_MANUAL_FULL = new HashSet<>(Arrays.asList(
+                "juke_ac_manual_full_02",
+                "juke_ac_manual_full_01"
+        ));
+        public final Set<String> JUKE_AC_AUTO_FULL = new HashSet<>(Arrays.asList(
+                "juke_ac_auto_full_01",
+                "juke_ac_auto_full_02",
+                "juke_ac_auto_full_03"
+        ));
+        public final Set<String> JUKE_AC_AUTO_LEFTL = new HashSet<>(Arrays.asList(
+                "juke_ac_auto_leftl_01",
+                "juke_ac_auto_leftl_02",
+                "juke_ac_auto_leftl_03"
+        ));
+        public final Set<String> JUKE_AC_AUTO_MIDDLEL = new HashSet<>(Arrays.asList(
+                "juke_ac_auto_middlel_01",
+                "juke_ac_auto_middlel_02",
+                "juke_ac_auto_middlel_03"
+        ));
+        public final Set<String> JUKE_AC_AUTO_RIGHTL = new HashSet<>(Arrays.asList(
+                "juke_ac_auto_rightl_01",
+                "juke_ac_auto_rightl_02",
+                "juke_ac_auto_rightl_03",
+                "juke_ac_auto_rightl_04"
+        ));
+        public final Set<String> D_MODE_BUTTON = new HashSet<>(Arrays.asList(
+                "d_mode_button_05",
+                "d_mode_button_04",
+                "d_mode_button_03",
+                "d_mode_button_02",
+                "d_mode_button_01"
+        ));
+        public final Set<String> JUKE_RADIO_NAVI_RIGHT = new HashSet<>(Arrays.asList(
+                "juke_radio_navi_right_03",
+                "juke_radio_navi_right_02",
+                "juke_radio_navi_right_01"
+        ));
+        public final Set<String> JUKE_RADIO_NAVI_MIDDLEL = new HashSet<>(Arrays.asList(
+                "juke_radio_navi_middlel_04",
+                "juke_radio_navi_middlel_03",
+                "juke_radio_navi_middlel_02",
+                "juke_radio_navi_middlel_01"
+        ));
+        public final Set<String> JUKE_RADIO_NAVI_LEFT = new HashSet<>(Arrays.asList(
+                "juke_radio_navi_left_03",
+                "juke_radio_navi_left_02",
+                "juke_radio_navi_left_01"
+        ));
+        public final Set<String> JUKE_RADIO_NAVI_FULL = new HashSet<>(Arrays.asList(
+                "juke_radio_navi_full_01"
+        ));
+
+        private JukeF16() {
+            //private constructor for singleton
+        }
+
+        public static JukeF16 getInstance() {
+            if (instance == null) {
+                instance = new JukeF16();
+                return instance;
+            }
+            return instance;
+        }
+    }
 }
