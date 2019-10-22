@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (c) 21/10/2019
+  ~ Copyright (c) 22/10/2019
   ~ Mostasim Billah
   ~ MobioApp
   -->
@@ -15,7 +15,6 @@
         android:id="@+id/popupLayout"
         android:layout_width="250dp"
         android:layout_height="254dp"
-        android:background="@drawable/sos"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -24,7 +23,7 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="74" />
+            android:tag="0" />
     </LinearLayout>
 
 </LinearLayout>

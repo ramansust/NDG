@@ -110,25 +110,25 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                     if (DataCheck.JukeF16.getInstance().SOS.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.juke_2019_sos, "leaf2019_power_switch.png");
+                        detectImage(R.layout.juke_2019_sos, "sos.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.SOS));
 
                     } else if (DataCheck.JukeF16.getInstance().GEAR_SELECTOR_PADDLES_RIGHT.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.juke_2019_gear_selector_paddles_right, "leaf2019_auto_ac_full_type_a.png");
+                        detectImage(R.layout.juke_2019_gear_selector_paddles_right, "gear_selector_paddles_full.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.GEAR_SELECTOR));
 
-                    } else if (DataCheck.Leaf2019.AUTO_AC_FULL_TYPE_B.contains(userDataToCompare)) {
+                    } else if (DataCheck.JukeF16.getInstance().D_MODE_BUTTON.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.leaf_2017_auto_ac_type_b, "leaf2019_auto_ac_full_type_b.png");
+                        detectImage(R.layout.juke_2019_d_mode, "d_mode_button.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.AUTO_AC_TYPE_B));
 
-                    } else if (DataCheck.Leaf2019.HEATED_SEATS_FRONT.contains(userDataToCompare)) {
+                    } else if (DataCheck.JukeF16.getInstance().GEAR_SELECTOR_PADDLES_LEFT.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.leaf_2017_heated_seats_front, "leaf2019_heated_seats_front.png");
+                        detectImage(R.layout.juke_2019_gear_selector_paddles_right, "gear_selector_paddles_full.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.HEATED_FRONT));
 
