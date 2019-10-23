@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 21/10/2019
+  ~ Copyright (c) 23/10/2019
   ~ Mostasim Billah
   ~ MobioApp
   -->
@@ -12,17 +12,18 @@
 
     <LinearLayout
         android:id="@+id/popupLayout"
-        android:layout_width="250dp"
-        android:layout_height="254dp"
+        android:layout_width="180dp"
+        android:layout_height="200dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="74" />
+            android:tag="56" />
+
     </LinearLayout>
 
 </LinearLayout>
