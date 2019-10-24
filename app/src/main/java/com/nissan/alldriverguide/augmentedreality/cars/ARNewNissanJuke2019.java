@@ -35,7 +35,7 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                 switch (v.getId()) {
 
-
+//                    Auto AC
                     case R.id.btn_auto_ac_left:
                         inflateSecondImage(R.layout.juke_2019_ac_left, "juke_ac_auto_left.png");
                         break;
@@ -48,7 +48,7 @@ public class ARNewNissanJuke2019 extends ARCommon {
                         inflateSecondImage(R.layout.juke_2019_ac_right, "juke_ac_auto_right.png");
                         break;
 
-
+//                  Manual AC
                     case R.id.btn_manual_ac_left:
                         inflateSecondImage(R.layout.juke_2019_manual_ac_left, "juke_ac_manual_left_01.png");
                         break;
@@ -61,6 +61,30 @@ public class ARNewNissanJuke2019 extends ARCommon {
                         inflateSecondImage(R.layout.juke_2019_manual_ac_right, "juke_ac_manual_left_02.png");
                         break;
 
+//                   With Navigation
+                    case R.id.btn_radio_navi_left:
+                        inflateSecondImage(R.layout.juke_2019_radio_navi_left, "juke_radio_navi_left_01.png");
+                        break;
+
+                    case R.id.btn_radio_navi_middle:
+                        inflateSecondImage(R.layout.juke_2019_radio_navi_middle, "juke_radio_navi_middle_01.png");
+                        break;
+
+                    case R.id.btn_radio_navi_right:
+                        inflateSecondImage(R.layout.juke_2019_radio_navi_right, "juke_radio_navi_right_01.png");
+                        break;
+                    //Without Navigation
+                    case R.id.btn_radio_wo_navi_left:
+                        inflateSecondImage(R.layout.juke_2019_radio_wo_navi_left, "juke_radio_wo_navi_left.png");
+                        break;
+
+                    case R.id.btn_radio_wo_navi_middle:
+                        inflateSecondImage(R.layout.juke_2019_radio_wo_navi_middle, "juke_radio_wo_navi_middle.png");
+                        break;
+
+                    case R.id.btn_radio_wo_navi_right:
+                        inflateSecondImage(R.layout.juke_2019_radio_wo_navi_right, "juke_radio_wo_navi_right.png");
+                        break;
 
                     default:
                         break;
@@ -89,16 +113,16 @@ public class ARNewNissanJuke2019 extends ARCommon {
                 public void run() {
 
                     if (DataCheck.JukeF16.getInstance().SOS.contains(userDataToCompare)) {
-
+/*
                         detectImage(R.layout.juke_2019_sos, "sos.png");
 
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.SOS));
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.SOS));*/
 
                     } else if (DataCheck.JukeF16.getInstance().GEAR_SELECTOR_PADDLES_RIGHT.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.juke_2019_gear_selector_paddles_right, "gear_selector_paddles_full.png");
+                      /*  detectImage(R.layout.juke_2019_gear_selector_paddles_right, "gear_selector_paddles_full.png");
 
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.GEAR_SELECTOR));
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.GEAR_SELECTOR));*/
 
                     } else if (DataCheck.JukeF16.getInstance().D_MODE_BUTTON.contains(userDataToCompare)) {
 
@@ -108,15 +132,15 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                     } else if (DataCheck.JukeF16.getInstance().GEAR_SELECTOR_PADDLES_LEFT.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.juke_2019_gear_selector_paddles_right, "gear_selector_paddles_full.png");
+                      /*  detectImage(R.layout.juke_2019_gear_selector_paddles_right, "gear_selector_paddles_full.png");
 
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.HEATED_FRONT));
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.HEATED_FRONT));*/
 
                     } else if (DataCheck.JukeF16.getInstance().INSTRUMENT_PANEL.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.juke_2019_instrument_panel, "");
+                      /*  detectImage(R.layout.juke_2019_instrument_panel, "");
 
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.HEATED_REAR));
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.HEATED_REAR));*/
 
                     } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_FULL.contains(userDataToCompare)) {
 
@@ -173,65 +197,71 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.RADIO_WO_NAVI));
 
-                    } else if (DataCheck.Leaf2019.RADIO_WO_NAVI_RIGHT.contains(userDataToCompare)) {
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_COMBIMETER.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.leaf_2019_radio_wo_navi_right, "leaf2019_radio_wo_navi_right.png");
+                        detectImage(R.layout.juke_2019_combimeter, "juke_combimeter.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.RADIO_WO_NAVI));
 
-                    } else if (DataCheck.Leaf2019.NISSAN_CONNECT_FULL.contains(userDataToCompare)) {
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_RADIO_NAVI_FULL.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.leaf_2017_nissan_connect_main, "leaf2019_nissan_connect_full.png");
-
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.CONNECT));
-
-                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_connect_left));
-                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_connect_middle));
-                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_connect_right));
-
-                    } else if (DataCheck.Leaf2019.NISSAN_CONNECT_LEFT.contains(userDataToCompare)) {
-
-                        detectImage(R.layout.leaf_2017_nissan_connect_left, "leaf2019_nissan_connect_left.png");
+                        detectImage(R.layout.juke_2019_radio_navi_full, "juke_radio_navi_full_01.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.CONNECT));
 
-                    } else if (DataCheck.Leaf2019.NISSAN_CONNECT_MIDDLE.contains(userDataToCompare)) {
+                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_navi_left));
+                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_navi_middle));
+                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_navi_right));
 
-                        detectImage(R.layout.leaf_2017_nissan_connect_middle, "leaf2019_nissan_connect_middle.png");
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_RADIO_NAVI_LEFT.contains(userDataToCompare)) {
 
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.CONNECT));
-
-                    } else if (DataCheck.Leaf2019.NISSAN_CONNECT_RIGHT.contains(userDataToCompare)) {
-
-                        detectImage(R.layout.leaf_2017_nissan_connect_right, "leaf2019_nissan_connect_right.png");
+                        detectImage(R.layout.juke_2019_radio_navi_left, "juke_radio_navi_left_01.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.CONNECT));
 
-                    } else if (DataCheck.Leaf2019.STEERING_WHEEL_LEFT.contains(userDataToCompare)) {
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_RADIO_NAVI_MIDDLEL.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.leaf_2017_steering_wheel_left, "leaf2019_steering_wheel_left.png");
+                        detectImage(R.layout.juke_2019_radio_navi_middle, "juke_radio_navi_middle_01.png");
+
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.CONNECT));
+
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_RADIO_NAVI_RIGHT.contains(userDataToCompare)) {
+
+                        detectImage(R.layout.juke_2019_radio_navi_right, "juke_radio_navi_right_01.png");
+
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.CONNECT));
+
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_RADIO_WO_NAVI_FULL.contains(userDataToCompare)) {
+
+                      /*  detectImage(R.layout.juke_2019_radio_wo_navi_full, "juke_radio_wo_navi_full.png");
+
+                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_wo_navi_left));
+                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_wo_navi_middle));
+                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_wo_navi_right));*/
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.STEERING_LEFT));
 
-                    } else if (DataCheck.Leaf2019.STEERING_WHEEL_RIGHT.contains(userDataToCompare)) {
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_RADIO_WO_NAVI_LEFT.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.leaf_2017_steering_wheel_right, "leaf2019_steering_wheel_right.png");
+                        detectImage(R.layout.juke_2019_radio_wo_navi_left, "juke_radio_wo_navi_left.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.STEERING_RIGHT));
 
-                    } else if (DataCheck.Leaf2019.TRIP_RESET.contains(userDataToCompare)) {
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_RADIO_WO_NAVI_MIDDLE.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.leaf_2017_tripreset, "leaf2019_trip_reset.png");
+                        detectImage(R.layout.juke_2019_radio_wo_navi_middle, "juke_radio_wo_navi_middle.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.TRIP_RESET));
 
-                    } else if (DataCheck.Leaf2019.PARK_ASSIST.contains(userDataToCompare)) {
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_RADIO_WO_NAVI_RIGHT.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.leaf_2017_park_assist, "leaf2019_park_assist.png");
+                       /* detectImage(R.layout.juke_2019_radio_wo_navi_right, "juke_radio_wo_navi_right.png");
 
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.PARK_ASSIST));
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.PARK_ASSIST));*/
 
-                    } else if (DataCheck.Leaf2019.PARKING_BRAKE.contains(userDataToCompare)) {
+                    }
+                    // TODO: 2019-10-24
+                    else if (DataCheck.Leaf2019.PARKING_BRAKE.contains(userDataToCompare)) {
 
                         detectImage(R.layout.leaf_2017_parking_brake, "leaf2019_parking_brake.png");
 

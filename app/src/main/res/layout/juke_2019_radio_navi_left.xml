@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 24/10/2019
+  ~ Mostasim Billah
+  ~ MobioApp
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/popupLayout"
+        android:layout_width="150dp"
+        android:layout_height="400dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button41"
+            android:layout_width="106dp"
+            android:layout_height="126dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="31"
+            app:layout_constraintBottom_toTopOf="@+id/button42"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button42"
+            android:layout_width="81dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="28"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>
