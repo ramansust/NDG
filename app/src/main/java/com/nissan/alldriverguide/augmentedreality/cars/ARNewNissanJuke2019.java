@@ -113,16 +113,15 @@ public class ARNewNissanJuke2019 extends ARCommon {
                 public void run() {
 
                     if (DataCheck.JukeF16.getInstance().SOS.contains(userDataToCompare)) {
-/*
                         detectImage(R.layout.juke_2019_sos, "sos.png");
 
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.SOS));*/
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.SOS));
 
                     } else if (DataCheck.JukeF16.getInstance().GEAR_SELECTOR_PADDLES_RIGHT.contains(userDataToCompare)) {
 
-                      /*  detectImage(R.layout.juke_2019_gear_selector_paddles_right, "gear_selector_paddles_full.png");
+                        detectImage(R.layout.juke_2019_gear_selector_paddles_right, "gear_selector_paddles_full.png");
 
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.GEAR_SELECTOR));*/
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.GEAR_SELECTOR));
 
                     } else if (DataCheck.JukeF16.getInstance().D_MODE_BUTTON.contains(userDataToCompare)) {
 
@@ -132,15 +131,15 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                     } else if (DataCheck.JukeF16.getInstance().GEAR_SELECTOR_PADDLES_LEFT.contains(userDataToCompare)) {
 
-                      /*  detectImage(R.layout.juke_2019_gear_selector_paddles_right, "gear_selector_paddles_full.png");
+                        detectImage(R.layout.juke_2019_gear_selector_paddles_right, "gear_selector_paddles_full.png");
 
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.HEATED_FRONT));*/
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.HEATED_FRONT));
 
                     } else if (DataCheck.JukeF16.getInstance().INSTRUMENT_PANEL.contains(userDataToCompare)) {
 
-                      /*  detectImage(R.layout.juke_2019_instrument_panel, "");
+                        detectImage(R.layout.juke_2019_instrument_panel, "");
 
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.HEATED_REAR));*/
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.HEATED_REAR));
 
                     } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_FULL.contains(userDataToCompare)) {
 
@@ -233,11 +232,11 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                     } else if (DataCheck.JukeF16.getInstance().JUKE_RADIO_WO_NAVI_FULL.contains(userDataToCompare)) {
 
-                      /*  detectImage(R.layout.juke_2019_radio_wo_navi_full, "juke_radio_wo_navi_full.png");
+                        detectImage(R.layout.juke_2019_radio_wo_navi_full, "juke_radio_wo_navi_full.png");
 
                         buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_wo_navi_left));
                         buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_wo_navi_middle));
-                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_wo_navi_right));*/
+                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_wo_navi_right));
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.STEERING_LEFT));
 
@@ -255,27 +254,34 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                     } else if (DataCheck.JukeF16.getInstance().JUKE_RADIO_WO_NAVI_RIGHT.contains(userDataToCompare)) {
 
-                       /* detectImage(R.layout.juke_2019_radio_wo_navi_right, "juke_radio_wo_navi_right.png");
+                        detectImage(R.layout.juke_2019_radio_wo_navi_right, "juke_radio_wo_navi_right.png");
 
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.PARK_ASSIST));*/
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.PARK_ASSIST));
 
                     }
-                    // TODO: 2019-10-24
-                    else if (DataCheck.Leaf2019.PARKING_BRAKE.contains(userDataToCompare)) {
+                    // TODO: 2019-10-27
+                    else if (DataCheck.JukeF16.getInstance().PARKING_BRAKE.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.leaf_2017_parking_brake, "leaf2019_parking_brake.png");
+                        detectImage(R.layout.juke_2019_parking_brake, "parking_brake.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.PARKING_BRAKE));
 
-                    } else if (DataCheck.Leaf2019.INTELLIGENT_PARK_ASSIST.contains(userDataToCompare)) {
+                    } else if (DataCheck.JukeF16.getInstance().PUSH_BUTTON_IGNITION_SWITCH.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.leaf_2017_intelligent_park_assist, "leaf2019_intelligent_park_assist.png");
+                        detectImage(R.layout.juke_2019_ignition_switch, "start_stop_button.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.INTELLIGENT_PARK_ASSIST));
 
-                    } else if (DataCheck.Leaf2019.COMBIMETER.contains(userDataToCompare)) {
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_STEERING_LEFT.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.leaf_2017_combimeter, "leaf2019_combimeter.png");
+                        detectImage(R.layout.juke_2019_steering_wheel_left, "juke_steering_left.png");
+
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.COMBINATION_METER));
+
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_STEERING_RIGHT.contains(userDataToCompare)) {
+
+                        // TODO: 2019-10-27 there are 3 right steering wheel to implement
+                        detectImage(R.layout.leaf_2017_combimeter, ".png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.COMBINATION_METER));
 
