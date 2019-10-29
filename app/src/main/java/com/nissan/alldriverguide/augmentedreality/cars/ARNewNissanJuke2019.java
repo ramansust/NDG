@@ -113,7 +113,7 @@ public class ARNewNissanJuke2019 extends ARCommon {
                 public void run() {
 
                     if (DataCheck.JukeF16.getInstance().SOS.contains(userDataToCompare)) {
-                        detectImage(R.layout.juke_2019_sos, "sos.png");
+                        detectImage(R.layout.juke_2019_sos, "sos.png"); // detection star is so poor to detect image ... improve detection image quality in Vuforia
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.SOS));
 
@@ -137,7 +137,7 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                     } else if (DataCheck.JukeF16.getInstance().INSTRUMENT_PANEL.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.juke_2019_instrument_panel, "");
+                        detectImage(R.layout.juke_2019_instrument_panel, ""); //no pop image for instrument panel @contact to UI/UX team
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.HEATED_REAR));
 
@@ -258,9 +258,7 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.PARK_ASSIST));
 
-                    }
-                    // TODO: 2019-10-27
-                    else if (DataCheck.JukeF16.getInstance().PARKING_BRAKE.contains(userDataToCompare)) {
+                    } else if (DataCheck.JukeF16.getInstance().PARKING_BRAKE.contains(userDataToCompare)) {
 
                         detectImage(R.layout.juke_2019_parking_brake, "parking_brake.png");
 
@@ -280,8 +278,19 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                     } else if (DataCheck.JukeF16.getInstance().JUKE_STEERING_RIGHT.contains(userDataToCompare)) {
 
-                        // TODO: 2019-10-27 there are 3 right steering wheel to implement
-                        detectImage(R.layout.leaf_2017_combimeter, ".png");
+                        detectImage(R.layout.juke_2019_steering_wheel_right, "juke_steering_right.png");
+
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.COMBINATION_METER));
+
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_STEERING_RIGHT_2.contains(userDataToCompare)) {
+
+                        detectImage(R.layout.juke_2019_steering_wheel_right_2, "juke_steering_right_02.png");
+
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.COMBINATION_METER));
+
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_STEERING_RIGHT_3.contains(userDataToCompare)) {
+
+                        detectImage(R.layout.juke_2019_steering_wheel_right_3, "juke_steering_right_03.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.COMBINATION_METER));
 
