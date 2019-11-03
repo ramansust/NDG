@@ -21,7 +21,9 @@
             android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="78" />
         <!-- android:onClick="buttonEvent"
             android:tag="22" -->
 

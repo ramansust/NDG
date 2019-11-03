@@ -38,6 +38,8 @@
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="73"
             app:layout_constraintBottom_toBottomOf="@+id/button36"
             app:layout_constraintStart_toEndOf="@+id/button36"
             app:layout_constraintTop_toTopOf="@+id/button36"
@@ -51,7 +53,7 @@
             android:layout_marginLeft="5dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="55"
+            android:tag="72"
             app:layout_constraintBottom_toBottomOf="@+id/button34"
             app:layout_constraintStart_toEndOf="@+id/button34" />
 
@@ -63,7 +65,7 @@
             android:layout_marginLeft="5dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="55"
+            android:tag="75"
             app:layout_constraintBottom_toBottomOf="@+id/button35"
             app:layout_constraintStart_toEndOf="@+id/button35" />
 
@@ -76,7 +78,7 @@
             android:layout_marginBottom="30dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="55"
+            android:tag="77"
             app:layout_constraintBottom_toTopOf="@+id/button39"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -89,7 +91,7 @@
             android:layout_marginBottom="30dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="55"
+            android:tag="77"
             app:layout_constraintBottom_toTopOf="@+id/button33"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -99,7 +101,6 @@
             android:layout_height="72dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="55"
             app:layout_constraintBottom_toBottomOf="@+id/button37"
             app:layout_constraintEnd_toStartOf="@+id/button37"
             app:layout_constraintStart_toEndOf="@+id/button40" />
@@ -112,7 +113,7 @@
             android:layout_marginLeft="4dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="55"
+            android:tag="76"
             app:layout_constraintBottom_toBottomOf="@+id/button33"
             app:layout_constraintStart_toEndOf="@+id/button33" />
 

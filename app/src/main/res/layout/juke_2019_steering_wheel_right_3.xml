@@ -17,6 +17,7 @@
         android:id="@+id/popupLayout"
         android:layout_width="330dp"
         android:layout_height="250dp"
+        tools:background="@drawable/juke_steering_right_03"
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="3">
