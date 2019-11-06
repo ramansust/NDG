@@ -146,6 +146,17 @@ public class CommonDao {
                 }
             }
         }
+        //for ordering old juke to the last position
+        int indexOfJuke=-1;
+        for (Object info : list){
+            if (info instanceof CarInfo){
+                if(((CarInfo) info).getId()==3){
+                    indexOfJuke = list.indexOf(info);
+                }
+            }
+        }
+        Object juke = list.remove(indexOfJuke);
+        list.add(juke);
         return list;
     }
 

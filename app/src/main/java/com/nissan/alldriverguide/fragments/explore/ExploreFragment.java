@@ -291,14 +291,14 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4
                 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12
-                || Values.carType == 16|| Values.carType == 18
+                || Values.carType == 16
                 || Values.carType == 13 || Values.carType == 14 || Values.carType == 15 || Values.carType == 17) {
             relativeBlindSpot.setVisibility(View.VISIBLE);
             relativeAR.setVisibility(View.GONE);
 
             if (header_text != null) {
 
-                Logger.error("header_text", "_________" + header_text);
+                Logger.error("header_text", "_________" + header_text+" "+Values.carType);
 
                 check_density();
 
