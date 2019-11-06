@@ -475,20 +475,47 @@ public class DataCheck {
                 "juke_ac_manual_full_02",
                 "juke_ac_manual_full_01"
         ));
-        public final Set<String> JUKE_AC_AUTO_FULL = new HashSet<>(Arrays.asList(
-                "juke_ac_auto_full_01",
-                "juke_ac_auto_full_02",
-                "juke_ac_auto_full_03"
+        public final Set<String> JUKE_AC_AUTO_FULL_TYPE_1 = new HashSet<>(Arrays.asList(
+                "ac_auto_type1_full_4",
+                "ac_auto_type1_full_3",
+                "ac_auto_type1_full_2",
+                "ac_auto_type1_full_1"
+        ));
+        public final Set<String> JUKE_AC_AUTO_MIDDLE_TYPE_1 = new HashSet<>(Arrays.asList(
+                "ac_auto_type1_middle_5",
+                "ac_auto_type1_middle_4",
+                "ac_auto_type1_middle_3",
+                "ac_auto_type1_middle_2",
+                "ac_auto_type1_middle_1"
+        ));
+        public final Set<String> JUKE_AC_AUTO_FULL_TYPE_2 = new HashSet<>(Arrays.asList(
+                "ac_auto_type2_full_2",
+                "ac_auto_type2_full_1"
+        ));
+        public final Set<String> JUKE_AC_AUTO_MIDDLE_TYPE_2 = new HashSet<>(Arrays.asList(
+                "ac_auto_type2_middle_5",
+                "ac_auto_type2_middle_4",
+                "ac_auto_type2_middle_3",
+                "ac_auto_type2_middle_2",
+                "ac_auto_type2_middle_1"
+        ));
+        public final Set<String> JUKE_AC_AUTO_FULL_TYPE_3 = new HashSet<>(Arrays.asList(
+                "ac_auto_type3_full_5",
+                "ac_auto_type3_full_4",
+                "ac_auto_type3_full_3",
+                "ac_auto_type3_full_2",
+                "ac_auto_type3_full_1"
+        ));
+        public final Set<String> JUKE_AC_AUTO_MIDDLE_TYPE_3 = new HashSet<>(Arrays.asList(
+                "ac_auto_type3_middlel_4",
+                "ac_auto_type3_middlel_3",
+                "ac_auto_type3_middlel_2",
+                "ac_auto_type3_middlel_1"
         ));
         public final Set<String> JUKE_AC_AUTO_LEFTL = new HashSet<>(Arrays.asList(
                 "juke_ac_auto_leftl_01",
                 "juke_ac_auto_leftl_02",
                 "juke_ac_auto_leftl_03"
-        ));
-        public final Set<String> JUKE_AC_AUTO_MIDDLEL = new HashSet<>(Arrays.asList(
-                "juke_ac_auto_middlel_01",
-                "juke_ac_auto_middlel_02",
-                "juke_ac_auto_middlel_03"
         ));
         public final Set<String> JUKE_AC_AUTO_RIGHTL = new HashSet<>(Arrays.asList(
                 "juke_ac_auto_rightl_01",

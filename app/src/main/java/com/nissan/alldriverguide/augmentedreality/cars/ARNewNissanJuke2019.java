@@ -36,12 +36,18 @@ public class ARNewNissanJuke2019 extends ARCommon {
                 switch (v.getId()) {
 
 //                    Auto AC
+                    case R.id.btn_auto_ac_middle_type_1:
+                        inflateSecondImage(R.layout.juke_2019_ac_middle_type1, "juke_ac_auto_middle_type1.png");
+                        break;
+                    case R.id.btn_auto_ac_middle_type_2:
+                        inflateSecondImage(R.layout.juke_2019_ac_middle_type2, "juke_ac_auto_middle_type2.png");
+                        break;
+                    case R.id.btn_auto_ac_middle_type_3:
+                        inflateSecondImage(R.layout.juke_2019_ac_middle_type3, "juke_ac_auto_middle_type3.png");
+                        break;
+                        
                     case R.id.btn_auto_ac_left:
                         inflateSecondImage(R.layout.juke_2019_ac_left, "juke_ac_auto_left.png");
-                        break;
-
-                    case R.id.btn_auto_ac_middle:
-                        inflateSecondImage(R.layout.juke_2019_ac_middle, "juke_ac_auto_middle.png");
                         break;
 
                     case R.id.btn_auto_ac_right:
@@ -137,19 +143,60 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                     } else if (DataCheck.JukeF16.getInstance().INSTRUMENT_PANEL.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.juke_2019_instrument_panel, ""); //no pop image for instrument panel @contact to UI/UX team
+                        detectImage(R.layout.juke_2019_instrument_panel, "instrument_panel_combine.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.HEATED_REAR));
 
-                    } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_FULL.contains(userDataToCompare)) {
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_FULL_TYPE_1.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.juke_2019_ac_full, "juke_ac_auto_full.png");
+                        detectImage(R.layout.juke_2019_ac_full_type_1, "juke_ac_auto_full_type1.png");
 
                         buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_auto_ac_left));
-                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_auto_ac_middle));
+                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_auto_ac_middle_type_1));
                         buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_auto_ac_right));
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.SWITCH));
+
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_MIDDLE_TYPE_1.contains(userDataToCompare)) {
+
+                        // TODO: 2019-11-06  
+                        detectImage(R.layout.juke_2019_ac_middle_type1, "juke_ac_auto_middle_type1.png");
+
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.RADIO_W_NAVI));
+
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_FULL_TYPE_2.contains(userDataToCompare)) {
+
+                        detectImage(R.layout.juke_2019_ac_full_type_2, "juke_ac_auto_full_type2.png");
+
+                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_auto_ac_left));
+                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_auto_ac_middle_type_2));
+                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_auto_ac_right));
+
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.SWITCH));
+
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_MIDDLE_TYPE_2.contains(userDataToCompare)) {
+
+                        // TODO: 2019-11-06  
+                        detectImage(R.layout.juke_2019_ac_middle_type2, "juke_ac_auto_middle_type2.png");
+
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.RADIO_W_NAVI));
+
+                    }else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_FULL_TYPE_3.contains(userDataToCompare)) {
+
+                        detectImage(R.layout.juke_2019_ac_full_type_3, "juke_ac_auto_full_type3.png");
+
+                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_auto_ac_left));
+                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_auto_ac_middle_type_3));
+                        buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_auto_ac_right));
+
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.SWITCH));
+
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_MIDDLE_TYPE_3.contains(userDataToCompare)) {
+
+                        // TODO: 2019-11-06  
+                        detectImage(R.layout.juke_2019_ac_middle_type3, "juke_ac_auto_middle_type3.png");
+
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.RADIO_W_NAVI));
 
                     } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_LEFTL.contains(userDataToCompare)) {
 
@@ -160,12 +207,6 @@ public class ARNewNissanJuke2019 extends ARCommon {
                     } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_RIGHTL.contains(userDataToCompare)) {
 
                         detectImage(R.layout.juke_2019_ac_right, "juke_ac_auto_right.png");
-
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.RADIO_W_NAVI));
-
-                    } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_MIDDLEL.contains(userDataToCompare)) {
-
-                        detectImage(R.layout.juke_2019_ac_middle, "juke_ac_auto_middle.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.RADIO_W_NAVI));
 
@@ -278,7 +319,7 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                     } else if (DataCheck.JukeF16.getInstance().JUKE_STEERING_RIGHT.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.juke_2019_steering_wheel_right, "juke_steering_right.png");
+                        detectImage(R.layout.juke_2019_steering_wheel_right, "juke_steering_right_02.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.COMBINATION_METER));
 

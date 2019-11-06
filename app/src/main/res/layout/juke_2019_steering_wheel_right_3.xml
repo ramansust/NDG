@@ -17,7 +17,6 @@
         android:id="@+id/popupLayout"
         android:layout_width="330dp"
         android:layout_height="250dp"
-        tools:background="@drawable/juke_steering_right_03"
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="3">
@@ -83,6 +82,8 @@
             android:layout_marginLeft="72dp"
             android:layout_marginBottom="12dp"
             android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="81"
             app:layout_constraintBottom_toTopOf="@+id/button33"
             app:layout_constraintStart_toStartOf="parent" />
 

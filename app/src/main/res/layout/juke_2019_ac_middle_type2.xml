@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 23/10/2019
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 6/11/2019
   ~ Mostasim Billah
   ~ MobioApp
   -->
@@ -8,6 +9,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -15,6 +17,7 @@
         android:id="@+id/popupLayout"
         android:layout_width="300dp"
         android:layout_height="265dp"
+        tools:background="@drawable/juke_ac_auto_middle_type2"
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="3">
@@ -27,7 +30,7 @@
             android:layout_marginBottom="40dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="55"
+            android:tag="74"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -100,7 +103,6 @@
             android:layout_width="171dp"
             android:layout_height="72dp"
             android:background="@android:color/transparent"
-            android:onClick="buttonEvent"
             app:layout_constraintBottom_toBottomOf="@+id/button37"
             app:layout_constraintEnd_toStartOf="@+id/button37"
             app:layout_constraintStart_toEndOf="@+id/button40" />

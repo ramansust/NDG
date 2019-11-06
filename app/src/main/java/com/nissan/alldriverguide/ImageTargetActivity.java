@@ -84,6 +84,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     public static View inflatedLayout = null;
     //childview
     public static View inflatedLayout_second;
+    public static View inflatedLayout_third;
     public LoadingDialogHandler loadingDialogHandler = new LoadingDialogHandler(this);
 
     // Our renderer:
@@ -227,7 +228,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "leaf2019.xml");
                 break;
             case 18:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "jukef16.xml");
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "juke_f16.xml");
                 break;
             default:
                 break;
@@ -822,12 +823,18 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     @Override
     public void onBackPressed() {
-        // TODO Auto-generated method stub
         Logger.error(LOG_TAG, "onBackPressed()");
         if (isDetected) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                if (inflatedLayout_second != null && inflatedLayout_second.isAttachedToWindow()) {
+
+                if (inflatedLayout_third != null && inflatedLayout_third.isAttachedToWindow()) {
+                    if (layoutCameraView != null) {
+                        layoutCameraView.removeView(inflatedLayout_third);
+                        inflatedLayout_third = null;
+                        layoutCameraView.addView(inflatedLayout_second);
+                    }
+                } else if (inflatedLayout_second != null && inflatedLayout_second.isAttachedToWindow()) {
                     if (layoutCameraView != null) {
                         layoutCameraView.removeView(inflatedLayout_second);
                         inflatedLayout_second = null;
@@ -895,6 +902,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
                 // here specify the DetailsActivity for loading epub data
                 Logger.error("________EPUB Index________", ePubIndex + Values.ar_value);
+                Logger.error("________EPUB TAG BUTTON_______", b.getTag().toString());
                 Intent intentButton = new Intent(ImageTargetActivity.this, DetailsActivity.class);
                 intentButton.putExtra("epub_index", ePubIndex);
                 intentButton.putExtra("epub_title", "DETAILS");

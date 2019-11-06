@@ -17,7 +17,6 @@
         android:id="@+id/popupLayout"
         android:layout_width="330dp"
         android:layout_height="250dp"
-        tools:background="@drawable/juke_steering_right"
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="3">
@@ -52,6 +51,8 @@
             android:layout_width="54dp"
             android:layout_height="42dp"
             android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="8"
             app:layout_constraintBottom_toTopOf="@+id/button53"
             app:layout_constraintEnd_toEndOf="@+id/button53" />
 
@@ -63,18 +64,45 @@
             android:layout_marginLeft="16dp"
             android:layout_marginBottom="12dp"
             android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="10"
             app:layout_constraintBottom_toTopOf="@+id/button54"
             app:layout_constraintStart_toEndOf="@+id/button52" />
 
         <Button
             android:id="@+id/button52"
-            android:layout_width="136dp"
-            android:layout_height="93dp"
+            android:layout_width="134dp"
+            android:layout_height="33dp"
             android:layout_marginStart="72dp"
             android:layout_marginLeft="72dp"
-            android:layout_marginBottom="12dp"
             android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="80"
+            app:layout_constraintBottom_toTopOf="@+id/button57"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button58"
+            android:layout_width="134dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginLeft="72dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="80"
             app:layout_constraintBottom_toTopOf="@+id/button33"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button57"
+            android:layout_width="73dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="108dp"
+            android:layout_marginLeft="108dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="79"
+            app:layout_constraintBottom_toTopOf="@+id/button58"
             app:layout_constraintStart_toStartOf="parent" />
 
 
