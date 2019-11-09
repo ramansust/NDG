@@ -45,7 +45,7 @@ public class ARNewNissanJuke2019 extends ARCommon {
                     case R.id.btn_auto_ac_middle_type_3:
                         inflateSecondImage(R.layout.juke_2019_ac_middle_type3, "juke_ac_auto_middle_type3.png");
                         break;
-                        
+
                     case R.id.btn_auto_ac_left:
                         inflateSecondImage(R.layout.juke_2019_ac_left, "juke_ac_auto_left.png");
                         break;
@@ -69,15 +69,15 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
 //                   With Navigation
                     case R.id.btn_radio_navi_left:
-                        inflateSecondImage(R.layout.juke_2019_radio_navi_left, "juke_radio_navi_left_01.png");
+                        inflateSecondImage(R.layout.juke_2019_radio_navi_left, "juke_radio_navi_left.png");
                         break;
 
                     case R.id.btn_radio_navi_middle:
-                        inflateSecondImage(R.layout.juke_2019_radio_navi_middle, "juke_radio_navi_middle_01.png");
+                        inflateSecondImage(R.layout.juke_2019_radio_navi_middle, "juke_radio_navi_middle.png");
                         break;
 
                     case R.id.btn_radio_navi_right:
-                        inflateSecondImage(R.layout.juke_2019_radio_navi_right, "juke_radio_navi_right_01.png");
+                        inflateSecondImage(R.layout.juke_2019_radio_navi_right, "juke_radio_navi_right.png");
                         break;
                     //Without Navigation
                     case R.id.btn_radio_wo_navi_left:
@@ -159,7 +159,6 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                     } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_MIDDLE_TYPE_1.contains(userDataToCompare)) {
 
-                        // TODO: 2019-11-06  
                         detectImage(R.layout.juke_2019_ac_middle_type1, "juke_ac_auto_middle_type1.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.RADIO_W_NAVI));
@@ -176,12 +175,11 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                     } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_MIDDLE_TYPE_2.contains(userDataToCompare)) {
 
-                        // TODO: 2019-11-06  
                         detectImage(R.layout.juke_2019_ac_middle_type2, "juke_ac_auto_middle_type2.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.RADIO_W_NAVI));
 
-                    }else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_FULL_TYPE_3.contains(userDataToCompare)) {
+                    } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_FULL_TYPE_3.contains(userDataToCompare)) {
 
                         detectImage(R.layout.juke_2019_ac_full_type_3, "juke_ac_auto_full_type3.png");
 
@@ -193,7 +191,6 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                     } else if (DataCheck.JukeF16.getInstance().JUKE_AC_AUTO_MIDDLE_TYPE_3.contains(userDataToCompare)) {
 
-                        // TODO: 2019-11-06  
                         detectImage(R.layout.juke_2019_ac_middle_type3, "juke_ac_auto_middle_type3.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.RADIO_W_NAVI));
@@ -245,7 +242,7 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                     } else if (DataCheck.JukeF16.getInstance().JUKE_RADIO_NAVI_FULL.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.juke_2019_radio_navi_full, "juke_radio_navi_full_01.png");
+                        detectImage(R.layout.juke_2019_radio_navi_full, "juke_radio_navi_full.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.CONNECT));
 
@@ -255,19 +252,19 @@ public class ARNewNissanJuke2019 extends ARCommon {
 
                     } else if (DataCheck.JukeF16.getInstance().JUKE_RADIO_NAVI_LEFT.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.juke_2019_radio_navi_left, "juke_radio_navi_left_01.png");
+                        detectImage(R.layout.juke_2019_radio_navi_left, "juke_radio_navi_left.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.CONNECT));
 
                     } else if (DataCheck.JukeF16.getInstance().JUKE_RADIO_NAVI_MIDDLEL.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.juke_2019_radio_navi_middle, "juke_radio_navi_middle_01.png");
+                        detectImage(R.layout.juke_2019_radio_navi_middle, "juke_radio_navi_middle.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.CONNECT));
 
                     } else if (DataCheck.JukeF16.getInstance().JUKE_RADIO_NAVI_RIGHT.contains(userDataToCompare)) {
 
-                        detectImage(R.layout.juke_2019_radio_navi_right, "juke_radio_navi_right_01.png");
+                        detectImage(R.layout.juke_2019_radio_navi_right, "juke_radio_navi_right.png");
 
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Analytics.CONNECT));
 

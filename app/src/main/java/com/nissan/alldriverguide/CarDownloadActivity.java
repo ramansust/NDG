@@ -107,7 +107,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "Nissan X-TRAIL",
             "New Nissan LEAF", "New Nissan X-TRAIL RUS", "New Nissan QASHQAI RUS", "Leaf 2019", "New Nissan Juke"};
     private int[] indices = {1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11, 16, 17};
-    private int[] previousCarArray = {1, 2, 4, 5, 7, 9,3};
+    private int[] previousCarArray = {1, 2, 4, 5, 7, 9, 3};
 
     private List<Parent_car_list> parent_car_lists = null;
     private ProgressDialog progressDialog;
@@ -1127,6 +1127,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                         }
                         getList = swapXtrailEurRusIfBothDownloaded(getList);
                         adapter.setList(getList);
+                        adapter.notifyDataSetChanged();
                         if (progressDialog != null)
                             progressDialog.dismiss();
                     }
@@ -1188,22 +1189,25 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             int firstCarindexForReplaceCarInfo = -1;
             int childCarSize = 0;
             for (int i = 0; i < parent_car_lists.size(); i++) {
-                Parent_car_list parenCar = parent_car_lists.get(i);
-                if (parenCar.getChild_car_support()) {
+                Parent_car_list parentCar = parent_car_lists.get(i);
+                if (parentCar.getChild_car_support()) {
 
                     ArrayList<Object> carList = NissanApp.getInstance().getCarList();
 
                     Iterator<Object> iterator = carList.iterator();
+                    int firstChildCarPosition = -1;
                     while (iterator.hasNext()) {
                         Object obj = iterator.next(); // must be called before you can call i.remove()
                         // Do something
                         //Object obj = iterator;
                         if (obj.getClass() == CarInfo.class) {
                             CarInfo carInfo = (CarInfo) obj;
-                            if (carInfo.getParentCarId() == parenCar.getId()
+                            if (carInfo.getParentCarId() == parentCar.getId()
                                     && carInfo.getCarModelVersion().equalsIgnoreCase("new")
                                     && !carInfo.getStatus().equals(Values.ALREADY_DOWNLOADED)) {
 
+                                if (firstChildCarPosition == -1)
+                                    firstChildCarPosition = carList.indexOf(obj);
                                 iterator.remove();
                                 childCarSize++;
 
@@ -1215,16 +1219,16 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                             String ob = (String) carList.get(m);
 
                             if (ob.contains(resources.getString(R.string.available_for_download_car))) {
-                                firstCarindexForReplaceCarInfo = m;
+                                firstCarindexForReplaceCarInfo = firstChildCarPosition;
                             }
                         }
 
                     }
-                    int totalChildCarSize = NissanApp.getInstance().getChildCars(Integer.valueOf(parenCar.getId())) != null ? NissanApp.getInstance().getChildCars(Integer.valueOf(parenCar.getId())).size() : -1;
+                    int totalChildCarSize = NissanApp.getInstance().getChildCars(Integer.valueOf(parentCar.getId())) != null ? NissanApp.getInstance().getChildCars(Integer.valueOf(parentCar.getId())).size() : -1;
                     int totalChildCarDownloaded = NissanApp.getInstance()
-                            .getCountTotalChildCarDownloaded(CarDownloadActivity.this, parenCar.getId());
+                            .getCountTotalChildCarDownloaded(CarDownloadActivity.this, parentCar.getId());
                     if (totalChildCarSize != totalChildCarDownloaded && totalChildCarSize != -1) {
-                        NissanApp.getInstance().getCarList().add(firstCarindexForReplaceCarInfo + 1, parenCar);
+                        NissanApp.getInstance().getCarList().add(firstCarindexForReplaceCarInfo , parentCar);
                     }
 
                 }
@@ -1668,6 +1672,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                         ArrayList<Object> carList = NissanApp.getInstance().getCarList();
 
                         Iterator<Object> iterator = carList.iterator();
+                        int firstChildCarPosition = -1;
                         while (iterator.hasNext()) {
                             Object obj = iterator.next(); // must be called before you can call i.remove()
                             // Do something
@@ -1678,6 +1683,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                                         && carInfo.getCarModelVersion().equalsIgnoreCase("new")
                                         && !carInfo.getStatus().equals(Values.ALREADY_DOWNLOADED)) {
 
+                                    if (firstChildCarPosition == -1)
+                                        firstChildCarPosition = carList.indexOf(obj);
                                     iterator.remove();
                                     childCarSize++;
 
@@ -1689,7 +1696,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                                 String ob = (String) carList.get(m);
 
                                 if (ob.contains(resources.getString(R.string.available_for_download_car))) {
-                                    firstCarindexForReplaceCarInfo = m;
+                                    firstCarindexForReplaceCarInfo = firstChildCarPosition;
                                 }
                             }
 
@@ -1698,7 +1705,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                         int totalChildCarDownloaded = NissanApp.getInstance()
                                 .getCountTotalChildCarDownloaded(CarDownloadActivity.this, parentCar.getId());
                         if (totalChildCarSize != totalChildCarDownloaded && totalChildCarSize != -1) {
-                            NissanApp.getInstance().getCarList().add(firstCarindexForReplaceCarInfo + 1, parentCar);
+                            NissanApp.getInstance().getCarList().add(firstCarindexForReplaceCarInfo , parentCar);
                         }
 
                     }
@@ -1723,6 +1730,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                     }
                 });
                 lstView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+
                 lstView.setDivider(null);
             } else {
                 adapter.setList(NissanApp.getInstance().getCarList());

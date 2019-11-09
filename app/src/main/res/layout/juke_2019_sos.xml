@@ -12,8 +12,8 @@
 
     <LinearLayout
         android:id="@+id/popupLayout"
-        android:layout_width="250dp"
-        android:layout_height="254dp"
+        android:layout_width="170dp"
+        android:layout_height="240dp"
         android:gravity="center"
         android:orientation="horizontal">
 
