@@ -2,7 +2,6 @@ package com.nissan.alldriverguide.fragments.settings;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Typeface;
@@ -12,7 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +26,6 @@ import com.google.gson.reflect.TypeToken;
 import com.mobioapp.infinitipacket.callback.DownloaderStatus;
 import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.MainActivity;
-import com.nissan.alldriverguide.ModelYearActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.CarDownloadSettingsAdapter;
 import com.nissan.alldriverguide.customviews.DialogController;
@@ -40,7 +37,6 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
-import com.nissan.alldriverguide.model.parentCarList.Parent_car_list;
 import com.nissan.alldriverguide.multiLang.model.CarList;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
@@ -62,12 +58,11 @@ import java.util.Comparator;
 import java.util.List;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
-import static com.nissan.alldriverguide.utils.Values.sortedAlready;
 
 public class AddCarFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
-    private View view;
     public ListView lstView;
+    private View view;
     private ImageButton btnBack;
     private LinearLayout linearBack;
     private TextView txt_title;
@@ -97,7 +92,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_add_car, container, false);
@@ -122,7 +116,9 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
 
-            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 14) {
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 18) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(17);
+            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 14) {
                 NissanApp.getInstance().getCarAllList().get(i).setIndex(16);
             } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 13) {
                 NissanApp.getInstance().getCarAllList().get(i).setIndex(15);
@@ -134,33 +130,33 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                 NissanApp.getInstance().getCarAllList().get(i).setIndex(12);
             } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 11) {
                 NissanApp.getInstance().getCarAllList().get(i).setIndex(11);
-            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 3) {
-                NissanApp.getInstance().getCarAllList().get(i).setIndex(10);
-            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 6) {
-                NissanApp.getInstance().getCarAllList().get(i).setIndex(9);
-            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 8) {
-                NissanApp.getInstance().getCarAllList().get(i).setIndex(8);
-            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 10) {
-                NissanApp.getInstance().getCarAllList().get(i).setIndex(7);
-            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 1) {
-                NissanApp.getInstance().getCarAllList().get(i).setIndex(6);
-            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 2) {
-                NissanApp.getInstance().getCarAllList().get(i).setIndex(5);
-            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 4) {
-                NissanApp.getInstance().getCarAllList().get(i).setIndex(4);
-            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 5) {
-                NissanApp.getInstance().getCarAllList().get(i).setIndex(3);
-            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 7) {
-                NissanApp.getInstance().getCarAllList().get(i).setIndex(2);
-            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 9) {
+            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 3) { //make old juke 1st index for bottom of the list
                 NissanApp.getInstance().getCarAllList().get(i).setIndex(1);
+            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 6) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(10);
+            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 8) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(9);
+            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 10) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(8);
+            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 1) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(7);
+            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 2) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(6);
+            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 4) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(5);
+            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 5) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(4);
+            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 7) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(3);
+            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 9) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(2);
             }
 
 
         }
 
 
-         Collections.sort(NissanApp.getInstance().getCarAllList(), new Comparator<CarInfo>() {
+        Collections.sort(NissanApp.getInstance().getCarAllList(), new Comparator<CarInfo>() {
             public int compare(CarInfo ideaVal1, CarInfo ideaVal2) {
                 // avoiding NullPointerException in case name is null
                 Long idea1 = Long.valueOf(ideaVal1.getIndex());
@@ -298,10 +294,9 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         Logger.error("carType", "_________" + Values.carType);
 
 
-
 //        if (isFirstTime) {
 //            setPreviousCarSelection();
-            isFirstTime = false;
+        isFirstTime = false;
 //        }
         getDataFromSP();
         replaceTheCarNamesAndImages();
@@ -437,7 +432,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
                         final ArrayList<PushContentInfo> list = commonDao.getNotificationList(getActivity().getApplicationContext(), position, NissanApp.getInstance().getLanguageID(commonDao.getLanguageStatus(getActivity().getApplicationContext(), position)));
 
-                        if(DetectConnection.checkInternetConnection(getActivity().getApplicationContext())) {
+                        if (DetectConnection.checkInternetConnection(getActivity().getApplicationContext())) {
                             if (list != null && list.size() > 0) {
                                 Logger.error("You have a update ", "Do you want ???");
                                 final StringBuilder stringBuilder = new StringBuilder();
@@ -497,13 +492,13 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                                                             new SingleContentUpdating(getActivity(), commonDao.getLanguageStatus(getActivity().getApplicationContext(), position), position) {
                                                                                 @Override
                                                                                 public void onComplete(boolean status) {
-                                                                                    Logger.error("Status code Data Syncing", "_________________"+status);
+                                                                                    Logger.error("Status code Data Syncing", "_________________" + status);
                                                                                     if (status) {
 
                                                                                         new ApiCall().postContentDownloadConfirmation("" + position, "" + NissanApp.getInstance().getLanguageID(commonDao.getLanguageStatus(getActivity().getApplicationContext(), position)), "" + stringBuilder.toString(), NissanApp.getInstance().getDeviceID(getActivity().getApplicationContext()), new CompleteAPI() {
                                                                                             @Override
                                                                                             public void onDownloaded(ResponseInfo responseInfo) {
-                                                                                                Logger.error("Status code ", "_________________"+responseInfo.getStatusCode());
+                                                                                                Logger.error("Status code ", "_________________" + responseInfo.getStatusCode());
                                                                                                 if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
                                                                                                     try {
