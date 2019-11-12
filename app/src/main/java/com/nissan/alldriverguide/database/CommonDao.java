@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.model.CarInfo;
@@ -71,6 +70,7 @@ public class CommonDao {
      * status = 0 (For Available for download)
      * status = 1 (For Downloaded Car)
      * status = 2 (For Previous model)
+     *
      * @param context need activity context for get db read/write permission
      * @return All car information in an ArrayList that display in landing page
      * of section wise like: Available for download, Downloaded Car and Previous model
@@ -83,7 +83,6 @@ public class CommonDao {
         Cursor cursor = db.rawQuery("SELECT * FROM car_info WHERE region = 'EUR' AND status = '1' ORDER BY list_index ASC;", null);
         Cursor cursor2 = db.rawQuery("SELECT * FROM car_info WHERE region = 'EUR' AND status = '0' ORDER BY list_index ASC;", null);
         Cursor cursor3 = db.rawQuery("SELECT * FROM car_info WHERE region = 'EUR' AND status = '2' ORDER BY list_index ASC;", null);
-
 
 
         try {
@@ -147,16 +146,19 @@ public class CommonDao {
             }
         }
         //for ordering old juke to the last position
-        int indexOfOldJuke=-1;
-        for (Object info : list){
-            if (info instanceof CarInfo){
-                if(((CarInfo) info).getId()==3){
+        int indexOfOldJuke = -1;
+        for (Object info : list) {
+            if (info instanceof CarInfo) {
+                if (((CarInfo) info).getId() == 3 && Integer.valueOf(((CarInfo) info).getStatus()) != 1) {
                     indexOfOldJuke = list.indexOf(info);
                 }
             }
         }
-        Object juke = list.remove(indexOfOldJuke);
-        list.add(juke);
+        if (indexOfOldJuke != -1) {
+            Object juke = list.remove(indexOfOldJuke);
+            list.add(juke);
+        }
+
         return list;
     }
 
@@ -351,7 +353,6 @@ public class CommonDao {
         }
         return status;
     }
-
 
 
     public int getStatus(Context context, int id) {
