@@ -1219,7 +1219,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                             String ob = (String) carList.get(m);
 
                             if (ob.contains(resources.getString(R.string.available_for_download_car))) {
-                                firstCarindexForReplaceCarInfo = firstChildCarPosition;
+                                firstCarindexForReplaceCarInfo = (firstChildCarPosition == -1) ? m + 1 : firstChildCarPosition;
                             }
                         }
 
@@ -1228,7 +1228,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                     int totalChildCarDownloaded = NissanApp.getInstance()
                             .getCountTotalChildCarDownloaded(CarDownloadActivity.this, parentCar.getId());
                     if (totalChildCarSize != totalChildCarDownloaded && totalChildCarSize != -1) {
-                        NissanApp.getInstance().getCarList().add(firstCarindexForReplaceCarInfo , parentCar);
+                        NissanApp.getInstance().getCarList().add(firstCarindexForReplaceCarInfo, parentCar);
                     }
 
                 }
@@ -1696,7 +1696,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                                 String ob = (String) carList.get(m);
 
                                 if (ob.contains(resources.getString(R.string.available_for_download_car))) {
-                                    firstCarindexForReplaceCarInfo = firstChildCarPosition;
+                                    firstCarindexForReplaceCarInfo = (firstChildCarPosition == -1) ? m + 1 : firstChildCarPosition;
                                 }
                             }
 
@@ -1704,8 +1704,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                         int totalChildCarSize = NissanApp.getInstance().getChildCars(Integer.valueOf(parentCar.getId())) != null ? NissanApp.getInstance().getChildCars(Integer.valueOf(parentCar.getId())).size() : -1;
                         int totalChildCarDownloaded = NissanApp.getInstance()
                                 .getCountTotalChildCarDownloaded(CarDownloadActivity.this, parentCar.getId());
-                        if (totalChildCarSize != totalChildCarDownloaded && totalChildCarSize != -1) {
-                            NissanApp.getInstance().getCarList().add(firstCarindexForReplaceCarInfo , parentCar);
+                        if (totalChildCarSize != totalChildCarDownloaded && totalChildCarSize != -1 && firstCarindexForReplaceCarInfo != -1) {
+                            NissanApp.getInstance().getCarList().add(firstCarindexForReplaceCarInfo, parentCar);
                         }
 
                     }

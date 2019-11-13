@@ -910,7 +910,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             txtViewHeader.setText(activity.getResources().getString(R.string.delete));
         }
 
-        //TODO
         String okText = NissanApp.getInstance().getGlobalMessage(context).getOk();
         String cancelText = NissanApp.getInstance().getGlobalMessage(context).getCancel();
 
