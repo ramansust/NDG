@@ -367,7 +367,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 String updateMsg = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.UPDATE_MSG);
                 txtViewTitle.setText(updateMsg == null || updateMsg.isEmpty() ? getResources().getString(R.string.update_msg) : updateMsg);
 
-//TODO
                 String okText = NissanApp.getInstance().getGlobalMessage(getActivity()).getYes();
                 String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity()).getNo();
 

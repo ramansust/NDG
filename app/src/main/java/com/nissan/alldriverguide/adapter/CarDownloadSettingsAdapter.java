@@ -1574,7 +1574,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         resources = new Resources(activity.getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(activity, preferenceUtil.getSelectedLang()));
         carNames = activity.getResources().getStringArray(R.array.car_names);
         internetCheckMessage = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
-        boolean leaf17IsDownloaded =false;
+       /* boolean leaf17IsDownloaded =false;
         for (int i = 0; i < list.size(); i++) {
             CarInfo info = list.get(i);
             if (info.getId() == 14 && info.getStatus().equals(Values.ALREADY_DOWNLOADED)){
@@ -1587,7 +1587,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 list.remove(info);
 
 
-        }
+        }*/
     }
 
     private void adapterNotify(boolean isDelete) {

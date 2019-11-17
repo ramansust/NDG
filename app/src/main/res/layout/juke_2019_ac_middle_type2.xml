@@ -16,18 +16,18 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/popupLayout"
         android:layout_width="300dp"
-        android:layout_height="265dp"
-        tools:background="@drawable/juke_ac_auto_middle_type2"
+        android:layout_height="200dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:weightSum="3">
+        android:weightSum="3"
+        tools:background="@drawable/juke_ac_auto_middle_type2">
 
 
         <Button
             android:id="@+id/button33"
-            android:layout_width="60dp"
-            android:layout_height="72dp"
-            android:layout_marginBottom="40dp"
+            android:layout_width="59dp"
+            android:layout_height="43dp"
+            android:layout_marginBottom="36dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
             android:tag="74"
@@ -36,8 +36,8 @@
 
         <Button
             android:id="@+id/button34"
-            android:layout_width="57dp"
-            android:layout_height="71dp"
+            android:layout_width="51dp"
+            android:layout_height="46dp"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:background="@android:color/transparent"
@@ -50,8 +50,8 @@
 
         <Button
             android:id="@+id/button35"
-            android:layout_width="53dp"
-            android:layout_height="71dp"
+            android:layout_width="57dp"
+            android:layout_height="46dp"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:background="@android:color/transparent"
@@ -63,7 +63,7 @@
         <Button
             android:id="@+id/button39"
             android:layout_width="53dp"
-            android:layout_height="71dp"
+            android:layout_height="46dp"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:background="@android:color/transparent"
@@ -74,8 +74,8 @@
 
         <Button
             android:id="@+id/button37"
-            android:layout_width="52dp"
-            android:layout_height="72dp"
+            android:layout_width="54dp"
+            android:layout_height="57dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="30dp"
@@ -88,7 +88,7 @@
         <Button
             android:id="@+id/button40"
             android:layout_width="52dp"
-            android:layout_height="72dp"
+            android:layout_height="57dp"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="30dp"
@@ -100,8 +100,8 @@
 
         <Button
             android:id="@+id/button38"
-            android:layout_width="171dp"
-            android:layout_height="72dp"
+            android:layout_width="170dp"
+            android:layout_height="57dp"
             android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="@+id/button37"
             app:layout_constraintEnd_toStartOf="@+id/button37"
@@ -109,10 +109,8 @@
 
         <Button
             android:id="@+id/button36"
-            android:layout_width="50dp"
-            android:layout_height="72dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
+            android:layout_width="64dp"
+            android:layout_height="42dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
             android:tag="76"

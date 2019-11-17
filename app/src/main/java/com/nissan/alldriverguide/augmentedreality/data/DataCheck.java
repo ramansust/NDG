@@ -518,8 +518,10 @@ public class DataCheck {
                 "juke_ac_auto_leftl_03"
         ));
         public final Set<String> JUKE_AC_AUTO_RIGHTL = new HashSet<>(Arrays.asList(
+                "juke_ac_auto_rightl_02"
+        ));
+        public final Set<String> JUKE_AC_AUTO_RIGHTL_2 = new HashSet<>(Arrays.asList(
                 "juke_ac_auto_rightl_01",
-                "juke_ac_auto_rightl_02",
                 "juke_ac_auto_rightl_03",
                 "juke_ac_auto_rightl_04"
         ));

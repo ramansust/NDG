@@ -54,7 +54,7 @@
             android:background="@android:color/transparent" />
 
         <Button
-            android:id="@+id/btn_auto_ac_right"
+            android:id="@+id/btn_auto_ac_right2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.40"
