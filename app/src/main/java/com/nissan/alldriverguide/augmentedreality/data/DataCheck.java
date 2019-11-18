@@ -507,23 +507,38 @@ public class DataCheck {
                 "ac_auto_type3_full_1"
         ));
         public final Set<String> JUKE_AC_AUTO_MIDDLE_TYPE_3 = new HashSet<>(Arrays.asList(
-                "ac_auto_type3_middlel_4",
-                "ac_auto_type3_middlel_3",
-                "ac_auto_type3_middlel_2",
-                "ac_auto_type3_middlel_1"
+                "ac_auto_type3_middle_1",
+                "ac_auto_type3_middle_2",
+                "ac_auto_type3_middle_4",
+                "ac_auto_type3_middle_3"
         ));
-        public final Set<String> JUKE_AC_AUTO_LEFTL = new HashSet<>(Arrays.asList(
-                "juke_ac_auto_leftl_01",
-                "juke_ac_auto_leftl_02",
-                "juke_ac_auto_leftl_03"
+        public final Set<String> JUKE_AC_AUTO_LEFT = new HashSet<>(Arrays.asList(
+                "juke_ac_auto_left_01",
+                "juke_ac_auto_left_02",
+                "juke_ac_auto_left_03",
+                "ac_auto_type1_left_3",
+                "ac_auto_type1_left_2",
+                "ac_auto_type1_left_1",
+                "ac_auto_type2_left_3",
+                "ac_auto_type2_left_2",
+                "ac_auto_type2_left_1"
         ));
-        public final Set<String> JUKE_AC_AUTO_RIGHTL = new HashSet<>(Arrays.asList(
-                "juke_ac_auto_rightl_02"
+        public final Set<String> JUKE_AC_AUTO_RIGHT_TYPE_1 = new HashSet<>(Arrays.asList(
+                "juke_ac_auto_type1_right_02",
+                "ac_auto_type1_right_6",
+                "ac_auto_type1_right_5",
+                "ac_auto_type1_right_2"
         ));
-        public final Set<String> JUKE_AC_AUTO_RIGHTL_2 = new HashSet<>(Arrays.asList(
-                "juke_ac_auto_rightl_01",
-                "juke_ac_auto_rightl_03",
-                "juke_ac_auto_rightl_04"
+        public final Set<String> JUKE_AC_AUTO_RIGHT_TYPE_2 = new HashSet<>(Arrays.asList(
+                "juke_ac_auto_type2_right_04",
+                "juke_ac_auto_type2_right_03",
+                "juke_ac_auto_type2_right_01",
+                "ac_auto_type2_right_6",
+                "ac_auto_type2_right_5",
+                "ac_auto_type2_right_4",
+                "ac_auto_type2_right_3",
+                "ac_auto_type2_right_2",
+                "ac_auto_type2_right_1"
         ));
         public final Set<String> D_MODE_BUTTON = new HashSet<>(Arrays.asList(
                 "d_mode_button_05",
@@ -538,10 +553,10 @@ public class DataCheck {
                 "juke_radio_navi_right_01"
         ));
         public final Set<String> JUKE_RADIO_NAVI_MIDDLEL = new HashSet<>(Arrays.asList(
-                "juke_radio_navi_middlel_04",
-                "juke_radio_navi_middlel_03",
-                "juke_radio_navi_middlel_02",
-                "juke_radio_navi_middlel_01"
+                "juke_radio_navi_middle_01",
+                "juke_radio_navi_middle_02",
+                "juke_radio_navi_middle_03",
+                "juke_radio_navi_middle_04"
         ));
         public final Set<String> JUKE_RADIO_NAVI_LEFT = new HashSet<>(Arrays.asList(
                 "juke_radio_navi_left_03",
