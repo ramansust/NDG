@@ -161,74 +161,74 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         // Here added the vuforia xml in arrayList according to car type
         switch (Values.carType) {
             case 1:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "qashqai.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "qashqai.xml");
                 break;
 
             case 2:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "qashqairus.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "qashqairus.xml");
                 break;
 
             case 3:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "juke.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "juke.xml");
                 break;
 
             case 4:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "xtrail.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "xtrail.xml");
                 break;
 
             case 5:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "xtrailrus.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "xtrailrus.xml");
                 break;
 
             case 6:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "pulsar.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "pulsar.xml");
                 break;
 
             case 7:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "micra.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "micra.xml");
                 break;
 
             case 8:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "note.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "note.xml");
                 break;
 
             case 9:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "leaf.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "leaf.xml");
                 break;
 
             case 10:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "navara.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "navara.xml");
                 break;
 
             case 11:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "micrak14.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "micrak14.xml");
                 break;
 
             case 12:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "qashqai2017.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "qashqai2017.xml");
                 break;
 
             case 13:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "xtrail2017.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "xtrail2017.xml");
                 break;
 
             case 14:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "leaf2017.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "leaf2017.xml");
                 break;
 
             case 15:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "xtrail2017rus.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "xtrail2017rus.xml");
                 break;
 
             case 16:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "qashqai2017rus.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "qashqai2017rus.xml");
                 break;
 
             case 17:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "leaf2019.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "leaf2019.xml");
                 break;
             case 18:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "jukef16.xml" );
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "jukef16.xml");
                 break;
             default:
                 break;
@@ -242,7 +242,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         mTextures = new Vector<Texture>();
         loadTextures();
 
-        mIsDroidDevice = Build.MODEL.toLowerCase().startsWith("droid" );
+        mIsDroidDevice = Build.MODEL.toLowerCase().startsWith("droid");
     }
 
     private void loadTextures() {
@@ -262,7 +262,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     // Called when the activity will start interacting with the user.
     @Override
     protected void onResume() {
-        Logger.debugging(LOG_TAG, "onResume" );
+        Logger.debugging(LOG_TAG, "onResume");
         super.onResume();
 
         // This is needed for some Droid devices to force portrait
@@ -287,17 +287,17 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     // Callback for configuration changes the activity handles itself
     @Override
     public void onConfigurationChanged(Configuration config) {
-        Logger.debugging(LOG_TAG, "onConfigurationChanged" );
+        Logger.debugging(LOG_TAG, "onConfigurationChanged");
         super.onConfigurationChanged(config);
 
         vuforiaAppSession.onConfigurationChanged();
     }
 
     // Called when the system is about to start resuming a previous activity.
-    @SuppressLint("NewApi" )
+    @SuppressLint("NewApi")
     @Override
     public void onPause() {
-        Logger.debugging(LOG_TAG, "onPause" );
+        Logger.debugging(LOG_TAG, "onPause");
         super.onPause();
 
         if (mGlView != null) {
@@ -322,7 +322,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     // The final call you receive before your activity is destroyed.
     @Override
     protected void onDestroy() {
-        Logger.debugging(LOG_TAG, "onDestroy" );
+        Logger.debugging(LOG_TAG, "onDestroy");
         super.onDestroy();
 
         try {
@@ -340,7 +340,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     // Initializes AR application components.
     private void initApplicationAR() {
-        Logger.debugging(LOG_TAG, "initApplicationAR()" );
+        Logger.debugging(LOG_TAG, "initApplicationAR()");
 
         // Create OpenGL ES view:
         int depthSize = 16;
@@ -458,7 +458,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     }
 
     private void startLoadingAnimation() {
-        Logger.error(LOG_TAG, "startLoadingAnimation()" );
+        Logger.error(LOG_TAG, "startLoadingAnimation()");
 
         mUILayout = (RelativeLayout) View.inflate(this,
                 R.layout.camera_overlay, null);
@@ -482,7 +482,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     // Methods to load and destroy tracking data.
     @Override
     public boolean doLoadTrackersData() {
-        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doLoadTrackersData()" );
+        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doLoadTrackersData()");
         TrackerManager tManager = TrackerManager.getInstance();
         ObjectTracker objectTracker = (ObjectTracker) tManager
                 .getTracker(ObjectTracker.getClassType());
@@ -520,7 +520,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     @Override
     public boolean doUnloadTrackersData() {
-        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doUnloadTrackersData()" );
+        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doUnloadTrackersData()");
 
 
         // Indicate if the trackers were unloaded correctly
@@ -548,7 +548,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     @Override
     public void onInitARDone(SampleApplicationException exception) {
-        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    onInitARDone(SampleApplicationException exception)" );
+        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    onInitARDone(SampleApplicationException exception)");
         if (exception == null) {
             initApplicationAR();
 
@@ -575,7 +575,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
             if (result)
                 mContAutofocus = true;
             else {
-                Logger.error(LOG_TAG, "Unable to enable continuous autofocus" );
+                Logger.error(LOG_TAG, "Unable to enable continuous autofocus");
             }
             // mSampleAppMenu = new SampleAppMenu(this, this, "Image Targets",
             // mGlView, mUILayout, null);
@@ -712,7 +712,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     // Shows initialization error messages as System dialogs
     public void showInitializationErrorMessage(String message) {
-        Logger.debugging(LOG_TAG, "showInitializationErrorMessage(String message)" );
+        Logger.debugging(LOG_TAG, "showInitializationErrorMessage(String message)");
         final String errorMessage = message;
         runOnUiThread(new Runnable() {
             public void run() {
@@ -743,7 +743,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     @Override
     public boolean doInitTrackers() {
-        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doInitTrackers()" );
+        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doInitTrackers()");
 
         // Indicate if the trackers were initialized correctly
         boolean result = true;
@@ -755,17 +755,17 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         tracker = tManager.initTracker(ObjectTracker.getClassType());
         if (tracker == null) {
             Logger.error(LOG_TAG,
-                    "Tracker not initialized. Tracker already initialized or the camera is already started" );
+                    "Tracker not initialized. Tracker already initialized or the camera is already started");
             result = false;
         } else {
-            Logger.error(LOG_TAG, "Tracker successfully initialized" );
+            Logger.error(LOG_TAG, "Tracker successfully initialized");
         }
         return result;
     }
 
     @Override
     public boolean doStartTrackers() {
-        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doStartTrackers()" );
+        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doStartTrackers()");
 
         // Indicate if the trackers were started correctly
         boolean result = true;
@@ -780,7 +780,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     @Override
     public boolean doStopTrackers() {
-        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doStopTrackers()" );
+        Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doStopTrackers()");
 
         // Indicate if the trackers were stopped correctly
         boolean result = true;
@@ -795,7 +795,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     @Override
     public boolean doDeinitTrackers() {
-        Logger.error(LOG_TAG, "SampleApplicationControl override method:    doDeinitTrackers()" );
+        Logger.error(LOG_TAG, "SampleApplicationControl override method:    doDeinitTrackers()");
 
         // Indicate if the trackers were deinitialized correctly
         boolean result = true;
@@ -809,7 +809,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        Logger.error(LOG_TAG, "onTouchEvent(MotionEvent event)" );
+        Logger.error(LOG_TAG, "onTouchEvent(MotionEvent event)");
         return mGestureDetector.onTouchEvent(event);
     }
 
@@ -823,7 +823,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     @Override
     public void onBackPressed() {
-        Logger.error(LOG_TAG, "onBackPressed()" );
+        Logger.error(LOG_TAG, "onBackPressed()");
         if (isDetected) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -905,7 +905,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 Logger.error("________EPUB TAG BUTTON_______", b.getTag().toString());
                 Intent intentButton = new Intent(ImageTargetActivity.this, DetailsActivity.class);
                 intentButton.putExtra("epub_index", ePubIndex);
-                intentButton.putExtra("epub_title", "DETAILS" );
+                intentButton.putExtra("epub_title", "DETAILS");
                 intentButton.putExtra("ar_name", Values.ar_value);
                 startActivity(intentButton);
                 break;
@@ -969,7 +969,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         Values.ePubType = Values.INFO_TYPE;
         Intent intent = new Intent(ImageTargetActivity.this, DetailsActivity.class);
         intent.putExtra("epub_index", 0);
-        intent.putExtra("epub_title", "INFO" );
+        intent.putExtra("epub_title", "INFO");
         startActivity(intent);
     }
 
@@ -1030,7 +1030,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                             CameraDevice.FOCUS_MODE.FOCUS_MODE_TRIGGERAUTO);
 
                     if (!result)
-                        Logger.error("SingleTapUp", "Unable to trigger focus" );
+                        Logger.error("SingleTapUp", "Unable to trigger focus");
                 }
             }, 1000L);
 

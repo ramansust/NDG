@@ -16,7 +16,6 @@
         android:id="@+id/popupLayout"
         android:layout_width="350dp"
         android:layout_height="100dp"
-        tools:background="@drawable/juke_ac_auto_full_type2"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="6">

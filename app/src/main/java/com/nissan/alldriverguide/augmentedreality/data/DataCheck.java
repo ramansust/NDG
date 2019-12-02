@@ -403,14 +403,14 @@ public class DataCheck {
                 "juke_combimeter_01"
         ));
         public final Set<String> JUKE_STEERING_RIGHT = new HashSet<>(Arrays.asList(
-                "juke_steering_right_05",
-                "juke_steering_right_04",
                 "juke_steering_right_01"
         ));
         public final Set<String> JUKE_STEERING_RIGHT_2 = new HashSet<>(Arrays.asList(
                 "juke_steering_right_02"
         ));
         public final Set<String> JUKE_STEERING_RIGHT_3 = new HashSet<>(Arrays.asList(
+                "juke_steering_right_05",
+                "juke_steering_right_04",
                 "juke_steering_right_03"
         ));
 
