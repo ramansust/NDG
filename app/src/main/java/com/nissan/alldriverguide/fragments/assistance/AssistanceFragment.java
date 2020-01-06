@@ -154,6 +154,9 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
         }
 
+
+        NissanApp.getInstance().setCurrentCarModel(Values.carType);
+
         int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
         controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2");
 
@@ -576,11 +579,18 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 break;
 
             case 1:
-                if (Values.carType == 14 || Values.carType == 17|| Values.carType == 18) {
+                if(NissanApp.getInstance().getCarListModel().getQrgModule()==1){
+                    Log.e("Qrg selected " , " car type --- " + Values.carType + " ----module " + NissanApp.getInstance().getQRGModule(Values.carType));
+                    frag = HomePageFragment.newInstance(pageTitle);
+                }else {
+                    Log.e("Qrg Not selected " , " car type --- " + Values.carType + " ----module2 " + NissanApp.getInstance().getQRGModule(Values.carType));
+                    frag = ListFragment.newInstance(pageTitle);
+                }
+                /*if (Values.carType == 14 || Values.carType == 17|| Values.carType == 18) {
                     frag = HomePageFragment.newInstance(pageTitle);
                 } else {
                     frag = ListFragment.newInstance(pageTitle);
-                }
+                }*/
                 break;
 
             case 2:

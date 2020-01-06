@@ -173,8 +173,10 @@ public class UrlLinks {
     public static final String QASHQAI_RUS_SV = "BASE_URLqashqairus/qashqai_rus_sv.zip";
 
 
-    public static final String QASHQAI_2017_LINK = "http://192.168.1.253:5000/fbsharing/MXtU7zGT";
-    public static final String QASHQAI_2017_EN = "http://192.168.1.253:5000/fbsharing/APkdKpeF";
+//    public static final String QASHQAI_2017_LINK = "http://192.168.1.253:5000/fbsharing/MXtU7zGT";
+    public static final String QASHQAI_2017_LINK = "http://192.168.1.253:5000/fbsharing/4Df1Zm90";
+//    public static final String QASHQAI_2017_EN = "http://192.168.1.253:5000/fbsharing/APkdKpeF";
+    public static final String QASHQAI_2017_EN = "http://192.168.1.253:5000/fbsharing/yv5V9M5H";
     public static final String QASHQAI_2017_DE = "http://192.168.1.253:5000/fbsharing/sSDrN5QA";
     public static final String QASHQAI_2017_ES = "http://192.168.1.253:5000/fbsharing/2bSxXc32";
     public static final String QASHQAI_2017_FR = "http://192.168.1.253:5000/fbsharing/Up8Q1eVt";
@@ -340,4 +342,7 @@ public class UrlLinks {
     public static final String MICRA_NEW_PL = "http://192.168.1.253:5000/fbsharing/TPYtTDtk";
     public static final String MICRA_NEW_FI = "http://192.168.1.253:5000/fbsharing/5lfoPYz3";
     public static final String MICRA_NEW_PT = "http://192.168.1.253:5000/fbsharing/WM5mZbR2";
+
+    public static final String LEAF_2019_LINK = "http://192.168.1.253:5000/fbsharing/LfpIBf5X";
+    public static final String LEAF_2019_EN = "http://192.168.1.253:5000/fbsharing/XTwnxfxa";
 }

@@ -2,6 +2,7 @@ package com.nissan.alldriverguide.controller;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.nissan.alldriverguide.interfaces.CarListACompleteAPI;
 import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.retrofit.ApiService;
@@ -37,6 +38,8 @@ public class CarListContentController implements Callback<CarListResponse> {
     public void onResponse(Call<CarListResponse> call, Response<CarListResponse> response) {
         if (response.isSuccessful()) {
             CarListResponse carListResponse = response.body();
+
+            Log.e("Car list ", "new json 1 " + new Gson().toJson(response.body()));
 
             if (carListResponse != null) {
                 if (this.listener != null) this.listener.onDownloaded(carListResponse);

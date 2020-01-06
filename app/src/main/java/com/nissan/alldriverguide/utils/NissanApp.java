@@ -11,6 +11,7 @@ import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -75,6 +76,7 @@ public class NissanApp {
     private ArrayList<Object> carList = new ArrayList<>();
     private ArrayList<ExploreTabVideoModel> exploreVideoList;
     private ArrayList<CarInfo> carAllList;
+    private CarList carListModel;
 
     public static NissanApp getInstance() {
         if (instance == null) {
@@ -257,6 +259,75 @@ public class NissanApp {
 */
 
         return cn;
+    }
+
+
+    public void setCurrentCarModel(int car) {
+        List<CarList> carLists = NissanApp.getInstance().getCarListWAP();
+        if (carLists == null || carLists.size() == 0) {
+            Type type = new TypeToken<ArrayList<CarList>>() {
+            }.getType();
+            carLists = new Gson().fromJson(new PreferenceUtil(MyApplication.getAppContext()).retrieveMultiLangData("en_" + Values.CAR_LIST_KEY + "_1"), type);
+        }
+        if (carLists != null && carLists.size() > 0) {
+            for (CarList obj : carLists) {
+                if (Integer.parseInt(obj.getId()) == car) {
+                    NissanApp.getInstance().setCarListModel(obj);
+                    Log.e("Car Module" , "------ " + obj.getQrgModule());
+                }
+
+            }
+        }
+    }
+
+    public int getQRGModule(int car) {
+        int cn = 0;
+        List<CarList> carLists = NissanApp.getInstance().getCarListWAP();
+        if (carLists == null || carLists.size() == 0) {
+            Type type = new TypeToken<ArrayList<CarList>>() {
+            }.getType();
+            carLists = new Gson().fromJson(new PreferenceUtil(MyApplication.getAppContext()).retrieveMultiLangData("en_" + Values.CAR_LIST_KEY + "_1"), type);
+        }
+        if (carLists != null && carLists.size() > 0) {
+            for (CarList obj : carLists) {
+                if (Integer.parseInt(obj.getId()) == car) {
+                    Log.e("Qrg Module" , "------ " + obj.getQrgModule());
+                    cn = obj.getQrgModule();
+                }
+
+            }
+        }
+
+        return cn;
+    }
+
+    public int getOnlineBookingStatus(int car) {
+        int cn = 0;
+        List<CarList> carLists = NissanApp.getInstance().getCarListWAP();
+        if (carLists == null || carLists.size() == 0) {
+            Type type = new TypeToken<ArrayList<CarList>>() {
+            }.getType();
+            carLists = new Gson().fromJson(new PreferenceUtil(MyApplication.getAppContext()).retrieveMultiLangData("en_" + Values.CAR_LIST_KEY + "_1"), type);
+        }
+        if (carLists != null && carLists.size() > 0) {
+            for (CarList obj : carLists) {
+                if (Integer.parseInt(obj.getId()) == car) {
+                    Log.e("Online Booking status " , "------ " + obj.getOnlineBookingStatus());
+                    cn = obj.getOnlineBookingStatus();
+                }
+
+            }
+        }
+
+        return cn;
+    }
+
+    public CarList getCarListModel() {
+        return carListModel;
+    }
+
+    public void setCarListModel(CarList carListModel) {
+        this.carListModel = carListModel;
     }
 
     /**
@@ -651,6 +722,7 @@ public class NissanApp {
                 break;
 
             case 12:
+                Log.e("Language Url " , " car id 12 " + UrlLinks.QASHQAI_2017_EN);
                 if (lang.contains("en")) {
                     url = UrlLinks.QASHQAI_2017_EN;
                 } else if (lang.contains("de")) {
@@ -744,6 +816,16 @@ public class NissanApp {
                     url = UrlLinks.XTRAIL_2017_RUS_EN;
                 }
                 break;
+
+            case 17:
+                Log.e("Language Url " , " car id 17 " + UrlLinks.LEAF_2019_EN);
+                if (lang.contains("en")) {
+                    url = UrlLinks.LEAF_2019_EN;
+                } else {
+                    url = UrlLinks.LEAF_2019_EN;
+                }
+                break;
+
             case 18:
 
                 if (lang.contains("en")) {
@@ -1043,6 +1125,7 @@ public class NissanApp {
                 break;
 
             case 12:
+                Log.e("Asset Url " , " car id 12 " + UrlLinks.QASHQAI_2017_LINK);
                 assetsPath = UrlLinks.QASHQAI_2017_LINK;
                 break;
 
@@ -1056,6 +1139,11 @@ public class NissanApp {
 
             case 15:
                 assetsPath = UrlLinks.XTRAIL_2017_RUS_LINK;
+                break;
+
+            case 17:
+                Log.e("Asset Url " , " car id 17 " + UrlLinks.LEAF_2019_LINK);
+                assetsPath = UrlLinks.LEAF_2019_LINK;
                 break;
 
             default:

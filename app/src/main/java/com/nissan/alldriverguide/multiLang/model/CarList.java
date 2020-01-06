@@ -9,7 +9,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class CarList {
 
-
     @SerializedName("car_details")
     @Expose
     private String carDetails;
@@ -55,6 +54,39 @@ public class CarList {
     @SerializedName("parent_car_id")
     @Expose
     private String parent_car_id;
+    @SerializedName("qrg_module")
+    @Expose
+    private int qrgModule;
+    @SerializedName("online_booking_status")
+    @Expose
+    private int onlineBookingStatus;
+    @SerializedName("explorer_map_status")
+    @Expose
+    private int explorerMapStatus;
+
+    public int getQrgModule() {
+        return qrgModule;
+    }
+
+    public void setQrgModule(int qrgModule) {
+        this.qrgModule = qrgModule;
+    }
+
+    public int getOnlineBookingStatus() {
+        return onlineBookingStatus;
+    }
+
+    public void setOnlineBookingStatus(int onlineBookingStatus) {
+        this.onlineBookingStatus = onlineBookingStatus;
+    }
+
+    public int getExplorerMapStatus() {
+        return explorerMapStatus;
+    }
+
+    public void setExplorerMapStatus(int explorerMapStatus) {
+        this.explorerMapStatus = explorerMapStatus;
+    }
 
     public String getImgLdpi() {
         return imgLdpi;

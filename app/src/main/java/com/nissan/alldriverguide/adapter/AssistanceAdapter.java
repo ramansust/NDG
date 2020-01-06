@@ -2,6 +2,7 @@ package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nissan.alldriverguide.R;
+import com.nissan.alldriverguide.utils.NissanApp;
+import com.nissan.alldriverguide.utils.Values;
 
 /**
  * Created by raman on 1/19/17.
@@ -70,7 +73,12 @@ public class AssistanceAdapter extends BaseAdapter {
         // imageView Logic for if left icon img in fixed size
         viewHolder.imageView.setBackgroundResource(position < carImage.length ? carImage[position] : R.drawable.tyre); // here set the car image
         viewHolder.txtViewTitle.setTypeface(tf); // set the font for car name or nissan assistance
-        viewHolder.txtViewTitle.setText(carName[position]); // set the car name
+        viewHolder.txtViewTitle.setText(carName[position]);
+        Log.e("Online Booking status " , " available  " + NissanApp.getInstance().getOnlineBookingStatus(Values.carType) + " cartype " + Values.carType);
+        if(NissanApp.getInstance().getOnlineBookingStatus(Values.carType) == 1){
+            // set the car name
+        }
+
 
         return convertView;
     }

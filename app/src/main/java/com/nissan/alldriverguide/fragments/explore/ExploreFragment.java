@@ -124,6 +124,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private ProgressDialog progressDialog = null;
     private Typeface typefaceRegular = null, typefaceBold = null;;
     private int width = 250, height = 50;
+    int value = 1;
 
     /**
      * Creating instance for this fragment
@@ -817,35 +818,24 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     }
 
-    private class MyPagerAdapter extends PagerAdapter {
+    public ViewGroup epubView(ViewGroup collection,ViewGroup layout,LayoutInflater inflater){
 
+        layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_1,
+                collection, false);
 
-        //view inflating..
-        @Override
-        public Object instantiateItem(ViewGroup collection, int position) {
-
-            LayoutInflater inflater = LayoutInflater.from(mContext);
-            ViewGroup layout = null;
-
-            switch (position) {
-
-                case 0:
-                    layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_1,
-                            collection, false);
-
-                    imageViewMap = (ImageView) layout.findViewById(R.id.txt_map);
+        imageViewMap = (ImageView) layout.findViewById(R.id.txt_map);
                   /*  textViewNissanConnect = (TextView) layout.findViewById(R.id.tvNewNissanConnect);
                     textViewNissanConnect.setTypeface(typefaceRegular);
                     textViewUpdateYourMap = (TextView) layout.findViewById(R.id.tvUpdateYourMap);
                     textViewUpdateYourMap.setTypeface(typefaceBold);*/
-                    mapView = (LinearLayout) layout.findViewById(R.id.map_view);
-                    if (Values.carType == 12) {
-                        Uri uri = new Uri.Builder()
-                                .scheme(UriUtil.LOCAL_RESOURCE_SCHEME) // "res"
-                                .path(String.valueOf(R.drawable.map_new))
-                                .build();
-                        ((SimpleDraweeView) layout.findViewById(R.id.drawee_view_map_1)).setImageURI(uri);
-                    }
+        mapView = (LinearLayout) layout.findViewById(R.id.map_view);
+        if (Values.carType == 12) {
+            Uri uri = new Uri.Builder()
+                    .scheme(UriUtil.LOCAL_RESOURCE_SCHEME) // "res"
+                    .path(String.valueOf(R.drawable.map_new))
+                    .build();
+            ((SimpleDraweeView) layout.findViewById(R.id.drawee_view_map_1)).setImageURI(uri);
+        }
 
                    /* String nissanConnectText = NissanApp.getInstance().getAlertMessage(mContext,new PreferenceUtil(getActivity()).getSelectedLang(), Values.MAP_NISSAN_CONNECT);
                     String updateYourMapText = NissanApp.getInstance().getAlertMessage(mContext,new PreferenceUtil(getActivity()).getSelectedLang(), Values.MAP_UPDATE_YOUR_MAP);
@@ -853,54 +843,57 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     setTextToViews(textViewNissanConnect, nissanConnectText == null || nissanConnectText.isEmpty() ? resources.getString(R.string.new_nissan_connect) : nissanConnectText, R.color.white);
                     setTextToViews(textViewUpdateYourMap, updateYourMapText == null || updateYourMapText.isEmpty() ? resources.getString(R.string.update_your_map) : updateYourMapText, R.color.black);*/
 
-                    mapTextImage(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
+        mapTextImage(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
 
-                    mapView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
-                                list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
-                            }
-                            Values.ePubType = Values.HOMEPAGE_TYPE;
+        mapView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
+                    list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
+                }
+                Values.ePubType = Values.HOMEPAGE_TYPE;
 
-                            if (list == null || list.size() == 0)
-                                return;
+                if (list == null || list.size() == 0)
+                    return;
 
-                            //String updatingMapText = NissanApp.getInstance().getAlertMessage(mContext,new PreferenceUtil(getActivity()).getSelectedLang(), Values.UPDATING_MAP_DATA);
+                //String updatingMapText = NissanApp.getInstance().getAlertMessage(mContext,new PreferenceUtil(getActivity()).getSelectedLang(), Values.UPDATING_MAP_DATA);
 
-                            int epubIndex=52;
-                            if(Values.carType==12) {
-                                epubIndex=58;
-                            }
-                            else if(Values.carType == 10){
-                                epubIndex=46;
-                            }
-                            else if(Values.carType == 11){
-                                epubIndex=54;
-                            }else {
-                                epubIndex = 52;
-                            }
-                            Fragment frag = DetailsFragment.newInstance(list.get(epubIndex).getIndex(), resources.getString(R.string.updating_map_data));
-                            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                            ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
-                            ft.replace(R.id.container, frag);
-                            ft.addToBackStack(Values.tabExplore);
-                            ft.commit();
-                        }
-                    });
-                    break;
+                int epubIndex=52;
+                if(Values.carType==12) {
+                    epubIndex=58;
+                }
+                else if(Values.carType == 10){
+                    epubIndex=46;
+                }
+                else if(Values.carType == 11){
+                    epubIndex=54;
+                }else {
+                    epubIndex = 52;
+                }
+                Fragment frag = DetailsFragment.newInstance(list.get(epubIndex).getIndex(), resources.getString(R.string.updating_map_data));
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
+                ft.replace(R.id.container, frag);
+                ft.addToBackStack(Values.tabExplore);
+                ft.commit();
+            }
+        });
 
-                case 1:
-                    layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_2,
-                            collection, false);
+        return layout;
+    }
+
+    public ViewGroup mapView(ViewGroup collection,ViewGroup layout,LayoutInflater inflater){
+
+        layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_2,
+                collection, false);
 
 //                    textViewMap2 = (ImageView) layout.findViewById(R.id.txt_map);
 
-                    Logger.error("short_code", "______" + preferenceUtil.getSelectedLang());
+        Logger.error("short_code", "______" + preferenceUtil.getSelectedLang());
 //                    int drawable = mContext.getResources().getIdentifier("micra_map_2_" + preferenceUtil.getSelectedLang().toLowerCase(), "drawable", getActivity().getPackageName());
-                    int drawable = mContext.getResources().getIdentifier("micra_map_2_" + preferenceUtil.getSelectedLang().toLowerCase(), "drawable", getActivity().getPackageName());
+        int drawable = mContext.getResources().getIdentifier("micra_map_2_" + preferenceUtil.getSelectedLang().toLowerCase(), "drawable", getActivity().getPackageName());
 
-                    ((ImageView) layout.findViewById(R.id.drawee_view_map_2)).setImageResource(drawable);
+        ((ImageView) layout.findViewById(R.id.drawee_view_map_2)).setImageResource(drawable);
 
                     /*tvNissanDoorToDoor = layout.findViewById(R.id.tvNewNissanDoorToDoor);
                     tvSetUpGuide = layout.findViewById(R.id.tvSetupGuide);
@@ -914,139 +907,166 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     setTextToViews(tvNissanDoorToDoor, doorToDoorText == null || doorToDoorText.isEmpty() ? resources.getString(R.string.nissan_door_to_door_nav_text) : doorToDoorText, R.color.white);
                     setTextToViews(tvSetUpGuide, setUpGuideText == null || setUpGuideText.isEmpty() ? resources.getString(R.string.set_up_guide_text) : setUpGuideText, R.color.black);*/
 
-                    layout.findViewById(R.id.ivMap).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            // here start the playing video for grid view item click
+        layout.findViewById(R.id.ivMap).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // here start the playing video for grid view item click
 
-                            if (DetectConnection.checkInternetConnection(getActivity())) {
-                                //just for rus
+                if (DetectConnection.checkInternetConnection(getActivity())) {
+                    //just for rus
 
-                                int index = -1;
-                                if (videoList == null || videoList.size() == 0)
-                                    return;
+                    int index = -1;
+                    if (videoList == null || videoList.size() == 0)
+                        return;
 
-                                for (int i = 0; i < videoList.size(); i++) {
+                    for (int i = 0; i < videoList.size(); i++) {
 
-                                    if (videoList.get(i).getTag() == 997 || videoList.get(i).getTag() == 46 ) { //video tag door to door MB
-                                        index = i;
-                                        break;
+                        if (videoList.get(i).getTag() == 997 || videoList.get(i).getTag() == 46 ) { //video tag door to door MB
+                            index = i;
+                            break;
+                        }
+
+                    }
+
+                    if (index == -1)
+                        return;
+
+                    Values.videoIndex = index;
+
+                    if (NissanApp.getInstance().getExploreVideoList().get(index).getVideoUrl() != null) {
+
+                        startActivity(new Intent(getActivity(), VideoPlayerActivity.class).putExtra("from_where", "map"));
+                    }
+
+
+                } else {
+
+                    Toast.makeText(getActivity(), internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        return layout;
+
+    }
+
+    public ViewGroup lastFragment(ViewGroup collection,ViewGroup layout,LayoutInflater inflater){
+        layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_3,
+                collection, false);
+
+        layout.findViewById(R.id.ivMap).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // here start the playing video for grid view item click
+
+
+                String pdfPath = Values.car_path + File.separator + Values.MAP_PDF_FOLDER + File.separator;
+
+                final File file_pdf_folder = new File(pdfPath);
+                final File file_pdf = new File(pdfPath + Values.MAP_PDF_NAME);
+
+                if (file_pdf_folder.isDirectory() && file_pdf_folder.exists()) {
+                    if (file_pdf.exists()) {
+                        openPDFFile(file_pdf);
+                        return;
+                    }
+                } else {
+                    file_pdf_folder.mkdirs();
+                }
+
+                if (DetectConnection.checkInternetConnection(getActivity())) {
+
+                    progressDialog = new ProgressDialogController(getActivity()).showDialog(resources.getString(R.string.start_download));
+
+                    // Setting timeout globally for the download network requests:
+                    PRDownloaderConfig config = PRDownloaderConfig.newBuilder()
+                            .setReadTimeout(30_000)
+                            .setConnectTimeout(30_000)
+                            .build();
+                    PRDownloader.initialize(getActivity(), config);
+
+
+                    PRDownloader.download("http://www.sciencemag.org/site/special/data/ScienceData-hi.pdf",
+                            pdfPath, Values.MAP_PDF_NAME)
+                            .build()
+                            .setOnStartOrResumeListener(new OnStartOrResumeListener() {
+                                @Override
+                                public void onStartOrResume() {
+                                    progressDialog.setMessage(resources.getString(R.string.alert_downloading));
+                                }
+                            })
+                            .setOnPauseListener(new OnPauseListener() {
+                                @Override
+                                public void onPause() {
+
+                                }
+                            })
+                            .setOnCancelListener(new OnCancelListener() {
+                                @Override
+                                public void onCancel() {
+
+                                }
+                            })
+                            .setOnProgressListener(new OnProgressListener() {
+                                @Override
+                                public void onProgress(Progress progress) {
+
+                                    long progressPercent = progress.currentBytes * 100 / progress.totalBytes;
+                                    progressDialog.setMessage(resources.getString(R.string.alert_downloading) + "  " + (int) progressPercent + "%");
+                                }
+                            })
+                            .start(new OnDownloadListener() {
+                                @Override
+                                public void onDownloadComplete() {
+                                    if (progressDialog != null && progressDialog.isShowing()) {
+                                        progressDialog.dismiss();
                                     }
-
-                                }
-
-                                if (index == -1)
-                                    return;
-
-                                Values.videoIndex = index;
-
-                                if (NissanApp.getInstance().getExploreVideoList().get(index).getVideoUrl() != null) {
-
-                                    startActivity(new Intent(getActivity(), VideoPlayerActivity.class).putExtra("from_where", "map"));
-                                }
-
-
-                            } else {
-
-                                Toast.makeText(getActivity(), internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-
-                    break;
-                case 2:
-
-                    layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_3,
-                            collection, false);
-
-                    layout.findViewById(R.id.ivMap).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            // here start the playing video for grid view item click
-
-
-                            String pdfPath = Values.car_path + File.separator + Values.MAP_PDF_FOLDER + File.separator;
-
-                            final File file_pdf_folder = new File(pdfPath);
-                            final File file_pdf = new File(pdfPath + Values.MAP_PDF_NAME);
-
-                            if (file_pdf_folder.isDirectory() && file_pdf_folder.exists()) {
-                                if (file_pdf.exists()) {
                                     openPDFFile(file_pdf);
-                                    return;
                                 }
-                            } else {
-                                file_pdf_folder.mkdirs();
-                            }
 
-                            if (DetectConnection.checkInternetConnection(getActivity())) {
+                                @Override
+                                public void onError(Error error) {
+                                    if (progressDialog != null && progressDialog.isShowing()) {
+                                        progressDialog.dismiss();
+                                    }
+                                    if (error.isConnectionError())
+                                        Toast.makeText(mContext, "Connection error occurred!", Toast.LENGTH_SHORT).show();
+                                    if (error.isServerError())
+                                        Toast.makeText(mContext, "Server error occurred!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                } else {
 
-                                progressDialog = new ProgressDialogController(getActivity()).showDialog(resources.getString(R.string.start_download));
+                    Toast.makeText(getActivity(), internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
-                                // Setting timeout globally for the download network requests:
-                                PRDownloaderConfig config = PRDownloaderConfig.newBuilder()
-                                        .setReadTimeout(30_000)
-                                        .setConnectTimeout(30_000)
-                                        .build();
-                                PRDownloader.initialize(getActivity(), config);
+        return layout;
+    }
+
+    private class MyPagerAdapter extends PagerAdapter {
 
 
-                                PRDownloader.download("http://www.sciencemag.org/site/special/data/ScienceData-hi.pdf",
-                                        pdfPath, Values.MAP_PDF_NAME)
-                                        .build()
-                                        .setOnStartOrResumeListener(new OnStartOrResumeListener() {
-                                            @Override
-                                            public void onStartOrResume() {
-                                                progressDialog.setMessage(resources.getString(R.string.alert_downloading));
-                                            }
-                                        })
-                                        .setOnPauseListener(new OnPauseListener() {
-                                            @Override
-                                            public void onPause() {
+        //view inflating..
+        @Override
+        public Object instantiateItem(ViewGroup collection, int position) {
 
-                                            }
-                                        })
-                                        .setOnCancelListener(new OnCancelListener() {
-                                            @Override
-                                            public void onCancel() {
+            LayoutInflater inflater = LayoutInflater.from(mContext);
+            ViewGroup layout = null;
 
-                                            }
-                                        })
-                                        .setOnProgressListener(new OnProgressListener() {
-                                            @Override
-                                            public void onProgress(Progress progress) {
+            switch (position) {
 
-                                                long progressPercent = progress.currentBytes * 100 / progress.totalBytes;
-                                                progressDialog.setMessage(resources.getString(R.string.alert_downloading) + "  " + (int) progressPercent + "%");
-                                            }
-                                        })
-                                        .start(new OnDownloadListener() {
-                                            @Override
-                                            public void onDownloadComplete() {
-                                                if (progressDialog != null && progressDialog.isShowing()) {
-                                                    progressDialog.dismiss();
-                                                }
-                                                openPDFFile(file_pdf);
-                                            }
+                case 0:
+                    if(value == 1) layout = epubView(collection,layout,inflater);
+                    break;
 
-                                            @Override
-                                            public void onError(Error error) {
-                                                if (progressDialog != null && progressDialog.isShowing()) {
-                                                    progressDialog.dismiss();
-                                                }
-                                                if (error.isConnectionError())
-                                                    Toast.makeText(mContext, "Connection error occurred!", Toast.LENGTH_SHORT).show();
-                                                if (error.isServerError())
-                                                    Toast.makeText(mContext, "Server error occurred!", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                            } else {
+                case 1:
+                    if(value == 1) layout = mapView(collection,layout,inflater);
+                    break;
 
-                                Toast.makeText(getActivity(), internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-
+                case 2:
+                    if(value == 1) layout = mapView(collection,layout,inflater);
                     break;
             }
 
