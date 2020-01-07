@@ -24,8 +24,6 @@ import android.support.v4.content.FileProvider;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +64,6 @@ import com.nissan.alldriverguide.VideoPlayerActivity;
 import com.nissan.alldriverguide.adapter.GridViewAdapter;
 import com.nissan.alldriverguide.controller.ExploreTabContentController;
 import com.nissan.alldriverguide.customviews.DialogController;
-import com.nissan.alldriverguide.customviews.PaddingBackgroundColorSpan;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.assistance.DetailsFragment;
@@ -122,9 +119,14 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private ImageView ivRight, ivLeft;
     private PreferenceUtil preferenceUtil;
     private ProgressDialog progressDialog = null;
-    private Typeface typefaceRegular = null, typefaceBold = null;;
+    private Typeface typefaceRegular = null, typefaceBold = null;
+    ;
     private int width = 250, height = 50;
     int value = 1;
+    int value2 = 2;
+    int value3 = 4;
+    int valueX = 5;
+    private int currentPage;
 
     /**
      * Creating instance for this fragment
@@ -151,7 +153,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     }
 
     private void showTitle() {
-
         String title = NissanApp.getInstance().getTabTitle(getActivity(), "1");
         tvPageTitle.setText(title.isEmpty() ? resources.getString(R.string.explore) : title);
 
@@ -164,11 +165,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     }
 
     private void getExploreTabContent() {
-
         videoList = new ArrayList<>();
         adapter = new GridViewAdapter(getActivity().getApplicationContext(), videoList, device_density);
         gridView.setAdapter(adapter);
-
 
         sharedpref_key = Values.carType + "_" + Values.EXPLORE_OBJ_STORE_KEY;
         exploreModel = new PreferenceUtil(getActivity()).retrieveExploreDataList(sharedpref_key);
@@ -195,9 +194,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     }
 
-
     private void showNoInternetDialogue(String msg) {
-
         final Dialog dialog = new DialogController(getActivity()).internetDialog();
         dialog.setCancelable(false);
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
@@ -217,7 +214,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     }
 
     public void check_density() {
-
         if (device_density.equalsIgnoreCase("xxxhdpi")) {
             header_text = exploreModel.getHeaderXxxhdpi();
             Logger.error(TAG, "check_density: xxxhdpi");
@@ -236,7 +232,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         } else {
             header_text = exploreModel.getHeaderXhdpi();
             Logger.error(TAG, "check_density: else");
-
         }
     }
 
@@ -286,7 +281,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 10) {
             btnBlindSpotAR.setBackgroundResource(R.drawable.explore_xtrail_eur);
         } else if (Values.carType == 11 || Values.carType == 12 || Values.carType == 16
-                || Values.carType == 13 || Values.carType == 14 || Values.carType == 15 || Values.carType == 17|| Values.carType == 18) {
+                || Values.carType == 13 || Values.carType == 14 || Values.carType == 15 || Values.carType == 17 || Values.carType == 18) {
             btnBlindSpotAR.setBackgroundResource(R.drawable.explore_micra_new);
         }
 
@@ -299,7 +294,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
             if (header_text != null) {
 
-                Logger.error("header_text", "_________" + header_text+" "+Values.carType);
+                Logger.error("header_text", "_________" + header_text + " " + Values.carType);
 
                 check_density();
 
@@ -308,10 +303,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 setTextToViews(tvAugmentedReality, augmentedRealityText == null || augmentedRealityText.isEmpty() ? resources.getString(R.string.augmented_reality) : augmentedRealityText, R.color.white);
                 setTextToViews(tvExploreYourCar, exploreYourCarText == null || exploreYourCarText.isEmpty() ? resources.getString(R.string.explore_your_car) : exploreYourCarText, R.color.black);*/
-
-
-
-
 
 
                 Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
@@ -410,8 +401,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         });
 
 
-
-        if (Values.carType == 10|| Values.carType == 11 || Values.carType == 12 ) {
+        //Dynamic load Map & Epub View
+        if (Values.carType == 10 || Values.carType == 11 || Values.carType == 12) {
             rlMapView.setVisibility(View.VISIBLE);
         } else {
             rlMapView.setVisibility(View.GONE);
@@ -479,7 +470,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         btnBlindSpotAR = (RelativeLayout) view.findViewById(R.id.btn_blind_spot_ar);
         rlMapView = (RelativeLayout) view.findViewById(R.id.rlMapView);
         gridView = (ScrollableGridView) view.findViewById(R.id.grid_view);
-
         gridView.setFocusable(false);
 
 /*
@@ -503,13 +493,12 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         ivRight = (ImageView) view.findViewById(R.id.ivRightArrow);
         ivLeft = (ImageView) view.findViewById(R.id.ivLeftArrow);
 
-
-        //commented for adding slider page on "NEW NISSAN CONNECT" viewpager for J11 MC(car type 12) : by Mostasim Billah
-         if (Values.carType == 10) {
+        /*//commented for adding slider page on "NEW NISSAN CONNECT" viewpager for J11 MC(car type 12) : by Mostasim Billah
+        if (Values.carType == 10) {
             viewPager.disableScroll(true);
             llLeftArrow.setVisibility(View.GONE);
             llRightArrow.setVisibility(View.GONE);
-        }
+        }*/
 
     }
 
@@ -539,33 +528,11 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         switch (v.getId()) {
 
             case R.id.ivLeftArrow:
-
                 viewPager.setCurrentItem(getItem(-1), true);
-
-
-                if (viewPager.getCurrentItem() == 0) {
-                    llLeftArrow.setVisibility(View.GONE);
-                    llRightArrow.setVisibility(View.VISIBLE);
-                } else {
-                    llLeftArrow.setVisibility(View.VISIBLE);
-                    llRightArrow.setVisibility(View.GONE);
-                }
-
-
                 break;
 
             case R.id.ivRightArrow:
-
                 viewPager.setCurrentItem(getItem(+1), true);
-
-                if (viewPager.getCurrentItem() == 0) {
-                    llLeftArrow.setVisibility(View.GONE);
-                    llRightArrow.setVisibility(View.VISIBLE);
-                } else {
-                    llLeftArrow.setVisibility(View.VISIBLE);
-                    llRightArrow.setVisibility(View.GONE);
-                }
-
                 break;
 
             case R.id.btn_ar:
@@ -729,7 +696,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 imageViewMap.setBackgroundResource(R.drawable.micra_map_hu);
             } else if (lang.equalsIgnoreCase("et")) {
                 imageViewMap.setBackgroundResource(R.drawable.micra_map_et);
-            }  else if (lang.equalsIgnoreCase("lv")) {
+            } else if (lang.equalsIgnoreCase("lv")) {
                 imageViewMap.setBackgroundResource(R.drawable.micra_map_lv);
             } else if (lang.equalsIgnoreCase("lt")) {
                 imageViewMap.setBackgroundResource(R.drawable.micra_map_lt);
@@ -781,44 +748,42 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         }
     }
 
+    public void arrowVisibleEnable(int leftValue, int rightValue) {
+        llLeftArrow.setVisibility(leftValue);
+        llRightArrow.setVisibility(rightValue);
+    }
+
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+        //Left Arrow Right arrow visibility functionality depending on viewpager items By Rohan
+        int tempPosition = valueX - 1;
+        if (position == 0) {
+            if (position == tempPosition) arrowVisibleEnable(View.GONE, View.GONE);
+            else arrowVisibleEnable(View.GONE, View.VISIBLE);
+//            Log.e(" On page scroll ", " ---- " + position + " ---- " + tempPosition);
+        } else if (position > 0) {
+            if (position < tempPosition) {
+//                Log.e(" On page2 scroll ", " ---- " + position + " ---- " + tempPosition);
+                arrowVisibleEnable(View.VISIBLE, View.VISIBLE);
+            } else if (position == tempPosition) {
+//                Log.e(" On page3 scroll ", " ---- " + position + " ---- " + tempPosition);
+                arrowVisibleEnable(View.VISIBLE, View.GONE);
+            }
+        }
     }
 
     @Override
     public void onPageSelected(int position) {
-
-        //while swipes between pages, imgArrow is visible or gone
-/*
-        if (viewPager.getCurrentItem() == 0) {
-            llLeftArrow.setVisibility(View.GONE);
-            llRightArrow.setVisibility(View.VISIBLE);
-        } else if (viewPager.getCurrentItem() == 1) {
-            llLeftArrow.setVisibility(View.VISIBLE);
-            llRightArrow.setVisibility(View.VISIBLE);
-        } else {
-            llLeftArrow.setVisibility(View.VISIBLE);
-            llRightArrow.setVisibility(View.GONE);
+        if (viewPager.getAdapter().getCount() == 3) {
+            //Toast.makeText(getActivity(), "3", Toast.LENGTH_SHORT).show();
         }
-*/
-
-        if (viewPager.getCurrentItem() == 0) {
-            llLeftArrow.setVisibility(View.GONE);
-            llRightArrow.setVisibility(View.VISIBLE);
-        } else {
-            llLeftArrow.setVisibility(View.VISIBLE);
-            llRightArrow.setVisibility(View.GONE);
-        }
-
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
     }
 
-    public ViewGroup epubView(ViewGroup collection,ViewGroup layout,LayoutInflater inflater){
+    public ViewGroup epubView(ViewGroup collection, ViewGroup layout, LayoutInflater inflater) {
 
         layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_1,
                 collection, false);
@@ -858,16 +823,14 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 //String updatingMapText = NissanApp.getInstance().getAlertMessage(mContext,new PreferenceUtil(getActivity()).getSelectedLang(), Values.UPDATING_MAP_DATA);
 
-                int epubIndex=52;
-                if(Values.carType==12) {
-                    epubIndex=58;
-                }
-                else if(Values.carType == 10){
-                    epubIndex=46;
-                }
-                else if(Values.carType == 11){
-                    epubIndex=54;
-                }else {
+                int epubIndex = 52;
+                if (Values.carType == 12) {
+                    epubIndex = 58;
+                } else if (Values.carType == 10) {
+                    epubIndex = 46;
+                } else if (Values.carType == 11) {
+                    epubIndex = 54;
+                } else {
                     epubIndex = 52;
                 }
                 Fragment frag = DetailsFragment.newInstance(list.get(epubIndex).getIndex(), resources.getString(R.string.updating_map_data));
@@ -882,7 +845,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         return layout;
     }
 
-    public ViewGroup mapView(ViewGroup collection,ViewGroup layout,LayoutInflater inflater){
+    public ViewGroup mapView(ViewGroup collection, ViewGroup layout, LayoutInflater inflater) {
 
         layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_2,
                 collection, false);
@@ -921,7 +884,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                     for (int i = 0; i < videoList.size(); i++) {
 
-                        if (videoList.get(i).getTag() == 997 || videoList.get(i).getTag() == 46 ) { //video tag door to door MB
+                        if (videoList.get(i).getTag() == 997 || videoList.get(i).getTag() == 46) { //video tag door to door MB
                             index = i;
                             break;
                         }
@@ -950,7 +913,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     }
 
-    public ViewGroup lastFragment(ViewGroup collection,ViewGroup layout,LayoutInflater inflater){
+    public ViewGroup lastFragment(ViewGroup collection, ViewGroup layout, LayoutInflater inflater) {
         layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_3,
                 collection, false);
 
@@ -1046,8 +1009,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     }
 
     private class MyPagerAdapter extends PagerAdapter {
-
-
         //view inflating..
         @Override
         public Object instantiateItem(ViewGroup collection, int position) {
@@ -1055,7 +1016,12 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             LayoutInflater inflater = LayoutInflater.from(mContext);
             ViewGroup layout = null;
 
-            switch (position) {
+            for (int i = 0; i < valueX; i++) {
+                layout = epubView(collection, layout, inflater);
+                collection.addView(layout);
+            }
+
+            /*switch (position) {
 
                 case 0:
                     if(value == 1) layout = epubView(collection,layout,inflater);
@@ -1070,7 +1036,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     break;
             }
 
-            collection.addView(layout);
+            collection.addView(layout);*/
             return layout;
         }
 
@@ -1081,7 +1047,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         @Override
         public int getCount() {
-            return 2;
+            return valueX;
         }
 
         @Override
@@ -1095,21 +1061,21 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
 //        startActivity(new Intent(getActivity(), PDFOpenActivity.class));
 
-                Intent target = new Intent(Intent.ACTION_VIEW);
-                Uri uri = FileProvider.getUriForFile(getActivity(),
-                        getActivity().getPackageName() + ".provider",
-                        file_pdf);
-                target.setDataAndType(uri,"application/pdf");
-                target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        Intent target = new Intent(Intent.ACTION_VIEW);
+        Uri uri = FileProvider.getUriForFile(getActivity(),
+                getActivity().getPackageName() + ".provider",
+                file_pdf);
+        target.setDataAndType(uri, "application/pdf");
+        target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-                Intent intent = Intent.createChooser(target, "Open File");
-                try {
-                    startActivity(intent);
-                } catch (Exception e) {
-                    // Instruct the user to install a PDF reader here, or something
-                    e.printStackTrace();
-                }
+        Intent intent = Intent.createChooser(target, "Open File");
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            // Instruct the user to install a PDF reader here, or something
+            e.printStackTrace();
+        }
     }
 
 }

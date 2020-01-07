@@ -121,7 +121,7 @@
                         android:layout_centerVertical="true"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:visibility="gone">
+                        android:visibility="visible">
 
                         <ImageView
                             android:id="@+id/ivLeftArrow"

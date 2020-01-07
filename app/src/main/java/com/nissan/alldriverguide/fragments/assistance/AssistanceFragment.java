@@ -608,16 +608,17 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             case 5:
                 frag = NissanAssistanceFragment.newInstance(pageTitle, url);
                 break;
-         /*   case 6:
-                if (dealerUrl!=null && dealerUrl.getUrl()!=null)
+            case 6:
+                if(NissanApp.getInstance().getCarListModel()!=null){
+//                    NissanApp.getInstance().getCarListModel().getOnlineBookingStatus()
+                }
+                /*if (dealerUrl!=null && dealerUrl.getUrl()!=null)
                 {
                     Intent openURL = new Intent(android.content.Intent.ACTION_VIEW);
                     openURL.setData(Uri.parse(dealerUrl.getUrl()));
                     startActivity(openURL);
-                }
-
+                }*/
                 break;
-*/
             default:
                 break;
         }
