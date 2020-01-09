@@ -468,21 +468,8 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
         if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
-
-
             carListArrayList = new ArrayList<>();
-
             carListArrayList = responseInfo.getCarList();
-
-
-            Log.e("Car list ", "new json " + responseInfo.toString());
-            for (CarList car : carListArrayList
-                 ) {
-                Log.e("Car list ", "new car " + car.getCarName());
-                Log.e("Car list ", "new car " + car.getOnlineBookingStatus());
-            }
-
-
             NissanApp.getInstance().setCarListWAP(carListArrayList);
             preferenceUtil.storeMultiLangData(carListArrayList, "en_" + Values.CAR_LIST_KEY + "_1");
             loadCarData();

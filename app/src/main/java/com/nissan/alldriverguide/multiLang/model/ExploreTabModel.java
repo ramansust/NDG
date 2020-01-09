@@ -20,6 +20,9 @@ public class ExploreTabModel {
     @SerializedName("video_list")
     @Expose
     private ArrayList<ExploreTabVideoModel> videoList = null;
+    @SerializedName("slide_items")
+    @Expose
+    private ArrayList<ExploretabSliderModel> mapImageList = null;
     @SerializedName("header_1x")
     @Expose
     private String header1x;
@@ -130,4 +133,11 @@ public class ExploreTabModel {
         this.message = message;
     }
 
+    public ArrayList<ExploretabSliderModel> getMapImageList() {
+        return mapImageList;
+    }
+
+    public void setMapImageList(ArrayList<ExploretabSliderModel> mapImageList) {
+        this.mapImageList = mapImageList;
+    }
 }

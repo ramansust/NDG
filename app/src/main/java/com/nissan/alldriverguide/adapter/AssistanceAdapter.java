@@ -74,10 +74,6 @@ public class AssistanceAdapter extends BaseAdapter {
         viewHolder.imageView.setBackgroundResource(position < carImage.length ? carImage[position] : R.drawable.tyre); // here set the car image
         viewHolder.txtViewTitle.setTypeface(tf); // set the font for car name or nissan assistance
         viewHolder.txtViewTitle.setText(carName[position]);
-        Log.e("Online Booking status " , " available  " + NissanApp.getInstance().getOnlineBookingStatus(Values.carType) + " cartype " + Values.carType);
-        if(NissanApp.getInstance().getOnlineBookingStatus(Values.carType) == 1){
-            // set the car name
-        }
 
 
         return convertView;

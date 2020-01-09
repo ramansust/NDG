@@ -33,6 +33,7 @@ import com.nissan.alldriverguide.model.VideoInfo;
 import com.nissan.alldriverguide.multiLang.model.AlertMessage;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.CarList;
+import com.nissan.alldriverguide.multiLang.model.ExploreTabSliderModel;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 import com.nissan.alldriverguide.multiLang.model.GlobalMessage;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
@@ -75,6 +76,7 @@ public class NissanApp {
     private List<LanguageList> carWiseLanguageList;
     private ArrayList<Object> carList = new ArrayList<>();
     private ArrayList<ExploreTabVideoModel> exploreVideoList;
+    private String exploreMapVideoUrl;
     private ArrayList<CarInfo> carAllList;
     private CarList carListModel;
 
@@ -185,10 +187,17 @@ public class NissanApp {
         this.exploreVideoList = exploreVideoList;
     }
 
+    public String getMapVideoUrl() {
+        return exploreMapVideoUrl;
+    }
+
+    public void setMapVideoUrl(String exploreMapVideoUrl) {
+        this.exploreMapVideoUrl = exploreMapVideoUrl;
+    }
+
     public void destroyInstance() {
         instance = null;
     }
-
 
     public int getWidth(Activity activity) {
         DisplayMetrics displaymetrics = new DisplayMetrics();
@@ -273,15 +282,13 @@ public class NissanApp {
             for (CarList obj : carLists) {
                 if (Integer.parseInt(obj.getId()) == car) {
                     NissanApp.getInstance().setCarListModel(obj);
-                    Log.e("Car Module" , "------ " + obj.getQrgModule());
                 }
 
             }
         }
     }
 
-    public int getQRGModule(int car) {
-        int cn = 0;
+    public int getSlideItems(int car) {
         List<CarList> carLists = NissanApp.getInstance().getCarListWAP();
         if (carLists == null || carLists.size() == 0) {
             Type type = new TypeToken<ArrayList<CarList>>() {
@@ -291,35 +298,12 @@ public class NissanApp {
         if (carLists != null && carLists.size() > 0) {
             for (CarList obj : carLists) {
                 if (Integer.parseInt(obj.getId()) == car) {
-                    Log.e("Qrg Module" , "------ " + obj.getQrgModule());
-                    cn = obj.getQrgModule();
+                    return obj.getExplorerMapStatus();
                 }
 
             }
         }
-
-        return cn;
-    }
-
-    public int getOnlineBookingStatus(int car) {
-        int cn = 0;
-        List<CarList> carLists = NissanApp.getInstance().getCarListWAP();
-        if (carLists == null || carLists.size() == 0) {
-            Type type = new TypeToken<ArrayList<CarList>>() {
-            }.getType();
-            carLists = new Gson().fromJson(new PreferenceUtil(MyApplication.getAppContext()).retrieveMultiLangData("en_" + Values.CAR_LIST_KEY + "_1"), type);
-        }
-        if (carLists != null && carLists.size() > 0) {
-            for (CarList obj : carLists) {
-                if (Integer.parseInt(obj.getId()) == car) {
-                    Log.e("Online Booking status " , "------ " + obj.getOnlineBookingStatus());
-                    cn = obj.getOnlineBookingStatus();
-                }
-
-            }
-        }
-
-        return cn;
+        return 0;
     }
 
     public CarList getCarListModel() {

@@ -172,5 +172,7 @@ public class Values {
     public static String tabSettings = "Settings";
     public static String tabSearchChildFragment = "tabSearchFragment";
     public static String keyWord = "";
+    public static String epubTypeExploreVideo = "video";
+    public static String epubTypeExploreEpub = "epub";
 
 }

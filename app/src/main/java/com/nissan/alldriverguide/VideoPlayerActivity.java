@@ -67,7 +67,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        if( savedInstanceState != null ) {
+        if (savedInstanceState != null) {
             position = savedInstanceState.getInt("position");
         }
 
@@ -151,7 +151,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
             txtViewLearnMoreAlways.setVisibility(View.VISIBLE);
         }
 
-        if (from_where.equals("map")){
+        if (from_where.equals("map")) {
             txtViewLearnMore.setVisibility(View.GONE);
             txtViewLearnMoreAlways.setVisibility(View.GONE);
         }
@@ -169,9 +169,16 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
      */
     private void startVideo() {
 
-        if(NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl()!=null){
-            Uri video = Uri.parse(NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl());
-            videoView.setVideoURI(video);
+        if (from_where.equals("map")) {
+            if (NissanApp.getInstance().getMapVideoUrl() != null && !NissanApp.getInstance().getMapVideoUrl().isEmpty()) {
+                Uri video = Uri.parse(NissanApp.getInstance().getMapVideoUrl());
+                videoView.setVideoURI(video);
+            }
+        } else {
+            if (NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl() != null) {
+                Uri video = Uri.parse(NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl());
+                videoView.setVideoURI(video);
+            }
         }
     }
 
@@ -250,7 +257,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
         super.onResume();
 
         if (executeOnResume) { // first time true when activity call on create
-            if(!videoView.isPlaying() && relativePopup.getVisibility() == View.INVISIBLE) {
+            if (!videoView.isPlaying() && relativePopup.getVisibility() == View.INVISIBLE) {
                 progressBar.setVisibility(View.VISIBLE);
             }
             try {
@@ -258,16 +265,18 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
                     videoView.seekTo(position);
                     videoView.start();
                 }
-            } catch (Exception e) { }
+            } catch (Exception e) {
+            }
         } else { // else working when back from another activity
-            if(!videoView.isPlaying() && relativePopup.getVisibility() == View.INVISIBLE) {
+            if (!videoView.isPlaying() && relativePopup.getVisibility() == View.INVISIBLE) {
                 progressBar.setVisibility(View.VISIBLE);
             }
             try {
                 if (videoView != null) {
                     videoView.seekTo(position);
                 }
-            } catch (Exception e) { }
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -301,7 +310,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if(videoView != null ) {
+        if (videoView != null) {
             position = videoView.getCurrentPosition();
             videoView.pause();
             outState.putInt("position", position);
@@ -311,7 +320,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        if( savedInstanceState != null ) {
+        if (savedInstanceState != null) {
             position = savedInstanceState.getInt("position");
         }
     }

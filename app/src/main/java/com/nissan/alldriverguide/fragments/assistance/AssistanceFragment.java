@@ -104,6 +104,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private AssistanceTabContentController controller;
 
     private String url;
+    private String bookingUrl = "";
     private DealerUrl dealerUrl;
 
     public static Fragment newInstance() {
@@ -153,9 +154,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             }
 
         }
-
-
-        NissanApp.getInstance().setCurrentCarModel(Values.carType);
 
         int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
         controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2");
@@ -255,6 +253,9 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         String loadtext = NissanApp.getInstance().getAlertMessage(getActivity(),preferenceUtil.getSelectedLang(),Values.LOAD_TEXT_TITLE);
         txtView_loadTxt.setText("" + (loadtext == null || loadtext.isEmpty() ? resources.getString(R.string.loading): loadtext));
         setAssistanceCarBackgroundImage();
+
+        //get current car model object
+        NissanApp.getInstance().setCurrentCarModel(Values.carType);
     }
 
     private void loadResource() {
@@ -579,18 +580,13 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 break;
 
             case 1:
-                if(NissanApp.getInstance().getCarListModel().getQrgModule()==1){
-                    Log.e("Qrg selected " , " car type --- " + Values.carType + " ----module " + NissanApp.getInstance().getQRGModule(Values.carType));
-                    frag = HomePageFragment.newInstance(pageTitle);
-                }else {
-                    Log.e("Qrg Not selected " , " car type --- " + Values.carType + " ----module2 " + NissanApp.getInstance().getQRGModule(Values.carType));
-                    frag = ListFragment.newInstance(pageTitle);
+                if(NissanApp.getInstance().getCarListModel() != null){
+                    if(NissanApp.getInstance().getCarListModel().getQrgModule()==1){
+                        frag = HomePageFragment.newInstance(pageTitle);
+                    }else {
+                        frag = ListFragment.newInstance(pageTitle);
+                    }
                 }
-                /*if (Values.carType == 14 || Values.carType == 17|| Values.carType == 18) {
-                    frag = HomePageFragment.newInstance(pageTitle);
-                } else {
-                    frag = ListFragment.newInstance(pageTitle);
-                }*/
                 break;
 
             case 2:
@@ -609,15 +605,17 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 frag = NissanAssistanceFragment.newInstance(pageTitle, url);
                 break;
             case 6:
-                if(NissanApp.getInstance().getCarListModel()!=null){
-//                    NissanApp.getInstance().getCarListModel().getOnlineBookingStatus()
+                if (!DetectConnection.checkInternetConnection(getActivity())) {
+                    showNoInternetDialogue("No Internet Connection. Please check your WIFI or cellular data network and try again.");
+                    return;
                 }
-                /*if (dealerUrl!=null && dealerUrl.getUrl()!=null)
-                {
-                    Intent openURL = new Intent(android.content.Intent.ACTION_VIEW);
-                    openURL.setData(Uri.parse(dealerUrl.getUrl()));
-                    startActivity(openURL);
-                }*/
+                if(NissanApp.getInstance().getCarListModel()!=null){
+                    if(NissanApp.getInstance().getCarListModel().getOnlineBookingStatus() == 1){
+                        if(!getOnlineUrl().isEmpty()){
+                            frag = OnlineBookingFragment.newInstance(pageTitle, getOnlineUrl());
+                        }
+                    }
+                }
                 break;
             default:
                 break;
@@ -630,6 +628,16 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             ft.addToBackStack(Values.tabAssistance);
             ft.commit();
         }
+    }
+
+    private String getOnlineUrl(){
+        if(assistanceInfo != null){
+            if(assistanceInfo.getData().size() == 7){
+                bookingUrl = assistanceInfo.getData().get(6).getBookingUrl();
+                return bookingUrl;
+            }
+        }
+        return bookingUrl;
     }
 
     private void dismissDialogue() {
