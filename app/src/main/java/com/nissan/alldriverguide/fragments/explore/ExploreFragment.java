@@ -111,6 +111,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private ImageView imageViewEpubBackground;
     private ImageButton infoImageButton;
     private ImageButton infoImageOldButton;
+    private TextView txtViewVideolistTitle;
     private TextView textViewNissanConnect, textViewUpdateYourMap, tvNissanDoorToDoor, tvSetUpGuide;
     private ProgressBar progressBar;
     private String sharedpref_key;
@@ -519,6 +520,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         btnBlindSpotAR = (RelativeLayout) view.findViewById(R.id.btn_blind_spot_ar);
         infoImageButton = (ImageButton) view.findViewById(R.id.info_explore);
         infoImageOldButton = (ImageButton) view.findViewById(R.id.info_explore_old);
+        //discover title text
+        txtViewVideolistTitle = (TextView) view.findViewById(R.id.videolist_title);
         rlMapView = (RelativeLayout) view.findViewById(R.id.rlMapView);
         gridView = (ScrollableGridView) view.findViewById(R.id.grid_view);
         gridView.setFocusable(false);
