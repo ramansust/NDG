@@ -39,7 +39,7 @@ public class CarListContentController implements Callback<CarListResponse> {
         if (response.isSuccessful()) {
             CarListResponse carListResponse = response.body();
 
-            Log.e("Car list ", "new json 1 " + new Gson().toJson(response.body()));
+            Log.e("Carlist ", "new json 1 " + new Gson().toJson(response.body()));
 
             if (carListResponse != null) {
                 if (this.listener != null) this.listener.onDownloaded(carListResponse);

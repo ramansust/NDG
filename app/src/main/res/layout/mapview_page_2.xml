@@ -24,7 +24,7 @@
             android:src="@drawable/micra_map_2_en"
             android:paddingLeft="@dimen/margin_back"
             android:paddingRight="@dimen/margin_back"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_marginTop="8dp" />
         <!-- <TextView
             android:id="@+id/tvNewNissanDoorToDoor"

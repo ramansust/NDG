@@ -78,7 +78,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private Context context;
     public Resources resources;
     private String[] assistanceArray;
-    private int[] assistanceImage = {R.drawable.warning_light, R.drawable.quick_reference, R.drawable.tyre, R.drawable.engine_compartment, R.drawable.warranty, R.drawable.selled};
+    private int[] assistanceImage = {R.drawable.warning_light, R.drawable.quick_reference, R.drawable.tyre, R.drawable.engine_compartment, R.drawable.warranty, R.drawable.selled,R.drawable.calendar};
     private View view;
     private TextView txtViewCarName;
     private TextView txtViewDriverGuide;
@@ -611,12 +611,13 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 }
                 if(NissanApp.getInstance().getCarListModel()!=null){
                     if(NissanApp.getInstance().getCarListModel().getOnlineBookingStatus() == 1){
-                        if(!getOnlineUrl().isEmpty()){
+                        if(getOnlineUrl() != null && !getOnlineUrl().isEmpty()){
+                            Log.e("Online Booking " , " " + getOnlineUrl());
                             frag = OnlineBookingFragment.newInstance(pageTitle, getOnlineUrl());
+                            break;
                         }
                     }
                 }
-                break;
             default:
                 break;
         }

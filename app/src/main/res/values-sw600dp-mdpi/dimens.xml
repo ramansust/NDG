@@ -3,6 +3,7 @@
     <dimen name="activity_horizontal_margin">30dp</dimen>
     <dimen name="activity_vertical_margin">20dp</dimen>
     <dimen name="height_size">70dp</dimen>
+    <dimen name="margin_80_dp">100dp</dimen>
     <dimen name="margin_left">15dp</dimen>
     <dimen name="margin_bottom">20dp</dimen>
     <dimen name="margin_bottom_updated">50dp</dimen>

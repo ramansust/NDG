@@ -1,6 +1,7 @@
 package com.nissan.alldriverguide.fragments.assistance;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,14 +9,17 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
+import com.nissan.alldriverguide.utils.Logger;
 
 public class OnlineBookingFragment extends Fragment {
 
     private WebView webView;
     private LinearLayout linearBack;
+    private TextView txtViewTitle;
     private static final String TITLE = "title";
     private static final String IMG_URL = "img_url";
     private View view;
@@ -41,10 +45,12 @@ public class OnlineBookingFragment extends Fragment {
     }
 
     private void webViewInstantiate() {
+
+        txtViewTitle.setText(getArguments().getString(TITLE));
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new MyWebViewClient());
 
-        webView.loadUrl(IMG_URL);
+        webView.loadUrl(getArguments().getString(IMG_URL));
         webView.requestFocus();
     }
 
@@ -60,6 +66,7 @@ public class OnlineBookingFragment extends Fragment {
     private void initView() {
         webView = (WebView) view.findViewById(R.id.webView_online_booking);
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
+        txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
     }
 
     private class MyWebViewClient extends WebViewClient {
@@ -68,5 +75,15 @@ public class OnlineBookingFragment extends Fragment {
             view.loadUrl(url);
             return true;
         }
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }

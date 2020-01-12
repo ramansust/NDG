@@ -109,14 +109,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             tvAugmentedRealityOldCar, tvExploreYourCarOldCar, tvDiscoverYourVehicle, simple_drawee_view_explore, simple_drawee_view_ar;
     private ImageView imageViewEpubHeader;
     private ImageView imageViewEpubBackground;
-    private ImageButton infoImageButton;
-    private ImageButton infoImageOldButton;
+    private RelativeLayout infoImageButton;
+    private ImageButton infoImageBtn;
+    private RelativeLayout infoImageOldButton;
+    private ImageButton infoImageOldBtn;
     private TextView txtViewVideolistTitle;
     private TextView textViewNissanConnect, textViewUpdateYourMap, tvNissanDoorToDoor, tvSetUpGuide;
     private ProgressBar progressBar;
     private String sharedpref_key;
     private ArrayList<ExploreTabVideoModel> videoList = null;
-    private ArrayList<ExploretabSliderModel> sliderModelArrayList = null;
+    private ArrayList<ExploretabSliderModel> sliderModelArrayList;
     private String header_text;
     private String front_image_url;
     private String back_image_url;
@@ -251,27 +253,27 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         if (device_density.equalsIgnoreCase("xxxhdpi")) {
             front_image_url = frontImg.getFrontThumbXxxhdpi();
             back_image_url = exploreTabSliderModel.getBackThumbXxxhdpi();
-            Logger.error(TAG, "check_density: xxxhdpi");
+            Logger.error(TAG, "Front check_density: xxxhdpi" + " " + device_density);
         } else if (device_density.equalsIgnoreCase("xxhdpi")) {
             front_image_url = frontImg.getFrontThumbXxhdpi();
             back_image_url = exploreTabSliderModel.getBackThumbXxhdpi();
-            Logger.error(TAG, "check_density: xxhdpi");
+            Logger.error(TAG, "Front check_density: xxhdpi" + " " + device_density);
         } else if (device_density.equalsIgnoreCase("xhdpi")) {
             front_image_url = frontImg.getFrontThumbXhdpi();
             back_image_url = exploreTabSliderModel.getBackThumbXhdpi();
-            Logger.error(TAG, "check_density: xhdpi ");
+            Logger.error(TAG, "Front check_density: xhdpi " + " " + device_density);
         } else if (device_density.equalsIgnoreCase("hdpi")) {
             front_image_url = frontImg.getFrontThumbHdpi();
             back_image_url = exploreTabSliderModel.getBackThumbHdpi();
-            Logger.error(TAG, "check_density: hdpi");
+            Logger.error(TAG, "Front check_density: hdpi" + " " + device_density);
         } else if (device_density.equalsIgnoreCase("ldpi")) {
             front_image_url = frontImg.getFrontThumbLdpi();
             back_image_url = exploreTabSliderModel.getBackThumbLdpi();
-            Logger.error(TAG, "check_density: ldpi");
+            Logger.error(TAG, "Front check_density: ldpi" + " " + device_density);
         } else {
             front_image_url = frontImg.getFrontThumbXhdpi();
             back_image_url = exploreTabSliderModel.getBackThumbXhdpi();
-            Logger.error(TAG, "check_density: else");
+            Logger.error(TAG, "Front check_density: else" + " " + device_density);
         }
     }
 
@@ -296,8 +298,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             loadData();
 
             //set pager data
-            viewPager.setAdapter(new MyPagerAdapter());
-            viewPager.disableScroll(false);
+            /*viewPager.setAdapter(new MyPagerAdapter());
+            viewPager.disableScroll(false);*/
 
         }
 
@@ -450,11 +452,13 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         });
 
         //Dynamic load Map & Epub View
-        if(exploreSlidedItems > 0){
+        /*if(exploreSlidedItems > 0){
             rlMapView.setVisibility(View.VISIBLE);
         }else{
             rlMapView.setVisibility(View.GONE);
-        }
+        }*/
+
+        rlMapView.setVisibility(View.GONE);
     }
 
    /* private void setTextToViews(TextView textView, String text, int backgroundColor) {
@@ -482,6 +486,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         viewPager.addOnPageChangeListener(this);
         infoImageButton.setOnClickListener(this);
         infoImageOldButton.setOnClickListener(this);
+        infoImageOldBtn.setOnClickListener(this);
+        infoImageBtn.setOnClickListener(this);
 //        mapView.setOnClickListener(this);
     }
 
@@ -518,8 +524,10 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         btnAR = (Button) view.findViewById(R.id.btn_ar);
         btnBlindSpotAR = (RelativeLayout) view.findViewById(R.id.btn_blind_spot_ar);
-        infoImageButton = (ImageButton) view.findViewById(R.id.info_explore);
-        infoImageOldButton = (ImageButton) view.findViewById(R.id.info_explore_old);
+        infoImageButton = (RelativeLayout) view.findViewById(R.id.layout_info);
+        infoImageOldButton = (RelativeLayout) view.findViewById(R.id.layout_info_old);
+        infoImageOldBtn = (ImageButton) view.findViewById(R.id.info_explore_old);
+        infoImageBtn = (ImageButton) view.findViewById(R.id.info_explore);
         //discover title text
         txtViewVideolistTitle = (TextView) view.findViewById(R.id.videolist_title);
         rlMapView = (RelativeLayout) view.findViewById(R.id.rlMapView);
@@ -593,6 +601,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 // here start the ImageTargetActivity class for AR
                 break;
 
+            case R.id.layout_info_old:
+            case R.id.layout_info:
             case R.id.info_explore_old:
             case R.id.info_explore:
                 Values.ePubType = Values.INFO_TYPE;
@@ -848,7 +858,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     public void onPageScrollStateChanged(int state) {
     }
 
-    public ViewGroup epubView(ViewGroup collection, ViewGroup layout, LayoutInflater inflater,final ExploretabSliderModel exploretabSliderModel) {
+    public ViewGroup epubView(ViewGroup collection, ViewGroup layout, LayoutInflater inflater, final ExploretabSliderModel exploretabSliderModel) {
 
         layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_1,
                 collection, false);
@@ -862,7 +872,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         mapView = (LinearLayout) layout.findViewById(R.id.map_view);
 
 
-        setFrontImageExploreMiddleTab(exploretabSliderModel,exploretabSliderModel.getFrontImg());
+        setFrontImageExploreMiddleTab(exploretabSliderModel, exploretabSliderModel.getFrontImg());
 
         final ViewGroup finalLayout = layout;
         Glide.with(this).asBitmap().load(front_image_url).into(new SimpleTarget<Bitmap>() {
@@ -957,7 +967,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         Logger.error("short_code", "______" + preferenceUtil.getSelectedLang());
 //                    int drawable = mContext.getResources().getIdentifier("micra_map_2_" + preferenceUtil.getSelectedLang().toLowerCase(), "drawable", getActivity().getPackageName());
 
-        setFrontImageExploreMiddleTab(exploretabSliderModel,exploretabSliderModel.getFrontImg());
+        setFrontImageExploreMiddleTab(exploretabSliderModel, exploretabSliderModel.getFrontImg());
 
         final ViewGroup finalLayout = layout;
         Glide.with(this).asBitmap().load(front_image_url).into(new SimpleTarget<Bitmap>() {
@@ -1050,6 +1060,20 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
             LayoutInflater inflater = LayoutInflater.from(mContext);
 
+            Logger.error("Explore Fragment Slider ", " " + position + sliderModelArrayList.size());
+
+            layout = null;
+            if(sliderModelArrayList != null){
+                if(sliderModelArrayList.size() > 0) {
+                    if (sliderModelArrayList.get(position).getType() != null && !sliderModelArrayList.get(position).getType().isEmpty()) {
+                        if (sliderModelArrayList.get(position).getType().equalsIgnoreCase(Values.epubTypeExploreVideo)) {
+                            layout = mapView(collection, layout, inflater, sliderModelArrayList.get(position));
+                        } else
+                            layout = epubView(collection, layout, inflater, sliderModelArrayList.get(position));
+                    }
+                }
+            }
+
             /*for(int j = 0 ; j < sliderModelArrayList.size() ; j++){
                 layout = null;
                if(sliderModelArrayList.get(j).getType().equalsIgnoreCase(Values.epubTypeExploreVideo)){
@@ -1062,7 +1086,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 collection.addView(layout);
             }*/
 
-            switch (position) {
+            /*switch (position) {
 
                 case 0:
                     if(sliderModelArrayList.get(0).getType().equalsIgnoreCase(Values.epubTypeExploreVideo)) {
@@ -1084,7 +1108,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     }else layout = epubView(collection, layout, inflater,sliderModelArrayList.get(2));
                     Logger.error("Video data " , " 3 " +Values.epubTypeExploreVideo );
                     break;
-            }
+            }*/
 
             collection.addView(layout);
             return layout;
