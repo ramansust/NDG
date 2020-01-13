@@ -41,17 +41,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.downloader.Error;
-import com.downloader.OnCancelListener;
-import com.downloader.OnDownloadListener;
-import com.downloader.OnPauseListener;
-import com.downloader.OnProgressListener;
-import com.downloader.OnStartOrResumeListener;
-import com.downloader.PRDownloader;
-import com.downloader.PRDownloaderConfig;
-import com.downloader.Progress;
-import com.facebook.common.util.UriUtil;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -66,18 +55,15 @@ import com.nissan.alldriverguide.VideoPlayerActivity;
 import com.nissan.alldriverguide.adapter.GridViewAdapter;
 import com.nissan.alldriverguide.controller.ExploreTabContentController;
 import com.nissan.alldriverguide.customviews.DialogController;
-import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.assistance.DetailsFragment;
 import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
-import com.nissan.alldriverguide.multiLang.model.ExploreTabSliderModel;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 import com.nissan.alldriverguide.multiLang.model.ExploretabSliderModel;
 import com.nissan.alldriverguide.multiLang.model.FrontImg;
 import com.nissan.alldriverguide.utils.CustomViewPager;
-import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 import com.nissan.alldriverguide.view.ScrollableGridView;
@@ -148,7 +134,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     public static Fragment newInstance() {
         return new ExploreFragment();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -230,22 +215,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     public void check_density() {
         if (device_density.equalsIgnoreCase("xxxhdpi")) {
             header_text = exploreModel.getHeaderXxxhdpi();
-            Logger.error(TAG, "check_density: xxxhdpi");
         } else if (device_density.equalsIgnoreCase("xxhdpi")) {
             header_text = exploreModel.getHeaderXxhdpi();
-            Logger.error(TAG, "check_density: xxhdpi");
         } else if (device_density.equalsIgnoreCase("xhdpi")) {
             header_text = exploreModel.getHeaderXhdpi();
-            Logger.error(TAG, "check_density: xhdpi " + header_text);
         } else if (device_density.equalsIgnoreCase("hdpi")) {
             header_text = exploreModel.getHeaderHdpi();
-            Logger.error(TAG, "check_density: hdpi");
         } else if (device_density.equalsIgnoreCase("ldpi")) {
             header_text = exploreModel.getHeaderLdpi();
-            Logger.error(TAG, "check_density: ldpi");
         } else {
             header_text = exploreModel.getHeaderXhdpi();
-            Logger.error(TAG, "check_density: else");
         }
     }
 
@@ -253,27 +232,21 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         if (device_density.equalsIgnoreCase("xxxhdpi")) {
             front_image_url = frontImg.getFrontThumbXxxhdpi();
             back_image_url = exploreTabSliderModel.getBackThumbXxxhdpi();
-            Logger.error(TAG, "Front check_density: xxxhdpi" + " " + device_density);
         } else if (device_density.equalsIgnoreCase("xxhdpi")) {
             front_image_url = frontImg.getFrontThumbXxhdpi();
             back_image_url = exploreTabSliderModel.getBackThumbXxhdpi();
-            Logger.error(TAG, "Front check_density: xxhdpi" + " " + device_density);
         } else if (device_density.equalsIgnoreCase("xhdpi")) {
             front_image_url = frontImg.getFrontThumbXhdpi();
             back_image_url = exploreTabSliderModel.getBackThumbXhdpi();
-            Logger.error(TAG, "Front check_density: xhdpi " + " " + device_density);
         } else if (device_density.equalsIgnoreCase("hdpi")) {
             front_image_url = frontImg.getFrontThumbHdpi();
             back_image_url = exploreTabSliderModel.getBackThumbHdpi();
-            Logger.error(TAG, "Front check_density: hdpi" + " " + device_density);
         } else if (device_density.equalsIgnoreCase("ldpi")) {
             front_image_url = frontImg.getFrontThumbLdpi();
             back_image_url = exploreTabSliderModel.getBackThumbLdpi();
-            Logger.error(TAG, "Front check_density: ldpi" + " " + device_density);
         } else {
             front_image_url = frontImg.getFrontThumbXhdpi();
             back_image_url = exploreTabSliderModel.getBackThumbXhdpi();
-            Logger.error(TAG, "Front check_density: else" + " " + device_density);
         }
     }
 
@@ -298,8 +271,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             loadData();
 
             //set pager data
-            /*viewPager.setAdapter(new MyPagerAdapter());
-            viewPager.disableScroll(false);*/
+            viewPager.setAdapter(new MyPagerAdapter());
+            viewPager.disableScroll(false);
 
         }
 
@@ -345,8 +318,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
             if (header_text != null) {
 
-                Logger.error("header_text", "_________" + header_text + " " + Values.carType);
-
                 check_density();
 
                /* String augmentedRealityText = NissanApp.getInstance().getAlertMessage(mContext,new PreferenceUtil(getActivity()).getSelectedLang(), Values.AUGMENTED_REALITY);
@@ -367,8 +338,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 });
 
-
-
 /*
                 Glide.with(this).load(header_text).asBitmap().into(new SimpleTarget<Bitmap>() {
                     @Override
@@ -381,7 +350,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 });
 */
-
 
                 Collections.sort(videoList, new Comparator<ExploreTabVideoModel>() {
                     @Override
@@ -452,13 +420,11 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         });
 
         //Dynamic load Map & Epub View
-        /*if(exploreSlidedItems > 0){
+        if (exploreSlidedItems > 0) {
             rlMapView.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             rlMapView.setVisibility(View.GONE);
-        }*/
-
-        rlMapView.setVisibility(View.GONE);
+        }
     }
 
    /* private void setTextToViews(TextView textView, String text, int backgroundColor) {
@@ -639,8 +605,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 ft.commit();
                 break;
 */
-
-
             default:
                 break;
         }
@@ -835,13 +799,10 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         if (position == 0) {
             if (position == tempPosition) arrowVisibleEnable(View.GONE, View.GONE);
             else arrowVisibleEnable(View.GONE, View.VISIBLE);
-//            Log.e(" On page scroll ", " ---- " + position + " ---- " + tempPosition);
         } else if (position > 0) {
             if (position < tempPosition) {
-//                Log.e(" On page2 scroll ", " ---- " + position + " ---- " + tempPosition);
                 arrowVisibleEnable(View.VISIBLE, View.VISIBLE);
             } else if (position == tempPosition) {
-//                Log.e(" On page3 scroll ", " ---- " + position + " ---- " + tempPosition);
                 arrowVisibleEnable(View.VISIBLE, View.GONE);
             }
         }
@@ -871,50 +832,37 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     textViewUpdateYourMap.setTypeface(typefaceBold);*/
         mapView = (LinearLayout) layout.findViewById(R.id.map_view);
 
-
         setFrontImageExploreMiddleTab(exploretabSliderModel, exploretabSliderModel.getFrontImg());
 
         final ViewGroup finalLayout = layout;
-        Glide.with(this).asBitmap().load(front_image_url).into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+
+        if (front_image_url != null) {
+            Glide.with(this).asBitmap().load(front_image_url).into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 //                    simple_drawee_view_explore.setBackground(drawable);
-                    ((ImageView) finalLayout.findViewById(R.id.txt_map)).setBackground(drawable);
+                        ((ImageView) finalLayout.findViewById(R.id.txt_map)).setBackground(drawable);
+                    }
                 }
-            }
 
-        });
+            });
+        }
 
-        Glide.with(this).asBitmap().load(back_image_url).into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+        if (back_image_url != null) {
+            Glide.with(this).asBitmap().load(back_image_url).into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 //                    simple_drawee_view_explore.setBackground(drawable);
-                    ((ImageView) finalLayout.findViewById(R.id.drawee_view_map_1)).setBackground(drawable);
+                        ((ImageView) finalLayout.findViewById(R.id.drawee_view_map_1)).setBackground(drawable);
+                    }
                 }
-            }
 
-        });
-
-
-        /*if (Values.carType == 12) {
-            Uri uri = new Uri.Builder()
-                    .scheme(UriUtil.LOCAL_RESOURCE_SCHEME) // "res"
-                    .path(String.valueOf(R.drawable.map_new))
-                    .build();
-            ((SimpleDraweeView) layout.findViewById(R.id.drawee_view_map_1)).setImageURI(uri);
-        }*/
-
-                   /* String nissanConnectText = NissanApp.getInstance().getAlertMessage(mContext,new PreferenceUtil(getActivity()).getSelectedLang(), Values.MAP_NISSAN_CONNECT);
-                    String updateYourMapText = NissanApp.getInstance().getAlertMessage(mContext,new PreferenceUtil(getActivity()).getSelectedLang(), Values.MAP_UPDATE_YOUR_MAP);
-
-                    setTextToViews(textViewNissanConnect, nissanConnectText == null || nissanConnectText.isEmpty() ? resources.getString(R.string.new_nissan_connect) : nissanConnectText, R.color.white);
-                    setTextToViews(textViewUpdateYourMap, updateYourMapText == null || updateYourMapText.isEmpty() ? resources.getString(R.string.update_your_map) : updateYourMapText, R.color.black);*/
-
-        //mapTextImage(new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang());
+            });
+        }
 
         mapView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -923,7 +871,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
                 }
 
-                Values.ePubType = exploretabSliderModel.getEpubType();
 //                Values.ePubType = Values.HOMEPAGE_TYPE;
 
                 if (list == null || list.size() == 0)
@@ -942,7 +889,11 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     epubIndex = 52;
                 }*/
 
-                int epubIndex = exploretabSliderModel.getEpubTag();
+                int epubIndex = 0;
+                if (exploretabSliderModel != null) {
+                    Values.ePubType = exploretabSliderModel.getEpubType();
+                    epubIndex = exploretabSliderModel.getEpubTag();
+                }
 
                 Fragment frag = DetailsFragment.newInstance(list.get(epubIndex).getIndex(), resources.getString(R.string.updating_map_data));
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
@@ -959,40 +910,39 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     //layout for map layout for explore slider part
     public ViewGroup mapView(ViewGroup collection, ViewGroup layout, LayoutInflater inflater, final ExploretabSliderModel exploretabSliderModel) {
 
-        layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_2,
-                collection, false);
-
-//                    textViewMap2 = (ImageView) layout.findViewById(R.id.txt_map);
-
-        Logger.error("short_code", "______" + preferenceUtil.getSelectedLang());
-//                    int drawable = mContext.getResources().getIdentifier("micra_map_2_" + preferenceUtil.getSelectedLang().toLowerCase(), "drawable", getActivity().getPackageName());
+        layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_2, collection, false);
 
         setFrontImageExploreMiddleTab(exploretabSliderModel, exploretabSliderModel.getFrontImg());
 
         final ViewGroup finalLayout = layout;
-        Glide.with(this).asBitmap().load(front_image_url).into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+
+        if (front_image_url != null) {
+            Glide.with(this).asBitmap().load(front_image_url).into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 //                    simple_drawee_view_explore.setBackground(drawable);
-                    ((ImageView) finalLayout.findViewById(R.id.drawee_view_map_2)).setBackground(drawable);
+                        ((ImageView) finalLayout.findViewById(R.id.drawee_view_map_2)).setBackground(drawable);
+                    }
                 }
-            }
 
-        });
+            });
+        }
 
-        Glide.with(this).asBitmap().load(back_image_url).into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+        if (back_image_url != null) {
+            Glide.with(this).asBitmap().load(back_image_url).into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 //                    simple_drawee_view_explore.setBackground(drawable);
-                    ((ImageView) finalLayout.findViewById(R.id.ivMap)).setBackground(drawable);
+                        ((ImageView) finalLayout.findViewById(R.id.ivMap)).setBackground(drawable);
+                    }
                 }
-            }
 
-        });
+            });
+        }
 
         //int drawable = mContext.getResources().getIdentifier("micra_map_2_" + preferenceUtil.getSelectedLang().toLowerCase(), "drawable", getActivity().getPackageName());
         //((ImageView) layout.findViewById(R.id.drawee_view_map_2)).setImageResource(drawable);
@@ -1059,12 +1009,10 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         public Object instantiateItem(ViewGroup collection, int position) {
 
             LayoutInflater inflater = LayoutInflater.from(mContext);
-
-            Logger.error("Explore Fragment Slider ", " " + position + sliderModelArrayList.size());
-
             layout = null;
-            if(sliderModelArrayList != null){
-                if(sliderModelArrayList.size() > 0) {
+
+            if (sliderModelArrayList != null) {
+                if (sliderModelArrayList.size() > 0) {
                     if (sliderModelArrayList.get(position).getType() != null && !sliderModelArrayList.get(position).getType().isEmpty()) {
                         if (sliderModelArrayList.get(position).getType().equalsIgnoreCase(Values.epubTypeExploreVideo)) {
                             layout = mapView(collection, layout, inflater, sliderModelArrayList.get(position));
@@ -1073,42 +1021,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     }
                 }
             }
-
-            /*for(int j = 0 ; j < sliderModelArrayList.size() ; j++){
-                layout = null;
-               if(sliderModelArrayList.get(j).getType().equalsIgnoreCase(Values.epubTypeExploreVideo)){
-                   layout = mapView(collection, layout, inflater,sliderModelArrayList.get(j));
-                   Logger.error("Video data " , " 1 " +Values.epubTypeExploreVideo );
-               }else if(sliderModelArrayList.get(j).getType().equalsIgnoreCase(Values.epubTypeExploreEpub)){
-                   layout = epubView(collection, layout, inflater,sliderModelArrayList.get(j));
-                   Logger.error("Video data " , " 2 " +Values.epubTypeExploreEpub );
-               }
-                collection.addView(layout);
-            }*/
-
-            /*switch (position) {
-
-                case 0:
-                    if(sliderModelArrayList.get(0).getType().equalsIgnoreCase(Values.epubTypeExploreVideo)) {
-                        layout = mapView(collection, layout, inflater,sliderModelArrayList.get(0));
-                    }else layout = epubView(collection, layout, inflater,sliderModelArrayList.get(0));
-                    Logger.error("Video data " , " 1 " +Values.epubTypeExploreVideo );
-                    break;
-
-                case 1:
-                    if(sliderModelArrayList.get(1).getType().equalsIgnoreCase(Values.epubTypeExploreVideo)) {
-                        layout = mapView(collection, layout, inflater,sliderModelArrayList.get(1));
-                    }else layout = epubView(collection, layout, inflater,sliderModelArrayList.get(1));
-                    Logger.error("Video data " , " 2 " +Values.epubTypeExploreVideo );
-                    break;
-
-                case 2:
-                    if(sliderModelArrayList.get(2).getType().equalsIgnoreCase(Values.epubTypeExploreVideo)) {
-                        layout = mapView(collection, layout, inflater,sliderModelArrayList.get(2));
-                    }else layout = epubView(collection, layout, inflater,sliderModelArrayList.get(2));
-                    Logger.error("Video data " , " 3 " +Values.epubTypeExploreVideo );
-                    break;
-            }*/
 
             collection.addView(layout);
             return layout;

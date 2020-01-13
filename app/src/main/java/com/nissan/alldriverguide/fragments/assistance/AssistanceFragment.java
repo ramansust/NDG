@@ -3,7 +3,6 @@ package com.nissan.alldriverguide.fragments.assistance;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
@@ -16,7 +15,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +26,6 @@ import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.controller.BaseControllerListener;
-import com.facebook.drawee.controller.ControllerListener;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.image.ImageInfo;
@@ -54,21 +51,14 @@ import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.Datum;
 import com.nissan.alldriverguide.retrofit.ApiCall;
-import com.nissan.alldriverguide.retrofit.ApiService;
-import com.nissan.alldriverguide.retrofit.RetrofitClient;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.DialogErrorFragment;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.SingleContentUpdating;
 import com.nissan.alldriverguide.utils.Values;
-import com.vuforia.VIEW;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
@@ -78,7 +68,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private Context context;
     public Resources resources;
     private String[] assistanceArray;
-    private int[] assistanceImage = {R.drawable.warning_light, R.drawable.quick_reference, R.drawable.tyre, R.drawable.engine_compartment, R.drawable.warranty, R.drawable.selled,R.drawable.calendar};
+    private int[] assistanceImage = {R.drawable.warning_light, R.drawable.quick_reference, R.drawable.tyre, R.drawable.engine_compartment, R.drawable.warranty, R.drawable.selled, R.drawable.calendar};
     private View view;
     private TextView txtViewCarName;
     private TextView txtViewDriverGuide;
@@ -87,7 +77,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private TextView txt_title;
 
     private ProgressBar progressBar;
-    private TextView tvNoContent,txtView_loadTxt;
+    private TextView tvNoContent, txtView_loadTxt;
 
     private AssistanceAdapter adapter;
     private DisplayMetrics metrics;
@@ -131,7 +121,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         sharedpref_key = Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
         assistanceInfo = preferenceUtil.retrieveAssistanceData(sharedpref_key);
 
-        Logger.error("Alert msg" , "---- "  + NissanApp.getInstance().getAlertMessage(getActivity(),preferenceUtil.getSelectedLang(),Values.LOAD_TEXT_TITLE));
+        Logger.error("Alert msg", "---- " + NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.LOAD_TEXT_TITLE));
 
         if (assistanceInfo != null && assistanceInfo.getData() != null && assistanceInfo.getData().size() > 0) {
             progressBar.setVisibility(View.GONE);
@@ -250,8 +240,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         txtViewCarName.setBackgroundResource(R.color.black);
 
 
-        String loadtext = NissanApp.getInstance().getAlertMessage(getActivity(),preferenceUtil.getSelectedLang(),Values.LOAD_TEXT_TITLE);
-        txtView_loadTxt.setText("" + (loadtext == null || loadtext.isEmpty() ? resources.getString(R.string.loading): loadtext));
+        String loadtext = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.LOAD_TEXT_TITLE);
+        txtView_loadTxt.setText("" + (loadtext == null || loadtext.isEmpty() ? resources.getString(R.string.loading) : loadtext));
         setAssistanceCarBackgroundImage();
 
         //get current car model object
@@ -291,7 +281,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 .build();
         imageView.setController(controller);
         //imageView.setImageURI(url);
-        Logger.error(TAG,url);
+        Logger.error(TAG, url);
     }
 
     private String getURLAccordingToDensity(String device_density) {
@@ -306,7 +296,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
             return assistanceInfo.getAssistanceImages().getAssistanceImgHdpi();
         } else if (device_density.equalsIgnoreCase("ldpi")) {
             return assistanceInfo.getAssistanceImages().getAssistanceImgLdpi();
-        } else if(device_density.equalsIgnoreCase("mdpi"))
+        } else if (device_density.equalsIgnoreCase("mdpi"))
             return assistanceInfo.getAssistanceImages().getAssistanceImgHdpi();
 
         return "";
@@ -580,10 +570,10 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 break;
 
             case 1:
-                if(NissanApp.getInstance().getCarListModel() != null){
-                    if(NissanApp.getInstance().getCarListModel().getQrgModule()==1){
+                if (NissanApp.getInstance().getCarListModel() != null) {
+                    if (NissanApp.getInstance().getCarListModel().getQrgModule() == 1) {
                         frag = HomePageFragment.newInstance(pageTitle);
-                    }else {
+                    } else {
                         frag = ListFragment.newInstance(pageTitle);
                     }
                 }
@@ -609,14 +599,9 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                     showNoInternetDialogue("No Internet Connection. Please check your WIFI or cellular data network and try again.");
                     return;
                 }
-                if(NissanApp.getInstance().getCarListModel()!=null){
-                    if(NissanApp.getInstance().getCarListModel().getOnlineBookingStatus() == 1){
-                        if(getOnlineUrl() != null && !getOnlineUrl().isEmpty()){
-                            Log.e("Online Booking " , " " + getOnlineUrl());
-                            frag = OnlineBookingFragment.newInstance(pageTitle, getOnlineUrl());
-                            break;
-                        }
-                    }
+                if (getOnlineUrl() != null && !getOnlineUrl().isEmpty()) {
+                    frag = OnlineBookingFragment.newInstance(pageTitle, getOnlineUrl());
+                    break;
                 }
             default:
                 break;
@@ -631,9 +616,9 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         }
     }
 
-    private String getOnlineUrl(){
-        if(assistanceInfo != null){
-            if(assistanceInfo.getData().size() == 7){
+    private String getOnlineUrl() {
+        if (assistanceInfo != null) {
+            if (assistanceInfo.getData().size() == 7) {
                 bookingUrl = assistanceInfo.getData().get(6).getBookingUrl();
                 return bookingUrl;
             }

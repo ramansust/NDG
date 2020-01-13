@@ -33,7 +33,6 @@ import com.nissan.alldriverguide.model.VideoInfo;
 import com.nissan.alldriverguide.multiLang.model.AlertMessage;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.CarList;
-import com.nissan.alldriverguide.multiLang.model.ExploreTabSliderModel;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 import com.nissan.alldriverguide.multiLang.model.GlobalMessage;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
@@ -706,7 +705,7 @@ public class NissanApp {
                 break;
 
             case 12:
-                Log.e("Language Url " , " car id 12 " + UrlLinks.QASHQAI_2017_EN);
+                Log.e("Language Url ", " car id 12 " + UrlLinks.QASHQAI_2017_EN);
                 if (lang.contains("en")) {
                     url = UrlLinks.QASHQAI_2017_EN;
                 } else if (lang.contains("de")) {
@@ -802,7 +801,7 @@ public class NissanApp {
                 break;
 
             case 17:
-                Log.e("Language Url " , " car id 17 " + UrlLinks.LEAF_2019_EN);
+                Log.e("Language Url ", " car id 17 " + UrlLinks.LEAF_2019_EN);
                 if (lang.contains("en")) {
                     url = UrlLinks.LEAF_2019_EN;
                 } else {
@@ -1109,7 +1108,7 @@ public class NissanApp {
                 break;
 
             case 12:
-                Log.e("Asset Url " , " car id 12 " + UrlLinks.QASHQAI_2017_LINK);
+                Log.e("Asset Url ", " car id 12 " + UrlLinks.QASHQAI_2017_LINK);
                 assetsPath = UrlLinks.QASHQAI_2017_LINK;
                 break;
 
@@ -1126,7 +1125,7 @@ public class NissanApp {
                 break;
 
             case 17:
-                Log.e("Asset Url " , " car id 17 " + UrlLinks.LEAF_2019_LINK);
+                Log.e("Asset Url ", " car id 17 " + UrlLinks.LEAF_2019_LINK);
                 assetsPath = UrlLinks.LEAF_2019_LINK;
                 break;
 

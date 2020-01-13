@@ -13,46 +13,45 @@
             android:id="@+id/drawee_view_map_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/map" />
+            android:scaleType="fitXY" />
 
-      <!--  <TextView
-            android:id="@+id/tvNewNissanConnect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginStart="@dimen/margin_left"
-            android:layout_marginEnd="@dimen/margin_left"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/margin_back"
-            android:paddingRight="@dimen/margin_back"
-            android:textSize="16sp"
-            android:textAllCaps="true"
-            android:textColor="@color/orange" />
+        <!--  <TextView
+              android:id="@+id/tvNewNissanConnect"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="@dimen/margin_left"
+              android:layout_marginStart="@dimen/margin_left"
+              android:layout_marginEnd="@dimen/margin_left"
+              android:layout_marginTop="@dimen/activity_vertical_margin"
+              android:paddingLeft="@dimen/margin_back"
+              android:paddingRight="@dimen/margin_back"
+              android:textSize="16sp"
+              android:textAllCaps="true"
+              android:textColor="@color/orange" />
 
-        <TextView
-            android:id="@+id/tvUpdateYourMap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_left"
-            android:layout_marginStart="@dimen/margin_left"
-            android:layout_marginEnd="@dimen/margin_left"
-            android:paddingLeft="@dimen/margin_back"
-            android:paddingRight="@dimen/margin_back"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:textAllCaps="true"
-            android:layout_below="@id/tvNewNissanConnect"/>-->
+          <TextView
+              android:id="@+id/tvUpdateYourMap"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="@dimen/margin_left"
+              android:layout_marginStart="@dimen/margin_left"
+              android:layout_marginEnd="@dimen/margin_left"
+              android:paddingLeft="@dimen/margin_back"
+              android:paddingRight="@dimen/margin_back"
+              android:textSize="20sp"
+              android:textColor="@color/white"
+              android:textAllCaps="true"
+              android:layout_below="@id/tvNewNissanConnect"/>-->
         <ImageView
             android:id="@+id/txt_map"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_left"
             android:layout_marginStart="@dimen/margin_left"
+            android:layout_marginLeft="@dimen/margin_left"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/margin_back"
             android:paddingRight="@dimen/margin_back"
-            android:visibility="visible"
-            android:background="@drawable/micra_map_en" />
+            android:visibility="visible" />
 
     </RelativeLayout>
 
