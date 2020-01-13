@@ -266,6 +266,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             sliderModelArrayList = exploreModel.getMapImageList();
             NissanApp.getInstance().setExploreVideoList(videoList);
 
+            if (sliderModelArrayList != null) exploreSlidedItems = sliderModelArrayList.size();
+
             //get current car model object
             NissanApp.getInstance().setCurrentCarModel(Values.carType);
             loadData();
@@ -292,6 +294,12 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
      */
     private void loadData() {
 
+        //videp title load from backend
+        if (exploreModel != null) {
+            if (exploreModel.getVideoHeaderTitle() != null) {
+                txtViewVideolistTitle.setText(exploreModel.getVideoHeaderTitle());
+            }
+        }
         //old static Rohan
         if (Values.carType == 11 || Values.carType == 12
                 || Values.carType == 16 || Values.carType == 13
@@ -793,22 +801,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     }
 
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        //Left Arrow Right arrow visibility functionality depending on viewpager items By Rohan
-        int tempPosition = exploreSlidedItems - 1;
-        if (position == 0) {
-            if (position == tempPosition) arrowVisibleEnable(View.GONE, View.GONE);
-            else arrowVisibleEnable(View.GONE, View.VISIBLE);
-        } else if (position > 0) {
-            if (position < tempPosition) {
-                arrowVisibleEnable(View.VISIBLE, View.VISIBLE);
-            } else if (position == tempPosition) {
-                arrowVisibleEnable(View.VISIBLE, View.GONE);
-            }
-        }
-    }
-
-    @Override
     public void onPageSelected(int position) {
         if (viewPager.getAdapter().getCount() == 3) {
             //Toast.makeText(getActivity(), "3", Toast.LENGTH_SHORT).show();
@@ -990,7 +982,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                         startActivity(new Intent(getActivity(), VideoPlayerActivity.class).putExtra("from_where", "map"));
                     }*/
 
-                    NissanApp.getInstance().setMapVideoUrl(exploretabSliderModel.getVideoUrl());
+                    if (exploretabSliderModel.getVideoUrl() != null)
+                        NissanApp.getInstance().setMapVideoUrl(exploretabSliderModel.getVideoUrl());
                     startActivity(new Intent(getActivity(), VideoPlayerActivity.class).putExtra("from_where", "map"));
 
 
@@ -1003,6 +996,23 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         return finalLayout;
     }
 
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        //Left Arrow Right arrow visibility functionality depending on viewpager items By Rohan
+        int tempPosition = exploreSlidedItems - 1;
+        if (position == 0) {
+            if (position == tempPosition) arrowVisibleEnable(View.GONE, View.GONE);
+            else arrowVisibleEnable(View.GONE, View.VISIBLE);
+        } else if (position > 0) {
+            if (position < tempPosition) {
+                arrowVisibleEnable(View.VISIBLE, View.VISIBLE);
+            } else if (position == tempPosition) {
+                arrowVisibleEnable(View.VISIBLE, View.GONE);
+            }
+        }
+        //Log.e("Slider Tab scroll " , " " + position + " temp pos " + tempPosition);
+    }
+
     private class MyPagerAdapter extends PagerAdapter {
         //view inflating..
         @Override
@@ -1010,7 +1020,10 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
             LayoutInflater inflater = LayoutInflater.from(mContext);
             layout = null;
-
+            /*Log.e("Slider Tab Model " , " " + sliderModelArrayList.size());
+            Log.e("Slider Tab Position " , " " + position);
+            Log.e("Slider Tab Model Value " , " " + sliderModelArrayList.get(0).getType());
+            Log.e("Slider Tab Model Value " , " " + sliderModelArrayList.get(1).getType());*/
             if (sliderModelArrayList != null) {
                 if (sliderModelArrayList.size() > 0) {
                     if (sliderModelArrayList.get(position).getType() != null && !sliderModelArrayList.get(position).getType().isEmpty()) {

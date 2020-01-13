@@ -17,6 +17,9 @@ public class ExploreTabModel {
     @SerializedName("header_2x")
     @Expose
     private String header2x;
+    @SerializedName("video_header_title")
+    @Expose
+    private String videoHeaderTitle;
     @SerializedName("video_list")
     @Expose
     private ArrayList<ExploreTabVideoModel> videoList = null;
@@ -139,5 +142,13 @@ public class ExploreTabModel {
 
     public void setMapImageList(ArrayList<ExploretabSliderModel> mapImageList) {
         this.mapImageList = mapImageList;
+    }
+
+    public String getVideoHeaderTitle() {
+        return videoHeaderTitle;
+    }
+
+    public void setVideoHeaderTitle(String videoHeaderTitle) {
+        this.videoHeaderTitle = videoHeaderTitle;
     }
 }
