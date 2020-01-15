@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.assistance;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Typeface;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -21,9 +23,12 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.AssistanceAdapter;
+import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
+import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.multiLang.model.ChildNode;
 import com.nissan.alldriverguide.multiLang.model.Datum;
+import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
@@ -32,7 +37,7 @@ import java.util.List;
 public class NissanAssistanceFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     private static final String TAG = "NissanAssistanceFragmen";
-    private int[] nissanNssistanceImage = {R.drawable.pickup, R.drawable.phone};
+    private int[] nissanNssistanceImage = {R.drawable.pickup, R.drawable.phone,R.drawable.calendar};
 
     private View view;
     private TextView txtViewCarName;
@@ -51,13 +56,16 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
     private PreferenceUtil preferenceUtil;
     private static final String TITLE = "title";
     private static final String IMG_URL = "img_url";
+    private static final String ONLINE_BOOKING_URL = "";
     private String[] nissanAssistance;
+    private String onlineBookingTItle;
 
-    public static Fragment newInstance(String title, String imgUrl) {
+    public static Fragment newInstance(String title, String imgUrl , String onLineUrl) {
         Fragment frag = new NissanAssistanceFragment();
         Bundle args = new Bundle();
         args.putString(TITLE, title);
         args.putString(IMG_URL, imgUrl);
+        args.putString(ONLINE_BOOKING_URL,onLineUrl);
         frag.setArguments(args);
         return frag;
     }
@@ -89,9 +97,22 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
                 if (list.get(i).getIndex() == 6) {
                     childNodes = list.get(i).getChildNode();
                     if (nissanAssistance == null) {
-                        nissanAssistance = new String[childNodes.size()];
-                        for (int j = 0; j < childNodes.size(); j++) {
-                            nissanAssistance[j] = childNodes.get(j).getTitle();
+                        if(!(getArguments().getString(ONLINE_BOOKING_URL).isEmpty())){
+
+                            nissanAssistance = new String[childNodes.size() + 1];
+                            for (int j = 0; j < childNodes.size(); j++) {
+                                nissanAssistance[j] = childNodes.get(j).getTitle();
+                            }
+
+                            if(list.get(6).getTitle() != null){
+                                onlineBookingTItle = list.get(6).getTitle();
+                                nissanAssistance[childNodes.size()] = onlineBookingTItle;
+                            }
+                        } else{
+                            nissanAssistance = new String[childNodes.size()];
+                            for (int j = 0; j < childNodes.size(); j++) {
+                                nissanAssistance[j] = childNodes.get(j).getTitle();
+                            }
                         }
                     }
                 }
@@ -184,6 +205,16 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
                 frag = CallNissanAssistanceFragment.newInstance(nissanAssistance[position]);
                 break;
 
+            case 2:
+                if (!DetectConnection.checkInternetConnection(getActivity())) {
+                    showNoInternetDialogue("No Internet Connection. Please check your WIFI or cellular data network and try again.");
+                    return;
+                }
+                if (!getArguments().getString(ONLINE_BOOKING_URL).isEmpty()) {
+                    frag = OnlineBookingFragment.newInstance(onlineBookingTItle, getArguments().getString(ONLINE_BOOKING_URL));
+                }
+                break;
+
             default:
                 break;
         }
@@ -196,6 +227,26 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
             ft.addToBackStack(Values.tabAssistance);
             ft.commit();
         }
+    }
+
+    private void showNoInternetDialogue(String msg) {
+
+        final Dialog dialog = new DialogController(getActivity()).internetDialog();
+        dialog.setCancelable(false);
+        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        txtViewTitle.setText(msg);
+
+        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                getActivity().finish();
+            }
+        });
+
+        dialog.show();
+
     }
 
     @Override

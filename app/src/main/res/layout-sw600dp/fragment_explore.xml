@@ -221,7 +221,6 @@
                         android:layout_height="wrap_content"
                         android:paddingStart="@dimen/margin_back"
                         android:paddingEnd="@dimen/margin_back"
-                        android:text="@string/discover_your_vehicle"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
                         android:textSize="16sp"

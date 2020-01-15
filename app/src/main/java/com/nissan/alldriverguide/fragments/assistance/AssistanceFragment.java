@@ -592,17 +592,13 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 break;
 
             case 5:
-                frag = NissanAssistanceFragment.newInstance(pageTitle, url);
+                if(getOnlineUrl() != null && !getOnlineUrl().isEmpty()){
+                    String onlineUrl = getOnlineUrl();
+                    frag = NissanAssistanceFragment.newInstance(pageTitle, url , onlineUrl);
+                } else frag = NissanAssistanceFragment.newInstance(pageTitle, url , "");
+
                 break;
-            case 6:
-                if (!DetectConnection.checkInternetConnection(getActivity())) {
-                    showNoInternetDialogue("No Internet Connection. Please check your WIFI or cellular data network and try again.");
-                    return;
-                }
-                if (getOnlineUrl() != null && !getOnlineUrl().isEmpty()) {
-                    frag = OnlineBookingFragment.newInstance(pageTitle, getOnlineUrl());
-                    break;
-                }
+
             default:
                 break;
         }

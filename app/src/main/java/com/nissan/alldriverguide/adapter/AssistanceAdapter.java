@@ -43,7 +43,7 @@ public class AssistanceAdapter extends BaseAdapter {
 
     @Override
     public int getCount () {
-        return carName != null ? carName.length : 0;
+        return carName != null ? carName.length > 6 ? 6 : carName.length : 0;
     }
 
     @Override
@@ -75,15 +75,12 @@ public class AssistanceAdapter extends BaseAdapter {
         viewHolder.txtViewTitle.setTypeface(tf); // set the font for car name or nissan assistance
         viewHolder.txtViewTitle.setText(carName[position]);
 
-
         return convertView;
     }
 
     public void setList(String[] setting_names, int[] assistanceImage) {
-
         this.carName = setting_names;
         this.carImage = assistanceImage;
-
     }
 
     /**

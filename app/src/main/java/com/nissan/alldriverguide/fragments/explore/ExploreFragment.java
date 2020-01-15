@@ -64,6 +64,7 @@ import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
 import com.nissan.alldriverguide.multiLang.model.ExploretabSliderModel;
 import com.nissan.alldriverguide.multiLang.model.FrontImg;
 import com.nissan.alldriverguide.utils.CustomViewPager;
+import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 import com.nissan.alldriverguide.view.ScrollableGridView;
@@ -84,6 +85,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private Context mContext;
     private Button btnAR;
     private RelativeLayout btnBlindSpotAR, relativeAR, relativeBlindSpot, rlMapView;
+    private LinearLayout llTitleVideo;
     private View view;
 
     private ScrollableGridView gridView;
@@ -178,6 +180,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             sliderModelArrayList = exploreModel.getMapImageList();
             NissanApp.getInstance().setExploreVideoList(videoList);
             loadData();
+            Logger.error("Explore 1 " , " --- ");
         } else {
             progressBar.setVisibility(View.VISIBLE);
             if (!DetectConnection.checkInternetConnection(getActivity())) {
@@ -186,7 +189,10 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
                 return;
             }
+            Logger.error("Explore 2 " , " --- ");
         }
+
+        Logger.error("Explore 3 " , " --- ");
 
         int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
         controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1");
@@ -263,6 +269,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             exploreModel = responseInfo;
             check_density();
             videoList = exploreModel.getVideoList();
+            Logger.error("Explore Video List " , " -- " + videoList.size());
             sliderModelArrayList = exploreModel.getMapImageList();
             NissanApp.getInstance().setExploreVideoList(videoList);
 
@@ -297,8 +304,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         //videp title load from backend
         if (exploreModel != null) {
             if (exploreModel.getVideoHeaderTitle() != null) {
+                llTitleVideo.setVisibility(View.VISIBLE);
                 txtViewVideolistTitle.setText(exploreModel.getVideoHeaderTitle());
-            }
+            }else llTitleVideo.setVisibility(View.GONE);
         }
         //old static Rohan
         if (Values.carType == 11 || Values.carType == 12
@@ -320,7 +328,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4
                 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12
                 || Values.carType == 16
-                || Values.carType == 13 || Values.carType == 14 || Values.carType == 15 || Values.carType == 17 /*|| Values.carType == 18 */) {
+                || Values.carType == 13 || Values.carType == 14 || Values.carType == 15 || Values.carType == 17 || Values.carType == 18 ) {
             relativeBlindSpot.setVisibility(View.VISIBLE);
             relativeAR.setVisibility(View.GONE);
 
@@ -359,24 +367,35 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 });
 */
 
-                Collections.sort(videoList, new Comparator<ExploreTabVideoModel>() {
-                    @Override
-                    public int compare(ExploreTabVideoModel lhs, ExploreTabVideoModel rhs) {
-                        return lhs.getIndex().compareTo(rhs.getIndex());
-                    }
-                });
+                if(videoList != null){
+                    if(videoList.size() > 0){
 
-                for (int i = 0; i < videoList.size(); i++) {
+                        Collections.sort(videoList, new Comparator<ExploreTabVideoModel>() {
+                            @Override
+                            public int compare(ExploreTabVideoModel lhs, ExploreTabVideoModel rhs) {
+                                return lhs.getIndex().compareTo(rhs.getIndex());
+                            }
+                        });
 
-                    if (videoList.get(i).getTag() == 997) {
-                        ExploreTabVideoModel model = videoList.get(i);
-                        videoList.remove(i);
-                        videoList.add(model);
+                        for (int i = 0; i < videoList.size(); i++) {
+
+                            if (videoList.get(i).getTag() == 997) {
+                                ExploreTabVideoModel model = videoList.get(i);
+                                videoList.remove(i);
+                                videoList.add(model);
+                            }
+                        }
+
+                        adapter.setList(videoList);
+                        adapter.notifyDataSetChanged();
+                    }else {
+                        gridView.setAdapter(null);
+                        gridView.setVisibility(View.GONE);
                     }
+                }else {
+                    gridView.setAdapter(null);
+                    gridView.setVisibility(View.GONE);
                 }
-
-                adapter.setList(videoList);
-                adapter.notifyDataSetChanged();
             }
 
         } else {
@@ -494,6 +513,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         tvPageTitle = (TextView) view.findViewById(R.id.txt_title_explore);
         relativeAR = (RelativeLayout) view.findViewById(R.id.relative_ar);
         relativeBlindSpot = (RelativeLayout) view.findViewById(R.id.relative_blind_spot);
+        llTitleVideo = (LinearLayout) view.findViewById(R.id.llTitleVideo);
         progress_bar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
         btnAR = (Button) view.findViewById(R.id.btn_ar);

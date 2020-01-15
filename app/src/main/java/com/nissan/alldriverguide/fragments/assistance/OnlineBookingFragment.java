@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.assistance;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nissan.alldriverguide.MainActivity;
@@ -23,6 +25,7 @@ public class OnlineBookingFragment extends Fragment {
     private static final String TITLE = "title";
     private static final String IMG_URL = "img_url";
     private View view;
+    private ProgressBar progressBar;
 
     public static Fragment newInstance(String title, String imgUrl) {
         Fragment frag = new OnlineBookingFragment();
@@ -67,6 +70,7 @@ public class OnlineBookingFragment extends Fragment {
         webView = (WebView) view.findViewById(R.id.webView_online_booking);
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
         txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
+        progressBar = (ProgressBar) view.findViewById(R.id.prog_online);
     }
 
     private class MyWebViewClient extends WebViewClient {
@@ -74,6 +78,17 @@ public class OnlineBookingFragment extends Fragment {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
             return true;
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            super.onPageStarted(view, url, favicon);
+            progressBar.setVisibility(View.GONE);
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
         }
     }
 
