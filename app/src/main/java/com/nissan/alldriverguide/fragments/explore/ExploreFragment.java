@@ -127,6 +127,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private int exploreSlidedItems = 0;
     private int currentPage;
     ViewGroup layout;
+    private int languageid;
 
     /**
      * Creating instance for this fragment
@@ -196,6 +197,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
         controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1");
+        languageid = language_ID;
 
     }
 
@@ -236,13 +238,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     public void setFrontImageExploreMiddleTab(ExploretabSliderModel exploreTabSliderModel, FrontImg frontImg) {
         if (device_density.equalsIgnoreCase("xxxhdpi")) {
+            Logger.error("density " , " xxxhdpi " );
             front_image_url = frontImg.getFrontThumbXxxhdpi();
             back_image_url = exploreTabSliderModel.getBackThumbXxxhdpi();
         } else if (device_density.equalsIgnoreCase("xxhdpi")) {
             front_image_url = frontImg.getFrontThumbXxhdpi();
+            Logger.error("density " , " xxhdpi " );
             back_image_url = exploreTabSliderModel.getBackThumbXxhdpi();
         } else if (device_density.equalsIgnoreCase("xhdpi")) {
             front_image_url = frontImg.getFrontThumbXhdpi();
+            Logger.error("density " , " xhdpi " );
             back_image_url = exploreTabSliderModel.getBackThumbXhdpi();
         } else if (device_density.equalsIgnoreCase("hdpi")) {
             front_image_url = frontImg.getFrontThumbHdpi();
@@ -253,6 +258,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         } else {
             front_image_url = frontImg.getFrontThumbXhdpi();
             back_image_url = exploreTabSliderModel.getBackThumbXhdpi();
+            Logger.error("density " , " elsehdpi " );
         }
     }
 
@@ -452,6 +458,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         } else {
             rlMapView.setVisibility(View.GONE);
         }
+
+        if(Values.carType == 18){
+            if(languageid == 1){
+                Logger.error("Explore juke " , " " + Values.carType + "  LAN " + languageid);
+            }else{
+                relativeAR.setVisibility(View.VISIBLE);
+                relativeBlindSpot.setVisibility(View.GONE);
+                Logger.error("Explore juke " , " other " + Values.carType + "  LAN " + languageid);
+            }
+        }
     }
 
    /* private void setTextToViews(TextView textView, String text, int backgroundColor) {
@@ -591,9 +607,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 viewPager.setCurrentItem(getItem(+1), true);
                 break;
 
-            case R.id.btn_ar:
+            /*case R.id.btn_ar:
                 // here start the ImageTargetActivity class for AR
-                break;
+                break;*/
 
             case R.id.layout_info_old:
             case R.id.layout_info:
@@ -606,6 +622,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 startActivity(intent);
                 break;
 
+            case R.id.btn_ar:
             case R.id.btn_blind_spot_ar:
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -907,12 +924,41 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     epubIndex = exploretabSliderModel.getEpubTag();
                 }
 
-                Fragment frag = DetailsFragment.newInstance(list.get(epubIndex).getIndex(), resources.getString(R.string.updating_map_data));
+                /*if (Values.carType == 12) {
+                    epubIndex = 58;
+                } else if (Values.carType == 10) {
+                    epubIndex = 46;
+                } else if (Values.carType == 11) {
+                    epubIndex = 54;
+                } else if (Values.carType == 18) {
+                    epubIndex = 60;
+                }*/
+
+                /*Logger.error("Epub type " , " " + Values.ePubType);
+                Logger.error("Epub Tag " , " " + epubIndex);*/
+
+                Fragment frag = DetailsFragment.newInstance(list.get(epubIndex * 2).getIndex(), resources.getString(R.string.updating_map_data));
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                 ft.replace(R.id.container, frag);
                 ft.addToBackStack(Values.tabExplore);
                 ft.commit();
+
+                /*if(Values.carType == 18){
+                    Fragment frag = DetailsFragment.newInstance(60, resources.getString(R.string.updating_map_data));
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
+                    ft.replace(R.id.container, frag);
+                    ft.addToBackStack(Values.tabExplore);
+                    ft.commit();
+                }else{
+                    Fragment frag = DetailsFragment.newInstance(list.get(epubIndex).getIndex(), resources.getString(R.string.updating_map_data));
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
+                    ft.replace(R.id.container, frag);
+                    ft.addToBackStack(Values.tabExplore);
+                    ft.commit();
+                }*/
             }
         });
 

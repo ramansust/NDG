@@ -149,14 +149,14 @@
                 <RelativeLayout
                     android:id="@+id/rlMapView"
                     android:layout_width="match_parent"
-                    android:layout_height="270dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/relative_blind_spot_top">
 
 
                     <com.nissan.alldriverguide.utils.CustomViewPager
                         android:id="@+id/viewPager"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="wrap_content" />
 
                     <LinearLayout
                         android:id="@+id/llLeftArrow"

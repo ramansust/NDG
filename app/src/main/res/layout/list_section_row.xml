@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relative_header"
     android:layout_width="match_parent"
-    android:layout_height="55dp"
+    android:layout_height="wrap_content"
     android:gravity="center">
 
 
     <TextView
         android:id="@+id/txt_title_section"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_toLeftOf="@+id/img_view"
         android:layout_toStartOf="@id/img_view"

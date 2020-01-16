@@ -137,8 +137,16 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                     break;
 
                 case Values.HOMEPAGE_TYPE:
+
+                    Logger.error("Epub type " , " Home  " + index);
                     if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
                         list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
+
+                        for (EpubInfo info:list
+                             ) {
+                            Logger.error("EpubInfo Title" ," -- " + info.getTitle() );
+                            Logger.error("EpubInfo Index" ," -- " + info.getIndex() );
+                        }
 
                         if (list != null) {
                             htmlContent = "file://"
@@ -147,6 +155,8 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(index).getHtmlLink());
 
+
+                            Logger.error("Epub type " , " content  " + htmlContent);
                             ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.HOMEPAGE + Analytics.DOT + list.get(index).getTitle()));
                         }
                     }
