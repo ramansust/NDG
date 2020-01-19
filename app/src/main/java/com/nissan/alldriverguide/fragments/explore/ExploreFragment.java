@@ -181,7 +181,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             sliderModelArrayList = exploreModel.getMapImageList();
             NissanApp.getInstance().setExploreVideoList(videoList);
             loadData();
-            Logger.error("Explore 1 " , " --- ");
+            Logger.error("Explore 1 ", " --- ");
         } else {
             progressBar.setVisibility(View.VISIBLE);
             if (!DetectConnection.checkInternetConnection(getActivity())) {
@@ -190,10 +190,10 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
                 return;
             }
-            Logger.error("Explore 2 " , " --- ");
+            Logger.error("Explore 2 ", " --- ");
         }
 
-        Logger.error("Explore 3 " , " --- ");
+        Logger.error("Explore 3 ", " --- ");
 
         int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
         controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1");
@@ -238,16 +238,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     public void setFrontImageExploreMiddleTab(ExploretabSliderModel exploreTabSliderModel, FrontImg frontImg) {
         if (device_density.equalsIgnoreCase("xxxhdpi")) {
-            Logger.error("density " , " xxxhdpi " );
+            Logger.error("density ", " xxxhdpi ");
             front_image_url = frontImg.getFrontThumbXxxhdpi();
             back_image_url = exploreTabSliderModel.getBackThumbXxxhdpi();
         } else if (device_density.equalsIgnoreCase("xxhdpi")) {
             front_image_url = frontImg.getFrontThumbXxhdpi();
-            Logger.error("density " , " xxhdpi " );
+            Logger.error("density ", " xxhdpi ");
             back_image_url = exploreTabSliderModel.getBackThumbXxhdpi();
         } else if (device_density.equalsIgnoreCase("xhdpi")) {
             front_image_url = frontImg.getFrontThumbXhdpi();
-            Logger.error("density " , " xhdpi " );
+            Logger.error("density ", " xhdpi ");
             back_image_url = exploreTabSliderModel.getBackThumbXhdpi();
         } else if (device_density.equalsIgnoreCase("hdpi")) {
             front_image_url = frontImg.getFrontThumbHdpi();
@@ -258,7 +258,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         } else {
             front_image_url = frontImg.getFrontThumbXhdpi();
             back_image_url = exploreTabSliderModel.getBackThumbXhdpi();
-            Logger.error("density " , " elsehdpi " );
+            Logger.error("density ", " elsehdpi ");
         }
     }
 
@@ -275,7 +275,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             exploreModel = responseInfo;
             check_density();
             videoList = exploreModel.getVideoList();
-            Logger.error("Explore Video List " , " -- " + videoList.size());
+            Logger.error("Explore Video List ", " -- " + videoList.size());
             sliderModelArrayList = exploreModel.getMapImageList();
             NissanApp.getInstance().setExploreVideoList(videoList);
 
@@ -312,7 +312,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             if (exploreModel.getVideoHeaderTitle() != null) {
                 llTitleVideo.setVisibility(View.VISIBLE);
                 txtViewVideolistTitle.setText(exploreModel.getVideoHeaderTitle());
-            }else llTitleVideo.setVisibility(View.GONE);
+            } else llTitleVideo.setVisibility(View.GONE);
         }
         //old static Rohan
         if (Values.carType == 11 || Values.carType == 12
@@ -334,7 +334,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4
                 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12
                 || Values.carType == 16
-                || Values.carType == 13 || Values.carType == 14 || Values.carType == 15 || Values.carType == 17 || Values.carType == 18 ) {
+                || Values.carType == 13 || Values.carType == 14 || Values.carType == 15 || Values.carType == 17 || Values.carType == 18) {
             relativeBlindSpot.setVisibility(View.VISIBLE);
             relativeAR.setVisibility(View.GONE);
 
@@ -373,8 +373,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 });
 */
 
-                if(videoList != null){
-                    if(videoList.size() > 0){
+                if (videoList != null) {
+                    if (videoList.size() > 0) {
 
                         Collections.sort(videoList, new Comparator<ExploreTabVideoModel>() {
                             @Override
@@ -394,11 +394,11 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                         adapter.setList(videoList);
                         adapter.notifyDataSetChanged();
-                    }else {
+                    } else {
                         gridView.setAdapter(null);
                         gridView.setVisibility(View.GONE);
                     }
-                }else {
+                } else {
                     gridView.setAdapter(null);
                     gridView.setVisibility(View.GONE);
                 }
@@ -441,16 +441,18 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         }
 
         check_density();
-        Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    simple_drawee_view_explore.setBackground(drawable);
+        if(header_text != null){
+            Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        simple_drawee_view_explore.setBackground(drawable);
+                    }
                 }
-            }
 
-        });
+            });
+        }
 
         //Dynamic load Map & Epub View
         if (exploreSlidedItems > 0) {
@@ -459,13 +461,28 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             rlMapView.setVisibility(View.GONE);
         }
 
-        if(Values.carType == 18){
-            if(languageid == 1){
-                Logger.error("Explore juke " , " " + Values.carType + "  LAN " + languageid);
-            }else{
+        check_density();
+        if(header_text != null){
+            Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
+
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        simple_drawee_view_ar.setBackground(drawable);
+                    }
+                }
+
+            });
+        }
+
+        if (Values.carType == 18) {
+            if (languageid == 1) {
+                Logger.error("Explore juke ", " " + Values.carType + "  LAN " + languageid);
+            } else {
                 relativeAR.setVisibility(View.VISIBLE);
                 relativeBlindSpot.setVisibility(View.GONE);
-                Logger.error("Explore juke " , " other " + Values.carType + "  LAN " + languageid);
+                Logger.error("Explore juke ", " other " + Values.carType + "  LAN " + languageid);
             }
         }
     }
