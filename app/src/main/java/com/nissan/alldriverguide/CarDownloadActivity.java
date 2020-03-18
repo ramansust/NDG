@@ -193,6 +193,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         mLastClickTime = SystemClock.elapsedRealtime();
 
         Logger.error("push_sp_status", "___________" + new PreferenceUtil(context).getPushRegistrationStatus());
+        Logger.error("device_id", "___________" + NissanApp.getInstance().getDeviceID(getApplicationContext()));
 
         if (!new PreferenceUtil(context).getPushRegistrationStatus()) {
 

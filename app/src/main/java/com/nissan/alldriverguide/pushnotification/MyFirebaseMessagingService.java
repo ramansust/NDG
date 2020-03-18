@@ -35,6 +35,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage == null)
             return;
 
+        Logger.error(TAG, "IDSERVICE: Refreshed token:__**msg***__" + remoteMessage.getData());
+
         commonDao = CommonDao.getInstance();
 
         // Check if message contains a notification payload.

@@ -28,7 +28,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         super.onTokenRefresh();
         final String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
-        Logger.error(TAG, "IDSERVICE: Refreshed token:____" + refreshedToken);
+        Logger.error(TAG, "IDSERVICE: Refreshed token:__*****__" + refreshedToken);
 
         String previousRegisteredId = getPreviousRegisteredIdFromPref();
 
