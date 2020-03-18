@@ -50,7 +50,6 @@ public class MyApplication extends MultiDexApplication {
 
     public synchronized Tracker getTracker(TrackerName trackerId) {
         if (!mTrackers.containsKey(trackerId)) {
-
             GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
             Tracker t = (trackerId == TrackerName.APP_TRACKER) ? analytics
                     .newTracker(R.xml.app_tracker)
