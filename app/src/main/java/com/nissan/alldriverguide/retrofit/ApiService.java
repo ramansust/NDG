@@ -117,7 +117,7 @@ public interface ApiService {
     @POST("car_list/")
     Call<CarListResponse> getChildCarList(@Field("device_id") String device_id, @Field("language_id") String language_id,@Field("parent_car")String parent_car_id );
 
-    //Api for Find A Deaeler by Mostasim
+    //Api for Find A Dealer by Mostasim
     @FormUrlEncoded
     @POST("dealer_url/")
     Call<DealerUrl> getFindADealer(@Field("language_id") String language_id);

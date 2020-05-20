@@ -127,13 +127,34 @@
                         android:layout_weight=".4"
                         android:background="@android:color/transparent" />
 
-                    <Button
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1.7"
+                        android:weightSum="2"
                         android:background="@android:color/transparent"
-                        android:onClick="buttonEvent"
-                        android:tag="57" />
+                        >
+
+                        <Button
+                            android:id="@+id/button62"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:layout_height="0dp"
+                            android:background="@android:color/transparent"
+                            android:onClick="buttonEvent"
+                            android:tag="57"
+                            />
+
+                        <Button
+                            android:id="@+id/button63"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:onClick="buttonEvent"
+                            android:tag="86" />
+                    </LinearLayout>
 
                     <Button
                         android:layout_width="0dp"
@@ -160,6 +181,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
+                android:onClick="buttonEvent"
+                android:tag="46"
                 android:background="@android:color/transparent" />
 
             <Button
