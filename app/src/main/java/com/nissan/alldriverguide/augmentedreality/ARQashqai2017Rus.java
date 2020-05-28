@@ -40,13 +40,10 @@ import javax.microedition.khronos.opengles.GL10;
 public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRendererControl, View.OnClickListener {
 
     private static final String LOGTAG = "ImageTargetRenderer";
-
+    public static ImageView iv;
     private SampleApplicationSession vuforiaAppSession;
     private ImageTargetActivity mActivity;
-
     private Renderer mRenderer;
-    public static ImageView iv;
-
     private LayoutInflater inflater;
     private String drawables;
 
@@ -319,15 +316,16 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
             handler.post(new Runnable() {
                 public void run() {
 
-                    if (userDataToCompare.equalsIgnoreCase("steering_wheel_left_3")
+                    if (userDataToCompare.equalsIgnoreCase("steering_wheel_left_5")
+                            || userDataToCompare.equalsIgnoreCase("steering_wheel_left_4")
+                            || userDataToCompare.equalsIgnoreCase("steering_wheel_left_3")
                             || userDataToCompare.equalsIgnoreCase("steering_wheel_left_2")
                             || userDataToCompare.equalsIgnoreCase("steering_wheel_left_1")
-                            ) {
+                    ) {
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -338,17 +336,34 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
+                    } else if (userDataToCompare.equalsIgnoreCase("auto_seat_adjust_1")
+                            || userDataToCompare.equalsIgnoreCase("auto_seat_adjust_2")
+                            || userDataToCompare.equalsIgnoreCase("auto_seat_adjust_3")
+                    ) {
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            e.printStackTrace();
+                        }
+
+                        Values.ar_value = Analytics.AUTO_SEAT_ADJUSTMENT;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.qashqai2017rus_automatic_seat_adjustment, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "auto_seat_adjustment.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
                     } else if (userDataToCompare.equalsIgnoreCase("combimeter_3")
                             || userDataToCompare.equalsIgnoreCase("combimeter_2")
                             || userDataToCompare.equalsIgnoreCase("combimeter_1")
-                            ) {
+                    ) {
 
 
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -362,7 +377,9 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                     } else if (userDataToCompare.equalsIgnoreCase("steering_wheel_right_1")
                             || userDataToCompare.equalsIgnoreCase("steering_wheel_right_2")
                             || userDataToCompare.equalsIgnoreCase("steering_wheel_right_3")
-                            ) {
+                            || userDataToCompare.equalsIgnoreCase("steering_wheel_right_4")
+                            || userDataToCompare.equalsIgnoreCase("steering_wheel_right_5")
+                    ) {
 
 
                         try {
@@ -382,7 +399,9 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
 
                     } else if (userDataToCompare.equalsIgnoreCase("sos_1")
                             || userDataToCompare.equalsIgnoreCase("sos_2")
-                            || userDataToCompare.equalsIgnoreCase("sos_3")) {
+                            || userDataToCompare.equalsIgnoreCase("sos_3")
+                            || userDataToCompare.equalsIgnoreCase("sos_4")
+                            || userDataToCompare.equalsIgnoreCase("sos_5")) {
 
                         try {
                             mActivity.isDetected = true;
@@ -399,10 +418,12 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    }else if (userDataToCompare.equalsIgnoreCase("trip_reset_1")
+                    } else if (userDataToCompare.equalsIgnoreCase("trip_reset_1")
                             || userDataToCompare.equalsIgnoreCase("trip_reset_2")
                             || userDataToCompare.equalsIgnoreCase("trip_reset_3")
-                            ) {
+                            || userDataToCompare.equalsIgnoreCase("trip_reset_4")
+                            || userDataToCompare.equalsIgnoreCase("trip_reset_5")
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -421,6 +442,8 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
 
                     } else if (userDataToCompare.equalsIgnoreCase("start_stop_2")
                             || userDataToCompare.equalsIgnoreCase("start_stop_3")
+                            || userDataToCompare.equalsIgnoreCase("start_stop_4")
+                            || userDataToCompare.equalsIgnoreCase("start_stop_5")
                             || userDataToCompare.equalsIgnoreCase("start_stop_1")) {
 
 
@@ -444,7 +467,10 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             || userDataToCompare.equalsIgnoreCase("multiswitch_3")
                             || userDataToCompare.equalsIgnoreCase("multiswitch_04")
                             || userDataToCompare.equalsIgnoreCase("multiswitch_5")
-                            || userDataToCompare.equalsIgnoreCase("multiswitch_6"))  {
+                            || userDataToCompare.equalsIgnoreCase("multiswitch_new")
+                            || userDataToCompare.equalsIgnoreCase("multiswitch_new_2")
+                            || userDataToCompare.equalsIgnoreCase("multiswitch_new_3")
+                            || userDataToCompare.equalsIgnoreCase("multiswitch_6")) {
 
 
                         try {
@@ -471,7 +497,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -488,6 +513,7 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
 
                     } else if (userDataToCompare.equalsIgnoreCase("ac_left_01")
                             || userDataToCompare.equalsIgnoreCase("ac_left_02")
+                            || userDataToCompare.equalsIgnoreCase("ac_left_04")
                             || userDataToCompare.equalsIgnoreCase("ac_left_03")) {
 
 
@@ -495,7 +521,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -508,14 +533,14 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
 
                     } else if (userDataToCompare.equalsIgnoreCase("ac_middle_01")
                             || userDataToCompare.equalsIgnoreCase("ac_middle_02")
-                            || userDataToCompare.equalsIgnoreCase("ac_middle_3")) {
+                            || userDataToCompare.equalsIgnoreCase("ac_middle_3")
+                            || userDataToCompare.equalsIgnoreCase("ac_middle_03")) {
 
 
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -529,6 +554,10 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                     } else if (userDataToCompare.equalsIgnoreCase("ac_right_01")
                             || userDataToCompare.equalsIgnoreCase("ac_right_02")
                             || userDataToCompare.equalsIgnoreCase("ac_right_03")
+                            || userDataToCompare.equalsIgnoreCase("ac_right_1")
+                            || userDataToCompare.equalsIgnoreCase("ac_right_2")
+                            || userDataToCompare.equalsIgnoreCase("ac_right_3")
+                            || userDataToCompare.equalsIgnoreCase("ac_right_4")
                             || userDataToCompare.equalsIgnoreCase("ac_right_04")) {
 
 
@@ -536,7 +565,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -547,15 +575,16 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase("radio_wo_full_2")
-                            || userDataToCompare.equalsIgnoreCase("radio_wo_full_1")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_wo_full_1")
+                            || userDataToCompare.equalsIgnoreCase("radio_wo_full_2")
+                            || userDataToCompare.equalsIgnoreCase("radio_wo_full_3")
+                    ) {
 
 
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -572,6 +601,7 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
 
                     } else if (userDataToCompare.equalsIgnoreCase("radio_wo_left_1")
                             || userDataToCompare.equalsIgnoreCase("radio_wo_left_2")
+                            || userDataToCompare.equalsIgnoreCase("radio_wo_left_4")
                             || userDataToCompare.equalsIgnoreCase("radio_wo_left_3")) {
 
 
@@ -579,7 +609,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -593,6 +622,7 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
 
                     } else if (userDataToCompare.equalsIgnoreCase("radio_wo_right_1")
                             || userDataToCompare.equalsIgnoreCase("radio_wo_right_2")
+                            || userDataToCompare.equalsIgnoreCase("radio_wo_right_4")
                             || userDataToCompare.equalsIgnoreCase("radio_wo_right_3")) {
 
 
@@ -611,7 +641,8 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase("radio_wo_middle_3")
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_wo_middle_4")
+                            || userDataToCompare.equalsIgnoreCase("radio_wo_middle_3")
                             || userDataToCompare.equalsIgnoreCase("radio_wo_middle_2")
                             || userDataToCompare.equalsIgnoreCase("radio_wo_middle_1")) {
 
@@ -719,7 +750,10 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
                     } else if (userDataToCompare.equalsIgnoreCase("parking_brake_1")
-                            || userDataToCompare.equalsIgnoreCase("parking_brake_2")) {
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_2")
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_3")
+
+                    ) {
 
 
                         try {
@@ -756,43 +790,43 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("heated_seat_front_1")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seat_front_2")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seat_front_3")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seat_front_4")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("heated_seat_front_1")
+                            || userDataToCompare.equalsIgnoreCase("heated_seat_front_2")
+                            || userDataToCompare.equalsIgnoreCase("heated_seat_front_3")
+                            || userDataToCompare.equalsIgnoreCase("heated_seat_front_4")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.HEATED_FRONT;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.qashqai2017rus_heated_seats_front, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "qashqai2017rus_heated_seats_front.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai2017rus_heated_seats_front.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("heated_seat_rear_1")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seat_rear_2")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seat_rear_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("heated_seat_rear_1")
+                            || userDataToCompare.equalsIgnoreCase("heated_seat_rear_2")
+                            || userDataToCompare.equalsIgnoreCase("heated_seat_rear_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.HEATED_REAR;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.qashqai2017rus_heated_seats_rear, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "qashqai2017rus_heated_seats_rear.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "qashqai2017rus_heated_seats_rear.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
                     } else {

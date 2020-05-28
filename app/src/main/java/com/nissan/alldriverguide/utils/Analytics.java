@@ -58,4 +58,5 @@ public class Analytics {
     public static final String DELETE = ".delete";
     public static final String SOS = "sos";
     public static final String GEAR_SELECTOR = "gear selector";
+    public static final String AUTO_SEAT_ADJUSTMENT = "automatic seat adjustment";
 }
