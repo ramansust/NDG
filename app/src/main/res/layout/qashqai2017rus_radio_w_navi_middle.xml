@@ -6,18 +6,18 @@
     android:orientation="vertical" >
 
     <LinearLayout
+        android:id="@+id/popupLayout"
         android:layout_width="300dp"
         android:layout_height="182dp"
-        android:id="@+id/popupLayout"
         android:orientation="vertical"
-        android:weightSum="2" >
+        android:weightSum="2">
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="14" />
+            android:tag="84" />
     </LinearLayout>
 
 </LinearLayout>

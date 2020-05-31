@@ -155,7 +155,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
 
                 mActivity.isDetected = false;
 
@@ -169,7 +168,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
 //                mActivity.isDetected = true;
                 if (!mActivity.isDetected) {
                     try {
@@ -186,7 +184,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
             @SuppressLint("NewApi")
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
 
                 if (mActivity.inflatedLayout_second != null && mActivity.inflatedLayout_second.isAttachedToWindow()) {
 
@@ -651,7 +648,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -665,6 +661,8 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
 
                     } else if (userDataToCompare.equalsIgnoreCase("radio_with_navi_full_1")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_full_2")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_full_4")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_full_5")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_full_3")) {
 
 
@@ -672,7 +670,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -690,6 +687,7 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                     } else if (userDataToCompare.equalsIgnoreCase("radio_with_navi_left_1")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_left_2")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_left_3")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_left_5")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_left_4")) {
 
 
@@ -697,7 +695,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -711,6 +708,8 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
 
                     } else if (userDataToCompare.equalsIgnoreCase("radio_with_navi_right_1")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_right_2")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_right_4")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_right_5")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_right_3")) {
 
 
@@ -731,6 +730,7 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
 
                     } else if (userDataToCompare.equalsIgnoreCase("radio_with_navi_middle_1")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_middle_2")
+                            || userDataToCompare.equalsIgnoreCase("radio_with_navi_middle_4")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_middle_3")) {
 
 

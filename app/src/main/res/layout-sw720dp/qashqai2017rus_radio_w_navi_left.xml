@@ -1,194 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/popupLayout"
-        android:layout_width="300dp"
-        android:layout_height="621dp"
-        android:orientation="vertical"
+        android:layout_width="500dp"
+        android:layout_height="700dp"
         android:weightSum="10">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.25"
-            android:orientation="horizontal"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:weightSum="3">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.25"
-                android:background="@android:color/transparent" />
+        <Button
+            android:id="@+id/button70"
+            android:layout_width="131dp"
+            android:layout_height="63dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="93"
+            app:layout_constraintBottom_toTopOf="@+id/button75"
+            app:layout_constraintStart_toStartOf="@+id/button75" />
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".75"
-                android:background="@android:color/transparent"
-                android:onClick="buttonEvent"
-                android:tag="20" />
+        <Button
+            android:id="@+id/button78"
+            android:layout_width="127dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="2dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="94"
+            app:layout_constraintBottom_toTopOf="@+id/button70"
+            app:layout_constraintStart_toStartOf="@+id/button75" />
+
+        <Button
+            android:id="@+id/button79"
+            android:layout_width="132dp"
+            android:layout_height="56dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="95"
+            app:layout_constraintBottom_toTopOf="@+id/button78"
+            app:layout_constraintStart_toStartOf="@+id/button75" />
+
+        <Button
+            android:id="@+id/button71"
+            android:layout_width="102dp"
+            android:layout_height="59dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="90"
+            app:layout_constraintBottom_toTopOf="@+id/button72"
+            app:layout_constraintStart_toStartOf="@+id/button72" />
 
 
-        </LinearLayout>
+        <Button
+            android:id="@+id/button76"
+            android:layout_width="107dp"
+            android:layout_height="68dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="63"
+            app:layout_constraintBottom_toTopOf="@+id/button71"
+            app:layout_constraintStart_toStartOf="@+id/button72" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="3">
+        <Button
+            android:id="@+id/button77"
+            android:layout_width="112dp"
+            android:layout_height="51dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="91"
+            app:layout_constraintBottom_toTopOf="@+id/button76"
+            app:layout_constraintStart_toStartOf="@+id/button72" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".75"
-                android:background="@android:color/transparent" />
+        <Button
+            android:id="@+id/button72"
+            android:layout_width="104dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginLeft="92dp"
+            android:layout_marginBottom="32dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="89"
+            app:layout_constraintBottom_toTopOf="@+id/button74"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.75"
-                android:background="@android:color/transparent"
-                android:onClick="buttonEvent"
-                android:tag="19" />
+        <Button
+            android:id="@+id/button73"
+            android:layout_width="146dp"
+            android:layout_height="203dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="80dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="60"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".50"
-                android:background="@android:color/transparent" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/button75"
+            android:layout_width="129dp"
+            android:layout_height="53dp"
+            android:layout_marginBottom="18dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="92"
+            app:layout_constraintBottom_toTopOf="@+id/button73"
+            app:layout_constraintStart_toStartOf="@+id/button73" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.25"
-            android:orientation="horizontal"
-            android:weightSum="3">
+        <Button
+            android:id="@+id/button74"
+            android:layout_width="149dp"
+            android:layout_height="215dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginBottom="52dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="60"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".75"
-                android:background="@android:color/transparent" />
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.75"
-                android:background="@android:color/transparent"
-                android:onClick="buttonEvent"
-                android:tag="18" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".50"
-                android:background="@android:color/transparent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.25"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".75"
-                android:background="@android:color/transparent" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.75"
-                android:background="@android:color/transparent"
-                android:onClick="buttonEvent"
-                android:tag="17" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".50"
-                android:background="@android:color/transparent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".75"
-                android:background="@android:color/transparent" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.75"
-                android:background="@android:color/transparent"
-                android:onClick="buttonEvent"
-                android:tag="16" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".50"
-                android:background="@android:color/transparent" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".50"
-            android:background="@android:color/transparent" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".75"
-                android:background="@android:color/transparent" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.75"
-                android:background="@android:color/transparent"
-                android:onClick="buttonEvent"
-                android:tag="15" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".50"
-                android:background="@android:color/transparent" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".50"
-            android:background="@android:color/transparent" />
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </LinearLayout>
