@@ -31,7 +31,7 @@
                 android:layout_weight="1.3"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="70" />
+                android:tag="35" />
 
         </LinearLayout>
 
@@ -48,15 +48,13 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="74" />
+                android:tag="43" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:onClick="buttonEvent"
-                android:tag="76" />
+                android:background="@android:color/transparent" />
 
             <Button
                 android:layout_width="match_parent"

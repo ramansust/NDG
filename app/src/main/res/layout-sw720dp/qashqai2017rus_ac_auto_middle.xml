@@ -24,7 +24,7 @@
             android:layout_marginBottom="4dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="73"
+            android:tag="41"
             app:layout_constraintBottom_toTopOf="@+id/button67"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -37,7 +37,7 @@
             android:layout_marginBottom="8dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="75"
+            android:tag="42"
             app:layout_constraintBottom_toTopOf="@+id/button68"
             app:layout_constraintStart_toEndOf="@+id/button64" />
 
@@ -49,7 +49,7 @@
             android:layout_marginRight="8dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="77"
+            android:tag="37"
             app:layout_constraintBottom_toTopOf="@+id/button69"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -61,7 +61,7 @@
             android:layout_marginRight="4dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="66"
+            android:tag="39"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button68"
             app:layout_constraintHorizontal_bias="0.009"
@@ -73,7 +73,7 @@
             android:layout_height="59dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="67"
+            android:tag="34"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button69" />
 
@@ -83,7 +83,7 @@
             android:layout_height="57dp"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="68"
+            android:tag="40"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
