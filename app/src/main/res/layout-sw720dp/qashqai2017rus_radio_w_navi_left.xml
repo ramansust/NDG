@@ -46,6 +46,19 @@
             app:layout_constraintStart_toStartOf="@+id/button75" />
 
         <Button
+            android:id="@+id/button88"
+            android:layout_width="75dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="84dp"
+            android:layout_marginLeft="84dp"
+            android:layout_marginBottom="28dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="20"
+            app:layout_constraintBottom_toTopOf="@+id/button79"
+            app:layout_constraintStart_toStartOf="@+id/button75" />
+
+        <Button
             android:id="@+id/button71"
             android:layout_width="102dp"
             android:layout_height="59dp"
@@ -74,6 +87,19 @@
             android:onClick="buttonEvent"
             android:tag="91"
             app:layout_constraintBottom_toTopOf="@+id/button76"
+            app:layout_constraintStart_toStartOf="@+id/button72" />
+
+        <Button
+            android:id="@+id/button87"
+            android:layout_width="74dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="68dp"
+            android:layout_marginLeft="68dp"
+            android:layout_marginBottom="32dp"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="20"
+            app:layout_constraintBottom_toTopOf="@+id/button77"
             app:layout_constraintStart_toStartOf="@+id/button72" />
 
         <Button
