@@ -383,7 +383,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -404,7 +403,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -426,7 +424,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -448,7 +445,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -474,7 +470,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -627,7 +622,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -717,7 +711,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -738,7 +731,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -760,7 +752,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -779,7 +770,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -799,7 +789,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 
@@ -818,7 +807,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
 

@@ -48,7 +48,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="43" />
+                android:tag="76" />
 
             <Button
                 android:layout_width="match_parent"
