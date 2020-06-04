@@ -10,8 +10,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/popupLayout"
         android:layout_width="300dp"
-        android:layout_height="195dp"
-        android:background="@drawable/qashqai2017rus_multi_switch">
+        android:layout_height="195dp">
 
 
         <Button
