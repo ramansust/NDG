@@ -476,7 +476,8 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                         Values.ar_value = Analytics.MIXED_PANEL;
                         mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.qashqai2017rus_mixed_panel, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "qashqai2017rus_multi_switch.png");
+                        View popupLayout = mActivity.inflatedLayout.findViewById(R.id.popupLayout);
+                        setBackground(popupLayout, drawables + "qashqai2017rus_multi_switch.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -763,7 +764,10 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
                     } else if (userDataToCompare.equalsIgnoreCase("all_mode_1")
-                            || userDataToCompare.equalsIgnoreCase("all_mode_2")) {
+                            || userDataToCompare.equalsIgnoreCase("all_mode_2")
+                            || userDataToCompare.equalsIgnoreCase("all_mode_3")
+                            || userDataToCompare.equalsIgnoreCase("all_mode_4")
+                    ) {
 
 
                         try {
