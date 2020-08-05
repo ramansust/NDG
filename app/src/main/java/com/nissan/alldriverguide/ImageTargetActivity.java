@@ -902,6 +902,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
                 // here specify the DetailsActivity for loading epub data
                 Logger.error("________EPUB Index________", ePubIndex + Values.ar_value);
+                Logger.error("Xtrail________EPUB Index________", ePubIndex + Values.ar_value);
                 Logger.error("________EPUB TAG BUTTON_______", b.getTag().toString());
                 Intent intentButton = new Intent(ImageTargetActivity.this, DetailsActivity.class);
                 intentButton.putExtra("epub_index", ePubIndex);

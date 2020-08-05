@@ -25,6 +25,18 @@
     <dimen name="ok_cancel_popup_height_720dp">50dp</dimen>
     <dimen name="popup_header_height">35dp</dimen>
     <dimen name="popup_header_height_720dp">50dp</dimen>
+    <dimen name="width_350dp">350dp</dimen>
+    <dimen name="width_175dp">175dp</dimen>
+    <dimen name="width_700dp">700dp</dimen>
+
+
+    <dimen name="width_200dp">200dp</dimen>
+    <dimen name="width_300dp">300dp</dimen>
+    <dimen name="width_400dp">400dp</dimen>
+    <dimen name="width_500dp">500dp</dimen>
+    <dimen name="width_370dp">370dp</dimen>
+    <dimen name="width_730dp">730dp</dimen>
+    <dimen name="width_360dp">360dp</dimen>
 
 
 </resources>

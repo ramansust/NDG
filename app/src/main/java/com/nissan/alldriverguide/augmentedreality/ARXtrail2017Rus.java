@@ -221,6 +221,27 @@ public class ARXtrail2017Rus implements GLSurfaceView.Renderer, SampleAppRendere
 
                 switch (v.getId()) {
 
+                    case R.id.btn_radio_with_navi_left_a:
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail2017rus_radio_w_navi_left_a, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_2017_rus_audio_with_navi_left_a.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
+                        break;
+
+                    case R.id.btn_radio_with_navi_right_a:
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail2017rus_radio_w_navi_right_a, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_2017_rus_audio_with_navi_right_a.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
+                        break;
+
+                    case R.id.btn_radio_with_navi_middle_a:
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail2017rus_radio_w_navi_middle_a, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "xtrail_2017_rus_audio_with_navi_middle_a.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
+                        break;
+
                     case R.id.btn_radio_with_navi_left:
                         mActivity.layoutCameraView.removeAllViews();
                         mActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail2017rus_radio_w_navi_left, null, false);
@@ -322,7 +343,7 @@ public class ARXtrail2017Rus implements GLSurfaceView.Renderer, SampleAppRendere
                     if (userDataToCompare.equalsIgnoreCase("steering_wheel_left_3")
                             || userDataToCompare.equalsIgnoreCase("steering_wheel_left_2")
                             || userDataToCompare.equalsIgnoreCase("steering_wheel_left_1")
-                            ) {
+                    ) {
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
@@ -341,7 +362,7 @@ public class ARXtrail2017Rus implements GLSurfaceView.Renderer, SampleAppRendere
                     } else if (userDataToCompare.equalsIgnoreCase("steering_wheel_right_1")
                             || userDataToCompare.equalsIgnoreCase("steering_wheel_right_2")
                             || userDataToCompare.equalsIgnoreCase("steering_wheel_right_3")
-                            ) {
+                    ) {
 
 
                         try {
@@ -378,10 +399,10 @@ public class ARXtrail2017Rus implements GLSurfaceView.Renderer, SampleAppRendere
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    }else if (userDataToCompare.equalsIgnoreCase("trip_reset_1")
+                    } else if (userDataToCompare.equalsIgnoreCase("trip_reset_1")
                             || userDataToCompare.equalsIgnoreCase("trip_reset_2")
                             || userDataToCompare.equalsIgnoreCase("trip_reset_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -420,7 +441,7 @@ public class ARXtrail2017Rus implements GLSurfaceView.Renderer, SampleAppRendere
 
                     } else if (userDataToCompare.equalsIgnoreCase("multiswitch_1")
                             || userDataToCompare.equalsIgnoreCase("multiswitch_2")
-                            || userDataToCompare.equalsIgnoreCase("multiswitch_3"))  {
+                            || userDataToCompare.equalsIgnoreCase("multiswitch_3")) {
 
 
                         try {
@@ -631,7 +652,6 @@ public class ARXtrail2017Rus implements GLSurfaceView.Renderer, SampleAppRendere
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_full_2")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_full_3")) {
 
-
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
@@ -651,11 +671,94 @@ public class ARXtrail2017Rus implements GLSurfaceView.Renderer, SampleAppRendere
                         buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_with_navi_middle));
                         buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_with_navi_right));
 
+                    } else if (userDataToCompare.equalsIgnoreCase("audio_with_navi_a_full_1")
+                            || userDataToCompare.equalsIgnoreCase("audio_with_navi_a_full_2")
+                            || userDataToCompare.equalsIgnoreCase("audio_with_navi_a_full_3")) {
+
+                        Log.e("Xtrail radio navi full", "----------------------");
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        Values.ar_value = Analytics.RADIO_W_NAVI;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.xtrail2017rus_radio_with_navi_a, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_2017_rus_audio_with_navi_full_a.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_with_navi_left_a));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_with_navi_middle_a));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_with_navi_right_a));
+
+                    } else if (userDataToCompare.equalsIgnoreCase("audio_with_navi_a_middle_1")
+                            || userDataToCompare.equalsIgnoreCase("audio_with_navi_a_middle_2")
+                            || userDataToCompare.equalsIgnoreCase("audio_with_navi_a_middle_3")) {
+
+                        Log.e("Xtrail radio navi midle", "----------------------");
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        Values.ar_value = Analytics.RADIO_W_NAVI;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.xtrail2017rus_radio_w_navi_middle_a, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_2017_rus_audio_with_navi_middle_a.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    } else if (userDataToCompare.equalsIgnoreCase("audio_with_navi_a_left_1")
+                            || userDataToCompare.equalsIgnoreCase("audio_with_navi_a_left_2")
+                            || userDataToCompare.equalsIgnoreCase("audio_with_navi_a_left_3")) {
+
+                        Log.e("Xtrail radio navi left", "----------------------");
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        Values.ar_value = Analytics.RADIO_W_NAVI;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.xtrail2017rus_radio_w_navi_left_a, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_2017_rus_audio_with_navi_left_a.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    } else if (userDataToCompare.equalsIgnoreCase("audio_with_navi_a_right_3")
+                            || userDataToCompare.equalsIgnoreCase("audio_with_navi_a_right_2")
+                            || userDataToCompare.equalsIgnoreCase("audio_with_navi_a_right_1")) {
+
+                        Log.e("Xtrail radio navi right", "----------------------");
+                        try {
+                            mActivity.isDetected = true;
+                            vuforiaAppSession.pauseAR();
+                        } catch (SampleApplicationException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+                        Values.ar_value = Analytics.RADIO_W_NAVI;
+                        mActivity.inflatedLayout = inflater.inflate(
+                                R.layout.xtrail2017rus_radio_w_navi_right_a, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_2017_rus_audio_with_navi_right_a.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
+                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
                     } else if (userDataToCompare.equalsIgnoreCase("radio_with_navi_left_1")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_left_2")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_left_3")
                             || userDataToCompare.equalsIgnoreCase("radio_with_navi_left_4")) {
-
 
                         try {
                             mActivity.isDetected = true;
@@ -668,8 +771,8 @@ public class ARXtrail2017Rus implements GLSurfaceView.Renderer, SampleAppRendere
 
                         Values.ar_value = Analytics.RADIO_W_NAVI;
                         mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.xtrail2017rus_radio_w_navi_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "xtrail2017rus_radio_navi_left.png");
+                                R.layout.xtrail2017rus_radio_with_navi_a, null, false);
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail_2017_rus_audio_with_navi_full_a.png");
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -752,46 +855,46 @@ public class ARXtrail2017Rus implements GLSurfaceView.Renderer, SampleAppRendere
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("heated_seat_front_1")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seat_front_2")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seat_front_3")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seat_front_4")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("heated_seat_front_1")
+                            || userDataToCompare.equalsIgnoreCase("heated_seat_front_2")
+                            || userDataToCompare.equalsIgnoreCase("heated_seat_front_3")
+                            || userDataToCompare.equalsIgnoreCase("heated_seat_front_4")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.HEATED_FRONT;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrailrus_2017_heated_seats_front, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "xtrail2017rus_heated_seats_front.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail2017rus_heated_seats_front.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("heated_seat_rear_1")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seat_rear_2")
-                            || userDataToCompare.equalsIgnoreCase ("heated_seat_rear_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("heated_seat_rear_1")
+                            || userDataToCompare.equalsIgnoreCase("heated_seat_rear_2")
+                            || userDataToCompare.equalsIgnoreCase("heated_seat_rear_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.HEATED_REAR;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.xtrailrus_2017_heated_seats_rear, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "xtrail2017rus_heated_seats_rear.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "xtrail2017rus_heated_seats_rear.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    }else {
+                    } else {
                         mActivity.isDetected = false;
                     }
 

@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import com.nissan.alldriverguide.ImageTargetActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.utils.Analytics;
+import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.Values;
 import com.nissan.alldriverguide.vuforia.LoadingDialogHandler;
 import com.nissan.alldriverguide.vuforia.SampleAppRenderer;
@@ -803,7 +804,14 @@ public class ARXtrail2017 implements GLSurfaceView.Renderer, SampleAppRendererCo
 
                     } else if (userDataToCompare.equalsIgnoreCase("parking_brake_1")
                             || userDataToCompare.equalsIgnoreCase("parking_brake_2")
-                            || userDataToCompare.equalsIgnoreCase("parking_brake_3")) {
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_3")
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_4")
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_5")
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_6")
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_7")
+                            || userDataToCompare.equalsIgnoreCase("parking_brake_8")) {
+
+                        Logger.error("Xtrail EUR parking","------------------");
 
 
                         try {
