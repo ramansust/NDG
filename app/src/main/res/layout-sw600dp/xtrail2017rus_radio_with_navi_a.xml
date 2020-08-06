@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/popupLayout"
+        android:layout_width="@dimen/width_400dp"
+        android:layout_height="@dimen/width_200dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/btn_radio_with_navi_left_a"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEventInitial"
+            android:tag="30001" />
+
+        <Button
+            android:id="@+id/btn_radio_with_navi_middle_a"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.6"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEventInitial"
+            android:tag="30003" />
+
+        <Button
+            android:id="@+id/btn_radio_with_navi_right_a"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEventInitial"
+            android:tag="30002" />
+    </LinearLayout>
+
+</LinearLayout>

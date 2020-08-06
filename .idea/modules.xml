@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib_viewpager_indicator/lib_viewpager_indicator.iml" filepath="$PROJECT_DIR$/lib_viewpager_indicator/lib_viewpager_indicator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib_viewpager_indicator/lib_viewpager_indicator.iml" filepath="$PROJECT_DIR$/lib_viewpager_indicator/lib_viewpager_indicator.iml" group="ndg_europe/lib_viewpager_indicator" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ndg_europe.iml" filepath="$PROJECT_DIR$/.idea/modules/ndg_europe.iml" group="ndg_europe" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ndg_europe-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ndg_europe-app.iml" group="ndg_europe/app" />
       <module fileurl="file://$PROJECT_DIR$/ndg_europe-last.iml" filepath="$PROJECT_DIR$/ndg_europe-last.iml" />
     </modules>
   </component>

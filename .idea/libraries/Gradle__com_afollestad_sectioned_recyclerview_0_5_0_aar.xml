@@ -1,10 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.afollestad:sectioned-recyclerview:0.5.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/sectioned-recyclerview-0.5.0.aar/be16060c280e972fdf3961620e1391b1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/sectioned-recyclerview-0.5.0.aar/be16060c280e972fdf3961620e1391b1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/sectioned-recyclerview-0.5.0.aar/9482b8325d5b8ecac328e95b0a34e5d7/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/sectioned-recyclerview-0.5.0.aar/9482b8325d5b8ecac328e95b0a34e5d7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/sectioned-recyclerview-0.5.0.aar/9482b8325d5b8ecac328e95b0a34e5d7/res" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.afollestad/sectioned-recyclerview/0.5.0/f562cad8e3779d44c43dbe47f15c3439915598e5/sectioned-recyclerview-0.5.0-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.afollestad/sectioned-recyclerview/0.5.0/276c2313e17db25431ba3bf2bf75078afbd99791/sectioned-recyclerview-0.5.0-sources.jar!/" />
     </SOURCES>

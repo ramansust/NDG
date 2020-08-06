@@ -1,11 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.facebook.fresco:animated-drawable:1.13.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-drawable-1.13.0.aar/9d8b7ceaaf8019867b906066b772150b/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-drawable-1.13.0.aar/03c516fd0e0551439f0cd7fe95f0b639/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-drawable-1.13.0.aar/9d8b7ceaaf8019867b906066b772150b/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-drawable-1.13.0.aar/9d8b7ceaaf8019867b906066b772150b/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-drawable-1.13.0.aar/03c516fd0e0551439f0cd7fe95f0b639/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-drawable-1.13.0.aar/03c516fd0e0551439f0cd7fe95f0b639/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-drawable-1.13.0.aar/03c516fd0e0551439f0cd7fe95f0b639/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
