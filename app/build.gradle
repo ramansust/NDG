@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 
-def VUFORIA_SDK_DIR = 'H:/ProjectDevelopment/workspace android/vuforia-sdk-android-7-2-23/'
+def VUFORIA_SDK_DIR = '/home/rohan/Desktop/vuforia-sdk-android-7-2-23/'
 def NATIVE_LIB_DIR = 'build/lib'
 def JAR_DIR = 'build/java/Vuforia'
 
