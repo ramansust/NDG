@@ -17,19 +17,32 @@
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/nissan_app_icon"
-        android:roundIcon="@mipmap/nissan_round_icon"
         android:label="@string/app_name"
-        android:usesCleartextTraffic="true"
+        android:roundIcon="@mipmap/nissan_round_icon"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".SplashScreenActivity"
+            android:exported="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.nissan_europe.com"
+                    android:pathPattern="/launch_app"
+                    android:scheme="https" />
+
             </intent-filter>
         </activity>
 
@@ -43,8 +56,9 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".CarDownloadActivityNew"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".CarDownloadActivityNew"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LanguageSelectionActivity"
             android:label="@string/title_activity_language_selection"
@@ -56,10 +70,26 @@
         <activity
             android:name=".CarDownloadActivity"
             android:label="@string/title_activity_car_download"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ModelYearActivity"
+            android:screenOrientation="portrait">
+
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.VIEW" />-->
+
+            <!--                <category android:name="android.intent.category.DEFAULT" />-->
+            <!--                <category android:name="android.intent.category.BROWSABLE" />-->
+
+            <!--                <data-->
+            <!--                    android:host="www.nissan_europe.com"-->
+            <!--                    android:pathPattern="/launch_app"-->
+            <!--                    android:scheme="https" />-->
+            <!--            </intent-filter>-->
+
+
+        </activity>
+        <activity
+            android:name=".ModelYearActivity"
             android:label="ModelYearActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
@@ -98,7 +128,10 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>
