@@ -1,6 +1,5 @@
 package com.nissan.alldriverguide;
 
-import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
@@ -10,7 +9,9 @@ import com.google.android.gms.analytics.Tracker;
 
 import java.util.HashMap;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyConfig;
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
+import io.github.inflationx.viewpump.ViewPump;
 
 /*
  * Class for Google Analytics settings
@@ -24,14 +25,23 @@ public class MyApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        super.onCreate();
+//        super.onCreate();
         Fresco.initialize(this);
         MyApplication.context = getApplicationContext();
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                        .setDefaultFontPath("font/Nissan Brand Bold.otf")
-                        .setFontAttrId(R.attr.fontPath)
-                        .build()
-        );
+//        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+//                        .setDefaultFontPath("font/Nissan Brand Bold.otf")
+//                        .setFontAttrId(R.attr.fontPath)
+//                        .build()
+
+        ViewPump.init(ViewPump.builder()
+                .addInterceptor(new CalligraphyInterceptor(
+                        new CalligraphyConfig.Builder()
+
+                                .setDefaultFontPath("font/Nissan Brand Bold.otf")
+                                .setFontAttrId(R.attr.fontPath)
+                                .build()))
+                .build());
+//        );
 
         Fresco.initialize(getApplicationContext());
     }
