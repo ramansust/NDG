@@ -1,8 +1,6 @@
 package com.nissan.alldriverguide;
 
-import android.*;
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -19,7 +17,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -76,7 +73,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 import static com.nissan.alldriverguide.utils.Values.DATA_SYNCING;
 import static com.nissan.alldriverguide.utils.Values.DOWNLOADING;
@@ -115,7 +112,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private CarListContentController carListContentController;
     private ProgressBar progressBar;
     private TextView tvNoContent;
-    private boolean isActivityOnPaused=false;
+    private boolean isActivityOnPaused = false;
 
     public LanguageSelectionActivity() {
     }
@@ -123,7 +120,13 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            super.attachBaseContext(newBase);
+        }
+        //Or implement this for api 29 and above
+        else {
+            super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+        }
     }
 
     @Override
@@ -344,12 +347,12 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 //        preferenceUtil.setSelectedLang(languageShortName[info.getId()]); // here save the selected language sort name into preference
 
 
-            if (DetectConnection.checkInternetConnection(getApplicationContext())) {
-                showCarDownloadDialogForSingleCar();
-            } else {
-                String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
-                NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
-            }
+        if (DetectConnection.checkInternetConnection(getApplicationContext())) {
+            showCarDownloadDialogForSingleCar();
+        } else {
+            String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
+            NissanApp.getInstance().showInternetAlert(LanguageSelectionActivity.this, internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
+        }
     }
 
     private LanguageList getDataFromMainList(String selectedLanguageName) {
@@ -368,7 +371,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
 
-
     private void loadResource() {
         resources = new Resources(getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(LanguageSelectionActivity.this, preferenceUtil.getSelectedLang()));
     }
@@ -378,8 +380,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
      */
     private void startCarDownloadProcedure() {
 
-        carListContentController.callApi(NissanApp.getInstance().getDeviceID(activity), selectedLangModel.getLanguageId()+"");
-        controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(activity)/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, selectedLangModel.getLanguageId()+"");
+        carListContentController.callApi(NissanApp.getInstance().getDeviceID(activity), selectedLangModel.getLanguageId() + "");
+        controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(activity)/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, selectedLangModel.getLanguageId() + "");
 
         final String startingDownloadMsg = getAlertMessage(STARTING_DOWNLOAD);
 
@@ -541,12 +543,12 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                         if (commonDao.getStatus(getBaseContext(), Values.carType + 1) == 2) {
                             commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 1, "2", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                         }
-                    } else if(Values.carType == 13){//click eur/rus rohan
-                        if(commonDao.getStatus(getBaseContext(),Values.carType + 2)  == 0){
+                    } else if (Values.carType == 13) {//click eur/rus rohan
+                        if (commonDao.getStatus(getBaseContext(), Values.carType + 2) == 0) {
                             commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 2, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                         }//click eur/rus rohan
-                    } else if(Values.carType == 12){//click eur/rus rohan
-                        if(commonDao.getStatus(getBaseContext(),Values.carType + 4)  == 0){
+                    } else if (Values.carType == 12) {//click eur/rus rohan
+                        if (commonDao.getStatus(getBaseContext(), Values.carType + 4) == 0) {
                             commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 4, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                         }//click eur/rus rohan
                     }
@@ -687,7 +689,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
 
-
     /**
      * Requesting camera permission
      * This uses single permission model from dexter
@@ -798,8 +799,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     }
 
     private void showErrorDialog(String msg) {
-        if (!isActivityOnPaused)
-        {
+        if (!isActivityOnPaused) {
             DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
             dialogFragment.show(getSupportFragmentManager(), "error_fragment");
         }
@@ -842,12 +842,12 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     @Override
     protected void onPause() {
         super.onPause();
-        isActivityOnPaused=true;
+        isActivityOnPaused = true;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        isActivityOnPaused=false;
+        isActivityOnPaused = false;
     }
 }

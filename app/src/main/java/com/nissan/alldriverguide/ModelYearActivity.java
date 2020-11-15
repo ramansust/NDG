@@ -8,9 +8,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,7 +21,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -52,7 +52,6 @@ import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.pushnotification.Config;
 import com.nissan.alldriverguide.retrofit.ApiCall;
-import com.nissan.alldriverguide.retrofit.ApiService;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
 import com.nissan.alldriverguide.utils.DialogErrorFragment;
@@ -70,7 +69,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
@@ -123,7 +122,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
     }
 
     private void loadChildCarList(List<CarList> allCarList, int parentCarId) {
-        int downloadedChildCar=0;
+        int downloadedChildCar = 0;
         childCars.clear();
         for (CarList carList : allCarList) {
             if (Integer.valueOf(carList.getParent_car_id()) == parentCarId && carList.getCar_model_version().equals("new")) {
@@ -151,7 +150,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         context = getApplicationContext();
         container = findViewById(R.id.model_container);
         commonDao = CommonDao.getInstance();
-        activity=ModelYearActivity.this;
+        activity = ModelYearActivity.this;
         preferenceUtil = new PreferenceUtil(getApplicationContext());
     }
 
@@ -1379,9 +1378,16 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
             }
         });
     }
+
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            super.attachBaseContext(newBase);
+        }
+        //Or implement this for api 29 and above
+        else {
+            super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+        }
     }
 
     private void showErrorDialog(String msg) {

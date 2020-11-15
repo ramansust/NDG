@@ -2,13 +2,15 @@ package com.nissan.alldriverguide;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -16,8 +18,15 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            super.attachBaseContext(newBase);
+        }
+        //Or implement this for api 29 and above
+        else {
+            super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+        }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +67,10 @@ public class SplashScreenActivity extends AppCompatActivity {
      * Splash display for 3 sec then go to CarDownloadActivity class
      */
     private void createSplashScreen() {
-        new Handler().postDelayed (new Runnable () {
+        new Handler().postDelayed(new Runnable() {
 
             @Override
-            public void run () {
+            public void run() {
                 startActivity(new Intent(SplashScreenActivity.this, CarDownloadActivity.class));
                 finish();
             }

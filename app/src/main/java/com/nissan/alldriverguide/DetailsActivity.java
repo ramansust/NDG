@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -28,7 +29,8 @@ import com.nissan.alldriverguide.utils.Values;
 import java.io.File;
 import java.util.ArrayList;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
+
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,7 +48,13 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            super.attachBaseContext(newBase);
+        }
+        //Or implement this for api 29 and above
+        else {
+            super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+        }
     }
 
     @Override
@@ -130,7 +138,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
                 case Values.HOMEPAGE_TYPE:
                     if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
-                    //list = new MAePubParser(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.homepage + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.epub).parseePub();
+                        //list = new MAePubParser(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.homepage + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.epub).parseePub();
                         list = new NissanApp().getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
                         if (list != null) {
                             htmlContent = "file://"

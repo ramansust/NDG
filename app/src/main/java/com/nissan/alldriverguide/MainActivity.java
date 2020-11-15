@@ -15,13 +15,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,7 +51,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.CAMERA;
@@ -94,7 +92,13 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            super.attachBaseContext(newBase);
+        }
+        //Or implement this for api 29 and above
+        else {
+            super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+        }
     }
 
     @Override
@@ -166,7 +170,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         if (tabMenuArrayList != null && tabMenuArrayList.size() > 0) {
             for (int i = 0; i < tabMenuArrayList.size(); i++) {
                 tabNames[i] = tabMenuArrayList.get(i).getTitle();
-                Logger.error("Tab names" , "---- "  + tabNames[i]);
+                Logger.error("Tab names", "---- " + tabNames[i]);
             }
         } else {
             tabNames = resources.getStringArray(R.array.tab_names);
@@ -203,6 +207,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
     /**
      * Setup tab icon and text color color
+     *
      * @param tabPosition compare and decoration
      */
     public void setTabIndicatorIconAndTextColor(int tabPosition) {
@@ -418,22 +423,22 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
                     if (preferenceUtil.isGreat() && !preferenceUtil.getIsFirstTimeGreatNotGreat()) {
 
-                            if (preferenceUtil.getSessionOne() && preferenceUtil.getOpenCountForRateApp() >= 15 ||
-                                    preferenceUtil.getSessionThree() && preferenceUtil.getOpenCountForRateApp() >= 45) {
-                                rateOurApp();
+                        if (preferenceUtil.getSessionOne() && preferenceUtil.getOpenCountForRateApp() >= 15 ||
+                                preferenceUtil.getSessionThree() && preferenceUtil.getOpenCountForRateApp() >= 45) {
+                            rateOurApp();
 
-                            } else {
-                                backAlert();
-                            }
+                        } else {
+                            backAlert();
+                        }
                     } else if (!preferenceUtil.isGreat() && !preferenceUtil.getIsFirstTimeGreatNotGreat()) {
 
-                            if (preferenceUtil.getSessionOne() && preferenceUtil.getOpenCountForRateApp() >= 15 ||
-                                    preferenceUtil.getSessionThree() && preferenceUtil.getOpenCountForRateApp() >= 75) {
-                                feedBack();
+                        if (preferenceUtil.getSessionOne() && preferenceUtil.getOpenCountForRateApp() >= 15 ||
+                                preferenceUtil.getSessionThree() && preferenceUtil.getOpenCountForRateApp() >= 75) {
+                            feedBack();
 
-                            } else {
-                                backAlert();
-                            }
+                        } else {
+                            backAlert();
+                        }
                     } else {
                         backAlert();
                     }
@@ -867,9 +872,10 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     private ArrayList<TabMenu> getDataFromStorage() {
 
         String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(this).getSelectedLang()) + "_" + Values.TAB_MENU_KEY;
-        Logger.error("lan Key","----- " + key);
+        Logger.error("lan Key", "----- " + key);
 
-        Type type = new TypeToken<ArrayList<TabMenu>>() {        }.getType();
+        Type type = new TypeToken<ArrayList<TabMenu>>() {
+        }.getType();
         return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);
 
     }
