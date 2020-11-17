@@ -28,7 +28,7 @@
         android:layout_toLeftOf="@+id/check_box"
         android:layout_toEndOf="@id/img_view"
         android:layout_toRightOf="@+id/img_view"
-        android:fontFamily="@font/nissan_brand_bold"
+        android:fontFamily="@font/nissan_brand_regular"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white" />
 
