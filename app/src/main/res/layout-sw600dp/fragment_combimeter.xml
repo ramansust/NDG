@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_back"
-                android:fontFamily="@font/nissan_brand_regular"
+                android:fontFamily="@font/nissan_brand_bold"
                 android:text="@string/back"
                 android:textColor="@color/white"
                 android:visibility="gone" />

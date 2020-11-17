@@ -139,8 +139,8 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         tabIcons = new ImageView[tabIconsSelected.length];
         tabTextViews = new TextView[tabIconsSelected.length];
 
-        typeFaceNormal = Typeface.createFromAsset(getAssets(), "font/nissan_brand_regular.otf");
-        typeFaceBold = Typeface.createFromAsset(getAssets(), "font/nissan_brand_bold.otf");
+        typeFaceNormal = getResources().getFont(R.font.nissan_brand_regular);
+        typeFaceBold = getResources().getFont(R.font.nissan_brand_bold);
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 

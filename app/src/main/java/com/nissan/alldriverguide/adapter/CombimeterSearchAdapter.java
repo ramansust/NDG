@@ -6,7 +6,6 @@ package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -31,7 +30,6 @@ public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSear
 
     private Context mContext;
     private ArrayList<SearchCombimeterModel> warning_list;
-    private Typeface tf;
 
     /**
      * Declare constructor
@@ -42,7 +40,6 @@ public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSear
     public CombimeterSearchAdapter(Context mContext, ArrayList<SearchCombimeterModel> list) {
         this.mContext = mContext;
         this.warning_list = list;
-        tf = mContext.getResources().getFont(R.font.nissan_brand_bold);
     }
 
 

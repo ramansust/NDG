@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -61,7 +60,6 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
     private String htmlContent = "";
     private ArrayList<EpubInfo> list;
     private static final String TITLE = "title";
-    private Typeface tf;
     private DisplayMetrics metrics;
     private Resources resources;
 
@@ -100,8 +98,6 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
         linearLayoutNoContent = (LinearLayout) view.findViewById(R.id.linearLayoutNoContent);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBarDetailsFragment);
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_regular.otf"); //initialize typeface here.
-        txt_back_title.setTypeface(tf);
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang()));

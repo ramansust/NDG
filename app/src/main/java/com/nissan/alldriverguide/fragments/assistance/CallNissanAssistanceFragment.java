@@ -67,7 +67,6 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     private DisplayMetrics metrics;
     private TextView txtViewTitle;
     private TextView txtHeaderTitle;
-    private Typeface tf;
     private static final String TITLE = "title";
     private String headerTitle, call_assistance_title;
     private String deviceDensity;
@@ -229,7 +228,6 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         txtHeaderTitle = (TextView) view.findViewById(R.id.txt_view_country_name);
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_regular.otf");
     }
 
     @Override

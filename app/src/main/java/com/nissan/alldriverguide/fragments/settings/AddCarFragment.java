@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
@@ -75,7 +74,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     private Resources resources;
     private DisplayMetrics metrics;
     private CommonDao commonDao;
-    private Typeface tf;
     private int selectedCarIndex = 0;
 
     private boolean isDownloaded = true;
@@ -290,7 +288,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         String car_selection_title = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.CAR_SELECTION_TITLE);
         txt_title.setText(car_selection_title.isEmpty() ? resources.getString(R.string.add_extra_car) : car_selection_title);
         txt_back_title.setText(resources.getString(R.string.back));
-        txt_back_title.setTypeface(tf);
         Logger.error("carType", "_________" + Values.carType);
 
 
@@ -311,7 +308,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
         commonDao = CommonDao.getInstance();
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_regular.otf"); //initialize typeface here.
     }
 
     @Override

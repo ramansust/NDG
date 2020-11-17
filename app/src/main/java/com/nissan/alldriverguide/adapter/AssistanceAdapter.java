@@ -1,7 +1,6 @@
 package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ public class AssistanceAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private String[] carName;
     private int[] carImage;
-    private Typeface tf;
 
     /**
      * Declare constructor that uses for
@@ -35,7 +33,6 @@ public class AssistanceAdapter extends BaseAdapter {
         this.context = context;
         this.carName = carName;
         this.carImage = carImage;
-        tf = context.getResources().getFont(R.font.nissan_brand_bold);
         inflater = LayoutInflater.from(this.context);
     }
 
@@ -70,7 +67,6 @@ public class AssistanceAdapter extends BaseAdapter {
 
         // imageView Logic for if left icon img in fixed size
         viewHolder.imageView.setBackgroundResource(position < carImage.length ? carImage[position] : R.drawable.tyre); // here set the car image
-        viewHolder.txtViewTitle.setTypeface(tf); // set the font for car name or nissan assistance
         viewHolder.txtViewTitle.setText(carName[position]);
 
         return convertView;
@@ -95,5 +91,4 @@ public class AssistanceAdapter extends BaseAdapter {
             txtViewSubTitle = (TextView) view.findViewById(R.id.txt_subtitle);
         }
     }
-
 }

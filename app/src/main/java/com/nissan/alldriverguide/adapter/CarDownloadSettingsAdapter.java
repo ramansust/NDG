@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
@@ -119,7 +118,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     private long mLastClickTime = 0;
     private List<CarList> carListArrayList = new ArrayList<>();
     private ArrayList<Object> childCarsList = new ArrayList<>();
-    private Typeface typeFaceBold;
     private String dataSyncingMsg = "", downloadingMsg = "";
     private LinearLayout container;
 
@@ -135,7 +133,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         loadResource();
         deviceDensity = NissanApp.getInstance().getDensityName(this.activity);
         getDataFromSP();
-        typeFaceBold = context.getResources().getFont(R.font.nissan_brand_bold);
     }
 
     private void getCarList(String carId) {
@@ -197,9 +194,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
-        viewHolder.txtViewTitle.setTypeface(typeFaceBold);
-
 
         if (list.get(position).isSection()) {
             viewHolder.relativeLayoutSection.setVisibility(View.VISIBLE);
@@ -1102,7 +1096,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
     private void startCarDownloadProcedure() {
 
-
         dataSyncingMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), DATA_SYNCING);
         downloadingMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), DOWNLOADING);
 
@@ -1530,7 +1523,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         lstView.setDividerHeight(4);
 
         dialog.show();
-
     }
 
     private String getLanguageShortName(String name) {
@@ -1539,9 +1531,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
             if (name.equalsIgnoreCase(languageLists.get(i).getLanguageName()))
                 return languageLists.get(i).getLanguageShortcode();
-
         }
-
         return "";
     }
 
@@ -1745,8 +1735,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     }
 
     private ArrayList<CarInfo> swapXtrailEurRusIfBothDownloaded(ArrayList<CarInfo> getList) {
-
-
         CarInfo xtrailEuroInfo = new CarInfo();
         CarInfo xtrailRusInfo = new CarInfo();
         CarInfo leaf2017Info = new CarInfo();
@@ -1786,8 +1774,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     }
 
     private ArrayList<CarInfo> swapXtrailRusleaf2017IfBothDownloaded(ArrayList<CarInfo> getList) {
-
-
         CarInfo xtrailEuroInfo = new CarInfo();
         CarInfo xtrailRusInfo = new CarInfo();
         CarInfo leaf2017Info = new CarInfo();
@@ -1815,13 +1801,11 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             getList.set(leaf2017Index, xtrailRusInfo);
             getList.set(xtrailRusIndex, leaf2017Info);
         }
-
 //        NissanApp.getInstance().setCarAllList(getList);
         return getList;
     }
 
     private void replaceTheCarNamesAndImages() {
-
         ArrayList<CarInfo> carInfoArrayList = NissanApp.getInstance().getCarAllList();
 
         if (carInfoArrayList == null || carInfoArrayList.size() == 0)
@@ -1844,11 +1828,9 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         }
 
         NissanApp.getInstance().setCarAllList(carInfoArrayList);
-
     }
 
     private void getDataFromSP() {
-
         String car_list_key = preferenceUtil.getSelectedLang() + "_" + Values.CAR_LIST_KEY + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang());
 
         Type type = new TypeToken<ArrayList<CarList>>() {
@@ -1920,7 +1902,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             imgDeleteOrDownload = (ImageButton) view.findViewById(R.id.img_btn_delete_or_download);
             relativeLayoutSection = (RelativeLayout) view.findViewById(R.id.relative_section);
             relativeLayout = (RelativeLayout) view.findViewById(R.id.relative_car_download);
-
         }
     }
 }

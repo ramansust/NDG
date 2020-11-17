@@ -2,7 +2,6 @@ package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +25,6 @@ public class LanguageSelectionAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<LanguageInfo> list;
     private boolean isColor;
-    private Typeface tf;
 
     /**
      * Declare constructor
@@ -39,7 +37,6 @@ public class LanguageSelectionAdapter extends BaseAdapter {
         this.context = context;
         this.list = list;
         this.isColor = isColor;
-        tf = context.getResources().getFont(R.font.nissan_brand_bold);
         inflater = LayoutInflater.from(this.context);
     }
 
@@ -73,7 +70,6 @@ public class LanguageSelectionAdapter extends BaseAdapter {
         }
 
         viewHolder.imageView.setImageURI(list.get(position).getImage());
-        viewHolder.txtViewTitle.setTypeface(tf);
         viewHolder.txtViewTitle.setText(list.get(position).getName());
 
         if (isColor) {

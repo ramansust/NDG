@@ -2,7 +2,6 @@ package com.nissan.alldriverguide.adapter;
 
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -35,13 +34,11 @@ public class DataGridAdapter extends BaseAdapter {
     private ArrayList<EpubInfo> list;
     private String drawable_folder = Values.car_path + "/combimeter_button";
     private int _ePubType = 0;
-    private Typeface tf;
 
     public DataGridAdapter(Context mContext, ArrayList<EpubInfo> list, int ePubType) {
         this.mContext = mContext;
         this.list = list;
         this._ePubType = ePubType;
-        tf = mContext.getResources().getFont(R.font.nissan_brand_bold);
     }
 
     public void setData(ArrayList<EpubInfo> list) {
@@ -85,7 +82,6 @@ public class DataGridAdapter extends BaseAdapter {
         EpubInfo epubInfo = list.get(position);
 
         viewHolder.rv.setVisibility(View.GONE);
-        viewHolder.qRefGuide.setTypeface(tf);
 
         finalText = StringHelper.convertFromUTF8(epubInfo.getTitle());
 //        finalText = epubInfo.getTitle();

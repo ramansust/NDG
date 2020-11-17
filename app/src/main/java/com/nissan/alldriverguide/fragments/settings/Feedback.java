@@ -62,7 +62,6 @@ public class Feedback extends Fragment implements View.OnClickListener {
     }
 
     private void loadTextFromDatabase() {
-
         String pageTitle = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.FEEDBACK_TITLE);
         tvTitle.setText(pageTitle.isEmpty() ? getActivity().getResources().getString(R.string.feedback) : pageTitle);
         String titleField = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.TITLE_FIELD);

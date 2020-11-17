@@ -125,8 +125,6 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
      */
     private void loadData() {
         linearBack.setVisibility(View.VISIBLE);
-
-        txtViewDriverGuide.setTypeface(Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "font/nissan_brand_regular.otf"));
 //        txtViewDriverGuide.setText(resources.getString(R.string.driver_guide));
         txtViewDriverGuide.setText(NissanApp.getInstance().getAssistanceInfo().getAssistanceTitle());
         txtViewTitle.setText(getArguments().get(TITLE).toString());

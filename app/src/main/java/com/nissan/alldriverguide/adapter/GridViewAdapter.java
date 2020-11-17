@@ -1,7 +1,6 @@
 package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.support.annotation.Nullable;
@@ -31,8 +30,6 @@ public class GridViewAdapter extends BaseAdapter {
 
     private Context context;
     private LayoutInflater inflater;
-    private Typeface tf;
-    private Typeface tfRegular;
     private ArrayList<ExploreTabVideoModel> video_list;
     private String device_density;
     private String img_name = "";
@@ -42,10 +39,7 @@ public class GridViewAdapter extends BaseAdapter {
         this.context = context;
         this.video_list = video_list;
         this.device_density = device_density;
-        tf = context.getResources().getFont(R.font.nissan_brand_bold);
-        tfRegular = context.getResources().getFont(R.font.nissan_brand_regular);
         inflater = LayoutInflater.from(this.context);
-
 /*
         if (Values.carType == 11) {
             for (Iterator<ExploreTabVideoModel> iterator = this.video_list.listIterator(); iterator.hasNext(); ) {
@@ -56,7 +50,6 @@ public class GridViewAdapter extends BaseAdapter {
             }
         }
 */
-
     }
 
     @Override

@@ -24,13 +24,11 @@ public class CallNumberAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<CallInfo> list;
     private boolean isColor;
-    private Typeface tf;
 
     public CallNumberAdapter(Context context, List<CallInfo> list) {
         this.context = context;
         this.list = list;
         this.isColor = isColor;
-        tf = context.getResources().getFont(R.font.nissan_brand_bold);
         inflater = LayoutInflater.from(this.context);
     }
 
@@ -64,7 +62,6 @@ public class CallNumberAdapter extends BaseAdapter {
         }
 
         viewHolder.imageView.setImageURI(list.get(position).getCountryFlag());
-        viewHolder.txtViewTitle.setTypeface(tf);
         viewHolder.txtViewTitle.setText(list.get(position).getCountryName());
 
         return convertView;

@@ -1,7 +1,6 @@
 package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,20 +18,17 @@ import java.util.ArrayList;
 public class ModelYearAdapter extends RecyclerView.Adapter<ModelYearAdapter.ModelYearViewHolder> {
     private Context context;
     public ArrayList<Object> list;
-    private Typeface typeFaceBold;
     ModelYearItemClcikListener itemClcikListener;
 
     public ModelYearAdapter(Context context, ArrayList<Object> list, ModelYearItemClcikListener itemClickListener) {
         this.context = context;
         this.list = list;
         this.itemClcikListener = itemClickListener;
-        typeFaceBold = context.getResources().getFont(R.font.nissan_brand_bold);
     }
 
     public ModelYearAdapter(Context context, ArrayList<Object> list) {
         this.context = context;
         this.list = list;
-        typeFaceBold = context.getResources().getFont(R.font.nissan_brand_bold);
     }
 
     @NonNull
@@ -86,8 +82,6 @@ public class ModelYearAdapter extends RecyclerView.Adapter<ModelYearAdapter.Mode
             txt_title = (TextView) view.findViewById(R.id.txtView_car_downlaod_model_year_row_title);
             //ImageButton imgDeleteOrDownload = (ImageButton) view.findViewById(R.id.img_btn_delete_or_download);
             //imgDeleteOrDownload.setBackgroundResource(R.drawable.delete_selector);
-
-            txt_title.setTypeface(typeFaceBold);
         }
     }
 }

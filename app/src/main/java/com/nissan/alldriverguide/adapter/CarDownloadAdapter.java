@@ -1,7 +1,6 @@
 package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,6 @@ public class CarDownloadAdapter extends BaseAdapter {
     public ArrayList<Object> list;
     private CarInfo info = null;
     private Parent_car_list parent_car_list = null;
-    private Typeface typeFaceBold;
     TextView txtView_loading;
     SimpleDraweeView imageView;
 
@@ -51,7 +49,6 @@ public class CarDownloadAdapter extends BaseAdapter {
         this.list = list;
         inflater = LayoutInflater.from(this.context);
         this.listener = onItemClickListener;
-        typeFaceBold = context.getResources().getFont(R.font.nissan_brand_bold);
     }
 
     public void setList(ArrayList<Object> _list) {
@@ -95,8 +92,6 @@ public class CarDownloadAdapter extends BaseAdapter {
                 txtView_loading = (TextView) view.findViewById(R.id.txtView_loading);
                 ImageButton imgDeleteOrDownload = (ImageButton) view.findViewById(R.id.img_btn_delete_or_download);
                 imgDeleteOrDownload.setBackgroundResource(R.drawable.delete_selector);
-
-                txtViewTitle.setTypeface(typeFaceBold);
 
                 imgDeleteOrDownload.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -168,8 +163,6 @@ public class CarDownloadAdapter extends BaseAdapter {
                 txtView_loading = (TextView) view.findViewById(R.id.txtView_loading);
                 ImageButton imgDeleteOrDownload = (ImageButton) view.findViewById(R.id.img_btn_delete_or_download);
                 imgDeleteOrDownload.setBackgroundResource(R.drawable.delete_selector);
-
-                txtViewTitle.setTypeface(typeFaceBold);
                 imgDeleteOrDownload.setVisibility(View.INVISIBLE); //always invisible for parent car
                 imageView.setImageURI(parent_car_list.getCar_img());
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));

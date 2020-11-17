@@ -1,7 +1,6 @@
 package com.nissan.alldriverguide;
 
 import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -38,7 +37,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     private int index = 0;
     private String htmlContent = "";
     private ArrayList<EpubInfo> list;
-    private Typeface tf;
     private Tracker tracker;
     private ProgressBar progressBar;
 
@@ -247,8 +245,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         btnBack = (ImageButton) findViewById(R.id.btn_back);
         linearBack = (LinearLayout) findViewById(R.id.linear_back);
         txt_back_title = (TextView) findViewById(R.id.txt_back_title);
-        tf = Typeface.createFromAsset(getAssets(), "font/nissan_brand_regular.otf"); //initialize typeface here.
-        txt_back_title.setTypeface(tf);
     }
 
     @Override

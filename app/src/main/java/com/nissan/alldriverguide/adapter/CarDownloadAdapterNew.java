@@ -7,7 +7,6 @@
 package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -37,7 +36,6 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
     private final String DOWNLOADED_CAR = "Downloaded Car";
     private final String AVAILABE_CAR = "Available Car";
     private final String PREVIOUS_CAR = "Previous Car";
-    private final Typeface typeFaceBold;
     private OnItemClickListener listener;
     private Context context;
     private ArrayList<Object> orderedCarList = new ArrayList<>();
@@ -48,7 +46,6 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
     public CarDownloadAdapterNew(Context context, List<CarList> carLists) {
         this.context = context;
         this.carLists = carLists;
-        typeFaceBold = context.getResources().getFont(R.font.nissan_brand_bold);
         getCarDownloadedlist();
         orderingCarList();
     }
@@ -207,11 +204,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
             imgDeleteOrDownload = itemView.findViewById(R.id.img_btn_delete_or_download);
 
             imgDeleteOrDownload.setBackgroundResource(R.drawable.delete_selector);
-
-            txtViewTitle.setTypeface(typeFaceBold);
             imageViewBorder.setVisibility(View.INVISIBLE);
-
-
         }
 
         public void setDetails(Object o, final int position) {
@@ -254,8 +247,6 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
             imgDeleteOrDownload = itemView.findViewById(R.id.img_btn_delete_or_download);
 
             imgDeleteOrDownload.setBackgroundResource(R.drawable.delete_selector);
-
-            txtViewTitle.setTypeface(typeFaceBold);
             imgDeleteOrDownload.setVisibility(View.GONE);
         }
 

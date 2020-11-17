@@ -1,7 +1,6 @@
 package com.nissan.alldriverguide.fragments.assistance;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -41,7 +40,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private List<EpubInfo> list;
     private TextView title;
     private static final String TITLE = "title";
-    private Typeface tf;
 
     private ProgressBar progressBar;
 
@@ -100,7 +98,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
      */
     private void loadData() throws Exception {
         title.setText(getArguments().get(TITLE).toString());
-        txt_back_title.setTypeface(tf);
 
         // here check the toc.ncx is exist or not in sdCard
         if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
@@ -199,7 +196,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
         title = (TextView) view.findViewById(R.id.txt_title);
         txt_back_title = (TextView) view.findViewById(R.id.txt_back_title);
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_regular.otf"); //initialize typeface here.
     }
 
     @Override

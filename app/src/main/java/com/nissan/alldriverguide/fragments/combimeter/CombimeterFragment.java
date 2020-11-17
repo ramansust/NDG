@@ -1,7 +1,6 @@
 package com.nissan.alldriverguide.fragments.combimeter;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -38,7 +37,6 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
     private int width = 0;
     private LinearLayout mainLinearLayout;
     private TextView txt_title, txt_back_title;
-    private Typeface tf;
     private String drawable_folder = Values.car_path + "/combimeter_button"; // combimiter path from sdCard
     private static final String TITLE = "title";
 
@@ -78,8 +76,6 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
 
 
     private void loadData() {
-
-        txt_back_title.setTypeface(tf);
         txt_title.setText(getArguments().get(TITLE).toString());
 
         list_red = new ArrayList<String>();
@@ -141,7 +137,6 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
         txt_title = (TextView) view.findViewById(R.id.txt_title);
         scrollView = (ScrollView) view.findViewById(R.id.scroll_view);
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_regular.otf"); //initialize typeface here.
     }
 
     @Override

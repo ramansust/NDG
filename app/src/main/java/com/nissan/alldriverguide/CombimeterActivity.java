@@ -2,7 +2,6 @@ package com.nissan.alldriverguide;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -40,7 +39,6 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
     private int width = 0;
     private LinearLayout mainLinearLayout;
     private String EPUB_INDEX = "epub_index";
-    private Typeface tf;
     private String drawable_folder = Values.car_path + "/combimeter_button";
 
     //    Combimeter color list
@@ -111,11 +109,8 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
             loadCombiButtonsinGeneral(list_gray, Values.GRAY_TYPE);
         }
         scrollView.addView(mainLinearLayout);
-
         String header_txt = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), WARNING_LIGHTS);
-
         txt_title.setText(header_txt.isEmpty() ? getResources().getString(R.string.warning_lights) : header_txt);
-
     }
 
     /**
@@ -137,10 +132,6 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
         scrollView = (ScrollView) findViewById(R.id.scroll_view);
         txt_back_title = (TextView) findViewById(R.id.txt_back_title);
         txt_title = (TextView) findViewById(R.id.txt_title);
-        tf = Typeface.createFromAsset(getAssets(), "font/nissan_brand_bold.otf"); //initialize typeface here.
-        txt_back_title.setTypeface(tf);
-        txt_title.setTypeface(tf);
-
     }
 
     /**

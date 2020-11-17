@@ -3,7 +3,6 @@ package com.nissan.alldriverguide.fragments.assistance;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -44,7 +43,6 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
     private List<EpubInfo> list;
     private TextView title;
     private static final String TITLE = "title";
-    private Typeface tf;
     private String tyre;
     PreferenceUtil preferenceUtil;
 
@@ -80,7 +78,6 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private void loadData() throws Exception {
         title.setText(getArguments().get(TITLE).toString()); // here set the title on top bar
-        txt_back_title.setTypeface(tf);
         switch (Values.ePubType) {// compare with epub type
 
             case Values.HOMEPAGE_TYPE:
@@ -181,7 +178,6 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
         title = (TextView) view.findViewById(R.id.txt_title);
         txt_back_title = (TextView) view.findViewById(R.id.txt_back_title);
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_regular.otf"); //initialize typeface here.
     }
 
     @Override

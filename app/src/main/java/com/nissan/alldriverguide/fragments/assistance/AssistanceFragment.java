@@ -218,7 +218,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     // here load the initial data
     private void loadData() {
-        txtViewDriverGuide.setTypeface(Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "font/nissan_brand_regular.otf"));
         if (assistanceInfo != null && assistanceInfo.getAssistanceTitle() != null) {
             txtViewDriverGuide.setText(assistanceInfo.getAssistanceTitle().isEmpty() ? resources.getString(R.string.driver_guide) : assistanceInfo.getAssistanceTitle());
         }

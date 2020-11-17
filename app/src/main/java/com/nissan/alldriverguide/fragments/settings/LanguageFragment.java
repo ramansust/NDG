@@ -93,7 +93,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     private TextView txt_title;
     private TextView txtBackTitle;
     private CommonDao commonDao;
-    private Typeface tf;
     private ProgressDialog progressDialog;
     private Activity activity;
     private Context context;
@@ -144,7 +143,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
         txt_title.setText(changeLanguageTitle == null || changeLanguageTitle.isEmpty() ? resources.getString(R.string.change_language) : changeLanguageTitle);
         txtBackTitle.setText(resources.getString(R.string.back));
-        txtBackTitle.setTypeface(tf);
     }
 
     private void getDataCarWise() {
@@ -324,7 +322,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
         commonDao = CommonDao.getInstance();
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_regular.otf");
         dbHelper = new NissanDbHelper(getActivity());
         sqliteDB = dbHelper.getWritableDatabase();
         controller = new LanguageSelectionController(this);

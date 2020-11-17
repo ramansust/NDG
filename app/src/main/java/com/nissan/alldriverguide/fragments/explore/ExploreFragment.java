@@ -121,7 +121,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private ImageView ivRight, ivLeft;
     private PreferenceUtil preferenceUtil;
     private ProgressDialog progressDialog = null;
-    private Typeface typefaceRegular = null, typefaceBold = null;
     ;
     private int width = 250, height = 50;
     private int exploreSlidedItems = 0;
