@@ -135,7 +135,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         loadResource();
         deviceDensity = NissanApp.getInstance().getDensityName(this.activity);
         getDataFromSP();
-        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf");
+        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf");
     }
 
     private void getCarList(String carId) {

@@ -1,8 +1,6 @@
 package com.nissan.alldriverguide;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -26,8 +24,6 @@ import com.viewpagerindicator.CirclePageIndicator;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
-
 public class TutorialActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Tracker tracker;
@@ -40,17 +36,6 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     private String[] tutorialDetails = new String[10];
     private CirclePageIndicator indicator;
     private int TUTORIAL_COUNT = 0;
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            super.attachBaseContext(newBase);
-        }
-        //Or implement this for api 29 and above
-        else {
-            super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

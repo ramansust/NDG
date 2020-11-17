@@ -3,20 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="600dp"
         android:layout_height="240dp"
         android:gravity="center"
         android:id="@+id/popupLayout"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".8"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
@@ -95,8 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".3"
-            android:orientation="vertical" >
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -141,7 +141,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
         txt_title = (TextView) view.findViewById(R.id.txt_title);
         scrollView = (ScrollView) view.findViewById(R.id.scroll_view);
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/Nissan Brand Regular.otf"); //initialize typeface here.
+        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_regular.otf"); //initialize typeface here.
     }
 
     @Override
@@ -186,7 +186,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
                     }
                 }*/
 
-                Logger.error("__MB__Tag__",v.getTag().toString());
+                Logger.error("__MB__Tag__", v.getTag().toString());
                 ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
 
 //                ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
@@ -218,7 +218,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
             for (File file : dir.listFiles()) { // get all of the file from file path
                 if (file.toString().contains("combimeter_")) {
 
-                    Logger.error("___MB__",file.getName());
+                    Logger.error("___MB__", file.getName());
                     // here add the colors in ArrayList form combimeter folder
                     // comparing the naming convention like: _r = red, _y = blue, _grn = green etc.
                     if (file.getName().contains("_r")) {
@@ -361,7 +361,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
                 mainLinearLayout.addView(add_DashedLine(getActivity(), R.drawable.green_dash_line, space));
             }
         } else if (type == Values.YELLOW_TYPE) {
-            if(!list_green.isEmpty()) {
+            if (!list_green.isEmpty()) {
                 mainLinearLayout.addView(add_DashedLine(getActivity(), R.drawable.green_dash_line, space));
             } else {
                 mainLinearLayout.addView(add_DashedLine(getActivity(), R.drawable.cyan_dash_line, space));
@@ -370,7 +370,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
             if (!list_cyan.isEmpty()) {
                 mainLinearLayout.addView(add_DashedLine(getActivity(), R.drawable.cyan_dash_line, space));
             } else {
-                if(!list_blue.isEmpty()) {
+                if (!list_blue.isEmpty()) {
                     mainLinearLayout.addView(add_DashedLine(getActivity(), R.drawable.blue_dash_line, space));
                 } else {
                     mainLinearLayout.addView(add_DashedLine(getActivity(), R.drawable.gray_dash_line, space));
@@ -415,10 +415,9 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
     }
 
     /**
-     *
-     * @param c context
+     * @param c         context
      * @param drawables for dotted vertical line
-     * @param space used for layout margin
+     * @param space     used for layout margin
      * @return view
      */
     private View add_DashedLine(Context c, int drawables, int space) {

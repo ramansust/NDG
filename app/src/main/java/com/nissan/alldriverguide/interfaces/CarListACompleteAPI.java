@@ -9,6 +9,7 @@ import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 public interface CarListACompleteAPI {
 
     void onDownloaded(CarListResponse responseInfo);
+
     void onFailed(String failedReason);
 
 }

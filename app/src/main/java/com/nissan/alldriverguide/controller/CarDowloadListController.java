@@ -7,7 +7,6 @@
 package com.nissan.alldriverguide.controller;
 
 import com.nissan.alldriverguide.interfaces.CarListACompleteAPI;
-import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.retrofit.ApiService;
 import com.nissan.alldriverguide.retrofit.RetrofitClient;
@@ -27,14 +26,15 @@ public class CarDowloadListController implements Callback<CarListResponse> {
     public void callApi(String device_id, String language_id) {
         ApiService api = RetrofitClient.getApiService();
 
-        Call<CarListResponse> call = api.carList(device_id,language_id);
+        Call<CarListResponse> call = api.carList(device_id, language_id);
         call.enqueue(this);
     }
+
     @Override
     public void onResponse(Call<CarListResponse> call, Response<CarListResponse> response) {
-        if (response.isSuccessful()){
+        if (response.isSuccessful()) {
             carListACompleteAPI.onDownloaded(response.body());
-        }else {
+        } else {
             carListACompleteAPI.onFailed(response.errorBody().toString());
         }
 

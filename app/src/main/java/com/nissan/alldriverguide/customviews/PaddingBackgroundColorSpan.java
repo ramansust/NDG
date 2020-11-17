@@ -24,7 +24,7 @@ public class PaddingBackgroundColorSpan implements LineBackgroundSpan {
         final int paintColor = p.getColor();
         // Draw the background
         mBgRect.set(left - mPadding,
-                top - (lnum == 0 ? mPadding / 2 : - (mPadding / 2)),
+                top - (lnum == 0 ? mPadding / 2 : -(mPadding / 2)),
                 left + textWidth + mPadding,
                 bottom + mPadding / 2);
         p.setColor(mBackgroundColor);

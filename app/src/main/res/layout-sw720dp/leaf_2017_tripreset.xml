@@ -10,7 +10,7 @@
         android:layout_width="600dp"
         android:layout_height="136dp"
         android:gravity="center"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <Button
             android:layout_width="match_parent"

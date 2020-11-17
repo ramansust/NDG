@@ -10,7 +10,6 @@ import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
 
-import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -33,19 +32,19 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("download_confirmation/")
     Call<ResponseInfo> postCarDownloadConfirmation(@Field("car_id") String car_id, @Field("language_id") String language_id,
-                                                @Field("epub_id") String ePub_id, @Field("device_id") String device_id);
+                                                   @Field("epub_id") String ePub_id, @Field("device_id") String device_id);
 
     // car deleting confirmation post
     @FormUrlEncoded
     @POST("car_delete/")
     Call<ResponseInfo> postCarDeleteConfirmation(@Field("car_id") String car_id, @Field("language_id") String language_id,
-                                                @Field("epub_id") String ePub_id, @Field("device_id") String device_id);
+                                                 @Field("epub_id") String ePub_id, @Field("device_id") String device_id);
 
     // language download post (Language Fragment)
     @FormUrlEncoded
     @POST("language_download/")
     Call<ResponseInfo> postLanguageDownload(@Field("car_id") String car_id, @Field("language_id") String language_id,
-                                              @Field("epub_id") String ePub_id, @Field("device_id") String device_id, @Field("version") String version);
+                                            @Field("epub_id") String ePub_id, @Field("device_id") String device_id, @Field("version") String version);
 
 
     // keyword search post (Language Fragment)
@@ -68,8 +67,8 @@ public interface ApiService {
     // post content download confirmation
     @FormUrlEncoded
     @POST("epub_download_confirmation/")
-    Call<ResponseInfo> postDownloadContentConfirmation (@Field("car_id") String car_id, @Field("language_id") String language_id,
-                                                        @Field("epub_id") String epub_id, @Field("device_id") String device_id);
+    Call<ResponseInfo> postDownloadContentConfirmation(@Field("car_id") String car_id, @Field("language_id") String language_id,
+                                                       @Field("epub_id") String epub_id, @Field("device_id") String device_id);
 
 
     // post add feedback
@@ -78,7 +77,9 @@ public interface ApiService {
     Call<ResponseInfo> postAddFeedback(@Field("device_id") String device_id, @Field("title") String title,
                                        @Field("details") String details, @Field("os_version") String os_version);
 
-    /** MultiLanguage ***************************/
+    /**
+     * MultiLanguage
+     ***************************/
     // post add feedback
     @FormUrlEncoded
     @POST("global_message/")
@@ -115,7 +116,7 @@ public interface ApiService {
     //Get child car list with parent id by Mostasim
     @FormUrlEncoded
     @POST("car_list/")
-    Call<CarListResponse> getChildCarList(@Field("device_id") String device_id, @Field("language_id") String language_id,@Field("parent_car")String parent_car_id );
+    Call<CarListResponse> getChildCarList(@Field("device_id") String device_id, @Field("language_id") String language_id, @Field("parent_car") String parent_car_id);
 
     //Api for Find A Dealer by Mostasim
     @FormUrlEncoded

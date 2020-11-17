@@ -342,7 +342,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                     if (userDataToCompare.equalsIgnoreCase("all_mode_1")
                             || userDataToCompare.equalsIgnoreCase("all_mode_2")
                             || userDataToCompare.equalsIgnoreCase("all_mode_3")
-                            ) {
+                    ) {
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
@@ -361,7 +361,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                     } else if (userDataToCompare.equalsIgnoreCase("ac_left_1")
                             || userDataToCompare.equalsIgnoreCase("ac_left_2")
                             || userDataToCompare.equalsIgnoreCase("ac_left_3")
-                            ) {
+                    ) {
 
 
                         try {
@@ -406,7 +406,7 @@ public class ARQashqaiRUS implements GLSurfaceView.Renderer, SampleAppRendererCo
                     } else if (userDataToCompare.equalsIgnoreCase("ac_middle_1")
                             || userDataToCompare.equalsIgnoreCase("ac_middle_2")
                             || userDataToCompare.equalsIgnoreCase("ac_middle_3")
-                            ) {
+                    ) {
 
 
                         try {

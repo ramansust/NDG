@@ -342,7 +342,7 @@ public class ARQashqai implements GLSurfaceView.Renderer, SampleAppRendererContr
                     if (userDataToCompare.equalsIgnoreCase("steering_left_1")
                             || userDataToCompare.equalsIgnoreCase("steering_left_2")
                             || userDataToCompare.equalsIgnoreCase("steering_left_3")
-                            ) {
+                    ) {
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
@@ -361,7 +361,7 @@ public class ARQashqai implements GLSurfaceView.Renderer, SampleAppRendererContr
                     } else if (userDataToCompare.equalsIgnoreCase("steering_right_1")
                             || userDataToCompare.equalsIgnoreCase("steering_right_2")
                             || userDataToCompare.equalsIgnoreCase("steering_right_3")
-                            ) {
+                    ) {
 
 
                         try {
@@ -382,7 +382,7 @@ public class ARQashqai implements GLSurfaceView.Renderer, SampleAppRendererContr
                     } else if (userDataToCompare.equalsIgnoreCase("trip_reset_1")
                             || userDataToCompare.equalsIgnoreCase("trip_reset_2")
                             || userDataToCompare.equalsIgnoreCase("trip_reset_4")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;

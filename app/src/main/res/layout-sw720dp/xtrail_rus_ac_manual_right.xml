@@ -17,8 +17,7 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:tag="63"
-            android:onClick="buttonEvent"
-            />
+            android:onClick="buttonEvent" />
     </LinearLayout>
 
 </LinearLayout>

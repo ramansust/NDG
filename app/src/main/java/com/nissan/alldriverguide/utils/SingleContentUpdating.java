@@ -90,7 +90,7 @@ public abstract class SingleContentUpdating extends AsyncTask<Void, Void, Boolea
 
         if (dirUpdatedContent.isDirectory()) {
             for (File file : dirUpdatedContent.listFiles()) {
-                if(file.getName().endsWith(".epub")) {
+                if (file.getName().endsWith(".epub")) {
                     folderNameUpdatedFolderList.add(file.getName());
                 }
             }
@@ -118,7 +118,7 @@ public abstract class SingleContentUpdating extends AsyncTask<Void, Void, Boolea
                     File srcFile = new File(srcPath);
                     File destFile = new File(destPath);
 
-                    Logger.error("Src___"+srcFile.getAbsolutePath(), "Des_____"+destPath);
+                    Logger.error("Src___" + srcFile.getAbsolutePath(), "Des_____" + destPath);
 
                     if (!srcFile.exists() || !destFile.exists())
                         return false;

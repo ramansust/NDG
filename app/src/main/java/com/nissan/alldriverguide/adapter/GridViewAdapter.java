@@ -42,8 +42,8 @@ public class GridViewAdapter extends BaseAdapter {
         this.context = context;
         this.video_list = video_list;
         this.device_density = device_density;
-        this.tf = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf");
-        this.tfRegular = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Regular.otf");
+        this.tf = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf");
+        this.tfRegular = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_regular.otf");
         inflater = LayoutInflater.from(this.context);
 
 /*
@@ -61,11 +61,11 @@ public class GridViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if (Values.carType == 11 || Values.carType == 12 || Values.carType == 16 ) {
+        if (Values.carType == 11 || Values.carType == 12 || Values.carType == 16) {
             if (video_list != null && video_list.size() > 0) {
                 if (video_list.get(video_list.size() - 1).getTag() == 997)
-                    return  video_list.size() - 1;
-                }
+                    return video_list.size() - 1;
+            }
         }
         return video_list != null ? video_list.size() : 0;
     }
@@ -110,11 +110,11 @@ public class GridViewAdapter extends BaseAdapter {
 
         uri = Uri.parse(img_name);
 
-        if(img_name.equalsIgnoreCase("")){
-            if(ExploreFragment.progress_bar != null){
+        if (img_name.equalsIgnoreCase("")) {
+            if (ExploreFragment.progress_bar != null) {
                 ExploreFragment.progress_bar.setVisibility(View.INVISIBLE);
             }
-        }else{
+        } else {
             DraweeController controller = Fresco.newDraweeControllerBuilder()
                     .setUri(uri)
                     .setControllerListener(listener)
@@ -131,10 +131,11 @@ public class GridViewAdapter extends BaseAdapter {
         @Override
         public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable animatable) {
             //Action on final image load
-            if(ExploreFragment.progress_bar != null){
+            if (ExploreFragment.progress_bar != null) {
                 ExploreFragment.progress_bar.setVisibility(View.INVISIBLE);
             }
         }
+
         @Override
         public void onFailure(String id, Throwable throwable) {
             //Action on failure

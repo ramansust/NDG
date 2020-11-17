@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="201dp"
         android:layout_height="311dp"
         android:id="@+id/popupLayout"
         android:orientation="vertical"
-        android:weightSum="10" >
+        android:weightSum="10">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:orientation="horizontal"
             android:weightSum="3"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp" >
+            android:paddingBottom="10dp">
 
             <Button
                 android:layout_width="0dp"
@@ -36,8 +36,6 @@
                 android:background="@android:color/transparent" />
 
 
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -45,7 +43,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:weightSum="3" >
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="0dp"
@@ -73,7 +71,7 @@
             android:layout_height="0dp"
             android:layout_weight="1.25"
             android:orientation="horizontal"
-            android:weightSum="3" >
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="0dp"
@@ -101,7 +99,7 @@
             android:layout_height="0dp"
             android:layout_weight="1.25"
             android:orientation="horizontal"
-            android:weightSum="3" >
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="0dp"
@@ -129,7 +127,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:weightSum="3" >
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="0dp"
@@ -163,7 +161,7 @@
             android:layout_height="0dp"
             android:layout_weight="3"
             android:orientation="horizontal"
-            android:weightSum="3" >
+            android:weightSum="3">
 
             <TextView
                 android:layout_width="0dp"

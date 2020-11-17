@@ -133,8 +133,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1.7"
                         android:weightSum="2"
-                        android:background="@android:color/transparent"
-                        >
+                        android:background="@android:color/transparent">
 
                         <Button
                             android:id="@+id/button62"
@@ -143,8 +142,7 @@
                             android:layout_height="0dp"
                             android:background="@android:color/transparent"
                             android:onClick="buttonEvent"
-                            android:tag="57"
-                            />
+                            android:tag="57" />
 
                         <Button
                             android:id="@+id/button63"

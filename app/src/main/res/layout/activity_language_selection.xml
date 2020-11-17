@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <include
         android:id="@+id/lst_view"
@@ -52,7 +52,7 @@
             android:text="@string/no_content_found_url"
             android:textSize="18sp"
             android:textColor="@color/white"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </LinearLayout>
 

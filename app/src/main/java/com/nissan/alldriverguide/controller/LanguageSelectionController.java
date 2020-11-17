@@ -35,12 +35,15 @@ public class LanguageSelectionController implements Callback<LanguageListRespons
             LanguageListResponse languageListResponse = response.body();
 
             if (languageListResponse != null) {
-                if (this.listener != null) this.listener.languageListDownloaded(languageListResponse.getLanguageList());
+                if (this.listener != null)
+                    this.listener.languageListDownloaded(languageListResponse.getLanguageList());
             } else {
-                if (this.listener != null) this.listener.languageListFailed("No content available.");
+                if (this.listener != null)
+                    this.listener.languageListFailed("No content available.");
             }
         } else {
-            if (this.listener != null) this.listener.languageListFailed(response.errorBody().toString());
+            if (this.listener != null)
+                this.listener.languageListFailed(response.errorBody().toString());
         }
     }
 

@@ -24,9 +24,10 @@ public class TutorialViewPagerAdapter extends PagerAdapter {
 
     /**
      * Declare constructor
+     *
      * @param context
-     * @param imageId for view pager background image
-     * @param tutorialTitles display in viewpager as a title text
+     * @param imageId         for view pager background image
+     * @param tutorialTitles  display in viewpager as a title text
      * @param tutorialDetails display in viewpager as a details text
      */
     public TutorialViewPagerAdapter(Context context, int[] imageId, String[] tutorialTitles, String[] tutorialDetails) {
@@ -34,8 +35,8 @@ public class TutorialViewPagerAdapter extends PagerAdapter {
         this.imageId = imageId;
         this.tutorialTitles = tutorialTitles;
         this.tutorialDetails = tutorialDetails;
-        typeFaceNormal = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Regular.otf");
-        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf");
+        typeFaceNormal = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_regular.otf");
+        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf");
     }
 
     @Override

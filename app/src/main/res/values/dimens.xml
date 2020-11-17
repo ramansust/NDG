@@ -5,7 +5,6 @@
     <dimen name="height_size">60dp</dimen>
     <dimen name="margin_80_dp">80dp</dimen>
     <dimen name="margin_left">10dp</dimen>
-    <dimen name="margin_bottom">25dp</dimen>
     <dimen name="margin_bottom_updated">40dp</dimen>
     <dimen name="margin_back">5dp</dimen>
     <dimen name="popup_header_text_size">18sp</dimen>
@@ -18,7 +17,6 @@
     <dimen name="pop_up_ok_cancel_text_size">14sp</dimen>
     <dimen name="pop_up_ok_cancel_text_size_720dp">18sp</dimen>
     <dimen name="tab_title">13sp</dimen>
-    <dimen name="ar_back">150dp</dimen>
     <dimen name="ok_cancel_popup_width">100dp</dimen>
     <dimen name="ok_cancel_popup_height">30dp</dimen>
     <dimen name="ok_cancel_popup_width_720dp">220dp</dimen>
@@ -26,20 +24,15 @@
     <dimen name="popup_header_height">35dp</dimen>
     <dimen name="popup_header_height_720dp">50dp</dimen>
     <dimen name="width_350dp">350dp</dimen>
-    <dimen name="width_150dp">150dp</dimen>
-    <dimen name="width_274dp">274dp</dimen>
     <dimen name="width_175dp">175dp</dimen>
     <dimen name="width_700dp">700dp</dimen>
     <dimen name="width_200dp">200dp</dimen>
     <dimen name="width_300dp">300dp</dimen>
     <dimen name="width_400dp">400dp</dimen>
     <dimen name="width_500dp">500dp</dimen>
-    <dimen name="width_370dp">370dp</dimen>
     <dimen name="width_365dp">365dp</dimen>
     <dimen name="width_730dp">730dp</dimen>
-    <dimen name="width_360dp">360dp</dimen>
     <dimen name="width_352dp">352dp</dimen>
-    <dimen name="width_540dp">540dp</dimen>
 
 
 </resources>

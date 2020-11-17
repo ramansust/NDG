@@ -303,7 +303,7 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
                     if (userDataToCompare.equalsIgnoreCase("start_stop_1")
                             || userDataToCompare.equalsIgnoreCase("start_stop_2")
                             || userDataToCompare.equalsIgnoreCase("start_stop_3")
-                            ) {
+                    ) {
                         try {
                             mActivity.isDetected = true;
 //                            vuforiaAppSession.pauseAR();
@@ -323,7 +323,7 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
                     } else if (userDataToCompare.equalsIgnoreCase("ac_1")
                             || userDataToCompare.equalsIgnoreCase("ac_2")
                             || userDataToCompare.equalsIgnoreCase("ac_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -364,7 +364,7 @@ public class ARMicra implements GLSurfaceView.Renderer, SampleAppRendererControl
                     } else if (userDataToCompare.equalsIgnoreCase("ac_man_1")
                             || userDataToCompare.equalsIgnoreCase("ac_man_2")
                             || userDataToCompare.equalsIgnoreCase("ac_man_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;

@@ -114,8 +114,8 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
             }
         }
 
-            int language_ID = NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang());
-            controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "4");
+        int language_ID = NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang());
+        controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "4");
 
     }
 

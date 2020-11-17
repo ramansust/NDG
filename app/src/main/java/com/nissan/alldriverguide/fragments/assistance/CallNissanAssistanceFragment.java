@@ -229,7 +229,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         txtHeaderTitle = (TextView) view.findViewById(R.id.txt_view_country_name);
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/Nissan Brand Regular.otf");
+        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_regular.otf");
     }
 
     @Override

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/popupLayout"
@@ -11,7 +11,7 @@
         android:layout_height="88dp"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:weightSum="3" >
+        android:weightSum="3">
 
         <Button
             android:id="@+id/btn_ac_auto_full_left"
@@ -20,7 +20,7 @@
             android:layout_weight=".8"
             android:background="@android:color/transparent"
             android:onClick="buttonEventInitial"
-            android:tag="10001"/>
+            android:tag="10001" />
 
         <Button
             android:id="@+id/btn_ac_auto_full_middle"

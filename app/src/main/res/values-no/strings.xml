@@ -1,238 +1,154 @@
 <resources>
-	<string name="app_name">NISSANs førerhåndbok</string>
-	<string name="hello_world">Hallo, verden!</string>
-	<string name="action_settings">Innstillinger</string>
-	<string name="title_activity_language_selection">LanguageSelectionActivity</string>
-	<string name="title_activity_tutorial">TutorialActivity</string>
-	<string name="title_activity_car_download">CarDownloadActivity</string>
-	<string name="title_activity_main">MainActivity</string>
-	<string name="title_details_main">DetailsActivity</string>
-	<string name="title_combimeter_main">CombimeterActivity</string>
-	<!-- TODO: Remove or change this placeholder text -->
-	<string name="hello_blank_fragment">Hallo, tomt fragment</string>
-	<string name="title_activity_image_target">ImageTargetActivity</string>
-	<string name="alert_msg39">Før du bruker settet for å reparere et punktert dekk, les instruksene «REPARERE ET FLATT DEKK» nøye.</string>
-	<string name="alert_msg40">Les</string>
-	<string name="alert_msg41">Jeg har allerede lest instruksene</string>
-	<string name="alert_msg42">Før du skifter et flatt dekk, les instruksene «SKIFTE ET FLATT DEKK» nøye.</string>
-	<string name="alert_msg22">Vil du laste ned dette bilinnholdet? Dette kan ta flere minutter avhengig av hastigheten til Internett-tilkoblingen din. Innholdet vil kun bli lastet ned én gang for hver bil.</string>
-	<string name="alert_msg23">Vil du slette?</string>// vuforia strings
-	<string name="INIT_ERROR">Feil</string>
-	<string name="INIT_ERROR_DEVICE_NOT_SUPPORTED">Kunne ikke starte Vuforia. Denne enheten er ikke støttet.</string>
-	<string name="INIT_ERROR_NO_CAMERA_ACCESS">Kunne ikke starte Vuforia. Kamera ikke tilgjengelig</string>
-	<string name="INIT_LICENSE_ERROR_MISMATCH_KEY">Vuforia-appnøkkelen er ikke gyldig for dette produktet. Du må hente ut en gyldig nøkkel ved å logge inn på kontoen din på developer.vuforia.com og velge rett produkttype når du oppretter prosjektet ditt.</string>
-	<string name="INIT_LICENSE_ERROR_MISSING_KEY">Vuforia-appnøkkel mangler. Du må hente ut en gyldig nøkkel ved å logge inn på kontoen din på developer.vuforia.com og opprette et nytt prosjekt.</string>
-	<string name="INIT_LICENSE_ERROR_INVALID_KEY">En ugyldig nøkkel er brukt. Sjekk at du bruker en gyldig Vuforia-appnøkkel.</string>
-	<string name="INIT_LICENSE_ERROR_NO_NETWORK_TRANSIENT">Får ikke kontakt med serveren. Prøv igjen senere.</string>
-	<string name="INIT_LICENSE_ERROR_NO_NETWORK_PERMANENT">Et nettverk er ikke tilgjengelig. Sjekk at du er koblet til Internett.</string>
-	<string name="INIT_LICENSE_ERROR_CANCELED_KEY">Denne applisensnøkkelen er deaktivert og kan ikke lenger brukes. Du må hente ut en ny lisensnøkkel.</string>
-	<string name="INIT_LICENSE_ERROR_PRODUCT_TYPE_MISMATCH">Vuforia-appnøkkelen er ikke gyldig for dette produktet. Du må hente ut en gyldig nøkkel ved å logge inn på kontoen din på developer.vuforia.com og velge rett produkttype når du oppretter prosjektet ditt.</string>
-	<string name="INIT_LICENSE_ERROR_UNKNOWN_ERROR">Kunne ikke starte Vuforia.</string>
-	<string name="INIT_OBJECT_DATASET_NOT_FOUND_TITLE">Database ikke funnet</string>
-	<string name="INIT_OBJECT_DATASET_NOT_FOUND">Skann et objekt og last en database</string>
-	<string name="menu_back">Eksempler på Vuforia-applikasjoner</string>
-	<string name="menu_extended_tracking">Utvidet sporing</string>
-	<string name="menu_character_mode">Tegnmodus</string>
-	<string name="menu_flash">Flash</string>
-	<string name="menu_flash_error_on">Kunne ikke slå på flash</string>
-	<string name="menu_flash_error_off">Kunne ikke slå av flash</string>
-	<string name="menu_contAutofocus">Autofokus</string>
-	<string name="menu_contAutofocus_error_on">Kunne ikke aktivere kontinuerlig autofokus</string>
-	<string name="menu_contAutofocus_error_off">Kunne ikke deaktivere kontinuerlig autofokus</string>
-	<string name="menu_datasets">DATASETT</string>
-	<string name="menu_camera">KAMERA</string>
-	<string name="menu_camera_front">Foran</string>
-	<string name="menu_camera_back">Bak</string>
-	<string name="menu_button_red">Rød</string>
-	<string name="menu_button_blue">Blå</string>
-	<string name="menu_button_yellow">Gul</string>
-	<string name="menu_button_green">Grønn</string>
-	<!--start-->
-	<string name="title_activity_video_player">VideoPlayerActivity</string>
-	<string name="back">Tilbake</string>
-	<string name="download_msg">Vil du laste ned \n veiledningen med spesifikasjoner for Europa eller \n Russland?</string>
-	<string name="download_lang">Er du sikker på at du vil laste ned?</string>
-	<string name="register_push">Vil du registrere deg for å motta push-varsler?</string>
-	<string name="exit_alert">Er du sikker på at du vil lukke?</string>
-	<string name="internet_connect">Ingen Internett-tilkobling. Sjekk wifi-tilkoblingen din eller at du har mobildata aktivert på telefonen din, og prøv igjen.</string>
-	<string name="car_msg">Allerede lastet ned for bilen</string>
-	<string name="car_msg_download">Last ned veiledningen for bilen din</string>
-	<string name="video_popup_msg">Vil du vite mer? </string>
-	<string name="video_watch_again">Se igjen</string>
-	<string name="video_learn_more">Lær mer</string>
-	<string name="top_search">Toppsøk</string>
-	<string name="recent_search">Nylige søk</string>
+    <string name="app_name">NISSANs førerhåndbok</string>
+    <string name="title_activity_language_selection">LanguageSelectionActivity</string>
+    <string name="title_activity_tutorial">TutorialActivity</string>
+    <string name="title_activity_car_download">CarDownloadActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_details_main">DetailsActivity</string>
+    <string name="title_combimeter_main">CombimeterActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_image_target">ImageTargetActivity</string>
+    <string name="alert_msg39">Før du bruker settet for å reparere et punktert dekk, les instruksene «REPARERE ET FLATT DEKK» nøye.</string>
+    <string name="alert_msg40">Les</string>
+    <string name="alert_msg41">Jeg har allerede lest instruksene</string>
+    <string name="alert_msg42">Før du skifter et flatt dekk, les instruksene «SKIFTE ET FLATT DEKK» nøye.</string>
+    <string name="alert_msg22">Vil du laste ned dette bilinnholdet? Dette kan ta flere minutter avhengig av hastigheten til Internett-tilkoblingen din. Innholdet vil kun bli lastet ned én gang for hver bil.</string>
+    <string name="alert_msg23">Vil du slette?</string>// vuforia strings
+    <string name="INIT_ERROR">Feil</string>
+    <string name="INIT_ERROR_DEVICE_NOT_SUPPORTED">Kunne ikke starte Vuforia. Denne enheten er ikke støttet.</string>
+    <string name="INIT_ERROR_NO_CAMERA_ACCESS">Kunne ikke starte Vuforia. Kamera ikke tilgjengelig</string>
+    <string name="INIT_LICENSE_ERROR_MISSING_KEY">Vuforia-appnøkkel mangler. Du må hente ut en gyldig nøkkel ved å logge inn på kontoen din på developer.vuforia.com og opprette et nytt prosjekt.</string>
+    <string name="INIT_LICENSE_ERROR_INVALID_KEY">En ugyldig nøkkel er brukt. Sjekk at du bruker en gyldig Vuforia-appnøkkel.</string>
+    <string name="INIT_LICENSE_ERROR_NO_NETWORK_TRANSIENT">Får ikke kontakt med serveren. Prøv igjen senere.</string>
+    <string name="INIT_LICENSE_ERROR_NO_NETWORK_PERMANENT">Et nettverk er ikke tilgjengelig. Sjekk at du er koblet til Internett.</string>
+    <string name="INIT_LICENSE_ERROR_CANCELED_KEY">Denne applisensnøkkelen er deaktivert og kan ikke lenger brukes. Du må hente ut en ny lisensnøkkel.</string>
+    <string name="INIT_LICENSE_ERROR_PRODUCT_TYPE_MISMATCH">Vuforia-appnøkkelen er ikke gyldig for dette produktet. Du må hente ut en gyldig nøkkel ved å logge inn på kontoen din på developer.vuforia.com og velge rett produkttype når du oppretter prosjektet ditt.</string>
+    <string name="INIT_LICENSE_ERROR_UNKNOWN_ERROR">Kunne ikke starte Vuforia.</string>
+    <!--start-->
+    <string name="title_activity_video_player">VideoPlayerActivity</string>
+    <string name="back">Tilbake</string>
+    <string name="download_msg">Vil du laste ned \n veiledningen med spesifikasjoner for Europa eller \n Russland?</string>
+    <string name="download_lang">Er du sikker på at du vil laste ned?</string>
+    <string name="register_push">Vil du registrere deg for å motta push-varsler?</string>
+    <string name="exit_alert">Er du sikker på at du vil lukke?</string>
+    <string name="internet_connect">Ingen Internett-tilkobling. Sjekk wifi-tilkoblingen din eller at du har mobildata aktivert på telefonen din, og prøv igjen.</string>
+    <string name="car_msg_download">Last ned veiledningen for bilen din</string>
+    <string name="video_popup_msg">Vil du vite mer? </string>
+    <string name="video_watch_again">Se igjen</string>
+    <string name="video_learn_more">Lær mer</string>
+    <string name="recent_search">Nylige søk</string>
 
-	<string-array name="car_names">
-		<item>Qashqai EUR Specs</item>
-		<item>Qashqai RUS Specs</item>
-		<item>Juke</item>
-		<item>X-Trail EUR Specs</item>
-		<item>X-Trail RUS Specs</item>
-		<item>Pulsar</item>
-		<item>Micra</item>
-		<item>Note</item>
-		<item>Leaf</item>
-		<item>Navara</item>
-		<item>Helt nye Nissan Micra</item>
-		<item>Nye Nissan QASHQAI</item>
-		<item>Nye Nissan X-TRAIL</item>
-		<item>Nye Nissan Leaf</item>
-		<item>NISSAN X-TRAIL RUS</item>
-		<item>NISSAN QASHQAI RUS</item>
-		<item>Nissan Leaf 2019</item>
-		<item>New Nissan Juke</item>
-	</string-array>
-	<string-array name="assistance_array">
-		<item>Varsellamper</item>
-		<item>Hurtigveiledning</item>
-		<item>Dekkinformasjon</item>
-		<item>Motorrom</item>
-		<item>Garanti</item>
-		<item>Nissans veihjelp</item>
-	</string-array>
-	<string-array name="assistance_array_temp">
-		<item/>
-		<item/>
-		<item/>
-		<item/>
-		<item/>
-		<item/>
-	</string-array>
-	<string-array name="settings_array">
-		<item>Endre språk</item>
-		<item>Valg av bil</item>
-		<item>Om appen</item>
-		<item>Vurder appen</item>
-		<item>Send tilbakemelding</item>
-	</string-array>
-	<string-array name="tab_names">
-		<item>Utforsk</item>
-		<item>Hjelp</item>
-		<item>Søk</item>
-		<item>Innstillinger</item>
-	</string-array>
-	<string-array name="video_array_title">
-		<item>Kjørefeltvarsler og kjørefeltholder</item>
-		<item>Intelligent Emergency Braking (smart nødbremsesystem)</item>
-		<item>Intelligent Around View Monitor (smart 360°-kamera)</item>
-		<item>Vis audio med CarPlay</item>
-	</string-array>
-	<string name="select_your_car">Velg din bil</string>
-	<string name="download_driver_guide">Last ned førerhåndbok</string>
-	<string name="driver_guide">FØRERHÅNDBOK</string>
-	<string name="select_language">Velg språk</string>
-	<string name="select_language_landing">Select Language</string>
-	<string name="confirm_language">Bekreft språk</string>
-	<string name="button_OK">OK</string>
-	<string name="button_CANCEL">AVBRYT</string>
-	<string name="button_YES">Ja</string>
-	<string name="button_NO">Nei</string>
-	<string name="button_next">Neste</string>
-	<string name="explore">UTFORSK</string>
-	<string name="augmented_reality">Utvidet virkelighet</string>
-	<string name="explore_your_car">UTFORSK BILEN DIN</string>
-	<string name="assistance">HJELP</string>
-	<string name="search">SØK</string>
-	<string name="settings">INNSTILLINGER</string>
-	<string name="change_language">ENDRE SPRÅK</string>
-	<string name="add_extra_car">Valg av bil</string>
-	<string name="warning_lights">VARSELLAMPER</string>
-	<string name="quick_reference_guide">Hurtigveiledning</string>
-	<string name="alert_status">Status</string>
-	<string name="alert_download_complete">Nedlasting fullført.</string>
-	<string name="alert_downloading">Laster ned …</string>
-	<string-array name="tutorial_titles">
-		<item>Utforsk bilen din </item>
-		<item>Varsellamper </item>
-		<item>Hurtigveiledning med mer </item>
-	</string-array>
-	<string-array name="tutorial_details">
-		<item>Gjør deg kjent med alle bryterne i din Nissan med teknologi for utvidet virkelighet. \n Du holder ganske enkelt kameraet på smarttelefonen din over en bryter i bilen og klikker i popupen for å få tilgang til informasjonen.</item>
-		<item>Du får tilgang til informasjon om varsellamper som kan begynne å lyse på kombimeteret i bilen, bare med et tastetrykk. \n  Slik får du rask og enkel tilgang til all den informasjonen du trenger.</item>
-		<item>Du får tilgang til en elektronisk versjon av hurtigveiledningen til bilen, slik at du kan utforske alle funksjonene i din Nissan. \n  Du får også tilgang til viktig informasjon om dekk, motor, garanti osv.</item>
-	</string-array>
-	<string name="all">Alt</string>
-	<string name="tyre_information">Dekkinformasjon</string>
-	<string name="engine_compartment">Motorrom</string>
-	<string name="warranty">Garanti</string>
-	<string name="registered_country_name">I hvilket land er bilen din registrert?</string>
-	<string name="telephone_number_for">Telefonnumre for</string>
-	<string name="national">Innenlands:</string>
-	<string name="international">Utenlands:</string>
-	<string-array name="country_for_call_array">
-		<item>Østerrike</item>
-		<item>Belgia</item>
-		<item>Tsjekkia</item>
-		<item>Danmark</item>
-		<item>Estland</item>
-		<item>Finland</item>
-		<item>Frankrike</item>
-		<item>Tyskland</item>
-		<item>Hellas</item>
-		<item>Ungarn</item>
-		<item>Italia</item>
-		<item>Latvia</item>
-		<item>Litauen</item>
-		<item>Nederland</item>
-		<item>Norge</item>
-		<item>Polen</item>
-		<item>Portugal</item>
-		<item>Slovakia</item>
-		<item>Spania</item>
-		<item>Sverige</item>
-		<item>Sveits</item>
-		<item>England</item>
-	</string-array>
-	<string-array name="nissan_assistance_array">
-		<item>Om Nissans veihjelp</item>
-		<item>Ring Nissans veihjelp</item>
-	</string-array>
-	<string name="update_msg">Det er en oppdatering tilgjengelig. Ønsker du å laste den ned?</string>
-	<string name="register_push_dialog">“Registrerer enheten din på serveren... Vent litt.”</string>
-	<string name="no_content_found_url">“Fant ikke noe innhold.”</string>
-	<string name="confirmation_failed">“Feil ved sending av bekreftelse.”</string>
-	<string name="device_reg_push">“Du kan ikke laste ned bil uten å registrere først.”</string>
-	<string name="unable_to_update">“Kan ikke oppdatere innhold. Prøv på nytt.”</string>
-	<string name="recent_searches">“Nylige søk”</string>
-	<string name="no_content_found">“Ingen resultater”</string>
-	<string name="search_box_hint">Søk</string>
-	<string name="data_syncing">Data synkroniseres ...</string>
-	<string name="start_download">Starter nedlastning ...</string>
-	<string name="start_car_delete">Starter sletting ...</string>
-	<string name="no_content_found_top_recent_search">Ingen søkeord funnet</string>
+    <string-array name="car_names">
+        <item>Qashqai EUR Specs</item>
+        <item>Qashqai RUS Specs</item>
+        <item>Juke</item>
+        <item>X-Trail EUR Specs</item>
+        <item>X-Trail RUS Specs</item>
+        <item>Pulsar</item>
+        <item>Micra</item>
+        <item>Note</item>
+        <item>Leaf</item>
+        <item>Navara</item>
+        <item>Helt nye Nissan Micra</item>
+        <item>Nye Nissan QASHQAI</item>
+        <item>Nye Nissan X-TRAIL</item>
+        <item>Nye Nissan Leaf</item>
+        <item>NISSAN X-TRAIL RUS</item>
+        <item>NISSAN QASHQAI RUS</item>
+        <item>Nissan Leaf 2019</item>
+        <item>New Nissan Juke</item>
+    </string-array>
+    <string-array name="assistance_array">
+        <item>Varsellamper</item>
+        <item>Hurtigveiledning</item>
+        <item>Dekkinformasjon</item>
+        <item>Motorrom</item>
+        <item>Garanti</item>
+        <item>Nissans veihjelp</item>
+    </string-array>
+    <string-array name="assistance_array_temp">
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+    </string-array>
+    <string-array name="tab_names">
+        <item>Utforsk</item>
+        <item>Hjelp</item>
+        <item>Søk</item>
+        <item>Innstillinger</item>
+    </string-array>
+    <string name="select_your_car">Velg din bil</string>
+    <string name="driver_guide">FØRERHÅNDBOK</string>
+    <string name="select_language">Velg språk</string>
+    <string name="select_language_landing">Select Language</string>
+    <string name="button_OK">OK</string>
+    <string name="button_CANCEL">AVBRYT</string>
+    <string name="button_YES">Ja</string>
+    <string name="button_NO">Nei</string>
+    <string name="button_next">Neste</string>
+    <string name="explore">UTFORSK</string>
+    <string name="assistance">HJELP</string>
+    <string name="settings">INNSTILLINGER</string>
+    <string name="change_language">ENDRE SPRÅK</string>
+    <string name="add_extra_car">Valg av bil</string>
+    <string name="warning_lights">VARSELLAMPER</string>
+    <string name="alert_status">Status</string>
+    <string name="alert_download_complete">Nedlasting fullført.</string>
+    <string name="alert_downloading">Laster ned …</string>
+    <string-array name="tutorial_titles">
+        <item>Utforsk bilen din </item>
+        <item>Varsellamper </item>
+        <item>Hurtigveiledning med mer </item>
+    </string-array>
+    <string-array name="tutorial_details">
+        <item>Gjør deg kjent med alle bryterne i din Nissan med teknologi for utvidet virkelighet. \n Du holder ganske enkelt kameraet på smarttelefonen din over en bryter i bilen og klikker i popupen for å få tilgang til informasjonen.</item>
+        <item>Du får tilgang til informasjon om varsellamper som kan begynne å lyse på kombimeteret i bilen, bare med et tastetrykk. \n  Slik får du rask og enkel tilgang til all den informasjonen du trenger.</item>
+        <item>Du får tilgang til en elektronisk versjon av hurtigveiledningen til bilen, slik at du kan utforske alle funksjonene i din Nissan. \n  Du får også tilgang til viktig informasjon om dekk, motor, garanti osv.</item>
+    </string-array>
+    <string name="registered_country_name">I hvilket land er bilen din registrert?</string>
+    <string name="national">Innenlands:</string>
+    <string name="international">Utenlands:</string>
+    <string-array name="nissan_assistance_array">
+        <item>Om Nissans veihjelp</item>
+        <item>Ring Nissans veihjelp</item>
+    </string-array>
+    <string name="update_msg">Det er en oppdatering tilgjengelig. Ønsker du å laste den ned?</string>
+    <string name="register_push_dialog">“Registrerer enheten din på serveren... Vent litt.”</string>
+    <string name="no_content_found_url">“Fant ikke noe innhold.”</string>
+    <string name="recent_searches">“Nylige søk”</string>
+    <string name="no_content_found">“Ingen resultater”</string>
+    <string name="search_box_hint">Søk</string>
+    <string name="data_syncing">Data synkroniseres ...</string>
+    <string name="start_download">Starter nedlastning ...</string>
+    <string name="start_car_delete">Starter sletting ...</string>
+    <string name="no_content_found_top_recent_search">Ingen søkeord funnet</string>
 
-	<string name="rate_our_app">Rate This App</string>
-	<string name="rate_our_app_title">Rate My App</string>
+    <string name="clear">Fjern</string>
 
-	<string name="clear">Fjern</string>
+    <string name="great_not_great_text">Hvordan er opplevelsen din så langt?</string>
+    <string name="great">Veldig bra</string>
+    <string name="not_great">Ikke veldig bra.</string>
 
-	<string name="great_not_great_text">Hvordan er opplevelsen din så langt?</string>
-	<string name="great">Veldig bra</string>
-	<string name="not_great">Ikke veldig bra.</string>
+    <string name="rate_our_app_sub_title">Godt å høre. Kan du avse et minutt til å vurdere appen vår?</string>
+    <string name="rate_no_thanks">Nei takk</string>
+    <string name="rate_ask_me_later">Spør meg senere</string>
+    <string name="rate_our_app_yes">Ja, vurder appen</string>
 
-	<string name="rate_our_app_sub_title">Godt å høre. Kan du avse et minutt til å vurdere appen vår?</string>
-	<string name="rate_no_thanks">Nei takk</string>
-	<string name="rate_ask_me_later">Spør meg senere</string>
-	<string name="rate_our_app_yes">Ja, vurder appen</string>
+    <string name="feedback_text">Send tilbakemeldingen din direkte til oss. Din mening er viktig for oss.</string>
+    <string name="send_feedback">Send tilbakemelding</string>
 
-	<string name="feedback_text">Send tilbakemeldingen din direkte til oss. Din mening er viktig for oss.</string>
-	<string name="send_feedback">Send tilbakemelding</string>
+    <string name="feedback">Tilbakemelding</string>
+    <string name="send_feedback_title">Emne</string>
+    <string name="send_feedback_description">Melding</string>
+    <string name="send_feedback_button">Send tilbakemelding</string>
 
-	<string name="feedback">Tilbakemelding</string>
-	<string name="send_feedback_title">Emne</string>
-	<string name="send_feedback_description">Melding</string>
-	<string name="send_feedback_button">Send tilbakemelding</string>
-
-	<string name="new_nissan_connect">Nye Nissanconnect </string>
-	<string name="update_your_map">Oppdater Kartet Ditt</string>
-	<string name="discover_your_vehicle">Oppdag Bilens Teknologi.</string>
-	<string name="updating_map_data">Oppdatere Kartdata</string>
-	<string name="web_view_call_nissan_link_popup">Har du vært inne på brukerstøttesiden og fulgt trinnene?</string>
+    <string name="updating_map_data">Oppdatere Kartdata</string>
+    <string name="web_view_call_nissan_link_popup">Har du vært inne på brukerstøttesiden og fulgt trinnene?</string>
     <string name="delete">Delete!</string>
     <string name="loading">loading...</string>
-	<string name="download">Download!</string>
-    <string name="nissan_door_to_door_nav_text">Nissan Door-To-Door Navigation App</string>
-    <string name="set_up_guide_text">Set Up Guide</string>
+    <string name="download">Download!</string>
 
 </resources>

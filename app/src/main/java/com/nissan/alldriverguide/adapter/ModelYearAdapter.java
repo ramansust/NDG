@@ -26,13 +26,13 @@ public class ModelYearAdapter extends RecyclerView.Adapter<ModelYearAdapter.Mode
         this.context = context;
         this.list = list;
         this.itemClcikListener = itemClickListener;
-        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf");
+        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf");
     }
 
     public ModelYearAdapter(Context context, ArrayList<Object> list) {
         this.context = context;
         this.list = list;
-        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf");
+        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf");
     }
 
     @NonNull

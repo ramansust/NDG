@@ -31,20 +31,20 @@ public class TyreTransitionActivity extends Activity {
     private SimpleDraweeView draweeView;
 
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
-        super.onCreate (savedInstanceState);
-        setContentView (R.layout.activity_transition);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_transition);
 
         draweeView = (SimpleDraweeView) findViewById(R.id.img_view_git);
-        txtView = (TextView) findViewById (R.id.txt_title);
+        txtView = (TextView) findViewById(R.id.txt_title);
 
-        imageView = (ImageView) findViewById (R.id.img_view_back);
-        imageView.setOnClickListener (new OnClickListener () {
+        imageView = (ImageView) findViewById(R.id.img_view_back);
+        imageView.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick (View v) {
+            public void onClick(View v) {
                 // TODO Auto-generated method stub
-                finish ();
+                finish();
             }
         });
 
@@ -56,105 +56,105 @@ public class TyreTransitionActivity extends Activity {
             Values.tyre_gif_folder = Values.car_path + "/tyre_gifs/";
         }
 
-        Values.gif_count = checkFiles (Values.tyre_gif_folder);
+        Values.gif_count = checkFiles(Values.tyre_gif_folder);
 
-        String swipe = getIntent ().getStringExtra ("swipe");
+        String swipe = getIntent().getStringExtra("swipe");
 
         if (swipe != null) {
             int count;
 
-            count = getIntent ().getIntExtra ("count", 1);
+            count = getIntent().getIntExtra("count", 1);
 
             Values.i = count;
-            System.out.println ("swipe= " + swipe + " count= " + count);
-            if (swipe.equals ("left")) {
+            System.out.println("swipe= " + swipe + " count= " + count);
+            if (swipe.equals("left")) {
 
-                overridePendingTransition (R.anim.left_in, R.anim.left_out);
+                overridePendingTransition(R.anim.left_in, R.anim.left_out);
                 try {
                     DraweeController controller =
                             Fresco.newDraweeControllerBuilder()
-                                    .setUri("file:///" + Values.tyre_gif_folder + Values.gif_names.get (count))
+                                    .setUri("file:///" + Values.tyre_gif_folder + Values.gif_names.get(count))
                                     .setAutoPlayAnimations(true)
                                     .build();
 
                     draweeView.setController(controller);
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
-                    e.printStackTrace ();
+                    e.printStackTrace();
                 }
 
-                txtView.setText (count + "/" + (Values.gif_names.size () - 1));
+                txtView.setText(count + "/" + (Values.gif_names.size() - 1));
 
             } else {
-                overridePendingTransition (R.anim.right_in, R.anim.right_out);
+                overridePendingTransition(R.anim.right_in, R.anim.right_out);
                 try {
                     DraweeController controller =
                             Fresco.newDraweeControllerBuilder()
-                                    .setUri("file:///" + Values.tyre_gif_folder + Values.gif_names.get (count))
+                                    .setUri("file:///" + Values.tyre_gif_folder + Values.gif_names.get(count))
                                     .setAutoPlayAnimations(true)
                                     .build();
 
                     draweeView.setController(controller);
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
-                    e.printStackTrace ();
+                    e.printStackTrace();
                 }
 
-                txtView.setText (count + "/" + (Values.gif_names.size () - 1));
+                txtView.setText(count + "/" + (Values.gif_names.size() - 1));
             }
         } else {
 
             Values.i = 0;
 
-            overridePendingTransition (R.anim.right_in, R.anim.right_out);
+            overridePendingTransition(R.anim.right_in, R.anim.right_out);
             try {
                 DraweeController controller =
                         Fresco.newDraweeControllerBuilder()
-                                .setUri("file:///" + Values.tyre_gif_folder + Values.gif_names.get (Values.i))
+                                .setUri("file:///" + Values.tyre_gif_folder + Values.gif_names.get(Values.i))
                                 .setAutoPlayAnimations(true)
                                 .build();
 
                 draweeView.setController(controller);
             } catch (Exception e) {
                 // TODO Auto-generated catch block
-                e.printStackTrace ();
+                e.printStackTrace();
             }
-            txtView.setText ("1/" + (Values.gif_names.size () - 1));
-            txtView.setVisibility (View.INVISIBLE);
+            txtView.setText("1/" + (Values.gif_names.size() - 1));
+            txtView.setVisibility(View.INVISIBLE);
         }
 
-        CustomGestureDetector customGestureDetector = new CustomGestureDetector ();
-        mGestureDetector = new GestureDetector (this, customGestureDetector);
+        CustomGestureDetector customGestureDetector = new CustomGestureDetector();
+        mGestureDetector = new GestureDetector(this, customGestureDetector);
 
-        draweeView.setOnTouchListener (new View.OnTouchListener () {
+        draweeView.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
-            public boolean onTouch (View v, MotionEvent event) {
-                return mGestureDetector.onTouchEvent (event);
+            public boolean onTouch(View v, MotionEvent event) {
+                return mGestureDetector.onTouchEvent(event);
             }
         });
     }
 
-    public int checkFiles (String s) {
+    public int checkFiles(String s) {
 
         Values.i = 0;
-        Values.gif_names.clear ();
+        Values.gif_names.clear();
         String[] file_names = null;
-        File f = new File (s);
-        File[] file = f.listFiles ();
+        File f = new File(s);
+        File[] file = f.listFiles();
 
         int size = 0;
         if (file != null && file.length > 0) {
             file_names = new String[file.length];
 
             for (int i = 0; i < file.length; i++) {
-                if (file[i].getName ().contains (".gif")) {
-                    file_names[i] = file[i].getName ();
+                if (file[i].getName().contains(".gif")) {
+                    file_names[i] = file[i].getName();
                     size = size + 1;
                 }
             }
 
-            Arrays.sort (file_names);
+            Arrays.sort(file_names);
 
             for (int j = 0; j < file_names.length; j++) {
                 Values.gif_names.add(file_names[j]);
@@ -168,86 +168,86 @@ public class TyreTransitionActivity extends Activity {
 
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
-        public boolean onFling (MotionEvent e1, MotionEvent e2, float velocityX,
-                                float velocityY) {
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                               float velocityY) {
 
             // Swipe left (next)
-            if (e1.getX () > e2.getX ()) {
-                if (Values.i == Values.gif_names.size () - 1)
-                    Toast.makeText (getApplicationContext (), "last",
+            if (e1.getX() > e2.getX()) {
+                if (Values.i == Values.gif_names.size() - 1)
+                    Toast.makeText(getApplicationContext(), "last",
                             Toast.LENGTH_SHORT);
-                else if (Values.i < Values.gif_names.size () - 1) {
+                else if (Values.i < Values.gif_names.size() - 1) {
                     Values.i++;
-                    Intent inttent = new Intent (TyreTransitionActivity.this,
+                    Intent inttent = new Intent(TyreTransitionActivity.this,
                             TyreTransitionActivity.class);
-                    inttent.putExtra ("swipe", "left");
-                    inttent.putExtra ("count", Values.i);
+                    inttent.putExtra("swipe", "left");
+                    inttent.putExtra("count", Values.i);
                     inttent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity (inttent);
-                    finish ();
+                    startActivity(inttent);
+                    finish();
                 }
             }
 
             // Swipe right (previous)
-            if (e1.getX () < e2.getX ()) {
+            if (e1.getX() < e2.getX()) {
                 if (Values.i == 0)
-                    Toast.makeText (getApplicationContext (), "It's first",
+                    Toast.makeText(getApplicationContext(), "It's first",
                             Toast.LENGTH_SHORT);
                 else if (Values.i > 1) {
                     Values.i--;
-                    Intent inttent = new Intent (TyreTransitionActivity.this,
+                    Intent inttent = new Intent(TyreTransitionActivity.this,
                             TyreTransitionActivity.class);
-                    inttent.putExtra ("swipe", "right");
-                    inttent.putExtra ("count", Values.i);
+                    inttent.putExtra("swipe", "right");
+                    inttent.putExtra("count", Values.i);
                     inttent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity (inttent);
-                    finish ();
+                    startActivity(inttent);
+                    finish();
                 }
             }
 
-            return super.onFling (e1, e2, velocityX, velocityY);
+            return super.onFling(e1, e2, velocityX, velocityY);
         }
     }
 
     @Override
-    public boolean onTouchEvent (MotionEvent event) {
-        mGestureDetector.onTouchEvent (event);
+    public boolean onTouchEvent(MotionEvent event) {
+        mGestureDetector.onTouchEvent(event);
 
-        return super.onTouchEvent (event);
+        return super.onTouchEvent(event);
     }
 
     @Override
-    protected void onPause () {
-        super.onPause ();
-        overridePendingTransition (R.anim.right_in, R.anim.right_out);
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(R.anim.right_in, R.anim.right_out);
     }
 
     @Override
-    protected void onStop () {
+    protected void onStop() {
         // TODO Auto-generated method stub
-        super.onStop ();
-        System.gc ();
+        super.onStop();
+        System.gc();
     }
 
     @Override
-    public void onConfigurationChanged (Configuration newConfig) {
-        super.onConfigurationChanged (newConfig);
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
 
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            requestWindowFeature (Window.FEATURE_NO_TITLE);
-            getWindow ().setFlags (WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            setContentView (R.layout.activity_transition);
+            setContentView(R.layout.activity_transition);
 
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
             // no need to fullscreen
-            setContentView (R.layout.activity_transition);
+            setContentView(R.layout.activity_transition);
         }
     }
 
     @Override
-    public void onBackPressed () {
-        super.onBackPressed ();
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
 }

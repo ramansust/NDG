@@ -3,15 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/popupLayout"
         android:layout_width="600dp"
         android:layout_height="340dp"
         android:layout_gravity="center"
- 
-        android:orientation="vertical" >
+
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,8 +20,7 @@
             android:clickable="true"
             android:onClick="buttonEvent"
             android:orientation="vertical"
-            android:tag="1000" >
-        </LinearLayout>
+            android:tag="1000"></LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -3,10 +3,8 @@ package com.nissan.alldriverguide.database;
 import android.provider.BaseColumns;
 
 /**
- *
  * @author Raman
  * @version 1.0
- *
  */
 
 public class CarInfoTableEntity implements BaseColumns {

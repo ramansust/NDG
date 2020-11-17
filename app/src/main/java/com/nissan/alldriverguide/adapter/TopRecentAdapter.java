@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.fragments.search.TabFragment;
-import com.nissan.alldriverguide.model.SearchModel;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
@@ -29,8 +28,9 @@ public class TopRecentAdapter extends RecyclerView.Adapter<TopRecentAdapter.Simp
 
     /**
      * Declare the constructor
+     *
      * @param mContext needed
-     * @param list2 need to a collection list
+     * @param list2    need to a collection list
      */
 //    public TopRecentAdapter(Context mContext, List<SearchModel> list1, List<SearchModel> list2) {
     public TopRecentAdapter(Context mContext, List<String> list2) {

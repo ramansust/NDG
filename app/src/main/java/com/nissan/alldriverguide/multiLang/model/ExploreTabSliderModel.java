@@ -1,4 +1,3 @@
-
 package com.nissan.alldriverguide.multiLang.model;
 
 import com.google.gson.annotations.Expose;

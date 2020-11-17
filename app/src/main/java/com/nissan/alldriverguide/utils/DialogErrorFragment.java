@@ -52,7 +52,7 @@ public class DialogErrorFragment extends DialogFragment {
     }
 
     private void initViews(View view) {
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/Nissan Brand Bold.otf"); //initialize typeface here.
+        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_bold.otf"); //initialize typeface here.
         tvErrorMessage = (TextView) view.findViewById(R.id.tvErrorMessage);
 
         btDismiss = (Button) view.findViewById(R.id.btDismiss);

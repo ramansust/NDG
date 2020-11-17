@@ -34,7 +34,8 @@ public class AllFragment extends Fragment {
         return new AllFragment();
     }
 
-    public AllFragment() {}
+    public AllFragment() {
+    }
 
     private CommonDao commondao;
 
@@ -115,7 +116,7 @@ public class AllFragment extends Fragment {
                             dataMap.remove(epubModel.getEpubtype());
                         }
                     }
-                } catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 

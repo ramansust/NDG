@@ -51,8 +51,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
-
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -89,17 +87,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     private boolean isAnimation = false;
 
     private PreferenceUtil preferenceUtil;
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            super.attachBaseContext(newBase);
-        }
-        //Or implement this for api 29 and above
-        else {
-            super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,8 +139,8 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         tabIcons = new ImageView[tabIconsSelected.length];
         tabTextViews = new TextView[tabIconsSelected.length];
 
-        typeFaceNormal = Typeface.createFromAsset(getAssets(), "font/Nissan Brand Regular.otf");
-        typeFaceBold = Typeface.createFromAsset(getAssets(), "font/Nissan Brand Bold.otf");
+        typeFaceNormal = Typeface.createFromAsset(getAssets(), "font/nissan_brand_regular.otf");
+        typeFaceBold = Typeface.createFromAsset(getAssets(), "font/nissan_brand_bold.otf");
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 

@@ -12,7 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,6 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -88,6 +86,7 @@ public class SearchFragment extends Fragment {
 
     /**
      * Initialized all variable
+     *
      * @param layout need to fragment layout view
      */
     private void initAll(View layout) {
@@ -316,7 +315,7 @@ public class SearchFragment extends Fragment {
 
 
     // delete recent search keyword in FlowLayout
-    private class deleteRecentSearches extends AsyncTask<Void, Void, Boolean>{
+    private class deleteRecentSearches extends AsyncTask<Void, Void, Boolean> {
 
         private ProgressDialog progressDialog;
 
@@ -331,7 +330,7 @@ public class SearchFragment extends Fragment {
         @Override
         protected Boolean doInBackground(Void... voids) {
 
-             return commonDao.deleteRecentSearchesFromSearchTable(getActivity().getApplicationContext(), Values.carType, selectedLanguage);
+            return commonDao.deleteRecentSearchesFromSearchTable(getActivity().getApplicationContext(), Values.carType, selectedLanguage);
 
         }
 
@@ -343,10 +342,10 @@ public class SearchFragment extends Fragment {
                 progressDialog.dismiss();
 
             if (aBoolean) {
-                Logger.error("SearchFragment" ,"_______Successfully cleared your searches.");
+                Logger.error("SearchFragment", "_______Successfully cleared your searches.");
                 addData();
             } else {
-                Logger.error("SearchFragment" ,"_______Problem clearing search.");
+                Logger.error("SearchFragment", "_______Problem clearing search.");
             }
 
         }
@@ -356,7 +355,7 @@ public class SearchFragment extends Fragment {
     protected void hideKeyboard(View view) {
         InputMethodManager in = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (in != null)
-        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
 }

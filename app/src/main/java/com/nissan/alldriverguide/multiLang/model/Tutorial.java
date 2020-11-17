@@ -5,49 +5,49 @@ import com.google.gson.annotations.SerializedName;
 
 public class Tutorial {
 
-@SerializedName("order")
-@Expose
-private Integer order;
-@SerializedName("title")
-@Expose
-private String title;
-@SerializedName("details")
-@Expose
-private String details;
-@SerializedName("id")
-@Expose
-private Integer id;
+    @SerializedName("order")
+    @Expose
+    private Integer order;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("details")
+    @Expose
+    private String details;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
 
-public Integer getOrder() {
-return order;
-}
+    public Integer getOrder() {
+        return order;
+    }
 
-public void setOrder(Integer order) {
-this.order = order;
-}
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
 
-public String getTitle() {
-return title;
-}
+    public String getTitle() {
+        return title;
+    }
 
-public void setTitle(String title) {
-this.title = title;
-}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-public String getDetails() {
-return details;
-}
+    public String getDetails() {
+        return details;
+    }
 
-public void setDetails(String details) {
-this.details = details;
-}
+    public void setDetails(String details) {
+        this.details = details;
+    }
 
-public Integer getId() {
-return id;
-}
+    public Integer getId() {
+        return id;
+    }
 
-public void setId(Integer id) {
-this.id = id;
-}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
 }

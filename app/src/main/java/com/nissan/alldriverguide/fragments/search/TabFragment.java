@@ -141,7 +141,7 @@ public class TabFragment extends Fragment {
         imageViewClear = (ImageView) v.findViewById(R.id.imageViewClearButton);
         shadowView = v.findViewById(R.id.shadowView);
         txtViewUpdatedContent = (TextView) v.findViewById(R.id.txt_view_updated_content);
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/Nissan Brand Bold.otf"); //initialize typeface here.
+        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_bold.otf"); //initialize typeface here.
         loadResources();
 
         //sdk support for shadowView

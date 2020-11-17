@@ -95,6 +95,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
     /**
      * Here load the initialized data
+     *
      * @throws Exception
      */
     private void loadData() throws Exception {
@@ -172,7 +173,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         btnBack.setOnClickListener(this);
         linearBack.setOnClickListener(this);
 
-        if(adapter != null) {
+        if (adapter != null) {
             adapter.setOnClickListener(new HomePageExpandableAdapter.OnItemClickListener() {
                 @Override
                 public void onClick(int index) {
@@ -198,7 +199,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
         title = (TextView) view.findViewById(R.id.txt_title);
         txt_back_title = (TextView) view.findViewById(R.id.txt_back_title);
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/Nissan Brand Regular.otf"); //initialize typeface here.
+        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_regular.otf"); //initialize typeface here.
     }
 
     @Override

@@ -2,87 +2,21 @@
 <resources>
 
     <string name="app_name">NISSAN Driver’s Guide</string>
-    <string name="alert_title1">Preferencias de idioma</string>
-    <string name="alert_msg1">El idioma del sistema es español y será el idioma por defecto en esta aplicación. Es posible cambiarlo desde la pestaña de configuración de idioma.</string>
-    <string name="alert_msg2">Esta aplicación actualmente es compatible con inglés, alemán, francés, italiano, español, neerlandés, ruso y sueco. Inglés será el idioma por defecto en esta aplicación. Es posible cambiarlo desde la pestaña de configuración de idioma.</string>
-    <string name="alert_title3">Atención</string>
-    <string name="alert_msg3">Esta aplicación no puede utilizarse mientras conduce. Asegúrese de que el vehículo está estacionado al hacer uso de esta aplicación.</string>
-    <string name="alert_title4">Aviso legal</string>
-    <string name="alert_msg4">Esta aplicación no recopila información personal. Esta aplicación es propiedad exclusiva de NISSAN, y no está abierta a ningún tipo de modificación. Copyright 2013, NISSAN.</string>
-    <string name="alert_msg5">Espere...</string>
-    <string name="alert_msg6">Cargando los datos</string>
-    <string name="alert_title7">Seleccione el idioma deseado.</string>
-    <string name="alert_msg7">La función Torch no es compatible con su dispositivo.</string>
-    <string name="alert_msg8">Luz insuficiente para detectar objetos.</string>
-    <string name="alert_msg9">Sí, estoy de acuerdo.</string>
-    <string name="alert_msg10">No, salir.</string>
-    <string name="alert_msg11">Confirmar</string>
-    <string name="alert_title8">Cargando...</string>
-    <string name="alert_msg12">Cambio de idioma</string>
-    <string name="alert_title9">Atención</string>
-    <string name="alert_msg13">¿Desea descargar el contenido del idioma?</string>
-    <string name="alert_msg14">Sí</string>
-    <string name="alert_msg15">Conéctese a internet para descargar el contenido.</string>
-    <string name="alert_msg16">Cancelar</string>
-    <string name="alert_msg17">Seleccione el idioma</string>
-    <string name="alert_msg18">Tómese unos segundos para leer la sección de información con el fin de optimizar el uso de la realidad aumentada.</string>
-    <string name="alert_msg19">Ir a la página de información</string>
-    <string name="alert_msg20">¿Desea salir de la modalidad de detección?</string>
-    <string name="alert_msg21">Coloque el dispositivo en modo vertical para acceder a la información relacionada con este elemento.</string>
-    <string name="alert_title10">Confirmar</string>
-    <string name="alert_title11">Estado</string>
-    <string name="alert_msg24">Descargando...</string>
-    <string name="alert_msg25">Descarga completada</string>
-    <string name="alert_title12">Completado</string>
-    <string name="alert_msg26">El contenido del vehículo se ha descargado correctamente.</string>
-    <string name="alert_msg27">Ir a la página de inicio</string>
-    <string name="alert_msg28">Ver el vehículo</string>
-    <string name="alert_msg29">Añadir más vehículos</string>
-    <string name="alert_msg30">¿Desea eliminar este vehículo?</string>
-    <string name="alert_msg31">Esto borrará todo el contenido descargado para este vehículo. ¿Está seguro?</string>
-    <string name="alert_msg32">Contenido del vehículo ya descargado.</string>
-    <string name="alert_msg33">Todavía no tiene ningún vehículo instalado. Vaya a la página de descarga y seleccione su vehículo.</string>
-    <string name="alert_title13">Guardando contenido...</string>
-    <string name="alert_msg34">No</string>
-    <string name="alert_msg35">Está utilizando una conexión a internet de baja velocidad. Conéctese mediante Wifi/4G/3G para descargar el archivo (~100 mb).</string>
-    <string name="alert_msg36">No hay traducción disponible para este contenido.</string>
-    <string name="alert_msg37">¿Desea eliminar el contenido del idioma?</string>
-    <string name="alert_msg38">Esto borrará todo el contenido descargado para este idioma. ¿Está seguro?</string>
     <string name="alert_msg39">Antes de utilizar el kit de reparación para pinchazos de neumáticos, lea atentamente las instrucciones de “REPARACIÓN DE UN NEUMÁTICO PINCHADO”.</string>
     <string name="alert_msg40">Leer</string>
     <string name="alert_msg41">Ya lo he leído</string>
     <string name="alert_msg42">Antes de sustituir un neumático pinchado, lea atentamente las instrucciones de “SUSTITUCIÓN DE UN NEUMÁTICO PINCHADO”.</string>
-    <string name="alert_msg43">¿Realizó la compra de su Qashqai en Rusia en enero de 2016 o en una fecha posterior?\nSÍ: haga clic en "Sí".\nNO: haga clic en "No" y descargue "Qashqai EUR Specs".</string>
 
 
     <!--//new msg text only for english-->
     <string name="alert_msg22">¿Desea descargar el contenido de este vehículo? Puede tardar varios minutos, según la velocidad de la conexión a internet. Se descargará solamente una vez para cada vehículo.</string>
     <string name="alert_msg23">¿Desea eliminar esto?</string>
-    <string name="alert_msg_download">¿Qué vehículo desea descargar?</string>
-    <string name="qashqai_btn_eur">Qashqai EUR Specs</string>
-    <string name="qashqai_btn_rus">Qashqai RUS Specs</string>
-    <string name="xtrail_btn_eur">X-Trail EUR Specs</string>
-    <string name="xtrail_btn_rus">X-Trail RUS Specs</string>
-    <string name="alert_msg_view">¿Qué vehículo desea ver?</string>
-    <string name="alert_msg_setting">¿Qué vehículo desea configurar?</string>
-    <string name="alert_msg_delete">¿Qué vehículo desea eliminar?</string>
 
     <string name="alert_status">Estado</string>
     <string name="alert_download_complete">Descarga completada..</string>
     <string name="alert_downloading">Descargando..</string>
 
     <!--//warranty alert dialog message-->
-    <string name="warranty_alert_message">Antes de leer esta sección debe
-identificar el tipo de motor. Esta
-información se proporciona al
-principio de su Libro de Garantías;
-el tipo de motor se encuentra en
-la parte superior derecha de la
-pegatina de mantenimiento. El
-tipo de motor es el código que se
-encuentra inmediatamente
-después del nombre del vehículo.
-Vea el siguiente ejemplo:</string>
 
     <!--start language-->
     <string name="title_activity_video_player">VideoPlayerActivity</string>
@@ -91,7 +25,6 @@ Vea el siguiente ejemplo:</string>
     <string name="download_lang">¿Seguro que desea descargar esto?</string>
     <string name="exit_alert">¿Seguro que desea salir?</string>
     <string name="internet_connect">No hay conexión a internet.Compruebe su conexión Wi-Fi o la red de datos móviles y vuelva a intentarlo.</string>
-    <string name="car_msg">Car Already Downloaded</string>
     <string name="car_msg_download">Descargue la guía de su vehículo</string>
     <string name="video_popup_msg">¿Quiere conocer más?</string>
     <string name="video_watch_again">Ver de nuevo</string>
@@ -125,13 +58,6 @@ Vea el siguiente ejemplo:</string>
         <item>Garantía</item>
         <item>Nissan Assistance</item>
     </string-array>
-    <string-array name="settings_array">
-        <item>Cambiar el idioma</item>
-        <item>Selección de vehículo</item>
-        <item>Tutorial</item>
-        <item>Valorar la aplicación</item>
-        <item>Enviar comentarios</item>
-    </string-array>
     <string-array name="tab_names">
         <item>EXPLORE</item>
         <item>ASISTENCIA</item>
@@ -139,14 +65,6 @@ Vea el siguiente ejemplo:</string>
         <item>AJUSTES</item>
     </string-array>
 
-    <string-array name="video_array_title">
-        <item>"CONTROL INTELIGENTE DE CAMBIO DE CARRIL"</item>
-        <item>"AVISO INTELIGENTE DE COLISION FRONTAL"</item>
-        <item>"CÁMARA INTELIGENTE DE VISIÓN 360°"</item>
-        <item>INFORMACIÓN VISUAL DE AUDIO</item>
-    </string-array>
-
-    <string name="download_driver_guide">Download Driver\'s Guide</string>
     <string name="driver_guide">Guía del conductor</string>
     <string name="select_language">Seleccione el idioma</string>
 
@@ -157,15 +75,11 @@ Vea el siguiente ejemplo:</string>
     <string name="button_next">Siguiente</string>
 
     <string name="explore">EXPLORE</string>
-    <string name="augmented_reality">REALIDAD AUMENTADA</string>
-    <string name="explore_your_car">EXPLORE SU VEHÍCULO</string>
     <string name="assistance">Asistencia</string>
-    <string name="search">SEARCH</string>
     <string name="settings">AJUSTES</string>
     <string name="change_language">Cambiar el idioma</string>
     <string name="add_extra_car">Selección de vehículo</string>
     <string name="warning_lights">Testigos</string>
-    <string name="quick_reference_guide">Guía de referencia rápida</string>
     <!--string language-->
 
     <string-array name="tutorial_titles">
@@ -195,34 +109,8 @@ Vea el siguiente ejemplo:</string>
     </string-array>
 
     <string name="registered_country_name">¿En qué país está registrado su vehículo?</string>
-    <string name="telephone_number_for">Números de teléfono para</string>
     <string name="national">Nacional :</string>
     <string name="international">Internacional :</string>
-
-    <string-array name="country_for_call_array">
-        <item>Austria</item>
-        <item>Bélgica</item>
-        <item>República Checa</item>
-        <item>Dinamarca</item>
-        <item>Estonia</item>
-        <item>Finlandia</item>
-        <item>Francia</item>
-        <item>Alemania</item>
-        <item>Grecia</item>
-        <item>Hungría</item>
-        <item>Italia</item>
-        <item>Letonia</item>
-        <item>Lituania</item>
-        <item>Países Bajos</item>
-        <item>Noruega</item>
-        <item>Polonia</item>
-        <item>Portugal</item>
-        <item>Eslovaquia</item>
-        <item>España</item>
-        <item>Suecia</item>
-        <item>Suiza</item>
-        <item>Reino Unido</item>
-    </string-array>
 
     <string-array name="nissan_assistance_array">
         <item>Guía de Nissan Assistance</item>
@@ -232,9 +120,6 @@ Vea el siguiente ejemplo:</string>
     <string name="update_msg">Hay una actualización disponible. ¿Desea descargarla?</string>
     <string name="register_push_dialog">&quot;Su dispositivo se está registrando en el servidor... Espere.&quot;</string>
     <string name="no_content_found_url">&quot;No se ha encontrado contenido.&quot;</string>
-    <string name="confirmation_failed">&quot;Error al enviar la confirmación.&quot;</string>
-    <string name="device_reg_push">&quot;Si no se registra no puede descargar el vehículo.&quot;</string>
-    <string name="unable_to_update">&quot;No es posible actualizar el contenido. Vuelva a intentarlo.&quot;</string>
     <string name="recent_searches">&quot;Búsquedas recientes&quot;</string>
     <string name="no_content_found">&quot;No hay resultados&quot;</string>
     <string name="search_box_hint">Búsqueda</string>
@@ -242,9 +127,6 @@ Vea el siguiente ejemplo:</string>
     <string name="start_download">Se está iniciando la descarga...</string>
     <string name="start_car_delete">Se está iniciando el borrado...</string>
     <string name="no_content_found_top_recent_search">No se ha encontrado la palabra clave</string>
-
-    <string name="rate_our_app">Rate This App</string>
-    <string name="rate_our_app_title">Rate My App</string>
 
     <string name="clear">Borrar</string>
 
@@ -260,22 +142,15 @@ Vea el siguiente ejemplo:</string>
     <string name="feedback_text">Envíenos sus comentarios. Su opinión nos es de gran ayuda.</string>
     <string name="send_feedback">Enviar comentarios</string>
 
-    <string name="feedback_toast">Gracias por sus comentarios</string>
-
     <string name="feedback">Comentarios</string>
     <string name="send_feedback_title">Título</string>
     <string name="send_feedback_description">Descripción</string>
     <string name="send_feedback_button">Enviar comentarios</string>
 
-    <string name="new_nissan_connect">Nuevo Nissanconnect</string>
-    <string name="update_your_map">Actualice Su Mapa</string>
-    <string name="discover_your_vehicle">Descubra La Tecnología De Su Vehículo.</string>
     <string name="updating_map_data">Actualización De Datos Cartográficos.</string>
     <string name="web_view_call_nissan_link_popup">¿Ha consultado ya la página de asistencia y seguido los pasos?</string>
     <string name="delete">Delete!</string>
     <string name="loading">cargando...</string>
     <string name="download">Download!</string>
-    <string name="nissan_door_to_door_nav_text">Nissan Door-To-Door Navigation App</string>
-    <string name="set_up_guide_text">Set Up Guide</string>
 
 </resources>

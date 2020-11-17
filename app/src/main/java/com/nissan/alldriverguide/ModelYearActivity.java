@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -68,8 +67,6 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
@@ -1377,17 +1374,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
                 }
             }
         });
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            super.attachBaseContext(newBase);
-        }
-        //Or implement this for api 29 and above
-        else {
-            super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
-        }
     }
 
     private void showErrorDialog(String msg) {

@@ -52,7 +52,7 @@
             android:text="@string/send_feedback"
             android:textColor="@color/white"
             android:textSize="@dimen/pop_up_ok_cancel_text_size"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/feedback_ask_me_later"

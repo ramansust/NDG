@@ -58,8 +58,7 @@
                     android:text="@string/button_CANCEL"
                     android:textColor="@color/white"
                     android:textSize="@dimen/pop_up_ok_cancel_text_size_720dp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

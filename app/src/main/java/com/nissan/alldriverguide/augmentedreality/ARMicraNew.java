@@ -406,7 +406,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                     if (userDataToCompare.equalsIgnoreCase("start_stop_ignition_1")
                             || userDataToCompare.equalsIgnoreCase("start_stop_ignition_2")
                             || userDataToCompare.equalsIgnoreCase("start_stop_ignition_3")
-                            ) {
+                    ) {
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
@@ -426,7 +426,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                     } else if (userDataToCompare.equalsIgnoreCase("ac_1")
                             || userDataToCompare.equalsIgnoreCase("ac_2")
                             || userDataToCompare.equalsIgnoreCase("ac_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -450,7 +450,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                     } else if (userDataToCompare.equalsIgnoreCase("ac_left_1")
                             || userDataToCompare.equalsIgnoreCase("ac_left_2")
                             || userDataToCompare.equalsIgnoreCase("ac_left_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -470,7 +470,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                     } else if (userDataToCompare.equalsIgnoreCase("ac_middle_1")
                             || userDataToCompare.equalsIgnoreCase("ac_middle_2")
                             || userDataToCompare.equalsIgnoreCase("ac_middle_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -490,7 +490,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                     } else if (userDataToCompare.equalsIgnoreCase("ac_right_1")
                             || userDataToCompare.equalsIgnoreCase("ac_right_2")
                             || userDataToCompare.equalsIgnoreCase("ac_right_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -530,7 +530,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                     } else if (userDataToCompare.equalsIgnoreCase("ac_man_1")
                             || userDataToCompare.equalsIgnoreCase("ac_man_2")
                             || userDataToCompare.equalsIgnoreCase("ac_man_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -554,7 +554,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                     } else if (userDataToCompare.equalsIgnoreCase("ac_man_left_1")
                             || userDataToCompare.equalsIgnoreCase("ac_man_left_2")
                             || userDataToCompare.equalsIgnoreCase("ac_man_left_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -574,7 +574,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                     } else if (userDataToCompare.equalsIgnoreCase("ac_man_middle_1")
                             || userDataToCompare.equalsIgnoreCase("ac_man_middle_2")
                             || userDataToCompare.equalsIgnoreCase("ac_man_middle_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -594,7 +594,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                     } else if (userDataToCompare.equalsIgnoreCase("ac_man_right_1")
                             || userDataToCompare.equalsIgnoreCase("ac_man_right_2")
                             || userDataToCompare.equalsIgnoreCase("ac_man_right_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -653,7 +653,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    }  else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_type_a_middle_01")
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_type_a_middle_01")
                             || userDataToCompare.equalsIgnoreCase("radio_wo_navi_type_a_middle_02")
                             || userDataToCompare.equalsIgnoreCase("radio_wo_navi_type_a_middle_03")) {
 
@@ -731,7 +731,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    }  else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_type_b_middle_01")
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_type_b_middle_01")
                             || userDataToCompare.equalsIgnoreCase("radio_wo_navi_type_b_middle_02")
                             || userDataToCompare.equalsIgnoreCase("radio_wo_navi_type_b_middle_03")) {
 
@@ -998,7 +998,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                             || userDataToCompare.equalsIgnoreCase("mixed_panel_2")
                             || userDataToCompare.equalsIgnoreCase("mixed_panel_3")
                             || userDataToCompare.equalsIgnoreCase("mixed_panel_4")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -1015,7 +1015,7 @@ public class ARMicraNew implements GLSurfaceView.Renderer, SampleAppRendererCont
                         mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    }  else {
+                    } else {
                         mActivity.isDetected = false;
                     }
 

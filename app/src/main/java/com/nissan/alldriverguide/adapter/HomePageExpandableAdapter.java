@@ -43,17 +43,19 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
 
     /**
      * Declare Constructor
+     *
      * @param context needed
-     * @param list for data process
+     * @param list    for data process
      */
     public HomePageExpandableAdapter(Context context, List<HomePageEpubInfo> list) {
         this.context = context;
-        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf");
+        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf");
         loadData(list);
     }
 
     /**
      * This method actually process the given data
+     *
      * @param ePubList data that provided through constructor
      */
     private void loadData(List<HomePageEpubInfo> ePubList) {
@@ -78,7 +80,7 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
 
                 if (title != null && info.getSectionTitle() != null && title.equalsIgnoreCase(info.getSectionTitle())) {
                     itemList.add(info);
-                    if(i == ePubList.size() - 1) {
+                    if (i == ePubList.size() - 1) {
                         childList.put(title, itemList);
                         listHeader.add(sectionInfo);
                     }
@@ -96,7 +98,7 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
                     itemList.add(info);
                     childList.put(title, itemList);
 
-                    if(i == ePubList.size() - 1) {
+                    if (i == ePubList.size() - 1) {
                         childList.put(title, itemList);
                         listHeader.add(sectionInfo);
                     }
@@ -158,14 +160,14 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
 
         TextView txtViewHeaderTitle = (TextView) convertView.findViewById(R.id.txt_title_section);
         txtViewHeaderTitle.setTypeface(typeFaceBold);
-        if(groupPosition < listHeader.size()){
+        if (groupPosition < listHeader.size()) {
             //index exists
             txtViewHeaderTitle.setText(listHeader.get(groupPosition).getSectionTitle() == null ? "" : listHeader.get(groupPosition).getSectionTitle());
         }
 
 
         RelativeLayout relativeLayout = (RelativeLayout) convertView.findViewById(R.id.relative_header);
-        if(listHeader.get(groupPosition).getColorCode() != null && !"".equalsIgnoreCase(listHeader.get(groupPosition).getColorCode())) {
+        if (listHeader.get(groupPosition).getColorCode() != null && !"".equalsIgnoreCase(listHeader.get(groupPosition).getColorCode())) {
             String colorCode = "#000000";
             if (listHeader.get(groupPosition).getColorCode().startsWith("#")) {
                 colorCode = listHeader.get(groupPosition).getColorCode().trim();
@@ -191,14 +193,14 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
 
         ImageView imageViewDivider = (ImageView) convertView.findViewById(R.id.img_view_divider);
 
-        if(childList.get(listHeader.get(groupPosition).getSectionTitle()).size() - 1 == childPosition) {
+        if (childList.get(listHeader.get(groupPosition).getSectionTitle()).size() - 1 == childPosition) {
             imageViewDivider.setVisibility(View.INVISIBLE);
         } else {
             imageViewDivider.setVisibility(View.VISIBLE);
         }
 
         RelativeLayout relativeLayout = (RelativeLayout) convertView.findViewById(R.id.relative_main);
-        if(listHeader.get(groupPosition).getColorCodeItem() != null && !"".equalsIgnoreCase(listHeader.get(groupPosition).getColorCodeItem())) {
+        if (listHeader.get(groupPosition).getColorCodeItem() != null && !"".equalsIgnoreCase(listHeader.get(groupPosition).getColorCodeItem())) {
             relativeLayout.setBackgroundColor(Color.parseColor("" + listHeader.get(groupPosition).getColorCodeItem().trim()));
         }
 

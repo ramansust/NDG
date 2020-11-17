@@ -167,7 +167,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             }
         }
 
-            controller.callApi(NissanApp.getInstance().getDeviceID(getActivity())/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, Values.carType + "");
+        controller.callApi(NissanApp.getInstance().getDeviceID(getActivity())/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, Values.carType + "");
 
     }
 
@@ -202,6 +202,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         return new Gson().fromJson(new PreferenceUtil(this.getActivity()).retrieveMultiLangData(Values.carType + "_" + Values.CAR_LANGUAGE_LIST), type);
 
     }
+
     private void showNoInternetDialogue(String msg) {
 
         final Dialog dialog = new DialogController(activity).internetDialog();
@@ -221,27 +222,28 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         dialog.show();
 
     }
+
     private void populateDataIntoList() {
 
         languageName = new String[_languageLists.size()];
         languageShortName = new String[_languageLists.size()];
-        langFlagUri =  new String[_languageLists.size()];
+        langFlagUri = new String[_languageLists.size()];
 
-        for(int i = 0; i < _languageLists.size(); i++){
+        for (int i = 0; i < _languageLists.size(); i++) {
             languageName[i] = (_languageLists.get(i).getLanguageName());
             languageShortName[i] = (_languageLists.get(i).getLanguageShortcode());
 
-            if("xxxhdpi".contains(deviceDensity)){
+            if ("xxxhdpi".contains(deviceDensity)) {
                 langFlagUri[i] = _languageLists.get(i).getLanguageFlag().getXxxhdpi();
-            } else if("xxhdpi".contains(deviceDensity)){
+            } else if ("xxhdpi".contains(deviceDensity)) {
                 langFlagUri[i] = _languageLists.get(i).getLanguageFlag().getXxhdpi();
-            }else if("xhdpi".contains(deviceDensity)){
+            } else if ("xhdpi".contains(deviceDensity)) {
                 langFlagUri[i] = _languageLists.get(i).getLanguageFlag().getXhdpi();
-            }else if("hdpi".contains(deviceDensity)){
+            } else if ("hdpi".contains(deviceDensity)) {
                 langFlagUri[i] = _languageLists.get(i).getLanguageFlag().getHdpi();
-            }else if("mdpi".contains(deviceDensity)){
+            } else if ("mdpi".contains(deviceDensity)) {
                 langFlagUri[i] = _languageLists.get(i).getLanguageFlag().getHdpi();
-            }else if("ldpi".contains(deviceDensity)){
+            } else if ("ldpi".contains(deviceDensity)) {
                 langFlagUri[i] = _languageLists.get(i).getLanguageFlag().getLdpi();
             }
         }
@@ -307,6 +309,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     /**
      * Initialized all variable
+     *
      * @param view need to find id
      */
     private void initViews(View view) {
@@ -321,7 +324,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
         commonDao = CommonDao.getInstance();
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/Nissan Brand Regular.otf");
+        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_regular.otf");
         dbHelper = new NissanDbHelper(getActivity());
         sqliteDB = dbHelper.getWritableDatabase();
         controller = new LanguageSelectionController(this);
@@ -373,7 +376,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
         if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
-            preferenceUtil.setPreviousLanguage(Values.carType+"_"+NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
+            preferenceUtil.setPreviousLanguage(Values.carType + "_" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
 
             String key_global_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_sort_name) + "_" + Values.GLOBAL_MSG_KEY;
             String key_global_alert_message = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang_sort_name) + "_" + Values.GLOBAL_ALERT_MSG_KEY;
@@ -407,7 +410,8 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     /**
      * Display download alert for language
-     * @param lang language id need for save language sort name
+     *
+     * @param lang     language id need for save language sort name
      * @param position adapter position
      */
     private void showDownloadAlert(final String lang, final int position) {
@@ -441,7 +445,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                 dialog.dismiss();
 //                changeGlobalAlertMsg(position);
                 startDownloadProcedure(lang, position);
-                controllerCarList.callApi(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(lang)+"");
+                controllerCarList.callApi(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(lang) + "");
             }
         });
         dialog.show();
@@ -471,8 +475,8 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                     String new_key_tutorial = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TUTORIAL_KEY;
                     String new_key_tab = Values.carType + "_" + NissanApp.getInstance().getLanguageID(lang) + "_" + Values.TAB_MENU_KEY;
 
-                    Logger.error("Old key" , " " + old_key_tutorial);
-                    Logger.error("New key" , " " + new_key_tutorial);
+                    Logger.error("Old key", " " + old_key_tutorial);
+                    Logger.error("New key", " " + new_key_tutorial);
 
                     preferenceUtil.deleteMultiLangData(old_key_tab);
                     preferenceUtil.deleteMultiLangData(old_key_tutorial);
@@ -508,7 +512,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                                             // delete previous language directory
                                                                             // eg. /storage/emulated/0/.AllDriverGuide/leaf2017/leaf2017_en
                                                                             FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType)));
-                                                                            Logger.error("File Delete" , "" + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType));
+                                                                            Logger.error("File Delete", "" + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType));
                                                                         }
                                                                     }
 
@@ -536,7 +540,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                                 ((MainActivity) getActivity()).loadResource();
                                                                 ((MainActivity) getActivity()).setTabResources();
 
-                                                                controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(lang_sort_name)+"");
+                                                                controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(lang_sort_name) + "");
                                                                 preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY);
                                                                 preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.EXPLORE_OBJ_STORE_KEY);
                                                                 preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.SETTING_OBJ_STORE_KEY);
@@ -620,7 +624,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
                         @Override
                         public void init() {
-                            if (progressDialog == null ) {
+                            if (progressDialog == null) {
                                 progressDialog = new ProgressDialogController(activity).downloadProgress(getActivity().getResources().getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + getResources().getString(R.string.alert_download_complete));
                             }
                         }

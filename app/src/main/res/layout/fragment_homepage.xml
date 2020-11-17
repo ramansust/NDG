@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -88,10 +87,10 @@
         android:layout_marginTop="2dp"
         android:dividerHeight="2dp"
         android:divider="@color/white"
-        android:choiceMode = "singleChoice"
-        android:listSelector = "@drawable/selector"
+        android:choiceMode="singleChoice"
+        android:listSelector="@drawable/selector"
         android:groupIndicator="@null"
-        android:scrollbars="none"/>
+        android:scrollbars="none" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

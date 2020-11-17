@@ -318,7 +318,7 @@ public class ARXtrail implements GLSurfaceView.Renderer, SampleAppRendererContro
                     if (userDataToCompare.equalsIgnoreCase("steering_left_1")
                             || userDataToCompare.equalsIgnoreCase("steering_left_2")
                             || userDataToCompare.equalsIgnoreCase("steering_left_3")
-                            ) {
+                    ) {
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
@@ -337,7 +337,7 @@ public class ARXtrail implements GLSurfaceView.Renderer, SampleAppRendererContro
                     } else if (userDataToCompare.equalsIgnoreCase("steering_right_2")
                             || userDataToCompare.equalsIgnoreCase("steering_right_3")
                             || userDataToCompare.equalsIgnoreCase("steering_right_4")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -381,7 +381,7 @@ public class ARXtrail implements GLSurfaceView.Renderer, SampleAppRendererContro
                             || userDataToCompare.equalsIgnoreCase("trip_reset_2")
                             || userDataToCompare.equalsIgnoreCase("trip_reset_3")
                             || userDataToCompare.equalsIgnoreCase("trip_reset_4")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -615,7 +615,7 @@ public class ARXtrail implements GLSurfaceView.Renderer, SampleAppRendererContro
                             || userDataToCompare.equalsIgnoreCase("ac_man_2")
                             || userDataToCompare.equalsIgnoreCase("ac_man_3")
                             || userDataToCompare.equalsIgnoreCase("ac_man_4")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -752,7 +752,7 @@ public class ARXtrail implements GLSurfaceView.Renderer, SampleAppRendererContro
 
                     } else if (userDataToCompare.equalsIgnoreCase("all_mode_1")
                             || userDataToCompare.equalsIgnoreCase("all_mode_2")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;

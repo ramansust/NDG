@@ -1,10 +1,8 @@
 package com.nissan.alldriverguide.database;
 
 /**
- *
  * @author Raman
  * @version 1.0
- *
  */
 
 public interface BaseDbHelper {

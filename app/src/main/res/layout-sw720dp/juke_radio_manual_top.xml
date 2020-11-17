@@ -3,15 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/popupLayout"
         android:layout_width="600dp"
         android:layout_height="42dp"
         android:layout_gravity="center"
-     
-        android:orientation="horizontal" >
+
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -20,14 +21,15 @@
             android:onClick="buttonEvent"
             android:tag="66" />
 
-         <TextView
+        <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.1"
             android:clickable="true"
             android:onClick="buttonEvent"
             android:tag="65" />
-  <TextView
+
+        <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.1"

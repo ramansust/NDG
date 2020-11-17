@@ -343,7 +343,7 @@ public class ARXtrail2017 implements GLSurfaceView.Renderer, SampleAppRendererCo
                     if (userDataToCompare.equalsIgnoreCase("steering_left_1")
                             || userDataToCompare.equalsIgnoreCase("steering_left_2")
                             || userDataToCompare.equalsIgnoreCase("steering_left_3")
-                            ) {
+                    ) {
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
@@ -362,7 +362,7 @@ public class ARXtrail2017 implements GLSurfaceView.Renderer, SampleAppRendererCo
                     } else if (userDataToCompare.equalsIgnoreCase("steering_right_1")
                             || userDataToCompare.equalsIgnoreCase("steering_right_2")
                             || userDataToCompare.equalsIgnoreCase("steering_right_3")
-                            ) {
+                    ) {
 
 
                         try {
@@ -383,7 +383,7 @@ public class ARXtrail2017 implements GLSurfaceView.Renderer, SampleAppRendererCo
                     } else if (userDataToCompare.equalsIgnoreCase("trip_reset_1")
                             || userDataToCompare.equalsIgnoreCase("trip_reset_2")
                             || userDataToCompare.equalsIgnoreCase("trip_reset_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -445,7 +445,7 @@ public class ARXtrail2017 implements GLSurfaceView.Renderer, SampleAppRendererCo
                             || userDataToCompare.equalsIgnoreCase("switch_2")
                             || userDataToCompare.equalsIgnoreCase("switch_3")
                             || userDataToCompare.equalsIgnoreCase("switch_4")
-                            || userDataToCompare.equalsIgnoreCase("switch_5"))  {
+                            || userDataToCompare.equalsIgnoreCase("switch_5")) {
 
 
                         try {
@@ -811,7 +811,7 @@ public class ARXtrail2017 implements GLSurfaceView.Renderer, SampleAppRendererCo
                             || userDataToCompare.equalsIgnoreCase("parking_brake_7")
                             || userDataToCompare.equalsIgnoreCase("parking_brake_8")) {
 
-                        Logger.error("Xtrail EUR parking","------------------");
+                        Logger.error("Xtrail EUR parking", "------------------");
 
 
                         try {

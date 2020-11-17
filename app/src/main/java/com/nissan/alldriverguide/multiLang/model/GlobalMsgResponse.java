@@ -7,45 +7,45 @@ import java.util.List;
 
 public class GlobalMsgResponse {
 
-@SerializedName("status_code")
-@Expose
-private String statusCode;
-@SerializedName("global_message")
-@Expose
-private List<GlobalMessage> globalMessage = null;
-@SerializedName("message")
-@Expose
-private String message;
-@SerializedName("alert_message")
-@Expose
-private List<AlertMessage> alertMessage = null;
+    @SerializedName("status_code")
+    @Expose
+    private String statusCode;
+    @SerializedName("global_message")
+    @Expose
+    private List<GlobalMessage> globalMessage = null;
+    @SerializedName("message")
+    @Expose
+    private String message;
+    @SerializedName("alert_message")
+    @Expose
+    private List<AlertMessage> alertMessage = null;
 
-public String getStatusCode() {
-return statusCode;
-}
+    public String getStatusCode() {
+        return statusCode;
+    }
 
-public List<GlobalMessage> getGlobalMessage() {
-return globalMessage;
-}
+    public List<GlobalMessage> getGlobalMessage() {
+        return globalMessage;
+    }
 
-public void setGlobalMessage(List<GlobalMessage> globalMessage) {
-this.globalMessage = globalMessage;
-}
+    public void setGlobalMessage(List<GlobalMessage> globalMessage) {
+        this.globalMessage = globalMessage;
+    }
 
-public String getMessage() {
-return message;
-}
+    public String getMessage() {
+        return message;
+    }
 
-public void setMessage(String message) {
-this.message = message;
-}
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-public List<AlertMessage> getAlertMessage() {
-return alertMessage;
-}
+    public List<AlertMessage> getAlertMessage() {
+        return alertMessage;
+    }
 
-public void setAlertMessage(List<AlertMessage> alertMessage) {
-this.alertMessage = alertMessage;
-}
+    public void setAlertMessage(List<AlertMessage> alertMessage) {
+        this.alertMessage = alertMessage;
+    }
 
 }

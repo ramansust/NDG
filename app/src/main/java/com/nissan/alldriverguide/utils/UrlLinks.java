@@ -173,9 +173,9 @@ public class UrlLinks {
     public static final String QASHQAI_RUS_SV = "BASE_URLqashqairus/qashqai_rus_sv.zip";
 
 
-//    public static final String QASHQAI_2017_LINK = "http://192.168.1.253:5000/fbsharing/MXtU7zGT";
+    //    public static final String QASHQAI_2017_LINK = "http://192.168.1.253:5000/fbsharing/MXtU7zGT";
     public static final String QASHQAI_2017_LINK = "http://192.168.1.253:5000/fbsharing/4Df1Zm90";
-//    public static final String QASHQAI_2017_EN = "http://192.168.1.253:5000/fbsharing/APkdKpeF";
+    //    public static final String QASHQAI_2017_EN = "http://192.168.1.253:5000/fbsharing/APkdKpeF";
     public static final String QASHQAI_2017_EN = "http://192.168.1.253:5000/fbsharing/yv5V9M5H";
     public static final String QASHQAI_2017_DE = "http://192.168.1.253:5000/fbsharing/sSDrN5QA";
     public static final String QASHQAI_2017_ES = "http://192.168.1.253:5000/fbsharing/2bSxXc32";

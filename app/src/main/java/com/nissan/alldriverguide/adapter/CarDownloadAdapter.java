@@ -35,7 +35,7 @@ public class CarDownloadAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     public ArrayList<Object> list;
     private CarInfo info = null;
-    private Parent_car_list parent_car_list=null;
+    private Parent_car_list parent_car_list = null;
     private Typeface typeFaceBold;
     TextView txtView_loading;
     SimpleDraweeView imageView;
@@ -51,7 +51,7 @@ public class CarDownloadAdapter extends BaseAdapter {
         this.list = list;
         inflater = LayoutInflater.from(this.context);
         this.listener = onItemClickListener;
-        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf");
+        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf");
     }
 
     public void setList(ArrayList<Object> _list) {
@@ -81,8 +81,7 @@ public class CarDownloadAdapter extends BaseAdapter {
         View view = convertView;
 
         if (list.get(position).getClass() == CarInfo.class || list.get(position).getClass() == Parent_car_list.class) {
-            if (list.get(position).getClass() == CarInfo.class)
-            {
+            if (list.get(position).getClass() == CarInfo.class) {
                 info = (CarInfo) list.get(position);
                 // inflate list view item layout
                 inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -106,7 +105,7 @@ public class CarDownloadAdapter extends BaseAdapter {
                     }
                 });
 
-                if (!((CarInfo) list.get(position)).getStatus().equals("1")){
+                if (!((CarInfo) list.get(position)).getStatus().equals("1")) {
                     imgDeleteOrDownload.setVisibility(View.INVISIBLE);
                 }
 
@@ -140,7 +139,7 @@ public class CarDownloadAdapter extends BaseAdapter {
                     relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
                     // set the car name for available downloaded car
                     txtViewTitle.setText(info.getName());
-                    if(info.getId() == 13 || info.getId() == 15){
+                    if (info.getId() == 13 || info.getId() == 15) {
                         //Set fixed name for both this car == NEW X-TRAIL  (EUR/RUS)
                         String name[] = info.getName().split(" ");
 //                    txtViewTitle.setText(info.getName() == null || info.getName().isEmpty() ? "NEW NISSAN X-TRAIL" : name[1] + " " + name[2]);
@@ -154,7 +153,7 @@ public class CarDownloadAdapter extends BaseAdapter {
                 // this item layout is actually used in CarDownloadSettingsAdapter.java
                 // so here these two id need to invisible
                 imageViewBorder.setVisibility(View.INVISIBLE);
-            }else {
+            } else {
                 //this part is for Parent_car_list class : by MB
                 parent_car_list = (Parent_car_list) list.get(position);
                 // inflate list view item layout

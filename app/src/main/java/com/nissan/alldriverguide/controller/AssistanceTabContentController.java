@@ -2,7 +2,6 @@ package com.nissan.alldriverguide.controller;
 
 import com.nissan.alldriverguide.interfaces.CompleteAssistanceTabContent;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
-import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.retrofit.ApiService;
 import com.nissan.alldriverguide.retrofit.RetrofitClient;
 
@@ -14,7 +13,7 @@ import retrofit2.Response;
  * Created by shubha on 6/19/18.
  */
 
-public class AssistanceTabContentController  implements Callback<AssistanceInfo> {
+public class AssistanceTabContentController implements Callback<AssistanceInfo> {
 
     private static CompleteAssistanceTabContent listener = null;
 

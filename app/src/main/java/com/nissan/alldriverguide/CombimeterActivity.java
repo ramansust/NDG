@@ -137,7 +137,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
         scrollView = (ScrollView) findViewById(R.id.scroll_view);
         txt_back_title = (TextView) findViewById(R.id.txt_back_title);
         txt_title = (TextView) findViewById(R.id.txt_title);
-        tf = Typeface.createFromAsset(getAssets(), "font/Nissan Brand Bold.otf"); //initialize typeface here.
+        tf = Typeface.createFromAsset(getAssets(), "font/nissan_brand_bold.otf"); //initialize typeface here.
         txt_back_title.setTypeface(tf);
         txt_title.setTypeface(tf);
 
@@ -290,7 +290,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
                 mainLinearLayout.addView(add_DashedLine(getApplicationContext(), R.drawable.green_dash_line, space));
             }
         } else if (type == Values.YELLOW_TYPE) {
-            if(!list_green.isEmpty()) {
+            if (!list_green.isEmpty()) {
                 mainLinearLayout.addView(add_DashedLine(getApplicationContext(), R.drawable.green_dash_line, space));
             } else {
                 mainLinearLayout.addView(add_DashedLine(getApplicationContext(), R.drawable.cyan_dash_line, space));
@@ -299,7 +299,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
             if (!list_cyan.isEmpty()) {
                 mainLinearLayout.addView(add_DashedLine(getApplicationContext(), R.drawable.cyan_dash_line, space));
             } else {
-                if(!list_blue.isEmpty()) {
+                if (!list_blue.isEmpty()) {
                     mainLinearLayout.addView(add_DashedLine(getApplicationContext(), R.drawable.blue_dash_line, space));
                 } else {
                     mainLinearLayout.addView(add_DashedLine(getApplicationContext(), R.drawable.gray_dash_line, space));
@@ -387,7 +387,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
                 int ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
 
 //                ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
-                
+
                 startActivity(new Intent(CombimeterActivity.this, DetailsActivity.class).putExtra(EPUB_INDEX, ePubIndex - 1).putExtra("epub_title", ((TextView) findViewById(R.id.txt_title)).getText().toString().trim()));
                 break;
         }

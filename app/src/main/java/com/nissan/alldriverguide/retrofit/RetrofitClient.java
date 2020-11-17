@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-//    new api online URL
+    //    new api online URL
     //private static final String ROOT_URL = "http://192.168.2.122:8000/api/"; // Remote url //live url
 //    private static final String ROOT_URL = "http://192.168.1.194:8001/api/"; // Remote url //niloy pc url
 //    private static final String ROOT_URL = "http://178.62.193.6:84/api/"; // dev server / test server
@@ -23,8 +23,6 @@ public class RetrofitClient {
 //    private static final String ROOT_URL = "http://213.136.27.240:8001/api/"; // Remote server second instance
 //    private static final String ROOT_URL = "http://cdnuat.maruboshi.nl/m2/api/"; // Remote server second instance//dev url
     private static final String ROOT_URL = "http://cdn.maruboshi.nl/api/"; // Remote server second instance//prod url
-
-
 
 
     /**

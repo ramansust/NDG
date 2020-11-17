@@ -176,7 +176,6 @@ public class SlidingTabLayout extends HorizontalScrollView {
 //        textView.setTypeface(YoFont.init(context).getRobotoMediumFont());
 
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // If we're running on Honeycomb or newer, then we can use the Theme's
             // selectableItemBackground to ensure that the View has a pressed state

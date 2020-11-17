@@ -2,11 +2,10 @@ package com.nissan.alldriverguide.retrofit;
 
 import com.nissan.alldriverguide.interfaces.CarListACompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
-import com.nissan.alldriverguide.interfaces.FindADealerCompleteAPI;
-import com.nissan.alldriverguide.interfaces.InterfaceGlobalMessageResponse;
 import com.nissan.alldriverguide.interfaces.CompleteAssistanceTabContent;
 import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
 import com.nissan.alldriverguide.interfaces.CompleteSettingTabContent;
+import com.nissan.alldriverguide.interfaces.FindADealerCompleteAPI;
 import com.nissan.alldriverguide.interfaces.ParentCarListCompleteAPI;
 import com.nissan.alldriverguide.model.DealerUrl;
 import com.nissan.alldriverguide.model.ResponseInfo;
@@ -14,7 +13,6 @@ import com.nissan.alldriverguide.model.parentCarList.ParentCarListResponse;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
-import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.Values;
@@ -37,8 +35,8 @@ public class ApiCall {
     // post Car Download or Delete status
     public void postCarDownload(String car_id, String lang_id, String epub_id, String device_id, final CompleteAPI completeAPI) {
 
-        Logger.error("car_id","_________" + car_id);
-        Logger.error("lang_id","_________" + lang_id);
+        Logger.error("car_id", "_________" + car_id);
+        Logger.error("lang_id", "_________" + lang_id);
 
         //Creating an object of our api interface
         ApiService api = RetrofitClient.getApiService();
@@ -100,7 +98,6 @@ public class ApiCall {
         Logger.error("car_id", "_________" + car_id);
         Logger.error("lang_id", "_________" + lang_id);
         Logger.error("epub_id", "_________" + epub_id);
-
 
 
         //Creating an object of our api interface
@@ -327,11 +324,11 @@ public class ApiCall {
 
         //Creating an object of our api interface
         ApiService api = RetrofitClient.getApiService();
-        Call<ExploreTabModel> call = api.postTabWiseContent(device_id, language_id,car_id,epub_id,tab_id);
+        Call<ExploreTabModel> call = api.postTabWiseContent(device_id, language_id, car_id, epub_id, tab_id);
         call.enqueue(new Callback<ExploreTabModel>() {
             @Override
             public void onResponse(Call<ExploreTabModel> call, Response<ExploreTabModel> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     completeAPI.onDownloaded(response.body());
                 }
             }
@@ -350,11 +347,11 @@ public class ApiCall {
 
         //Creating an object of our api interface
         ApiService api = RetrofitClient.getApiService();
-        Call<SettingsTabModel> call = api.postSettingTabWiseContent(device_id, language_id,car_id,epub_id,tab_id);
+        Call<SettingsTabModel> call = api.postSettingTabWiseContent(device_id, language_id, car_id, epub_id, tab_id);
         call.enqueue(new Callback<SettingsTabModel>() {
             @Override
             public void onResponse(Call<SettingsTabModel> call, Response<SettingsTabModel> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     completeAPI.onDownloaded(response.body());
                 }
             }
@@ -402,7 +399,7 @@ public class ApiCall {
 
             @Override
             public void onResponse(Call<CarListResponse> call, Response<CarListResponse> response) {
-                Logger.error("response.code(): ",""+ response.code() );
+                Logger.error("response.code(): ", "" + response.code());
                 if (response.isSuccessful()) {
                     CarListResponse carListResponse = response.body();
                     completeAPI.onDownloaded(carListResponse);
@@ -411,20 +408,19 @@ public class ApiCall {
 
             @Override
             public void onFailure(Call<CarListResponse> call, Throwable t) {
-                Logger.error("Error___", "_______"+t.toString());
+                Logger.error("Error___", "_______" + t.toString());
                 completeAPI.onFailed(t.toString());
             }
         });
     }
 
-    public void getParentCarList(final ParentCarListCompleteAPI parentCarListCompleteAPI)
-    {
-        ApiService api =RetrofitClient.getApiService();
+    public void getParentCarList(final ParentCarListCompleteAPI parentCarListCompleteAPI) {
+        ApiService api = RetrofitClient.getApiService();
         Call<ParentCarListResponse> call = api.parenCarList();
         call.enqueue(new Callback<ParentCarListResponse>() {
             @Override
             public void onResponse(Call<ParentCarListResponse> call, Response<ParentCarListResponse> response) {
-                ParentCarListResponse parentCarListResponse=response.body();
+                ParentCarListResponse parentCarListResponse = response.body();
                 parentCarListCompleteAPI.onDownloaded(parentCarListResponse);
             }
 
@@ -434,14 +430,14 @@ public class ApiCall {
             }
         });
     }
-    public void getChildCarList(String device_id, String language_id,String parentId,final CarListACompleteAPI carListACompleteAPI)
-    {
-        ApiService api =RetrofitClient.getApiService();
-        Call<CarListResponse> call = api.getChildCarList(device_id,language_id,parentId);
+
+    public void getChildCarList(String device_id, String language_id, String parentId, final CarListACompleteAPI carListACompleteAPI) {
+        ApiService api = RetrofitClient.getApiService();
+        Call<CarListResponse> call = api.getChildCarList(device_id, language_id, parentId);
         call.enqueue(new Callback<CarListResponse>() {
             @Override
             public void onResponse(Call<CarListResponse> call, Response<CarListResponse> response) {
-                CarListResponse carListResponse=response.body();
+                CarListResponse carListResponse = response.body();
                 carListACompleteAPI.onDownloaded(carListResponse);
             }
 
@@ -451,14 +447,14 @@ public class ApiCall {
             }
         });
     }
-    public void getFindADealerUrl(String language_id, final FindADealerCompleteAPI findADealerCompleteAPI)
-    {
-        ApiService api =RetrofitClient.getApiService();
+
+    public void getFindADealerUrl(String language_id, final FindADealerCompleteAPI findADealerCompleteAPI) {
+        ApiService api = RetrofitClient.getApiService();
         Call<DealerUrl> call = api.getFindADealer(language_id);
         call.enqueue(new Callback<DealerUrl>() {
             @Override
             public void onResponse(Call<DealerUrl> call, Response<DealerUrl> response) {
-                DealerUrl dealerUrl=response.body();
+                DealerUrl dealerUrl = response.body();
                 findADealerCompleteAPI.onDownloaded(dealerUrl);
             }
 

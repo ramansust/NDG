@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/popupLayout"
@@ -25,7 +25,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="38"/>
+                android:tag="38" />
 
             <Button
                 android:layout_width="match_parent"
@@ -33,13 +33,13 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="37"/>
+                android:tag="37" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent" />
 
         </LinearLayout>
 

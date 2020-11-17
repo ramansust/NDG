@@ -351,7 +351,7 @@ public class ARPulsar implements GLSurfaceView.Renderer, SampleAppRendererContro
                     if (userDataToCompare.equalsIgnoreCase("radio_navi_1")
                             || userDataToCompare.equalsIgnoreCase("radio_navi_2")
                             || userDataToCompare.equalsIgnoreCase("radio_navi_3")
-                            ) {
+                    ) {
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
@@ -374,7 +374,7 @@ public class ARPulsar implements GLSurfaceView.Renderer, SampleAppRendererContro
                     } else if (userDataToCompare.equalsIgnoreCase("radio_navi_left_1")
                             || userDataToCompare.equalsIgnoreCase("radio_navi_left_2")
                             || userDataToCompare.equalsIgnoreCase("radio_navi_left_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -414,7 +414,7 @@ public class ARPulsar implements GLSurfaceView.Renderer, SampleAppRendererContro
                     } else if (userDataToCompare.equalsIgnoreCase("ac_man_1")
                             || userDataToCompare.equalsIgnoreCase("ac_man_2")
                             || userDataToCompare.equalsIgnoreCase("ac_man_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;

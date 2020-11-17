@@ -61,7 +61,6 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         }
 
 
-
         // Notify UI that registration has completed, so the progress indicator can be hidden.
         Intent registrationComplete = new Intent(Config.REGISTRATION_COMPLETE);
         registrationComplete.putExtra("token", refreshedToken);

@@ -45,6 +45,7 @@ public class PreferenceUtil {
 
     /**
      * Default value is true
+     *
      * @return boolean for checking tutorial page display or not
      */
     public boolean getIsFirstTime() {
@@ -53,6 +54,7 @@ public class PreferenceUtil {
 
     /**
      * First time downloaded car
+     *
      * @param isFirst false value make first time false
      */
     public void setIsFirstTime(boolean isFirst) {
@@ -63,6 +65,7 @@ public class PreferenceUtil {
 
     /**
      * Default value is true
+     *
      * @return boolean
      */
     public boolean getIsDatabaseEmpty() {
@@ -71,6 +74,7 @@ public class PreferenceUtil {
 
     /**
      * when database is not empty set
+     *
      * @param isFirst is false
      */
     public void setIsDatabaseEmpty(boolean isFirst) {
@@ -134,7 +138,8 @@ public class PreferenceUtil {
     public ArrayList<EpubInfo> retrieveSearchEpubList(String id) {
         Gson gson = new Gson();
         String json = sharedPreferences.getString(id, null);
-        Type type = new TypeToken<ArrayList<EpubInfo>>() {        }.getType();
+        Type type = new TypeToken<ArrayList<EpubInfo>>() {
+        }.getType();
         ArrayList<EpubInfo> arrayList = gson.fromJson(json, type);
         return arrayList;
     }
@@ -176,7 +181,8 @@ public class PreferenceUtil {
 
         /*ExploreTabModel obj = gson.fromJson(json, ExploreTabModel.class);
         return obj;*/
-        Type type = new TypeToken<ArrayList<SettingsTabListModel>>() {        }.getType();
+        Type type = new TypeToken<ArrayList<SettingsTabListModel>>() {
+        }.getType();
         ArrayList<SettingsTabListModel> arrayList = gson.fromJson(json, type);
         return arrayList;
     }
@@ -298,7 +304,7 @@ public class PreferenceUtil {
     }
 
     // this is for retrieve object for Assistance tab
-    public AssistanceInfo retrieveAssistanceData (String key) {
+    public AssistanceInfo retrieveAssistanceData(String key) {
         Gson gson = new Gson();
         String json = sharedPreferences.getString(key, null);
         AssistanceInfo obj = gson.fromJson(json, AssistanceInfo.class);

@@ -31,57 +31,58 @@ public class ListAdapter extends BaseAdapter {
 
     /**
      * Declare Constructor
+     *
      * @param context needed
-     * @param list EpubInfo type data list
+     * @param list    EpubInfo type data list
      */
     public ListAdapter(Context context, List<EpubInfo> list) {
         this.context = context;
         this.list = list;
-        inflater = LayoutInflater.from (this.context);
-        this.tf = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf"); //initialize typeface here.
+        inflater = LayoutInflater.from(this.context);
+        this.tf = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf"); //initialize typeface here.
     }
 
     @Override
-    public int getCount () {
-        return list != null ? list.size () : 0;
+    public int getCount() {
+        return list != null ? list.size() : 0;
     }
 
     @Override
-    public Object getItem (int position) {
-        return list.get (position);
+    public Object getItem(int position) {
+        return list.get(position);
     }
 
     @Override
-    public long getItemId (int position) {
+    public long getItemId(int position) {
         return position;
     }
 
     @Override
-    public View getView (final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         final ViewHolder viewHolder;
 
         if (convertView == null) {
-            inflater = (LayoutInflater) context.getSystemService (Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate (R.layout.list_row, parent, false);
-            viewHolder = new ViewHolder (convertView);
-            convertView.setTag (viewHolder);
+            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.list_row, parent, false);
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) convertView.getTag ();
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
         // Here set the DEMO text color for 2 & 6 number epub for Tyre Information
         if (Values.ePubType == Values.TYRE_TYPE) {
             if (position == 2 || position == 6) {
                 String str = list.get(position).getTitle().toString().toUpperCase(); // output:eg 2.1. CHANGING FLAT TYRE (DEMO)
-                viewHolder.txtViewTitle.setTextColor (Color.parseColor("#C3002F")); // set the text color
+                viewHolder.txtViewTitle.setTextColor(Color.parseColor("#C3002F")); // set the text color
                 String c = "(";
                 int p = str.indexOf(c); // you can find the c in str in 24 index
-                if(p <= 0) {
+                if (p <= 0) {
                     p = 0;
                 }
                 String s = " ";
-                if(p > 0) {
+                if (p > 0) {
                     s = str.substring(0, p - 1); // here subtract (DEMO) from str, output: 2.1. CHANGING FLAT TYRE
                 }
                 SpannableString spanString1 = new SpannableString(s + " ");
@@ -93,7 +94,7 @@ public class ListAdapter extends BaseAdapter {
                 viewHolder.txtViewTitle.setText(TextUtils.concat(spanString1, spanString)); // finally set the SpannableString in textView
             } else {
                 viewHolder.txtViewTitle.setTypeface(tf);
-                viewHolder.txtViewTitle.setText (list.get(position).getTitle().toUpperCase());
+                viewHolder.txtViewTitle.setText(list.get(position).getTitle().toUpperCase());
             }
 
         } else {
@@ -107,8 +108,8 @@ public class ListAdapter extends BaseAdapter {
     static class ViewHolder {
         TextView txtViewTitle;
 
-        public ViewHolder (View view) {
-            txtViewTitle = (TextView) view.findViewById (R.id.txt_title);
+        public ViewHolder(View view) {
+            txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
         }
     }
 

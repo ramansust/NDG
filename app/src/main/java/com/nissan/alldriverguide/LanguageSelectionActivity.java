@@ -73,8 +73,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
-
 import static com.nissan.alldriverguide.utils.Values.DATA_SYNCING;
 import static com.nissan.alldriverguide.utils.Values.DOWNLOADING;
 import static com.nissan.alldriverguide.utils.Values.STARTING_DOWNLOAD;
@@ -115,18 +113,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private boolean isActivityOnPaused = false;
 
     public LanguageSelectionActivity() {
-    }
-
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            super.attachBaseContext(newBase);
-        }
-        //Or implement this for api 29 and above
-        else {
-            super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
-        }
     }
 
     @Override

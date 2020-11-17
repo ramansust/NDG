@@ -7,9 +7,6 @@
 package com.nissan.alldriverguide;
 
 
-import org.junit.Rule;
-import org.junit.Test;
-
 public class CarDownloadNew {
 
 

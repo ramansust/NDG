@@ -45,7 +45,7 @@ public class WebDataAdapter extends RecyclerView.Adapter<WebDataAdapter.SimpleVi
         return list == null ? 0 : list.size();
     }
 
-    public class SimpleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class SimpleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView textView;
 

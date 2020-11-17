@@ -304,7 +304,7 @@ public class ARNote implements GLSurfaceView.Renderer, SampleAppRendererControl,
                             || userDataToCompare.equalsIgnoreCase("start_stop_ignition_2")
                             || userDataToCompare.equalsIgnoreCase("start_stop_ignition_3")
                             || userDataToCompare.equalsIgnoreCase("start_stop_ignition_4")
-                            ) {
+                    ) {
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
@@ -323,7 +323,7 @@ public class ARNote implements GLSurfaceView.Renderer, SampleAppRendererControl,
                     } else if (userDataToCompare.equalsIgnoreCase("ac_1")
                             || userDataToCompare.equalsIgnoreCase("ac_2")
                             || userDataToCompare.equalsIgnoreCase("ac_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;

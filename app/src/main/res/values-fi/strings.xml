@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">NISSAN Driver’s Guide</string>
-    <string name="hello_world">Hei maailma!</string>
-    <string name="action_settings">Asetukset</string>
     <string name="title_activity_language_selection">LanguageSelectionActivity</string>
     <string name="title_activity_tutorial">TutorialActivity</string>
     <string name="title_activity_car_download">CarDownloadActivity</string>
@@ -10,7 +8,6 @@
     <string name="title_details_main">DetailsActivity</string>
     <string name="title_combimeter_main">CombimeterActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_image_target">ImageTargetActivity</string>
     <string name="alert_msg39">Ennen kuin käytät renkaan paikkaussarjaa, lue ”PUHJENNEEN RENKAAN KORJAUS” -ohjeet huolellisesti.</string>
     <string name="alert_msg40">Lue</string>
@@ -22,7 +19,6 @@
     <string name="INIT_ERROR">Virhe</string>
     <string name="INIT_ERROR_DEVICE_NOT_SUPPORTED">Vuforian alustus epäonnistui. Tätä laitetta ei tueta.</string>
     <string name="INIT_ERROR_NO_CAMERA_ACCESS">Vuforian alustus epäonnistui. Kamera ei ole käytettävissä</string>
-    <string name="INIT_LICENSE_ERROR_MISMATCH_KEY">Vuforia-sovellusavain ei kelpaa tässä tuotteessa. Hanki kelvollinen avain kirjautumalla tilillesi osoitteessa developer.vuforia.com ja valitsemalla oikea tuotetyyppi projektin luomisen aikana.</string>
     <string name="INIT_LICENSE_ERROR_MISSING_KEY">Vuforia-sovellusavain puuttuu. Hanki kelvollinen avain kirjautumalla tilillesi osoitteessa developer.vuforia.com ja luomalla uusi projekti.</string>
     <string name="INIT_LICENSE_ERROR_INVALID_KEY">Virheellinen avain käytössä. Varmista, että käytössäsi on kelvollinen Vuforia-sovellusavain.</string>
     <string name="INIT_LICENSE_ERROR_NO_NETWORK_TRANSIENT">Yhteyden muodostaminen palvelimeen ei onnistu. Yritä uudestaan myöhemmin.</string>
@@ -30,25 +26,6 @@
     <string name="INIT_LICENSE_ERROR_CANCELED_KEY">Tämä sovelluksen lisenssiavain on peruutettu, eikä sitä voi enää käyttää. Hanki uusi lisenssiavain.</string>
     <string name="INIT_LICENSE_ERROR_PRODUCT_TYPE_MISMATCH">Vuforia-sovellusavain ei kelpaa tässä tuotteessa. Hanki kelvollinen avain kirjautumalla tilillesi osoitteessa developer.vuforia.com ja valitsemalla oikea tuotetyyppi projektin luomisen aikana.</string>
     <string name="INIT_LICENSE_ERROR_UNKNOWN_ERROR">Vuforian alustus epäonnistui.</string>
-    <string name="INIT_OBJECT_DATASET_NOT_FOUND_TITLE">Tietokanta ei löydy</string>
-    <string name="INIT_OBJECT_DATASET_NOT_FOUND">Skannaa esine ja lataa tietokanta</string>
-    <string name="menu_back">Vuforia mallit</string>
-    <string name="menu_extended_tracking">Laajennettu paikannus</string>
-    <string name="menu_character_mode">Merkkitila</string>
-    <string name="menu_flash">Salama</string>
-    <string name="menu_flash_error_on">Salaman päällekytkeminen ei onnistu</string>
-    <string name="menu_flash_error_off">Salaman poiskytkeminen ei onnistu</string>
-    <string name="menu_contAutofocus">Automaattitarkennus</string>
-    <string name="menu_contAutofocus_error_on">Ei pysty aktivoimaan jatkuvaa automaattitarkennusta</string>
-    <string name="menu_contAutofocus_error_off">Ei pysty deaktivoimaan jatkuvaa automaattitarkennusta</string>
-    <string name="menu_datasets">DATASETIT</string>
-    <string name="menu_camera">KAMERA</string>
-    <string name="menu_camera_front">Edessä</string>
-    <string name="menu_camera_back">Takana</string>
-    <string name="menu_button_red">Punainen</string>
-    <string name="menu_button_blue">Sininen</string>
-    <string name="menu_button_yellow">Keltainen</string>
-    <string name="menu_button_green">Vihreä</string>
     <!--start-->
     <string name="title_activity_video_player">VideoPlayerActivity</string>
     <string name="back">Takaisin</string>
@@ -57,12 +34,10 @@
     <string name="register_push">Haluatko rekisteröityä push-palveluun?</string>
     <string name="exit_alert">Oletko varma, että haluat poistua?</string>
     <string name="internet_connect">Ei Internetyhteyttä. Tarkasta langaton verkkosi tai matkapuhelinverkkosi ja yritä uudelleen.</string>
-    <string name="car_msg">Auto on jo ladattu.</string>
     <string name="car_msg_download">Lataa auto-ohjeesi</string>
     <string name="video_popup_msg">Haluatko oppia lisää? </string>
     <string name="video_watch_again">Katso uudelleen</string>
     <string name="video_learn_more">Opi lisää</string>
-    <string name="top_search">Yleisimmät haut</string>
     <string name="recent_search">Viimeisimmät haut</string>
     <string-array name="car_names">
         <item>Qashqai EUR Specs</item>
@@ -100,46 +75,27 @@
         <item></item>
         <item></item>
     </string-array>
-    <string-array name="settings_array">
-        <item>Vaihda kieltä</item>
-        <item>Auton valinta</item>
-        <item>Opastus</item>
-        <item>Arvio sovellus</item>
-        <item>Lähetä palaute</item>
-    </string-array>
     <string-array name="tab_names">
         <item>Tutustu</item>
         <item>Apua</item>
         <item>Haku</item>
         <item>Asetukset</item>
     </string-array>
-    <string-array name="video_array_title">
-        <item>Kaistalta poistumisen tunnistus ja esto</item>
-        <item>Intelligent Emergency Braking</item>
-        <item>Intelligent Around View Monitor</item>
-        <item>Audionäyttö ja CarPlay</item>
-    </string-array>
     <string name="select_your_car">Valitse autosi</string>
-    <string name="download_driver_guide">Lataa Driver’s Guide</string>
     <string name="driver_guide">DRIVER’S GUIDE</string>
     <string name="select_language">Select Language (valitse kieli)</string>
     <string name="select_language_landing">Select Language</string>
-    <string name="confirm_language">Vahvista Kieli</string>
     <string name="button_OK">OK</string>
     <string name="button_CANCEL">PERUUTA</string>
     <string name="button_YES">Kyllä</string>
     <string name="button_NO">Ei</string>
     <string name="button_next">Seuraava</string>
     <string name="explore">TUTUSTU</string>
-    <string name="augmented_reality">Laajennettu todellisuus</string>
-    <string name="explore_your_car">TUTUSTU AUTOOSI</string>
     <string name="assistance">APUA</string>
-    <string name="search">HAKU</string>
     <string name="settings">ASETUKSET</string>
     <string name="change_language">VAIHDA KIELTÄ</string>
     <string name="add_extra_car">Auton valinta</string>
     <string name="warning_lights">VAROITUSVALOT</string>
-    <string name="quick_reference_guide">Pikaopas</string>
     <string name="alert_status">Tila</string>
     <string name="alert_download_complete">Lataus valmis..</string>
     <string name="alert_downloading">Lataa..</string>
@@ -161,38 +117,9 @@
                 Siirry pikaoppaan sähköiseen versioon ja tutustu kaikkiin Nissan-autosi ominaisuuksiin. \n Mukana on myös tärkeää tietoa muun muassa renkaista, moottorista ja takuusta.
             </item>
     </string-array>
-    <string name="all">Kaikki</string>
-    <string name="tyre_information">Rengastietoa</string>
-    <string name="engine_compartment">Moottoritila</string>
-    <string name="warranty">Takuu</string>
     <string name="registered_country_name">Mihin maahan autosi on rekisteröity?</string>
-    <string name="telephone_number_for">Puhelinnumerot</string>
     <string name="national">Kyseissä maassa:</string>
     <string name="international">Ulkomailla:</string>
-    <string-array name="country_for_call_array">
-        <item>Itävalta</item>
-        <item>Belgia</item>
-        <item>Tšekin tasavalta</item>
-        <item>Tanska</item>
-        <item>Viro</item>
-        <item>Suomi</item>
-        <item>Ranska</item>
-        <item>Saksa</item>
-        <item>Kreikka</item>
-        <item>Unkari</item>
-        <item>Italia</item>
-        <item>Latvia</item>
-        <item>Liettua</item>
-        <item>Alankomaat</item>
-        <item>Norja</item>
-        <item>Puola</item>
-        <item>Portugali</item>
-        <item>Slovakia</item>
-        <item>Espanja</item>
-        <item>Ruotsi</item>
-        <item>Sveitsi</item>
-        <item>Yhdistynyt kuningaskunta</item>
-    </string-array>
     <string-array name="nissan_assistance_array">
         <item>Nissan Assistance -opas</item>
         <item>Soita Nissan Assistance -palveluun</item>
@@ -200,11 +127,7 @@
     <string name="update_msg">Päivitys saatavana. Haluatko ladata sen?</string>
     <string name="register_push_dialog">”Laitettasi rekisteröidään palvelimelle... Ole hyvä ja odota.”</string>
     <string name="no_content_found_url">&quot;Sisältöä ei löytynyt.&quot;</string>
-    <string name="confirmation_failed">&quot;Vahvistuslähetysvirhe.&quot;</string>
-    <string name="device_reg_push">”Et voi ladata autoa ilman rekisteröintiä.&quot;</string>
-    <string name="unable_to_update">”Sisällön päivitys ei onnistu. Yritä uudestaan.”</string>
     <string name="recent_searches">”Viimeisimmät haut”</string>
-    <string name="no_results">”Ei tuloksia”</string>
     <string name="search_box_hint">Haku</string>
     <string name="data_syncing">Data synkronoidaan...</string>
     <string name="start_download">Lataus käynnistetään...</string>
@@ -227,15 +150,10 @@
     <string name="send_feedback_description">Kuvaus</string>
     <string name="send_feedback_button">Lähetä palaute</string>
 
-    <string name="new_nissan_connect">Uusi Nissanconnect</string>
-    <string name="update_your_map">Päivitä Karttasi</string>
-    <string name="discover_your_vehicle">Tutustu Autosi Teknologiaan</string>
     <string name="updating_map_data">Karttatietojen Päivittäminen</string>
     <string name="web_view_call_nissan_link_popup">Oletko jo etsinyt neuvoja tukisivulta ja noudattanut sen ohjeita?</string>
     <string name="delete">Delete!</string>
     <string name="loading">Ladataan...</string>
     <string name="download">Download!</string>
-    <string name="nissan_door_to_door_nav_text">Nissan Door-To-Door Navigation App</string>
-    <string name="set_up_guide_text">Set Up Guide</string>
 
 </resources>

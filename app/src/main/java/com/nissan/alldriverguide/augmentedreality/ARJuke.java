@@ -354,7 +354,7 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                     if (userDataToCompare.equalsIgnoreCase("ac_1")
                             || userDataToCompare.equalsIgnoreCase("ac_2")
                             || userDataToCompare.equalsIgnoreCase("ac_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -379,7 +379,7 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                     } else if (userDataToCompare.equalsIgnoreCase("ac_middle_1")
                             || userDataToCompare.equalsIgnoreCase("ac_middle_2")
                             || userDataToCompare.equalsIgnoreCase("ac_middle_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -419,7 +419,7 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                     } else if (userDataToCompare.equalsIgnoreCase("ac_right_1")
                             || userDataToCompare.equalsIgnoreCase("ac_right_2")
                             || userDataToCompare.equalsIgnoreCase("ac_right_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -801,7 +801,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
-
 
 
                         Values.ar_value = Analytics.RADIO_WO_NAVI;

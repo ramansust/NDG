@@ -1,31 +1,16 @@
 package com.nissan.alldriverguide;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
-
 
 public class SplashScreenActivity extends AppCompatActivity {
 
     private final int SPLASH_TIME_OUT = 3000;
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            super.attachBaseContext(newBase);
-        }
-        //Or implement this for api 29 and above
-        else {
-            super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

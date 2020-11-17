@@ -155,7 +155,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
                             iterator.remove();
                         }
 
-                        if (info.getTitle().contains("4")){
+                        if (info.getTitle().contains("4")) {
                             info.setTitle(info.getTitle().replace("4", "3"));
                         }
                     }
@@ -181,7 +181,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
         title = (TextView) view.findViewById(R.id.txt_title);
         txt_back_title = (TextView) view.findViewById(R.id.txt_back_title);
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/Nissan Brand Regular.otf"); //initialize typeface here.
+        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_regular.otf"); //initialize typeface here.
     }
 
     @Override

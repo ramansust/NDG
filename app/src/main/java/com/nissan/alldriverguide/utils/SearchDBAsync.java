@@ -23,7 +23,7 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
     private String langType;
     private int carType;
     // All type of epub loaded in array
-    private int[] epubType = new int[] { Values.BUTTON_TYPE, Values.COMBIMETER_TYPE, Values.ENGINE_TYPE, Values.HOMEPAGE_TYPE, Values.INFO_TYPE, Values.TYRE_TYPE, Values.WARRANTY_TYPE };
+    private int[] epubType = new int[]{Values.BUTTON_TYPE, Values.COMBIMETER_TYPE, Values.ENGINE_TYPE, Values.HOMEPAGE_TYPE, Values.INFO_TYPE, Values.TYRE_TYPE, Values.WARRANTY_TYPE};
 
 //    protected SearchDBAsync(Activity act, String lang_type) {
 //        this.activity = act;
@@ -34,9 +34,10 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
 
     /**
      * SearchDBAsync constructor
-     * @param act getting activity
+     *
+     * @param act      getting activity
      * @param langType downloaded language sort name
-     * @param carType downloaded car ID
+     * @param carType  downloaded car ID
      */
     protected SearchDBAsync(Activity act, String langType, int carType) {
         this.activity = act;
@@ -63,7 +64,7 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
         });
 
         // checking the ArrayList that contain epub form sdCard
-        if(listOfFiles != null && listOfFiles.size() > 0) {
+        if (listOfFiles != null && listOfFiles.size() > 0) {
             // looping the ArrayList
             for (int i = 0; i < listOfFiles.size(); i++) {
 
@@ -110,6 +111,7 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
 
     /**
      * This method is override in AsyncTask execution class
+     *
      * @param status parameter true for successfully epub data download and extract
      */
     public abstract void onComplete(boolean status);
@@ -127,10 +129,10 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
 
         File directory = new File(path); // here select the language path
         File[] files = directory.listFiles(); // here get the 7 language epub list from sd card (that was downloaded). eg. button_pt.epub
-        if(files != null && files.length > 0) {
+        if (files != null && files.length > 0) {
             for (int i = 0; i < files.length; i++) {
                 // here add the epub name in arrayList
-                if(files[i].getName().contains(".epub")) {
+                if (files[i].getName().contains(".epub")) {
                     listOfFiles.add(files[i].getName());
                 }
 //                Logger.error("file_name", "_______" + files[i].getName());

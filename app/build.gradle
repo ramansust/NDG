@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 
-def VUFORIA_SDK_DIR = '/home/rohan/Desktop/vuforia-sdk-android-7-2-23/'
+def VUFORIA_SDK_DIR = '/home/raman/vuforia/vuforia-sdk-android-7-2-23'
 def NATIVE_LIB_DIR = 'build/lib'
 def JAR_DIR = 'build/java/Vuforia'
 
@@ -18,7 +18,7 @@ android {
         versionCode 84
         versionName "2.3.7"
         multiDexEnabled true
-        ndk.abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'
+        ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
     }
 
     buildTypes {
@@ -76,11 +76,6 @@ dependencies {
     // ViewModel and LiveData
     def lifecycle_version = "1.1.1"
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
-    
-    //for changing font for whole app
-//    implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
-    implementation 'io.github.inflationx:calligraphy3:3.1.1'
-    implementation 'io.github.inflationx:viewpump:2.0.3'
 
     implementation project(path: ':lib_viewpager_indicator')
     // retrofit

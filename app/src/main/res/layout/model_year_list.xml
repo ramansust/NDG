@@ -9,7 +9,7 @@
         android:id="@+id/tv_model_year_list_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_model_year_list"

@@ -10,7 +10,7 @@
         android:layout_width="200dp"
         android:layout_height="427dp"
         android:orientation="vertical"
-        android:weightSum="6" >
+        android:weightSum="6">
 
         <Button
             android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_weight=".8"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="19"/>
+            android:tag="19" />
 
         <Button
             android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:layout_weight=".7"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="18"/>
+            android:tag="18" />
 
         <Button
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:layout_weight=".7"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="17"/>
+            android:tag="17" />
 
         <Button
             android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             android:layout_weight=".7"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="16"/>
+            android:tag="16" />
 
         <Button
             android:layout_width="match_parent"
@@ -50,7 +50,7 @@
             android:layout_weight=".7"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="15"/>
+            android:tag="15" />
 
         <Button
             android:layout_width="match_parent"
@@ -58,7 +58,7 @@
             android:layout_weight="2.4"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="14"/>
+            android:tag="14" />
 
 
     </LinearLayout>

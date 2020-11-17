@@ -2,9 +2,7 @@ package com.nissan.alldriverguide.controller;
 
 import com.google.gson.Gson;
 import com.nissan.alldriverguide.interfaces.CompleteExploreTabContent;
-import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
-import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.retrofit.ApiService;
 import com.nissan.alldriverguide.retrofit.RetrofitClient;
 import com.nissan.alldriverguide.utils.Logger;
@@ -38,7 +36,7 @@ public class ExploreTabContentController implements Callback<ExploreTabModel> {
         if (response.isSuccessful()) {
             ExploreTabModel exploreTabModel = response.body();
 
-            Logger.error("Tab data " , " " +new Gson().toJson(response));
+            Logger.error("Tab data ", " " + new Gson().toJson(response));
 
             if (exploreTabModel != null) {
                 if (this.listener != null) this.listener.onDownloaded(exploreTabModel);

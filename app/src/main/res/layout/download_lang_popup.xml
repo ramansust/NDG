@@ -50,16 +50,15 @@
                 android:layout_weight="0.5"
                 android:gravity="center">
 
-            <Button
-                android:id="@+id/btn_cancel"
-                android:layout_width="@dimen/ok_cancel_popup_width"
-                android:layout_height="@dimen/ok_cancel_popup_height"
-                android:background="@color/background"
-                android:text="@string/button_CANCEL"
-                android:textColor="@color/white"
-                android:textSize="@dimen/pop_up_ok_cancel_text_size"
-                android:textStyle="bold"
-                />
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="@dimen/ok_cancel_popup_width"
+                    android:layout_height="@dimen/ok_cancel_popup_height"
+                    android:background="@color/background"
+                    android:text="@string/button_CANCEL"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/pop_up_ok_cancel_text_size"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -70,18 +69,18 @@
                 android:layout_weight="0.5"
                 android:gravity="center">
 
-            <Button
-                android:id="@+id/btn_ok"
-                android:layout_width="@dimen/ok_cancel_popup_width"
-                android:layout_height="@dimen/ok_cancel_popup_height"
-                android:layout_marginLeft=".2dp"
-                android:layout_marginStart=".2dp"
-                android:layout_marginTop=".2dp"
-                android:background="@color/background"
-                android:text="@string/button_OK"
-                android:textColor="@color/white"
-                android:textSize="@dimen/pop_up_ok_cancel_text_size"
-                android:textStyle="bold" />
+                <Button
+                    android:id="@+id/btn_ok"
+                    android:layout_width="@dimen/ok_cancel_popup_width"
+                    android:layout_height="@dimen/ok_cancel_popup_height"
+                    android:layout_marginLeft=".2dp"
+                    android:layout_marginStart=".2dp"
+                    android:layout_marginTop=".2dp"
+                    android:background="@color/background"
+                    android:text="@string/button_OK"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/pop_up_ok_cancel_text_size"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

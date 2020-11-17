@@ -341,7 +341,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                     if (userDataToCompare.equalsIgnoreCase("steering_left_1")
                             || userDataToCompare.equalsIgnoreCase("steering_left_2")
                             || userDataToCompare.equalsIgnoreCase("steering_left_3")
-                            ) {
+                    ) {
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
@@ -360,7 +360,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                     } else if (userDataToCompare.equalsIgnoreCase("steering_right_1")
                             || userDataToCompare.equalsIgnoreCase("steering_right_2")
                             || userDataToCompare.equalsIgnoreCase("steering_right_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -403,7 +403,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
                     } else if (userDataToCompare.equalsIgnoreCase("trip_reset_1")
                             || userDataToCompare.equalsIgnoreCase("trip_reset_2")
                             || userDataToCompare.equalsIgnoreCase("trip_reset_3")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
@@ -796,7 +796,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
 
                     } else if (userDataToCompare.equalsIgnoreCase("all_mode_1")
                             || userDataToCompare.equalsIgnoreCase("all_mode_2")
-                            ) {
+                    ) {
 
                         try {
                             mActivity.isDetected = true;

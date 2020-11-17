@@ -1,6 +1,5 @@
 package com.nissan.alldriverguide.interfaces;
 
-import com.nissan.alldriverguide.model.LanguageList;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 
 /**
@@ -9,5 +8,6 @@ import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 
 public interface CompleteExploreTabContent {
     void onDownloaded(ExploreTabModel responseInfo);
+
     void onFailed(String failedReason);
 }

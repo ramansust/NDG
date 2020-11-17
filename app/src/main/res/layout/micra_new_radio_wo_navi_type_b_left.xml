@@ -32,8 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"
-            android:orientation="horizontal"
-           >
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_weight="5"
@@ -58,6 +58,7 @@
                 android:clickable="true"
                 android:onClick="buttonEvent"
                 android:tag="16" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

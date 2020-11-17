@@ -100,7 +100,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
         linearLayoutNoContent = (LinearLayout) view.findViewById(R.id.linearLayoutNoContent);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBarDetailsFragment);
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/Nissan Brand Regular.otf"); //initialize typeface here.
+        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_regular.otf"); //initialize typeface here.
         txt_back_title.setTypeface(tf);
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -138,14 +138,14 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
 
                 case Values.HOMEPAGE_TYPE:
 
-                    Logger.error("Epub type " , " Home  " + index);
+                    Logger.error("Epub type ", " Home  " + index);
                     if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
                         list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
 
-                        for (EpubInfo info:list
-                             ) {
-                            Logger.error("EpubInfo Title" ," -- " + info.getTitle() );
-                            Logger.error("EpubInfo Index" ," -- " + info.getIndex() );
+                        for (EpubInfo info : list
+                        ) {
+                            Logger.error("EpubInfo Title", " -- " + info.getTitle());
+                            Logger.error("EpubInfo Index", " -- " + info.getIndex());
                         }
 
                         if (list != null) {
@@ -156,7 +156,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                                     + Uri.decode(list.get(index).getHtmlLink());
 
 
-                            Logger.error("Epub type " , " content  " + htmlContent);
+                            Logger.error("Epub type ", " content  " + htmlContent);
                             ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.HOMEPAGE + Analytics.DOT + list.get(index).getTitle()));
                         }
                     }
@@ -354,7 +354,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
-                Logger.error("Details::url",url);
+                Logger.error("Details::url", url);
                 if (url != null && url.startsWith("http")) {
                     return false;
 

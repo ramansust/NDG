@@ -1,7 +1,5 @@
 package com.nissan.alldriverguide;
 
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebChromeClient;
@@ -13,23 +11,10 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.io.File;
 
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
-
 
 public class PDFOpenActivity extends AppCompatActivity {
 
     private WebView webView;
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            super.attachBaseContext(newBase);
-        }
-        //Or implement this for api 29 and above
-        else {
-            super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

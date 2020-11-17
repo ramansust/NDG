@@ -9,6 +9,6 @@
         android:layout_height="wrap_content"
         android:text="Imran hosen nirob"
         android:textSize="14sp"
-        android:padding="20dp"/>
+        android:padding="20dp" />
 
 </RelativeLayout>

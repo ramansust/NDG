@@ -83,7 +83,7 @@
             android:id="@+id/img_car_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/holder_loadtext"/>
+            android:background="@drawable/holder_loadtext" />
 
         <TextView
             android:id="@+id/txtView_loading"

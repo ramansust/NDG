@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/popupLayout"
         android:layout_width="600dp"
         android:layout_height="294dp"
         android:layout_gravity="center"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/btn_radio_full_left"
@@ -31,8 +31,7 @@
             android:clickable="true"
             android:onClick="buttonEventInitial"
             android:orientation="vertical"
-            android:tag="30003"
-            />
+            android:tag="30003" />
 
         <TextView
             android:id="@+id/btn_radio_full_right"

@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 
 import com.nissan.alldriverguide.R;
-import com.nissan.alldriverguide.utils.NissanApp;
-import com.nissan.alldriverguide.utils.Values;
 
 /**
  * Created by rohan on 3/22/17.

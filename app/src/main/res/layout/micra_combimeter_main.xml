@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/popupLayout"
         android:layout_width="350dp"
         android:layout_height="138dp"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/button8"

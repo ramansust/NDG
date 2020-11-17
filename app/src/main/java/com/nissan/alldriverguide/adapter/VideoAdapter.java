@@ -26,36 +26,36 @@ public class VideoAdapter extends BaseAdapter {
     public VideoAdapter(Context context, List<VideoInfo> list) {
         this.context = context;
         this.list = list;
-        inflater = LayoutInflater.from (this.context);
+        inflater = LayoutInflater.from(this.context);
     }
 
     @Override
-    public int getCount () {
-        return list != null ? list.size () : 0;
+    public int getCount() {
+        return list != null ? list.size() : 0;
     }
 
     @Override
-    public Object getItem (int position) {
-        return list.get (position);
+    public Object getItem(int position) {
+        return list.get(position);
     }
 
     @Override
-    public long getItemId (int position) {
+    public long getItemId(int position) {
         return position;
     }
 
     @Override
-    public View getView (final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         final ViewHolder viewHolder;
 
         if (convertView == null) {
-            inflater = (LayoutInflater) context.getSystemService (Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate (R.layout.video_row, parent, false);
-            viewHolder = new ViewHolder (convertView);
-            convertView.setTag (viewHolder);
+            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.video_row, parent, false);
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) convertView.getTag ();
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
         // for loading video thumb using Ion image loader library
@@ -65,8 +65,8 @@ public class VideoAdapter extends BaseAdapter {
                 .load(list.get(position).getThumb());
 
         viewHolder.txtViewTitle.setText(list.get(position).getTitle());
-        viewHolder.txtViewDescription.setText(list.get(position).getDescription());
-        viewHolder.txtViewCount.setText(list.get(position).getViews());
+//        viewHolder.txtViewDescription.setText(list.get(position).getDescription());
+//        viewHolder.txtViewCount.setText(list.get(position).getViews());
 
         return convertView;
     }
@@ -80,11 +80,11 @@ public class VideoAdapter extends BaseAdapter {
         TextView txtViewDescription;
         TextView txtViewCount;
 
-        public ViewHolder (View view) {
+        public ViewHolder(View view) {
             imgView = (ImageView) view.findViewById(R.id.img_view);
-            txtViewTitle = (TextView) view.findViewById (R.id.txt_video_title);
-            txtViewDescription = (TextView) view.findViewById (R.id.txt_video_description);
-            txtViewCount = (TextView) view.findViewById (R.id.txt_video_count);
+            txtViewTitle = (TextView) view.findViewById(R.id.txt_video_title);
+//            txtViewDescription = (TextView) view.findViewById(R.id.txt_video_description);
+//            txtViewCount = (TextView) view.findViewById(R.id.txt_video_count);
         }
     }
 

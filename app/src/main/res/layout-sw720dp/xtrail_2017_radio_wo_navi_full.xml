@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="700dp"
         android:layout_height="314dp"
         android:layout_gravity="center"
         android:id="@+id/popupLayout"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_radio_wo_navi_full_left"
@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:layout_weight=".7"
             android:background="@android:color/transparent"
-            android:onClick="buttonEventInitial"/>
+            android:onClick="buttonEventInitial" />
 
         <Button
             android:id="@+id/btn_radio_wo_navi_full_middle"
@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1.6"
             android:background="@android:color/transparent"
-            android:onClick="buttonEventInitial"/>
+            android:onClick="buttonEventInitial" />
 
         <Button
             android:id="@+id/btn_radio_wo_navi_full_right"
@@ -34,7 +34,7 @@
             android:layout_height="match_parent"
             android:layout_weight=".7"
             android:background="@android:color/transparent"
-            android:onClick="buttonEventInitial"/>
+            android:onClick="buttonEventInitial" />
 
     </LinearLayout>
 

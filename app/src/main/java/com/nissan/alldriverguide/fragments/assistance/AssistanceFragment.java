@@ -218,7 +218,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     // here load the initial data
     private void loadData() {
-        txtViewDriverGuide.setTypeface(Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "font/Nissan Brand Regular.otf"));
+        txtViewDriverGuide.setTypeface(Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "font/nissan_brand_regular.otf"));
         if (assistanceInfo != null && assistanceInfo.getAssistanceTitle() != null) {
             txtViewDriverGuide.setText(assistanceInfo.getAssistanceTitle().isEmpty() ? resources.getString(R.string.driver_guide) : assistanceInfo.getAssistanceTitle());
         }
@@ -592,10 +592,10 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 break;
 
             case 5:
-                if(getOnlineUrl() != null && !getOnlineUrl().isEmpty()){
+                if (getOnlineUrl() != null && !getOnlineUrl().isEmpty()) {
                     String onlineUrl = getOnlineUrl();
-                    frag = NissanAssistanceFragment.newInstance(pageTitle, url , onlineUrl);
-                } else frag = NissanAssistanceFragment.newInstance(pageTitle, url , "");
+                    frag = NissanAssistanceFragment.newInstance(pageTitle, url, onlineUrl);
+                } else frag = NissanAssistanceFragment.newInstance(pageTitle, url, "");
 
                 break;
 

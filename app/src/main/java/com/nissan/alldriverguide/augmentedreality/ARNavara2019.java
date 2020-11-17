@@ -333,7 +333,7 @@ public class ARNavara2019 implements GLSurfaceView.Renderer, SampleAppRendererCo
                     if (userDataToCompare.equalsIgnoreCase("start_stop_ignition_1")
                             || userDataToCompare.equalsIgnoreCase("start_stop_ignition_3")
                             || userDataToCompare.equalsIgnoreCase("start_stop_ignition_4")
-                            ) {
+                    ) {
                         try {
                             mActivity.isDetected = true;
                             vuforiaAppSession.pauseAR();
@@ -353,7 +353,7 @@ public class ARNavara2019 implements GLSurfaceView.Renderer, SampleAppRendererCo
                             || userDataToCompare.equalsIgnoreCase("steering_left_3")
                             || userDataToCompare.equalsIgnoreCase("steering_left_4")
                             || userDataToCompare.equalsIgnoreCase("steering_left_5")
-                            ) {
+                    ) {
 
 
                         try {
@@ -376,7 +376,7 @@ public class ARNavara2019 implements GLSurfaceView.Renderer, SampleAppRendererCo
                             || userDataToCompare.equalsIgnoreCase("steering_right_4")
                             || userDataToCompare.equalsIgnoreCase("steering_right_5")
                             || userDataToCompare.equalsIgnoreCase("steering_right_6")
-                            ) {
+                    ) {
 
 
                         try {
@@ -396,7 +396,7 @@ public class ARNavara2019 implements GLSurfaceView.Renderer, SampleAppRendererCo
                     } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_1")
                             || userDataToCompare.equalsIgnoreCase("radio_wo_navi_2")
                             || userDataToCompare.equalsIgnoreCase("radio_wo_navi_3")
-                            ) {
+                    ) {
 
 
                         try {

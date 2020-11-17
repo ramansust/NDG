@@ -1,11 +1,9 @@
 package com.nissan.alldriverguide;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,8 +21,6 @@ import android.widget.VideoView;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
-
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 
 public class VideoPlayerActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener, View.OnClickListener, MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener {
@@ -53,17 +49,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     private boolean executeOnResume = true;
 
     private String from_where = "";
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            super.attachBaseContext(newBase);
-        }
-        //Or implement this for api 29 and above
-        else {
-            super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

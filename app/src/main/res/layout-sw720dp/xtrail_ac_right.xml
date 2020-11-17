@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/popupLayout"
@@ -12,14 +12,14 @@
         android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         android:layout_gravity="center"
-        android:weightSum="2" >
+        android:weightSum="2">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.20"
             android:orientation="vertical"
-            android:weightSum="2" >
+            android:weightSum="2">
 
             <TextView
                 android:layout_width="match_parent"
@@ -41,7 +41,7 @@
             android:layout_height="match_parent"
             android:layout_weight=".80"
             android:orientation="vertical"
-            android:weightSum="3" >
+            android:weightSum="3">
 
             <Button
                 android:id="@+id/button1"
@@ -68,60 +68,60 @@
         </LinearLayout>
     </LinearLayout>
 
-<!--
-    <LinearLayout
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-           android:id="@+id/popupLayout2"
-        android:orientation="horizontal"
-        android:weightSum="2" >
-
+    <!--
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.20"
-            android:orientation="vertical"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+               android:id="@+id/popupLayout2"
+            android:orientation="horizontal"
             android:weightSum="2" >
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".80"
-                android:background="@android:color/transparent" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1.20"
-                android:background="@android:color/transparent"
-                android:onClick="buttonEvent"
-                android:tag="37" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:weightSum="2" >
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".80"
-            android:orientation="vertical"
-            android:weightSum="3" >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".80"
+                    android:background="@android:color/transparent" />
 
-            <Button
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.20"
+                    android:background="@android:color/transparent"
+                    android:onClick="buttonEvent"
+                    android:tag="37" />
+            </LinearLayout>
 
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:background="@android:color/transparent"
-                android:onClick="buttonEvent"
-                android:tag="47" />
-
-            <TextView
-
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight=".80"
-                android:background="@android:color/transparent" />
+                android:orientation="vertical"
+                android:weightSum="3" >
+
+                <Button
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:background="@android:color/transparent"
+                    android:onClick="buttonEvent"
+                    android:tag="47" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".80"
+                    android:background="@android:color/transparent" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
--->
+    -->
 
 </LinearLayout>

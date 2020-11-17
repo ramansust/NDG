@@ -8,5 +8,6 @@ import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 
 public interface CompleteAssistanceTabContent {
     void onDownloaded(AssistanceInfo responseInfo);
+
     void onFailed(String failedReason);
 }

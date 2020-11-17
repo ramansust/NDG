@@ -8,12 +8,15 @@ import android.view.View;
 
 public class CustomViewPager extends ViewPager {
     private Boolean disable = false;
+
     public CustomViewPager(Context context) {
         super(context);
     }
-    public CustomViewPager(Context context, AttributeSet attrs){
-        super(context,attrs);
+
+    public CustomViewPager(Context context, AttributeSet attrs) {
+        super(context, attrs);
     }
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
         return disable ? false : super.onInterceptTouchEvent(event);
@@ -24,7 +27,7 @@ public class CustomViewPager extends ViewPager {
         return disable ? false : super.onTouchEvent(event);
     }
 
-    public void disableScroll(Boolean disable){
+    public void disableScroll(Boolean disable) {
         //When disable = true not work the scroll and when disble = false work the scroll
         this.disable = disable;
     }
@@ -33,11 +36,11 @@ public class CustomViewPager extends ViewPager {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
         int height = 0;
-        for(int i = 0; i < getChildCount(); i++) {
+        for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
             child.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
             int h = child.getMeasuredHeight();
-            if(h > height) height = h;
+            if (h > height) height = h;
         }
 
         if (height != 0) {

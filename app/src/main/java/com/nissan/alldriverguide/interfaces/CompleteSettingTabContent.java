@@ -1,6 +1,5 @@
 package com.nissan.alldriverguide.interfaces;
 
-import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
 
 /**
@@ -9,5 +8,6 @@ import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
 
 public interface CompleteSettingTabContent {
     void onDownloaded(SettingsTabModel responseInfo);
+
     void onFailed(String failedReason);
 }

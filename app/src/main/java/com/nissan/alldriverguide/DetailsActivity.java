@@ -1,10 +1,8 @@
 package com.nissan.alldriverguide;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -29,8 +27,6 @@ import com.nissan.alldriverguide.utils.Values;
 import java.io.File;
 import java.util.ArrayList;
 
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
-
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -45,17 +41,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     private Typeface tf;
     private Tracker tracker;
     private ProgressBar progressBar;
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            super.attachBaseContext(newBase);
-        }
-        //Or implement this for api 29 and above
-        else {
-            super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -262,7 +247,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         btnBack = (ImageButton) findViewById(R.id.btn_back);
         linearBack = (LinearLayout) findViewById(R.id.linear_back);
         txt_back_title = (TextView) findViewById(R.id.txt_back_title);
-        tf = Typeface.createFromAsset(getAssets(), "font/Nissan Brand Regular.otf"); //initialize typeface here.
+        tf = Typeface.createFromAsset(getAssets(), "font/nissan_brand_regular.otf"); //initialize typeface here.
         txt_back_title.setTypeface(tf);
     }
 

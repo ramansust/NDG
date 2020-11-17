@@ -36,7 +36,7 @@ import java.util.List;
 public class NissanAssistanceFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     private static final String TAG = "NissanAssistanceFragmen";
-    private int[] nissanNssistanceImage = {R.drawable.pickup, R.drawable.phone,R.drawable.calendar};
+    private int[] nissanNssistanceImage = {R.drawable.pickup, R.drawable.phone, R.drawable.calendar};
 
     private View view;
     private TextView txtViewCarName;
@@ -59,12 +59,12 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
     private String[] nissanAssistance;
     private String onlineBookingTItle;
 
-    public static Fragment newInstance(String title, String imgUrl , String onLineUrl) {
+    public static Fragment newInstance(String title, String imgUrl, String onLineUrl) {
         Fragment frag = new NissanAssistanceFragment();
         Bundle args = new Bundle();
         args.putString(TITLE, title);
         args.putString(IMG_URL, imgUrl);
-        args.putString(ONLINE_BOOKING_URL,onLineUrl);
+        args.putString(ONLINE_BOOKING_URL, onLineUrl);
         frag.setArguments(args);
         return frag;
     }
@@ -92,22 +92,22 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
         List<Datum> list = NissanApp.getInstance().getAssistanceInfo().getData();
         if (list != null && list.size() > 0) {
             List<ChildNode> childNodes;
-            for (int i = 0; i <list.size(); i++) {
+            for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).getIndex() == 6) {
                     childNodes = list.get(i).getChildNode();
                     if (nissanAssistance == null) {
-                        if(!(getArguments().getString(ONLINE_BOOKING_URL).isEmpty())){
+                        if (!(getArguments().getString(ONLINE_BOOKING_URL).isEmpty())) {
 
                             nissanAssistance = new String[childNodes.size() + 1];
                             for (int j = 0; j < childNodes.size(); j++) {
                                 nissanAssistance[j] = childNodes.get(j).getTitle();
                             }
 
-                            if(list.get(6).getTitle() != null){
+                            if (list.get(6).getTitle() != null) {
                                 onlineBookingTItle = list.get(6).getTitle();
                                 nissanAssistance[childNodes.size()] = onlineBookingTItle;
                             }
-                        } else{
+                        } else {
                             nissanAssistance = new String[childNodes.size()];
                             for (int j = 0; j < childNodes.size(); j++) {
                                 nissanAssistance[j] = childNodes.get(j).getTitle();
@@ -126,7 +126,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
     private void loadData() {
         linearBack.setVisibility(View.VISIBLE);
 
-        txtViewDriverGuide.setTypeface(Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "font/Nissan Brand Regular.otf"));
+        txtViewDriverGuide.setTypeface(Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "font/nissan_brand_regular.otf"));
 //        txtViewDriverGuide.setText(resources.getString(R.string.driver_guide));
         txtViewDriverGuide.setText(NissanApp.getInstance().getAssistanceInfo().getAssistanceTitle());
         txtViewTitle.setText(getArguments().get(TITLE).toString());

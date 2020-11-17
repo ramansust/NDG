@@ -1,4 +1,3 @@
-
 package com.nissan.alldriverguide.model;
 
 import com.google.gson.annotations.SerializedName;

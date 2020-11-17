@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/activity_horizontal_margin"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,14 +32,15 @@
             android:background="@color/white"
             android:gravity="center"
             android:textSize="@dimen/popup_body_text_size"
-            android:layout_margin="@dimen/activity_horizontal_margin"/>
+            android:layout_margin="@dimen/activity_horizontal_margin" />
 
-            <LinearLayout
-                android:id="@+id/linear_bottom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+        <LinearLayout
+            android:id="@+id/linear_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
             <Button
                 android:id="@+id/btn_ok"
                 android:layout_width="@dimen/ok_cancel_popup_width"
@@ -50,7 +50,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/pop_up_ok_cancel_text_size"
                 android:textStyle="bold"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -90,6 +90,7 @@ public class WarningLightFragment extends Fragment {
 
     /**
      * This method process the List data that pass into adapter
+     *
      * @param newList data list for processing
      * @return ArrayList
      */
@@ -121,8 +122,9 @@ public class WarningLightFragment extends Fragment {
 
     /**
      * This method return the result that display in WarningLightFragment section
+     *
      * @param ePubInfoList need data list
-     * @param keyWord need for search keyword the contain in search tag
+     * @param keyWord      need for search keyword the contain in search tag
      * @return ArrayList
      */
     public static ArrayList<EpubInfo> searchForTag(ArrayList<EpubInfo> ePubInfoList, String keyWord) {
@@ -166,11 +168,11 @@ public class WarningLightFragment extends Fragment {
                 }
             }*/
 
-            for(int i = 0; i < (ePubInfoList.size() / 2); i++) {
+            for (int i = 0; i < (ePubInfoList.size() / 2); i++) {
                 int searchTagIndex = (i * 2) + 1;
 
                 // this condition remove the demo item from WarningLightFragment
-                if(!ePubInfoList.get(searchTagIndex - 1).getTitle().toLowerCase().contains("demo")) {
+                if (!ePubInfoList.get(searchTagIndex - 1).getTitle().toLowerCase().contains("demo")) {
                     if (ePubInfoList.get(searchTagIndex - 1).getTitle().toLowerCase().contains(keyWord.toLowerCase().trim()) || ePubInfoList.get(searchTagIndex).getTitle().toLowerCase().contains(keyWord.toLowerCase().trim())) {
                         ePubInfoList.get(searchTagIndex - 1).setIndex((searchTagIndex - 1) / 2); // need to check again
 
@@ -191,6 +193,7 @@ public class WarningLightFragment extends Fragment {
 
     /**
      * This method get file name in combimeter folder form sdCard folder
+     *
      * @return
      */
     private ArrayList<String> getFileNames() {

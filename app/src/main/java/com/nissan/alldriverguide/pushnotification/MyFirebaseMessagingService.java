@@ -41,7 +41,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
-            Logger.error("DATA 1 Body", "________"+remoteMessage.getNotification().getBody());
+            Logger.error("DATA 1 Body", "________" + remoteMessage.getNotification().getBody());
             handleNotification(remoteMessage);
         }
 
@@ -49,7 +49,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getData() != null && remoteMessage.getData().size() > 0) {
             try {
                 JSONObject object = new JSONObject(remoteMessage.getData());
-                Logger.error("Push Json ", "________"+remoteMessage.getData());
+                Logger.error("Push Json ", "________" + remoteMessage.getData());
                 String carId = object.getString("car_id");
                 String languageId = object.getString("language_id");
                 String ePub_id = object.getString("epub_id");
@@ -66,27 +66,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                }
 
 //                if("11".equalsIgnoreCase(carId) || "12".equalsIgnoreCase(carId) || "13".equalsIgnoreCase(carId) || "14".equalsIgnoreCase(carId)) {
-                    if(array != null && array.length() > 0) {
-                        for(int i = 0; i < array.length(); i++) {
-                            String ePubId = array.get(i).toString();
-                            if(!isEmpty(carId) && !isEmpty(languageId) && !isEmpty(ePubId)) {
-                                try {
-                                    commonDao.makeAllPushEntryStatusChange(getBaseContext(), Integer.parseInt(carId), Integer.parseInt(languageId), Integer.parseInt(ePubId));
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-
-                                commonDao.insertNotificationData(getApplicationContext(), carId, languageId, ePubId);
-                            } else {
-                                Logger.error("Empty ID found", "_____________");
+                if (array != null && array.length() > 0) {
+                    for (int i = 0; i < array.length(); i++) {
+                        String ePubId = array.get(i).toString();
+                        if (!isEmpty(carId) && !isEmpty(languageId) && !isEmpty(ePubId)) {
+                            try {
+                                commonDao.makeAllPushEntryStatusChange(getBaseContext(), Integer.parseInt(carId), Integer.parseInt(languageId), Integer.parseInt(ePubId));
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                        }
-                    } else {
 
+                            commonDao.insertNotificationData(getApplicationContext(), carId, languageId, ePubId);
+                        } else {
+                            Logger.error("Empty ID found", "_____________");
+                        }
                     }
-                    if(!isEmpty(object.getString("msg"))) {
-                        handleDataMessage(object.getString("msg"));
-                    }
+                } else {
+
+                }
+                if (!isEmpty(object.getString("msg"))) {
+                    handleDataMessage(object.getString("msg"));
+                }
 //                }
 
             } catch (Exception e) {
@@ -113,7 +113,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 String languageId = extras.getString("language_id");
                 String ePub_id = extras.getString("epub_id");
 
-                Logger.error("Car_id : " + carId + " Languag_id : " + languageId, "ePub_id : " +ePub_id);
+                Logger.error("Car_id : " + carId + " Languag_id : " + languageId, "ePub_id : " + ePub_id);
 
                 JSONArray array = new JSONArray(ePub_id);
 
@@ -128,10 +128,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                }
 
 //                if("11".equalsIgnoreCase(carId) || "12".equalsIgnoreCase(carId) || "13".equalsIgnoreCase(carId) || "14".equalsIgnoreCase(carId)) {
-                if(array != null && array.length() > 0) {
-                    for(int i = 0; i < array.length(); i++) {
+                if (array != null && array.length() > 0) {
+                    for (int i = 0; i < array.length(); i++) {
                         String ePubId = array.get(i).toString();
-                        if(!isEmpty(carId) && !isEmpty(languageId) && !isEmpty(ePubId)) {
+                        if (!isEmpty(carId) && !isEmpty(languageId) && !isEmpty(ePubId)) {
                             try {
                                 commonDao.makeAllPushEntryStatusChange(getBaseContext(), Integer.parseInt(carId), Integer.parseInt(languageId), Integer.parseInt(ePubId));
                             } catch (Exception e) {
@@ -146,12 +146,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 } else {
 
                 }
-                if(!isEmpty(extras.getString("msg"))) {
+                if (!isEmpty(extras.getString("msg"))) {
                     handleDataMessage(extras.getString("msg"));
                 }
 //                }
 
-                Logger.error("CarFFFFFFFFFFFFFFFFFFFFFFF_id : " + carId + " Languag_id : " + languageId, "ePub_id : " +ePub_id);
+                Logger.error("CarFFFFFFFFFFFFFFFFFFFFFFF_id : " + carId + " Languag_id : " + languageId, "ePub_id : " + ePub_id);
 
             } catch (Exception e) {
                 Logger.error(TAG, "Exception: " + e.getMessage());
@@ -168,7 +168,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             showNotificationMessage(getApplicationContext(), remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody(), "timestamp", resultIntent);
 
-        }else{
+        } else {
             // If the app is in background, firebase itself handles the notification
         }
     }

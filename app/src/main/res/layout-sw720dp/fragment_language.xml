@@ -96,7 +96,7 @@
             android:text="No Content available!"
             android:textSize="18sp"
             android:textColor="@color/black"
-            android:visibility="visible"/>
+            android:visibility="visible" />
 
     </LinearLayout>
 
@@ -105,7 +105,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <include
         android:id="@+id/lst_view"

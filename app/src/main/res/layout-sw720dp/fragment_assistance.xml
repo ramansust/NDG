@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/relative_top"
@@ -98,7 +98,7 @@
             android:layout_height="335dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:background="@drawable/holder_loadtext"/>
+            android:background="@drawable/holder_loadtext" />
 
         <TextView
             android:id="@+id/txtView_loading"

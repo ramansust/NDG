@@ -441,7 +441,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         }
 
         check_density();
-        if(header_text != null){
+        if (header_text != null) {
             Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
@@ -462,7 +462,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         }
 
         check_density();
-        if(header_text != null){
+        if (header_text != null) {
             Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
 
                 @Override
@@ -528,8 +528,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         preferenceUtil = new PreferenceUtil(mContext);
         simple_drawee_view_explore = (TextView) view.findViewById(R.id.simple_drawee_view_blind_spot_ar);
         simple_drawee_view_ar = (TextView) view.findViewById(R.id.simple_drawee_view_ar);
-  /*      typefaceBold = Typeface.createFromAsset(mContext.getAssets(),  "font/Nissan Brand Bold.otf");
-        typefaceRegular = Typeface.createFromAsset(mContext.getAssets(),  "font/Nissan Brand Regular.otf");
+  /*      typefaceBold = Typeface.createFromAsset(mContext.getAssets(),  "font/nissan_brand_bold.otf");
+        typefaceRegular = Typeface.createFromAsset(mContext.getAssets(),  "font/nissan_brand_regular.otf");
 
         tvAugmentedReality = (TextView) view.findViewById(R.id.tvAugmentedReality);
         tvAugmentedReality.setTypeface(typefaceRegular);

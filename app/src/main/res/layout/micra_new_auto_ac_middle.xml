@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="350dp"
@@ -19,7 +19,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:weightSum="3" >
+            android:weightSum="3">
 
             <Button
                 android:layout_width="0dp"
@@ -51,7 +51,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:weightSum="5" >
+            android:weightSum="5">
 
             <Button
                 android:layout_width="0dp"
@@ -76,6 +76,7 @@
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
                 android:tag="48" />
+
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -83,6 +84,7 @@
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
                 android:tag="47" />
+
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

@@ -59,7 +59,7 @@
         android:id="@+id/rlSectionHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/topPanel" >
+        android:layout_below="@id/topPanel">
 
         <TextView
             android:id="@+id/tvSectionHeader"
@@ -72,7 +72,7 @@
             android:textColor="@color/gray"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:text="@string/recent_search"/>
+            android:text="@string/recent_search" />
 
         <TextView
             android:id="@+id/tvClearSearch"
@@ -86,7 +86,7 @@
             android:textAllCaps="true"
             android:textSize="14sp"
             android:textColor="@color/orange"
-            android:text="@string/clear"/>
+            android:text="@string/clear" />
 
     </RelativeLayout>
 

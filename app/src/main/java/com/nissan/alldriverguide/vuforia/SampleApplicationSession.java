@@ -21,7 +21,6 @@ import android.view.WindowManager;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
-import com.nissan.alldriverguide.utils.Values;
 import com.vuforia.CameraDevice;
 import com.vuforia.Device;
 import com.vuforia.INIT_ERRORCODE;

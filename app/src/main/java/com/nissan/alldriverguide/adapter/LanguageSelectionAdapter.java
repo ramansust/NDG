@@ -30,55 +30,56 @@ public class LanguageSelectionAdapter extends BaseAdapter {
 
     /**
      * Declare constructor
+     *
      * @param context needed
-     * @param list data list
+     * @param list    data list
      * @param isColor for check visible/ invisible
      */
-    public LanguageSelectionAdapter (Context context, List<LanguageInfo> list, boolean isColor) {
+    public LanguageSelectionAdapter(Context context, List<LanguageInfo> list, boolean isColor) {
         this.context = context;
         this.list = list;
         this.isColor = isColor;
-        this.tf = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Regular.otf");
-        inflater = LayoutInflater.from (this.context);
+        this.tf = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_regular.otf");
+        inflater = LayoutInflater.from(this.context);
     }
 
     @Override
-    public int getCount () {
-        return list != null ? list.size () : 0;
+    public int getCount() {
+        return list != null ? list.size() : 0;
     }
 
     @Override
-    public Object getItem (int position) {
-        return list.get (position);
+    public Object getItem(int position) {
+        return list.get(position);
     }
 
     @Override
-    public long getItemId (int position) {
+    public long getItemId(int position) {
         return position;
     }
 
     @Override
-    public View getView (final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         final ViewHolder viewHolder;
 
         if (convertView == null) {
-            inflater = (LayoutInflater) context.getSystemService (Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate (R.layout.language_selection_row, parent, false);
-            viewHolder = new ViewHolder (convertView);
-            convertView.setTag (viewHolder);
+            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.language_selection_row, parent, false);
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) convertView.getTag ();
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
         viewHolder.imageView.setImageURI(list.get(position).getImage());
         viewHolder.txtViewTitle.setTypeface(tf);
         viewHolder.txtViewTitle.setText(list.get(position).getName());
 
-        if(isColor) {
+        if (isColor) {
             viewHolder.txtViewTitle.setTextColor(Color.BLACK);
             // check the selection. if selected checkBox visible else invisible
-            if(list.get(position).isSelected()) {
+            if (list.get(position).isSelected()) {
                 viewHolder.checkBox.setVisibility(View.VISIBLE);
                 viewHolder.checkBox.setButtonDrawable(R.drawable.tick_icon);
             } else {
@@ -100,9 +101,9 @@ public class LanguageSelectionAdapter extends BaseAdapter {
         TextView txtViewTitle;
         CheckBox checkBox;
 
-        public ViewHolder (View view) {
+        public ViewHolder(View view) {
             imageView = (SimpleDraweeView) view.findViewById(R.id.img_view); // use fresco to load image
-            txtViewTitle = (TextView) view.findViewById (R.id.txt_title);
+            txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
             checkBox = (CheckBox) view.findViewById(R.id.check_box);
         }
     }

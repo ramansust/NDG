@@ -26,45 +26,46 @@ public class AssistanceAdapter extends BaseAdapter {
      * Declare constructor that uses for
      * NissanAssistanceFragment.java
      * and AssistanceFragment.java
-     * @param context application context
-     * @param carName string array
+     *
+     * @param context  application context
+     * @param carName  string array
      * @param carImage int array
      */
     public AssistanceAdapter(Context context, String[] carName, int[] carImage) {
         this.context = context;
         this.carName = carName;
         this.carImage = carImage;
-        this.tf = Typeface.createFromAsset(context.getAssets(), "font/Nissan Brand Bold.otf");
-        inflater = LayoutInflater.from (this.context);
+        this.tf = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf");
+        inflater = LayoutInflater.from(this.context);
     }
 
     @Override
-    public int getCount () {
+    public int getCount() {
         return carName != null ? carName.length > 6 ? 6 : carName.length : 0;
     }
 
     @Override
-    public Object getItem (int position) {
+    public Object getItem(int position) {
         return carName[position];
     }
 
     @Override
-    public long getItemId (int position) {
+    public long getItemId(int position) {
         return position;
     }
 
     @Override
-    public View getView (final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         final ViewHolder viewHolder;
 
         if (convertView == null) {
-            inflater = (LayoutInflater) context.getSystemService (Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate (R.layout.assistance_row, parent, false);
-            viewHolder = new ViewHolder (convertView);
-            convertView.setTag (viewHolder);
+            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.assistance_row, parent, false);
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) convertView.getTag ();
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
         // imageView Logic for if left icon img in fixed size
@@ -88,10 +89,10 @@ public class AssistanceAdapter extends BaseAdapter {
         TextView txtViewTitle;
         TextView txtViewSubTitle;
 
-        public ViewHolder (View view) {
+        public ViewHolder(View view) {
             imageView = (ImageView) view.findViewById(R.id.img_view);
-            txtViewTitle = (TextView) view.findViewById (R.id.txt_title);
-            txtViewSubTitle = (TextView) view.findViewById (R.id.txt_subtitle);
+            txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
+            txtViewSubTitle = (TextView) view.findViewById(R.id.txt_subtitle);
         }
     }
 

@@ -44,6 +44,7 @@ public class LanguageList {
     public void setAlertMessage(List<AlertMessage> alertMessage) {
         this.alertMessage = alertMessage;
     }
+
     public Integer getLanguageId() {
         return languageId;
     }

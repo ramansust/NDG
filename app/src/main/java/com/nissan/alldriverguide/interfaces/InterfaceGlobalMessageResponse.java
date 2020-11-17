@@ -1,6 +1,5 @@
 package com.nissan.alldriverguide.interfaces;
 
-import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 
 /**
@@ -9,5 +8,6 @@ import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 
 public interface InterfaceGlobalMessageResponse {
     void onDownloaded(GlobalMsgResponse responseInfo);
+
     void onFailed(String failedReason);
 }

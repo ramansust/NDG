@@ -22,7 +22,6 @@ import android.view.Display;
 import android.view.WindowManager;
 
 import com.nissan.alldriverguide.utils.Logger;
-import com.vuforia.COORDINATE_SYSTEM_TYPE;
 import com.vuforia.CameraDevice;
 import com.vuforia.Device;
 import com.vuforia.GLTextureUnit;
@@ -348,25 +347,19 @@ public class SampleAppRenderer {
     private void storeScreenDimensions() {
         // Query display dimensions:
         Point size = new Point();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
-        {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             mActivityRef.get().getWindowManager().getDefaultDisplay().getRealSize(size);
-        }
-        else
-        {
+        } else {
             WindowManager windowManager = (WindowManager) mActivityRef.get().getSystemService(Context.WINDOW_SERVICE);
 
-            if (windowManager != null)
-            {
+            if (windowManager != null) {
                 DisplayMetrics metrics = new DisplayMetrics();
                 Display display = windowManager.getDefaultDisplay();
                 display.getMetrics(metrics);
 
                 size.x = metrics.widthPixels;
                 size.y = metrics.heightPixels;
-            }
-            else
-            {
+            } else {
                 size.x = 0;
                 size.y = 0;
             }

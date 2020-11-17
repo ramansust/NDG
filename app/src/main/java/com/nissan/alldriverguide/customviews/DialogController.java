@@ -1,8 +1,8 @@
 package com.nissan.alldriverguide.customviews;
 
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.ActionBar.LayoutParams;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Window;
 import android.widget.TextView;

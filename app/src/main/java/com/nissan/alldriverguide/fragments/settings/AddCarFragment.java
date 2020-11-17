@@ -311,7 +311,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
         commonDao = CommonDao.getInstance();
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/Nissan Brand Regular.otf"); //initialize typeface here.
+        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_regular.otf"); //initialize typeface here.
     }
 
     @Override

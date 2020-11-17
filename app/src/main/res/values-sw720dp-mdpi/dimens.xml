@@ -5,7 +5,6 @@
     <dimen name="height_size">70dp</dimen>
     <dimen name="margin_80_dp">120dp</dimen>
     <dimen name="margin_left">15dp</dimen>
-    <dimen name="margin_bottom">20dp</dimen>
     <dimen name="margin_bottom_updated">50dp</dimen>
     <dimen name="margin_back">10dp</dimen>
     <dimen name="dialog_text_size">25sp</dimen>
@@ -14,7 +13,6 @@
     <dimen name="tutorial_title">20sp</dimen>
     <dimen name="tutorial_detail">22sp</dimen>
     <dimen name="tab_title">18sp</dimen>
-    <dimen name="popup_height">250dp</dimen>
     <dimen name="width_350dp">350dp</dimen>
     <dimen name="width_175dp">175dp</dimen>
     <dimen name="width_700dp">700dp</dimen>
@@ -22,9 +20,6 @@
     <dimen name="width_300dp">300dp</dimen>
     <dimen name="width_400dp">400dp</dimen>
     <dimen name="width_500dp">500dp</dimen>
-    <dimen name="width_370dp">370dp</dimen>
     <dimen name="width_730dp">730dp</dimen>
-    <dimen name="width_360dp">360dp</dimen>
-    <dimen name="width_540dp">540dp</dimen>
 
 </resources>

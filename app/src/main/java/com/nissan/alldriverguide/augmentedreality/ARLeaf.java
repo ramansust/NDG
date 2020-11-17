@@ -222,74 +222,74 @@ public class ARLeaf implements GLSurfaceView.Renderer, SampleAppRendererControl,
                 switch (v.getId()) {
                     case R.id.btn_ev_navi_left:
 
-                        mActivity.layoutCameraView.removeAllViews ();
-                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_ev_navi_system_left, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_ev_navi_system_left.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.leaf_ev_navi_system_left, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "leaf_ev_navi_system_left.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_ev_navi_middle:
 
-                        mActivity.layoutCameraView.removeAllViews ();
-                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_ev_navi_system_middle, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_ev_navi_system_middle.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.leaf_ev_navi_system_middle, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "leaf_ev_navi_system_middle.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_ev_navi_right:
 
-                        mActivity.layoutCameraView.removeAllViews ();
-                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_ev_navi_system_right, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_ev_navi_system_right.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.leaf_ev_navi_system_right, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "leaf_ev_navi_system_right.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_left:
 
-                        mActivity.layoutCameraView.removeAllViews ();
-                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_radio_w_navi_left, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_radio_navi_left.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.leaf_radio_w_navi_left, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "leaf_radio_navi_left.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_middle:
 
-                        mActivity.layoutCameraView.removeAllViews ();
-                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_radio_w_navi_middle, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_radio_navi_middle.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.leaf_radio_w_navi_middle, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "leaf_radio_navi_middle.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_right:
 
-                        mActivity.layoutCameraView.removeAllViews ();
-                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_radio_w_navi_right, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_radio_navi_right.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.leaf_radio_w_navi_right, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "leaf_radio_navi_right.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_wo_navi_left:
 
-                        mActivity.layoutCameraView.removeAllViews ();
-                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_radio_wo_navi_left, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_radio_wo_navi_left.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.leaf_radio_wo_navi_left, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "leaf_radio_wo_navi_left.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_wo_navi_middle:
 
-                        mActivity.layoutCameraView.removeAllViews ();
-                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_radio_wo_navi_middle, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_radio_wo_navi_middle.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.leaf_radio_wo_navi_middle, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "leaf_radio_wo_navi_middle.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     case R.id.btn_radio_wo_navi_right:
 
-                        mActivity.layoutCameraView.removeAllViews ();
-                        mActivity.inflatedLayout_second = inflater.inflate (R.layout.leaf_radio_wo_navi_right, null, false);
-                        setBackground (mActivity.inflatedLayout_second, drawables + "leaf_radio_wo_navi_right.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout_second);
+                        mActivity.layoutCameraView.removeAllViews();
+                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.leaf_radio_wo_navi_right, null, false);
+                        setBackground(mActivity.inflatedLayout_second, drawables + "leaf_radio_wo_navi_right.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
                         break;
 
                     default:
@@ -324,437 +324,437 @@ public class ARLeaf implements GLSurfaceView.Renderer, SampleAppRendererControl,
             handler.post(new Runnable() {
                 public void run() {
 
-                    if (userDataToCompare.equalsIgnoreCase ("start_stop_ignition_1")
-                            || userDataToCompare.equalsIgnoreCase ("start_stop_ignition_2")
-                            || userDataToCompare.equalsIgnoreCase ("start_stop_ignition_3")
-                            ) {
+                    if (userDataToCompare.equalsIgnoreCase("start_stop_ignition_1")
+                            || userDataToCompare.equalsIgnoreCase("start_stop_ignition_2")
+                            || userDataToCompare.equalsIgnoreCase("start_stop_ignition_3")
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.START_STOP_IGNITION;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_power_switch, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_power_switch.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_power_switch.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("ac_1")
-                            || userDataToCompare.equalsIgnoreCase ("ac_2")
-                            || userDataToCompare.equalsIgnoreCase ("ac_3")
-                            ) {
+                    } else if (userDataToCompare.equalsIgnoreCase("ac_1")
+                            || userDataToCompare.equalsIgnoreCase("ac_2")
+                            || userDataToCompare.equalsIgnoreCase("ac_3")
+                    ) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.AUTO_AC;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_auto_ac_type_a, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_ac_auto_type_a.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_ac_auto_type_a.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("ac_b_1")
-                            || userDataToCompare.equalsIgnoreCase ("ac_b_2")
-                            || userDataToCompare.equalsIgnoreCase ("ac_b_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("ac_b_1")
+                            || userDataToCompare.equalsIgnoreCase("ac_b_2")
+                            || userDataToCompare.equalsIgnoreCase("ac_b_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.AUTO_AC;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_auto_ac_type_b, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_ac_auto_type_b.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_ac_auto_type_b.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("ev_navi_1")
-                            || userDataToCompare.equalsIgnoreCase ("ev_navi_2")
-                            || userDataToCompare.equalsIgnoreCase ("ev_navi_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("ev_navi_1")
+                            || userDataToCompare.equalsIgnoreCase("ev_navi_2")
+                            || userDataToCompare.equalsIgnoreCase("ev_navi_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.EV_NAVI_SYSTEM;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_ev_navi_system_main, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_ev_navi_system_main.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_ev_navi_system_main.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                        buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_ev_navi_middle));
-                        buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_ev_navi_left));
-                        buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_ev_navi_right));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_ev_navi_middle));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_ev_navi_left));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_ev_navi_right));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("ev_navi_system_left_1")
-                            || userDataToCompare.equalsIgnoreCase ("ev_navi_system_left_2")
-                            || userDataToCompare.equalsIgnoreCase ("ev_navi_system_left_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("ev_navi_system_left_1")
+                            || userDataToCompare.equalsIgnoreCase("ev_navi_system_left_2")
+                            || userDataToCompare.equalsIgnoreCase("ev_navi_system_left_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.EV_NAVI_SYSTEM;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_ev_navi_system_left, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_ev_navi_system_left.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_ev_navi_system_left.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("ev_navi_system_middle_1")
-                            || userDataToCompare.equalsIgnoreCase ("ev_navi_system_middle_2")
-                            || userDataToCompare.equalsIgnoreCase ("ev_navi_system_middle_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("ev_navi_system_middle_1")
+                            || userDataToCompare.equalsIgnoreCase("ev_navi_system_middle_2")
+                            || userDataToCompare.equalsIgnoreCase("ev_navi_system_middle_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.EV_NAVI_SYSTEM;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_ev_navi_system_middle, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_ev_navi_system_middle.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_ev_navi_system_middle.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("ev_navi_system_right_1")
-                            || userDataToCompare.equalsIgnoreCase ("ev_navi_system_right_2")
-                            || userDataToCompare.equalsIgnoreCase ("ev_navi_system_right_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("ev_navi_system_right_1")
+                            || userDataToCompare.equalsIgnoreCase("ev_navi_system_right_2")
+                            || userDataToCompare.equalsIgnoreCase("ev_navi_system_right_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.EV_NAVI_SYSTEM;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_ev_navi_system_right, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_ev_navi_system_right.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_ev_navi_system_right.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("heated_front_seats_1")
-                            || userDataToCompare.equalsIgnoreCase ("heated_front_seats_2")
-                            || userDataToCompare.equalsIgnoreCase ("heated_front_seats_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("heated_front_seats_1")
+                            || userDataToCompare.equalsIgnoreCase("heated_front_seats_2")
+                            || userDataToCompare.equalsIgnoreCase("heated_front_seats_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.HEATED_FRONT;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_heated_front_seats_button, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_heated_front_seats.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_heated_front_seats.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("heated_rear_seats_1")
-                            || userDataToCompare.equalsIgnoreCase ("heated_rear_seats_2")
-                            || userDataToCompare.equalsIgnoreCase ("heated_rear_seats_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("heated_rear_seats_1")
+                            || userDataToCompare.equalsIgnoreCase("heated_rear_seats_2")
+                            || userDataToCompare.equalsIgnoreCase("heated_rear_seats_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.HEATED_FRONT;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_heated_rear_seats_button, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_heated_rear_seats.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_heated_rear_seats.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("switch_1")
-                            || userDataToCompare.equalsIgnoreCase ("switch_2")
-                            || userDataToCompare.equalsIgnoreCase ("switch_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("switch_1")
+                            || userDataToCompare.equalsIgnoreCase("switch_2")
+                            || userDataToCompare.equalsIgnoreCase("switch_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.SWITCH;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_multiswitch, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_multi_switch.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_multi_switch.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("radio_navi_1")
-                            || userDataToCompare.equalsIgnoreCase ("radio_navi_2")
-                            || userDataToCompare.equalsIgnoreCase ("radio_navi_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_navi_1")
+                            || userDataToCompare.equalsIgnoreCase("radio_navi_2")
+                            || userDataToCompare.equalsIgnoreCase("radio_navi_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.RADIO_W_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_radio_w_navi_main, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_radio_navi_main.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_radio_navi_main.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                        buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_radio_left));
-                        buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_radio_middle));
-                        buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_radio_right));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_left));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_middle));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_right));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("radio_navi_left_1")
-                            || userDataToCompare.equalsIgnoreCase ("radio_navi_left_2")
-                            || userDataToCompare.equalsIgnoreCase ("radio_navi_left_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_navi_left_1")
+                            || userDataToCompare.equalsIgnoreCase("radio_navi_left_2")
+                            || userDataToCompare.equalsIgnoreCase("radio_navi_left_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.RADIO_W_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_radio_w_navi_left, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_radio_navi_left.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_radio_navi_left.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("radio_navi_right_1")
-                            || userDataToCompare.equalsIgnoreCase ("radio_navi_right_2")
-                            || userDataToCompare.equalsIgnoreCase ("radio_navi_right_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_navi_right_1")
+                            || userDataToCompare.equalsIgnoreCase("radio_navi_right_2")
+                            || userDataToCompare.equalsIgnoreCase("radio_navi_right_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.RADIO_W_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_radio_w_navi_right, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_radio_navi_right.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_radio_navi_right.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("radio_navi_middle_1")
-                            || userDataToCompare.equalsIgnoreCase ("radio_navi_middle_2")
-                            || userDataToCompare.equalsIgnoreCase ("radio_navi_middle_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_navi_middle_1")
+                            || userDataToCompare.equalsIgnoreCase("radio_navi_middle_2")
+                            || userDataToCompare.equalsIgnoreCase("radio_navi_middle_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.RADIO_W_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_radio_w_navi_middle, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_radio_navi_middle.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_radio_navi_middle.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("radio_wo_navi_1")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_2")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_1")
+                            || userDataToCompare.equalsIgnoreCase("radio_wo_navi_2")
+                            || userDataToCompare.equalsIgnoreCase("radio_wo_navi_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         // iv.setImageResource(R.drawable.ferrari);
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_radio_wo_navi_main, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_radio_wo_navi_main.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_radio_wo_navi_main.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                        buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_radio_wo_navi_left));
-                        buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_radio_wo_navi_middle));
-                        buttonEventInitial (mActivity.inflatedLayout.findViewById (R.id.btn_radio_wo_navi_right));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_wo_navi_left));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_wo_navi_middle));
+                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_wo_navi_right));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("radio_wo_navi_left_1")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_left_2")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_left_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_left_1")
+                            || userDataToCompare.equalsIgnoreCase("radio_wo_navi_left_2")
+                            || userDataToCompare.equalsIgnoreCase("radio_wo_navi_left_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_radio_wo_navi_left, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_radio_wo_navi_left.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_radio_wo_navi_left.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("radio_wo_navi_middle_1")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_middle_2")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_middle_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_middle_1")
+                            || userDataToCompare.equalsIgnoreCase("radio_wo_navi_middle_2")
+                            || userDataToCompare.equalsIgnoreCase("radio_wo_navi_middle_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_radio_wo_navi_middle, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_radio_wo_navi_middle.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_radio_wo_navi_middle.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("radio_wo_navi_right_1")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_right_2")
-                            || userDataToCompare.equalsIgnoreCase ("radio_wo_navi_right_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_right_1")
+                            || userDataToCompare.equalsIgnoreCase("radio_wo_navi_right_2")
+                            || userDataToCompare.equalsIgnoreCase("radio_wo_navi_right_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.RADIO_WO_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_radio_wo_navi_right, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_radio_wo_navi_right.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_radio_wo_navi_right.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("steering_left_1")
-                            || userDataToCompare.equalsIgnoreCase ("steering_left_2")
-                            || userDataToCompare.equalsIgnoreCase ("steering_left_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("steering_left_1")
+                            || userDataToCompare.equalsIgnoreCase("steering_left_2")
+                            || userDataToCompare.equalsIgnoreCase("steering_left_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.STEERING_LEFT;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_st_wheel_left, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_steering_left.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_steering_left.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("steering_right_1")
-                            || userDataToCompare.equalsIgnoreCase ("steering_right_2")
-                            || userDataToCompare.equalsIgnoreCase ("steering_right_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("steering_right_1")
+                            || userDataToCompare.equalsIgnoreCase("steering_right_2")
+                            || userDataToCompare.equalsIgnoreCase("steering_right_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.STEERING_RIGHT;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_st_wheel_right, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_steering_right.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_steering_right.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("trip_reset_1")
-                            || userDataToCompare.equalsIgnoreCase ("trip_reset_2")
-                            || userDataToCompare.equalsIgnoreCase ("trip_reset_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("trip_reset_1")
+                            || userDataToCompare.equalsIgnoreCase("trip_reset_2")
+                            || userDataToCompare.equalsIgnoreCase("trip_reset_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.TRIP_RESET;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_trip, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_tripreset_switch.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_tripreset_switch.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    } else if (userDataToCompare.equalsIgnoreCase ("combimeter_1")
-                            || userDataToCompare.equalsIgnoreCase ("combimeter_2")
-                            || userDataToCompare.equalsIgnoreCase ("combimeter_3")) {
+                    } else if (userDataToCompare.equalsIgnoreCase("combimeter_1")
+                            || userDataToCompare.equalsIgnoreCase("combimeter_2")
+                            || userDataToCompare.equalsIgnoreCase("combimeter_3")) {
 
                         try {
                             mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR ();
+                            vuforiaAppSession.pauseAR();
                         } catch (SampleApplicationException e) {
                             // TODO Auto-generated catch block
-                            e.printStackTrace ();
+                            e.printStackTrace();
                         }
 
                         Values.ar_value = Analytics.COMBINATION_METER;
-                        mActivity.inflatedLayout = inflater.inflate (
+                        mActivity.inflatedLayout = inflater.inflate(
                                 R.layout.leaf_combimeter, null, false);
-                        setBackground (mActivity.inflatedLayout, drawables + "leaf_combimeter.png");
-                        mActivity.layoutCameraView.addView (mActivity.inflatedLayout);
+                        setBackground(mActivity.inflatedLayout, drawables + "leaf_combimeter.png");
+                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
                         mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
                     } else {

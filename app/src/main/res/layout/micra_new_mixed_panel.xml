@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="300dp"
@@ -11,8 +11,7 @@
         android:id="@+id/popupLayout"
         android:orientation="horizontal"
 
-        android:weightSum="5"
-        >
+        android:weightSum="5">
 
         <Button
 
@@ -23,6 +22,7 @@
             android:onClick="buttonEvent"
             android:tag="61"
             android:text="" />
+
         <Button
 
             android:layout_width="0dp"
@@ -32,6 +32,7 @@
             android:onClick="buttonEvent"
             android:tag="64"
             android:text="" />
+
         <Button
 
             android:layout_width="0dp"
@@ -41,6 +42,7 @@
             android:onClick="buttonEvent"
             android:tag="62"
             android:text="" />
+
         <Button
 
             android:layout_width="0dp"
@@ -50,6 +52,7 @@
             android:onClick="buttonEvent"
             android:tag="63"
             android:text="" />
+
         <Button
 
             android:layout_width="0dp"

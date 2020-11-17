@@ -3,28 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/popupLayout"
         android:layout_width="700dp"
         android:layout_height="700dp"
         android:orientation="vertical"
-        android:weightSum="4" >
+        android:weightSum="4">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="210dp"
             android:layout_weight="1.2"
             android:orientation="horizontal"
-            android:weightSum="1" >
+            android:weightSum="1">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.40"
                 android:gravity="center"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/button12"
@@ -40,7 +40,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.20"
                 android:gravity="center"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/button5"
@@ -55,7 +55,7 @@
                 android:layout_weight="0.40"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="1" >
+                android:weightSum="1">
 
                 <Button
                     android:id="@+id/button15"
@@ -72,7 +72,7 @@
             android:layout_height="280dp"
             android:layout_weight="1.6"
             android:orientation="horizontal"
-            android:weightSum="3" >
+            android:weightSum="3">
 
             <LinearLayout
                 android:layout_width="188dp"
@@ -80,7 +80,7 @@
                 android:layout_weight="0.8"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:weightSum="3" >
+                android:weightSum="3">
 
                 <Button
                     android:id="@+id/button1fanspeedup"
@@ -115,7 +115,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1.4"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/button2"
@@ -132,7 +132,7 @@
                 android:layout_weight="0.8"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:weightSum="3" >
+                android:weightSum="3">
 
                 <Button
                     android:id="@+id/button3tempcontrolup"
@@ -168,14 +168,14 @@
             android:layout_height="210dip"
             android:layout_weight="1.2"
             android:orientation="horizontal"
-            android:weightSum="4" >
+            android:weightSum="4">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1.2"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/button6"
@@ -192,7 +192,7 @@
                 android:layout_weight="1.6"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="2" >
+                android:weightSum="2">
 
                 <Button
                     android:id="@+id/button7airrecirculation"
@@ -218,7 +218,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/button8"

@@ -74,7 +74,7 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
 
         HomePageSectionWiseAdapter.MainVH viewHolder = (HomePageSectionWiseAdapter.MainVH) holder;
 
-        if(allData.get(section).getEpublist().size() - 1 == relativePosition) {
+        if (allData.get(section).getEpublist().size() - 1 == relativePosition) {
             viewHolder.imageViewDivider.setVisibility(View.GONE);
         } else {
             viewHolder.imageViewDivider.setVisibility(View.VISIBLE);
@@ -124,7 +124,7 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
 
             imageViewDivider = (ImageView) itemView.findViewById(R.id.img_view_divider);
 
-            if(itemView.getId() == R.id.relative_main) {
+            if (itemView.getId() == R.id.relative_main) {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -160,7 +160,7 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
 
                 if (title.equalsIgnoreCase(info.getSectionTitle())) {
                     itemList.add(info);
-                    if(i == gameList.size() - 1) {
+                    if (i == gameList.size() - 1) {
                         sectionInfo.setEpublist(itemList);
                         list.add(sectionInfo);
                     }
@@ -177,7 +177,7 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
                     itemList.add(info);
                     sectionInfo.setEpublist(itemList);
 
-                    if(i == gameList.size() - 1) {
+                    if (i == gameList.size() - 1) {
                         sectionInfo.setEpublist(itemList);
                         list.add(sectionInfo);
                     }
