@@ -42,8 +42,8 @@ public class GridViewAdapter extends BaseAdapter {
         this.context = context;
         this.video_list = video_list;
         this.device_density = device_density;
-        this.tf = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf");
-        this.tfRegular = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_regular.otf");
+        tf = context.getResources().getFont(R.font.nissan_brand_bold);
+        tfRegular = context.getResources().getFont(R.font.nissan_brand_regular);
         inflater = LayoutInflater.from(this.context);
 
 /*

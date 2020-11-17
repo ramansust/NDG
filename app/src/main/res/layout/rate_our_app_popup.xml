@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/popup_header_height"
         android:background="@color/background"
+        android:fontFamily="@font/nissan_brand_bold"
         android:gravity="center"
         android:text="@string/attention"
         android:textColor="@color/white"
@@ -26,9 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:fontFamily="@font/nissan_brand_regular"
             android:gravity="center"
             android:padding="15dp"
-            android:textStyle="normal"
             android:text="@string/rate_our_app_sub_title"
             android:textColor="@color/black"
             android:textSize="@dimen/popup_body_text_size" />
@@ -49,11 +50,11 @@
             android:layout_height="35dp"
             android:layout_margin="5dp"
             android:background="@color/background"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
             android:text="@string/rate_our_app_yes"
             android:textColor="@color/white"
-            android:textSize="@dimen/pop_up_ok_cancel_text_size"
-            android:textStyle="bold" />
+            android:textSize="@dimen/pop_up_ok_cancel_text_size" />
 
         <TextView
             android:id="@+id/txt_view_ask_me_later"
@@ -61,6 +62,7 @@
             android:layout_height="35dp"
             android:layout_margin="5dp"
             android:background="@color/background"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
             android:text="@string/rate_ask_me_later"
             android:textColor="@color/white"
@@ -72,6 +74,7 @@
             android:layout_height="35dp"
             android:layout_margin="5dp"
             android:background="@color/background"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
             android:text="@string/rate_no_thanks"
             android:textColor="@color/white"

@@ -29,11 +29,11 @@
             android:id="@+id/blank_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nissan_brand_bold"
             android:text="@string/no_content_found"
             android:textAllCaps="true"
             android:textColor="@color/colorBorder"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
     </LinearLayout>
 
     <ProgressBar

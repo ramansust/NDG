@@ -7,8 +7,9 @@
         android:id="@+id/web_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/nissan_brand_regular"
+        android:padding="20dp"
         android:text="Imran hosen nirob"
-        android:textSize="14sp"
-        android:padding="20dp" />
+        android:textSize="14sp" />
 
 </RelativeLayout>

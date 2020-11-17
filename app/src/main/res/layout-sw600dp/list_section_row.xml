@@ -13,13 +13,13 @@
         android:layout_centerInParent="true"
         android:layout_toLeftOf="@+id/img_view"
         android:ellipsize="end"
+        android:fontFamily="@font/nissan_brand_bold"
         android:gravity="center_vertical|center"
         android:maxLines="2"
         android:padding="@dimen/margin_left"
         android:text="demo_text"
         android:textColor="@color/white"
-        android:textSize="@dimen/dialog_text_size_title"
-        android:textStyle="bold" />
+        android:textSize="@dimen/dialog_text_size_title" />
 
     <ImageView
         android:id="@+id/img_view"

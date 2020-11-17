@@ -12,6 +12,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/rectangle_shape"
         android:ellipsize="end"
+        android:fontFamily="@font/nissan_brand_regular"
         android:gravity="center_horizontal"
         android:text="Tyre" />
 

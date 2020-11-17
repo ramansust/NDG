@@ -48,7 +48,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
     public CarDownloadAdapterNew(Context context, List<CarList> carLists) {
         this.context = context;
         this.carLists = carLists;
-        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf");
+        typeFaceBold = context.getResources().getFont(R.font.nissan_brand_bold);
         getCarDownloadedlist();
         orderingCarList();
     }

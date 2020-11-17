@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fontFamily="@font/nissan_brand_regular"
         android:layout_marginBottom="@dimen/margin_back"
         android:layout_marginTop="@dimen/margin_left" />
 

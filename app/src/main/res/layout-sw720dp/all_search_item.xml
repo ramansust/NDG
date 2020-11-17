@@ -32,7 +32,7 @@
         android:text="demo_text"
         android:textColor="@color/black"
         android:textSize="@dimen/dialog_text_size"
-        android:textStyle="bold"
+        android:fontFamily="@font/nissan_brand_bold"
         android:visibility="visible" />
 
 </RelativeLayout>

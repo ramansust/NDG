@@ -51,7 +51,7 @@ public class CarDownloadAdapter extends BaseAdapter {
         this.list = list;
         inflater = LayoutInflater.from(this.context);
         this.listener = onItemClickListener;
-        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf");
+        typeFaceBold = context.getResources().getFont(R.font.nissan_brand_bold);
     }
 
     public void setList(ArrayList<Object> _list) {

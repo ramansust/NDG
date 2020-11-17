@@ -17,11 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/popup_header_height_720dp"
             android:background="@color/background"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
-            android:textSize="22sp"
             android:padding="@dimen/margin_back"
             android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textSize="22sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,18 +43,20 @@
                     android:id="@+id/txt_view_national"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nissan_brand_regular"
                     android:gravity="end"
-                    android:textSize="@dimen/popup_body_text_size_720dp"
                     android:text="@string/national"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/popup_body_text_size_720dp" />
 
                 <TextView
                     android:id="@+id/txt_view_national_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nissan_brand_regular"
                     android:gravity="start"
-                    android:textSize="@dimen/popup_body_text_size_720dp"
-                    android:textColor="@color/blue" />
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/popup_body_text_size_720dp" />
 
             </LinearLayout>
 
@@ -71,18 +73,20 @@
                     android:id="@+id/txt_view_international"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nissan_brand_regular"
                     android:gravity="end"
                     android:text="@string/international"
-                    android:textSize="@dimen/popup_body_text_size_720dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/popup_body_text_size_720dp" />
 
                 <TextView
                     android:id="@+id/txt_view_international_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nissan_brand_regular"
                     android:gravity="start"
-                    android:textSize="@dimen/popup_body_text_size_720dp"
-                    android:textColor="@color/blue" />
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/popup_body_text_size_720dp" />
 
             </LinearLayout>
 
@@ -99,12 +103,12 @@
                 android:layout_width="400dp"
                 android:layout_height="45dp"
                 android:background="@color/background"
-                android:text="@string/button_CANCEL"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:gravity="center"
+                android:text="@string/button_CANCEL"
                 android:textAllCaps="true"
-                android:textSize="18sp"
                 android:textColor="@color/white"
-                android:textStyle="normal" />
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 

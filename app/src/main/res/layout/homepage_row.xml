@@ -22,7 +22,7 @@
         android:textSize="13sp"
         android:text="demo_text"
         android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:fontFamily="@font/nissan_brand_bold" />
 
     <ImageView
         android:id="@+id/img_view"

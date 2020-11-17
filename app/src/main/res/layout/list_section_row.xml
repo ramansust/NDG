@@ -11,16 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_toLeftOf="@+id/img_view"
         android:layout_toStartOf="@id/img_view"
+        android:layout_toLeftOf="@+id/img_view"
         android:ellipsize="end"
+        android:fontFamily="@font/nissan_brand_bold"
         android:gravity="center_vertical|center"
         android:maxLines="2"
         android:padding="@dimen/margin_left"
         android:text="demo_text"
         android:textColor="@color/white"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textSize="15sp" />
 
     <ImageView
         android:id="@+id/img_view"

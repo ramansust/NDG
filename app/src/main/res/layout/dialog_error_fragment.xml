@@ -23,7 +23,7 @@
             android:text="@string/internet_connection_interruption"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/nissan_brand_bold" />
 
         <Button
             android:id="@+id/btDismiss"

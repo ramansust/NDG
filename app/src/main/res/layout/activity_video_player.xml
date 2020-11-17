@@ -36,9 +36,9 @@
             android:id="@+id/btn_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
             android:layout_margin="@dimen/margin_left"
             android:background="@drawable/close_video"
             android:padding="@dimen/margin_left"
@@ -47,8 +47,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:gravity="center">
 
             <TextView
@@ -57,10 +57,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/margin_back"
+                android:fontFamily="@font/nissan_brand_bold"
                 android:text="@string/video_popup_msg"
                 android:textColor="@color/white"
-                android:textSize="@dimen/tutorial_detail"
-                android:textStyle="bold" />
+                android:textSize="@dimen/tutorial_detail" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -77,6 +77,7 @@
                     android:layout_marginRight="@dimen/margin_left"
                     android:background="@drawable/learn_more"
                     android:drawableLeft="@drawable/reload"
+                    android:fontFamily="@font/nissan_brand_regular"
                     android:gravity="center"
                     android:paddingLeft="@dimen/margin_back"
                     android:paddingRight="@dimen/margin_back"
@@ -89,6 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_left"
                     android:background="@drawable/learn_more"
+                    android:fontFamily="@font/nissan_brand_regular"
                     android:gravity="center"
                     android:paddingLeft="@dimen/margin_back"
                     android:paddingRight="@dimen/margin_back"
@@ -106,11 +108,12 @@
         android:id="@+id/txt_view_learn_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
         android:layout_margin="@dimen/margin_left"
         android:background="@drawable/learn_more"
+        android:fontFamily="@font/nissan_brand_regular"
         android:gravity="center"
         android:padding="@dimen/margin_left"
         android:text="@string/video_learn_more"

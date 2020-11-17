@@ -49,7 +49,7 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
      */
     public HomePageExpandableAdapter(Context context, List<HomePageEpubInfo> list) {
         this.context = context;
-        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf");
+        typeFaceBold = context.getResources().getFont(R.font.nissan_brand_bold);
         loadData(list);
     }
 

@@ -26,22 +26,22 @@
             android:id="@+id/txtView_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nissan_brand_bold"
             android:paddingLeft="20dp"
             android:text="@string/select_your_car"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_car_list_new"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/car_download_row"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear_top" />
+        app:layout_constraintTop_toBottomOf="@+id/linear_top"
+        tools:listitem="@layout/car_download_row" />
 
     <ProgressBar
         android:id="@+id/pb_loader_car_download"

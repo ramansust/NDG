@@ -50,7 +50,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/dialog_text_size"
-                android:textStyle="bold" />
+                android:fontFamily="@font/nissan_brand_bold" />
 
             <ImageButton
                 android:id="@+id/img_btn_delete_or_download"

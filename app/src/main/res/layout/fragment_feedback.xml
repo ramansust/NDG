@@ -30,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_back"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:text="@string/back"
                 android:textColor="@color/white"
                 android:visibility="gone" />
@@ -45,13 +46,13 @@
             android:layout_toLeftOf="@+id/relativelayout_back2"
             android:layout_toRightOf="@+id/linear_back"
             android:ellipsize="end"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
             android:singleLine="true"
             android:text="@string/feedback"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="@color/white" />
 
         <LinearLayout
             android:id="@+id/relativelayout_back2"
@@ -68,6 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_back"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:text="@string/back"
                 android:textColor="@color/white"
                 android:visibility="gone" />
@@ -94,18 +96,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvTitleField"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/nissan_brand_regular"
                     android:text="@string/send_feedback_title"
                     android:textColor="@color/orange" />
 
@@ -115,6 +118,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/send_feedback_title_bg"
                     android:cursorVisible="true"
+                    android:fontFamily="@font/nissan_brand_regular"
                     android:inputType="textMultiLine"
                     android:padding="10dp"
                     android:textColor="#363636"
@@ -127,8 +131,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -136,6 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/nissan_brand_regular"
                     android:text="@string/send_feedback_description"
                     android:textColor="@color/orange" />
 
@@ -145,6 +150,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/send_feedback_title_bg"
                     android:cursorVisible="true"
+                    android:fontFamily="@font/nissan_brand_regular"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:maxLines="10"
@@ -159,15 +165,15 @@
                     android:id="@+id/send_feedback_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
                     android:layout_marginTop="30dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/send_feedback_button_bg"
+                    android:fontFamily="@font/nissan_brand_bold"
                     android:padding="15dp"
                     android:text="@string/send_feedback_button"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
         </LinearLayout>

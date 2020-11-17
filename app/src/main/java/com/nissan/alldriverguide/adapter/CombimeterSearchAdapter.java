@@ -42,7 +42,7 @@ public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSear
     public CombimeterSearchAdapter(Context mContext, ArrayList<SearchCombimeterModel> list) {
         this.mContext = mContext;
         this.warning_list = list;
-        this.tf = Typeface.createFromAsset(mContext.getAssets(), "font/nissan_brand_bold.otf"); //initialize typeface here.
+        tf = mContext.getResources().getFont(R.font.nissan_brand_bold);
     }
 
 

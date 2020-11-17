@@ -17,6 +17,7 @@
             android:layout_height="@dimen/popup_header_height"
             android:background="@color/background"
             android:gravity="center"
+            android:fontFamily="@font/nissan_brand_regular"
             android:text="@string/attention"
             android:textColor="@color/white"
             android:textSize="@dimen/popup_header_text_size" />
@@ -32,7 +33,7 @@
             android:text="body"
             android:textColor="@color/black"
             android:textSize="@dimen/popup_body_text_size"
-            android:textStyle="normal" />
+            android:fontFamily="@font/nissan_brand_regular" />
 
         <LinearLayout
             android:id="@+id/linear_bottom"

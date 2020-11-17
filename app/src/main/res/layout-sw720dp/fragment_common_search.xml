@@ -17,10 +17,10 @@
         android:id="@+id/linearLayoutNoContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/ivAlertNoContent"
@@ -32,11 +32,11 @@
             android:id="@+id/blank_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nissan_brand_bold"
             android:text="@string/no_content_found"
-            android:textSize="@dimen/dialog_text_size"
-            android:textStyle="bold"
             android:textAllCaps="true"
-            android:textColor="@color/colorBorder" />
+            android:textColor="@color/colorBorder"
+            android:textSize="@dimen/dialog_text_size" />
     </LinearLayout>
 
     <ProgressBar

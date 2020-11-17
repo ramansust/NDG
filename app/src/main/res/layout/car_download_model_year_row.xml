@@ -17,5 +17,5 @@
         android:textAllCaps="true"
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:fontFamily="@font/nissan_brand_bold" />
 </LinearLayout>

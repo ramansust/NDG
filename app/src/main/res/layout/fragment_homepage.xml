@@ -28,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_back"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:text="@string/back"
                 android:textColor="@color/white"
                 android:visibility="gone" />
@@ -42,13 +43,13 @@
             android:layout_toLeftOf="@+id/relativelayout_back2"
             android:layout_toRightOf="@+id/linear_back"
             android:ellipsize="end"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
             android:singleLine="true"
             android:text="LIST PAGE"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="@color/white" />
 
         <LinearLayout
             android:id="@+id/relativelayout_back2"
@@ -65,6 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_back"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:text="@string/back"
                 android:textColor="@color/white"
                 android:visibility="gone" />
@@ -85,11 +87,11 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/relative_top"
         android:layout_marginTop="2dp"
-        android:dividerHeight="2dp"
-        android:divider="@color/white"
         android:choiceMode="singleChoice"
-        android:listSelector="@drawable/selector"
+        android:divider="@color/white"
+        android:dividerHeight="2dp"
         android:groupIndicator="@null"
+        android:listSelector="@drawable/selector"
         android:scrollbars="none" />
 
     <ProgressBar

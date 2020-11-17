@@ -30,7 +30,7 @@ public class CallNumberAdapter extends BaseAdapter {
         this.context = context;
         this.list = list;
         this.isColor = isColor;
-        this.tf = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_regular.otf");
+        tf = context.getResources().getFont(R.font.nissan_brand_bold);
         inflater = LayoutInflater.from(this.context);
     }
 

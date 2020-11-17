@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="@string/no_content_found"
             android:textSize="16sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/nissan_brand_bold"
             android:textAllCaps="true"
             android:textColor="@color/colorBorder" />
     </LinearLayout>

@@ -30,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_back"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:text="@string/back"
                 android:textColor="@color/white"
                 android:visibility="gone" />
@@ -45,14 +46,13 @@
             android:layout_toLeftOf="@+id/relativelayout_back2"
             android:layout_toRightOf="@+id/linear_back"
             android:ellipsize="end"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
             android:singleLine="true"
             android:text="TEXT PAGE"
             android:textAllCaps="true"
-            android:textSize="@dimen/dialog_text_size_title"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="@color/white" />
 
         <LinearLayout
             android:id="@+id/relativelayout_back2"
@@ -69,9 +69,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_back"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:text="@string/back"
-                android:visibility="gone"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="gone" />
 
             <ImageButton
                 android:id="@+id/btn_back2"
@@ -93,10 +94,10 @@
         android:id="@+id/linearLayoutNoContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/ivAlertNoContent"
@@ -108,11 +109,11 @@
             android:id="@+id/blank_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nissan_brand_bold"
             android:text="@string/no_content_found"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:textAllCaps="true"
-            android:textColor="@color/colorBorder" />
+            android:textColor="@color/colorBorder"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <ProgressBar

@@ -2,6 +2,7 @@ package com.nissan.alldriverguide.customviews;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.support.v7.view.ContextThemeWrapper;
 
 import com.nissan.alldriverguide.R;
 
@@ -19,7 +20,7 @@ public class ProgressDialogController {
     }
 
     public ProgressDialog downloadProgress(String msg) {
-        progressDialog = new ProgressDialog(activity);
+        progressDialog = new ProgressDialog(new ContextThemeWrapper(activity, R.style.CustomFontDialog));
         progressDialog.setTitle(activity.getResources().getString(R.string.alert_status));
         progressDialog.setMessage(msg + 0.0 + "%");
         progressDialog.setIndeterminate(true);
@@ -29,7 +30,7 @@ public class ProgressDialogController {
     }
 
     public ProgressDialog showDialog(String msg) {
-        progressDialog = new ProgressDialog(activity);
+        progressDialog = new ProgressDialog(new ContextThemeWrapper(activity, R.style.CustomFontDialog));
         progressDialog.setMessage(msg);
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);

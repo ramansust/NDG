@@ -13,6 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/margin_back"
         android:layout_marginTop="@dimen/margin_left"
+        android:fontFamily="@font/nissan_brand_regular"
         android:textSize="@dimen/dialog_text_size" />
 
 </LinearLayout>

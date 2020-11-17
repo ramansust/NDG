@@ -36,13 +36,13 @@
             android:layout_toLeftOf="@+id/relativelayout_back2"
             android:layout_toRightOf="@+id/linear_back"
             android:ellipsize="end"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
             android:singleLine="true"
             android:text="@string/assistance"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="@color/white" />
 
         <LinearLayout
             android:id="@+id/relativelayout_back2"
@@ -59,6 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_back"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:text="@string/back"
                 android:textColor="@color/white"
                 android:visibility="gone" />
@@ -90,8 +91,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textColor="@color/gray_loadtext"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:fontFamily="@font/nissan_brand_regular"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/gray_loadtext" />
 
         <TextView
             android:id="@+id/txt_view_driver_guide"
@@ -100,6 +102,7 @@
             android:layout_marginLeft="@dimen/margin_left"
             android:layout_marginTop="@dimen/margin_left"
             android:background="@color/white"
+            android:fontFamily="@font/nissan_brand_regular"
             android:paddingLeft="@dimen/margin_back"
             android:paddingRight="@dimen/margin_back"
             android:textAllCaps="true"
@@ -110,8 +113,9 @@
             android:id="@+id/txt_view_car_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/txt_view_driver_guide"
             android:layout_below="@+id/txt_view_driver_guide"
+            android:layout_alignLeft="@+id/txt_view_driver_guide"
+            android:fontFamily="@font/nissan_brand_regular"
             android:paddingLeft="@dimen/margin_back"
             android:paddingRight="@dimen/margin_back"
             android:textAllCaps="true"
@@ -125,10 +129,10 @@
         layout="@layout/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/assistance_row"
         android:layout_below="@+id/relative_middle"
         android:layout_marginLeft="@dimen/list_margin"
-        android:layout_marginRight="@dimen/list_margin" />
+        android:layout_marginRight="@dimen/list_margin"
+        tools:listitem="@layout/assistance_row" />
 
     <ProgressBar
         android:id="@+id/prog_assistance"
@@ -147,7 +151,8 @@
         <TextView
             android:id="@+id/txt_assistance_data_not_found"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nissan_brand_regular" />
 
     </LinearLayout>
 

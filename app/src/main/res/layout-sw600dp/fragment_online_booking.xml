@@ -34,13 +34,13 @@
             android:layout_toLeftOf="@+id/relativelayout_back2"
             android:layout_toRightOf="@+id/linear_back"
             android:ellipsize="end"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
             android:singleLine="true"
             android:text="@string/assistance"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="@color/white" />
 
         <LinearLayout
             android:id="@+id/relativelayout_back2"
@@ -57,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_back"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:text="@string/back"
                 android:textColor="@color/white"
                 android:visibility="gone" />

@@ -41,7 +41,7 @@ public class DataGridAdapter extends BaseAdapter {
         this.mContext = mContext;
         this.list = list;
         this._ePubType = ePubType;
-        this.tf = Typeface.createFromAsset(mContext.getAssets(), "font/nissan_brand_bold.otf"); //initialize typeface here.
+        tf = mContext.getResources().getFont(R.font.nissan_brand_bold);
     }
 
     public void setData(ArrayList<EpubInfo> list) {

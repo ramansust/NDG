@@ -28,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_back"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:text="@string/back"
                 android:textColor="@color/white"
                 android:visibility="gone" />
@@ -42,14 +43,13 @@
             android:layout_toLeftOf="@+id/relativelayout_back2"
             android:layout_toRightOf="@+id/linear_back"
             android:ellipsize="end"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
             android:singleLine="true"
             android:text="LIST PAGE"
             android:textAllCaps="true"
-            android:textSize="@dimen/dialog_text_size_title"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white" />
 
         <LinearLayout
             android:id="@+id/relativelayout_back2"
@@ -66,6 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_back"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:text="@string/back"
                 android:textColor="@color/white"
                 android:visibility="gone" />
@@ -85,13 +86,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/relative_top"
-        android:layout_marginLeft="@dimen/margin_left"
-        android:layout_marginTop="@dimen/margin_back"
-        android:layout_marginRight="@dimen/margin_left"
-        android:groupIndicator="@null"
-        android:dividerHeight="2dp"
+        android:layout_marginTop="2dp"
+        android:choiceMode="singleChoice"
         android:divider="@color/white"
-        android:scrollbars="none"></ExpandableListView>
+        android:dividerHeight="2dp"
+        android:groupIndicator="@null"
+        android:listSelector="@drawable/selector"
+        android:scrollbars="none" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

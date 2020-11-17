@@ -35,7 +35,7 @@ public class AssistanceAdapter extends BaseAdapter {
         this.context = context;
         this.carName = carName;
         this.carImage = carImage;
-        this.tf = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf");
+        tf = context.getResources().getFont(R.font.nissan_brand_bold);
         inflater = LayoutInflater.from(this.context);
     }
 

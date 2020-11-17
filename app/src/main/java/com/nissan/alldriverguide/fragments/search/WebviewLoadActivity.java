@@ -25,7 +25,6 @@ public class WebviewLoadActivity extends AppCompatActivity {
 
         webView = (WebView) findViewById(R.id.web_view_url);
         webView.loadUrl(getIntent().getStringExtra("url"));
-
     }
 
     private void initToolbar() {
@@ -52,6 +51,5 @@ public class WebviewLoadActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
     }
 }

@@ -25,6 +25,7 @@
         android:layout_centerHorizontal="true"
         android:maxLines="1"
         android:text="TAB"
+        android:fontFamily="@font/nissan_brand_regular"
         android:textAllCaps="true"
         android:gravity="center"
         android:textColor="@color/tab_indicator_unselected"

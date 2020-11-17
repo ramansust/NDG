@@ -35,9 +35,10 @@
                 android:layout_weight="1"
                 android:background="@drawable/search_bg"
                 android:cursorVisible="true"
+                android:drawableStart="@drawable/search"
                 android:drawableLeft="@drawable/search"
                 android:drawablePadding="10dp"
-                android:drawableStart="@drawable/search"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:hint="@string/search_box_hint"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
@@ -64,11 +65,11 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="10dp"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center_vertical"
             android:text="@string/button_CANCEL"
             android:textColor="@color/white"
-            android:textSize="@dimen/dialog_text_size"
-            android:textStyle="bold" />
+            android:textSize="@dimen/dialog_text_size" />
 
     </LinearLayout>
 
@@ -126,6 +127,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:fontFamily="@font/nissan_brand_regular"
         android:gravity="center"
         android:padding="@dimen/margin_back"
         android:text="You have some updated content."

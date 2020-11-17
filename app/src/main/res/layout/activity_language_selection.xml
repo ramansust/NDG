@@ -16,11 +16,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nissan_brand_bold"
             android:padding="10dp"
             android:text="@string/select_language_landing"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <ProgressBar
@@ -42,16 +42,17 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvNoContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nissan_brand_regular"
             android:text="@string/no_content_found_url"
-            android:textSize="18sp"
             android:textColor="@color/white"
+            android:textSize="18sp"
             android:visibility="gone" />
 
     </LinearLayout>

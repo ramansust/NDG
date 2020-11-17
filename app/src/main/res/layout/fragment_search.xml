@@ -24,17 +24,18 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/search_bg"
                 android:cursorVisible="true"
+                android:drawableStart="@drawable/search"
                 android:drawableLeft="@drawable/search"
                 android:drawablePadding="20dp"
-                android:drawableStart="@drawable/search"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:hint="@string/search_box_hint"
-                android:textAllCaps="true"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
-                android:paddingEnd="35dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="35dp"
                 android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingEnd="35dp"
+                android:paddingRight="35dp"
+                android:textAllCaps="true"
                 android:textColor="#363636"
                 android:textColorHint="#a69f9f"
                 android:textSize="16sp" />
@@ -66,27 +67,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#E9E9E9"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center_vertical"
             android:padding="10dp"
             android:singleLine="true"
+            android:text="@string/recent_search"
             android:textColor="@color/gray"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:text="@string/recent_search" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tvClearSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:fontFamily="@font/nissan_brand_bold"
             android:padding="10dp"
-            android:textStyle="bold"
+            android:text="@string/clear"
             android:textAllCaps="true"
-            android:textSize="14sp"
             android:textColor="@color/orange"
-            android:text="@string/clear" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
@@ -100,10 +101,10 @@
         android:id="@+id/linearLayoutNoContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/ivAlertNoContent"
@@ -115,11 +116,11 @@
             android:id="@+id/blank_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nissan_brand_bold"
             android:text="@string/no_content_found_top_recent_search"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:textAllCaps="true"
-            android:textColor="@color/colorBorder" />
+            android:textColor="@color/colorBorder"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </RelativeLayout>

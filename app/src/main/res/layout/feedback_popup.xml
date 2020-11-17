@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/popup_header_height"
         android:background="@color/background"
+        android:fontFamily="@font/nissan_brand_regular"
         android:gravity="center"
         android:text="@string/attention"
         android:textColor="@color/white"
@@ -26,10 +27,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:fontFamily="@font/nissan_brand_regular"
             android:gravity="center"
-            android:paddingBottom="15dp"
             android:paddingTop="15dp"
-            android:textStyle="normal"
+            android:paddingBottom="15dp"
             android:text="@string/feedback_text"
             android:textColor="@color/black"
             android:textSize="@dimen/popup_body_text_size" />
@@ -40,19 +41,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/feedback_yes"
             android:layout_width="250dp"
             android:layout_height="35dp"
             android:background="@color/background"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
             android:text="@string/send_feedback"
             android:textColor="@color/white"
-            android:textSize="@dimen/pop_up_ok_cancel_text_size"
-            android:textStyle="bold" />
+            android:textSize="@dimen/pop_up_ok_cancel_text_size" />
 
         <TextView
             android:id="@+id/feedback_ask_me_later"
@@ -60,6 +61,7 @@
             android:layout_height="35dp"
             android:layout_margin="5dp"
             android:background="@color/background"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
             android:text="@string/rate_ask_me_later"
             android:textColor="@color/white"
@@ -71,12 +73,13 @@
             android:layout_width="250dp"
             android:layout_height="35dp"
             android:layout_marginTop="0.2dp"
+            android:layout_marginBottom="20dp"
             android:background="@color/background"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
             android:text="@string/rate_no_thanks"
             android:textColor="@color/white"
-            android:textSize="@dimen/pop_up_ok_cancel_text_size"
-            android:layout_marginBottom="20dp" />
+            android:textSize="@dimen/pop_up_ok_cancel_text_size" />
 
     </LinearLayout>
 </LinearLayout>

@@ -17,11 +17,11 @@
             android:id="@+id/txtView_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nissan_brand_bold"
             android:paddingLeft="20dp"
             android:text="@string/select_your_car"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <ProgressBar

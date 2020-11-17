@@ -4,15 +4,15 @@
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants"
     android:gravity="center"
-    android:paddingBottom="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_horizontal_margin">
+    android:paddingTop="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_horizontal_margin">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/img_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
         android:background="@drawable/flag" />
@@ -24,10 +24,11 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/margin_left"
         android:layout_marginRight="@dimen/margin_left"
-        android:layout_toLeftOf="@+id/check_box"
         android:layout_toStartOf="@id/check_box"
-        android:layout_toRightOf="@+id/img_view"
+        android:layout_toLeftOf="@+id/check_box"
         android:layout_toEndOf="@id/img_view"
+        android:layout_toRightOf="@+id/img_view"
+        android:fontFamily="@font/nissan_brand_bold"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white" />
 

@@ -39,7 +39,7 @@ public class ListAdapter extends BaseAdapter {
         this.context = context;
         this.list = list;
         inflater = LayoutInflater.from(this.context);
-        this.tf = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf"); //initialize typeface here.
+        tf = context.getResources().getFont(R.font.nissan_brand_bold);
     }
 
     @Override

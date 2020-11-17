@@ -16,11 +16,11 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:fontFamily="@font/nissan_brand_bold"
             android:text="@string/explore"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="@color/white" />
 
     </RelativeLayout>
 
@@ -110,7 +110,8 @@
                         android:layout_marginStart="@dimen/margin_left"
                         android:layout_marginLeft="@dimen/margin_left"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:layout_marginEnd="@dimen/margin_left" />
+                        android:layout_marginEnd="@dimen/margin_left"
+                        android:fontFamily="@font/nissan_brand_regular" />
 
                     <RelativeLayout
                         android:id="@+id/layout_info"
@@ -202,12 +203,12 @@
                         android:id="@+id/videolist_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nissan_brand_bold"
                         android:paddingStart="@dimen/margin_back"
                         android:paddingEnd="@dimen/margin_back"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <ProgressBar
@@ -243,7 +244,8 @@
                     <TextView
                         android:id="@+id/txt_explore_data_not_found"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nissan_brand_regular" />
 
                 </LinearLayout>
 

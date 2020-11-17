@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/popup_header_height_720dp"
             android:background="@color/background"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
             android:text="@string/attention"
             android:textColor="@color/white"
@@ -28,59 +29,59 @@
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/margin_left"
             android:background="@color/white"
+            android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
             android:text="body"
             android:textColor="@color/black"
-            android:textSize="@dimen/popup_body_text_size_720dp"
-            android:textStyle="normal" />
+            android:textSize="@dimen/popup_body_text_size_720dp" />
 
         <LinearLayout
             android:id="@+id/linear_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:background="@color/white"
             android:orientation="horizontal"
-            android:weightSum="1"
-            android:layout_marginBottom="10dp">
+            android:weightSum="1">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_weight="0.5"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_cancel"
                     android:layout_width="@dimen/ok_cancel_popup_width_720dp"
                     android:layout_height="@dimen/ok_cancel_popup_height_720dp"
                     android:background="@color/background"
+                    android:fontFamily="@font/nissan_brand_bold"
                     android:text="@string/button_CANCEL"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/pop_up_ok_cancel_text_size_720dp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/pop_up_ok_cancel_text_size_720dp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_weight="0.5"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_ok"
                     android:layout_width="@dimen/ok_cancel_popup_width_720dp"
                     android:layout_height="@dimen/ok_cancel_popup_height_720dp"
-                    android:layout_marginLeft=".2dp"
                     android:layout_marginStart=".2dp"
+                    android:layout_marginLeft=".2dp"
                     android:layout_marginTop=".2dp"
                     android:background="@color/background"
+                    android:fontFamily="@font/nissan_brand_bold"
                     android:text="@string/button_OK"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/pop_up_ok_cancel_text_size_720dp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/pop_up_ok_cancel_text_size_720dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

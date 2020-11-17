@@ -35,8 +35,8 @@ public class TutorialViewPagerAdapter extends PagerAdapter {
         this.imageId = imageId;
         this.tutorialTitles = tutorialTitles;
         this.tutorialDetails = tutorialDetails;
-        typeFaceNormal = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_regular.otf");
-        typeFaceBold = Typeface.createFromAsset(context.getAssets(), "font/nissan_brand_bold.otf");
+        typeFaceNormal = context.getResources().getFont(R.font.nissan_brand_regular);
+        typeFaceBold = context.getResources().getFont(R.font.nissan_brand_bold);
     }
 
     @Override

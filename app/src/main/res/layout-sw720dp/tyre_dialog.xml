@@ -16,22 +16,23 @@
             android:id="@+id/txt_header"
             android:layout_width="match_parent"
             android:layout_height="@dimen/popup_header_height_720dp"
+            android:background="@color/background"
+            android:fontFamily="@font/nissan_brand_bold"
+            android:gravity="center"
             android:text="@string/attention"
             android:textColor="@color/white"
-            android:background="@color/background"
-            android:gravity="center"
             android:textSize="@dimen/popup_header_text_size_720dp" />
 
         <TextView
             android:id="@+id/txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nissan_brand_regular"
             android:gravity="center"
             android:padding="20dp"
             android:text="@string/alert_msg39"
             android:textColor="@color/black"
-            android:textSize="@dimen/popup_body_text_size_720dp"
-            android:textStyle="normal" />
+            android:textSize="@dimen/popup_body_text_size_720dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,10 +47,10 @@
                 android:layout_height="50dp"
                 android:layout_margin="1dp"
                 android:background="@color/background"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:text="@string/alert_msg40"
-                android:textSize="@dimen/pop_up_ok_cancel_text_size_720dp"
                 android:textColor="@color/white"
-                android:textStyle="normal" />
+                android:textSize="@dimen/pop_up_ok_cancel_text_size_720dp" />
 
         </LinearLayout>
 
@@ -68,10 +69,10 @@
                 android:layout_height="50dp"
                 android:layout_margin="1dp"
                 android:background="@color/background"
+                android:fontFamily="@font/nissan_brand_regular"
                 android:text="@string/alert_msg41"
                 android:textColor="@color/white"
-                android:textSize="@dimen/pop_up_ok_cancel_text_size_720dp"
-                android:textStyle="normal" />
+                android:textSize="@dimen/pop_up_ok_cancel_text_size_720dp" />
         </LinearLayout>
     </LinearLayout>
 
