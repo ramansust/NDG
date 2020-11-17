@@ -15,7 +15,6 @@ import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.model.HomePageEpubInfo;
 import com.nissan.alldriverguide.model.HomePageSectionInfo;
-import com.nissan.alldriverguide.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;

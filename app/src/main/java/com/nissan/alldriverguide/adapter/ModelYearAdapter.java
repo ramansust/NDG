@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.interfaces.ModelYearItemClcikListener;
 import com.nissan.alldriverguide.model.CarInfo;
-import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;

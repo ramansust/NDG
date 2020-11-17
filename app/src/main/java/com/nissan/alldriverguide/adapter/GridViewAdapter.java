@@ -5,15 +5,12 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.controller.ControllerListener;
@@ -23,11 +20,9 @@ import com.facebook.imagepipeline.image.ImageInfo;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.fragments.explore.ExploreFragment;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabVideoModel;
-import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Created by raman on 1/19/17.
