@@ -45,7 +45,6 @@
             app:layout_constraintStart_toStartOf="@+id/button75" />
 
         <Button
-            android:id="@+id/button88"
             android:layout_width="75dp"
             android:layout_height="45dp"
             android:layout_marginStart="84dp"
@@ -89,7 +88,6 @@
             app:layout_constraintStart_toStartOf="@+id/button72" />
 
         <Button
-            android:id="@+id/button87"
             android:layout_width="74dp"
             android:layout_height="41dp"
             android:layout_marginStart="68dp"

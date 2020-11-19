@@ -89,7 +89,6 @@
             app:layout_constraintTop_toTopOf="@+id/button99" />
 
         <Button
-            android:id="@+id/button101"
             android:layout_width="73dp"
             android:layout_height="94dp"
             android:background="@android:color/transparent"
@@ -140,7 +139,6 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/button95"
             android:layout_width="75dp"
             android:layout_height="104dp"
             android:background="@android:color/transparent"

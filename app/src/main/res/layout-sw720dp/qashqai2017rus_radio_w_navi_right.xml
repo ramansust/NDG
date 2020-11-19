@@ -14,7 +14,6 @@
 
 
         <Button
-            android:id="@+id/button80"
             android:layout_width="193dp"
             android:layout_height="77dp"
             android:background="@android:color/transparent"

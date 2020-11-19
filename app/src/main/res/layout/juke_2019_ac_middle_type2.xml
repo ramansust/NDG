@@ -96,7 +96,6 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button38"
             android:layout_width="170dp"
             android:layout_height="57dp"
             android:background="@android:color/transparent"

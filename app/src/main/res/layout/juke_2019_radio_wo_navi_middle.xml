@@ -34,7 +34,6 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button43"
             android:layout_width="304dp"
             android:layout_height="78dp"
             android:layout_marginStart="8dp"

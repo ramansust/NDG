@@ -27,7 +27,6 @@
                 android:weightSum="1">
 
                 <Button
-                    android:id="@+id/button12"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
@@ -44,7 +43,6 @@
                 android:weightSum="2">
 
                 <Button
-                    android:id="@+id/button5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -53,7 +51,6 @@
                     android:tag="56" />
 
                 <Button
-                    android:id="@+id/button51"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -71,7 +68,6 @@
                 android:weightSum="1">
 
                 <Button
-                    android:id="@+id/button15"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
@@ -95,7 +91,6 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/button1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
@@ -111,7 +106,6 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/button2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
@@ -126,7 +120,6 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/button3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
@@ -150,7 +143,6 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/button6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
@@ -166,7 +158,6 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/button7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
@@ -182,7 +173,6 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/button8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"

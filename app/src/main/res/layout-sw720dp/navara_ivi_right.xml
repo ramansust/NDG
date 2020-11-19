@@ -5,7 +5,6 @@
   -->
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/linearLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -90,7 +89,6 @@
             app:layout_constraintTop_toBottomOf="@+id/button27" />
 
         <Button
-            android:id="@+id/button29"
             android:layout_width="172dp"
             android:layout_height="167dp"
             android:layout_marginStart="8dp"

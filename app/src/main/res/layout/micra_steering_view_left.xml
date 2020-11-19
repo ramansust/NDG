@@ -31,7 +31,6 @@
                 android:text="" />
 
             <Button
-                android:id="@+id/cancelbutton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -65,7 +64,6 @@
                 android:text="" />
 
             <Button
-                android:id="@+id/setbutton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -87,7 +85,6 @@
             android:weightSum="4">
 
             <Button
-                android:id="@+id/speedbutton1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -96,14 +93,12 @@
                 android:tag="48" />
 
             <Button
-                android:id="@+id/speedbutton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent" />
 
             <Button
-                android:id="@+id/speedbutton2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".75"
@@ -131,7 +126,6 @@
                 android:text="" />
 
             <Button
-                android:id="@+id/phonebutton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -165,7 +159,6 @@
                 android:text="" />
 
             <Button
-                android:id="@+id/phonebutton1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"

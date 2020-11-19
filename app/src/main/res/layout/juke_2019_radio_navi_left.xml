@@ -18,7 +18,6 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/button41"
             android:layout_width="106dp"
             android:layout_height="126dp"
             android:layout_marginStart="8dp"

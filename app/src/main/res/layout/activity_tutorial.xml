@@ -8,7 +8,6 @@
     tools:context=".TutorialActivity">
 
     <RelativeLayout
-        android:id="@+id/contentPanel"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="92"
@@ -47,7 +46,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/titlebar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center_vertical|right"

@@ -50,8 +50,7 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="37"
-                    android:id="@+id/textView" />
+                    android:tag="37" />
             </LinearLayout>
 
             <LinearLayout
@@ -76,8 +75,7 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="39"
-                    android:id="@+id/textView4" />
+                    android:tag="39" />
 
                 <TextView
                     android:layout_width="0dp"

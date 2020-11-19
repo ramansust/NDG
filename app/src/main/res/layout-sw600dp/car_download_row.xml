@@ -21,7 +21,6 @@
             android:visibility="gone"></RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/pp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 

@@ -28,7 +28,6 @@
             android:tag="10001" />
 
         <TextView
-            android:id="@+id/textView1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".15"
@@ -44,7 +43,6 @@
             android:tag="10003" />
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".05"

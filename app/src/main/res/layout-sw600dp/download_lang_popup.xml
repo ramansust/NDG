@@ -36,7 +36,6 @@
             android:textSize="@dimen/popup_body_text_size_720dp" />
 
         <LinearLayout
-            android:id="@+id/linear_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
