@@ -1,6 +1,6 @@
 package com.nissan.alldriverguide.utils;
 
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 
 /**
  * Created by shubha on 2/4/18.

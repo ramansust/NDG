@@ -11,11 +11,11 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
+import com.google.android.material.tabs.TabLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -60,9 +60,9 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     public TabLayout tabLayout;
     private Tracker tracker;
     private String[] tabNames = new String[4];
-    private int[] tabIconsSelected = {R.drawable.explore_selected, R.drawable.assistance_selected, R.drawable.search_pressed,
+    private final int[] tabIconsSelected = {R.drawable.explore_selected, R.drawable.assistance_selected, R.drawable.search_pressed,
             R.drawable.settings_selected};
-    private int[] tabIconsUnSelected = {R.drawable.explore_unselected, R.drawable.assistance_unselected, R.drawable.search,
+    private final int[] tabIconsUnSelected = {R.drawable.explore_unselected, R.drawable.assistance_unselected, R.drawable.search,
             R.drawable.settings_unselected};
     // Start------------ For permission related constants
     private static final int PERMISSION_REQUEST_CODE_ALL = 200;
@@ -98,7 +98,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         setTabResources();
         setListener();
         loadData();
-
     }
 
     @Override
@@ -581,7 +580,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         });
 
         dialog.show();
-
     }
 
     /**
@@ -638,7 +636,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         });
 
         dialog.show();
-
     }
 
     @Override
@@ -857,13 +854,11 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     }
 
     private ArrayList<TabMenu> getDataFromStorage() {
-
         String key = Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(this).getSelectedLang()) + "_" + Values.TAB_MENU_KEY;
         Logger.error("lan Key", "----- " + key);
 
         Type type = new TypeToken<ArrayList<TabMenu>>() {
         }.getType();
         return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);
-
     }
 }

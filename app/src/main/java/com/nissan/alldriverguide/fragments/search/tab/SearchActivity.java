@@ -1,6 +1,6 @@
 package com.nissan.alldriverguide.fragments.search.tab;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SearchActivity extends AppCompatActivity {
 

@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/popupLayout"
         android:layout_width="600dp"
         android:layout_height="178dp"
@@ -85,6 +85,6 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

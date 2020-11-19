@@ -13,7 +13,7 @@
         android:layout_weight="94"
         android:orientation="vertical">
 
-        <android.support.v4.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
             android:id="@+id/tutorialViewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -31,17 +31,20 @@
             android:textColor="@color/black"
             android:visibility="visible" />
 
-        <com.viewpagerindicator.CirclePageIndicator
+        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
             android:id="@+id/viewpager_indicator"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/margin_left"
-            app:fillColor="#FF000000"
-            app:pageColor="@color/white"
-            app:radius="4dp"
-            app:strokeColor="#FF000000"
-            app:strokeWidth="0dp" />
+            app:dotsColor="#FF000000"
+            app:dotsCornerRadius="8dp"
+            app:dotsSize="16dp"
+            app:dotsSpacing="4dp"
+            app:dotsWidthFactor="1"
+            app:progressMode="false"
+            app:selectedDotColor="@color/white" />
 
     </RelativeLayout>
 

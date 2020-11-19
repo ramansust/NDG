@@ -2,9 +2,10 @@ package com.nissan.alldriverguide;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -19,7 +20,7 @@ import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.multiLang.model.Tutorial;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
-import com.viewpagerindicator.CirclePageIndicator;
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     private int[] imageTutorials = {R.drawable.tutorial_1, R.drawable.tutorial_2, R.drawable.tutorial_3};
     private String[] tutorialTitles = new String[10];
     private String[] tutorialDetails = new String[10];
-    private CirclePageIndicator indicator;
+    private DotsIndicator indicator;
     private int TUTORIAL_COUNT = 0;
 
     @Override
@@ -55,7 +56,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         btnClose = (ImageButton) findViewById(R.id.btnClose);
         btnNext = (ImageButton) findViewById(R.id.btnNext);
         txtNext = (TextView) findViewById(R.id.txtNext);
-        indicator = (CirclePageIndicator) findViewById(R.id.viewpager_indicator);
+        indicator = (DotsIndicator) findViewById(R.id.viewpager_indicator);
     }
 
     /**

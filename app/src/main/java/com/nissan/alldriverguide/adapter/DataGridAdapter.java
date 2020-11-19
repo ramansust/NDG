@@ -2,9 +2,9 @@ package com.nissan.alldriverguide.adapter;
 
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,7 +124,6 @@ public class DataGridAdapter extends BaseAdapter {
             qRefGuide = (TextView) view.findViewById(R.id.quick_ref_guide);
             rv = (RelativeLayout) view.findViewById(R.id.combimeter_item);
         }
-
     }
 
     // adding data in map for warning light
@@ -144,5 +143,4 @@ public class DataGridAdapter extends BaseAdapter {
         }
         return "";
     }
-
 }

@@ -11,7 +11,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/popupLayout"
         android:layout_width="300dp"
         android:layout_height="200dp"
@@ -81,6 +81,6 @@
             app:layout_constraintStart_toEndOf="@+id/button40"
             app:layout_constraintTop_toTopOf="@+id/button40" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

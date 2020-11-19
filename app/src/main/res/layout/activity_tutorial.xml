@@ -13,7 +13,7 @@
         android:layout_weight="92"
         android:orientation="vertical">
 
-        <android.support.v4.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
             android:id="@+id/tutorialViewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -31,17 +31,20 @@
             android:textColor="@color/black"
             android:visibility="visible" />
 
-        <com.viewpagerindicator.CirclePageIndicator
+        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
             android:id="@+id/viewpager_indicator"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/margin_left"
-            app:fillColor="#FF000000"
-            app:pageColor="@color/white"
-            app:radius="4dp"
-            app:strokeColor="#FF000000"
-            app:strokeWidth="0dp" />
+            app:dotsColor="#FF000000"
+            app:dotsCornerRadius="8dp"
+            app:dotsSize="12dp"
+            app:dotsSpacing="4dp"
+            app:dotsWidthFactor="1"
+            app:progressMode="false"
+            app:selectedDotColor="@color/white" />
 
     </RelativeLayout>
 
@@ -61,9 +64,9 @@
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/btnNext"
             android:clickable="true"
+            android:fontFamily="@font/nissan_brand_bold"
             android:text="@string/button_next"
-            android:textColor="@color/white"
-            android:fontFamily="@font/nissan_brand_bold" />
+            android:textColor="@color/white" />
 
         <ImageButton
             android:id="@+id/btnNext"

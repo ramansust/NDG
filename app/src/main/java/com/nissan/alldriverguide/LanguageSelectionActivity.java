@@ -13,8 +13,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -82,7 +82,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
     private static final String TAG = "LanguageSelectionActivity";
     private String[] languageName;/*= {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};*/
-    private String[] languageShortName; /*= {"en", "de", "fr", "it", "es", "nl", "ru", "sv", "no", "pl", "fi", "pt"};*/
+
 //    private int[] languageImage = {R.drawable.united_kingdom, R.drawable.germany, R.drawable.france, R.drawable.italy, R.drawable.spain, R.drawable.netherlands, R.drawable.russia, R.drawable.sweden, R.drawable.norway, R.drawable.poland, R.drawable.finland, R.drawable.portugal};
 
     private ListView lstView;
@@ -97,7 +97,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private Activity activity;
     private Context context;
     private ProgressDialog progressDialog;
-    private String[] languageDialogDownloadConfirmation, languageDialogInternetCheck, languageDialogDownloading, languageDialogStartDownloading, languageDialogSync, cancelLangDownload, okLangDownload;
     private String deviceDensity;
     private String[] langFlagUri;
     private LanguageInfo info;
@@ -130,12 +129,11 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         Type type = new TypeToken<ArrayList<LanguageList>>() {
         }.getType();
         return new Gson().fromJson(new PreferenceUtil(context).retrieveMultiLangData(Values.carType + "_" + Values.CAR_LANGUAGE_LIST), type);
-
     }
 
     private void setAdapterFromDB() {
 
-        adapter = new LanguageSelectionAdapter(context, new ArrayList<LanguageInfo>(), false);
+        adapter = new LanguageSelectionAdapter(this, new ArrayList<LanguageInfo>(), false);
         lstView.setAdapter(adapter);
         lstView.setDivider(null);
         ColorDrawable sage = new ColorDrawable(this.getResources().getColor(R.color.line_color));
@@ -157,7 +155,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             String internetCheckMessage = NissanApp.getInstance().getAlertMessage(activity, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
             showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
         }
-
     }
 
     @Override
@@ -213,19 +210,11 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private void populateDataIntoList() {
 
         languageName = new String[_languageLists.size()];
-        languageShortName = new String[_languageLists.size()];
-        cancelLangDownload = new String[_languageLists.size()];
-        okLangDownload = new String[_languageLists.size()];
         langFlagUri = new String[_languageLists.size()];
 
         for (int i = 0; i < _languageLists.size(); i++) {
             NissanApp.getInstance().setAlertMessageCarWiseLangDownloadList(_languageLists.get(i).getAlertMessage());
-            languageDialogStartDownloading = new String[_languageLists.get(i).getAlertMessage().size()];
-            languageDialogDownloading = new String[_languageLists.get(i).getAlertMessage().size()];
-            languageDialogInternetCheck = new String[_languageLists.get(i).getAlertMessage().size()];
-            languageDialogSync = new String[_languageLists.get(i).getAlertMessage().size()];
             languageName[i] = (_languageLists.get(i).getLanguageName());
-            languageShortName[i] = (_languageLists.get(i).getLanguageShortcode());
 
             if ("xxxhdpi".contains(deviceDensity)) {
                 langFlagUri[i] = _languageLists.get(i).getLanguageFlag().getXxxhdpi();
@@ -242,7 +231,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             }
         }
         loadData(langFlagUri);
-
     }
 
     /**
@@ -319,7 +307,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
         adapter.setList(list);
         adapter.notifyDataSetChanged();
-
     }
 
     @Override
@@ -351,8 +338,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                 }
             }
         }
-
-
         return new LanguageList();
     }
 
@@ -374,7 +359,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
                 progressDialog = new ProgressDialogController(activity).showDialog(startingDownloadMsg.isEmpty() ? resources.getString(R.string.start_download) : startingDownloadMsg);
             }
         });
@@ -650,7 +634,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     if (preferenceUtil.getIsFirstTime()) {
                         if (new File(Values.PATH).exists()) {
                             try {
-
                                 Logger.error("Values.PATH", "_________" + Values.PATH);
 
                                 FileUtils.deleteDirectory(new File(Values.PATH));

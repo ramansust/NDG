@@ -1,7 +1,7 @@
 package com.nissan.alldriverguide;
 
 import android.content.Context;
-import android.support.multidex.MultiDexApplication;
+import androidx.multidex.MultiDexApplication;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -57,5 +57,4 @@ public class MyApplication extends MultiDexApplication {
     public static Context getAppContext() {
         return MyApplication.context;
     }
-
 }

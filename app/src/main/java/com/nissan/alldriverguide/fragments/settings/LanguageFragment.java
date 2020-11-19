@@ -8,11 +8,10 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -67,6 +66,7 @@ import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.nissan.alldriverguide.utils.Values.DATA_SYNCING;
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
@@ -147,7 +147,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     private void getDataCarWise() {
 
-        adapter = new LanguageSelectionAdapter(getActivity().getApplicationContext(), new ArrayList<LanguageInfo>(), true);
+        adapter = new LanguageSelectionAdapter(Objects.requireNonNull(getActivity()).getApplicationContext(), new ArrayList<LanguageInfo>(), true);
         lstView.setAdapter(adapter);
 
         _languageLists = getDataFromSP();
@@ -166,7 +166,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         }
 
         controller.callApi(NissanApp.getInstance().getDeviceID(getActivity())/*"246E5A50-B79F-4019-82ED-877BF53FD617"*/, Values.carType + "");
-
     }
 
     @Override
@@ -198,7 +197,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         Type type = new TypeToken<ArrayList<LanguageList>>() {
         }.getType();
         return new Gson().fromJson(new PreferenceUtil(this.getActivity()).retrieveMultiLangData(Values.carType + "_" + Values.CAR_LANGUAGE_LIST), type);
-
     }
 
     private void showNoInternetDialogue(String msg) {
@@ -218,7 +216,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         });
 
         dialog.show();
-
     }
 
     private void populateDataIntoList() {
@@ -385,7 +382,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
             // start language download procedure
             dismissDialog();
-
         }
     }
 
@@ -541,13 +537,11 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                                                 preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY);
                                                                 preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.EXPLORE_OBJ_STORE_KEY);
                                                                 preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.SETTING_OBJ_STORE_KEY);
-
                                                             } else {
                                                                 showErrorDialog("Confirmation send error!");
                                                                 dismissDialog();
                                                                 Logger.error("problem", "______sending confirmation-LanguageFragment");
                                                             }
-
                                                         }
 
                                                         @Override
@@ -639,8 +633,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                 Logger.error("Language downloading failed", "____________" + failedReason);
             }
         });
-
-
     }
 
     @Override
@@ -682,5 +674,4 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
         dialogFragment.show(getActivity().getSupportFragmentManager(), "error_fragment");
     }
-
 }
