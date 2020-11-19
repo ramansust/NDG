@@ -113,9 +113,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         allCarList = NissanApp.getInstance().getCarListWAP();
 
         loadChildCarList(allCarList, parentCarId);
-
         loadData(childCars);
-
     }
 
     private void loadChildCarList(List<CarList> allCarList, int parentCarId) {
@@ -156,7 +154,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         super.onResume();
         loadChildCarList(allCarList, parentCarId);
         adapter.setList(childCars);
-
     }
 
     @Override
@@ -190,9 +187,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
             title.setText("NEW NISSAN LEAF");
             RecyclerView recyclerView = childViews[v].findViewById(R.id.rv_model_year_list);
 
-
             adapter = new ModelYearAdapter(ModelYearActivity.this, carLists, this);
-
 
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
             DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
@@ -204,7 +199,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
             //carAdapter.notifyDataSetChanged();
 
             container.addView(childViews[v]);
-
         }
     }
 
@@ -265,7 +259,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
                 });
                 dialog.show();
 
-
             } else {
                 goForNormalOperation(position, item);
             }
@@ -298,7 +291,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
                         goForNormalOperation(position, parent);
                     }
 */
-
                 }
             }
 
@@ -435,7 +427,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         } else {
             startActivity(new Intent(ModelYearActivity.this, LanguageSelectionActivity.class));
         }
-
     }
 
     private void goToNextPage(int position) {
@@ -678,7 +669,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         });
 
         dialog.show();
-
     }
 
     private void showCarDeleteDialog(final int carType, final int position) {
@@ -1024,7 +1014,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 
     private ArrayList<Object> getData() {
 
-
         // here set the all ordered car list that getting from database as an object type
         NissanApp.getInstance().setCarList(commonDao.getAllOderCarList(getBaseContext()));
         // here set the all unordered car list that getting from database as a CarInfo object
@@ -1069,7 +1058,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
                     xtrailRusInfo = info;
                     xtrailRus = true;
                 }
-
             }
         }
 
@@ -1099,15 +1087,12 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
                 }
             }
 
-
             getList.set(xtrailIndex, leafInfo);
             getList.set(leafIndex, xtrailInfo);
 
         }
 
         return getList;
-
-
     }
 
     private ArrayList<Object> swapXtrailEurRusIfBothDownloaded(ArrayList<Object> getList) {
@@ -1140,7 +1125,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
                 }
             }
 
-
         }
 
         if (xtrailEuroDownloaded && xtrailRusDownloaded) {
@@ -1164,7 +1148,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
     }
 
     private boolean xtrailLeafAvailableForDownload(ArrayList<Object> getList) {
-
 
         boolean isfifteenIdAvailable = false;
 
@@ -1217,7 +1200,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
             }
 
             NissanApp.getInstance().setCarList(mainList);
-
         }
     }
 

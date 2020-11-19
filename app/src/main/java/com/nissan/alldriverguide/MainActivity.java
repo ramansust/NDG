@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AlertDialog;
@@ -60,10 +61,8 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     public TabLayout tabLayout;
     private Tracker tracker;
     private String[] tabNames = new String[4];
-    private final int[] tabIconsSelected = {R.drawable.explore_selected, R.drawable.assistance_selected, R.drawable.search_pressed,
-            R.drawable.settings_selected};
-    private final int[] tabIconsUnSelected = {R.drawable.explore_unselected, R.drawable.assistance_unselected, R.drawable.search,
-            R.drawable.settings_unselected};
+    private final int[] tabIconsSelected = {R.drawable.explore_selected, R.drawable.assistance_selected, R.drawable.search_pressed, R.drawable.settings_selected};
+    private final int[] tabIconsUnSelected = {R.drawable.explore_unselected, R.drawable.assistance_unselected, R.drawable.search, R.drawable.settings_unselected};
     // Start------------ For permission related constants
     private static final int PERMISSION_REQUEST_CODE_ALL = 200;
     private static final int PERMISSION_REQUEST_CODE_STORAGE = 201;
@@ -138,8 +137,8 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         tabIcons = new ImageView[tabIconsSelected.length];
         tabTextViews = new TextView[tabIconsSelected.length];
 
-        typeFaceNormal = getResources().getFont(R.font.nissan_brand_regular);
-        typeFaceBold = getResources().getFont(R.font.nissan_brand_bold);
+        typeFaceNormal = ResourcesCompat.getFont(MainActivity.this, R.font.nissan_brand_regular);
+        typeFaceBold = ResourcesCompat.getFont(MainActivity.this, R.font.nissan_brand_bold);
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
@@ -150,7 +149,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     private void setTabNames() {
 
         ArrayList<TabMenu> tabMenuArrayList = getDataFromStorage();
-
         NissanApp.getInstance().setTabMenuArrayList(tabMenuArrayList);
 
         if (tabMenuArrayList != null && tabMenuArrayList.size() > 0) {
@@ -161,7 +159,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         } else {
             tabNames = resources.getStringArray(R.array.tab_names);
         }
-
     }
 
     public void loadResource() {
@@ -402,11 +399,8 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
             } else { // this block for great or not great popup
 
                 if (preferenceUtil.getIsFirstTimeGreatNotGreat() && preferenceUtil.getOpenCountForRateApp() >= Values.RATE_APP_FIRST_SESSION) {
-
                     greatNotGreat();
-
                 } else {
-
                     if (preferenceUtil.isGreat() && !preferenceUtil.getIsFirstTimeGreatNotGreat()) {
 
                         if (preferenceUtil.getSessionOne() && preferenceUtil.getOpenCountForRateApp() >= 15 ||
@@ -677,9 +671,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     }
 
     private void requestPermission(final String PERMISSION_NAME, final int PERMISSION_CODE) {
-
         ActivityCompat.requestPermissions(this, new String[]{PERMISSION_NAME}, PERMISSION_CODE);
-
     }
 
     @Override

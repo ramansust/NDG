@@ -1,15 +1,15 @@
 package com.nissan.alldriverguide.adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.nissan.alldriverguide.R;
 
@@ -20,7 +20,6 @@ public class TutorialViewPagerAdapter extends PagerAdapter {
     private String[] tutorialTitles;
     private String[] tutorialDetails;
     private LayoutInflater inflater;
-    private Typeface typeFaceBold, typeFaceNormal;
 
     /**
      * Declare constructor
@@ -35,8 +34,6 @@ public class TutorialViewPagerAdapter extends PagerAdapter {
         this.imageId = imageId;
         this.tutorialTitles = tutorialTitles;
         this.tutorialDetails = tutorialDetails;
-        typeFaceNormal = context.getResources().getFont(R.font.nissan_brand_regular);
-        typeFaceBold = context.getResources().getFont(R.font.nissan_brand_bold);
     }
 
     @Override
@@ -71,11 +68,9 @@ public class TutorialViewPagerAdapter extends PagerAdapter {
 
         title = (TextView) itemView.findViewById(R.id.txt_title);
         title.setText(tutorialTitles[position]);
-        title.setTypeface(typeFaceBold);
 
         detail = (TextView) itemView.findViewById(R.id.txt_details);
         detail.setText(tutorialDetails[position].replace("\\n", "\n"));
-        detail.setTypeface(typeFaceNormal);
 
         container.addView(itemView);
         return itemView;
