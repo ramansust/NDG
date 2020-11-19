@@ -2,404 +2,814 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/fresco-0.13.0.aar/551355ec4d94c7defa833c1e01900f52/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/play-services-analytics-11.0.4.aar/d40b7dc65de524a71e9c379453d2a349/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
-        optimize="true"
-        revision="26.0.2"
-        sha1="4985047e64ea8daf00e923aac6386de67fbd5676">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/24.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/imagepipeline-0.13.0.aar/d8016101add6302f9bf620868b9148c8/jars/classes.jar"
-        jumboMode="false"
-        min-sdk-version="16"
-        optimize="true"
-        revision="26.0.2"
-        sha1="0aa38f91d7e6c9d5983d2148741de45b6cc5949b">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/27.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/lib_viewpager_indicator/build/intermediates/intermediate-jars/release/classes.jar"
-        jumboMode="false"
-        min-sdk-version="16"
-        optimize="true"
-        revision="26.0.2"
-        sha1="88f97fffb90607a1882ba39d0698e846d38aeb71">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/46.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/design-25.1.0.aar/b0197ccf93baef921068d82f41fff3bc/jars/classes.jar"
-        jumboMode="false"
-        min-sdk-version="16"
-        optimize="true"
-        revision="26.0.2"
-        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/e3dbf3dc0aa7d163bace68c35568e67a/jars/classes.jar"
-        jumboMode="false"
-        min-sdk-version="16"
-        optimize="true"
-        revision="26.0.2"
-        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/34.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.0.4.aar/2937859350cf1203ad82909ac49a55d4/jars/classes.jar"
-        jumboMode="false"
-        min-sdk-version="16"
-        optimize="true"
-        revision="26.0.2"
-        sha1="364364bf77b4a71afc5930fc3ae57b3f0eea637c">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/22.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/play-services-analytics-11.0.4.aar/d77223c8507e442925cad36f81e02132/jars/classes.jar"
-        jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
         sha1="a25b0b5aec89681b95d32780ad7904c1e1e4c679">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/7.jar" />
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/9/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/animated-gif-0.13.0.aar/0c027ef02f4cc0e8ef1ff2cf10c18cf8/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="017cbad0ef8876fc041eb28b642a33c3762fe774">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/10.jar" />
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/82/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.1.0.aar/1625f700627ff82d683f9dd56b42f9ec/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/ea4bea022a614934030d2ed038a3238e/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/39.jar" />
+        sha1="888fbeb5c88b78fc030cc725debdea1ab9dbee83">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/22/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/play-services-analytics-impl-11.0.4.aar/61426e44d8702e5c6ca8b80d16c8820e/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/df5e8e01076e3c9ebdd9db578243b67f/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="2c2f1b3f82c027e98f56bb0154de0acbcce42e6d">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/14.jar" />
+        sha1="7b15ada2209f82b0249f331cb7ec70394dc2e828">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/64/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/sectioned-recyclerview-0.5.0.aar/7bca3a6172058c697fd1bba83edbb53f/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/c254d77b37ab509fd262335f1f2b9489/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="84d49b4856aadb32b32f64c60ad844b9e9647b0e">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/9.jar" />
+        sha1="70bf65523dc3db43f6c3749931976585a8f4dd20">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/61/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/firebase-common-11.0.4.aar/dbb62be6dd49e2abb543e7c98dc89f3d/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/28.0.0/ed73f5337a002d1fd24339d5fb08c2c9d9ca60d8/support-annotations-28.0.0.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="43e9789bd3240271265ab30ce1be9f224843f5a8">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/20.jar" />
+        sha1="ed73f5337a002d1fd24339d5fb08c2c9d9ca60d8">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/67/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/firebase-iid-11.0.4.aar/f9b03af6375800cb627257f70f68f120/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/de3159d3f44a252b70bcc920514dc1eb/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="ed87ccdcb70c17d71ba4e6e4ac16afa62d3c49fb">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/19.jar" />
+        sha1="f46121a7c3b3ba958fc27c39447ae205be23ac4a">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/8/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/258c82c5d6bdecbf954be3b22b5393eb/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/Desktop/My Work/NDG/ndg_europe/lib_viewpager_indicator/build/intermediates/intermediate-jars/release/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/33.jar" />
+        sha1="88f97fffb90607a1882ba39d0698e846d38aeb71">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/83/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/vuforia/vuforia-sdk-android-7-0-43/build/java/vuforia/Vuforia.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/transition-28.0.0.aar/84f6fe292defa6e51db03a65b87346f9/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="e60f52591c8283828afcdb678b3e16306a44a71b">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/2.jar" />
+        sha1="31b98191e7c892b25799dbe30c8124210a68e201">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/49/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/play-services-base-11.0.4.aar/54510a632504f230b23f4ba3d050ddb5/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/fbcore-1.13.0.aar/42386fc65a3ccfa1440516438ca002ec/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="70ffe00aaf049893f59d1dad57bd82992faa38ef">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/15.jar" />
+        sha1="de49e7a8f56aaad209bad9d51acc1846fcf83730">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/77/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/media/nirob/MyDrive/AndroidUbuntu/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/firebase-analytics-11.0.4.aar/69490f5b220a3521beb6fc2f1a3b7592/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
-        optimize="true"
-        revision="26.0.2"
-        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/41.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/firebase-analytics-11.0.4.aar/6b7e45bbc525db2c7406464f1c5d84d0/jars/classes.jar"
-        jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
         sha1="e5b429c146094a612134910688d169ec08deeefb">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/17.jar" />
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/11/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/a9a40ae04eaf9a620e16ddeafddce34f/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/7bab3dd9f5469d5aa8351b8b9428736f/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/35.jar" />
+        sha1="41b8c7e99024d4288d7dfc709bb72fdaa5fdc32f">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/43/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/fbcore-0.13.0.aar/406619517a59a038832dfa803b8696be/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/969984d14f65a71a267aff4e578c28d3/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="9bab39d73226491b969ef7ffebeae2e6e525e98f">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/43.jar" />
+        sha1="afb9ac89f722ac83466f1bb5f2135010b7f05f32">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/54/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/drawee-0.13.0.aar/78abeda7e154c17199be02926aa127df/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.8.0/5a11f020cce2d11eb71ba916700600e18c4547e7/okhttp-3.8.0.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="db1ed61a6eaa9d50ff214daf79ed485877aaa58a">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/25.jar" />
+        sha1="5a11f020cce2d11eb71ba916700600e18c4547e7">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/69/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-11.0.4.aar/4b4d77358eaed14f5db8ece393415682/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/dexter-4.2.0.aar/d55dff327b0b728336b4f2c7c165af48/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="e1625e48a836779b5fa141d22e5d05563aaccc9a">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/18.jar" />
+        sha1="dc485c41933fad5144a49a126faf31fff4a50193">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/5/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/libs/NDG_SDK.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/1d4a125292d403dcd98ef43fba549fc9/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="dda22eeca5a226efc9e28386442cbb94c39bc90a">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/1.jar" />
+        sha1="ddfc0d219f43bf3c1e357a55284cbd1000e461bf">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/50/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/7e11aafa5b5cde201db2d2798531500f/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/9a1887ffaf99ac7d09bfd979a8351e86/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/40.jar" />
+        sha1="19e63f5c3afd0a4379bfb830816bb8a9661aba75">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/45/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/animated-webp-0.13.0.aar/9346e79d7e0c01a2525d1f20b9609a06/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.2/f1bc476cc167b18e66c297df599b2377131a8947/gson-2.6.2.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="a3112a1306b603deef909c0612d8d76000af0665">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/11.jar" />
+        sha1="f1bc476cc167b18e66c297df599b2377131a8947">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/24/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.1.0.aar/43cc4d47db5e5157aec8ab5d0c3e2507/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/play-services-base-11.0.4.aar/37a64c11e41f98864ea779ca9b182563/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/38.jar" />
+        sha1="70ffe00aaf049893f59d1dad57bd82992faa38ef">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/15/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-28.0.0.aar/2c7df7d8a1e5422b2f51c5131f46f469/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/44.jar" />
+        sha1="3fec43a847d8788b7642a1932e6266ef8bdab169">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/33/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/webpsupport-0.13.0.aar/fc57dc44ad9b4c07001c6f53355c883b/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/b242feef33a312740f4f0511b67e8652/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="590c721000a8d11b2f57ae02a7e3d6d3b07c6459">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/12.jar" />
+        sha1="ba4c894fd0a3d36e8f06f4947ab639140e668088">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/48/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/calligraphy-2.2.0.aar/0dae4e46dfb79f1aa565b8ddd6315e84/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/logging-interceptor/3.8.0/f765f004f3e201bd6ad0904266e605d7fb776d5/logging-interceptor-3.8.0.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="ebcb0bcf52fab7c586f39717f7cb8de91748b1b1">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/4.jar" />
+        sha1="0f765f004f3e201bd6ad0904266e605d7fb776d5">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/31/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/animated-base-0.13.0.aar/cdb8001b5174ede59ef11a4c364e3bce/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/animated-gif-1.13.0.aar/2f846abd5b46e443155294b9c5238bcc/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="2bea506ec2a27189b7d3198ea11431304c8f7549">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/26.jar" />
+        sha1="7c9ba6a58ccf2bcdabf47c9b33f86a96ad0edd51">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/27/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/firebase-messaging-11.0.4.aar/0732068b927ac07680728ff0b6dc02b0/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/081afb016962244a0181ee91793f3314/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="f47f4d5bdfd7d7bf330945b8a7ccce4ab437a710">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/8.jar" />
+        sha1="ada02cfa6d6403e90138de411c67d8f6763b3018">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/47/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/play-services-tagmanager-v4-impl-11.0.4.aar/e5fef496b3544f4a758a48e5f2e4316e/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.0.4.aar/ad99dd1ca2c9ca9274eae40565cb8098/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="c1b91bc7e480ab100d0397b16c93732e26fd10eb">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/13.jar" />
+        sha1="364364bf77b4a71afc5930fc3ae57b3f0eea637c">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/20/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/flowlayoutmanager-1.2.3.2.aar/cb9f5d957697b0c99920d3973ac2597a/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/58c5d4abbf1614c34752a2f624648a8f/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="49b8af59d5819c80792707bdda93a5c9a917e24c">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/39/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/e722a43265121318ab6498980791d2ad/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e9b03dd36d3c106574e2cdeb8edd543bd5e51d0e">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/63/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.0.2/43eeae0b9fb087bb3194ba59ab63a38a32fbf3e/retrofit-2.0.2.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="043eeae0b9fb087bb3194ba59ab63a38a32fbf3e">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/25/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/webpsupport-1.13.0.aar/980fb83d3a2b5d7644f9e94c7b4dc5aa/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="76c1f9c30d696036bcf4d842f3f13c714ee1aba3">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/29/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.8.0/a7448551cb3edd61bcf3d1b1136b670e630441cf/disklrucache-4.8.0.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a7448551cb3edd61bcf3d1b1136b670e630441cf">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/80/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/flowlayoutmanager-1.2.3.2.aar/0283b0f476f03f7bfb0f2cfa9237d86e/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
         sha1="abadec32f0b8f9b3537ba473914a2fc64185f854">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/5.jar" />
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/4/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.1.0.aar/33cdd38d5e81f3757210cbdd7134e8fc/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/8588aeb2d8a3da5cbc8984a9092fd562/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/6.jar" />
+        sha1="234e706c7aea09f97738c7830d144d50d240079e">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/7/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/751015c2b4eabdb8291d8a65ad1b032e/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/106d23d18d9abc4be173185cdf1ce7ed/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/37.jar" />
+        sha1="a69067467c7e4d5c810ea19ee43cbfab00a292b4">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/51/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.0.4.aar/1ec4e58b1040fab0eadf142967f69afe/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/d47777624b8b2a6bfc3748d1411b7134/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5b049b5525643f62ebe162013dae975c7e74dcc5">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/35/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/drawee-1.13.0.aar/95f67cdc25eaa5008cc3f746215cb6b9/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="34ecb8255b5f7d1b910dd6364e5052f1b7e3238e">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/72/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/b92938e0ce7b92224bef7e34ec844873/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f1c031c4ca26cea0adbe178007dd3bfd311be983">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/modules-2/files-2.1/com.android.support.constraint/constraint-layout-solver/1.1.0/931532e953a477f876f2de18c2e7f16eee01078f/constraint-layout-solver-1.1.0.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="931532e953a477f876f2de18c2e7f16eee01078f">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/68/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.8.0/c4c9e79eb2bfeb9059fce55020c6b237402285f6/annotations-4.8.0.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c4c9e79eb2bfeb9059fce55020c6b237402285f6">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/81/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/b78741c1c0dfa1139aa1ab30dfc529c9/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b9aff7eec7a0b091e460e44b8bb0bf64cadc0844">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/62/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/nativeimagefilters-1.13.0.aar/6f4b560d3e9303dd7e1ba5f82ac4df47/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="822ff3c5402e2e07966a862025da0563fa3ea5f3">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/73/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/firebase-messaging-11.0.4.aar/94f71fd4c52362e31e2cd2a533d72fac/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f47f4d5bdfd7d7bf330945b8a7ccce4ab437a710">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/10/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/f525489f5a88aea295962450adefff82/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="de467de1baba33a922246561f87c0a910206d1ff">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/57/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/847b626eb3411b58335514a0d4e3f43a/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a6d4c3181151ffbcd67897e94c688f6c200c5bec">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/41/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/fe94cddb16ae7c3ac7a7a5750663e0e9/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b99e6cdcb85894164e1a06145a5f6b78e3cb7270">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/38/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/cdf26299350b659543e00a77117d1be4/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="925ec89d545e33030131b9470db85e701a8c61a4">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/44/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/play-services-analytics-impl-11.0.4.aar/ae6a9561b91e0be27ddf7c3349a4355b/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2c2f1b3f82c027e98f56bb0154de0acbcce42e6d">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/14/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/animated-drawable-1.13.0.aar/07f3ea4cfb3f5c18ea8e2e9036de5cf4/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0f25087e8a93bc298771865ddf39e237e9df56e4">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/71/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/glide-4.8.0.aar/8b34e5fede73f43f77713c10980396d1/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cd43d71aaa1a0cffd99bd105acd1fe0454ace4dd">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/30/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.1/e55b70d1f5620db124b3e85a7f4bdc7bd48d9f95/common-1.1.1.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e55b70d1f5620db124b3e85a7f4bdc7bd48d9f95">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/55/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/d22952156d277d93c38be97fcb06d040/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fad505737146925636e28753e26523c3a8a03e48">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/42/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/firebase-common-11.0.4.aar/f622911e7abaaa8e719fd1ede518ff1d/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="43e9789bd3240271265ab30ce1be9f224843f5a8">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/18/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/ec4d0189eaa2c0097d87f443ad556a96/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b05ce31f5d87a7f16cdbdbc5e3a7cf2190bf0118">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/37/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/prdownloader-0.5.0.aar/c78aaae9e29ceb5ec89baeda37d042e6/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e658c3282d1e93e4cef8d5d341ce7af3437ef29c">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/32/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/b1705b7d8c0ee2c62ddf88357fc04773/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8510837b7e70ee5f12cf2a20dd0a1b3d23a0cdeb">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/46/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/animated-webp-1.13.0.aar/ccdce63dd3fcb674e53778ffdaa5de4a/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="afff87d49dd9650c1d9b0c46b08cfbb9c0d78cd4">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/28/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/37c11fa5d4041938d796033795f3479f/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9335f203759bfcda4b6ea729dddcf06c07150d3f">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/52/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/modules-2/files-2.1/com.android.support/collections/28.0.0/c1bcdade4d3cc2836130424a3f3e4182c666a745/collections-28.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c1bcdade4d3cc2836130424a3f3e4182c666a745">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/60/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/e6cbf7fc2adb72fc4efa24ea09e63af4/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="376a25a3bdce5133262368e85d430aae5bb80c28">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/65/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/79/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/7d19b76ee4336c3ffbf5e143ef26e265/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="be31b531309a9196873ba4ac96ea9484ca0ecad6">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/40/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-11.0.4.aar/2f2da9a1e83fe6f85939120fe650b212/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e1625e48a836779b5fa141d22e5d05563aaccc9a">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/16/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/firebase-iid-11.0.4.aar/e09bedabdd956a7827be6b026f32775a/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ed87ccdcb70c17d71ba4e6e4ac16afa62d3c49fb">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/17/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/imagepipeline-1.13.0.aar/6521303a9efcc4a21a7aa7a7d2dc89e0/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="407281d857e65a2ece9204f75be36045a20794fe">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/74/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.0.2/f8d87f15b94b8d74e7ccf61d7eedb558811cdb30/converter-gson-2.0.2.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f8d87f15b94b8d74e7ccf61d7eedb558811cdb30">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/23/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/e063b5f904329be6aad23c66a4b596dd/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b1173d9f45ae18f2e0dc8ec42d15fa5b95c391d1">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/53/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/play-services-tagmanager-v4-impl-11.0.4.aar/329aa465f33e7f8c63d1e6d8bf4fa368/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c1b91bc7e480ab100d0397b16c93732e26fd10eb">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/13/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/fresco-1.13.0.aar/1d94c744306d89e6847d4a4b65c899a0/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="058cdab21995d5b2bdce7ab14634e158c4778b79">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/26/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.0.4.aar/697d2a4613bc7c1402fa0820ecb3081c/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
         sha1="2430e711762a749feb00b3d64858ca4768251b9d">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/21.jar" />
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/19/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-0.13.0.aar/3ec7896186f2b99a115f5a7558334d97/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/animated-base-1.13.0.aar/958e376d1599ab20718c1f5277fa9a71/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="e818c866cdd1e9b94d54a3ffbd7420dca384746a">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/28.jar" />
+        sha1="8f561ba8eb886bca92de4f3f775cca9d27498da6">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/70/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/transition-25.1.0.aar/6cc7e7138d59b189218b9338d7859fd0/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.1/207a6efae6a3555e326de41f76bdadd9a239cbce/common-1.1.1.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/23.jar" />
+        sha1="207a6efae6a3555e326de41f76bdadd9a239cbce">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/56/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/2ff7329e932eaa14297a8b8030601fa1/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/nativeimagetranscoder-1.13.0.aar/1375de099bd102199e70ea4cd0e4dace/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="95519720620b553f63afc789beba9ad582807f7c">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/36.jar" />
+        sha1="c8ae206cbbacbf6db5251ce08b7b6fe250bc3973">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/75/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/nirob/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/c9392ff3568b8eda105a2fcf9bac4476/jars/classes.jar"
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.8.0.aar/e18b49bf19d795c755d1fd692c87d487/jars/classes.jar"
         jumboMode="false"
-        min-sdk-version="16"
+        min-sdk-version="26"
         optimize="true"
         revision="26.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/media/nirob/MyDrive/AndroidUbuntu/AndroidStudioProjects/MA_Project/NDG_Online_Search/nissanauto/app/build/intermediates/transforms/preDex/release/29.jar" />
+        sha1="221de83c08ed1502286513b4d472d256341e8839">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/58/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/multidex-1.0.3.aar/f6eaf19ae29517a78f7956041d95ddd7/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9068775bb0941e0fc1d4ff9adbf5d73475794955">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/34/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/cardview-v7-28.0.0.aar/7a46fad30400cfedec9d54cd897ed4c9/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ef698b3c8609d86cac06834429a39ef417d5b57a">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/66/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/35babd25a54acbfd66826739f747ba5c/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f77c6cfaee7ee7c8844d5340e47a38c3fdea7060">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/36/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/vuforia/vuforia-sdk-android-7-2-23/build/java/Vuforia/Vuforia.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="22280c160cf865d8d7851f17a7c2ba37b97f4556">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/Desktop/My Work/NDG/ndg_europe/app/libs/NDG_SDK.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="dda22eeca5a226efc9e28386442cbb94c39bc90a">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/sectioned-recyclerview-0.5.0.aar/f86c614a30f9dd9332fae1b6e137ac5c/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="84d49b4856aadb32b32f64c60ad844b9e9647b0e">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/12/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/soloader-0.6.0.aar/0ae687486d0554a360fe9c99f276233c/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0b7a4fc1ca66987d239e14fc373c5f7b413bd643">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/78/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/7e95e5eb57920643ca45b369aab7b625/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2e85417e7990657be8fe07d63fd5278d82eb960e">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/59/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/raman/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-1.13.0.aar/048b92123abf3353057382bf9bf436b4/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="26"
+        optimize="true"
+        revision="26.0.2"
+        sha1="58cb5134b764b4e468bc11ac75961b92d15ff470">
+        <dex dex="/home/raman/Desktop/My Work/NDG/ndg_europe/app/build/intermediates/transforms/preDex/release/76/classes.dex" />
     </item>
 
 </items>
