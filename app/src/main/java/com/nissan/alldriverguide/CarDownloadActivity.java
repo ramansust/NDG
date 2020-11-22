@@ -13,8 +13,6 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -26,6 +24,9 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -143,7 +144,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
-
                     /*FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
                     displayFirebaseRegId();*/
 
@@ -260,7 +260,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 new PreferenceUtil(getApplicationContext()).setPushRegistrationStatus(false);
             }
         });
-
     }
 
     /**
@@ -601,7 +600,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                                 }
 
                                 adapter.notifyDataSetChanged();
-
                             } catch (Exception e) {
                                 e.printStackTrace();
                             } finally {
@@ -613,7 +611,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                         }
 
                     } else { // this block for when version code is same that means no update available
-
                         //check and get all the content update from database
                         final ArrayList<PushContentInfo> list = commonDao.getNotificationList(getApplicationContext(), Values.carType, NissanApp.getInstance().getLanguageID(commonDao.getLanguageStatus(getApplicationContext(), carId)));
 
@@ -630,7 +627,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 }
 
             } else { // if car is not downloaded
-
                 try {
 
                     Logger.error("path", "__________" + NissanApp.getInstance().getCarPath(Values.carType));
@@ -667,7 +663,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         });
 
         dialog.show();
-
     }
 
     private void downloadContentUpdate(final ArrayList<PushContentInfo> list, final int position) {
@@ -918,7 +913,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                 Logger.error("cardownloadactivity_failed", "__________" + "postcardownload->" + failedReason);
             }
         });
-
     }
 
 
@@ -1275,12 +1269,9 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
             getList.set(xtrailIndex, leafInfo);
             getList.set(leafIndex, xtrailInfo);
-
         }
 
         return getList;
-
-
     }
 
     private ArrayList<Object> swapXtrailEurRusIfBothDownloaded(ArrayList<Object> getList) {
@@ -1312,8 +1303,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                     leaf2017Downloaded = true;
                 }
             }
-
-
         }
 
         if (xtrailEuroDownloaded && xtrailRusDownloaded) {
@@ -1391,10 +1380,7 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             }
 
             NissanApp.getInstance().setCarList(mainList);
-
         }
-
-
     }
 
     private void startCarAssetsDownload(String assetsSource, String assetsDestination, String langSource, String langDestination) {
@@ -1580,7 +1566,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
         Type type = new TypeToken<ArrayList<LanguageList>>() {
         }.getType();
         return new Gson().fromJson(preferenceUtil.retrieveMultiLangData(carType + "_" + Values.CAR_LANGUAGE_LIST), type);
-
     }
 
     public class LoadDataBase extends AsyncTask<String, Void, String> {
@@ -1715,7 +1700,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
                         if (DetectConnection.checkInternetConnection(activity.getApplicationContext())) {
                             showCarDeleteDialog(carId, position);
                         } else {
-
                             NissanApp.getInstance().showInternetAlert(activity, internetCheckMessage.isEmpty() ? context.getResources().getString(R.string.internet_connect) : internetCheckMessage);
                         }
 
@@ -1728,8 +1712,6 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
             } else {
                 adapter.setList(NissanApp.getInstance().getCarList());
             }
-
         }
     }
-
 }

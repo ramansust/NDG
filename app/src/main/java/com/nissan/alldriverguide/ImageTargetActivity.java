@@ -452,7 +452,6 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
             default:
                 break;
-
         }
 
     }
@@ -931,19 +930,15 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         Button btnNo = (Button) dialog.findViewById(R.id.btn_cancel);
 //        btnNo.setText(resources.getString(R.string.button_NO));
         btnNo.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_NO) : cancelText);
-
         Button btnYes = (Button) dialog.findViewById(R.id.btn_ok);
 //        btnYes.setText(resources.getString(R.string.button_YES));
         btnYes.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_YES) : okText);
-
-
         btnNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
             }
         });
-
 
         btnYes.setOnClickListener(new View.OnClickListener() {
 

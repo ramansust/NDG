@@ -168,8 +168,7 @@ public class TyreTransitionActivity extends Activity {
 
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-                               float velocityY) {
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
 
             // Swipe left (next)
             if (e1.getX() > e2.getX()) {
@@ -212,7 +211,6 @@ public class TyreTransitionActivity extends Activity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         mGestureDetector.onTouchEvent(event);
-
         return super.onTouchEvent(event);
     }
 
@@ -249,5 +247,4 @@ public class TyreTransitionActivity extends Activity {
     public void onBackPressed() {
         super.onBackPressed();
     }
-
 }

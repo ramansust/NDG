@@ -74,11 +74,9 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     private void loadData() {
 
         String nextText = NissanApp.getInstance().getGlobalMessage(this).getNext();
-
         txtNext.setText(nextText == null || nextText.isEmpty() ? getResources().getString(R.string.button_next) : nextText);
 
         ArrayList<Tutorial> list = getDataFromStorage();
-
         NissanApp.getInstance().setTutorialArrayList(list);
 
         if (list != null && list.size() > 0) {
@@ -118,16 +116,6 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
                 break;
 
             case R.id.btnNext:
-                try {
-                    if (viewPager.getCurrentItem() == TUTORIAL_COUNT) {
-                        gotoNextActivity();
-                    } else {
-                        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
 
             case R.id.txtNext:
                 try {
@@ -201,6 +189,5 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         Type type = new TypeToken<ArrayList<Tutorial>>() {
         }.getType();
         return new Gson().fromJson(new PreferenceUtil(this).retrieveMultiLangData(key), type);
-
     }
 }

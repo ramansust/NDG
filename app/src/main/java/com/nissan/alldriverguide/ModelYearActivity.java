@@ -93,8 +93,8 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
     private DisplayMetrics metrics;
     private Tracker t;
     private ModelYearAdapter adapter;
-    ArrayList<Object> childCars = new ArrayList<>();
-    List<CarList> allCarList;
+    private ArrayList<Object> childCars = new ArrayList<>();
+    private List<CarList> allCarList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -413,11 +413,8 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
             } else { // if car is not downloaded
 
                 try {
-
                     Logger.error("path", "__________" + NissanApp.getInstance().getCarPath(Values.carType));
-
                     FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType)));
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
@@ -856,7 +853,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 
             @Override
             public void onFailed(String failedReason) {
-
                 Logger.error("car_delete", "_________" + "onFailed");
 
                 if (progressDialog != null && progressDialog.isShowing())

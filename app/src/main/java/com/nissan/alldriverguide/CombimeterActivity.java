@@ -63,13 +63,13 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
 
     private void loadData() {
         // declare color category wise ArrayList
-        list_red = new ArrayList<String>();
-        list_orange = new ArrayList<String>();
-        list_yellow = new ArrayList<String>();
-        list_green = new ArrayList<String>();
-        list_blue = new ArrayList<String>();
-        list_gray = new ArrayList<String>();
-        list_cyan = new ArrayList<String>();
+        list_red = new ArrayList<>();
+        list_orange = new ArrayList<>();
+        list_yellow = new ArrayList<>();
+        list_green = new ArrayList<>();
+        list_blue = new ArrayList<>();
+        list_gray = new ArrayList<>();
+        list_cyan = new ArrayList<>();
 
         width = NissanApp.getInstance().getWidth(CombimeterActivity.this);
 

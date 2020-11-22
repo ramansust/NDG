@@ -204,7 +204,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         });
 
         dialog.show();
-
     }
 
     private void populateDataIntoList() {
@@ -607,9 +606,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
 
         String downloadConfirmationText = getAlertMessage(Values.DOWNLOAD_CONFIRMATION);
-
         txtViewTitle.setText(downloadConfirmationText.isEmpty() ? resources.getString(R.string.alert_msg22) : downloadConfirmationText);
-
 
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
@@ -675,7 +672,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                         if (preferenceUtil.getIsFirstTime()) {
                             if (new File(Values.PATH).exists()) {
                                 try {
-
                                     Logger.error("Values.PATH", "_________" + Values.PATH);
 
                                     FileUtils.deleteDirectory(new File(Values.PATH));
@@ -725,7 +721,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             }
         });
         builder.show();
-
     }
 
     // navigating user to app settings
@@ -787,7 +782,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
             NissanApp.getInstance().setGlobalMessageArrayList(responseInfo.getGlobalMessage());
             NissanApp.getInstance().setAlertMessageGlobalArrayList(responseInfo.getAlertMessage());
-
         }
     }
 
