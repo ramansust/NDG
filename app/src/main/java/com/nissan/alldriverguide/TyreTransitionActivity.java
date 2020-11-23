@@ -35,10 +35,10 @@ public class TyreTransitionActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transition);
 
-        draweeView = (SimpleDraweeView) findViewById(R.id.img_view_git);
-        txtView = (TextView) findViewById(R.id.txt_title);
+        draweeView = findViewById(R.id.img_view_git);
+        txtView = findViewById(R.id.txt_title);
 
-        imageView = (ImageView) findViewById(R.id.img_view_back);
+        imageView = findViewById(R.id.img_view_back);
         imageView.setOnClickListener(new OnClickListener() {
 
             @Override

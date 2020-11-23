@@ -87,20 +87,20 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     private void initViews() {
         new PreferenceUtil(getApplicationContext()).setOpenCountForRateApp();
 
-        relativeVideo = (RelativeLayout) findViewById(R.id.relative_video);
-        relativePopup = (RelativeLayout) findViewById(R.id.relative_video_popup);
+        relativeVideo = findViewById(R.id.relative_video);
+        relativePopup = findViewById(R.id.relative_video_popup);
 
-        videoView = (VideoView) findViewById(R.id.video_view);
-        btnClose = (ImageButton) findViewById(R.id.btn_close);
+        videoView = findViewById(R.id.video_view);
+        btnClose = findViewById(R.id.btn_close);
 
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        progressBar = findViewById(R.id.progress_bar);
 
-        txtViewWatchAgain = (TextView) findViewById(R.id.btn_watch_again);
-        txtViewLearnMore = (TextView) findViewById(R.id.btn_learn_more);
+        txtViewWatchAgain = findViewById(R.id.btn_watch_again);
+        txtViewLearnMore = findViewById(R.id.btn_learn_more);
 
-        txtViewLearnMoreAlways = (TextView) findViewById(R.id.txt_view_learn_more);
+        txtViewLearnMoreAlways = findViewById(R.id.txt_view_learn_more);
 
-        txtViewTitle = (TextView) findViewById(R.id.txt_title);
+        txtViewTitle = findViewById(R.id.txt_title);
 
         metrics = new DisplayMetrics();
         VideoPlayerActivity.this.getWindowManager().getDefaultDisplay().getMetrics(metrics);

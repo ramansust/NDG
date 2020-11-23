@@ -52,11 +52,11 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
      * Initialized all view
      */
     private void initViews() {
-        viewPager = (ViewPager) findViewById(R.id.tutorialViewPager);
-        btnClose = (ImageButton) findViewById(R.id.btnClose);
-        btnNext = (ImageButton) findViewById(R.id.btnNext);
-        txtNext = (TextView) findViewById(R.id.txtNext);
-        indicator = (DotsIndicator) findViewById(R.id.viewpager_indicator);
+        viewPager = findViewById(R.id.tutorialViewPager);
+        btnClose = findViewById(R.id.btnClose);
+        btnNext = findViewById(R.id.btnNext);
+        txtNext = findViewById(R.id.txtNext);
+        indicator = findViewById(R.id.viewpager_indicator);
     }
 
     /**

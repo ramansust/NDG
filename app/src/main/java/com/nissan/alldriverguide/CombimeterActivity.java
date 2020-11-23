@@ -127,11 +127,11 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
     private void initViews() {
         context = CombimeterActivity.this;
         preferenceUtil = new PreferenceUtil(context);
-        btnBack = (ImageButton) findViewById(R.id.btn_back);
-        linearBack = (LinearLayout) findViewById(R.id.linear_back);
-        scrollView = (ScrollView) findViewById(R.id.scroll_view);
-        txt_back_title = (TextView) findViewById(R.id.txt_back_title);
-        txt_title = (TextView) findViewById(R.id.txt_title);
+        btnBack = findViewById(R.id.btn_back);
+        linearBack = findViewById(R.id.linear_back);
+        scrollView = findViewById(R.id.scroll_view);
+        txt_back_title = findViewById(R.id.txt_back_title);
+        txt_title = findViewById(R.id.txt_title);
     }
 
     /**
