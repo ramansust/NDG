@@ -160,7 +160,6 @@ public class SearchFragment extends Fragment {
     private void setAdapter() {
         List<Object> items = new ArrayList<>();
 
-
         for (Map.Entry<String, List<Object>> entry : dataMap.entrySet()) {
             String key = entry.getKey();
             List<Object> list = dataMap.get(key);
@@ -179,9 +178,7 @@ public class SearchFragment extends Fragment {
         ArrayList<String> dateWise_ListString = new ArrayList<>();
 
         for (int i = 0; i < dateWise_List.size(); i++) {
-
-            dateWise_ListString.add(dateWise_List.get(i).getSearchtag());
-
+            dateWise_ListString.add(dateWise_List.get(i).getSearchTag());
         }
 
         Set<String> uniqueColorList = new HashSet<String>();
@@ -229,7 +226,6 @@ public class SearchFragment extends Fragment {
                     }
                     mLastClickTime = SystemClock.elapsedRealtime();
                     new deleteRecentSearches().execute();
-
                     break;
             }
         }
@@ -322,16 +318,12 @@ public class SearchFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
             progressDialog = new ProgressDialogController(getActivity()).showDialog(resources.getString(R.string.search_delete_loader_message));
-
         }
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-
             return commonDao.deleteRecentSearchesFromSearchTable(getActivity().getApplicationContext(), Values.carType, selectedLanguage);
-
         }
 
         @Override
@@ -347,7 +339,6 @@ public class SearchFragment extends Fragment {
             } else {
                 Logger.error("SearchFragment", "_______Problem clearing search.");
             }
-
         }
     }
 

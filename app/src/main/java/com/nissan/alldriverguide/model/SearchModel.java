@@ -7,29 +7,29 @@ package com.nissan.alldriverguide.model;
 public class SearchModel {
 
     int id;
-    String searchtag;
+    String searchTag;
     String date;
     int count;
-    int cartype;
+    int carType;
     private String langType;
 
     public SearchModel() {
     }
 
-    public SearchModel(String searchtag, String date, int count, int cartype, String langType) {
-        this.searchtag = searchtag;
+    public SearchModel(String searchTag, String date, int count, int carType, String langType) {
+        this.searchTag = searchTag;
         this.date = date;
         this.count = count;
-        this.cartype = cartype;
+        this.carType = carType;
         this.langType = langType;
     }
 
-    public SearchModel(int id, String searchtag, String date, int count, int cartype) {
+    public SearchModel(int id, String searchTag, String date, int count, int carType) {
         this.id = id;
-        this.searchtag = searchtag;
+        this.searchTag = searchTag;
         this.date = date;
         this.count = count;
-        this.cartype = cartype;
+        this.carType = carType;
     }
 
     public int getId() {
@@ -40,12 +40,12 @@ public class SearchModel {
         this.id = id;
     }
 
-    public String getSearchtag() {
-        return searchtag;
+    public String getSearchTag() {
+        return searchTag;
     }
 
-    public void setSearchtag(String searchtag) {
-        this.searchtag = searchtag;
+    public void setSearchTag(String searchTag) {
+        this.searchTag = searchTag;
     }
 
     public String getDate() {
@@ -64,11 +64,11 @@ public class SearchModel {
         this.count = count;
     }
 
-    public int getCartype() {
-        return cartype;
+    public int getCarType() {
+        return carType;
     }
 
-    public void setCartype(int cartype) {
-        this.cartype = cartype;
+    public void setCarType(int carType) {
+        this.carType = carType;
     }
 }

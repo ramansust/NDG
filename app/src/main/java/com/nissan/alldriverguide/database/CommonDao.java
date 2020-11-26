@@ -230,8 +230,8 @@ public class CommonDao {
         epubModel.setTitle(aCursor.getString(aCursor.getColumnIndex(EpubInfoTableDirectory.TITLE)));
         epubModel.setTag(aCursor.getString(aCursor.getColumnIndex(EpubInfoTableDirectory.TAG)));
         epubModel.setLink(aCursor.getString(aCursor.getColumnIndex(EpubInfoTableDirectory.LINK)));
-        epubModel.setCartype(aCursor.getInt(aCursor.getColumnIndex(EpubInfoTableDirectory.CARTYPE)));
-        epubModel.setEpubtype(aCursor.getInt(aCursor.getColumnIndex(EpubInfoTableDirectory.EPUBTYPE)));
+        epubModel.setCarType(aCursor.getInt(aCursor.getColumnIndex(EpubInfoTableDirectory.CARTYPE)));
+        epubModel.setEpubType(aCursor.getInt(aCursor.getColumnIndex(EpubInfoTableDirectory.EPUBTYPE)));
         epubModel.setIndex(aCursor.getInt(aCursor.getColumnIndex(EpubInfoTableDirectory.INDEX)));
         return epubModel;
     }
@@ -517,7 +517,7 @@ public class CommonDao {
             try {
                 for (int i = 0; i < size; i++) {
                     ContentValues cv = new ContentValues();
-                    cv.put(SearchTagTableDirectory.SEARCHTAG, list.get(i).getSearchtag());
+                    cv.put(SearchTagTableDirectory.SEARCHTAG, list.get(i).getSearchTag());
                     cv.put(SearchTagTableDirectory.DATE, list.get(i).getDate());
                     cv.put(SearchTagTableDirectory.COUNT, list.get(i).getCount());
                     cv.put(SearchTagTableDirectory.CARTYPE, cartype);
@@ -743,7 +743,7 @@ public class CommonDao {
         if (db.isOpen()) {
             try {
                 ContentValues cv = new ContentValues();
-                cv.put(SearchTagTableDirectory.SEARCHTAG, searchModel.getSearchtag());
+                cv.put(SearchTagTableDirectory.SEARCHTAG, searchModel.getSearchTag());
                 cv.put(SearchTagTableDirectory.DATE, searchModel.getDate());
                 cv.put(SearchTagTableDirectory.COUNT, searchModel.getCount());
                 cv.put(SearchTagTableDirectory.CARTYPE, carType);

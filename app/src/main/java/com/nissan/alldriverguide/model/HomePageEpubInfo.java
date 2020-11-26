@@ -34,6 +34,4 @@ public class HomePageEpubInfo extends EpubInfo {
     public void setColorCodeItem(String colorCodeItem) {
         this.colorCodeItem = colorCodeItem;
     }
-
-
 }

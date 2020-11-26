@@ -90,30 +90,30 @@ public class AllFragment extends Fragment {
         } else {
             for (EpubModel epubModel : search_List) {
 
-                List<Object> list = dataMap.get(headerTitle(epubModel.getEpubtype()));
+                List<Object> list = dataMap.get(headerTitle(epubModel.getEpubType()));
 
                 if (list == null) {
                     list = new ArrayList<>();
-                    dataMap.put(headerTitle(epubModel.getEpubtype()), list);
+                    dataMap.put(headerTitle(epubModel.getEpubType()), list);
                 }
 
-                if (String.valueOf(epubModel.getEpubtype()).equalsIgnoreCase(Values.COMBIMETER_TYPE + "")) {
+                if (String.valueOf(epubModel.getEpubType()).equalsIgnoreCase(Values.COMBIMETER_TYPE + "")) {
                     warningLight(epubModel, list);
-                } else if (String.valueOf(epubModel.getEpubtype()).equalsIgnoreCase(Values.HOMEPAGE_TYPE + "")) {
+                } else if (String.valueOf(epubModel.getEpubType()).equalsIgnoreCase(Values.HOMEPAGE_TYPE + "")) {
                     list.add(epubModel);
-                } else if (String.valueOf(epubModel.getEpubtype()).equalsIgnoreCase(Values.TYRE_TYPE + "")) {
+                } else if (String.valueOf(epubModel.getEpubType()).equalsIgnoreCase(Values.TYRE_TYPE + "")) {
                     list.add(epubModel);
-                } else if (String.valueOf(epubModel.getEpubtype()).equalsIgnoreCase(Values.ENGINE_TYPE + "")) {
+                } else if (String.valueOf(epubModel.getEpubType()).equalsIgnoreCase(Values.ENGINE_TYPE + "")) {
                     list.add(epubModel);
-                } else if (String.valueOf(epubModel.getEpubtype()).equalsIgnoreCase(Values.WARRANTY_TYPE + "")) {
+                } else if (String.valueOf(epubModel.getEpubType()).equalsIgnoreCase(Values.WARRANTY_TYPE + "")) {
                     list.add(epubModel);
                 } else {
                 }
 
                 try {
                     if (list.size() <= 0) {
-                        if (dataMap.containsKey(epubModel.getEpubtype())) {
-                            dataMap.remove(epubModel.getEpubtype());
+                        if (dataMap.containsKey(epubModel.getEpubType())) {
+                            dataMap.remove(epubModel.getEpubType());
                         }
                     }
                 } catch (Exception e) {

@@ -44,5 +44,4 @@ public class HomePageSectionInfo {
     public void setColorCode(String colorCode) {
         this.colorCode = colorCode;
     }
-
 }

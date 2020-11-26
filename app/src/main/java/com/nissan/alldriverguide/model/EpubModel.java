@@ -9,20 +9,20 @@ public class EpubModel {
     String title;
     String tag;
     String link;
-    int cartype;
-    int epubtype;
+    int carType;
+    int epubType;
     private int index;
 
     public EpubModel() {
     }
 
-    public EpubModel(int id, String title, String tag, String link, int cartype, int epubtype, int index) {
+    public EpubModel(int id, String title, String tag, String link, int carType, int epubType, int index) {
         this.id = id;
         this.title = title;
         this.tag = tag;
         this.link = link;
-        this.cartype = cartype;
-        this.epubtype = epubtype;
+        this.carType = carType;
+        this.epubType = epubType;
         this.index = index;
     }
 
@@ -58,20 +58,20 @@ public class EpubModel {
         this.link = link;
     }
 
-    public int getCartype() {
-        return cartype;
+    public int getCarType() {
+        return carType;
     }
 
-    public void setCartype(int cartype) {
-        this.cartype = cartype;
+    public void setCarType(int carType) {
+        this.carType = carType;
     }
 
-    public int getEpubtype() {
-        return epubtype;
+    public int getEpubType() {
+        return epubType;
     }
 
-    public void setEpubtype(int epubtype) {
-        this.epubtype = epubtype;
+    public void setEpubType(int epubType) {
+        this.epubType = epubType;
     }
 
     public int getIndex() {
