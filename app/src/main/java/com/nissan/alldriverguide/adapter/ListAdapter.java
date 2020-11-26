@@ -27,7 +27,6 @@ public class ListAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
     private List<EpubInfo> list;
-    private Typeface tf;
 
     /**
      * Declare Constructor
@@ -39,7 +38,6 @@ public class ListAdapter extends BaseAdapter {
         this.context = context;
         this.list = list;
         inflater = LayoutInflater.from(this.context);
-        tf = context.getResources().getFont(R.font.nissan_brand_bold);
     }
 
     @Override
@@ -90,15 +88,12 @@ public class ListAdapter extends BaseAdapter {
                 SpannableString spanString = new SpannableString(str.substring(p, str.length()));
                 spanString.setSpan(new UnderlineSpan(), 0, spanString.length(), 0); // set underline for (DEMO)
                 spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0); // set BOLD for (DEMO)
-                viewHolder.txtViewTitle.setTypeface(tf); // set custom font
                 viewHolder.txtViewTitle.setText(TextUtils.concat(spanString1, spanString)); // finally set the SpannableString in textView
             } else {
-                viewHolder.txtViewTitle.setTypeface(tf);
                 viewHolder.txtViewTitle.setText(list.get(position).getTitle().toUpperCase());
             }
 
         } else {
-            viewHolder.txtViewTitle.setTypeface(tf);
             viewHolder.txtViewTitle.setText((position + 1) + ". " + list.get(position).getTitle().toUpperCase());
         }
 
