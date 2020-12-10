@@ -4,8 +4,14 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/webpsupport-1.13.0.aar/6af10c7a62dc8b3695dabd0a251a7225/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/webpsupport-1.13.0.aar/6af10c7a62dc8b3695dabd0a251a7225/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/webpsupport-1.13.0.aar/6af10c7a62dc8b3695dabd0a251a7225/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/453172b91c8e953f3c06563cc64efb93/jetified-webpsupport-1.13.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d8d0d8fe9c962ebec39798f36f6ed301/jetified-webpsupport-1.13.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d8d0d8fe9c962ebec39798f36f6ed301/jetified-webpsupport-1.13.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d8d0d8fe9c962ebec39798f36f6ed301/jetified-webpsupport-1.13.0/jars/classes.jar!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.fresco/webpsupport/1.13.0/7f3f45407c1d3c0b3736c872b1b0aae9bb6b8a27/webpsupport-1.13.0-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.fresco/webpsupport/1.13.0/b961d933a095d10223adc9e092e44960e85516b3/webpsupport-1.13.0-sources.jar!/" />
     </SOURCES>

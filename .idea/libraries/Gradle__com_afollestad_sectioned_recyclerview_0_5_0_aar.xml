@@ -4,6 +4,10 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/sectioned-recyclerview-0.5.0.aar/9482b8325d5b8ecac328e95b0a34e5d7/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/sectioned-recyclerview-0.5.0.aar/9482b8325d5b8ecac328e95b0a34e5d7/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/sectioned-recyclerview-0.5.0.aar/9482b8325d5b8ecac328e95b0a34e5d7/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1bb8fb721326e0f12603537e21bb897a/jetified-sectioned-recyclerview-0.5.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1fdfb25f978847ae6e8af1b31b5490b1/jetified-sectioned-recyclerview-0.5.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1fdfb25f978847ae6e8af1b31b5490b1/jetified-sectioned-recyclerview-0.5.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1fdfb25f978847ae6e8af1b31b5490b1/jetified-sectioned-recyclerview-0.5.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.afollestad/sectioned-recyclerview/0.5.0/f562cad8e3779d44c43dbe47f15c3439915598e5/sectioned-recyclerview-0.5.0-javadoc.jar!/" />

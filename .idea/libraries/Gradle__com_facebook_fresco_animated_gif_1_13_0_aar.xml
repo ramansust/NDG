@@ -4,8 +4,14 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-gif-1.13.0.aar/839dede5e978c6986731979772febd07/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-gif-1.13.0.aar/839dede5e978c6986731979772febd07/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-gif-1.13.0.aar/839dede5e978c6986731979772febd07/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0747b0cc475a511d01507a0072f2ad50/jetified-animated-gif-1.13.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/805c4f5f96a71e6ac04d3321796470ed/jetified-animated-gif-1.13.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/805c4f5f96a71e6ac04d3321796470ed/jetified-animated-gif-1.13.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/805c4f5f96a71e6ac04d3321796470ed/jetified-animated-gif-1.13.0/AndroidManifest.xml" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.fresco/animated-gif/1.13.0/ca1cab59e2fbafd319b7a6f3801866df5b8f70bf/animated-gif-1.13.0-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.fresco/animated-gif/1.13.0/c36c0296408a4ea60a1dfa232ff2159805d91d7f/animated-gif-1.13.0-sources.jar!/" />
     </SOURCES>

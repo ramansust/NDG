@@ -1,6 +1,5 @@
 package com.nissan.alldriverguide;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -13,8 +12,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -23,6 +20,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -35,8 +35,6 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
-import com.mobioapp.infinitipacket.callback.DownloaderStatus;
-import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.adapter.LanguageSelectionAdapter;
 import com.nissan.alldriverguide.controller.CarListContentController;
 import com.nissan.alldriverguide.controller.GlobalMessageController;
@@ -62,7 +60,6 @@ import com.nissan.alldriverguide.utils.AppConfig;
 import com.nissan.alldriverguide.utils.DialogErrorFragment;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
-import com.nissan.alldriverguide.utils.SearchDBAsync;
 import com.nissan.alldriverguide.utils.Values;
 
 import org.apache.commons.io.FileUtils;
@@ -73,8 +70,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.nissan.alldriverguide.utils.Values.DATA_SYNCING;
-import static com.nissan.alldriverguide.utils.Values.DOWNLOADING;
 import static com.nissan.alldriverguide.utils.Values.STARTING_DOWNLOAD;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
@@ -372,7 +367,12 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     preferenceUtil.storeMultiLangData(info.getTabMenu(), Values.carType + "_" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + "_" + Values.TAB_MENU_KEY);
 
                     //call this after getting the asset link successfully
-                    startCarAssetsDownload(AppConfig.IS_APP_ONLINE ? info.getAssetsUrl() : NissanApp.getInstance().getAssetsURL(Values.carType), Values.PATH, AppConfig.IS_APP_ONLINE ? info.getLangUrl() : NissanApp.getInstance().getLanguageURL((Values.carType), preferenceUtil.getSelectedLang()), NissanApp.getInstance().getCarPath(Values.carType));
+                    startCarAssetsDownload(AppConfig.IS_APP_ONLINE ? info.getAssetsUrl() :
+                                    NissanApp.getInstance().getAssetsURL(Values.carType),
+                            Values.PATH,
+                            AppConfig.IS_APP_ONLINE ? info.getLangUrl() : NissanApp.getInstance().getLanguageURL((Values.carType),
+                                    preferenceUtil.getSelectedLang()),
+                            NissanApp.getInstance().getCarPath(Values.carType));
                 } else {
                     showErrorDialog("No content found.");
                     dismissDialog();
@@ -391,110 +391,113 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
     private void startCarAssetsDownload(String assetsSource, String assetsDestination, final String langSource, String langDestination) {
         // downloadCarAssets method actually download car asset and language epub are both
-        new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(Values.carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
-            @Override
-            public boolean onComplete(boolean b) {
-                if (b) {
-                    runOnUiThread(new Runnable() {
-                        @SuppressLint("StaticFieldLeak")
-                        @Override
-                        public void run() {
+//        new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(Values.carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
+//            @Override
+//            public boolean onComplete(boolean b) {
+//                if (b) {
+//                    runOnUiThread(new Runnable() {
+//                        @SuppressLint("StaticFieldLeak")
+//                        @Override
+//                        public void run() {
+//
+//                            if (progressDialog != null) {
+//                                String dataSyncingMsg = getAlertMessage(DATA_SYNCING);
+//                                progressDialog.setMessage(dataSyncingMsg.isEmpty() ? resources.getString(R.string.data_syncing) : dataSyncingMsg);
+//                            }
+//
+//                            new SearchDBAsync(LanguageSelectionActivity.this, preferenceUtil.getSelectedLang(), Values.carType) {
+//
+//                                @Override
+//                                public void onComplete(boolean status) {
+//                                    if (status) {
+//                                        postCarDownloadSuccessfulStatus();
+//                                    } else {
+//                                        errorFileDelete(Values.carType);
+//                                    }
+//
+//                                }
+//                            }.execute();
+//                        }
+//                    });
+//
+//                }
+//                return false;
+//            }
+//
+//            @Override
+//            public int onError(int i) {
+//                errorFileDelete(Values.carType);
+//                showErrorDialog(context.getResources().getString(R.string.internet_connection_interruption));
+//                Logger.error("onError", "______" + i);
+//                return 0;
+//            }
+//
+//            @Override
+//            public boolean internetConnection(boolean b) {
+//                Logger.error("internetConnection", "______" + b);
+//                errorFileDelete(Values.carType);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean urlReachable(boolean b) {
+//                Logger.error("urlReachable", "______" + b);
+//                errorFileDelete(Values.carType);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean destinationExists(boolean b) {
+//                Logger.error("destinationExists", "______" + b);
+//                errorFileDelete(Values.carType);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean sourcePath(boolean b) {
+//                Logger.error("sourcePath", "______" + b);
+//                errorFileDelete(Values.carType);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean destinationPath(boolean b) {
+//                Logger.error("destinationPath", "______" + b);
+//                errorFileDelete(Values.carType);
+//                return false;
+//            }
+//
+//            @Override
+//            public void downloadCompletion(Float aFloat) {
+//                String formattedString = String.format("%.02f", aFloat);
+//                if (progressDialog != null) {
+//                    String downloadingMsg = getAlertMessage(DOWNLOADING);
+//                    downloadingMsg = downloadingMsg.isEmpty() ? getResources().getString(R.string.alert_downloading) : downloadingMsg;
+//                    progressDialog.setMessage(carName + "\n" + downloadingMsg + formattedString + "%");
+//                }
+//            }
+//
+//            @Override
+//            public void init() {
+//                Logger.error("init", "______" + "start");
+//                if (Values.carType == 11) {
+////                    carName = "All New Nissan Micra";
+//                    carName = "Nissan Micra";
+//                } else {
+//                    carName = NissanApp.getInstance().getCarName(Values.carType);
+//                }
+//                if (progressDialog == null) {
+//
+//                    String downloadingMsg = getAlertMessage(DOWNLOADING);
+//                    downloadingMsg = downloadingMsg.isEmpty() ? getResources().getString(R.string.alert_downloading) : downloadingMsg;
+//
+//                    progressDialog = new ProgressDialogController(LanguageSelectionActivity.this).downloadProgress(carName + "\n" + downloadingMsg);
+//                }
+//            }
+//        });
 
-                            if (progressDialog != null) {
-                                String dataSyncingMsg = getAlertMessage(DATA_SYNCING);
-                                progressDialog.setMessage(dataSyncingMsg.isEmpty() ? resources.getString(R.string.data_syncing) : dataSyncingMsg);
-                            }
-
-                            new SearchDBAsync(LanguageSelectionActivity.this, preferenceUtil.getSelectedLang(), Values.carType) {
-
-                                @Override
-                                public void onComplete(boolean status) {
-                                    if (status) {
-                                        postCarDownloadSuccessfulStatus();
-                                    } else {
-                                        errorFileDelete(Values.carType);
-                                    }
-
-                                }
-                            }.execute();
-                        }
-                    });
-
-                }
-                return false;
-            }
-
-            @Override
-            public int onError(int i) {
-                errorFileDelete(Values.carType);
-                showErrorDialog(context.getResources().getString(R.string.internet_connection_interruption));
-                Logger.error("onError", "______" + i);
-                return 0;
-            }
-
-            @Override
-            public boolean internetConnection(boolean b) {
-                Logger.error("internetConnection", "______" + b);
-                errorFileDelete(Values.carType);
-                return false;
-            }
-
-            @Override
-            public boolean urlReachable(boolean b) {
-                Logger.error("urlReachable", "______" + b);
-                errorFileDelete(Values.carType);
-                return false;
-            }
-
-            @Override
-            public boolean destinationExists(boolean b) {
-                Logger.error("destinationExists", "______" + b);
-                errorFileDelete(Values.carType);
-                return false;
-            }
-
-            @Override
-            public boolean sourcePath(boolean b) {
-                Logger.error("sourcePath", "______" + b);
-                errorFileDelete(Values.carType);
-                return false;
-            }
-
-            @Override
-            public boolean destinationPath(boolean b) {
-                Logger.error("destinationPath", "______" + b);
-                errorFileDelete(Values.carType);
-                return false;
-            }
-
-            @Override
-            public void downloadCompletion(Float aFloat) {
-                String formattedString = String.format("%.02f", aFloat);
-                if (progressDialog != null) {
-                    String downloadingMsg = getAlertMessage(DOWNLOADING);
-                    downloadingMsg = downloadingMsg.isEmpty() ? getResources().getString(R.string.alert_downloading) : downloadingMsg;
-                    progressDialog.setMessage(carName + "\n" + downloadingMsg + formattedString + "%");
-                }
-            }
-
-            @Override
-            public void init() {
-                Logger.error("init", "______" + "start");
-                if (Values.carType == 11) {
-//                    carName = "All New Nissan Micra";
-                    carName = "Nissan Micra";
-                } else {
-                    carName = NissanApp.getInstance().getCarName(Values.carType);
-                }
-                if (progressDialog == null) {
-
-                    String downloadingMsg = getAlertMessage(DOWNLOADING);
-                    downloadingMsg = downloadingMsg.isEmpty() ? getResources().getString(R.string.alert_downloading) : downloadingMsg;
-
-                    progressDialog = new ProgressDialogController(LanguageSelectionActivity.this).downloadProgress(carName + "\n" + downloadingMsg);
-                }
-            }
-        });
+//        new CarDownloadHelper(this,
+//                NissanApp.getInstance().getCarName(Values.carType))
     }
 
     private void postCarDownloadSuccessfulStatus() {
