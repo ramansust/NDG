@@ -6,7 +6,6 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
@@ -17,6 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.NissanApp;

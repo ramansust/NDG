@@ -2,9 +2,6 @@ package com.nissan.alldriverguide.adapter;
 
 
 import android.content.Context;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +10,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.mobioapp.infinitipacket.model.EpubInfo;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.fragments.assistance.DetailsFragment;
 import com.nissan.alldriverguide.fragments.search.TabFragment;

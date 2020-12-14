@@ -8,8 +8,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.provider.Settings;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -17,10 +15,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.datasoft.downloadManager.epubUtils.EpubInfo;
+import com.datasoft.downloadManager.epubUtils.ExtractedEpubLoader;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mobioapp.infinitipacket.epub.XMLParser;
-import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.BuildConfig;
 import com.nissan.alldriverguide.MyApplication;
 import com.nissan.alldriverguide.R;
@@ -38,10 +39,6 @@ import com.nissan.alldriverguide.multiLang.model.GlobalMessage;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.multiLang.model.TabMenu;
 import com.nissan.alldriverguide.multiLang.model.Tutorial;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -1414,29 +1411,7 @@ public class NissanApp {
 
     public ArrayList<EpubInfo> parseePub(String dest) {
 
-        Logger.error("destination", "___________" + dest);
-
-        ArrayList list = new ArrayList();
-        XMLParser parser = new XMLParser();
-        String xml = this.getFileContent(dest + Values.TOC_DIRECTORY);
-        Document doc = parser.getDomElement(xml);
-        NodeList nl = doc.getElementsByTagName("navPoint");
-
-        for (int i = 0; i < nl.getLength(); ++i) {
-            EpubInfo info = new EpubInfo();
-            Element element = (Element) nl.item(i);
-            info.setIndex(i);
-            info.setHtmlLink(parser.getAttributeValue(element, "content", "src"));
-//            info.setTitle(parser.getValue(element, "text"));
-//            info.setSearchTag(parser.getValue(element, "search"));
-
-            info.setTitle(StringHelper.convertFromUTF8(parser.getValue(element, "text")));
-            info.setSearchTag(StringHelper.convertFromUTF8(parser.getValue(element, "search")));
-
-            list.add(info);
-        }
-
-        return list;
+        return new ExtractedEpubLoader(dest).parseNcxFile();
     }
 
     private String getFileContent(String targetFilePath) {

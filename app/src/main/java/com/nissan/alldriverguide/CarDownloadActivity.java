@@ -1,6 +1,5 @@
 package com.nissan.alldriverguide;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -26,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -33,8 +33,6 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mobioapp.infinitipacket.callback.DownloaderStatus;
-import com.mobioapp.infinitipacket.downloader.MADownloadManager;
 import com.nissan.alldriverguide.adapter.CarDownloadAdapter;
 import com.nissan.alldriverguide.controller.CarListContentController;
 import com.nissan.alldriverguide.controller.GlobalMessageController;
@@ -59,13 +57,10 @@ import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.pushnotification.Config;
 import com.nissan.alldriverguide.pushnotification.NotificationUtils;
 import com.nissan.alldriverguide.retrofit.ApiCall;
-import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
 import com.nissan.alldriverguide.utils.DialogErrorFragment;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
-import com.nissan.alldriverguide.utils.SearchDBAsync;
-import com.nissan.alldriverguide.utils.SingleContentUpdating;
 import com.nissan.alldriverguide.utils.Values;
 
 import org.apache.commons.io.FileUtils;
@@ -713,126 +708,139 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
                                 Logger.error("content_url", "____________" + responseInfo.getUrl());
 
-                                new MADownloadManager(
-                                        activity, getApplicationContext()).downloadLanguage(false, "Language", responseInfo.getUrl(), NissanApp.getInstance().getCarPath(Values.carType), new DownloaderStatus() {
+                                CarDownloadHelper carDownloadHelper = new CarDownloadHelper(CarDownloadActivity.this, "" + Values.carType,
+                                        responseInfo.getLangUrl(), responseInfo.getAssetsUrl(),
+                                        NissanApp.getInstance().getCarPath(Values.carType)
+                                );
+                                carDownloadHelper.downloadAssetAndLang();
+                                carDownloadHelper.getDownloadProgress().observe(CarDownloadActivity.this, new Observer<CarDownloadProgress>() {
                                     @Override
-                                    public boolean onComplete(boolean b) {
-                                        if (b) {
-                                            runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    if (progressDialog != null) {
-                                                        progressDialog.setMessage(getResources().getString(R.string.data_syncing));
-                                                    }
-
-                                                    new SingleContentUpdating(CarDownloadActivity.this, selectedLang, Values.carType) {
-                                                        @Override
-                                                        public void onComplete(boolean status) {
-
-                                                            if (status) {
-
-                                                                new ApiCall().postContentDownloadConfirmation("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(selectedLang), stringBuilder.toString(), NissanApp.getInstance().getDeviceID(getApplicationContext()), new CompleteAPI() {
-                                                                    @Override
-                                                                    public void onDownloaded(ResponseInfo responseInfo) {
-
-                                                                        Logger.error("Status code _________", "__________________" + responseInfo.getStatusCode());
-
-                                                                        if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
-
-                                                                            try {
-//                                                                                ((MainActivity) getApplicationContext()).sendMsgToGoogleAnalytics(((MainActivity) getApplicationContext()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));
-                                                                                commonDao.updateLanguageStatus(CarDownloadActivity.this.getBaseContext(), Values.carType, selectedLang);
-                                                                                commonDao.deleteSingleCarEpub(CarDownloadActivity.this, Values.carType);
-
-                                                                                for (PushContentInfo pushContentInfo : list) {
-                                                                                    commonDao.updatePushContentStatus(getApplicationContext(), Integer.parseInt(pushContentInfo.getCarId()), Integer.parseInt(pushContentInfo.getLangId()), Integer.parseInt(pushContentInfo.getePubId()));
-                                                                                }
-
-                                                                            } catch (Exception e) {
-                                                                                e.printStackTrace();
-                                                                            } finally {
-                                                                                if (progressDialog != null) {
-                                                                                    progressDialog.dismiss();
-                                                                                }
-
-                                                                                goToNextPage(position);
-                                                                            }
-
-                                                                        } else {
-
-                                                                        }
-                                                                    }
-
-                                                                    @Override
-                                                                    public void onFailed(String failedReason) {
-                                                                        Logger.error("CarDownloadActivity", "_____download_confirmation_error->" + failedReason);
-                                                                    }
-                                                                });
-
-                                                            } else {
-
-                                                            }
-                                                        }
-                                                    }.execute();
-
-                                                }
-                                            });
-
-                                        } else {
-                                            Logger.error("problem", "______assetDownload-LanguageFragment");
-                                        }
-                                        return false;
-                                    }
-
-                                    @Override
-                                    public int onError(int i) {
-                                        showErrorDialog("Error ! Unable to update content, Please try again.");
-                                        dismissDialog();
-                                        return 0;
-                                    }
-
-                                    @Override
-                                    public boolean internetConnection(boolean b) {
-                                        showErrorDialog("No internet connection, Please try again");
-                                        dismissDialog();
-                                        return false;
-                                    }
-
-                                    @Override
-                                    public boolean urlReachable(boolean b) {
-                                        return false;
-                                    }
-
-                                    @Override
-                                    public boolean destinationExists(boolean b) {
-                                        return false;
-                                    }
-
-                                    @Override
-                                    public boolean sourcePath(boolean b) {
-                                        return false;
-                                    }
-
-                                    @Override
-                                    public boolean destinationPath(boolean b) {
-                                        return false;
-                                    }
-
-                                    @Override
-                                    public void downloadCompletion(Float aFloat) {
-                                        String formattedString = String.format("%.02f", aFloat);
-                                        if (progressDialog != null) {
-                                            progressDialog.setMessage(CarDownloadActivity.this.getResources().getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + getResources().getString(R.string.alert_download_complete) + formattedString + "%");
-                                        }
-                                    }
-
-                                    @Override
-                                    public void init() {
-                                        if (progressDialog == null) {
-                                            progressDialog = new ProgressDialogController(CarDownloadActivity.this).downloadProgress(CarDownloadActivity.this.getResources().getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + getResources().getString(R.string.alert_download_complete));
-                                        }
+                                    public void onChanged(CarDownloadProgress carDownloadProgress) {
+                                        Log.d("CarDownload", carDownloadProgress.toString());
                                     }
                                 });
+
+
+//                                new MADownloadManager(
+//                                        activity, getApplicationContext()).downloadLanguage(false, "Language", responseInfo.getUrl(), NissanApp.getInstance().getCarPath(Values.carType), new DownloaderStatus() {
+//                                    @Override
+//                                    public boolean onComplete(boolean b) {
+//                                        if (b) {
+//                                            runOnUiThread(new Runnable() {
+//                                                @Override
+//                                                public void run() {
+//                                                    if (progressDialog != null) {
+//                                                        progressDialog.setMessage(getResources().getString(R.string.data_syncing));
+//                                                    }
+//
+//                                                    new SingleContentUpdating(CarDownloadActivity.this, selectedLang, Values.carType) {
+//                                                        @Override
+//                                                        public void onComplete(boolean status) {
+//
+//                                                            if (status) {
+//
+//                                                                new ApiCall().postContentDownloadConfirmation("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(selectedLang), stringBuilder.toString(), NissanApp.getInstance().getDeviceID(getApplicationContext()), new CompleteAPI() {
+//                                                                    @Override
+//                                                                    public void onDownloaded(ResponseInfo responseInfo) {
+//
+//                                                                        Logger.error("Status code _________", "__________________" + responseInfo.getStatusCode());
+//
+//                                                                        if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
+//
+//                                                                            try {
+////                                                                                ((MainActivity) getApplicationContext()).sendMsgToGoogleAnalytics(((MainActivity) getApplicationContext()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));
+//                                                                                commonDao.updateLanguageStatus(CarDownloadActivity.this.getBaseContext(), Values.carType, selectedLang);
+//                                                                                commonDao.deleteSingleCarEpub(CarDownloadActivity.this, Values.carType);
+//
+//                                                                                for (PushContentInfo pushContentInfo : list) {
+//                                                                                    commonDao.updatePushContentStatus(getApplicationContext(), Integer.parseInt(pushContentInfo.getCarId()), Integer.parseInt(pushContentInfo.getLangId()), Integer.parseInt(pushContentInfo.getePubId()));
+//                                                                                }
+//
+//                                                                            } catch (Exception e) {
+//                                                                                e.printStackTrace();
+//                                                                            } finally {
+//                                                                                if (progressDialog != null) {
+//                                                                                    progressDialog.dismiss();
+//                                                                                }
+//
+//                                                                                goToNextPage(position);
+//                                                                            }
+//
+//                                                                        } else {
+//
+//                                                                        }
+//                                                                    }
+//
+//                                                                    @Override
+//                                                                    public void onFailed(String failedReason) {
+//                                                                        Logger.error("CarDownloadActivity", "_____download_confirmation_error->" + failedReason);
+//                                                                    }
+//                                                                });
+//
+//                                                            } else {
+//
+//                                                            }
+//                                                        }
+//                                                    }.execute();
+//
+//                                                }
+//                                            });
+//
+//                                        } else {
+//                                            Logger.error("problem", "______assetDownload-LanguageFragment");
+//                                        }
+//                                        return false;
+//                                    }
+//
+//                                    @Override
+//                                    public int onError(int i) {
+//                                        showErrorDialog("Error ! Unable to update content, Please try again.");
+//                                        dismissDialog();
+//                                        return 0;
+//                                    }
+//
+//                                    @Override
+//                                    public boolean internetConnection(boolean b) {
+//                                        showErrorDialog("No internet connection, Please try again");
+//                                        dismissDialog();
+//                                        return false;
+//                                    }
+//
+//                                    @Override
+//                                    public boolean urlReachable(boolean b) {
+//                                        return false;
+//                                    }
+//
+//                                    @Override
+//                                    public boolean destinationExists(boolean b) {
+//                                        return false;
+//                                    }
+//
+//                                    @Override
+//                                    public boolean sourcePath(boolean b) {
+//                                        return false;
+//                                    }
+//
+//                                    @Override
+//                                    public boolean destinationPath(boolean b) {
+//                                        return false;
+//                                    }
+//
+//                                    @Override
+//                                    public void downloadCompletion(Float aFloat) {
+//                                        String formattedString = String.format("%.02f", aFloat);
+//                                        if (progressDialog != null) {
+//                                            progressDialog.setMessage(CarDownloadActivity.this.getResources().getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + getResources().getString(R.string.alert_download_complete) + formattedString + "%");
+//                                        }
+//                                    }
+//
+//                                    @Override
+//                                    public void init() {
+//                                        if (progressDialog == null) {
+//                                            progressDialog = new ProgressDialogController(CarDownloadActivity.this).downloadProgress(CarDownloadActivity.this.getResources().getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + getResources().getString(R.string.alert_download_complete));
+//                                        }
+//                                    }
+//                                });
                             } else {
                                 showErrorDialog("Status code OR URL not reachable");
                                 dismissDialog();
@@ -1385,157 +1393,157 @@ public class CarDownloadActivity extends AppCompatActivity implements AdapterVie
 
     private void startCarAssetsDownload(String assetsSource, String assetsDestination, String langSource, String langDestination) {
         // downloadCarAssets method download car asset and language both
-        new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(Values.carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
-            @SuppressLint("StaticFieldLeak")
-            @Override
-            public boolean onComplete(boolean b) {
-                if (b) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (progressDialog != null) {
-                                progressDialog.setMessage(getResources().getString(R.string.data_syncing));
-                            }
-                        }
-                    });
-
-                    new SearchDBAsync(activity, selectedLang, Values.carType) {
-                        @Override
-                        public void onComplete(boolean status) {
-
-                            if (status) {
-                                new ApiCall().postCarDownloadConfirmation("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(selectedLang), "0", NissanApp.getInstance().getDeviceID(context), new CompleteAPI() {
-                                    @Override
-                                    public void onDownloaded(ResponseInfo responseInfo) {
-
-                                        if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
-
-                                            sendMsgToGoogleAnalytics(NissanApp.getInstance().getCarName(Values.carType) + Analytics.DOWNLOAD + Analytics.DOT + NissanApp.getInstance().getLanguageName(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + Analytics.DOT + Analytics.PLATFORM);
-                                            // set the car path where car asset is downloaded
-                                            Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
-
-                                            commonDao.updateDateAndStatus(getBaseContext(), Values.carType, Values.ALREADY_DOWNLOADED, NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-                                            if (Values.carType == 1 || Values.carType == 4) {
-                                                CarInfo carInfo = commonDao.getCarInfo(getApplicationContext(), Values.carType + 1);
-                                                if (Values.carType == 1) {
-                                                    // if car type 1 then update the 2 number car region = 'EUR' for display EUROPE and RUSSIA both car
-                                                    if (commonDao.getStatus(getBaseContext(), Values.carType + 1) == 2) {
-                                                        // here update the car when download car number 1
-                                                        commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 1, "2", NissanApp.getInstance().getDateTime(), "EUR", carInfo.getVersionName(), carInfo.getVersionCode());
-                                                    }
-                                                } else if (Values.carType == 4) {
-                                                    if (commonDao.getStatus(getBaseContext(), Values.carType + 1) == 0) {
-                                                        // here update the car when download car number 4
-                                                        commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 1, "0", NissanApp.getInstance().getDateTime(), "EUR", carInfo.getVersionName(), carInfo.getVersionCode());
-                                                    }
-                                                } else {
-
-                                                }
-                                            }
-                                            commonDao.updateLanguageStatus(getBaseContext(), Values.carType, preferenceUtil.getSelectedLang());
-
-                                            // here set the car selection for car downloaded settings adapter
-                                            NissanApp.getInstance().setCarAllList(commonDao.getAllCarList(getBaseContext()));
-                                            for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
-                                                if (NissanApp.getInstance().getCarAllList().get(i).getId() == Values.carType) {
-                                                    NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(1);
-                                                } else {
-                                                    NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(0);
-                                                }
-                                            }
-
-                                            commonDao.updateAllPushContentStatusForSingleCar(context, Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
-                                            dismissDialog();
-
-                                            // if car is first time downloaded then show the Tutorial Activity
-                                            if (preferenceUtil.getIsFirstTime()) {
-                                                startActivity(new Intent(CarDownloadActivity.this, TutorialActivity.class).putExtra("from", "activity"));
-                                                finish();
-                                            } else {
-                                                startActivity(new Intent(CarDownloadActivity.this, MainActivity.class));
-                                            }
-
-                                        } else {
-                                            showErrorDialog("Confirmation send error!");
-                                            dismissDialog();
-                                        }
-
-                                    }
-
-                                    @Override
-                                    public void onFailed(String failedReason) {
-                                        showErrorDialog(failedReason);
-                                        dismissDialog();
-                                    }
-                                });
-
-                            } else {
-                                dismissDialog();
-                            }
-
-                        }
-                    }.execute();
-
-                } else {
-                    dismissDialog();
-                }
-                return false;
-            }
-
-            @Override
-            public int onError(int i) {
-                errorFileDelete(Values.carType);
-                return 0;
-            }
-
-            @Override
-            public boolean internetConnection(boolean b) {
-                errorFileDelete(Values.carType);
-                return false;
-            }
-
-            @Override
-            public boolean urlReachable(boolean b) {
-                errorFileDelete(Values.carType);
-                Logger.error("urlReachable", "_________" + b);
-                return false;
-            }
-
-            @Override
-            public boolean destinationExists(boolean b) {
-                errorFileDelete(Values.carType);
-                return false;
-            }
-
-            @Override
-            public boolean sourcePath(boolean b) {
-                errorFileDelete(Values.carType);
-                return false;
-            }
-
-            @Override
-            public boolean destinationPath(boolean b) {
-                errorFileDelete(Values.carType);
-                return false;
-            }
-
-            @Override
-            public void downloadCompletion(Float aFloat) {
-
-                String formattedString = String.format("%.02f", aFloat);
-                if (progressDialog != null) {
-                    progressDialog.setMessage(NissanApp.getInstance().getCarName(Values.carType) + "\n" + getResources().getString(R.string.alert_downloading) + formattedString + "%");
-                }
-            }
-
-            @Override
-            public void init() {
-                loadResource(selectedLang);
-                if (progressDialog == null) {
-                    progressDialog = new ProgressDialogController(CarDownloadActivity.this).downloadProgress(NissanApp.getInstance().getCarName(Values.carType) + "\n" + getResources().getString(R.string.alert_downloading));
-                }
-            }
-        });
+//        new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(Values.carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
+//            @SuppressLint("StaticFieldLeak")
+//            @Override
+//            public boolean onComplete(boolean b) {
+//                if (b) {
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            if (progressDialog != null) {
+//                                progressDialog.setMessage(getResources().getString(R.string.data_syncing));
+//                            }
+//                        }
+//                    });
+//
+//                    new SearchDBAsync(activity, selectedLang, Values.carType) {
+//                        @Override
+//                        public void onComplete(boolean status) {
+//
+//                            if (status) {
+//                                new ApiCall().postCarDownloadConfirmation("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(selectedLang), "0", NissanApp.getInstance().getDeviceID(context), new CompleteAPI() {
+//                                    @Override
+//                                    public void onDownloaded(ResponseInfo responseInfo) {
+//
+//                                        if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
+//
+//                                            sendMsgToGoogleAnalytics(NissanApp.getInstance().getCarName(Values.carType) + Analytics.DOWNLOAD + Analytics.DOT + NissanApp.getInstance().getLanguageName(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + Analytics.DOT + Analytics.PLATFORM);
+//                                            // set the car path where car asset is downloaded
+//                                            Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
+//
+//                                            commonDao.updateDateAndStatus(getBaseContext(), Values.carType, Values.ALREADY_DOWNLOADED, NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+//                                            if (Values.carType == 1 || Values.carType == 4) {
+//                                                CarInfo carInfo = commonDao.getCarInfo(getApplicationContext(), Values.carType + 1);
+//                                                if (Values.carType == 1) {
+//                                                    // if car type 1 then update the 2 number car region = 'EUR' for display EUROPE and RUSSIA both car
+//                                                    if (commonDao.getStatus(getBaseContext(), Values.carType + 1) == 2) {
+//                                                        // here update the car when download car number 1
+//                                                        commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 1, "2", NissanApp.getInstance().getDateTime(), "EUR", carInfo.getVersionName(), carInfo.getVersionCode());
+//                                                    }
+//                                                } else if (Values.carType == 4) {
+//                                                    if (commonDao.getStatus(getBaseContext(), Values.carType + 1) == 0) {
+//                                                        // here update the car when download car number 4
+//                                                        commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 1, "0", NissanApp.getInstance().getDateTime(), "EUR", carInfo.getVersionName(), carInfo.getVersionCode());
+//                                                    }
+//                                                } else {
+//
+//                                                }
+//                                            }
+//                                            commonDao.updateLanguageStatus(getBaseContext(), Values.carType, preferenceUtil.getSelectedLang());
+//
+//                                            // here set the car selection for car downloaded settings adapter
+//                                            NissanApp.getInstance().setCarAllList(commonDao.getAllCarList(getBaseContext()));
+//                                            for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
+//                                                if (NissanApp.getInstance().getCarAllList().get(i).getId() == Values.carType) {
+//                                                    NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(1);
+//                                                } else {
+//                                                    NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(0);
+//                                                }
+//                                            }
+//
+//                                            commonDao.updateAllPushContentStatusForSingleCar(context, Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
+//                                            dismissDialog();
+//
+//                                            // if car is first time downloaded then show the Tutorial Activity
+//                                            if (preferenceUtil.getIsFirstTime()) {
+//                                                startActivity(new Intent(CarDownloadActivity.this, TutorialActivity.class).putExtra("from", "activity"));
+//                                                finish();
+//                                            } else {
+//                                                startActivity(new Intent(CarDownloadActivity.this, MainActivity.class));
+//                                            }
+//
+//                                        } else {
+//                                            showErrorDialog("Confirmation send error!");
+//                                            dismissDialog();
+//                                        }
+//
+//                                    }
+//
+//                                    @Override
+//                                    public void onFailed(String failedReason) {
+//                                        showErrorDialog(failedReason);
+//                                        dismissDialog();
+//                                    }
+//                                });
+//
+//                            } else {
+//                                dismissDialog();
+//                            }
+//
+//                        }
+//                    }.execute();
+//
+//                } else {
+//                    dismissDialog();
+//                }
+//                return false;
+//            }
+//
+//            @Override
+//            public int onError(int i) {
+//                errorFileDelete(Values.carType);
+//                return 0;
+//            }
+//
+//            @Override
+//            public boolean internetConnection(boolean b) {
+//                errorFileDelete(Values.carType);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean urlReachable(boolean b) {
+//                errorFileDelete(Values.carType);
+//                Logger.error("urlReachable", "_________" + b);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean destinationExists(boolean b) {
+//                errorFileDelete(Values.carType);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean sourcePath(boolean b) {
+//                errorFileDelete(Values.carType);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean destinationPath(boolean b) {
+//                errorFileDelete(Values.carType);
+//                return false;
+//            }
+//
+//            @Override
+//            public void downloadCompletion(Float aFloat) {
+//
+//                String formattedString = String.format("%.02f", aFloat);
+//                if (progressDialog != null) {
+//                    progressDialog.setMessage(NissanApp.getInstance().getCarName(Values.carType) + "\n" + getResources().getString(R.string.alert_downloading) + formattedString + "%");
+//                }
+//            }
+//
+//            @Override
+//            public void init() {
+//                loadResource(selectedLang);
+//                if (progressDialog == null) {
+//                    progressDialog = new ProgressDialogController(CarDownloadActivity.this).downloadProgress(NissanApp.getInstance().getCarName(Values.carType) + "\n" + getResources().getString(R.string.alert_downloading));
+//                }
+//            }
+//        });
     }
 
     private void errorFileDelete(int carType) {

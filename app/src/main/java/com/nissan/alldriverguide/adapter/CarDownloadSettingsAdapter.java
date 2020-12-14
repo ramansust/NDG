@@ -1,6 +1,5 @@
 package com.nissan.alldriverguide.adapter;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -8,11 +7,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.SystemClock;
-import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -29,12 +23,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mobioapp.infinitipacket.callback.DownloaderStatus;
-import com.mobioapp.infinitipacket.downloader.MADownloadManager;
-import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.controller.CarListContentController;
 import com.nissan.alldriverguide.controller.GlobalMessageController;
@@ -59,12 +56,10 @@ import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.retrofit.ApiCall;
-import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
 import com.nissan.alldriverguide.utils.DialogErrorFragment;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
-import com.nissan.alldriverguide.utils.SearchDBAsync;
 import com.nissan.alldriverguide.utils.Values;
 
 import org.apache.commons.io.FileUtils;
@@ -518,364 +513,365 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         Logger.error("downloadingMsg", "________" + downloadingMsg + "________" + preferenceUtil.getSelectedLang());
 
-        new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
-            @Override
-            public boolean onComplete(boolean status) {
-                if (status) {
-                    activity.runOnUiThread(new Runnable() {
-                        @SuppressLint("StaticFieldLeak")
-                        @Override
-                        public void run() {
-                            if (progressDialog != null) {
-                                progressDialog.setMessage(dataSyncingMsg == null || dataSyncingMsg.isEmpty() ? activity.getResources().getString(R.string.data_syncing) : dataSyncingMsg);
-                            }
-
-                            new SearchDBAsync(activity, lang, carType) {
-
-                                @Override
-                                public void onComplete(boolean status) {
-
-                                    if (status) {
-
-                                        new ApiCall().postCarDownloadConfirmation("" + carType, "" + downloading_lang_id, "0", NissanApp.getInstance().getDeviceID(context), new CompleteAPI() {
-                                            @Override
-                                            public void onDownloaded(ResponseInfo responseInfo) {
-                                                if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
-
-                                                    Values.carType = carType;
-                                                    Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
-                                                    commonDao.updateDateAndStatus(context, carType, "1", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-
-                                                    if (carType == 1 || carType == 4) {
-                                                        if (commonDao.getStatus(context, carType + 1) == 2) {
-                                                            commonDao.updateDateAndStatus(context, carType + 1, "2", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-                                                        }
-                                                    } else if (carType == 13) {//click eur/rus rohan
-                                                        if (commonDao.getStatus(context, carType + 2) == 0) {
-                                                            commonDao.updateDateAndStatus(context, carType + 2, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-                                                        }
-                                                    } else if (carType == 12) {
-                                                        if (commonDao.getStatus(context, carType + 4) == 0) {
-                                                            commonDao.updateDateAndStatus(context, carType + 4, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-                                                        }
-                                                    } else if (carType == 14) {
-                                                        if (commonDao.getStatus(context, carType + 3) == 0) {
-                                                            commonDao.updateDateAndStatus(context, carType + 3, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-                                                        }
-                                                    }
-
-                                                    if (carType == 1 || carType == 2 || carType == 4 || carType == 5) {
-                                                        if (carType == 1 || carType == 4) {
-                                                            if (commonDao.getStatus(context, carType + 1) == 1) {
-
-                                                                list.get(selectedCarPosition).setSelectedCar(0);
-                                                                list.get(position).setSelectedCar(1);
-                                                                list.get(position).setName(commonDao.getCarName(context, carType));
-                                                                list.get(position).setStatus("1");
-                                                            } else {
-                                                                if (!isForceDownload) {
-                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 0);
-
-                                                                    list.add(position, info);
-                                                                    list.get(position + 1).setId(carType + 1);
-                                                                } else {
-                                                                    list.get(position).setStatus("1");
-                                                                    list.get(position).setSelectedCar(1);
-                                                                }
-
-                                                                for (int i = 0; i < list.size(); i++) {
-                                                                    if (list.get(i).getId() != carType) {
-                                                                        list.get(i).setSelectedCar(0);
-                                                                    }
-                                                                }
-                                                            }
-                                                        } else {
-                                                            if (commonDao.getStatus(context, carType - 1) == 1) {
-                                                                list.get(selectedCarPosition).setSelectedCar(0);
-                                                                list.get(position).setSelectedCar(1);
-                                                                list.get(position).setName(commonDao.getCarName(context, carType));
-                                                                list.get(position).setStatus("1");
-                                                            } else {
-                                                                if (!isForceDownload) {
-                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 0);
-
-                                                                    list.add(position + 1, info);
-                                                                } else {
-                                                                    list.get(position).setStatus("1");
-                                                                    list.get(position).setSelectedCar(1);
-                                                                }
-
-                                                                for (int i = 0; i < list.size(); i++) {
-                                                                    if (list.get(i).getId() != carType) {
-                                                                        list.get(i).setSelectedCar(0);
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-
-                                                    } else if (carType == 14 || carType == 17) {
-
-                                                        if (carType == 14) {
-                                                            if (commonDao.getStatus(context, carType + 3) == 1) {
-
-                                                                list.get(selectedCarPosition).setSelectedCar(0);
-                                                                list.get(position).setSelectedCar(1);
-                                                                list.get(position).setName(commonDao.getCarName(context, carType));
-                                                                list.get(position).setStatus("1");
-                                                            } else {
-
-                                                                if (!isForceDownload) {
-
-                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 15);
-
-                                                                    list.add(position, info);
-                                                                    list.get(position + 1).setId(carType + 3);
-                                                                } else {
-                                                                    list.get(position).setStatus("1");
-                                                                    list.get(position).setSelectedCar(1);
-                                                                }
-
-                                                                for (int i = 0; i < list.size(); i++) {
-                                                                    if (list.get(i).getId() != carType) {
-                                                                        list.get(i).setSelectedCar(0);
-                                                                    }
-                                                                }
-                                                            }
-                                                        } else {
-                                                            if (commonDao.getStatus(context, carType - 3) == 1) {
-                                                                list.get(selectedCarPosition).setSelectedCar(0);
-                                                                list.get(position).setSelectedCar(1);
-                                                                list.get(position).setName(commonDao.getCarName(context, carType));
-                                                                list.get(position).setStatus("1");
-                                                            } else {
-                                                                if (!isForceDownload) {
-                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 16);
-
-                                                                    list.add(position + 1, info);
-                                                                } else {
-                                                                    list.get(position).setStatus("1");
-                                                                    list.get(position).setSelectedCar(1);
-                                                                }
-
-                                                                for (int i = 0; i < list.size(); i++) {
-                                                                    if (list.get(i).getId() != carType) {
-                                                                        list.get(i).setSelectedCar(0);
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-
-
-                                                    } else if (carType == 13 || carType == 15) {
-
-                                                        if (carType == 13) {
-                                                            if (commonDao.getStatus(context, carType + 2) == 1) {
-
-                                                                list.get(selectedCarPosition).setSelectedCar(0);
-                                                                list.get(position).setSelectedCar(1);
-                                                                list.get(position).setName(commonDao.getCarName(context, carType));
-                                                                list.get(position).setStatus("1");
-                                                            } else {
-
-                                                                if (!isForceDownload) {
-
-                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 14);
-
-                                                                    list.add(position, info);
-                                                                    list.get(position + 1).setId(carType + 2);
-                                                                } else {
-                                                                    list.get(position).setStatus("1");
-                                                                    list.get(position).setSelectedCar(1);
-                                                                }
-
-                                                                for (int i = 0; i < list.size(); i++) {
-                                                                    if (list.get(i).getId() != carType) {
-                                                                        list.get(i).setSelectedCar(0);
-                                                                    }
-                                                                }
-                                                            }
-                                                        } else {
-                                                            if (commonDao.getStatus(context, carType - 2) == 1) {
-                                                                list.get(selectedCarPosition).setSelectedCar(0);
-                                                                list.get(position).setSelectedCar(1);
-                                                                list.get(position).setName(commonDao.getCarName(context, carType));
-                                                                list.get(position).setStatus("1");
-                                                            } else {
-                                                                if (!isForceDownload) {
-                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 13);
-
-                                                                    list.add(position + 1, info);
-                                                                } else {
-                                                                    list.get(position).setStatus("1");
-                                                                    list.get(position).setSelectedCar(1);
-                                                                }
-
-                                                                for (int i = 0; i < list.size(); i++) {
-                                                                    if (list.get(i).getId() != carType) {
-                                                                        list.get(i).setSelectedCar(0);
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-
-
-                                                    } else if (carType == 12 || carType == 16) {
-
-                                                        if (carType == 12) {
-                                                            if (commonDao.getStatus(context, carType + 4) == 1) {
-
-                                                                list.get(selectedCarPosition).setSelectedCar(0);
-                                                                list.get(position).setSelectedCar(1);
-                                                                list.get(position).setName(commonDao.getCarName(context, carType));
-                                                                list.get(position).setStatus("1");
-                                                            } else {
-
-                                                                if (!isForceDownload) {
-
-                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 11);
-
-                                                                    list.add(position, info);
-                                                                    list.get(position + 1).setId(carType + 4);
-                                                                } else {
-                                                                    list.get(position).setStatus("1");
-                                                                    list.get(position).setSelectedCar(1);
-                                                                }
-
-                                                                for (int i = 0; i < list.size(); i++) {
-                                                                    if (list.get(i).getId() != carType) {
-                                                                        list.get(i).setSelectedCar(0);
-                                                                    }
-                                                                }
-                                                            }
-                                                        } else {
-                                                            if (commonDao.getStatus(context, carType - 4) == 1) {
-                                                                list.get(selectedCarPosition).setSelectedCar(0);
-                                                                list.get(position).setSelectedCar(1);
-                                                                list.get(position).setName(commonDao.getCarName(context, carType));
-                                                                list.get(position).setStatus("1");
-                                                            } else {
-                                                                if (!isForceDownload) {
-                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 12);
-
-                                                                    list.add(position + 1, info);
-                                                                } else {
-                                                                    list.get(position).setStatus("1");
-                                                                    list.get(position).setSelectedCar(1);
-                                                                }
-
-                                                                for (int i = 0; i < list.size(); i++) {
-                                                                    if (list.get(i).getId() != carType) {
-                                                                        list.get(i).setSelectedCar(0);
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-
-
-                                                    } else {
-                                                        list.get(position).setStatus("1");
-                                                        list.get(position).setSelectedCar(1);
-                                                        list.get(selectedCarPosition).setSelectedCar(0);
-                                                    }
-
-
-                                                    commonDao.updateLanguageStatus(context, carType, lang);
-                                                    commonDao.updateAllPushContentStatusForSingleCar(context, carType, downloading_lang_id);
-                                                    new PreferenceUtil(context).setSelectedLang(commonDao.getLanguageStatus(context, Values.carType));
-                                                    ((MainActivity) activity).sendMsgToGoogleAnalytics(((MainActivity) activity).getAnalyticsFromSettings(Analytics.CAR_SELECTION + Analytics.DOWNLOAD));
-
-                                                    frag.loadResource();
-                                                    loadResource();
-                                                    adapterNotify(false);
-                                                    if (progressDialog != null) {
-                                                        progressDialog.dismiss();
-                                                    }
-
-                                                } else {
-
-                                                    if (progressDialog != null)
-                                                        progressDialog.dismiss();
-
-                                                }
-                                            }
-
-                                            @Override
-                                            public void onFailed(String failedReason) {
-                                                if (progressDialog != null) {
-                                                    progressDialog.dismiss();
-                                                }
-                                            }
-                                        });
-
-                                    } else {
-                                        errorFileDelete(Values.carType);
-                                    }
-                                }
-                            }.execute();
-
-                        }
-                    });
-                } else {
-                    if (progressDialog != null && progressDialog.isShowing()) {
-                        progressDialog.dismiss();
-                    }
-                }
-                return false;
-            }
-
-            @Override
-            public int onError(int i) {
-                errorFileDelete(carType);
-                showErrorDialog(context.getResources().getString(R.string.internet_connection_interruption));
-                return 0;
-            }
-
-            @Override
-            public boolean internetConnection(boolean b) {
-                errorFileDelete(carType);
-                return false;
-            }
-
-            @Override
-            public boolean urlReachable(boolean b) {
-                errorFileDelete(carType);
-                return false;
-            }
-
-            @Override
-            public boolean destinationExists(boolean b) {
-                errorFileDelete(carType);
-                return false;
-            }
-
-            @Override
-            public boolean sourcePath(boolean b) {
-                errorFileDelete(carType);
-                return false;
-            }
-
-            @Override
-            public boolean destinationPath(boolean b) {
-                errorFileDelete(carType);
-                return false;
-            }
-
-            @Override
-            public void downloadCompletion(Float aFloat) {
-
-                String formattedString = String.format("%.02f", aFloat);
-                if (progressDialog != null) {
-                    progressDialog.setMessage(carNames[carType - 1] + "\n" + (downloadingMsg == null || downloadingMsg.isEmpty() ? activity.getResources().getString(R.string.alert_downloading) : downloadingMsg) + formattedString + "%");
-                }
-            }
-
-            @Override
-            public void init() {
-                if (progressDialog == null) {
-                    progressDialog = new ProgressDialogController(activity).downloadProgress(carNames[carType - 1] + "\n" + activity.getResources().getString(R.string.alert_downloading));
-                }
-            }
-        });
+//        new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
+//            @Override
+//            public boolean onComplete(boolean status) {
+//                if (status) {
+//                    activity.runOnUiThread(new Runnable() {
+//                        @SuppressLint("StaticFieldLeak")
+//                        @Override
+//                        public void run() {
+//                            if (progressDialog != null) {
+//                                progressDialog.setMessage(dataSyncingMsg == null || dataSyncingMsg.isEmpty() ? activity.getResources().getString(R.string.data_syncing) : dataSyncingMsg);
+//                            }
+//
+//                            new SearchDBAsync(activity, lang, carType) {
+//
+//                                @Override
+//                                public void onComplete(boolean status) {
+//
+//                                    if (status) {
+//
+//                                        new ApiCall().postCarDownloadConfirmation("" + carType, "" + downloading_lang_id, "0", NissanApp.getInstance().getDeviceID(context), new CompleteAPI() {
+//                                            @Override
+//                                            public void onDownloaded(ResponseInfo responseInfo) {
+//                                                if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
+//
+//                                                    Values.carType = carType;
+//                                                    Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
+//                                                    commonDao.updateDateAndStatus(context, carType, "1", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+//
+//                                                    if (carType == 1 || carType == 4) {
+//                                                        if (commonDao.getStatus(context, carType + 1) == 2) {
+//                                                            commonDao.updateDateAndStatus(context, carType + 1, "2", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+//                                                        }
+//                                                    } else if (carType == 13) {//click eur/rus rohan
+//                                                        if (commonDao.getStatus(context, carType + 2) == 0) {
+//                                                            commonDao.updateDateAndStatus(context, carType + 2, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+//                                                        }
+//                                                    } else if (carType == 12) {
+//                                                        if (commonDao.getStatus(context, carType + 4) == 0) {
+//                                                            commonDao.updateDateAndStatus(context, carType + 4, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+//                                                        }
+//                                                    } else if (carType == 14) {
+//                                                        if (commonDao.getStatus(context, carType + 3) == 0) {
+//                                                            commonDao.updateDateAndStatus(context, carType + 3, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+//                                                        }
+//                                                    }
+//
+//                                                    if (carType == 1 || carType == 2 || carType == 4 || carType == 5) {
+//                                                        if (carType == 1 || carType == 4) {
+//                                                            if (commonDao.getStatus(context, carType + 1) == 1) {
+//
+//                                                                list.get(selectedCarPosition).setSelectedCar(0);
+//                                                                list.get(position).setSelectedCar(1);
+//                                                                list.get(position).setName(commonDao.getCarName(context, carType));
+//                                                                list.get(position).setStatus("1");
+//                                                            } else {
+//                                                                if (!isForceDownload) {
+//                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 0);
+//
+//                                                                    list.add(position, info);
+//                                                                    list.get(position + 1).setId(carType + 1);
+//                                                                } else {
+//                                                                    list.get(position).setStatus("1");
+//                                                                    list.get(position).setSelectedCar(1);
+//                                                                }
+//
+//                                                                for (int i = 0; i < list.size(); i++) {
+//                                                                    if (list.get(i).getId() != carType) {
+//                                                                        list.get(i).setSelectedCar(0);
+//                                                                    }
+//                                                                }
+//                                                            }
+//                                                        } else {
+//                                                            if (commonDao.getStatus(context, carType - 1) == 1) {
+//                                                                list.get(selectedCarPosition).setSelectedCar(0);
+//                                                                list.get(position).setSelectedCar(1);
+//                                                                list.get(position).setName(commonDao.getCarName(context, carType));
+//                                                                list.get(position).setStatus("1");
+//                                                            } else {
+//                                                                if (!isForceDownload) {
+//                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 0);
+//
+//                                                                    list.add(position + 1, info);
+//                                                                } else {
+//                                                                    list.get(position).setStatus("1");
+//                                                                    list.get(position).setSelectedCar(1);
+//                                                                }
+//
+//                                                                for (int i = 0; i < list.size(); i++) {
+//                                                                    if (list.get(i).getId() != carType) {
+//                                                                        list.get(i).setSelectedCar(0);
+//                                                                    }
+//                                                                }
+//                                                            }
+//                                                        }
+//
+//                                                    } else if (carType == 14 || carType == 17) {
+//
+//                                                        if (carType == 14) {
+//                                                            if (commonDao.getStatus(context, carType + 3) == 1) {
+//
+//                                                                list.get(selectedCarPosition).setSelectedCar(0);
+//                                                                list.get(position).setSelectedCar(1);
+//                                                                list.get(position).setName(commonDao.getCarName(context, carType));
+//                                                                list.get(position).setStatus("1");
+//                                                            } else {
+//
+//                                                                if (!isForceDownload) {
+//
+//                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 15);
+//
+//                                                                    list.add(position, info);
+//                                                                    list.get(position + 1).setId(carType + 3);
+//                                                                } else {
+//                                                                    list.get(position).setStatus("1");
+//                                                                    list.get(position).setSelectedCar(1);
+//                                                                }
+//
+//                                                                for (int i = 0; i < list.size(); i++) {
+//                                                                    if (list.get(i).getId() != carType) {
+//                                                                        list.get(i).setSelectedCar(0);
+//                                                                    }
+//                                                                }
+//                                                            }
+//                                                        } else {
+//                                                            if (commonDao.getStatus(context, carType - 3) == 1) {
+//                                                                list.get(selectedCarPosition).setSelectedCar(0);
+//                                                                list.get(position).setSelectedCar(1);
+//                                                                list.get(position).setName(commonDao.getCarName(context, carType));
+//                                                                list.get(position).setStatus("1");
+//                                                            } else {
+//                                                                if (!isForceDownload) {
+//                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 16);
+//
+//                                                                    list.add(position + 1, info);
+//                                                                } else {
+//                                                                    list.get(position).setStatus("1");
+//                                                                    list.get(position).setSelectedCar(1);
+//                                                                }
+//
+//                                                                for (int i = 0; i < list.size(); i++) {
+//                                                                    if (list.get(i).getId() != carType) {
+//                                                                        list.get(i).setSelectedCar(0);
+//                                                                    }
+//                                                                }
+//                                                            }
+//                                                        }
+//
+//
+//                                                    } else if (carType == 13 || carType == 15) {
+//
+//                                                        if (carType == 13) {
+//                                                            if (commonDao.getStatus(context, carType + 2) == 1) {
+//
+//                                                                list.get(selectedCarPosition).setSelectedCar(0);
+//                                                                list.get(position).setSelectedCar(1);
+//                                                                list.get(position).setName(commonDao.getCarName(context, carType));
+//                                                                list.get(position).setStatus("1");
+//                                                            } else {
+//
+//                                                                if (!isForceDownload) {
+//
+//                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 14);
+//
+//                                                                    list.add(position, info);
+//                                                                    list.get(position + 1).setId(carType + 2);
+//                                                                } else {
+//                                                                    list.get(position).setStatus("1");
+//                                                                    list.get(position).setSelectedCar(1);
+//                                                                }
+//
+//                                                                for (int i = 0; i < list.size(); i++) {
+//                                                                    if (list.get(i).getId() != carType) {
+//                                                                        list.get(i).setSelectedCar(0);
+//                                                                    }
+//                                                                }
+//                                                            }
+//                                                        } else {
+//                                                            if (commonDao.getStatus(context, carType - 2) == 1) {
+//                                                                list.get(selectedCarPosition).setSelectedCar(0);
+//                                                                list.get(position).setSelectedCar(1);
+//                                                                list.get(position).setName(commonDao.getCarName(context, carType));
+//                                                                list.get(position).setStatus("1");
+//                                                            } else {
+//                                                                if (!isForceDownload) {
+//                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 13);
+//
+//                                                                    list.add(position + 1, info);
+//                                                                } else {
+//                                                                    list.get(position).setStatus("1");
+//                                                                    list.get(position).setSelectedCar(1);
+//                                                                }
+//
+//                                                                for (int i = 0; i < list.size(); i++) {
+//                                                                    if (list.get(i).getId() != carType) {
+//                                                                        list.get(i).setSelectedCar(0);
+//                                                                    }
+//                                                                }
+//                                                            }
+//                                                        }
+//
+//
+//                                                    } else if (carType == 12 || carType == 16) {
+//
+//                                                        if (carType == 12) {
+//                                                            if (commonDao.getStatus(context, carType + 4) == 1) {
+//
+//                                                                list.get(selectedCarPosition).setSelectedCar(0);
+//                                                                list.get(position).setSelectedCar(1);
+//                                                                list.get(position).setName(commonDao.getCarName(context, carType));
+//                                                                list.get(position).setStatus("1");
+//                                                            } else {
+//
+//                                                                if (!isForceDownload) {
+//
+//                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 11);
+//
+//                                                                    list.add(position, info);
+//                                                                    list.get(position + 1).setId(carType + 4);
+//                                                                } else {
+//                                                                    list.get(position).setStatus("1");
+//                                                                    list.get(position).setSelectedCar(1);
+//                                                                }
+//
+//                                                                for (int i = 0; i < list.size(); i++) {
+//                                                                    if (list.get(i).getId() != carType) {
+//                                                                        list.get(i).setSelectedCar(0);
+//                                                                    }
+//                                                                }
+//                                                            }
+//                                                        } else {
+//                                                            if (commonDao.getStatus(context, carType - 4) == 1) {
+//                                                                list.get(selectedCarPosition).setSelectedCar(0);
+//                                                                list.get(position).setSelectedCar(1);
+//                                                                list.get(position).setName(commonDao.getCarName(context, carType));
+//                                                                list.get(position).setStatus("1");
+//                                                            } else {
+//                                                                if (!isForceDownload) {
+//                                                                    CarInfo info = new CarInfo(carType, commonDao.getCarName(context, carType), "1", NissanApp.getInstance().getDateTime().toString(), "EUR", new PreferenceUtil(context).getSelectedLang(), 1, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), 12);
+//
+//                                                                    list.add(position + 1, info);
+//                                                                } else {
+//                                                                    list.get(position).setStatus("1");
+//                                                                    list.get(position).setSelectedCar(1);
+//                                                                }
+//
+//                                                                for (int i = 0; i < list.size(); i++) {
+//                                                                    if (list.get(i).getId() != carType) {
+//                                                                        list.get(i).setSelectedCar(0);
+//                                                                    }
+//                                                                }
+//                                                            }
+//                                                        }
+//
+//
+//                                                    } else {
+//                                                        list.get(position).setStatus("1");
+//                                                        list.get(position).setSelectedCar(1);
+//                                                        list.get(selectedCarPosition).setSelectedCar(0);
+//                                                    }
+//
+//
+//                                                    commonDao.updateLanguageStatus(context, carType, lang);
+//                                                    commonDao.updateAllPushContentStatusForSingleCar(context, carType, downloading_lang_id);
+//                                                    new PreferenceUtil(context).setSelectedLang(commonDao.getLanguageStatus(context, Values.carType));
+//                                                    ((MainActivity) activity).sendMsgToGoogleAnalytics(((MainActivity) activity).getAnalyticsFromSettings(Analytics.CAR_SELECTION + Analytics.DOWNLOAD));
+//
+//                                                    frag.loadResource();
+//                                                    loadResource();
+//                                                    adapterNotify(false);
+//                                                    if (progressDialog != null) {
+//                                                        progressDialog.dismiss();
+//                                                    }
+//
+//                                                } else {
+//
+//                                                    if (progressDialog != null)
+//                                                        progressDialog.dismiss();
+//
+//                                                }
+//                                            }
+//
+//                                            @Override
+//                                            public void onFailed(String failedReason) {
+//                                                if (progressDialog != null) {
+//                                                    progressDialog.dismiss();
+//                                                }
+//                                            }
+//                                        });
+//
+//                                    } else {
+//                                        errorFileDelete(Values.carType);
+//                                    }
+//                                }
+//                            }.execute();
+//
+//                        }
+//                    });
+//                } else {
+//                    if (progressDialog != null && progressDialog.isShowing()) {
+//                        progressDialog.dismiss();
+//                    }
+//                }
+//                return false;
+//            }
+//
+//            @Override
+//            public int onError(int i) {
+//                errorFileDelete(carType);
+//                showErrorDialog(context.getResources().getString(R.string.internet_connection_interruption));
+//                return 0;
+//            }
+//
+//            @Override
+//            public boolean internetConnection(boolean b) {
+//                errorFileDelete(carType);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean urlReachable(boolean b) {
+//                errorFileDelete(carType);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean destinationExists(boolean b) {
+//                errorFileDelete(carType);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean sourcePath(boolean b) {
+//                errorFileDelete(carType);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean destinationPath(boolean b) {
+//                errorFileDelete(carType);
+//                return false;
+//            }
+//
+//            @Override
+//            public void downloadCompletion(Float aFloat) {
+//
+//                String formattedString = String.format("%.02f", aFloat);
+//                if (progressDialog != null) {
+//                    progressDialog.setMessage(carNames[carType - 1] + "\n" + (downloadingMsg == null || downloadingMsg.isEmpty() ? activity.getResources().getString(R.string.alert_downloading) : downloadingMsg) + formattedString + "%");
+//                }
+//            }
+//
+//            @Override
+//            public void init() {
+//                if (progressDialog == null) {
+//                    progressDialog = new ProgressDialogController(activity).downloadProgress(carNames[carType - 1] + "\n" + activity.getResources().getString(R.string.alert_downloading));
+//                }
+//            }
+//        });
+        //TODO Implement download
     }
 
     private void showErrorDialog(String msg) {

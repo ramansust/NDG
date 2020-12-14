@@ -2,6 +2,7 @@ package com.nissan.alldriverguide.customviews;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+
 import androidx.appcompat.view.ContextThemeWrapper;
 
 import com.nissan.alldriverguide.R;

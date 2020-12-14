@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.mobioapp.infinitipacket.epub.MAePubParser;
-import com.mobioapp.infinitipacket.model.EpubInfo;
+import com.datasoft.downloadManager.epubUtils.EpubInfo;
+import com.datasoft.downloadManager.epubUtils.ExtractedEpubLoader;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 
 import org.apache.commons.io.FileUtils;
@@ -56,7 +56,8 @@ public abstract class SingleContentUpdating extends AsyncTask<Void, Void, Boolea
 
         if (folderNameUpdatedFolderList != null && folderNameUpdatedFolderList.size() > 0) {
             for (int i = 0; i < folderNameUpdatedFolderList.size(); i++) {
-                ArrayList<EpubInfo> listOfePub = new MAePubParser(NissanApp.getInstance().getCarPath(carType) + NissanApp.getInstance().getePubFolderPath(carType) + Values.UNDERSCORE + langType + Values.UNDERSCORE + Values.CONTENT_FOLDER_NAME + Values.SLASH + folderNameUpdatedFolderList.get(i)).parseePub();
+                ArrayList<EpubInfo> listOfePub = new ExtractedEpubLoader(NissanApp.getInstance().getCarPath(carType) + NissanApp.getInstance().getePubFolderPath(carType) + Values.UNDERSCORE + langType + Values.UNDERSCORE + Values.CONTENT_FOLDER_NAME + Values.SLASH + folderNameUpdatedFolderList.get(i))
+                        .parseNcxFile();
 
                 if (listOfePub == null || listOfePub.size() < 1)
                     return;

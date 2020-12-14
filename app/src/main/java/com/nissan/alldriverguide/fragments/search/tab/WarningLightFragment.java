@@ -1,16 +1,17 @@
 package com.nissan.alldriverguide.fragments.search.tab;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-import com.mobioapp.infinitipacket.model.EpubInfo;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
+import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.CombimeterSearchAdapter;
 import com.nissan.alldriverguide.database.CommonDao;

@@ -40,9 +40,11 @@ class ExtractedEpubLoader(private val extractedEpubFolder: String) {
             val element = nl.item(i) as Element
             val info = EpubInfo(
                     index = i,
-                    htmlLink = getAttributeValue(element, "content", "src")?.run {
-                        "$baseUrl/OEBPS/" + this.removeRange(this.indexOf(".xhtml") + 6, this.length)
-                    },
+                    htmlLink = getAttributeValue(element, "content", "src")
+//                    ?.run {
+//                        "$baseUrl/OEBPS/" + this.removeRange(this.indexOf(".xhtml") + 6, this.length)
+//                    }
+                    ,
                     title = getValue(element, "text"),
                     searchTag = getValue(element, "search")
             )

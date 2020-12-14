@@ -3,14 +3,15 @@ package com.nissan.alldriverguide.utils;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
 import com.nissan.alldriverguide.R;
 

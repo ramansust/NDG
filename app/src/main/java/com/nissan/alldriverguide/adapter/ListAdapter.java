@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.mobioapp.infinitipacket.model.EpubInfo;
+import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.utils.Values;
 

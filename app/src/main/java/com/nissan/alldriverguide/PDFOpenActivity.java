@@ -1,11 +1,12 @@
 package com.nissan.alldriverguide;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.nissan.alldriverguide.utils.Values;
 

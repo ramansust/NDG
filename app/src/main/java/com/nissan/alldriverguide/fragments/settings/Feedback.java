@@ -3,8 +3,6 @@ package com.nissan.alldriverguide.fragments.settings;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.SystemClock;
-import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -15,6 +13,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;

@@ -1,6 +1,8 @@
 package com.nissan.alldriverguide.model;
 
-import com.mobioapp.infinitipacket.model.EpubInfo;
+//import com.mobioapp.infinitipacket.model.EpubInfo;
+
+import com.datasoft.downloadManager.epubUtils.EpubInfo;
 
 /**
  * Created by mobioapp on 1/14/18.
@@ -10,6 +12,7 @@ public class HomePageEpubInfo extends EpubInfo {
     private String sectionTitle;
     private String colorCode;
     private String colorCodeItem;
+
 
     public String getSectionTitle() {
         return sectionTitle;

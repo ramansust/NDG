@@ -3,8 +3,8 @@ package com.nissan.alldriverguide.utils;
 import android.app.Activity;
 import android.os.AsyncTask;
 
-import com.mobioapp.infinitipacket.epub.MAePubParser;
-import com.mobioapp.infinitipacket.model.EpubInfo;
+import com.datasoft.downloadManager.epubUtils.EpubInfo;
+import com.datasoft.downloadManager.epubUtils.ExtractedEpubLoader;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 
 import org.apache.commons.io.FileUtils;
@@ -77,7 +77,7 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
                 // here MAePubParser takes epub source path eg. /storage/emulated/0/.AllDriverGuide/qashqai2017/qashqai2017_en/homepage_en.epub
                 // this MAePubParser extract the epub to sdCard and destination folder define in library
                 // parseePub() method in MAePubParser class actually parse the toc.ncx file and load in arrayList
-                ArrayList<EpubInfo> listOfEpub = new MAePubParser(ePubPath).parseePub();
+                ArrayList<EpubInfo> listOfEpub = new ExtractedEpubLoader(ePubPath).parseNcxFile();
 
                 if (listOfEpub == null || listOfEpub.size() < 1)
                     return false; // if listOfEpub ArrayList doesn't have data and contain null value it's return false.

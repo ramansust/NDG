@@ -1,11 +1,12 @@
 package com.nissan.alldriverguide.fragments.search;
 
 import android.os.Bundle;
+import android.view.View;
+import android.webkit.WebView;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import android.view.View;
-import android.webkit.WebView;
 
 import com.nissan.alldriverguide.R;
 

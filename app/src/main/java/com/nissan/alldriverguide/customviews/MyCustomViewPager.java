@@ -1,9 +1,10 @@
 package com.nissan.alldriverguide.customviews;
 
 import android.content.Context;
-import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by mobioapp on 11/22/17.

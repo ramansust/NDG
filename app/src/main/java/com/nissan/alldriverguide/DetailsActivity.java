@@ -3,7 +3,6 @@ package com.nissan.alldriverguide;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -14,10 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.NissanApp;
@@ -219,7 +220,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                     break;
             }
 
-            webView.loadUrl(htmlContent);
+//            webView.loadUrl(htmlContent);
+            webView.loadUrl(list.get(index).getHtmlLink());
             webView.invalidate();
 
         } catch (Exception e) {

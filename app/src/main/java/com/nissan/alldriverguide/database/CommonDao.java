@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 
-import com.mobioapp.infinitipacket.model.EpubInfo;
+import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.EpubModel;
 import com.nissan.alldriverguide.model.PushContentInfo;

@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -60,6 +61,7 @@ import com.nissan.alldriverguide.utils.AppConfig;
 import com.nissan.alldriverguide.utils.DialogErrorFragment;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
+import com.nissan.alldriverguide.utils.SearchDBAsync;
 import com.nissan.alldriverguide.utils.Values;
 
 import org.apache.commons.io.FileUtils;
@@ -70,6 +72,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.nissan.alldriverguide.utils.Values.DATA_SYNCING;
+import static com.nissan.alldriverguide.utils.Values.DOWNLOADING;
 import static com.nissan.alldriverguide.utils.Values.STARTING_DOWNLOAD;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
@@ -400,23 +404,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 //                        @Override
 //                        public void run() {
 //
-//                            if (progressDialog != null) {
-//                                String dataSyncingMsg = getAlertMessage(DATA_SYNCING);
-//                                progressDialog.setMessage(dataSyncingMsg.isEmpty() ? resources.getString(R.string.data_syncing) : dataSyncingMsg);
-//                            }
-//
-//                            new SearchDBAsync(LanguageSelectionActivity.this, preferenceUtil.getSelectedLang(), Values.carType) {
-//
-//                                @Override
-//                                public void onComplete(boolean status) {
-//                                    if (status) {
-//                                        postCarDownloadSuccessfulStatus();
-//                                    } else {
-//                                        errorFileDelete(Values.carType);
-//                                    }
-//
-//                                }
-//                            }.execute();
+
 //                        }
 //                    });
 //
@@ -496,8 +484,51 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 //            }
 //        });
 
-//        new CarDownloadHelper(this,
-//                NissanApp.getInstance().getCarName(Values.carType))
+
+        CarDownloadHelper carDownloadHelper = new CarDownloadHelper(this, NissanApp.getInstance().getCarName(Values.carType),
+                langSource, assetsSource, Values.PATH, langDestination, assetsDestination);
+        carDownloadHelper.getDownloadProgress().observe(this, new Observer<CarDownloadProgress>() {
+            @Override
+            public void onChanged(CarDownloadProgress carDownloadProgress) {
+                if (carDownloadProgress == null) return;
+
+                if (carDownloadProgress instanceof CarDownloadProgress.DOWNLOAD_PROGRESS) {
+                    final CarDownloadProgress.DOWNLOAD_PROGRESS carDownloadProgress1 =
+                            (CarDownloadProgress.DOWNLOAD_PROGRESS) carDownloadProgress;
+                    String formattedString = String.format("%.02f", carDownloadProgress1.getProgress());
+                    if (progressDialog != null) {
+                        String downloadingMsg = getAlertMessage(DOWNLOADING);
+                        downloadingMsg = downloadingMsg.isEmpty() ? getResources().getString(R.string.alert_downloading) : downloadingMsg;
+                        progressDialog.setMessage(carName + "\n" + downloadingMsg + formattedString + "%");
+                    }
+                } else if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE) {
+                    downloadCompleted();
+                }
+
+            }
+        });
+        carDownloadHelper.downloadAssetAndLang();
+    }
+
+    void downloadCompleted() {
+        if (progressDialog != null) {
+            String dataSyncingMsg = getAlertMessage(DATA_SYNCING);
+            progressDialog.setMessage(dataSyncingMsg.isEmpty() ? resources.getString(R.string.data_syncing) : dataSyncingMsg);
+        }
+
+        new SearchDBAsync(LanguageSelectionActivity.this, preferenceUtil.getSelectedLang(), Values.carType) {
+
+            @Override
+            public void onComplete(boolean status) {
+                if (status) {
+                    postCarDownloadSuccessfulStatus();
+                } else {
+                    errorFileDelete(Values.carType);
+                }
+
+            }
+        }.execute();
+
     }
 
     private void postCarDownloadSuccessfulStatus() {
@@ -571,14 +602,14 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
     @Override
     protected void onStart() {
-        // TODO Auto-generated method stub
+
         super.onStart();
         GoogleAnalytics.getInstance(this).reportActivityStart(this);
     }
 
     @Override
     protected void onStop() {
-        // TODO Auto-generated method stub
+
         super.onStop();
         GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }

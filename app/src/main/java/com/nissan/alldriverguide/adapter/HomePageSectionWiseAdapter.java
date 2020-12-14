@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.afollestad.sectionedrecyclerview.SectionedRecyclerViewAdapter;
 import com.afollestad.sectionedrecyclerview.SectionedViewHolder;
-import com.mobioapp.infinitipacket.model.EpubInfo;
+import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.model.HomePageEpubInfo;
 import com.nissan.alldriverguide.model.HomePageSectionInfo;

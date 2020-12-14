@@ -3,12 +3,13 @@ package com.nissan.alldriverguide.adapter;
 import android.content.Context;
 import android.graphics.drawable.Animatable;
 import android.net.Uri;
-import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.controller.BaseControllerListener;

@@ -1,6 +1,7 @@
 package com.nissan.alldriverguide.fragments.search.model;
 
-import com.mobioapp.infinitipacket.model.EpubInfo;
+
+import com.datasoft.downloadManager.epubUtils.EpubInfo;
 
 /**
  * Created by shubha on 11/16/17.

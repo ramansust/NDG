@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mobioapp.infinitipacket.model.EpubInfo;
 import com.nissan.alldriverguide.MyApplication;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;

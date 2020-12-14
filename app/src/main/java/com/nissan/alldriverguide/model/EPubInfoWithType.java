@@ -1,6 +1,9 @@
 package com.nissan.alldriverguide.model;
 
-import com.mobioapp.infinitipacket.model.EpubInfo;
+
+import com.datasoft.downloadManager.epubUtils.EpubInfo;
+
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by shubha on 11/14/17.
@@ -9,6 +12,10 @@ import com.mobioapp.infinitipacket.model.EpubInfo;
 public class EPubInfoWithType extends EpubInfo {
 
     int ePubType = 0;
+
+    public EPubInfoWithType(@Nullable String title, @Nullable String htmlLink, int index, @Nullable String searchTag) {
+        super(title, htmlLink, index, searchTag);
+    }
 
     public int getePubType() {
         return ePubType;
