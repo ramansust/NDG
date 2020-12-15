@@ -122,11 +122,41 @@ class CarDownloadHelper @JvmOverloads constructor(
         if (epubs == null || epubs.isEmpty()) return
 
         for (epub in epubs) {
-            val extractPath = "$langPath//.${epub.nameWithoutExtension}"
+            val extractPath = getExtractPath(langPath, epub)
             UnZipper.extractEpub(epub, File(extractPath))
             epub.delete()
         }
 
+    }
+
+    fun getExtractPath(langPath: String, ePub: File): String {
+        val fileName = ePub.name
+
+        return when {
+            fileName.contains("homepage") -> {
+                "$langPath/.ar_homepage";
+            }
+            fileName.contains("info") -> {
+                "$langPath/.ar_info";
+            }
+            fileName.contains("combimeter") -> {
+                "$langPath/.ar_combimeter";
+            }
+            fileName.contains("button") -> {
+                "$langPath/.ar_button";
+            }
+            fileName.contains("tyre") -> {
+                "$langPath/.ar_tyre";
+            }
+            fileName.contains("engine") -> {
+                "$langPath/.ar_engine";
+            }
+            fileName.contains("warranty") -> {
+                "$langPath/.ar_warranty";
+            }
+
+            else -> ""
+        }
     }
 
 
