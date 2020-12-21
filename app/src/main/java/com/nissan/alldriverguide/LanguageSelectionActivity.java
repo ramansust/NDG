@@ -73,7 +73,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.nissan.alldriverguide.utils.Values.DATA_SYNCING;
-import static com.nissan.alldriverguide.utils.Values.DOWNLOADING;
 import static com.nissan.alldriverguide.utils.Values.STARTING_DOWNLOAD;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
@@ -491,19 +490,11 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
             @Override
             public void onChanged(CarDownloadProgress carDownloadProgress) {
                 if (carDownloadProgress == null) return;
-
-                if (carDownloadProgress instanceof CarDownloadProgress.DOWNLOAD_PROGRESS) {
-                    final CarDownloadProgress.DOWNLOAD_PROGRESS carDownloadProgress1 =
-                            (CarDownloadProgress.DOWNLOAD_PROGRESS) carDownloadProgress;
-                    String formattedString = String.format("%.02f", carDownloadProgress1.getProgress());
-                    if (progressDialog != null) {
-                        String downloadingMsg = getAlertMessage(DOWNLOADING);
-                        downloadingMsg = downloadingMsg.isEmpty() ? getResources().getString(R.string.alert_downloading) : downloadingMsg;
-                        progressDialog.setMessage(carName + "\n" + downloadingMsg + formattedString + "%");
-                    }
-                } else if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE) {
+                if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE) {
                     downloadCompleted();
-                }
+                } else BaseActivity.checkCarDownloadProgress(LanguageSelectionActivity.this,
+                        carDownloadProgress,
+                        progressDialog);
 
             }
         });

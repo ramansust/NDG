@@ -129,31 +129,23 @@ class CarDownloadHelper @JvmOverloads constructor(
 
     }
 
-    fun getExtractPath(langPath: String, ePub: File): String {
+    private fun getExtractPath(langPath: String, ePub: File): String {
         val fileName = ePub.name
 
         return when {
-            fileName.contains("homepage") -> {
-                "$langPath/.ar_homepage";
-            }
-            fileName.contains("info") -> {
-                "$langPath/.ar_info";
-            }
-            fileName.contains("combimeter") -> {
-                "$langPath/.ar_combimeter";
-            }
-            fileName.contains("button") -> {
-                "$langPath/.ar_button";
-            }
-            fileName.contains("tyre") -> {
-                "$langPath/.ar_tyre";
-            }
-            fileName.contains("engine") -> {
-                "$langPath/.ar_engine";
-            }
-            fileName.contains("warranty") -> {
-                "$langPath/.ar_warranty";
-            }
+            fileName.contains("homepage") -> "$langPath/.ar_homepage"
+
+            fileName.contains("info") -> "$langPath/.ar_info"
+
+            fileName.contains("combimeter") -> "$langPath/.ar_combimeter"
+
+            fileName.contains("button") -> "$langPath/.ar_button"
+
+            fileName.contains("tyre") -> "$langPath/.ar_tyre";
+
+            fileName.contains("engine") -> "$langPath/.ar_engine"
+
+            fileName.contains("warranty") -> "$langPath/.ar_warranty"
 
             else -> ""
         }

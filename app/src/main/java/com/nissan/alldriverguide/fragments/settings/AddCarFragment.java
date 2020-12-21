@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +21,12 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.nissan.alldriverguide.CarDownloadHelper;
+import com.nissan.alldriverguide.CarDownloadProgress;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.CarDownloadSettingsAdapter;
@@ -330,7 +334,9 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         CarInfo info = (CarInfo) parent.getAdapter().getItem(position);
         if ("1".equalsIgnoreCase(info.getStatus())) {
             carDownloadCheck(info.getId());
-            ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsForCarSection(Analytics.CAR_SELECTION));
+            ((MainActivity) getActivity())
+                    .sendMsgToGoogleAnalytics(((MainActivity) getActivity())
+                            .getAnalyticsForCarSection(Analytics.CAR_SELECTION));
         } else {
             carDownloadCheck(info.getId());
         }
@@ -349,6 +355,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     private void carDownloadCheck(final int position) {
+
 
         if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(position))) {
             if (commonDao.getStatus(getActivity().getBaseContext(), position) == 1) {
@@ -608,6 +615,19 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 //                                                            }
 //                                                        });
                                                         //Todo implement download
+
+                                                        CarDownloadHelper carDownloadHelper = new CarDownloadHelper(getContext(), "" + Values.carType,
+                                                                responseInfo.getLangUrl(), responseInfo.getAssetsUrl(),
+                                                                NissanApp.getInstance().getCarPath(Values.carType)
+                                                        );
+                                                        carDownloadHelper.getDownloadProgress().observe(getViewLifecycleOwner(), new Observer<CarDownloadProgress>() {
+                                                            @Override
+                                                            public void onChanged(CarDownloadProgress carDownloadProgress) {
+                                                                Log.d("CarDownload", carDownloadProgress.toString());
+                                                            }
+                                                        });
+                                                        carDownloadHelper.downloadAssetAndLang();
+
                                                     } else {
                                                         dismissDialog();
                                                         showErrorDialog("Status code or URL not reachable");
@@ -642,10 +662,19 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                         dialog.dismiss();
 
                                         for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
-                                            if (NissanApp.getInstance().getCarAllList().get(i).getId() == position) {
-                                                NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(1);
+                                            if (NissanApp.getInstance()
+                                                    .getCarAllList()
+                                                    .get(i)
+                                                    .getId() == position) {
+                                                NissanApp.getInstance()
+                                                        .getCarAllList()
+                                                        .get(i)
+                                                        .setSelectedCar(1);
                                             } else {
-                                                NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(0);
+                                                NissanApp.getInstance()
+                                                        .getCarAllList()
+                                                        .get(i)
+                                                        .setSelectedCar(0);
                                             }
                                         }
                                         Values.carType = position;

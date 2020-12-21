@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +25,12 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.nissan.alldriverguide.CarDownloadHelper;
+import com.nissan.alldriverguide.CarDownloadProgress;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.LanguageSelectionAdapter;
@@ -614,7 +618,17 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 //                    });
 
                     //TODO Implement Download
-
+                    CarDownloadHelper carDownloadHelper = new CarDownloadHelper(getContext(), "" + Values.carType,
+                            responseInfo.getLangUrl(), responseInfo.getAssetsUrl(),
+                            NissanApp.getInstance().getCarPath(Values.carType)
+                    );
+                    carDownloadHelper.getDownloadProgress().observe(getViewLifecycleOwner(), new Observer<CarDownloadProgress>() {
+                        @Override
+                        public void onChanged(CarDownloadProgress carDownloadProgress) {
+                            Log.d("CarDownload", carDownloadProgress.toString());
+                        }
+                    });
+                    carDownloadHelper.downloadAssetAndLang();
                 } else {
                     showErrorDialog("No content available!");
                     dismissDialog();
