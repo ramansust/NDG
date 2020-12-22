@@ -760,8 +760,7 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
 //
 //                                    @Override
 //                                    public boolean internetConnection(boolean b) {
-//                                        showErrorDialog("No internet connection, Please try again");
-//                                        dismissDialog();
+
 //                                        return false;
 //                                    }
 //

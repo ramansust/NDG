@@ -18,16 +18,35 @@ open class BaseActivity : AppCompatActivity() {
             when (carDownloadProgress) {
                 is DOWNLOAD_PROGRESS ->
                     onDownloadProgress(context, carDownloadProgress, progressDialog)
-                is CarDownloadProgress.FAILED -> {
+                CarDownloadProgress.FAILED -> {
                     showErrorDialog(context, "Error ! Unable to update content, Please try again.");
                     progressDialog?.dismiss()
                 }
 
+                CarDownloadProgress.INVALID_LANG_LINK, CarDownloadProgress.INVALID_ASSET_LINK -> {
+                    showErrorDialog(context, "Invalid Download data")
+                    progressDialog?.dismiss()
+                }
+
+                CarDownloadProgress.UNREACHABLE_LANG_LINK, CarDownloadProgress.UNREACHABLE_ASSET_LINK -> {
+                    showErrorDialog(context, "Requested Data does not exist on our servers")
+                    progressDialog?.dismiss()
+                }
+
+                CarDownloadProgress.NO_INTERNET -> {
+                    showErrorDialog(context, "No internet connection, Please try again")
+                    progressDialog?.dismiss()
+                }
+
+                else -> {
+                    showErrorDialog(context, "Error ! Unable to update content, Please try again.");
+                    progressDialog?.dismiss()
+                }
             }
         }
 
-        private fun onDownloadProgress(context: Context, progress: DOWNLOAD_PROGRESS,
-                                       progressDialog: ProgressDialog?) {
+        internal fun onDownloadProgress(context: Context, progress: DOWNLOAD_PROGRESS,
+                                        progressDialog: ProgressDialog?) {
 
 
             val resources = context.resources
@@ -41,7 +60,7 @@ open class BaseActivity : AppCompatActivity() {
             }
         }
 
-        private fun showErrorDialog(context: Context, msg: String) {
+        internal fun showErrorDialog(context: Context, msg: String) {
             val dialogFragment = DialogErrorFragment.getInstance(context, msg)
             if (context is AppCompatActivity)
                 dialogFragment.show(context.supportFragmentManager, "error_fragment")

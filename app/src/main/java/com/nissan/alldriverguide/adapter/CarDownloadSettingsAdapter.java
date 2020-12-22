@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -541,9 +542,11 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
     }
 
-    private void downloadComplete(final boolean isForceDownload) {
-        progressDialog.setMessage(dataSyncingMsg == null || dataSyncingMsg.isEmpty() ? activity.getResources().getString(R.string.data_syncing) : dataSyncingMsg);
+    @SuppressLint("StaticFieldLeak")
+    void downloadComplete(final boolean isForceDownload) {
+
         if (progressDialog != null) {
+            progressDialog.setMessage(dataSyncingMsg == null || dataSyncingMsg.isEmpty() ? activity.getResources().getString(R.string.data_syncing) : dataSyncingMsg);
         }
 
         new SearchDBAsync(activity, lang, carType) {
@@ -554,6 +557,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 if (status) {
 
                     new ApiCall().postCarDownloadConfirmation("" + carType, "" + downloading_lang_id, "0", NissanApp.getInstance().getDeviceID(context), new CompleteAPI() {
+
                         @Override
                         public void onDownloaded(ResponseInfo responseInfo) {
                             if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {

@@ -2,9 +2,7 @@ package com.nissan.alldriverguide
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
-import com.datasoft.downloadManager.DownloadResult
-import com.datasoft.downloadManager.UnZipper
-import com.datasoft.downloadManager.ZipDownloader
+import com.datasoft.downloadManager.*
 import com.nissan.alldriverguide.database.PreferenceUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -27,6 +25,11 @@ sealed class CarDownloadProgress {
     data class DOWNLOAD_PROGRESS(var progress: Float) : CarDownloadProgress()
     object COMPLETE : CarDownloadProgress()
     object FAILED : CarDownloadProgress()
+    object INVALID_ASSET_LINK : CarDownloadProgress()
+    object INVALID_LANG_LINK : CarDownloadProgress()
+    object UNREACHABLE_ASSET_LINK : CarDownloadProgress()
+    object UNREACHABLE_LANG_LINK : CarDownloadProgress()
+    object NO_INTERNET : CarDownloadProgress()
 }
 
 class CarDownloadHelper @JvmOverloads constructor(
@@ -38,11 +41,60 @@ class CarDownloadHelper @JvmOverloads constructor(
         private var langSavePath: String? = null,
         private var assetSavePath: String? = null
 ) {
+
+
     val downloadProgress = MutableLiveData<CarDownloadProgress>()
 //    private val carPath = "$baseSavePath/$carUniqueName"
 
 
+    private fun updateProgress(carDownloadProgress: CarDownloadProgress) {
+        downloadProgress.postValue(carDownloadProgress)
+    }
+
     private val preferenceUtil = PreferenceUtil(context)
+
+
+    private fun performPreCheck(): Boolean {
+
+        if (!context.isOnline()) {
+            downloadProgress.postValue(CarDownloadProgress.NO_INTERNET)
+            return false
+        }
+
+        fun String?.checkUrlValid(): Boolean {
+            if (this == null) return true
+            return UrlUtils.isUrlValid(this)
+        }
+
+        fun String?.isReachable(): Boolean {
+            if (this == null) return true
+            return UrlUtils.isUrlReachable(this)
+        }
+
+
+        //Lang Check
+        if (languageZipLink.checkUrlValid()) {
+            if (!languageZipLink.isReachable())
+                updateProgress(CarDownloadProgress.UNREACHABLE_LANG_LINK)
+            else return false
+        } else {
+            updateProgress(CarDownloadProgress.INVALID_LANG_LINK)
+            return false
+        }
+
+        //Asset Check
+        if (assetZipLink.checkUrlValid()) {
+            if (!assetZipLink.isReachable()) {
+                updateProgress(CarDownloadProgress.UNREACHABLE_ASSET_LINK)
+                return false
+            }
+        } else {
+            updateProgress(CarDownloadProgress.INVALID_ASSET_LINK)
+            return false
+        }
+
+        return true
+    }
 
     @JvmOverloads
     fun downloadAssetAndLang(
@@ -53,15 +105,18 @@ class CarDownloadHelper @JvmOverloads constructor(
             overridePreviousDownload: Boolean = false
     ) {
 
-        if (overridePreviousDownload)
-            File(currentPath).delete()
-
-
-        File(currentPath).mkdirs()
-
-        val progressData = CarDownloadProgress.DOWNLOAD_PROGRESS(previousProgress)
-
         GlobalScope.launch(Dispatchers.IO) {
+
+            if (!performPreCheck()) return@launch
+
+            if (overridePreviousDownload)
+                File(currentPath).delete()
+
+
+            File(currentPath).mkdirs()
+
+            val progressData = CarDownloadProgress.DOWNLOAD_PROGRESS(previousProgress)
+
             val isAssetAvailable = !assetZipLink.isNullOrEmpty()
 
             if (langDownloaded)

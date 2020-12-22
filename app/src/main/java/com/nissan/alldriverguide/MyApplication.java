@@ -2,6 +2,7 @@ package com.nissan.alldriverguide;
 
 import android.content.Context;
 
+import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -32,6 +33,13 @@ public class MyApplication extends MultiDexApplication {
         APP_TRACKER,
         GLOBAL_TRACKER,
         ECOMMERCE_TRACKER,
+    }
+
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     HashMap<TrackerName, Tracker> mTrackers = new HashMap<TrackerName, Tracker>();
