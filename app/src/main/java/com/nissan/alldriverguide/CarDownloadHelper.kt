@@ -74,9 +74,11 @@ class CarDownloadHelper @JvmOverloads constructor(
 
         //Lang Check
         if (languageZipLink.checkUrlValid()) {
-            if (!languageZipLink.isReachable())
+            if (!languageZipLink.isReachable()) {
                 updateProgress(CarDownloadProgress.UNREACHABLE_LANG_LINK)
-            else return false
+                return false
+            }
+
         } else {
             updateProgress(CarDownloadProgress.INVALID_LANG_LINK)
             return false

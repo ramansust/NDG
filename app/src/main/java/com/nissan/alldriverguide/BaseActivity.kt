@@ -52,7 +52,7 @@ open class BaseActivity : AppCompatActivity() {
             val resources = context.resources
 
             if (progressDialog != null) {
-                val formattedString = String.format("%.02f", progress)
+                val formattedString = String.format("%.02f", progress.progress)
                 progressDialog.setMessage("""
                 ${resources.getStringArray(R.array.car_names)[Values.carType - 1]}
                 ${resources.getString(R.string.alert_download_complete)}$formattedString%
