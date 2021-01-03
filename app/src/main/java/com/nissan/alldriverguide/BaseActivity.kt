@@ -37,6 +37,10 @@ open class BaseActivity : AppCompatActivity() {
                     showErrorDialog(context, "No internet connection, Please try again")
                     progressDialog?.dismiss()
                 }
+                CarDownloadProgress.LANG_DOWNLOAD_COMPLETE,
+                CarDownloadProgress.ASSET_DOWNLOAD_COMPLETE -> {
+
+                }
 
                 else -> {
                     showErrorDialog(context, "Error ! Unable to update content, Please try again.");

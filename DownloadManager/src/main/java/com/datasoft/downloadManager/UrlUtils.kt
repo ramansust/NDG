@@ -20,7 +20,6 @@ object UrlUtils {
         val connection: HttpURLConnection =
                 url.openConnection() as HttpURLConnection
         val code: Int = connection.responseCode
-
         return code in 200..209
     }
 
