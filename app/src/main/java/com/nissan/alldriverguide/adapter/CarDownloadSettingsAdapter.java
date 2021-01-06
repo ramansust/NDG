@@ -524,7 +524,9 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         CarDownloadHelper carDownloadHelper = new CarDownloadHelper(context, "" + Values.carType,
                 langSource, assetsSource,
-                NissanApp.getInstance().getCarPath(Values.carType)
+                NissanApp.getInstance().getCarPath(Values.carType),
+                langDestination,
+                assetsDestination
         );
         carDownloadHelper.getDownloadProgress().observe(this.frag, new Observer<CarDownloadProgress>() {
             @Override
@@ -534,7 +536,9 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                     downloadComplete(isForceDownload);
                 } else BaseActivity.checkCarDownloadProgress(context,
                         carDownloadProgress,
-                        progressDialog);
+                        progressDialog,
+                        false
+                );
             }
         });
         carDownloadHelper.downloadAssetAndLang();
