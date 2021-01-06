@@ -142,9 +142,12 @@ class CarDownloadHelper @JvmOverloads constructor(
                         downloadProgress.postValue(progressData)
                     }
                     is DownloadResult.ZipDeleteComplete -> {
-                        if (!isAssetAvailable)
-                            downloadProgress.postValue(CarDownloadProgress.ASSET_DOWNLOAD_COMPLETE)
-                        else if (progressData.progress >= 100.0f || langDownloaded) {
+                        if (!isAssetAvailable) {
+                            if (progressData.progress >= 100.0f || langDownloaded)
+                                downloadProgress.postValue(CarDownloadProgress.COMPLETE)
+                            else
+                                downloadProgress.postValue(CarDownloadProgress.ASSET_DOWNLOAD_COMPLETE)
+                        } else if (progressData.progress >= 100.0f || langDownloaded) {
                             downloadProgress.postValue(CarDownloadProgress.COMPLETE)
                         } else if (!assetZipLink.isNullOrEmpty()) {
                             downloadProgress.postValue(CarDownloadProgress.LANG_DOWNLOAD_COMPLETE)
