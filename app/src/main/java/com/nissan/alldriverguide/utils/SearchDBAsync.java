@@ -69,7 +69,11 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
             for (int i = 0; i < listOfFiles.size(); i++) {
 
                 // get the full epub path from sdCard by looping
-                String ePubPath = NissanApp.getInstance().getCarPath(carType) + NissanApp.getInstance().getePubFolderPath(carType) + Values.UNDERSCORE + langType + Values.SLASH + listOfFiles.get(i).split(".epub")[0];
+                String ePubPath = NissanApp.getInstance().getCarPath(carType) +
+                        NissanApp.getInstance().getePubFolderPath(carType) +
+                        Values.UNDERSCORE +
+                        langType +
+                        Values.SLASH + listOfFiles.get(i);
 
 //                Logger.error("file_name", "_______" + listOfFiles.get(i));
 //                Logger.error("Path_Epub", "" + ePubPath);

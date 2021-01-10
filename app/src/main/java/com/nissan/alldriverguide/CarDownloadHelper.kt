@@ -40,8 +40,8 @@ class CarDownloadHelper @JvmOverloads constructor(
         private val baseSavePath: String,
         private var langSavePath: String? = null,
         private var assetSavePath: String? = null,
-        private val preferenceUtil:PreferenceUtil = PreferenceUtil(context),
-        private val selectedLang:String = preferenceUtil.selectedLang
+        private val preferenceUtil: PreferenceUtil = PreferenceUtil(context),
+        private val selectedLang: String = preferenceUtil.selectedLang
 
 ) {
 
@@ -144,13 +144,8 @@ class CarDownloadHelper @JvmOverloads constructor(
                     }
                     is DownloadResult.ZipDeleteComplete -> {
                         if (!isAssetAvailable) {
-                            if (progressData.progress >= 100.0f || langDownloaded)
-                            {
-                                extractEpubs()
-                                downloadProgress.postValue(CarDownloadProgress.COMPLETE)
-                            }
-                            else
-                                downloadProgress.postValue(CarDownloadProgress.ASSET_DOWNLOAD_COMPLETE)
+                            extractEpubs()
+                            downloadProgress.postValue(CarDownloadProgress.COMPLETE)
                         } else if (progressData.progress >= 100.0f || langDownloaded) {
                             downloadProgress.postValue(CarDownloadProgress.COMPLETE)
                         } else if (!assetZipLink.isNullOrEmpty()) {

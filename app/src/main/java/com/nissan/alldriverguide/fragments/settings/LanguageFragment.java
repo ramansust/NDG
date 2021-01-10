@@ -32,7 +32,6 @@ import com.google.gson.reflect.TypeToken;
 import com.nissan.alldriverguide.BaseActivity;
 import com.nissan.alldriverguide.CarDownloadHelper;
 import com.nissan.alldriverguide.CarDownloadProgress;
-import com.nissan.alldriverguide.LanguageSelectionActivity;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.LanguageSelectionAdapter;
@@ -557,10 +556,13 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                         public void onChanged(final CarDownloadProgress carDownloadProgress) {
                             if (carDownloadProgress == null) return;
                             if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE || carDownloadProgress == CarDownloadProgress.LANG_EXTRACT_COMPLETE.INSTANCE) {
-                                onDownloadCompleted(lang,position);
-                            } else BaseActivity.checkCarDownloadProgress(LanguageFragment.this.context,
-                                    carDownloadProgress,
-                                    progressDialog);
+                                onDownloadCompleted(lang, position);
+                            } else {
+                                Log.e("DownloadError", carDownloadProgress.toString());
+                                BaseActivity.checkCarDownloadProgress(LanguageFragment.this.context,
+                                        carDownloadProgress,
+                                        progressDialog);
+                            }
 
                         }
                     });
