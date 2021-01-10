@@ -29,8 +29,10 @@ import androidx.lifecycle.Observer;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.nissan.alldriverguide.BaseActivity;
 import com.nissan.alldriverguide.CarDownloadHelper;
 import com.nissan.alldriverguide.CarDownloadProgress;
+import com.nissan.alldriverguide.LanguageSelectionActivity;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.LanguageSelectionAdapter;
@@ -54,11 +56,16 @@ import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.retrofit.ApiCall;
+import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.DialogErrorFragment;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
+import com.nissan.alldriverguide.utils.SearchDBAsync;
 import com.nissan.alldriverguide.utils.Values;
 
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -440,7 +447,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
         String downloadingMsg = NissanApp.getInstance().getAlertMessage(this.context, this.preferenceUtil.getSelectedLang(), Values.DOWNLOADING);
         String startingToDownloadMessage = NissanApp.getInstance().getAlertMessage(this.context, this.preferenceUtil.getSelectedLang(), Values.STARTING_DOWNLOAD);
-        String dataSyncingMsg = NissanApp.getInstance().getAlertMessage(this.context, this.preferenceUtil.getSelectedLang(), DATA_SYNCING);
         this.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -476,80 +482,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 //                                    @SuppressLint("StaticFieldLeak")
 //                                    @Override
 //                                    public void run() {
-//                                        if (progressDialog != null) {
-//                                            progressDialog.setMessage(dataSyncingMsg == null || dataSyncingMsg.isEmpty() ? activity.getResources().getString(R.string.data_syncing) : dataSyncingMsg);
-//                                        }
 //
-//                                        new SearchDBAsync(getActivity(), lang, Values.carType) {
-//                                            @Override
-//                                            public void onComplete(boolean status) {
-//
-//                                                if (status) {
-//                                                    new ApiCall().postLanguageDownloadConfirmation("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(lang), "0", NissanApp.getInstance().getDeviceID(getActivity().getApplicationContext()), new CompleteAPI() {
-//                                                        @Override
-//                                                        public void onDownloaded(ResponseInfo responseInfo) {
-//
-//                                                            if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
-//                                                                try {
-//
-//                                                                    if (!preferenceUtil.getSelectedLang().equals("") && !lang.equals("")) {
-//                                                                        if (!preferenceUtil.getSelectedLang().equals(lang)) {
-//                                                                            // delete previous language directory
-//                                                                            // eg. /storage/emulated/0/.AllDriverGuide/leaf2017/leaf2017_en
-//                                                                            FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType)));
-//                                                                            Logger.error("File Delete", "" + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType));
-//                                                                        }
-//                                                                    }
-//
-////************************(Here store the language short name after complete downloading language)*******************************************************************************************************************
-//                                                                    preferenceUtil.setSelectedLang(lang); // here store the language sort name
-//                                                                    ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));
-//                                                                    commonDao.updateLanguageStatus(getActivity().getBaseContext(), Values.carType, lang);
-//                                                                    commonDao.makeAllPushEntryStatusChangeLangauge(getActivity().getBaseContext(), Values.carType, NissanApp.getInstance().getLanguageID(lang));
-//                                                                    commonDao.deleteSingleCarEpub(getActivity(), Values.carType);
-//                                                                } catch (Exception e) {
-//                                                                    e.printStackTrace();
-//                                                                }
-//
-//                                                                // set selection for selected language
-//                                                                for (int i = 0; i < list.size(); i++) {
-//                                                                    if (i == position) {
-//                                                                        list.get(i).setIsSelected(true);
-//                                                                    } else {
-//                                                                        list.get(i).setIsSelected(false);
-//                                                                    }
-//                                                                }
-//
-//                                                                adapter.notifyDataSetChanged();
-//                                                                loadResource(); // load resource for change language
-//                                                                ((MainActivity) getActivity()).loadResource();
-//                                                                ((MainActivity) getActivity()).setTabResources();
-//
-//                                                                controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(lang_sort_name) + "");
-//                                                                preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY);
-//                                                                preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.EXPLORE_OBJ_STORE_KEY);
-//                                                                preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.SETTING_OBJ_STORE_KEY);
-//                                                            } else {
-//                                                                showErrorDialog("Confirmation send error!");
-//                                                                dismissDialog();
-//                                                                Logger.error("problem", "______sending confirmation-LanguageFragment");
-//                                                            }
-//                                                        }
-//
-//                                                        @Override
-//                                                        public void onFailed(String failedReason) {
-//                                                            showErrorDialog("Confirmation send error");
-//                                                            dismissDialog();
-//                                                            Logger.error("failed_to_send", "______confirmation-LanguageFragment" + failedReason);
-//                                                        }
-//                                                    });
-//
-//                                                } else {
-//                                                    showErrorDialog("Database Error Occurred, Please try again later.");
-//                                                    errorFileDelete(Values.carType);
-//                                                }
-//                                            }
-//                                        }.execute();
 //
 //                                    }
 //                                });
@@ -615,13 +548,20 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
                     //TODO Implement Download
                     final CarDownloadHelper carDownloadHelper = new CarDownloadHelper(LanguageFragment.this.getContext(), "" + Values.carType,
-                            responseInfo.getLangUrl(), responseInfo.getAssetsUrl(),
-                            NissanApp.getInstance().getCarPath(Values.carType)
+                            responseInfo.getLangUrl(), null,
+                            NissanApp.getInstance().getCarPath(Values.carType),
+                            NissanApp.getInstance().getCarPath(Values.carType),null,preferenceUtil,lang
                     );
                     carDownloadHelper.getDownloadProgress().observe(LanguageFragment.this.getViewLifecycleOwner(), new Observer<CarDownloadProgress>() {
                         @Override
                         public void onChanged(final CarDownloadProgress carDownloadProgress) {
-                            Log.d("CarDownload", carDownloadProgress.toString());
+                            if (carDownloadProgress == null) return;
+                            if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE || carDownloadProgress == CarDownloadProgress.LANG_EXTRACT_COMPLETE.INSTANCE) {
+                                onDownloadCompleted(lang,position);
+                            } else BaseActivity.checkCarDownloadProgress(LanguageFragment.this.context,
+                                    carDownloadProgress,
+                                    progressDialog);
+
                         }
                     });
                     carDownloadHelper.downloadAssetAndLang();
@@ -638,6 +578,86 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                 Logger.error("Language downloading failed", "____________" + failedReason);
             }
         });
+    }
+
+    public void onDownloadCompleted(String lang, int position){
+        String dataSyncingMsg = NissanApp.getInstance().getAlertMessage(this.context, this.preferenceUtil.getSelectedLang(), DATA_SYNCING);
+        if (progressDialog != null) {
+            progressDialog.setMessage(dataSyncingMsg == null || dataSyncingMsg.isEmpty() ? activity.getResources().getString(R.string.data_syncing) : dataSyncingMsg);
+        }
+
+        new SearchDBAsync(getActivity(), lang, Values.carType) {
+            @Override
+            public void onComplete(boolean status) {
+
+                if (status) {
+                    new ApiCall().postLanguageDownloadConfirmation("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(lang), "0", NissanApp.getInstance().getDeviceID(getActivity().getApplicationContext()), new CompleteAPI() {
+                        @Override
+                        public void onDownloaded(ResponseInfo responseInfo) {
+
+                            if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
+                                try {
+
+                                    if (!preferenceUtil.getSelectedLang().equals("") && !lang.equals("")) {
+                                        if (!preferenceUtil.getSelectedLang().equals(lang)) {
+                                            // delete previous language directory
+                                            // eg. /storage/emulated/0/.AllDriverGuide/leaf2017/leaf2017_en
+                                            FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType)));
+                                            Logger.error("File Delete", "" + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType));
+                                        }
+                                    }
+
+//************************(Here store the language short name after complete downloading language)*******************************************************************************************************************
+                                    preferenceUtil.setSelectedLang(lang); // here store the language sort name
+                                    ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));
+                                    commonDao.updateLanguageStatus(getActivity().getBaseContext(), Values.carType, lang);
+                                    commonDao.makeAllPushEntryStatusChangeLangauge(getActivity().getBaseContext(), Values.carType, NissanApp.getInstance().getLanguageID(lang));
+                                    commonDao.deleteSingleCarEpub(getActivity(), Values.carType);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                                // set selection for selected language
+                                for (int i = 0; i < list.size(); i++) {
+                                    if (i == position) {
+                                        list.get(i).setIsSelected(true);
+                                    } else {
+                                        list.get(i).setIsSelected(false);
+                                    }
+                                }
+
+                                adapter.notifyDataSetChanged();
+                                loadResource(); // load resource for change language
+                                ((MainActivity) getActivity()).loadResource();
+                                ((MainActivity) getActivity()).setTabResources();
+
+                                controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(lang_sort_name) + "");
+                                preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY);
+                                preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.EXPLORE_OBJ_STORE_KEY);
+                                preferenceUtil.deleteMultiLangData(Values.carType + "_" + Values.SETTING_OBJ_STORE_KEY);
+                            } else {
+                                showErrorDialog("Confirmation send error!");
+                                dismissDialog();
+                                Logger.error("problem", "______sending confirmation-LanguageFragment");
+                            }
+                        }
+
+                        @Override
+                        public void onFailed(String failedReason) {
+                            showErrorDialog("Confirmation send error");
+                            dismissDialog();
+                            Logger.error("failed_to_send", "______confirmation-LanguageFragment" + failedReason);
+                        }
+                    });
+
+                } else {
+                    showErrorDialog("Database Error Occurred, Please try again later.");
+                    errorFileDelete(Values.carType);
+                }
+            }
+        }.execute();
+
+
     }
 
     @Override

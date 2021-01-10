@@ -39,7 +39,10 @@ class CarDownloadHelper @JvmOverloads constructor(
         private val assetZipLink: String? = null,
         private val baseSavePath: String,
         private var langSavePath: String? = null,
-        private var assetSavePath: String? = null
+        private var assetSavePath: String? = null,
+        private val preferenceUtil:PreferenceUtil = PreferenceUtil(context),
+        private val selectedLang:String = preferenceUtil.selectedLang
+
 ) {
 
 
@@ -50,8 +53,6 @@ class CarDownloadHelper @JvmOverloads constructor(
     private fun updateProgress(carDownloadProgress: CarDownloadProgress) {
         downloadProgress.postValue(carDownloadProgress)
     }
-
-    private val preferenceUtil = PreferenceUtil(context)
 
 
     private fun performPreCheck(): Boolean {
@@ -144,7 +145,10 @@ class CarDownloadHelper @JvmOverloads constructor(
                     is DownloadResult.ZipDeleteComplete -> {
                         if (!isAssetAvailable) {
                             if (progressData.progress >= 100.0f || langDownloaded)
+                            {
+                                extractEpubs()
                                 downloadProgress.postValue(CarDownloadProgress.COMPLETE)
+                            }
                             else
                                 downloadProgress.postValue(CarDownloadProgress.ASSET_DOWNLOAD_COMPLETE)
                         } else if (progressData.progress >= 100.0f || langDownloaded) {
@@ -171,7 +175,7 @@ class CarDownloadHelper @JvmOverloads constructor(
     fun extractEpubs() {
 
         val langPath = (langSavePath
-                ?: return) + "/" + File(langSavePath).name + "_" + preferenceUtil.selectedLang
+                ?: return) + "/" + File(langSavePath).name + "_" + selectedLang
         val langFolder = File(langPath)
         val exists = langFolder.exists()
         if (!exists) return
