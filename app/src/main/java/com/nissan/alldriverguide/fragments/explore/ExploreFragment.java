@@ -39,6 +39,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.datasoft.downloadManager.epubUtils.EpubInfo;
@@ -880,33 +881,28 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         setFrontImageExploreMiddleTab(exploretabSliderModel, exploretabSliderModel.getFrontImg());
 
         final ViewGroup finalLayout = layout;
-
+        ImageView front_image_view = ((ImageView) finalLayout.findViewById(R.id.txt_map));
         if (front_image_url != null) {
-            Glide.with(this).asBitmap().load(front_image_url).into(new SimpleTarget<Bitmap>() {
+            Glide.with(this).asBitmap().load(front_image_url).into(new CustomTarget<Bitmap>() {
                 @Override
-                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                public void onResourceReady(@NonNull  Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//                    simple_drawee_view_explore.setBackground(drawable);
-                        ((ImageView) finalLayout.findViewById(R.id.txt_map)).setBackground(drawable);
+                        front_image_view.setBackground(drawable);
+                        front_image_view.buildDrawingCache();
                     }
                 }
 
+                @Override
+                public void onLoadCleared(@Nullable  Drawable placeholder) {
+
+                }
             });
         }
+        ImageView back_image_view = ((ImageView) finalLayout.findViewById(R.id.drawee_view_map_1));
 
         if (back_image_url != null) {
-            Glide.with(this).asBitmap().load(back_image_url).into(new SimpleTarget<Bitmap>() {
-                @Override
-                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//                    simple_drawee_view_explore.setBackground(drawable);
-                        ((ImageView) finalLayout.findViewById(R.id.drawee_view_map_1)).setBackground(drawable);
-                    }
-                }
-
-            });
+            Glide.with(this).asBitmap().load(back_image_url).fitCenter().into(back_image_view);
         }
 
         mapView.setOnClickListener(new View.OnClickListener() {
@@ -990,32 +986,28 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         final ViewGroup finalLayout = layout;
 
+        ImageView front_image_view =  ((ImageView) finalLayout.findViewById(R.id.drawee_view_map_2));
+
         if (front_image_url != null) {
-            Glide.with(this).asBitmap().load(front_image_url).into(new SimpleTarget<Bitmap>() {
+            Glide.with(this).asBitmap().load(front_image_url).into(new CustomTarget<Bitmap>() {
                 @Override
-                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                public void onResourceReady(@NonNull  Bitmap resource, @Nullable  Transition<? super Bitmap> transition) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//                    simple_drawee_view_explore.setBackground(drawable);
-                        ((ImageView) finalLayout.findViewById(R.id.drawee_view_map_2)).setBackground(drawable);
+                        front_image_view.setBackground(drawable);
+                        front_image_view.buildDrawingCache();
                     }
                 }
 
+                @Override
+                public void onLoadCleared(@Nullable Drawable placeholder) { }
             });
         }
 
-        if (back_image_url != null) {
-            Glide.with(this).asBitmap().load(back_image_url).into(new SimpleTarget<Bitmap>() {
-                @Override
-                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//                    simple_drawee_view_explore.setBackground(drawable);
-                        ((ImageView) finalLayout.findViewById(R.id.ivMap)).setBackground(drawable);
-                    }
-                }
+        ImageView back_image_view =   ((ImageView) finalLayout.findViewById(R.id.ivMap));
 
-            });
+        if (back_image_url != null) {
+            Glide.with(this).asBitmap().load(back_image_url).into(back_image_view);
         }
 
         //int drawable = mContext.getResources().getIdentifier("micra_map_2_" + preferenceUtil.getSelectedLang().toLowerCase(), "drawable", getActivity().getPackageName());
