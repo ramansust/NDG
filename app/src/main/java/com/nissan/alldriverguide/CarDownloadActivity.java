@@ -101,8 +101,8 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
     private ArrayList<Object> getList = new ArrayList<>();
     private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
             "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "Nissan X-TRAIL",
-            "New Nissan LEAF", "New Nissan X-TRAIL RUS", "New Nissan QASHQAI RUS", "Leaf 2019", "New Nissan Juke"};
-    private int[] indices = {1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11, 16, 17};
+            "New Nissan LEAF", "New Nissan X-TRAIL RUS", "New Nissan QASHQAI RUS", "Leaf 2019", "New Nissan Juke", "X-TRAIL EUR 2020"};
+    private int[] indices = {1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11, 16, 17, 18};
     private int[] previousCarArray = {1, 2, 4, 5, 7, 9, 3};
 
     private List<Parent_car_list> parent_car_lists = null;
@@ -297,7 +297,11 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
             Intent intent = new Intent(this, ModelYearActivity.class);
             Parent_car_list parent_car_list = (Parent_car_list) parent.getAdapter().getItem(position);
             intent.putExtra("parent_car_id", parent_car_list.getId());
-            startActivity(intent);
+            if (parent_car_list.getId() == 10) {
+                showCarDownloadDialog(13);
+            } else {
+                startActivity(intent);
+            }
         }
     }
 
@@ -373,35 +377,33 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
             }
         }
 
-        btnEUR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();//click for eur/rus by rohan
+        btnEUR.setOnClickListener(v -> {
+            dialog.dismiss();//click for eur/rus by rohan
 
-                if (carType == 1 || carType == 4 || carType == 13 || carType == 12) {
-                    carDownloadCheck(carType);
-                }
+            if (carType == 1 || carType == 4 || carType == 12) {
+                carDownloadCheck(carType);
+            } else if (carType == 13) {
+                Intent intent = new Intent(this, ModelYearActivity.class);
+                intent.putExtra("parent_car_id", 10);
+                startActivity(intent);
             }
         });
 
-        btnRUS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();//click for eur/rus by rohan
+        btnRUS.setOnClickListener(v -> {
+            dialog.dismiss();//click for eur/rus by rohan
 
-                if (carType == 2 || carType == 5) {
-                    carDownloadCheck(carType);
-                } else if (carType == 13) {
-                    carDownloadCheck(carType + 2);
-                } else if (carType == 15) {
-                    carDownloadCheck(carType);
-                } else if (carType == 16) {
-                    carDownloadCheck(carType);
-                } else if (carType == 12) {
-                    carDownloadCheck(carType + 4);
-                } else {
-                    carDownloadCheck(carType + 1);
-                }
+            if (carType == 2 || carType == 5) {
+                carDownloadCheck(carType);
+            } else if (carType == 13) {
+                carDownloadCheck(carType + 2);
+            } else if (carType == 15) {
+                carDownloadCheck(carType);
+            } else if (carType == 16) {
+                carDownloadCheck(carType);
+            } else if (carType == 12) {
+                carDownloadCheck(carType + 4);
+            } else {
+                carDownloadCheck(carType + 1);
             }
         });
 
@@ -671,19 +673,16 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
                 NissanApp.getInstance().getCarPath(Values.carType)
         );
         carDownloadHelper.downloadAssetAndLang();
-        carDownloadHelper.getDownloadProgress().observe(CarDownloadActivity.this, new Observer<CarDownloadProgress>() {
-            @Override
-            public void onChanged(CarDownloadProgress carDownloadProgress) {
+        carDownloadHelper.getDownloadProgress().observe(CarDownloadActivity.this, carDownloadProgress -> {
 
-                if (carDownloadProgress == null) return;
+            if (carDownloadProgress == null) return;
 
-                if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE) {
-                    downloadCompleted(list, position, stringBuilder);
-                } else BaseActivity.checkCarDownloadProgress(CarDownloadActivity.this,
-                        carDownloadProgress,
-                        progressDialog);
+            if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE) {
+                downloadCompleted(list, position, stringBuilder);
+            } else BaseActivity.checkCarDownloadProgress(CarDownloadActivity.this,
+                    carDownloadProgress,
+                    progressDialog);
 
-            }
         });
     }
 
