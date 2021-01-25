@@ -220,8 +220,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                     break;
             }
 
-//            webView.loadUrl(htmlContent);
-            webView.loadUrl(list.get(index).getHtmlLink());
+            webView.loadUrl(htmlContent);
+//            webView.loadUrl(list.get(index).getHtmlLink());
             webView.invalidate();
 
         } catch (Exception e) {

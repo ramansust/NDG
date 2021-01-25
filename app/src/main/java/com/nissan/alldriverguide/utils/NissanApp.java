@@ -959,6 +959,9 @@ public class NissanApp {
             case 18:
                 carPath = Values.PATH + Values.juke_2019;
                 break;
+            case 19:
+                carPath = Values.PATH + Values.xtrail2020;
+                break;
 
             default:
                 break;
@@ -1042,6 +1045,9 @@ public class NissanApp {
                 break;
             case 18:
                 path = Values.juke_2019;
+                break;
+            case 19:
+                path = Values.xtrail2020;
                 break;
 
             default:
@@ -1690,6 +1696,16 @@ public class NissanApp {
         return 0;
     }
 
+    public int getParentId(int childId){
+        if (carListWAP != null) {
+            for (CarList carList : carListWAP) {
+                if (Integer.parseInt(carList.getId()) == childId && carList.getCar_model_version().contains("new")) {
+                    return Integer.parseInt(carList.getParent_car_id());
+                }
+            }
+        }
+        return -1;
+    }
     public ArrayList<Object> getChildCars(int parentId) {
         ArrayList<Object> childCars = null;
         if (carListWAP != null) {

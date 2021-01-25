@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -280,24 +281,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         return convertView;
     }
 
-    private int getParentCarListId() {
-
-        if (NissanApp.getInstance().getCarList() == null || NissanApp.getInstance().getCarList().size() == 0) {
-            Logger.error("getCarList", "___________null or size 0");
-            return -1;
-        }
-
-
-        for (int i = 0; i < NissanApp.getInstance().getCarList().size(); i++) {
-            if (NissanApp.getInstance().getCarList().get(i).getClass() == Parent_car_list.class) {
-                return ((Parent_car_list) NissanApp.getInstance().getCarList().get(i)).getId();
-            }
-        }
-
-        Logger.error("Parent_car_list", "___________not found");
-        return -1;
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -323,16 +306,21 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 } else { // for downloading car action
                     if (NissanApp.getInstance().createPath(Values.PATH)) {
                         if (DetectConnection.checkInternetConnection(activity.getApplicationContext())) {
+                            selectedCarType = list.get(position).getId();
                             if (list.get(position).getId() == 1 || list.get(position).getId() == 2
                                     || list.get(position).getId() == 4 || list.get(position).getId() == 5
-                                    || list.get(position).getId() == 13 || list.get(position).getId() == 15
                                     || list.get(position).getId() == 12 || list.get(position).getId() == 16) {
                                 showCarDownloadDialog(list.get(position).getId());
-                            } else if (list.get(position).getId() == 14 || list.get(position).getId() == 17) {
-                                modelYearFeatureDialog();
-//                                activity.startActivity(new Intent(activity.getApplicationContext(), ModelYearActivity.class).putExtra("parent_car_id", getParentCarListId()));
+                            } else if (list.get(position).getId() == 14 || list.get(position).getId() == 17
+                                    || list.get(position).getId() == 13 || list.get(position).getId() == 15
+                                    || list.get(position).getId() == 19) {
+                                Log.e(CarDownloadSettingsAdapter.class.getSimpleName(), "onClick: ParentCarID " + NissanApp.getInstance().getParentId(list.get(position).getId()));
+                                if (list.get(position).getId() == 13 || list.get(position).getId() == 15
+                                        || list.get(position).getId() == 19) {
+                                    showCarDownloadDialog(13);
+                                } else
+                                    modelYearFeatureDialog(NissanApp.getInstance().getParentId(list.get(position).getId()));
                             } else {
-                                selectedCarType = list.get(position).getId();
                                 LanguageSelectionDialog(list.get(position).getId());
                             }
                         } else {
@@ -351,25 +339,26 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         }
     }
 
-    private void modelYearFeatureDialog() {
+    private void modelYearFeatureDialog(int parentCarId) {
 
-        loadChildCars();
+        loadChildCars(parentCarId);
 
 
     }
 
-    private void loadChildCars() {
+    private void loadChildCars(int parentCarId) {
 
         childCarsList = new ArrayList<>();
-        int parentCarId = getParentCarListId();
         if (parentCarId == -1) {
             Logger.error("parentCarId", "________" + parentCarId + "____problem");
             return;
         }
-
+        Logger.error("parentCarId", "________" + parentCarId);
         for (CarList carList : NissanApp.getInstance().getCarListWAP()) {
-            if (Integer.valueOf(carList.getParent_car_id()) == parentCarId && carList.getCar_model_version().equals("new")) {
-
+            if (Integer.valueOf(carList.getParent_car_id()) == parentCarId &&
+                    carList.getCar_model_version().equals("new") &&
+                    !carList.getId().equals("15")) //skip Xtrail 2017 Rus Version
+            {
                 CarInfo carInfo = new CarInfo();
                 Logger.error("car_id_child", "________" + carList.getId() + "_____" + carList.getCarName());
                 carInfo.setId(Integer.valueOf(carList.getId()));
@@ -537,7 +526,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 } else BaseActivity.checkCarDownloadProgress(context,
                         carDownloadProgress,
                         progressDialog,
-                        false
+                        true
                 );
             }
         });
@@ -922,6 +911,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         Logger.error("showCarDownloadDialogForSingleCar", "_________" + carType);
 
         this.carType = carType;
+        Values.carType = carType;
         final Dialog dialog = new DialogController(activity).carDownloadDialog();
 
         TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
@@ -1016,7 +1006,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                                     if (carIdFromList == 15) {
 
                                         if (commonDao.getStatus(context, carIdFromList - 2) == 0) {
-                                            commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "RUS", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                            commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
 //                                            list.remove(position);
                                         } else {
                                             commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
@@ -1255,7 +1245,9 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 imgBtnRus.setBackgroundResource(R.drawable.download_selector);
             }
         } else if (carType == 13) {//click rohan
-            if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType)) && commonDao.getStatus(context, carType) == 1) {
+            if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(carType)) && commonDao.getStatus(context, carType) == 1
+                    && commonDao.getStatus(context, carType) == 1 && commonDao.getStatus(context, 19) == 1
+            ) {
                 btnEUR.setAlpha(0.2f);
                 btnEUR.setEnabled(false);
                 imgBtnEur.setBackgroundResource(R.drawable.delete_selector);
@@ -1384,7 +1376,10 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 dialog.dismiss();
                 if (carType == 1 || carType == 4 || carType == 13 || carType == 12) {//click rohan
                     selectedCarType = carType;
-                    LanguageSelectionDialog(carType);
+                    if (carType == 13) {
+                        modelYearFeatureDialog(10);
+                    } else
+                        LanguageSelectionDialog(carType);
                 } else {
                     selectedCarType = carType - 1;
                     LanguageSelectionDialog(carType - 1);
@@ -1647,6 +1642,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 if (info.getName().contains("2019") && info.getId() == 17 && info.getStatus().equals(Values.AVAILABLE_FOR_DOWNLOAD))
                     list.remove(info);
             }
+            if (info.getId() == 19 && info.getStatus().equals(Values.AVAILABLE_FOR_DOWNLOAD))
+                list.remove(info);
 
         }
 

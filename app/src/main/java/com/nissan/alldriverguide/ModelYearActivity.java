@@ -1,3 +1,4 @@
+
 package com.nissan.alldriverguide;
 
 import android.app.Activity;
@@ -115,7 +116,10 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         int downloadedChildCar = 0;
         childCars.clear();
         for (CarList carList : allCarList) {
-            if (Integer.valueOf(carList.getParent_car_id()) == parentCarId && carList.getCar_model_version().equals("new")) {
+            if (Integer.valueOf(carList.getParent_car_id()) == parentCarId
+                    && carList.getCar_model_version().equals("new")
+                    && !carList.getId().equals("15") //skip Xtrail 2017 Rus Version
+            ) {
              /*carList.getId(),carList.getCarName(),
                         commonDao.getStatus(this,Integer.valueOf(carList.getId())),
                         NissanApp.getInstance().getDateTime(), */
@@ -323,7 +327,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
                 //click for eur/rus by rohan
                 if (info.getId() == 1 || info.getId() == 2
                         || info.getId() == 4 || info.getId() == 5
-                        || info.getId() == 13 || info.getId() == 15
                         || info.getId() == 12 || info.getId() == 16) {
                     showCarDownloadDialog(info.getId());
                 } else {

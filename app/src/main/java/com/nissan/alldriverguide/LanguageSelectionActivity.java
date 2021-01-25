@@ -494,7 +494,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     downloadCompleted();
                 } else BaseActivity.checkCarDownloadProgress(LanguageSelectionActivity.this,
                         carDownloadProgress,
-                        progressDialog);
+                        progressDialog,true);
 
             }
         });
@@ -532,14 +532,14 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     // set the car path according to car type
                     Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
 
-                    commonDao.updateDateAndStatus(getBaseContext(), Values.carType, "1", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                    commonDao.updateDateAndStatus(getBaseContext(), Values.carType, Values.ALREADY_DOWNLOADED, NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                     if (Values.carType == 1 || Values.carType == 4) {
                         if (commonDao.getStatus(getBaseContext(), Values.carType + 1) == 2) {
                             commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 1, "2", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                         }
                     } else if (Values.carType == 13) {//click eur/rus rohan
                         if (commonDao.getStatus(getBaseContext(), Values.carType + 2) == 0) {
-                            commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 2, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+//                            commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 2, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                         }//click eur/rus rohan
                     } else if (Values.carType == 12) {//click eur/rus rohan
                         if (commonDao.getStatus(getBaseContext(), Values.carType + 4) == 0) {
