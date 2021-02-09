@@ -193,12 +193,9 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         txtViewTitle.setText(msg);
 
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnOk.setOnClickListener(view -> {
                 dialog.dismiss();
                 finish();
-            }
         });
 
         dialog.show();
@@ -261,45 +258,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
             LanguageInfo info = new LanguageInfo(i, languageName[i], false, FlagUrl[i]);
             list.add(info);
-
-/*
-            // display 2 languages only for car type 2 and 5
-            if (Values.carType == 2 || Values.carType == 5) {
-//                if (i == 0 || i == 6) {
-//                    list.add(info);
-//                }
-
-                if (languageShortName[i].equalsIgnoreCase("en") || languageShortName[i].equalsIgnoreCase("ru"))
-                    list.add(info);
-
-            } else {
-                if (Values.carType == 7 || Values.carType == 8 || Values.carType == 9) {
-//                    if (i != 6 && i != 8) {
-//                        list.add(info);
-//                    }
-
-                    if (languageShortName[i].equalsIgnoreCase("ru") || languageShortName[i].equalsIgnoreCase("no")) {
-//                    if (i != 6 && i != 8) {
-
-                    } else {
-                        list.add(info);
-                    }
-
-                } else if (Values.carType == 1 || Values.carType == 3 || Values.carType == 4 || Values.carType == 6 || Values.carType == 10 || Values.carType == 11 || Values.carType == 12 || Values.carType == 13) {
-//                    if (i != 8) {
-//                        list.add(info);
-//                    }
-
-                    if (!languageShortName[i].equalsIgnoreCase("no")) {
-                        list.add(info);
-                    }
-
-                } else {
-                    list.add(info);
-                }
-            }
-*/
-
         }
 
         adapter.setList(list);
@@ -353,12 +311,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
         final String startingDownloadMsg = getAlertMessage(STARTING_DOWNLOAD);
 
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                progressDialog = new ProgressDialogController(activity).showDialog(startingDownloadMsg.isEmpty() ? resources.getString(R.string.start_download) : startingDownloadMsg);
-            }
-        });
+        activity.runOnUiThread(() -> progressDialog = new ProgressDialogController(activity).showDialog(startingDownloadMsg.isEmpty() ? resources.getString(R.string.start_download) : startingDownloadMsg));
 
         new ApiCall().postCarDownload(Values.carType + "", "" + NissanApp.getInstance().getLanguageID(new PreferenceUtil(getApplicationContext()).getSelectedLang()), "0", NissanApp.getInstance().getDeviceID(this), new CompleteAPI() {
             @Override
@@ -486,17 +439,14 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
         CarDownloadHelper carDownloadHelper = new CarDownloadHelper(this, NissanApp.getInstance().getCarName(Values.carType),
                 langSource, assetsSource, Values.PATH, langDestination, assetsDestination);
-        carDownloadHelper.getDownloadProgress().observe(this, new Observer<CarDownloadProgress>() {
-            @Override
-            public void onChanged(CarDownloadProgress carDownloadProgress) {
-                if (carDownloadProgress == null) return;
-                if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE) {
-                    downloadCompleted();
-                } else BaseActivity.checkCarDownloadProgress(LanguageSelectionActivity.this,
-                        carDownloadProgress,
-                        progressDialog,true);
+        carDownloadHelper.getDownloadProgress().observe(this, carDownloadProgress -> {
+            if (carDownloadProgress == null) return;
+            if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE) {
+                downloadCompleted();
+            } else BaseActivity.checkCarDownloadProgress(LanguageSelectionActivity.this,
+                    carDownloadProgress,
+                    progressDialog,true);
 
-            }
         });
         carDownloadHelper.downloadAssetAndLang();
     }
@@ -638,42 +588,34 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         btnCancel.setText(selectedLangModel.getCancel().isEmpty() ? resources.getString(R.string.button_CANCEL) : selectedLangModel.getCancel());
         btnOk.setText(selectedLangModel.getOk().isEmpty() ? resources.getString(R.string.button_OK) : selectedLangModel.getOk());
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
 
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestStoragePermission();
-                } else {
+        btnOk.setOnClickListener(v -> {
+            dialog.dismiss();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestStoragePermission();
+            } else {
 
-                    if (preferenceUtil.getIsFirstTime()) {
-                        if (new File(Values.PATH).exists()) {
-                            try {
-                                Logger.error("Values.PATH", "_________" + Values.PATH);
+                if (preferenceUtil.getIsFirstTime()) {
+                    if (new File(Values.PATH).exists()) {
+                        try {
+                            Logger.error("Values.PATH", "_________" + Values.PATH);
 
-                                FileUtils.deleteDirectory(new File(Values.PATH));
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+                            FileUtils.deleteDirectory(new File(Values.PATH));
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                    }
-
-                    Logger.error("lang_id", "__________" + selectedLangModel.getLanguageId());
-                    if (NissanApp.getInstance().createPath(Values.PATH)) {
-                        startCarDownloadProcedure();
-                    } else {
-                        Logger.error("error in", "________creating path");
                     }
                 }
 
+                Logger.error("lang_id", "__________" + selectedLangModel.getLanguageId());
+                if (NissanApp.getInstance().createPath(Values.PATH)) {
+                    startCarDownloadProcedure();
+                } else {
+                    Logger.error("error in", "________creating path");
+                }
             }
+
         });
 
         dialog.show();
@@ -732,19 +674,11 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         AlertDialog.Builder builder = new AlertDialog.Builder(LanguageSelectionActivity.this);
         builder.setTitle("Need Permissions");
         builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
-        builder.setPositiveButton("GOTO SETTINGS", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-                openSettings();
-            }
+        builder.setPositiveButton("GOTO SETTINGS", (dialog, which) -> {
+            dialog.cancel();
+            openSettings();
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
         builder.show();
     }
 

@@ -50,6 +50,7 @@ import com.nissan.alldriverguide.augmentedreality.ARXtrailRUS;
 import com.nissan.alldriverguide.augmentedreality.cars.ARLeaf2019;
 import com.nissan.alldriverguide.augmentedreality.cars.ARNewNissanJuke2019;
 import com.nissan.alldriverguide.augmentedreality.cars.ARQashqai2017;
+import com.nissan.alldriverguide.augmentedreality.cars.ARXtrail2020Eur;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.Analytics;
@@ -142,6 +143,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     private ARQashqai2017Rus mRendererQashqaiRus2017;
     private ARLeaf2019 mRendererLeaf2019;
     private ARNewNissanJuke2019 mRendererJuke2019;
+    private ARXtrail2020Eur mRendererXtrail2020Eur;
     private ARNavara2019 mRendererNavara2019;
 
     @Override
@@ -230,6 +232,9 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 break;
             case 18:
                 mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "jukef16.xml");
+                break;
+            case 19:
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "XtrailEur2020.xml");
                 break;
             default:
                 break;
@@ -450,7 +455,10 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 mRendererJuke2019 = new ARNewNissanJuke2019(this, vuforiaAppSession);
                 mGlView.setRenderer(mRendererJuke2019);
                 break;
-
+            case 19:
+                mRendererXtrail2020Eur = new ARXtrail2020Eur(this, vuforiaAppSession);
+                mGlView.setRenderer(mRendererXtrail2020Eur);
+                break;
             default:
                 break;
         }
@@ -675,7 +683,9 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
             case 18:
                 mRendererJuke2019.updateConfiguration();
                 break;
-
+            case 19:
+                mRendererXtrail2020Eur.updateConfiguration();
+                break;
             default:
                 break;
         }
@@ -714,30 +724,23 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     public void showInitializationErrorMessage(String message) {
         Logger.debugging(LOG_TAG, "showInitializationErrorMessage(String message)");
         final String errorMessage = message;
-        runOnUiThread(new Runnable() {
-            public void run() {
-                if (mErrorDialog != null) {
-                    mErrorDialog.dismiss();
-                }
-
-                // Generates an Alert Dialog to show the error message
-                AlertDialog.Builder builder = new AlertDialog.Builder(
-                        ImageTargetActivity.this);
-                builder.setMessage(errorMessage)
-                        .setTitle(getString(R.string.INIT_ERROR))
-                        .setCancelable(false)
-                        .setIcon(0)
-                        .setPositiveButton(getString(R.string.button_OK),
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,
-                                                        int id) {
-                                        finish();
-                                    }
-                                });
-
-                mErrorDialog = builder.create();
-                mErrorDialog.show();
+        runOnUiThread(() -> {
+            if (mErrorDialog != null) {
+                mErrorDialog.dismiss();
             }
+
+            // Generates an Alert Dialog to show the error message
+            AlertDialog.Builder builder = new AlertDialog.Builder(
+                    ImageTargetActivity.this);
+            builder.setMessage(errorMessage)
+                    .setTitle(getString(R.string.INIT_ERROR))
+                    .setCancelable(false)
+                    .setIcon(0)
+                    .setPositiveButton(getString(R.string.button_OK),
+                            (dialog, id) -> finish());
+
+            mErrorDialog = builder.create();
+            mErrorDialog.show();
         });
     }
 
@@ -934,23 +937,14 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         Button btnYes = (Button) dialog.findViewById(R.id.btn_ok);
 //        btnYes.setText(resources.getString(R.string.button_YES));
         btnYes.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_YES) : okText);
-        btnNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        btnNo.setOnClickListener(v -> dialog.dismiss());
 
-        btnYes.setOnClickListener(new View.OnClickListener() {
+        btnYes.setOnClickListener(v -> {
+            isDetected = false;
+            dialog.dismiss();
 
-            @Override
-            public void onClick(View v) {
-                isDetected = false;
-                dialog.dismiss();
-
-                Values.ePubType = 0;
-                finish();
-            }
+            Values.ePubType = 0;
+            finish();
         });
 
         dialog.show();
@@ -1021,14 +1015,12 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         public boolean onSingleTapUp(MotionEvent e) {
             // Generates a Handler to trigger autofocus
             // after 1 second
-            autofocusHandler.postDelayed(new Runnable() {
-                public void run() {
-                    boolean result = CameraDevice.getInstance().setFocusMode(
-                            CameraDevice.FOCUS_MODE.FOCUS_MODE_TRIGGERAUTO);
+            autofocusHandler.postDelayed(() -> {
+                boolean result = CameraDevice.getInstance().setFocusMode(
+                        CameraDevice.FOCUS_MODE.FOCUS_MODE_TRIGGERAUTO);
 
-                    if (!result)
-                        Logger.error("SingleTapUp", "Unable to trigger focus");
-                }
+                if (!result)
+                    Logger.error("SingleTapUp", "Unable to trigger focus");
             }, 1000L);
 
             return true;
