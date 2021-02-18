@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 
-def VUFORIA_SDK_DIR = '/home/roy/Downloads/vuforia-sdk-android-7-2-23'
+def VUFORIA_SDK_DIR = '/home/rohan/Desktop/vuforia-sdk-android-7-2-23/'
 def NATIVE_LIB_DIR = 'build/lib'
 def JAR_DIR = 'build/java/Vuforia'
 
@@ -18,7 +18,7 @@ android {
         applicationId "com.nissan.alldriverguide"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 87
+        versionCode 88
         versionName "2.3.7"
         multiDexEnabled true
         ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
