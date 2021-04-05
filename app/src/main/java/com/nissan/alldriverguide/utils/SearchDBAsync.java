@@ -18,12 +18,10 @@ import java.util.Collections;
  * Created by Rohan on 9/18/2017.
  */
 public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
-    private ArrayList<String> listOfFiles = new ArrayList<>();
-    private Activity activity;
-    private String langType;
-    private int carType;
-    // All type of epub loaded in array
-    private int[] epubType = new int[]{Values.BUTTON_TYPE, Values.COMBIMETER_TYPE, Values.ENGINE_TYPE, Values.HOMEPAGE_TYPE, Values.INFO_TYPE, Values.TYRE_TYPE, Values.WARRANTY_TYPE};
+    private final ArrayList<String> listOfFiles = new ArrayList<>();
+    private final Activity activity;
+    private final String langType;
+    private final int carType;
 
 //    protected SearchDBAsync(Activity act, String lang_type) {
 //        this.activity = act;
@@ -83,7 +81,7 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
                 // parseePub() method in MAePubParser class actually parse the toc.ncx file and load in arrayList
                 ArrayList<EpubInfo> listOfEpub = new ExtractedEpubLoader(ePubPath).parseNcxFile();
 
-                if (listOfEpub == null || listOfEpub.size() < 1)
+                if (listOfEpub.size() < 1)
                     return false; // if listOfEpub ArrayList doesn't have data and contain null value it's return false.
 
                 // This key is used for storing ArrayList in shared preference
@@ -91,15 +89,13 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
                 String sharedPreferenceKey = carType + Values.UNDERSCORE + langType + Values.UNDERSCORE + NissanApp.getInstance().getePubType(listOfFiles.get(i));
                 // Storing ArrayList in shared preference
                 new PreferenceUtil(activity.getApplicationContext()).storeSearchEpubList(listOfEpub, sharedPreferenceKey);
-
-                try {
-                    // After extracting and cashing epub data, downloaded epub has been force deleted.
-                    FileUtils.forceDelete(new File(ePubPath));
-//                    Logger.error("Path_Epub", "_____" + "deleted!");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
+//                try {
+//                    // After extracting and cashing epub data, downloaded epub has been force deleted.
+////                    FileUtils.forceDelete(new File(ePubPath));
+////                    Logger.error("Path_Epub", "_____" + "deleted!");
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
             }
         }
 
@@ -129,16 +125,12 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
         // crating language epub folder path (eg. /storage/emulated/0/.AllDriverGuide/micrak14/micrak14_pt).
         String path = NissanApp.getInstance().getCarPath(carType) + NissanApp.getInstance().getePubFolderPath(carType) + Values.UNDERSCORE + langType;
 
-//        Logger.error("path", "___________" + path);
-
         File directory = new File(path); // here select the language path
         File[] files = directory.listFiles(); // here get the 7 language epub list from sd card (that was downloaded). eg. button_pt.epub
         if (files != null && files.length > 0) {
             for (int i = 0; i < files.length; i++) {
                 // here add the epub name in arrayList
-                if (files[i].getName().contains(".epub")) {
-                    listOfFiles.add(files[i].getName());
-                }
+                listOfFiles.add(files[i].getName());
 //                Logger.error("file_name", "_______" + files[i].getName());
             }
         }

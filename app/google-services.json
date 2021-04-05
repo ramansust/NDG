@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "445967586319",
+    "firebase_url": "https://nissan-push-notification.firebaseio.com",
+    "project_id": "nissan-push-notification",
+    "storage_bucket": "nissan-push-notification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445967586319:android:bafb1be4e26f0ada",
+        "android_client_info": {
+          "package_name": "com.nissan.alldriverguide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445967586319-63rfsl1ck807v21nvn3bd4teq0ask953.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMNt8_kR05Ws0JdUdg79WBt9MpNipP-mo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
