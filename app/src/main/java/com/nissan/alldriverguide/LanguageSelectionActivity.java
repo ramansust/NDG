@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
@@ -23,7 +22,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -79,16 +77,15 @@ import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 public class LanguageSelectionActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, InterfaceLanguageListResponse, InterfaceGlobalMessageResponse, CarListACompleteAPI {
 
     private static final String TAG = "LanguageSelectionActivity";
+    public Resources resources;
+
+    //    private int[] languageImage = {R.drawable.united_kingdom, R.drawable.germany, R.drawable.france, R.drawable.italy, R.drawable.spain, R.drawable.netherlands, R.drawable.russia, R.drawable.sweden, R.drawable.norway, R.drawable.poland, R.drawable.finland, R.drawable.portugal};
     private String[] languageName;/*= {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};*/
-
-//    private int[] languageImage = {R.drawable.united_kingdom, R.drawable.germany, R.drawable.france, R.drawable.italy, R.drawable.spain, R.drawable.netherlands, R.drawable.russia, R.drawable.sweden, R.drawable.norway, R.drawable.poland, R.drawable.finland, R.drawable.portugal};
-
     private ListView lstView;
     private ArrayList<LanguageInfo> list;
     private LanguageSelectionAdapter adapter;
     private PreferenceUtil preferenceUtil;
     private DisplayMetrics metrics;
-    public Resources resources;
     private Tracker tracker;
     private CommonDao commonDao;
     private String carName = "";
@@ -194,8 +191,8 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
         Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(view -> {
-                dialog.dismiss();
-                finish();
+            dialog.dismiss();
+            finish();
         });
 
         dialog.show();
@@ -437,15 +434,20 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 //        });
 
 
-        CarDownloadHelper carDownloadHelper = new CarDownloadHelper(this, NissanApp.getInstance().getCarName(Values.carType),
-                langSource, assetsSource, Values.PATH, langDestination, assetsDestination);
+        CarDownloadHelper carDownloadHelper = new CarDownloadHelper(this,
+                NissanApp.getInstance().getCarName(Values.carType),
+                langSource,
+                assetsSource,
+                Values.PATH,
+                langDestination,
+                assetsDestination);
         carDownloadHelper.getDownloadProgress().observe(this, carDownloadProgress -> {
             if (carDownloadProgress == null) return;
             if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE) {
                 downloadCompleted();
             } else BaseActivity.checkCarDownloadProgress(LanguageSelectionActivity.this,
                     carDownloadProgress,
-                    progressDialog,true);
+                    progressDialog, true);
 
         });
         carDownloadHelper.downloadAssetAndLang();

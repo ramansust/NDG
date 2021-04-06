@@ -56,7 +56,6 @@ import com.nissan.alldriverguide.internetconnection.DetectConnection;
 import com.nissan.alldriverguide.model.CarInfo;
 import com.nissan.alldriverguide.model.LanguageInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
-import com.nissan.alldriverguide.model.parentCarList.Parent_car_list;
 import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListResponse;
 import com.nissan.alldriverguide.multiLang.model.CarList;
 import com.nissan.alldriverguide.multiLang.model.CarListResponse;
@@ -511,11 +510,15 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         Logger.error("downloadingMsg", "________" + downloadingMsg + "________" + preferenceUtil.getSelectedLang());
 
 
-        CarDownloadHelper carDownloadHelper = new CarDownloadHelper(context, "" + Values.carType,
-                langSource, assetsSource,
-                NissanApp.getInstance().getCarPath(Values.carType),
+        CarDownloadHelper carDownloadHelper = new CarDownloadHelper(
+                context, NissanApp.getInstance().getCarName(Values.carType),
+                langSource,
+                assetsSource,
+                Values.PATH,
                 langDestination,
-                assetsDestination
+                assetsDestination,
+                new PreferenceUtil(context),
+                lang
         );
         carDownloadHelper.getDownloadProgress().observe(this.frag, new Observer<CarDownloadProgress>() {
             @Override
@@ -917,11 +920,11 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         TextView txtViewHeader = dialog.findViewById(R.id.txt_header);
         if (isCarDownload) {
-            String downloadConfirmationMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DOWNLOAD_CONFIRMATION);
+            String downloadConfirmationMsg = NissanApp.getInstance().getAlertMessage(context, lang, Values.DOWNLOAD_CONFIRMATION);
             txtViewTitle.setText(downloadConfirmationMsg == null || downloadConfirmationMsg.isEmpty() ? resources.getString(R.string.alert_msg22) : downloadConfirmationMsg);
             txtViewHeader.setText(activity.getResources().getString(R.string.download));
         } else {
-            String deleteMsg = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.DELETE_MESSAGE);
+            String deleteMsg = NissanApp.getInstance().getAlertMessage(context, lang, Values.DELETE_MESSAGE);
             txtViewTitle.setText(deleteMsg == null || deleteMsg.isEmpty() ? resources.getString(R.string.alert_msg23) : deleteMsg);
             txtViewHeader.setText(activity.getResources().getString(R.string.delete));
         }
@@ -1515,6 +1518,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 LanguageInfo info = (LanguageInfo) parent.getAdapter().getItem(position);
                 lang = getLanguageShortName(info.getName()); //languageShortName[info.getId()];
                 downloading_lang_id = getLanguageID(info.getName()); //languageShortName[info.getId()];
+                Logger.error("on language selection", "_________" + lang + " id" + downloading_lang_id);
                 showCarDownloadDialogForSingleCar(carTypeLocal, true);
             }
         });
