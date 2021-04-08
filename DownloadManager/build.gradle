@@ -38,7 +38,9 @@ android {
         pickFirst 'META-INF/kotlinx-coroutines-core.kotlin_module'
     }
 
-
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
