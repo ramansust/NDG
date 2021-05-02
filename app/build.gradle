@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 
-def VUFORIA_SDK_DIR = '/home/rohan/Desktop/vuforia-sdk-android-7-2-23/'
+def VUFORIA_SDK_DIR = 'E://vuforia/vuforia-sdk-android-7-2-23'
 def NATIVE_LIB_DIR = 'build/lib'
 def JAR_DIR = 'build/java/vuforia'
 
