@@ -31,6 +31,7 @@ import java.util.Comparator;
 
 public class CombimeterFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "CombimeterFragment";
+    private static final String TITLE = "title";
     private View view;
     private ImageButton btnBack;
     private LinearLayout linearBack;
@@ -39,8 +40,6 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
     private LinearLayout mainLinearLayout;
     private TextView txt_title, txt_back_title;
     private String drawable_folder = Values.car_path + "/combimeter_button"; // combimiter path from sdCard
-    private static final String TITLE = "title";
-
     // Combimeter color list
     private ArrayList<String> list_red;
     private ArrayList<String> list_orange;
@@ -211,29 +210,32 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
 
         if (dir.isDirectory()) {
 
-            for (File file : dir.listFiles()) { // get all of the file from file path
-                if (file.toString().contains("combimeter_")) {
+            if (dir.listFiles() != null) {
+                for (File file : dir.listFiles()) { // get all of the file from file path
+                    if (file.toString().contains("combimeter_")) {
 
-                    Logger.error("___MB__", file.getName());
-                    // here add the colors in ArrayList form combimeter folder
-                    // comparing the naming convention like: _r = red, _y = blue, _grn = green etc.
-                    if (file.getName().contains("_r")) {
-                        list_red.add(file.getName());
-                    } else if (file.getName().contains("_y")) {
-                        list_yellow.add(file.getName());
-                    } else if (file.getName().contains("_b")) {
-                        list_blue.add(file.getName());
-                    } else if (file.getName().contains("_grn")) {
-                        list_green.add(file.getName());
-                    } else if (file.getName().contains("_c")) {
-                        list_cyan.add(file.getName());
-                    } else if (file.getName().contains("_g")) {
-                        list_gray.add(file.getName());
-                    } else if (file.getName().contains("_org")) {
-                        list_orange.add(file.getName());
+                        Logger.error("___MB__", file.getName());
+                        // here add the colors in ArrayList form combimeter folder
+                        // comparing the naming convention like: _r = red, _y = blue, _grn = green etc.
+                        if (file.getName().contains("_r")) {
+                            list_red.add(file.getName());
+                        } else if (file.getName().contains("_y")) {
+                            list_yellow.add(file.getName());
+                        } else if (file.getName().contains("_b")) {
+                            list_blue.add(file.getName());
+                        } else if (file.getName().contains("_grn")) {
+                            list_green.add(file.getName());
+                        } else if (file.getName().contains("_c")) {
+                            list_cyan.add(file.getName());
+                        } else if (file.getName().contains("_g")) {
+                            list_gray.add(file.getName());
+                        } else if (file.getName().contains("_org")) {
+                            list_orange.add(file.getName());
+                        }
                     }
                 }
             }
+
         }
 
         // here sorted the array list by the file number that contain in file name
@@ -387,6 +389,26 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
 
     }
 
+    /**
+     * @param c         context
+     * @param drawables for dotted vertical line
+     * @param space     used for layout margin
+     * @return view
+     */
+    private View add_DashedLine(Context c, int drawables, int space) {
+
+        LinearLayout colorLinearLayout = new LinearLayout(c);
+
+        colorLinearLayout.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        colorLinearLayout.setBackground(getResources().getDrawable(drawables));
+        LinearLayout.LayoutParams llp3 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 100);
+        llp3.setMargins(space, 0, space, 0);
+
+        colorLinearLayout.setLayoutParams(llp3);
+
+        return colorLinearLayout;
+    }
+
     // this class using for sorting the ArrayList
     public static class MassComparator implements Comparator<String> {
 
@@ -408,25 +430,5 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
             }
             return result;
         }
-    }
-
-    /**
-     * @param c         context
-     * @param drawables for dotted vertical line
-     * @param space     used for layout margin
-     * @return view
-     */
-    private View add_DashedLine(Context c, int drawables, int space) {
-
-        LinearLayout colorLinearLayout = new LinearLayout(c);
-
-        colorLinearLayout.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        colorLinearLayout.setBackground(getResources().getDrawable(drawables));
-        LinearLayout.LayoutParams llp3 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 100);
-        llp3.setMargins(space, 0, space, 0);
-
-        colorLinearLayout.setLayoutParams(llp3);
-
-        return colorLinearLayout;
     }
 }

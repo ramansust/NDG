@@ -326,6 +326,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
      * setup web view
      */
     private void setupWebView() {
+        webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);

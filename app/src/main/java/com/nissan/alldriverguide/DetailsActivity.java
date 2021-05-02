@@ -73,6 +73,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
      * here set the web view for display epub
      */
     private void setupWebView() {
+        webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);

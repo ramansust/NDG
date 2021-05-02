@@ -5,10 +5,10 @@ apply plugin: 'kotlin-android-extensions'
 
 def VUFORIA_SDK_DIR = '/home/rohan/Desktop/vuforia-sdk-android-7-2-23/'
 def NATIVE_LIB_DIR = 'build/lib'
-def JAR_DIR = 'build/java/Vuforia'
+def JAR_DIR = 'build/java/vuforia'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     sourceSets.main {
         jni.srcDirs = []
         jniLibs.srcDir "$VUFORIA_SDK_DIR/$NATIVE_LIB_DIR/"
@@ -17,7 +17,7 @@ android {
     defaultConfig {
         applicationId "com.nissan.alldriverguide"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 90
         versionName "2.3.9"
         multiDexEnabled true
