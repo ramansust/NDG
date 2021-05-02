@@ -70,7 +70,6 @@ public class TabFragment extends Fragment {
     private TextView cancel;
     private TextView txtViewUpdatedContent;
     private ImageView imageViewBack, imageViewClear;
-    private Typeface tf;
     private static Resources resources;
     private DisplayMetrics metrics;
     private PreferenceUtil preferenceUtil;
@@ -142,7 +141,6 @@ public class TabFragment extends Fragment {
         imageViewClear = (ImageView) v.findViewById(R.id.imageViewClearButton);
         shadowView = v.findViewById(R.id.shadowView);
         txtViewUpdatedContent = (TextView) v.findViewById(R.id.txt_view_updated_content);
-        tf = getResources().getFont(R.font.nissan_brand_bold);
         loadResources();
 
         //sdk support for shadowView
@@ -305,7 +303,7 @@ public class TabFragment extends Fragment {
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             //noinspection ConstantConditions
             TextView tv = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.h_b_media_tab, null);
-            tv.setTypeface(tf);
+//            tv.setTypeface(tf);
             tv.setText(tabs[i]);
             if (tabLayout.getTabAt(i) != null) {
                 tabLayout.getTabAt(i).setCustomView(tv);

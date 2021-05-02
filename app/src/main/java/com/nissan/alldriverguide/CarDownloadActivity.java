@@ -432,9 +432,7 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
         if (preferenceUtil.getIsFirstTime()) {
             if (new File(Values.PATH).exists()) {
                 try {
-
                     Logger.error("Values.PATH", "_________" + Values.PATH);
-
                     FileUtils.deleteDirectory(new File(Values.PATH));
                 } catch (Exception e) {
                     e.printStackTrace();
