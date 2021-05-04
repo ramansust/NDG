@@ -84,8 +84,8 @@ public class DataGridAdapter extends BaseAdapter {
 
         viewHolder.rv.setVisibility(View.GONE);
 
-        finalText = StringHelper.convertFromUTF8(epubInfo.getTitle());
-//        finalText = epubInfo.getTitle();
+//        finalText = StringHelper.convertFromUTF8(epubInfo.getTitle());
+        finalText = epubInfo.getTitle();
 
         if (_ePubType == Values.TYRE_TYPE) {
             if (!finalText.isEmpty()) {

@@ -1,7 +1,6 @@
 package com.nissan.alldriverguide.utils;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +9,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.nissan.alldriverguide.R;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-
-import com.nissan.alldriverguide.R;
 
 /**
  * Created by shubha on 12/6/17.
@@ -25,7 +24,6 @@ public class DialogErrorFragment extends DialogFragment {
     private Button btDismiss;
     private TextView tvErrorMessage;
     private String errorMsg;
-    private Typeface tf;
 
     public static DialogErrorFragment getInstance(Context context, String errorMsg) {
         DialogErrorFragment dialog = new DialogErrorFragment();
@@ -47,27 +45,19 @@ public class DialogErrorFragment extends DialogFragment {
         setCancelable(false);
 
         initViews(view);
-        setCustomFontForErrorMessage();
-
         return view;
     }
 
     private void initViews(View view) {
-        tf = Typeface.createFromAsset(getActivity().getAssets(), "font/nissan_brand_bold.otf"); //initialize typeface here.
-        tvErrorMessage = (TextView) view.findViewById(R.id.tvErrorMessage);
+        tvErrorMessage = view.findViewById(R.id.tvErrorMessage);
 
-        btDismiss = (Button) view.findViewById(R.id.btDismiss);
-        btDismiss.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getDialog().dismiss();
-            }
-        });
+        btDismiss = view.findViewById(R.id.btDismiss);
+        btDismiss.setOnClickListener(view1 -> getDialog().dismiss());
 
         tvErrorMessage.setText(errorMsg);
     }
 
     private void setCustomFontForErrorMessage() {
-        tvErrorMessage.setTypeface(tf);
+//        tvErrorMessage.setTypeface(tf);
     }
 }

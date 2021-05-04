@@ -69,5 +69,4 @@ public class AlertMessage {
     public void setType(String type) {
         this.type = type;
     }
-
 }
