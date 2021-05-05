@@ -3,8 +3,6 @@ package com.nissan.alldriverguide.pushnotification;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 import com.nissan.alldriverguide.database.PreferenceUtil;
@@ -14,6 +12,8 @@ import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import static android.text.TextUtils.isEmpty;
 

@@ -20,11 +20,12 @@ import java.util.ArrayList;
 
 public abstract class SingleContentUpdating extends AsyncTask<Void, Void, Boolean> {
 
-    private Context activity;
-    private ArrayList<String> folderNameUpdatedFolderList = new ArrayList<>();
-    private ArrayList<String> folderNameUpdatedFolderListAfterExtraction = new ArrayList<>();
-    private ArrayList<String> listOfFiles = new ArrayList<>();
-    private String langType = "", combimeterButton = "combimeter_button";
+    private final Context activity;
+    private final ArrayList<String> folderNameUpdatedFolderList = new ArrayList<>();
+    private final ArrayList<String> folderNameUpdatedFolderListAfterExtraction = new ArrayList<>();
+    private final ArrayList<String> listOfFiles = new ArrayList<>();
+    private String langType = "";
+    private final String combimeterButton = "combimeter_button";
     private int carType = 0;
 
     public SingleContentUpdating(Activity activity, String lang, int carType) {
@@ -79,8 +80,8 @@ public abstract class SingleContentUpdating extends AsyncTask<Void, Void, Boolea
         File directory = new File(path);
         File[] files = directory.listFiles();
         if (files != null && files.length > 0) {
-            for (int i = 0; i < files.length; i++) {
-                listOfFiles.add(files[i].getName());
+            for (File file : files) {
+                listOfFiles.add(file.getName());
             }
         }
     }
@@ -164,11 +165,7 @@ public abstract class SingleContentUpdating extends AsyncTask<Void, Void, Boolea
     @Override
     protected Boolean doInBackground(Void... voids) {
         if (folderNameUpdatedFolderListAfterExtraction != null && folderNameUpdatedFolderListAfterExtraction.size() > 0) {
-            if (copyDirectory()) {
-                return true;
-            } else {
-                return false;
-            }
+            return copyDirectory();
         } else {
             return false;
         }

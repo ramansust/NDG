@@ -11,10 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
@@ -30,13 +26,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 public class HomePageFragment extends Fragment implements View.OnClickListener {
 
-    private View view;
     private ExpandableListView expandableListView;
     private ImageButton btnBack;
     private LinearLayout linearBack;
-    private TextView txt_back_title;
     private HomePageExpandableAdapter adapter;
     private List<EpubInfo> list;
     private TextView title;
@@ -54,7 +52,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_homepage, container, false);
+        View view = inflater.inflate(R.layout.fragment_homepage, container, false);
 
         initViews(view);
 
@@ -172,31 +170,28 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         linearBack.setOnClickListener(this);
 
         if (adapter != null) {
-            adapter.setOnClickListener(new HomePageExpandableAdapter.OnItemClickListener() {
-                @Override
-                public void onClick(int index) {
-                    Fragment frag = DetailsFragment.newInstance(list.get(index).getIndex(), title.getText().toString().trim());
-                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                    ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
-                    ft.replace(R.id.container, frag);
-                    ft.addToBackStack(Values.tabAssistance);
-                    ft.commit();
-                }
+            adapter.setOnClickListener(index -> {
+                Fragment frag = DetailsFragment.newInstance(list.get(index).getIndex(), title.getText().toString().trim());
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
+                ft.replace(R.id.container, frag);
+                ft.addToBackStack(Values.tabAssistance);
+                ft.commit();
             });
         }
     }
 
     // here initialized all variable
     private void initViews(View view) {
-        btnBack = (ImageButton) view.findViewById(R.id.btn_back);
+        btnBack = view.findViewById(R.id.btn_back);
 
-        expandableListView = (ExpandableListView) view.findViewById(R.id.exp_lst_view_homepage);
+        expandableListView = view.findViewById(R.id.exp_lst_view_homepage);
 
-        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
+        progressBar = view.findViewById(R.id.progress_bar);
 
-        linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
-        title = (TextView) view.findViewById(R.id.txt_title);
-        txt_back_title = (TextView) view.findViewById(R.id.txt_back_title);
+        linearBack = view.findViewById(R.id.linear_back);
+        title = view.findViewById(R.id.txt_title);
+        TextView txt_back_title = view.findViewById(R.id.txt_back_title);
     }
 
     @Override
@@ -214,7 +209,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btn_back:
             case R.id.linear_back:
-                ((MainActivity) getActivity()).onBackPressed();
+                getActivity().onBackPressed();
                 break;
             default:
                 break;

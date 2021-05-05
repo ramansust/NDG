@@ -17,11 +17,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class VideoPlayerActivity extends AppCompatActivity implements MediaPlayer.OnCompletionListener, View.OnClickListener, MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener {
@@ -258,7 +258,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
                     videoView.seekTo(position);
                     videoView.start();
                 }
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         } else { // else working when back from another activity
             if (!videoView.isPlaying() && relativePopup.getVisibility() == View.INVISIBLE) {
@@ -268,7 +268,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
                 if (videoView != null) {
                     videoView.seekTo(position);
                 }
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
     }
@@ -288,7 +288,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
                 position = videoView.getCurrentPosition();
                 videoView.pause();
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
     }

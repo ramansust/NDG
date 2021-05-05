@@ -19,9 +19,9 @@ import java.util.List;
  */
 public class VideoAdapter extends BaseAdapter {
 
-    private Context context;
+    private final Context context;
     private LayoutInflater inflater;
-    private List<VideoInfo> list;
+    private final List<VideoInfo> list;
 
     public VideoAdapter(Context context, List<VideoInfo> list) {
         this.context = context;
@@ -81,8 +81,8 @@ public class VideoAdapter extends BaseAdapter {
         TextView txtViewCount;
 
         public ViewHolder(View view) {
-            imgView = (ImageView) view.findViewById(R.id.img_view);
-            txtViewTitle = (TextView) view.findViewById(R.id.txt_video_title);
+            imgView = view.findViewById(R.id.img_view);
+            txtViewTitle = view.findViewById(R.id.txt_video_title);
 //            txtViewDescription = (TextView) view.findViewById(R.id.txt_video_description);
 //            txtViewCount = (TextView) view.findViewById(R.id.txt_video_count);
         }

@@ -22,12 +22,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -53,6 +47,12 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -60,7 +60,6 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 public class MainActivity extends BaseTabFragmentActivity implements TabLayout.OnTabSelectedListener {
 
     public TabLayout tabLayout;
-    private Tracker tracker;
     private String[] tabNames = new String[4];
     private final int[] tabIconsSelected = {R.drawable.explore_selected, R.drawable.assistance_selected, R.drawable.search_pressed, R.drawable.settings_selected};
     private final int[] tabIconsUnSelected = {R.drawable.explore_unselected, R.drawable.assistance_unselected, R.drawable.search, R.drawable.settings_unselected};
@@ -83,7 +82,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     private DisplayMetrics metrics;
     private Resources resources;
 
-    private TextView tabTextView;
     private boolean isAnimation = false;
 
     private PreferenceUtil preferenceUtil;
@@ -141,7 +139,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         typeFaceNormal = ResourcesCompat.getFont(MainActivity.this, R.font.nissan_brand_regular);
         typeFaceBold = ResourcesCompat.getFont(MainActivity.this, R.font.nissan_brand_bold);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        tabLayout = findViewById(R.id.tabLayout);
 
         setTabNames();
         setupTabLayout();
@@ -296,10 +294,10 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
             LinearLayout rootLayout = (LinearLayout)
                     LayoutInflater.from(this).inflate(R.layout.custom_tab, tabLayout, false);
 
-            tabTextView = (TextView) rootLayout.findViewById(R.id.tab_title);
+            TextView tabTextView = rootLayout.findViewById(R.id.tab_title);
             tabTextViews[i] = tabTextView;
             tabTextView.setText(tabNames[i]);
-            ImageView tabImageView = (ImageView) rootLayout.findViewById(R.id.iv_tab);
+            ImageView tabImageView = rootLayout.findViewById(R.id.iv_tab);
             tabIcons[i] = tabImageView;
             tab.setCustomView(rootLayout);
             tabLayout.addTab(tab);
@@ -452,13 +450,13 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     public void backAlert() {
         final Dialog dialog = new DialogController(MainActivity.this).langDialog();
 
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
 
         String okText = NissanApp.getInstance().getGlobalMessage(this).getOk();
         String cancelText = NissanApp.getInstance().getGlobalMessage(this).getCancel();
 
-        Button btnYes = (Button) dialog.findViewById(R.id.btn_ok);
-        Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
+        Button btnYes = dialog.findViewById(R.id.btn_ok);
+        Button btnCancel = dialog.findViewById(R.id.btn_cancel);
 
         btnYes.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
         btnCancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
@@ -467,22 +465,16 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
         txtViewTitle.setText(exitDialogueText == null || exitDialogueText.isEmpty() ? resources.getString(R.string.exit_alert) : exitDialogueText);
 
-        btnYes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
+        btnYes.setOnClickListener(v -> {
+            dialog.dismiss();
 
-                Values.ePubType = 0; // reset the epub type
-                finish();
-            }
+            Values.ePubType = 0; // reset the epub type
+            finish();
         });
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Values.ePubType = 0;
-                dialog.dismiss();
-            }
+        btnCancel.setOnClickListener(v -> {
+            Values.ePubType = 0;
+            dialog.dismiss();
         });
 
         dialog.show();
@@ -496,43 +488,34 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
         final Dialog dialog = new DialogController(MainActivity.this).rateOurAppDialog();
 
-        TextView txtViewSubTitle = (TextView) dialog.findViewById(R.id.txt_sub_title);
+        TextView txtViewSubTitle = dialog.findViewById(R.id.txt_sub_title);
         txtViewSubTitle.setText(getResources().getString(R.string.rate_our_app_sub_title));
 
-        TextView txtViewNoThanks = (TextView) dialog.findViewById(R.id.txt_view_no_thanks);
-        TextView txtViewAskMeLater = (TextView) dialog.findViewById(R.id.txt_view_ask_me_later);
-        TextView txtViewRateThisApp = (TextView) dialog.findViewById(R.id.txt_view_rate_this_app);
+        TextView txtViewNoThanks = dialog.findViewById(R.id.txt_view_no_thanks);
+        TextView txtViewAskMeLater = dialog.findViewById(R.id.txt_view_ask_me_later);
+        TextView txtViewRateThisApp = dialog.findViewById(R.id.txt_view_rate_this_app);
 
-        txtViewNoThanks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                preferenceUtil.setSessionThree(true);
-                preferenceUtil.setSessionOne(false);
-                new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
-            }
+        txtViewNoThanks.setOnClickListener(v -> {
+            dialog.dismiss();
+            preferenceUtil.setSessionThree(true);
+            preferenceUtil.setSessionOne(false);
+            new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
         });
 
-        txtViewAskMeLater.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                preferenceUtil.setSessionOne(true);
-                preferenceUtil.setSessionThree(false);
-                new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
-            }
+        txtViewAskMeLater.setOnClickListener(v -> {
+            dialog.dismiss();
+            preferenceUtil.setSessionOne(true);
+            preferenceUtil.setSessionThree(false);
+            new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
         });
 
-        txtViewRateThisApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                preferenceUtil.setSessionOne(false);
-                preferenceUtil.setSessionThree(false);
-                preferenceUtil.setIsFirstTimeGreatNotGreat(false);
-                new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getApplicationContext().getPackageName())));
-            }
+        txtViewRateThisApp.setOnClickListener(v -> {
+            dialog.dismiss();
+            preferenceUtil.setSessionOne(false);
+            preferenceUtil.setSessionThree(false);
+            preferenceUtil.setIsFirstTimeGreatNotGreat(false);
+            new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getApplicationContext().getPackageName())));
         });
 
         dialog.show();
@@ -546,32 +529,26 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
         final Dialog dialog = new DialogController(MainActivity.this).greatNotGreatDialog();
 
-        TextView txtGreat = (TextView) dialog.findViewById(R.id.txt_great);
-        TextView txtNotGreat = (TextView) dialog.findViewById(R.id.txt_not_great);
+        TextView txtGreat = dialog.findViewById(R.id.txt_great);
+        TextView txtNotGreat = dialog.findViewById(R.id.txt_not_great);
 
         txtGreat.setText(getResources().getString(R.string.great));
         txtNotGreat.setText(getResources().getString(R.string.not_great));
 
-        txtGreat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                preferenceUtil.setIsGreat(true);
-                preferenceUtil.setIsFirstTimeGreatNotGreat(false);
-                rateOurApp();
-                new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
-            }
+        txtGreat.setOnClickListener(v -> {
+            dialog.dismiss();
+            preferenceUtil.setIsGreat(true);
+            preferenceUtil.setIsFirstTimeGreatNotGreat(false);
+            rateOurApp();
+            new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
         });
 
-        txtNotGreat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                preferenceUtil.setIsGreat(false);
-                preferenceUtil.setIsFirstTimeGreatNotGreat(false);
-                feedBack();
-                new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
-            }
+        txtNotGreat.setOnClickListener(v -> {
+            dialog.dismiss();
+            preferenceUtil.setIsGreat(false);
+            preferenceUtil.setIsFirstTimeGreatNotGreat(false);
+            feedBack();
+            new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
         });
 
         dialog.show();
@@ -585,48 +562,39 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
         final Dialog dialog = new DialogController(MainActivity.this).feedBackDialog();
 
-        TextView feedBackNoThanks = (TextView) dialog.findViewById(R.id.feedback_no_thanks);
-        TextView feedBackAskMeLater = (TextView) dialog.findViewById(R.id.feedback_ask_me_later);
-        TextView feedBackYes = (TextView) dialog.findViewById(R.id.feedback_yes);
+        TextView feedBackNoThanks = dialog.findViewById(R.id.feedback_no_thanks);
+        TextView feedBackAskMeLater = dialog.findViewById(R.id.feedback_ask_me_later);
+        TextView feedBackYes = dialog.findViewById(R.id.feedback_yes);
 
-        feedBackNoThanks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                preferenceUtil.setSessionThree(true);
-                preferenceUtil.setSessionOne(false);
-                new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
-            }
+        feedBackNoThanks.setOnClickListener(v -> {
+            dialog.dismiss();
+            preferenceUtil.setSessionThree(true);
+            preferenceUtil.setSessionOne(false);
+            new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
         });
 
-        feedBackAskMeLater.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                preferenceUtil.setSessionOne(true);
-                preferenceUtil.setSessionThree(false);
-                new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
-            }
+        feedBackAskMeLater.setOnClickListener(v -> {
+            dialog.dismiss();
+            preferenceUtil.setSessionOne(true);
+            preferenceUtil.setSessionThree(false);
+            new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
         });
 
-        feedBackYes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
+        feedBackYes.setOnClickListener(v -> {
+            dialog.dismiss();
 
-                preferenceUtil.setSessionOne(true);
-                preferenceUtil.setSessionThree(false);
-                new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
+            preferenceUtil.setSessionOne(true);
+            preferenceUtil.setSessionThree(false);
+            new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
 
-                Fragment frag = Feedback.newInstance();
+            Fragment frag = Feedback.newInstance();
 
-                if (frag != null) {
-                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
-                    ft.replace(R.id.container, frag);
-                    ft.addToBackStack(Values.tabSettings);
-                    ft.commit();
-                }
+            if (frag != null) {
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
+                ft.replace(R.id.container, frag);
+                ft.addToBackStack(Values.tabSettings);
+                ft.commit();
             }
         });
 
@@ -661,7 +629,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
                 .getTracker(MyApplication.TrackerName.APP_TRACKER);
 
         // Get tracker.
-        tracker = ((MyApplication) getApplication())
+        Tracker tracker = ((MyApplication) getApplication())
                 .getTracker(MyApplication.TrackerName.APP_TRACKER);
 
         // Set screen name.
@@ -676,7 +644,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE_ALL:
                 if (grantResults.length > 0) {
@@ -692,13 +660,10 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
                                     || shouldShowRequestPermissionRationale(CAMERA)
                                     || shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE)) {
                                 showMessageOKCancel("You need to allow all of the permissions",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermissions(new String[]{ACCESS_FINE_LOCATION, CAMERA, WRITE_EXTERNAL_STORAGE},
-                                                            PERMISSION_REQUEST_CODE_ALL);
-                                                }
+                                        (dialog, which) -> {
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                                requestPermissions(new String[]{ACCESS_FINE_LOCATION, CAMERA, WRITE_EXTERNAL_STORAGE},
+                                                        PERMISSION_REQUEST_CODE_ALL);
                                             }
                                         });
                                 return;

@@ -19,7 +19,7 @@ public class ExploreTabContentController implements Callback<ExploreTabModel> {
 
     public ExploreTabContentController(CompleteExploreTabContent interfaceExplore) {
 
-        this.listener = interfaceExplore;
+        listener = interfaceExplore;
     }
 
     public void callApi(String device_id, String language_id, String car_id, String epub_id, String tab_id) {
@@ -34,19 +34,19 @@ public class ExploreTabContentController implements Callback<ExploreTabModel> {
         if (response.isSuccessful()) {
             ExploreTabModel exploreTabModel = response.body();
             if (exploreTabModel != null) {
-                if (this.listener != null) this.listener.onDownloaded(exploreTabModel);
+                if (listener != null) listener.onDownloaded(exploreTabModel);
             } else {
-                if (this.listener != null) this.listener.onFailed("No content available.");
+                if (listener != null) listener.onFailed("No content available.");
             }
         } else {
-            if (this.listener != null) this.listener.onFailed(response.errorBody().toString());
+            if (listener != null) listener.onFailed(response.errorBody().toString());
         }
     }
 
     @Override
     public void onFailure(Call<ExploreTabModel> call, Throwable t) {
-        if (this.listener != null && t != null && t.getMessage() != null) {
-            this.listener.onFailed(t.getMessage());
+        if (listener != null && t != null && t.getMessage() != null) {
+            listener.onFailed(t.getMessage());
         }
     }
 }

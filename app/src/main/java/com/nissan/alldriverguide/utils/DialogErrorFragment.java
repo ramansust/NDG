@@ -21,8 +21,6 @@ import androidx.fragment.app.DialogFragment;
 public class DialogErrorFragment extends DialogFragment {
 
     private Context context;
-    private Button btDismiss;
-    private TextView tvErrorMessage;
     private String errorMsg;
 
     public static DialogErrorFragment getInstance(Context context, String errorMsg) {
@@ -49,9 +47,9 @@ public class DialogErrorFragment extends DialogFragment {
     }
 
     private void initViews(View view) {
-        tvErrorMessage = view.findViewById(R.id.tvErrorMessage);
+        TextView tvErrorMessage = view.findViewById(R.id.tvErrorMessage);
 
-        btDismiss = view.findViewById(R.id.btDismiss);
+        Button btDismiss = view.findViewById(R.id.btDismiss);
         btDismiss.setOnClickListener(view1 -> getDialog().dismiss());
 
         tvErrorMessage.setText(errorMsg);

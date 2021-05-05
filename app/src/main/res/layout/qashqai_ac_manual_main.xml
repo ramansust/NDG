@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1.50"
             android:background="@android:color/transparent"
-            android:clickable="true"></Button>
+            android:clickable="true" />
 
         <Button
             android:id="@+id/txt_view_ac_man_right"

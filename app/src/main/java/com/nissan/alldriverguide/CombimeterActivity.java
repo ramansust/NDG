@@ -11,8 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
@@ -21,6 +19,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 import static com.nissan.alldriverguide.utils.Values.WARNING_LIGHTS;
@@ -36,11 +36,10 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
     private ImageButton btnBack;
     private LinearLayout linearBack;
     private ScrollView scrollView;
-    private TextView txt_back_title, txt_title;
+    private TextView txt_title;
     private int width = 0;
     private LinearLayout mainLinearLayout;
-    private String EPUB_INDEX = "epub_index";
-    private String drawable_folder = Values.car_path + "/combimeter_button";
+    private final String drawable_folder = Values.car_path + "/combimeter_button";
 
     //    Combimeter color list
     private ArrayList<String> list_red;
@@ -131,7 +130,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
         btnBack = findViewById(R.id.btn_back);
         linearBack = findViewById(R.id.linear_back);
         scrollView = findViewById(R.id.scroll_view);
-        txt_back_title = findViewById(R.id.txt_back_title);
+        TextView txt_back_title = findViewById(R.id.txt_back_title);
         txt_title = findViewById(R.id.txt_title);
     }
 
@@ -213,7 +212,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
             ImageButton button = new ImageButton(getApplicationContext());
 
             Drawable d = Drawable.createFromPath(drawable_folder + "/" + list_combi.get(j));
-            final String[] output = list_combi.get(j).split("\\_");
+            final String[] output = list_combi.get(j).split("_");
 
             try {
                 counter = Integer.parseInt(output[1]);
@@ -229,7 +228,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            String[] last_value = list_combi.get(list_combi.size() - 1).split("\\_");
+            String[] last_value = list_combi.get(list_combi.size() - 1).split("_");
             //counter++;
 
             if (column == 3) {
@@ -318,8 +317,8 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
         @Override
         public int compare(String weight1, String weight2) {
 
-            String[] output1 = weight1.split("\\_");
-            String[] output2 = weight2.split("\\_");
+            String[] output1 = weight1.split("_");
+            String[] output2 = weight2.split("_");
 
             int value = Integer.parseInt(output1[1]);
             int value2 = Integer.parseInt(output2[1]);
@@ -352,6 +351,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
 
+        String EPUB_INDEX = "epub_index";
         switch (v.getId()) {
             case R.id.btn_back:
             case R.id.linear_back:

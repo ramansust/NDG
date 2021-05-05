@@ -22,7 +22,7 @@ public class CarListContentController implements Callback<CarListResponse> {
 
     public CarListContentController(CarListACompleteAPI interfaceCarList) {
 
-        this.listener = interfaceCarList;
+        listener = interfaceCarList;
     }
 
     public void callApi(String device_id, String language_id) {
@@ -42,23 +42,23 @@ public class CarListContentController implements Callback<CarListResponse> {
             Log.e("Carlist ", "new json 1 " + new Gson().toJson(response.body()));
 
             if (carListResponse != null) {
-                if (this.listener != null) this.listener.onDownloaded(carListResponse);
+                if (listener != null) listener.onDownloaded(carListResponse);
             } else {
-                if (this.listener != null) this.listener.onFailed("No content available.");
+                if (listener != null) listener.onFailed("No content available.");
             }
         } else {
-            if (this.listener != null) this.listener.onFailed(response.errorBody().toString());
+            if (listener != null) listener.onFailed(response.errorBody().toString());
         }
     }
 
     @Override
     public void onFailure(Call<CarListResponse> call, Throwable t) {
-        if (this.listener != null && t != null && t.getMessage() != null) {
-            this.listener.onFailed(t.getMessage());
+        if (listener != null && t != null && t.getMessage() != null) {
+            listener.onFailed(t.getMessage());
         }
     }
 
     public void removeListener() {
-        this.listener = null;
+        listener = null;
     }
 }

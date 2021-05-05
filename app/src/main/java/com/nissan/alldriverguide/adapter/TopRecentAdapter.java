@@ -6,10 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.fragments.search.TabFragment;
 import com.nissan.alldriverguide.utils.NissanApp;
@@ -18,14 +14,20 @@ import com.nissan.alldriverguide.utils.Values;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * Created by nirob on 10/9/17.
  */
 
 public class TopRecentAdapter extends RecyclerView.Adapter<TopRecentAdapter.SimpleViewHolder> {
 
-    private Context mContext;
-    private List<String> list1, list2, list3;
+    private final Context mContext;
+    private List<String> list1;
+    private final List<String> list2;
+    private final List<String> list3;
 
     /**
      * Declare the constructor
@@ -65,7 +67,7 @@ public class TopRecentAdapter extends RecyclerView.Adapter<TopRecentAdapter.Simp
 
         public SimpleViewHolder(View itemView) {
             super(itemView);
-            keyword = (TextView) itemView.findViewById(R.id.top_recent_search_keyword);
+            keyword = itemView.findViewById(R.id.top_recent_search_keyword);
             keyword.setOnClickListener(this);
 
         }

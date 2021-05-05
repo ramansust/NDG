@@ -3,7 +3,6 @@ package com.nissan.alldriverguide;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -26,8 +25,6 @@ import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -76,6 +73,8 @@ import com.vuforia.Vuforia;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
 public class ImageTargetActivity extends AppCompatActivity implements SampleApplicationControl {
@@ -97,26 +96,20 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     public boolean mIsActive = false;
     SampleApplicationSession vuforiaAppSession;
     private DataSet mCurrentDataset;
-    private int mCurrentDatasetSelectionIndex = 0;
-    private ArrayList<String> mDatasetStrings = new ArrayList<String>();
+    private final ArrayList<String> mDatasetStrings = new ArrayList<>();
     // Our OpenGL view:
     private SampleApplicationGLView mGlView;
     private GestureDetector mGestureDetector;
     // The textures we will use for rendering:
     private Vector<Texture> mTextures;
-    private boolean mSwitchDatasetAsap = false;
-    // Called when the activity first starts or the user navigates back to an activity.
-    private boolean mFlash = false;
+    private final boolean mSwitchDatasetAsap = false;
     private boolean mContAutofocus = false;
-    private boolean mExtendedTracking = false;
     private View mFlashOptionView;
     private RelativeLayout mUILayout;
     // Alert Dialog used to display SDK errors
     private AlertDialog mErrorDialog;
     private boolean mIsDroidDevice = false;
-    private com.google.android.gms.analytics.Tracker tracker;
 
-    private DisplayMetrics metrics;
     private Resources resources;
     // variable to track event time
     private long mLastClickTime = 0;
@@ -154,7 +147,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
         vuforiaAppSession = new SampleApplicationSession(this);
 
-        metrics = new DisplayMetrics();
+        DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         resources = new Resources(getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(ImageTargetActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
@@ -245,7 +238,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         mGestureDetector = new GestureDetector(this, new GestureListener());
 
         // Load any sample specific textures:
-        mTextures = new Vector<Texture>();
+        mTextures = new Vector<>();
         loadTextures();
 
         mIsDroidDevice = Build.MODEL.toLowerCase().startsWith("droid");
@@ -312,6 +305,8 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         }
 
         // Turn off the flash
+        // Called when the activity first starts or the user navigates back to an activity.
+        boolean mFlash = false;
         if (mFlashOptionView != null && mFlash) {
             // OnCheckedChangeListener is called upon changing the checked state
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -504,6 +499,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
             return false;
 
 //        if (!mCurrentDataset.load (mDatasetStrings.get (mCurrentDatasetSelectionIndex), STORAGE_TYPE.STORAGE_APPRESOURCE))
+        int mCurrentDatasetSelectionIndex = 0;
         if (mDatasetStrings != null && mDatasetStrings.size() > 0 && !mCurrentDataset.load(mDatasetStrings.get(mCurrentDatasetSelectionIndex), STORAGE_TYPE.STORAGE_ABSOLUTE))
             return false;
 
@@ -520,7 +516,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
             String name = "" + trackable.getName();
             trackable.setUserData(name);
             Logger.debugging(LOG_TAG, "UserData:Set the following user data "
-                    + (String) trackable.getUserData());
+                    + trackable.getUserData());
         }
 
         return true;
@@ -817,6 +813,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     }
 
     boolean isExtendedTrackingActive() {
+        boolean mExtendedTracking = false;
         return mExtendedTracking;
     }
 
@@ -920,8 +917,8 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     public void backButtonAlert() {
         final Dialog dialog = new DialogController(ImageTargetActivity.this).langDialog();
 
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
-        TextView txtViewHeader = (TextView) dialog.findViewById(R.id.txt_header);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
+        TextView txtViewHeader = dialog.findViewById(R.id.txt_header);
         txtViewHeader.setTypeface(null, Typeface.BOLD);
         txtViewTitle.setTypeface(null, Typeface.BOLD);
         String exitDialogueText = NissanApp.getInstance().getAlertMessage(this, new PreferenceUtil(this).getSelectedLang(), Values.CONFIRM_EXIT_MESSAGE);
@@ -931,10 +928,10 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         String okText = NissanApp.getInstance().getGlobalMessage(this).getOk();
         String cancelText = NissanApp.getInstance().getGlobalMessage(this).getCancel();
 
-        Button btnNo = (Button) dialog.findViewById(R.id.btn_cancel);
+        Button btnNo = dialog.findViewById(R.id.btn_cancel);
 //        btnNo.setText(resources.getString(R.string.button_NO));
         btnNo.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_NO) : cancelText);
-        Button btnYes = (Button) dialog.findViewById(R.id.btn_ok);
+        Button btnYes = dialog.findViewById(R.id.btn_ok);
 //        btnYes.setText(resources.getString(R.string.button_YES));
         btnYes.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_YES) : okText);
         btnNo.setOnClickListener(v -> dialog.dismiss());
@@ -984,7 +981,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 .getTracker(MyApplication.TrackerName.APP_TRACKER);
 
         // Get tracker.
-        tracker = ((MyApplication) getApplication())
+        com.google.android.gms.analytics.Tracker tracker = ((MyApplication) getApplication())
                 .getTracker(MyApplication.TrackerName.APP_TRACKER);
 
         // Set screen name.
@@ -1001,7 +998,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     }
 
     // Process Single Tap event to trigger autofocus
-    private class GestureListener extends
+    private static class GestureListener extends
             GestureDetector.SimpleOnGestureListener {
         // Used to set autofocus one second after a manual focus is triggered
         private final Handler autofocusHandler = new Handler();

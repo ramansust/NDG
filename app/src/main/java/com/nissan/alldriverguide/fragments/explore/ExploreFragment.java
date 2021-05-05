@@ -28,16 +28,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -76,6 +66,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
@@ -87,7 +87,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private Button btnAR;
     private RelativeLayout btnBlindSpotAR, relativeAR, relativeBlindSpot, rlMapView;
     private LinearLayout llTitleVideo;
-    private View view;
 
     private ScrollableGridView gridView;
     private GridViewAdapter adapter;
@@ -96,8 +95,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private DisplayMetrics metrics;
     private TextView tvNoContent, tvPageTitle, textViewMap2, tvAugmentedReality, tvExploreYourCar,
             tvAugmentedRealityOldCar, tvExploreYourCarOldCar, tvDiscoverYourVehicle, simple_drawee_view_explore, simple_drawee_view_ar;
-    private ImageView imageViewEpubHeader;
-    private ImageView imageViewEpubBackground;
     private RelativeLayout infoImageButton;
     private ImageButton infoImageBtn;
     private RelativeLayout infoImageOldButton;
@@ -116,14 +113,12 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     public static ProgressBar progress_bar;
     private ExploreTabContentController controller;
     private LinearLayout layoutDataNotFound, llLeftArrow, llRightArrow;
-    private LinearLayout mapView;
     private List<EpubInfo> list;
     private CustomViewPager viewPager;
     private ImageView ivRight, ivLeft;
-    private PreferenceUtil preferenceUtil;
-    private ProgressDialog progressDialog = null;
-    ;
-    private int width = 250, height = 50;
+    private final ProgressDialog progressDialog = null;
+    private final int width = 250;
+    private final int height = 50;
     private int exploreSlidedItems = 0;
     private int currentPage;
     ViewGroup layout;
@@ -140,7 +135,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_explore, container, false);
+        View view = inflater.inflate(R.layout.fragment_explore, container, false);
 
         initViews(view);
         device_density = NissanApp.getInstance().getDensityName(getActivity());
@@ -204,16 +199,13 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private void showNoInternetDialogue(String msg) {
         final Dialog dialog = new DialogController(getActivity()).internetDialog();
         dialog.setCancelable(false);
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(msg);
 
-        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                getActivity().finish();
-            }
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(v -> {
+            dialog.dismiss();
+            getActivity().finish();
         });
 
         dialog.show();
@@ -353,7 +345,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
                     @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    public void onResourceReady(Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                         Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                             simple_drawee_view_explore.setBackground(drawable);
@@ -378,12 +370,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 if (videoList != null) {
                     if (videoList.size() > 0) {
 
-                        Collections.sort(videoList, new Comparator<ExploreTabVideoModel>() {
-                            @Override
-                            public int compare(ExploreTabVideoModel lhs, ExploreTabVideoModel rhs) {
-                                return lhs.getIndex().compareTo(rhs.getIndex());
-                            }
-                        });
+                        Collections.sort(videoList, (lhs, rhs) -> lhs.getIndex().compareTo(rhs.getIndex()));
 
                         for (int i = 0; i < videoList.size(); i++) {
 
@@ -416,7 +403,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
 
                 @Override
-                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                public void onResourceReady(Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         simple_drawee_view_ar.setBackground(drawable);
@@ -446,7 +433,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         if (header_text != null) {
             Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
                 @Override
-                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                public void onResourceReady(Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         simple_drawee_view_explore.setBackground(drawable);
@@ -468,7 +455,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
 
                 @Override
-                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                public void onResourceReady(Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         simple_drawee_view_ar.setBackground(drawable);
@@ -527,9 +514,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private void initViews(View view) {
 
         mContext = getActivity();
-        preferenceUtil = new PreferenceUtil(mContext);
-        simple_drawee_view_explore = (TextView) view.findViewById(R.id.simple_drawee_view_blind_spot_ar);
-        simple_drawee_view_ar = (TextView) view.findViewById(R.id.simple_drawee_view_ar);
+        PreferenceUtil preferenceUtil = new PreferenceUtil(mContext);
+        simple_drawee_view_explore = view.findViewById(R.id.simple_drawee_view_blind_spot_ar);
+        simple_drawee_view_ar = view.findViewById(R.id.simple_drawee_view_ar);
   /*      typefaceBold = Typeface.createFromAsset(mContext.getAssets(),  "font/nissan_brand_bold.otf");
         typefaceRegular = Typeface.createFromAsset(mContext.getAssets(),  "font/nissan_brand_regular.otf");
 
@@ -545,22 +532,22 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         tvDiscoverYourVehicle = (TextView) view.findViewById(R.id.tvDiscoverYourVehicle);
         tvDiscoverYourVehicle.setTypeface(typefaceBold);*/
 
-        tvPageTitle = (TextView) view.findViewById(R.id.txt_title_explore);
-        relativeAR = (RelativeLayout) view.findViewById(R.id.relative_ar);
-        relativeBlindSpot = (RelativeLayout) view.findViewById(R.id.relative_blind_spot);
-        llTitleVideo = (LinearLayout) view.findViewById(R.id.llTitleVideo);
-        progress_bar = (ProgressBar) view.findViewById(R.id.progress_bar);
+        tvPageTitle = view.findViewById(R.id.txt_title_explore);
+        relativeAR = view.findViewById(R.id.relative_ar);
+        relativeBlindSpot = view.findViewById(R.id.relative_blind_spot);
+        llTitleVideo = view.findViewById(R.id.llTitleVideo);
+        progress_bar = view.findViewById(R.id.progress_bar);
 
-        btnAR = (Button) view.findViewById(R.id.btn_ar);
-        btnBlindSpotAR = (RelativeLayout) view.findViewById(R.id.btn_blind_spot_ar);
-        infoImageButton = (RelativeLayout) view.findViewById(R.id.layout_info);
-        infoImageOldButton = (RelativeLayout) view.findViewById(R.id.layout_info_old);
-        infoImageOldBtn = (ImageButton) view.findViewById(R.id.info_explore_old);
-        infoImageBtn = (ImageButton) view.findViewById(R.id.info_explore);
+        btnAR = view.findViewById(R.id.btn_ar);
+        btnBlindSpotAR = view.findViewById(R.id.btn_blind_spot_ar);
+        infoImageButton = view.findViewById(R.id.layout_info);
+        infoImageOldButton = view.findViewById(R.id.layout_info_old);
+        infoImageOldBtn = view.findViewById(R.id.info_explore_old);
+        infoImageBtn = view.findViewById(R.id.info_explore);
         //discover title text
-        txtViewVideolistTitle = (TextView) view.findViewById(R.id.videolist_title);
-        rlMapView = (RelativeLayout) view.findViewById(R.id.rlMapView);
-        gridView = (ScrollableGridView) view.findViewById(R.id.grid_view);
+        txtViewVideolistTitle = view.findViewById(R.id.videolist_title);
+        rlMapView = view.findViewById(R.id.rlMapView);
+        gridView = view.findViewById(R.id.grid_view);
         gridView.setFocusable(false);
 
 /*
@@ -569,20 +556,20 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         scrollView.smoothScrollTo(0, 0);
 */
 
-        progressBar = (ProgressBar) view.findViewById(R.id.prog_explore);
-        layoutDataNotFound = (LinearLayout) view.findViewById(R.id.layout_explore_data_not_found);
-        tvNoContent = (TextView) view.findViewById(R.id.txt_explore_data_not_found);
+        progressBar = view.findViewById(R.id.prog_explore);
+        layoutDataNotFound = view.findViewById(R.id.layout_explore_data_not_found);
+        tvNoContent = view.findViewById(R.id.txt_explore_data_not_found);
 
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         controller = new ExploreTabContentController(this);
-        viewPager = (CustomViewPager) view.findViewById(R.id.viewPager);
+        viewPager = view.findViewById(R.id.viewPager);
         /*viewPager.setAdapter(new MyPagerAdapter());
         viewPager.disableScroll(false);*/
         llLeftArrow = view.findViewById(R.id.llLeftArrow);
         llRightArrow = view.findViewById(R.id.llRightArrow);
-        ivRight = (ImageView) view.findViewById(R.id.ivRightArrow);
-        ivLeft = (ImageView) view.findViewById(R.id.ivLeftArrow);
+        ivRight = view.findViewById(R.id.ivRightArrow);
+        ivLeft = view.findViewById(R.id.ivLeftArrow);
 
         /*//commented for adding slider page on "NEW NISSAN CONNECT" viewpager for J11 MC(car type 12) : by Mostasim Billah
         if (Values.carType == 10) {
@@ -723,19 +710,11 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Need Permissions");
         builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
-        builder.setPositiveButton("GOTO SETTINGS", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-                openSettings();
-            }
+        builder.setPositiveButton("GOTO SETTINGS", (dialog, which) -> {
+            dialog.cancel();
+            openSettings();
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
         builder.show();
 
     }
@@ -867,27 +846,27 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     public void onPageScrollStateChanged(int state) {
     }
 
-    public ViewGroup epubView(ViewGroup collection, ViewGroup layout, LayoutInflater inflater, final ExploretabSliderModel exploretabSliderModel) {
+    public ViewGroup epubView(ViewGroup collection, LayoutInflater inflater, final ExploretabSliderModel exploretabSliderModel) {
 
-        layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_1,
+        ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_1,
                 collection, false);
 
-        imageViewEpubHeader = (ImageView) layout.findViewById(R.id.txt_map);
-        imageViewEpubBackground = (ImageView) layout.findViewById(R.id.drawee_view_map_1);
+        ImageView imageViewEpubHeader = layout.findViewById(R.id.txt_map);
+        ImageView imageViewEpubBackground = layout.findViewById(R.id.drawee_view_map_1);
                   /*  textViewNissanConnect = (TextView) layout.findViewById(R.id.tvNewNissanConnect);
                     textViewNissanConnect.setTypeface(typefaceRegular);
                     textViewUpdateYourMap = (TextView) layout.findViewById(R.id.tvUpdateYourMap);
                     textViewUpdateYourMap.setTypeface(typefaceBold);*/
-        mapView = (LinearLayout) layout.findViewById(R.id.map_view);
+        LinearLayout mapView = layout.findViewById(R.id.map_view);
 
         setFrontImageExploreMiddleTab(exploretabSliderModel, exploretabSliderModel.getFrontImg());
 
         final ViewGroup finalLayout = layout;
-        ImageView front_image_view = ((ImageView) finalLayout.findViewById(R.id.txt_map));
+        ImageView front_image_view = finalLayout.findViewById(R.id.txt_map);
         if (front_image_url != null) {
             Glide.with(this).asBitmap().load(front_image_url).into(new CustomTarget<Bitmap>() {
                 @Override
-                public void onResourceReady(@NonNull  Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                public void onResourceReady(Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         front_image_view.setBackground(drawable);
@@ -896,104 +875,101 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 }
 
                 @Override
-                public void onLoadCleared(@Nullable  Drawable placeholder) {
+                public void onLoadCleared(@Nullable Drawable placeholder) {
 
                 }
             });
         }
-        ImageView back_image_view = ((ImageView) finalLayout.findViewById(R.id.drawee_view_map_1));
+        ImageView back_image_view = finalLayout.findViewById(R.id.drawee_view_map_1);
 
         if (back_image_url != null) {
             Glide.with(this).asBitmap().load(back_image_url).fitCenter().into(back_image_view);
         }
 
-        mapView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
-                    list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
-                }
+        mapView.setOnClickListener(view -> {
+            if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
+                list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
+            }
 
 //                Values.ePubType = Values.HOMEPAGE_TYPE;
 
-                if (list == null || list.size() == 0)
-                    return;
+            if (list == null || list.size() == 0)
+                return;
 
-                //String updatingMapText = NissanApp.getInstance().getAlertMessage(mContext,new PreferenceUtil(getActivity()).getSelectedLang(), Values.UPDATING_MAP_DATA);
+            //String updatingMapText = NissanApp.getInstance().getAlertMessage(mContext,new PreferenceUtil(getActivity()).getSelectedLang(), Values.UPDATING_MAP_DATA);
 
-                /*int epubIndex = 52;
-                if (Values.carType == 12) {
-                    epubIndex = 58;
-                } else if (Values.carType == 10) {
-                    epubIndex = 46;
-                } else if (Values.carType == 11) {
-                    epubIndex = 54;
-                } else {
-                    epubIndex = 52;
-                }*/
+            /*int epubIndex = 52;
+            if (Values.carType == 12) {
+                epubIndex = 58;
+            } else if (Values.carType == 10) {
+                epubIndex = 46;
+            } else if (Values.carType == 11) {
+                epubIndex = 54;
+            } else {
+                epubIndex = 52;
+            }*/
 
-                int epubIndex = 0;
-                if (exploretabSliderModel != null) {
-                    Values.ePubType = exploretabSliderModel.getEpubType();
-                    epubIndex = exploretabSliderModel.getEpubTag();
-                }
+            int epubIndex = 0;
+            if (exploretabSliderModel != null) {
+                Values.ePubType = exploretabSliderModel.getEpubType();
+                epubIndex = exploretabSliderModel.getEpubTag();
+            }
 
-                /*if (Values.carType == 12) {
-                    epubIndex = 58;
-                } else if (Values.carType == 10) {
-                    epubIndex = 46;
-                } else if (Values.carType == 11) {
-                    epubIndex = 54;
-                } else if (Values.carType == 18) {
-                    epubIndex = 60;
-                }*/
+            /*if (Values.carType == 12) {
+                epubIndex = 58;
+            } else if (Values.carType == 10) {
+                epubIndex = 46;
+            } else if (Values.carType == 11) {
+                epubIndex = 54;
+            } else if (Values.carType == 18) {
+                epubIndex = 60;
+            }*/
 
-                /*Logger.error("Epub type " , " " + Values.ePubType);
-                Logger.error("Epub Tag " , " " + epubIndex);*/
+            /*Logger.error("Epub type " , " " + Values.ePubType);
+            Logger.error("Epub Tag " , " " + epubIndex);*/
 
-                Fragment frag = DetailsFragment.newInstance(list.get(epubIndex * 2).getIndex(), resources.getString(R.string.updating_map_data));
+            Fragment frag = DetailsFragment.newInstance(list.get(epubIndex * 2).getIndex(), resources.getString(R.string.updating_map_data));
+            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+            ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
+            ft.replace(R.id.container, frag);
+            ft.addToBackStack(Values.tabExplore);
+            ft.commit();
+
+            /*if(Values.carType == 18){
+                Fragment frag = DetailsFragment.newInstance(60, resources.getString(R.string.updating_map_data));
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                 ft.replace(R.id.container, frag);
                 ft.addToBackStack(Values.tabExplore);
                 ft.commit();
-
-                /*if(Values.carType == 18){
-                    Fragment frag = DetailsFragment.newInstance(60, resources.getString(R.string.updating_map_data));
-                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                    ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
-                    ft.replace(R.id.container, frag);
-                    ft.addToBackStack(Values.tabExplore);
-                    ft.commit();
-                }else{
-                    Fragment frag = DetailsFragment.newInstance(list.get(epubIndex).getIndex(), resources.getString(R.string.updating_map_data));
-                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                    ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
-                    ft.replace(R.id.container, frag);
-                    ft.addToBackStack(Values.tabExplore);
-                    ft.commit();
-                }*/
-            }
+            }else{
+                Fragment frag = DetailsFragment.newInstance(list.get(epubIndex).getIndex(), resources.getString(R.string.updating_map_data));
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
+                ft.replace(R.id.container, frag);
+                ft.addToBackStack(Values.tabExplore);
+                ft.commit();
+            }*/
         });
 
         return finalLayout;
     }
 
     //layout for map layout for explore slider part
-    public ViewGroup mapView(ViewGroup collection, ViewGroup layout, LayoutInflater inflater, final ExploretabSliderModel exploretabSliderModel) {
+    public ViewGroup mapView(ViewGroup collection, LayoutInflater inflater, final ExploretabSliderModel exploretabSliderModel) {
 
-        layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_2, collection, false);
+        ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_2, collection, false);
 
         setFrontImageExploreMiddleTab(exploretabSliderModel, exploretabSliderModel.getFrontImg());
 
         final ViewGroup finalLayout = layout;
 
-        ImageView front_image_view =  ((ImageView) finalLayout.findViewById(R.id.drawee_view_map_2));
+        ImageView front_image_view = finalLayout.findViewById(R.id.drawee_view_map_2);
 
         if (front_image_url != null) {
             Glide.with(this).asBitmap().load(front_image_url).into(new CustomTarget<Bitmap>() {
                 @Override
-                public void onResourceReady(@NonNull  Bitmap resource, @Nullable  Transition<? super Bitmap> transition) {
+                public void onResourceReady(Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         front_image_view.setBackground(drawable);
@@ -1002,11 +978,12 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 }
 
                 @Override
-                public void onLoadCleared(@Nullable Drawable placeholder) { }
+                public void onLoadCleared(@Nullable Drawable placeholder) {
+                }
             });
         }
 
-        ImageView back_image_view =   ((ImageView) finalLayout.findViewById(R.id.ivMap));
+        ImageView back_image_view = finalLayout.findViewById(R.id.ivMap);
 
         if (back_image_url != null) {
             Glide.with(this).asBitmap().load(back_image_url).into(back_image_view);
@@ -1027,45 +1004,42 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     setTextToViews(tvNissanDoorToDoor, doorToDoorText == null || doorToDoorText.isEmpty() ? resources.getString(R.string.nissan_door_to_door_nav_text) : doorToDoorText, R.color.white);
                     setTextToViews(tvSetUpGuide, setUpGuideText == null || setUpGuideText.isEmpty() ? resources.getString(R.string.set_up_guide_text) : setUpGuideText, R.color.black);*/
 
-        finalLayout.findViewById(R.id.ivMap).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // here start the playing video for grid view item click
+        finalLayout.findViewById(R.id.ivMap).setOnClickListener(view -> {
+            // here start the playing video for grid view item click
 
-                if (DetectConnection.checkInternetConnection(getActivity())) {
-                    //just for rus
+            if (DetectConnection.checkInternetConnection(getActivity())) {
+                //just for rus
 
-                    /*int index = -1;
-                    if (videoList == null || videoList.size() == 0)
-                        return;
+                /*int index = -1;
+                if (videoList == null || videoList.size() == 0)
+                    return;
 
-                    for (int i = 0; i < videoList.size(); i++) {
+                for (int i = 0; i < videoList.size(); i++) {
 
-                        if (videoList.get(i).getTag() == 997 || videoList.get(i).getTag() == 46) { //video tag door to door MB
-                            index = i;
-                            break;
-                        }
-
+                    if (videoList.get(i).getTag() == 997 || videoList.get(i).getTag() == 46) { //video tag door to door MB
+                        index = i;
+                        break;
                     }
 
-                    if (index == -1)
-                        return;
-
-                    Values.videoIndex = index;
-
-                    if (NissanApp.getInstance().getExploreVideoList().get(index).getVideoUrl() != null) {
-
-                        startActivity(new Intent(getActivity(), VideoPlayerActivity.class).putExtra("from_where", "map"));
-                    }*/
-
-                    if (exploretabSliderModel.getVideoUrl() != null)
-                        NissanApp.getInstance().setMapVideoUrl(exploretabSliderModel.getVideoUrl());
-                    startActivity(new Intent(getActivity(), VideoPlayerActivity.class).putExtra("from_where", "map"));
-
-
-                } else {
-                    Toast.makeText(getActivity(), internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage, Toast.LENGTH_SHORT).show();
                 }
+
+                if (index == -1)
+                    return;
+
+                Values.videoIndex = index;
+
+                if (NissanApp.getInstance().getExploreVideoList().get(index).getVideoUrl() != null) {
+
+                    startActivity(new Intent(getActivity(), VideoPlayerActivity.class).putExtra("from_where", "map"));
+                }*/
+
+                if (exploretabSliderModel.getVideoUrl() != null)
+                    NissanApp.getInstance().setMapVideoUrl(exploretabSliderModel.getVideoUrl());
+                startActivity(new Intent(getActivity(), VideoPlayerActivity.class).putExtra("from_where", "map"));
+
+
+            } else {
+                Toast.makeText(getActivity(), internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -1104,9 +1078,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 if (sliderModelArrayList.size() > 0) {
                     if (sliderModelArrayList.get(position).getType() != null && !sliderModelArrayList.get(position).getType().isEmpty()) {
                         if (sliderModelArrayList.get(position).getType().equalsIgnoreCase(Values.epubTypeExploreVideo)) {
-                            layout = mapView(collection, layout, inflater, sliderModelArrayList.get(position));
+                            layout = mapView(collection, inflater, sliderModelArrayList.get(position));
                         } else
-                            layout = epubView(collection, layout, inflater, sliderModelArrayList.get(position));
+                            layout = epubView(collection, inflater, sliderModelArrayList.get(position));
                     }
                 }
             }

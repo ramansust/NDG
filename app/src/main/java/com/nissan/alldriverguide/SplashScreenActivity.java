@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private final int SPLASH_TIME_OUT = 3000;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,13 +51,10 @@ public class SplashScreenActivity extends AppCompatActivity {
      * Splash display for 3 sec then go to CarDownloadActivity class
      */
     private void createSplashScreen() {
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                startActivity(new Intent(SplashScreenActivity.this, CarDownloadActivity.class));
-                finish();
-            }
+        int SPLASH_TIME_OUT = 3000;
+        new Handler().postDelayed(() -> {
+            startActivity(new Intent(SplashScreenActivity.this, CarDownloadActivity.class));
+            finish();
         }, SPLASH_TIME_OUT);
     }
 }

@@ -17,9 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.multiLang.model.CarList;
@@ -32,17 +29,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final String DOWNLOADED_CAR = "Downloaded Car";
     private final String AVAILABE_CAR = "Available Car";
     private final String PREVIOUS_CAR = "Previous Car";
     private OnItemClickListener listener;
-    private Context context;
-    private ArrayList<Object> orderedCarList = new ArrayList<>();
-    private List<CarList> carLists;
-    private Set<String> downloadedCarList = new HashSet<>();
-    private Set<Integer> previousCarList = new HashSet<>(Arrays.asList(1, 2, 4, 5, 7, 9));
+    private final Context context;
+    private final ArrayList<Object> orderedCarList = new ArrayList<>();
+    private final List<CarList> carLists;
+    private final Set<String> downloadedCarList = new HashSet<>();
+    private final Set<Integer> previousCarList = new HashSet<>(Arrays.asList(1, 2, 4, 5, 7, 9));
 
     public CarDownloadAdapterNew(Context context, List<CarList> carLists) {
         this.context = context;
@@ -85,7 +85,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         if (viewType == ViewType.DEFAULT.ordinal()) {
             view = LayoutInflater.from(context).inflate(R.layout.car_download_row, parent, false);
@@ -102,7 +102,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
         if (getItemViewType(position) == ViewType.HEADER.ordinal()) {
             ((HeaderViewHolder) holder).setDetails(orderedCarList.get(position));
@@ -218,12 +218,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
                 txtViewTitle.setText(carList.getCarName());
 
-                imgDeleteOrDownload.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        listener.onItemClick(Integer.valueOf(carList.getId()), position);
-                    }
-                });
+                imgDeleteOrDownload.setOnClickListener(view -> listener.onItemClick(Integer.valueOf(carList.getId()), position));
             }
 
         }

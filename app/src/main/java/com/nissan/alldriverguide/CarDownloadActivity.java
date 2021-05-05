@@ -25,9 +25,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.lifecycle.Observer;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -74,6 +71,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import androidx.lifecycle.Observer;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
@@ -91,7 +91,6 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
     private TextView txtView_title;
     private CarDownloadAdapter adapter;
     private PreferenceUtil preferenceUtil;
-    private Tracker t;
     private CommonDao commonDao;
     // variable to track event time
     private long mLastClickTime = 0;
@@ -99,11 +98,11 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
 
 
     private ArrayList<Object> getList = new ArrayList<>();
-    private String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
+    private final String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
             "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "Nissan X-TRAIL",
             "New Nissan LEAF", "New Nissan X-TRAIL RUS", "New Nissan QASHQAI RUS", "Leaf 2019", "New Nissan Juke", "X-TRAIL EUR 2020"};
-    private int[] indices = {1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11, 16, 17, 18};
-    private int[] previousCarArray = {1, 2, 4, 5, 7, 9, 3};
+    private final int[] indices = {1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11, 16, 17, 18};
+    private final int[] previousCarArray = {1, 2, 4, 5, 7, 9, 3};
 
     private List<Parent_car_list> parent_car_lists = null;
     private ProgressDialog progressDialog;
@@ -191,34 +190,28 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
 
                 final Dialog dialog = new DialogController(activity).pushRegistrationDialog();
 
-                TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+                TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
                 String pushTitle = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.REGISTER_PUSH_MESSAGE);
                 txtViewTitle.setText(pushTitle.isEmpty() ? getResources().getString(R.string.register_push) : pushTitle);
 
                 String okText = NissanApp.getInstance().getGlobalMessage(this).getOk();
                 String cancelText = NissanApp.getInstance().getGlobalMessage(this).getCancel();
 
-                Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
-                Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+                Button btnCancel = dialog.findViewById(R.id.btn_cancel);
+                Button btnOk = dialog.findViewById(R.id.btn_ok);
 
                 btnOk.setText(okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
                 btnCancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
 
-                btnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                        Toast.makeText(context, "Without registration you cannot download car", Toast.LENGTH_LONG).show();
-                    }
+                btnCancel.setOnClickListener(v -> {
+                    dialog.dismiss();
+                    Toast.makeText(context, "Without registration you cannot download car", Toast.LENGTH_LONG).show();
                 });
 
-                btnOk.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                        progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.register_push_dialog));
-                        registerForPush(position, parent);
-                    }
+                btnOk.setOnClickListener(v -> {
+                    dialog.dismiss();
+                    progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.register_push_dialog));
+                    registerForPush(position, parent);
                 });
                 dialog.show();
 
@@ -548,7 +541,7 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
                 .getTracker(MyApplication.TrackerName.APP_TRACKER);
 
         // Get tracker.
-        t = ((MyApplication) getApplication())
+        Tracker t = ((MyApplication) getApplication())
                 .getTracker(MyApplication.TrackerName.APP_TRACKER);
 
         // Set screen name.
@@ -649,16 +642,11 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
 
         dialog.setCancelable(false);
 
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(msg);
 
-        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
     }
@@ -699,43 +687,36 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
 
         final Dialog dialog = new DialogController(this).contentUpdateDialog();
 
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(resources.getString(R.string.update_msg));
 
-        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
         btnOk.setText(resources.getString(R.string.button_YES));
 
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
-                    return;
-                }
-                doubleClickPopup = SystemClock.elapsedRealtime();
+        btnOk.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
+                return;
+            }
+            doubleClickPopup = SystemClock.elapsedRealtime();
 
-                dialog.dismiss();
+            dialog.dismiss();
 
-                if (DetectConnection.checkInternetConnection(CarDownloadActivity.this)) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressDialog = new ProgressDialogController(activity).showDialog(getResources().getString(R.string.start_download));
-                        }
-                    });
+            if (DetectConnection.checkInternetConnection(CarDownloadActivity.this)) {
+                runOnUiThread(() -> progressDialog = new ProgressDialogController(activity).showDialog(getResources().getString(R.string.start_download)));
 
-                    new ApiCall().postContentDownload("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(selectedLang), stringBuilder.toString(), NissanApp.getInstance().getDeviceID(getApplicationContext()), new CompleteAPI() {
-                        @Override
-                        public void onDownloaded(ResponseInfo responseInfo) {
+                new ApiCall().postContentDownload("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(selectedLang), stringBuilder.toString(), NissanApp.getInstance().getDeviceID(getApplicationContext()), new CompleteAPI() {
+                    @Override
+                    public void onDownloaded(ResponseInfo responseInfo) {
 
-                            Logger.error("Status " + responseInfo.getStatusCode(), "URL " + responseInfo.getUrl());
+                        Logger.error("Status " + responseInfo.getStatusCode(), "URL " + responseInfo.getUrl());
 
-                            if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getUrl())) {
+                        if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getUrl())) {
 
-                                Logger.error("content_url", "____________" + responseInfo.getUrl());
+                            Logger.error("content_url", "____________" + responseInfo.getUrl());
 
-                                downloadCar(responseInfo.getLangUrl(), responseInfo.getAssetsUrl(),
-                                        list, position, stringBuilder
-                                );
+                            downloadCar(responseInfo.getLangUrl(), responseInfo.getAssetsUrl(),
+                                    list, position, stringBuilder
+                            );
 
 //                                new MADownloadManager(
 //                                        activity, getApplicationContext()).downloadLanguage(false, "Language", responseInfo.getUrl(), NissanApp.getInstance().getCarPath(Values.carType), new DownloaderStatus() {
@@ -796,38 +777,34 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
 //                                });
 
 
-                            } else {
-                                showErrorDialog("Status code OR URL not reachable");
-                                dismissDialog();
-                            }
+                        } else {
+                            showErrorDialog("Status code OR URL not reachable");
+                            dismissDialog();
                         }
+                    }
 
-                        @Override
-                        public void onFailed(String failedReason) {
-                            showErrorDialog(failedReason);
-                            Logger.error("Single Content Downloading failed", "____________" + failedReason);
-                        }
-                    });
-                } else {
+                    @Override
+                    public void onFailed(String failedReason) {
+                        showErrorDialog(failedReason);
+                        Logger.error("Single Content Downloading failed", "____________" + failedReason);
+                    }
+                });
+            } else {
 
-                }
             }
         });
 
-        Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
+        Button btnCancel = dialog.findViewById(R.id.btn_cancel);
         btnCancel.setText(resources.getString(R.string.button_NO));
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
-                    return;
-                }
-                doubleClickPopup = SystemClock.elapsedRealtime();
-
-                dialog.dismiss();
-                goToNextPage(position);
+        btnCancel.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
+                return;
             }
+            doubleClickPopup = SystemClock.elapsedRealtime();
+
+            dialog.dismiss();
+            goToNextPage(position);
         });
 
         dialog.show();
@@ -986,31 +963,20 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
         btnOk.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
         btnCancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
 
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
+        btnOk.setOnClickListener(v -> {
+            dialog.dismiss();
 
-                deleteCar(carType, position);
-            }
+            deleteCar(carType, position);
         });
 
         dialog.show();
     }
 
     private void deleteCar(final int carId, final int position) {
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                progressDialog = new ProgressDialogController(activity).showDialog("Car Deleting..."); //getResources().getString(R.string.start_car_delete));
-            }
+        activity.runOnUiThread(() -> {
+            progressDialog = new ProgressDialogController(activity).showDialog("Car Deleting..."); //getResources().getString(R.string.start_car_delete));
         });
 
         final int carIdFromList = ((CarInfo) NissanApp.getInstance().getCarList().get(position)).getId();
@@ -1233,7 +1199,7 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
                         }
 
                     }
-                    int totalChildCarSize = NissanApp.getInstance().getChildCars(Integer.valueOf(parentCar.getId())) != null ? NissanApp.getInstance().getChildCars(Integer.valueOf(parentCar.getId())).size() : -1;
+                    int totalChildCarSize = NissanApp.getInstance().getChildCars(parentCar.getId()) != null ? NissanApp.getInstance().getChildCars(parentCar.getId()).size() : -1;
                     int totalChildCarDownloaded = NissanApp.getInstance()
                             .getCountTotalChildCarDownloaded(CarDownloadActivity.this, parentCar.getId());
                     if (totalChildCarSize != totalChildCarDownloaded && totalChildCarSize != -1) {
@@ -1413,79 +1379,77 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
                 langDestination, assetsDestination
         );
         carDownloadHelper.downloadAssetAndLang();
-        carDownloadHelper.getDownloadProgress().observe(this, new Observer<CarDownloadProgress>() {
-            @Override
-            public void onChanged(CarDownloadProgress carDownloadProgress) {
+        carDownloadHelper.getDownloadProgress().observe(this, carDownloadProgress -> {
 
-                if (carDownloadProgress == null) return;
+            if (carDownloadProgress == null) return;
 
-                if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE) {
-                    new ApiCall().postCarDownloadConfirmation("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(selectedLang), "0", NissanApp.getInstance().getDeviceID(context), new CompleteAPI() {
-                        @Override
-                        public void onDownloaded(ResponseInfo responseInfo) {
+            if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE) {
+                new ApiCall().postCarDownloadConfirmation("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(selectedLang), "0", NissanApp.getInstance().getDeviceID(context), new CompleteAPI() {
+                    @Override
+                    public void onDownloaded(ResponseInfo responseInfo) {
 
-                            if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
+                        if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
 
-                                sendMsgToGoogleAnalytics(NissanApp.getInstance().getCarName(Values.carType) + Analytics.DOWNLOAD + Analytics.DOT + NissanApp.getInstance().getLanguageName(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + Analytics.DOT + Analytics.PLATFORM);
-                                // set the car path where car asset is downloaded
-                                Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
+                            sendMsgToGoogleAnalytics(NissanApp.getInstance().getCarName(Values.carType) + Analytics.DOWNLOAD + Analytics.DOT + NissanApp.getInstance().getLanguageName(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + Analytics.DOT + Analytics.PLATFORM);
+                            // set the car path where car asset is downloaded
+                            Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
 
-                                commonDao.updateDateAndStatus(getBaseContext(), Values.carType, Values.ALREADY_DOWNLOADED, NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
-                                if (Values.carType == 1 || Values.carType == 4) {
-                                    CarInfo carInfo = commonDao.getCarInfo(getApplicationContext(), Values.carType + 1);
-                                    if (Values.carType == 1) {
-                                        // if car type 1 then update the 2 number car region = 'EUR' for display EUROPE and RUSSIA both car
-                                        if (commonDao.getStatus(getBaseContext(), Values.carType + 1) == 2) {
-                                            // here update the car when download car number 1
-                                            commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 1, "2", NissanApp.getInstance().getDateTime(), "EUR", carInfo.getVersionName(), carInfo.getVersionCode());
-                                        }
-                                    } else if (Values.carType == 4) {
-                                        if (commonDao.getStatus(getBaseContext(), Values.carType + 1) == 0) {
-                                            // here update the car when download car number 4
-                                            commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 1, "0", NissanApp.getInstance().getDateTime(), "EUR", carInfo.getVersionName(), carInfo.getVersionCode());
-                                        }
-                                    } else {
-
+                            commonDao.updateDateAndStatus(getBaseContext(), Values.carType, Values.ALREADY_DOWNLOADED, NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                            if (Values.carType == 1 || Values.carType == 4) {
+                                CarInfo carInfo = commonDao.getCarInfo(getApplicationContext(), Values.carType + 1);
+                                if (Values.carType == 1) {
+                                    // if car type 1 then update the 2 number car region = 'EUR' for display EUROPE and RUSSIA both car
+                                    if (commonDao.getStatus(getBaseContext(), Values.carType + 1) == 2) {
+                                        // here update the car when download car number 1
+                                        commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 1, "2", NissanApp.getInstance().getDateTime(), "EUR", carInfo.getVersionName(), carInfo.getVersionCode());
                                     }
-                                }
-                                commonDao.updateLanguageStatus(getBaseContext(), Values.carType, preferenceUtil.getSelectedLang());
-
-                                // here set the car selection for car downloaded settings adapter
-                                NissanApp.getInstance().setCarAllList(commonDao.getAllCarList(getBaseContext()));
-                                for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
-                                    if (NissanApp.getInstance().getCarAllList().get(i).getId() == Values.carType) {
-                                        NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(1);
-                                    } else {
-                                        NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(0);
+                                } else if (Values.carType == 4) {
+                                    if (commonDao.getStatus(getBaseContext(), Values.carType + 1) == 0) {
+                                        // here update the car when download car number 4
+                                        commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 1, "0", NissanApp.getInstance().getDateTime(), "EUR", carInfo.getVersionName(), carInfo.getVersionCode());
                                     }
-                                }
-
-                                commonDao.updateAllPushContentStatusForSingleCar(context, Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
-                                dismissDialog();
-
-                                // if car is first time downloaded then show the Tutorial Activity
-                                if (preferenceUtil.getIsFirstTime()) {
-                                    startActivity(new Intent(CarDownloadActivity.this, TutorialActivity.class).putExtra("from", "activity"));
-                                    finish();
                                 } else {
-                                    startActivity(new Intent(CarDownloadActivity.this, MainActivity.class));
+
+                                }
+                            }
+                            commonDao.updateLanguageStatus(getBaseContext(), Values.carType, preferenceUtil.getSelectedLang());
+
+                            // here set the car selection for car downloaded settings adapter
+                            NissanApp.getInstance().setCarAllList(commonDao.getAllCarList(getBaseContext()));
+                            for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
+                                if (NissanApp.getInstance().getCarAllList().get(i).getId() == Values.carType) {
+                                    NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(1);
+                                } else {
+                                    NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(0);
                                 }
                             }
 
-
-                        }
-
-                        @Override
-                        public void onFailed(String failedReason) {
-                            showErrorDialog(failedReason);
+                            commonDao.updateAllPushContentStatusForSingleCar(context, Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
                             dismissDialog();
-                        }
-                    });
-                } else BaseActivity.checkCarDownloadProgress(CarDownloadActivity.this,
-                        carDownloadProgress,
-                        progressDialog);
 
-                // downloadCarAssets method download car asset and language both
+                            // if car is first time downloaded then show the Tutorial Activity
+                            if (preferenceUtil.getIsFirstTime()) {
+                                startActivity(new Intent(CarDownloadActivity.this, TutorialActivity.class).putExtra("from", "activity"));
+                                finish();
+                            } else {
+                                startActivity(new Intent(CarDownloadActivity.this, MainActivity.class));
+                            }
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailed(String failedReason) {
+                        showErrorDialog(failedReason);
+                        dismissDialog();
+                    }
+                });
+            } else BaseActivity.checkCarDownloadProgress(CarDownloadActivity.this,
+                    carDownloadProgress,
+                    progressDialog);
+
+            // downloadCarAssets method download car asset and language both
 //        new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(Values.carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
 //            @SuppressLint("StaticFieldLeak")
 //            @Override
@@ -1590,7 +1554,6 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
 //        });
 
 
-            }
         });
     }
 
@@ -1652,9 +1615,9 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
             }
 
             // this
-            for (int i = 0; i < previousCarArray.length; i++) {
-                if (commonDao.getStatus(getBaseContext(), previousCarArray[i]) == 0) {
-                    commonDao.updateCarStatus(getBaseContext(), previousCarArray[i], 2);
+            for (int value : previousCarArray) {
+                if (commonDao.getStatus(getBaseContext(), value) == 0) {
+                    commonDao.updateCarStatus(getBaseContext(), value, 2);
                 }
             }
             return "Executed";
@@ -1736,7 +1699,7 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
                             }
 
                         }
-                        int totalChildCarSize = NissanApp.getInstance().getChildCars(Integer.valueOf(parentCar.getId())) != null ? NissanApp.getInstance().getChildCars(Integer.valueOf(parentCar.getId())).size() : -1;
+                        int totalChildCarSize = NissanApp.getInstance().getChildCars(parentCar.getId()) != null ? NissanApp.getInstance().getChildCars(parentCar.getId()).size() : -1;
                         int totalChildCarDownloaded = NissanApp.getInstance()
                                 .getCountTotalChildCarDownloaded(CarDownloadActivity.this, parentCar.getId());
                         if (parentCar.getId() == 10) {

@@ -8,18 +8,17 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.nissan.alldriverguide.R;
+
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.nissan.alldriverguide.R;
-
 public class TutorialViewPagerAdapter extends PagerAdapter {
 
-    private Context context;
-    private int[] imageId;
-    private String[] tutorialTitles;
-    private String[] tutorialDetails;
-    private LayoutInflater inflater;
+    private final Context context;
+    private final int[] imageId;
+    private final String[] tutorialTitles;
+    private final String[] tutorialDetails;
 
     /**
      * Declare constructor
@@ -43,12 +42,12 @@ public class TutorialViewPagerAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view == ((RelativeLayout) object);
+        return view == object;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        ((ViewPager) container).removeView((RelativeLayout) object);
+        container.removeView((RelativeLayout) object);
     }
 
     @Override
@@ -58,18 +57,18 @@ public class TutorialViewPagerAdapter extends PagerAdapter {
         TextView title;
         TextView detail;
 
-        inflater = (LayoutInflater) context
+        LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View itemView = inflater.inflate(R.layout.viewpager_item, container,
                 false);
 
-        imageThumbnail = (ImageView) itemView.findViewById(R.id.imageThumbnail);
+        imageThumbnail = itemView.findViewById(R.id.imageThumbnail);
         imageThumbnail.setImageResource(imageId[position]);
 
-        title = (TextView) itemView.findViewById(R.id.txt_title);
+        title = itemView.findViewById(R.id.txt_title);
         title.setText(tutorialTitles[position]);
 
-        detail = (TextView) itemView.findViewById(R.id.txt_details);
+        detail = itemView.findViewById(R.id.txt_details);
         detail.setText(tutorialDetails[position].replace("\\n", "\n"));
 
         container.addView(itemView);

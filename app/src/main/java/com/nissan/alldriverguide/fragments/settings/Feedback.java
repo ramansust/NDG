@@ -14,9 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
@@ -28,6 +25,9 @@ import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
+
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
@@ -80,13 +80,13 @@ public class Feedback extends Fragment implements View.OnClickListener {
      */
     private void initViews(View view) {
         preferenceUtil = new PreferenceUtil(getActivity());
-        back = (ImageView) view.findViewById(R.id.btn_back);
-        btnSendFeedback = (Button) view.findViewById(R.id.send_feedback_button);
-        etTitle = (EditText) view.findViewById(R.id.send_feedback_title);
-        etDescription = (EditText) view.findViewById(R.id.send_feedback_description);
-        tvTitle = (TextView) view.findViewById(R.id.txt_title);
-        tvTitleField = (TextView) view.findViewById(R.id.tvTitleField);
-        tvDescriptionField = (TextView) view.findViewById(R.id.tvDescriptionField);
+        back = view.findViewById(R.id.btn_back);
+        btnSendFeedback = view.findViewById(R.id.send_feedback_button);
+        etTitle = view.findViewById(R.id.send_feedback_title);
+        etDescription = view.findViewById(R.id.send_feedback_description);
+        tvTitle = view.findViewById(R.id.txt_title);
+        tvTitleField = view.findViewById(R.id.tvTitleField);
+        tvDescriptionField = view.findViewById(R.id.tvDescriptionField);
     }
 
     /**
@@ -103,7 +103,7 @@ public class Feedback extends Fragment implements View.OnClickListener {
      * Text watcher used for send feedback edit text box color change
      * if invalid edit text box show red else gray
      */
-    private TextWatcher textWatcher = new TextWatcher() {
+    private final TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         }
@@ -136,7 +136,7 @@ public class Feedback extends Fragment implements View.OnClickListener {
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
-                ((MainActivity) getActivity()).onBackPressed();
+                getActivity().onBackPressed();
                 break;
             case R.id.send_feedback_button:
                 if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {

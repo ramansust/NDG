@@ -7,8 +7,6 @@ import com.nissan.alldriverguide.fragments.search.TabFragment;
 public class BaseTabFragmentActivity extends SearchActivity implements DataPassing {
 
     protected TabFragment tabFragment;
-    private AllFragment allFragment;
-    private WarningLightFragment warningLightFragment;
     private int contentView;
     public static String keyword;
 
@@ -24,11 +22,9 @@ public class BaseTabFragmentActivity extends SearchActivity implements DataPassi
     }
 
     public void setAllFragment(AllFragment allFragment) {
-        this.allFragment = allFragment;
     }
 
     public void setWarningLightFragment(WarningLightFragment warningLightFragment) {
-        this.warningLightFragment = warningLightFragment;
     }
 
     // this view set in MainActivity inside onCreate

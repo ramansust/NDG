@@ -6,9 +6,9 @@ import android.graphics.Rect;
 import android.text.style.LineBackgroundSpan;
 
 public class PaddingBackgroundColorSpan implements LineBackgroundSpan {
-    private int mBackgroundColor;
-    private int mPadding;
-    private Rect mBgRect;
+    private final int mBackgroundColor;
+    private final int mPadding;
+    private final Rect mBgRect;
 
     public PaddingBackgroundColorSpan(int backgroundColor, int padding) {
         super();

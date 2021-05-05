@@ -25,27 +25,18 @@ import java.util.Arrays;
 public class TyreTransitionActivity extends Activity {
     private GestureDetector mGestureDetector;
 
-    private ImageView imageView;
-    private TextView txtView;
-
-    private SimpleDraweeView draweeView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transition);
 
-        draweeView = findViewById(R.id.img_view_git);
-        txtView = findViewById(R.id.txt_title);
+        SimpleDraweeView draweeView = findViewById(R.id.img_view_git);
+        TextView txtView = findViewById(R.id.txt_title);
 
-        imageView = findViewById(R.id.img_view_back);
-        imageView.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                finish();
-            }
+        ImageView imageView = findViewById(R.id.img_view_back);
+        imageView.setOnClickListener(v -> {
+            // TODO Auto-generated method stub
+            finish();
         });
 
         if (Values.gif_index == 2) {
@@ -126,13 +117,7 @@ public class TyreTransitionActivity extends Activity {
         CustomGestureDetector customGestureDetector = new CustomGestureDetector();
         mGestureDetector = new GestureDetector(this, customGestureDetector);
 
-        draweeView.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return mGestureDetector.onTouchEvent(event);
-            }
-        });
+        draweeView.setOnTouchListener((v, event) -> mGestureDetector.onTouchEvent(event));
     }
 
     public int checkFiles(String s) {
@@ -156,9 +141,7 @@ public class TyreTransitionActivity extends Activity {
 
             Arrays.sort(file_names);
 
-            for (int j = 0; j < file_names.length; j++) {
-                Values.gif_names.add(file_names[j]);
-            }
+            Values.gif_names.addAll(Arrays.asList(file_names));
             return size;
         } else {
             return size;

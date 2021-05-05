@@ -7,6 +7,7 @@
 package com.nissan.alldriverguide.augmentedreality.data;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -79,7 +80,7 @@ public class DataCheck {
                 "leaf_2019_navi_unit_right_02",
                 "leaf_2019_navi_unit_right_03"
         ));
-        public static final Set<String> NAVI_UNIT_MIDDLE = new HashSet<>(Arrays.asList(
+        public static final Set<String> NAVI_UNIT_MIDDLE = new HashSet<>(Collections.singletonList(
                 "leaf_2019_navi_unit_middle_01"
         ));
         public static final Set<String> RADIO_WO_NAVI_FULL = new HashSet<>(Arrays.asList(
@@ -402,10 +403,10 @@ public class DataCheck {
                 "juke_combimeter_02",
                 "juke_combimeter_01"
         ));
-        public final Set<String> JUKE_STEERING_RIGHT = new HashSet<>(Arrays.asList(
+        public final Set<String> JUKE_STEERING_RIGHT = new HashSet<>(Collections.singletonList(
                 "juke_steering_right_01"
         ));
-        public final Set<String> JUKE_STEERING_RIGHT_2 = new HashSet<>(Arrays.asList(
+        public final Set<String> JUKE_STEERING_RIGHT_2 = new HashSet<>(Collections.singletonList(
                 "juke_steering_right_02"
         ));
         public final Set<String> JUKE_STEERING_RIGHT_3 = new HashSet<>(Arrays.asList(
@@ -563,7 +564,7 @@ public class DataCheck {
                 "juke_radio_navi_left_02",
                 "juke_radio_navi_left_01"
         ));
-        public final Set<String> JUKE_RADIO_NAVI_FULL = new HashSet<>(Arrays.asList(
+        public final Set<String> JUKE_RADIO_NAVI_FULL = new HashSet<>(Collections.singletonList(
                 "juke_radio_navi_full_01"
         ));
 

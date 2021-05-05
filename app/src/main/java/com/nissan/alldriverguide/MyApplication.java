@@ -2,14 +2,14 @@ package com.nissan.alldriverguide;
 
 import android.content.Context;
 
-import androidx.multidex.MultiDex;
-import androidx.multidex.MultiDexApplication;
-
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
 import java.util.HashMap;
+
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
 
 /*
  * Class for Google Analytics settings
@@ -42,7 +42,7 @@ public class MyApplication extends MultiDexApplication {
         MultiDex.install(this);
     }
 
-    HashMap<TrackerName, Tracker> mTrackers = new HashMap<TrackerName, Tracker>();
+    HashMap<TrackerName, Tracker> mTrackers = new HashMap<>();
 
     public MyApplication() {
         super();

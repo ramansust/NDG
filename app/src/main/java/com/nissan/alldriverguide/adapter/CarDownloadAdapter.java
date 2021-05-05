@@ -30,11 +30,10 @@ public class CarDownloadAdapter extends BaseAdapter {
 
     private final OnItemClickListener listener;
 
-    private Context context;
+    private final Context context;
     private LayoutInflater inflater;
     public ArrayList<Object> list;
     private CarInfo info = null;
-    private Parent_car_list parent_car_list = null;
     TextView txtView_loading;
     SimpleDraweeView imageView;
 
@@ -85,20 +84,15 @@ public class CarDownloadAdapter extends BaseAdapter {
                 view = inflater.inflate(R.layout.car_download_row, parent, false);
 
                 // initialized list view item id
-                RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.relative_car_download);
-                imageView = (SimpleDraweeView) view.findViewById(R.id.ivMainCarImage);
-                ImageView imageViewBorder = (ImageView) view.findViewById(R.id.img_view_border);
-                TextView txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
-                txtView_loading = (TextView) view.findViewById(R.id.txtView_loading);
-                ImageButton imgDeleteOrDownload = (ImageButton) view.findViewById(R.id.img_btn_delete_or_download);
+                RelativeLayout relativeLayout = view.findViewById(R.id.relative_car_download);
+                imageView = view.findViewById(R.id.ivMainCarImage);
+                ImageView imageViewBorder = view.findViewById(R.id.img_view_border);
+                TextView txtViewTitle = view.findViewById(R.id.txt_title);
+                txtView_loading = view.findViewById(R.id.txtView_loading);
+                ImageButton imgDeleteOrDownload = view.findViewById(R.id.img_btn_delete_or_download);
                 imgDeleteOrDownload.setBackgroundResource(R.drawable.delete_selector);
 
-                imgDeleteOrDownload.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        listener.onItemClick(info.getId(), position);
-                    }
-                });
+                imgDeleteOrDownload.setOnClickListener(view1 -> listener.onItemClick(info.getId(), position));
 
                 if (!((CarInfo) list.get(position)).getStatus().equals("1")) {
                     imgDeleteOrDownload.setVisibility(View.INVISIBLE);
@@ -112,7 +106,7 @@ public class CarDownloadAdapter extends BaseAdapter {
                     relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
                     // here actually display first car name for 4 cars that belong in previous section.
                     if (info.getId() == 1 || info.getId() == 2 || info.getId() == 4 || info.getId() == 5) {
-                        String name[] = info.getName().split(" ");
+                        String[] name = info.getName().split(" ");
                         txtViewTitle.setText(name[0]);
                     } else { // this for display full name for all car without 4 cars on top
                         txtViewTitle.setText(info.getName());
@@ -136,7 +130,7 @@ public class CarDownloadAdapter extends BaseAdapter {
                     txtViewTitle.setText(info.getName());
                     if (info.getId() == 13 || info.getId() == 15) {
                         //Set fixed name for both this car == NEW X-TRAIL  (EUR/RUS)
-                        String name[] = info.getName().split(" ");
+                        String[] name = info.getName().split(" ");
 //                    txtViewTitle.setText(info.getName() == null || info.getName().isEmpty() ? "NEW NISSAN X-TRAIL" : name[1] + " " + name[2]);
                         txtViewTitle.setText("NISSAN X-TRAIL");
                     }
@@ -150,27 +144,25 @@ public class CarDownloadAdapter extends BaseAdapter {
                 imageViewBorder.setVisibility(View.INVISIBLE);
             } else {
                 //this part is for Parent_car_list class : by MB
-                parent_car_list = (Parent_car_list) list.get(position);
+                Parent_car_list parent_car_list = (Parent_car_list) list.get(position);
                 // inflate list view item layout
                 inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater.inflate(R.layout.car_download_row, parent, false);
 
                 // initialized list view item id
-                RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.relative_car_download);
-                imageView = (SimpleDraweeView) view.findViewById(R.id.ivMainCarImage);
-                ImageView imageViewBorder = (ImageView) view.findViewById(R.id.img_view_border);
-                TextView txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
-                txtView_loading = (TextView) view.findViewById(R.id.txtView_loading);
-                ImageButton imgDeleteOrDownload = (ImageButton) view.findViewById(R.id.img_btn_delete_or_download);
+                RelativeLayout relativeLayout = view.findViewById(R.id.relative_car_download);
+                imageView = view.findViewById(R.id.ivMainCarImage);
+                ImageView imageViewBorder = view.findViewById(R.id.img_view_border);
+                TextView txtViewTitle = view.findViewById(R.id.txt_title);
+                txtView_loading = view.findViewById(R.id.txtView_loading);
+                ImageButton imgDeleteOrDownload = view.findViewById(R.id.img_btn_delete_or_download);
                 imgDeleteOrDownload.setBackgroundResource(R.drawable.delete_selector);
                 imgDeleteOrDownload.setVisibility(View.INVISIBLE); //always invisible for parent car
                 imageView.setImageURI(parent_car_list.getCar_img());
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
                 // set the car name for available downloaded car
                 txtViewTitle.setText(parent_car_list.getCar_name());
-
             }
-
 
         } else {
             // here inflate the item header like (available for download, previous model)
@@ -181,9 +173,9 @@ public class CarDownloadAdapter extends BaseAdapter {
             view.setClickable(false); // for section header
 
             // this layout determine for set section wise header color
-            LinearLayout relativeLayout = (LinearLayout) view.findViewById(R.id.relative_section);
+            LinearLayout relativeLayout = view.findViewById(R.id.relative_section);
 
-            TextView txtViewSection = (TextView) view.findViewById(R.id.txt_title);
+            TextView txtViewSection = view.findViewById(R.id.txt_title);
             // here compare the string from list that load in CarDownloadActivity.java class
             // in LoadDataBase Async class in onPostExecute method
             if (context.getResources().getString(R.string.downloaded_car).equalsIgnoreCase(list.get(position).toString())) {

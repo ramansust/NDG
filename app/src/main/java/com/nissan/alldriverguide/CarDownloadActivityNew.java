@@ -11,18 +11,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.nissan.alldriverguide.adapter.CarDownloadAdapterNew;
+import com.nissan.alldriverguide.multiLang.model.CarList;
+import com.nissan.alldriverguide.viewmodel.CarDownloadViewModel;
+
+import java.util.List;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.nissan.alldriverguide.adapter.CarDownloadAdapterNew;
-import com.nissan.alldriverguide.multiLang.model.CarList;
-import com.nissan.alldriverguide.viewmodel.CarDownloadViewModel;
-
-import java.util.List;
 
 public class CarDownloadActivityNew extends AppCompatActivity {
 
@@ -46,15 +46,12 @@ public class CarDownloadActivityNew extends AppCompatActivity {
         carDownloadViewModel.getCarList("1");
 
         if (!carDownloadViewModel.carList.hasActiveObservers()) {
-            carDownloadViewModel.carList.observe(this, new Observer<List<CarList>>() {
-                @Override
-                public void onChanged(@Nullable List<CarList> carLists) {
-                    pbLoader.setVisibility(View.GONE);
-                    Log.e("NEW CR", carLists.size() + "");
-                    carDownloadAdapterNew = new CarDownloadAdapterNew(CarDownloadActivityNew.this, carLists);
-                    rvCarList.setLayoutManager(new LinearLayoutManager(CarDownloadActivityNew.this));
-                    rvCarList.setAdapter(carDownloadAdapterNew);
-                }
+            carDownloadViewModel.carList.observe(this, carLists -> {
+                pbLoader.setVisibility(View.GONE);
+                Log.e("NEW CR", carLists.size() + "");
+                carDownloadAdapterNew = new CarDownloadAdapterNew(CarDownloadActivityNew.this, carLists);
+                rvCarList.setLayoutManager(new LinearLayoutManager(CarDownloadActivityNew.this));
+                rvCarList.setAdapter(carDownloadAdapterNew);
             });
         }
     }

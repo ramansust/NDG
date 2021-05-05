@@ -49,7 +49,6 @@ public class SampleAppRenderer {
     private WeakReference<Activity> mActivityRef = null;
     private RenderingPrimitives mRenderingPrimitives = null;
     private SampleAppRendererControl mRenderingInterface = null;
-    private Activity mActivity = null;
 
     private Renderer mRenderer = null;
     private int currentView = VIEW.VIEW_SINGULAR;
@@ -74,7 +73,6 @@ public class SampleAppRenderer {
 
     public SampleAppRenderer(SampleAppRendererControl renderingInterface, Activity activity, int deviceMode,
                              boolean stereo, float nearPlane, float farPlane) {
-        mActivity = activity;
         mActivityRef = new WeakReference<>(activity);
         mRenderingInterface = renderingInterface;
         mRenderer = Renderer.getInstance();
@@ -183,17 +181,17 @@ public class SampleAppRenderer {
                     state.getCameraCalibration());
 
             // Create GL matrix setting up the near and far planes
-            float rawProjectionMatrixGL[] = Tool.convertPerspectiveProjection2GLMatrix(
+            float[] rawProjectionMatrixGL = Tool.convertPerspectiveProjection2GLMatrix(
                     projMatrix,
                     mNearPlane,
                     mFarPlane)
                     .getData();
 
             // Apply the appropriate eye adjustment to the raw projection matrix, and assign to the global variable
-            float eyeAdjustmentGL[] = Tool.convert2GLMatrix(mRenderingPrimitives
+            float[] eyeAdjustmentGL = Tool.convert2GLMatrix(mRenderingPrimitives
                     .getEyeDisplayAdjustmentMatrix(viewID)).getData();
 
-            float projectionMatrix[] = new float[16];
+            float[] projectionMatrix = new float[16];
             // Apply the adjustment to the projection matrix
             Matrix.multiplyMM(projectionMatrix, 0, rawProjectionMatrixGL, 0, eyeAdjustmentGL, 0);
 

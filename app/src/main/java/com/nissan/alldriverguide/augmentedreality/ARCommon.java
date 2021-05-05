@@ -103,56 +103,44 @@ public abstract class ARCommon implements GLSurfaceView.Renderer, SampleAppRende
         ImageButton ibInfo = mActivity.layoutBackRefreshView
                 .findViewById(R.id.info);
 
-        ibRefresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        ibRefresh.setOnClickListener(v -> {
 
-                ImageTargetActivity.isDetected = false;
+            ImageTargetActivity.isDetected = false;
+
+            mActivity.layoutCameraView.removeAllViews();
+            vuforiaAppSession.onResume();
+
+        });
+
+        ibInfo.setOnClickListener(v -> {
+//                mActivity.isDetected = true;
+            if (!ImageTargetActivity.isDetected) {
+                try {
+                    vuforiaAppSession.pauseAR();
+                } catch (SampleApplicationException e) {
+                    e.printStackTrace();
+                }
+            }
+            mActivity.showInfo();
+        });
+
+        ibBack.setOnClickListener(v -> {
+
+            if (ImageTargetActivity.inflatedLayout_second != null && ImageTargetActivity.inflatedLayout_second.isAttachedToWindow()) {
+
+                mActivity.layoutCameraView.removeView(ImageTargetActivity.inflatedLayout_second);
+                ImageTargetActivity.inflatedLayout_second = null;
+                mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+
+            } else if (ImageTargetActivity.inflatedLayout != null && ImageTargetActivity.inflatedLayout.isAttachedToWindow()) {
 
                 mActivity.layoutCameraView.removeAllViews();
+                ImageTargetActivity.isDetected = false;
                 vuforiaAppSession.onResume();
-
+            } else {
+                mActivity.backButtonAlert();
             }
-        });
 
-        ibInfo.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-//                mActivity.isDetected = true;
-                if (!ImageTargetActivity.isDetected) {
-                    try {
-                        vuforiaAppSession.pauseAR();
-                    } catch (SampleApplicationException e) {
-                        e.printStackTrace();
-                    }
-                }
-                mActivity.showInfo();
-            }
-        });
-
-        ibBack.setOnClickListener(new View.OnClickListener() {
-
-            @SuppressLint("NewApi")
-            @Override
-            public void onClick(View v) {
-
-                if (ImageTargetActivity.inflatedLayout_second != null && ImageTargetActivity.inflatedLayout_second.isAttachedToWindow()) {
-
-                    mActivity.layoutCameraView.removeView(ImageTargetActivity.inflatedLayout_second);
-                    ImageTargetActivity.inflatedLayout_second = null;
-                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
-
-                } else if (ImageTargetActivity.inflatedLayout != null && ImageTargetActivity.inflatedLayout.isAttachedToWindow()) {
-
-                    mActivity.layoutCameraView.removeAllViews();
-                    ImageTargetActivity.isDetected = false;
-                    vuforiaAppSession.onResume();
-                } else {
-                    mActivity.backButtonAlert();
-                }
-
-            }
         });
 
         inflater = LayoutInflater.from(mActivity);

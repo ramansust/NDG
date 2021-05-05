@@ -36,7 +36,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
 
     // Reference to the current activity
     private Activity mActivity;
-    private SampleApplicationControl mSessionControl;
+    private final SampleApplicationControl mSessionControl;
 
     // Flags
     private boolean mStarted = false;
@@ -44,9 +44,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
 
     // The async tasks to initialize the Vuforia SDK:
     private InitVuforiaTask mInitVuforiaTask;
-    private InitTrackerTask mInitTrackerTask;
     private LoadTrackerTask mLoadTrackerTask;
-    private StartVuforiaTask mStartVuforiaTask;
     private ResumeVuforiaTask mResumeVuforiaTask;
 
     // An object used for synchronizing Vuforia initialization, dataset loading
@@ -183,7 +181,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
         SampleApplicationException vuforiaException = null;
 
         try {
-            mStartVuforiaTask = new StartVuforiaTask();
+            StartVuforiaTask mStartVuforiaTask = new StartVuforiaTask();
             mStartVuforiaTask.execute();
         } catch (Exception e) {
             String logMessage = "Starting Vuforia failed";
@@ -242,7 +240,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
             if (!unloadTrackersResult)
                 throw new SampleApplicationException(
                         SampleApplicationException.UNLOADING_TRACKERS_FAILURE,
-                        "Failed to unload trackers\' data");
+                        "Failed to unload trackers' data");
 
             if (!deinitTrackersResult)
                 throw new SampleApplicationException(
@@ -379,7 +377,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
 
             if (result) {
                 try {
-                    mInitTrackerTask = new InitTrackerTask();
+                    InitTrackerTask mInitTrackerTask = new InitTrackerTask();
                     mInitTrackerTask.execute();
                 } catch (Exception e) {
                     String logMessage = "Failed to initialize tracker.";

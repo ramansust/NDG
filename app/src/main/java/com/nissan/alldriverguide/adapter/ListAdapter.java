@@ -24,9 +24,9 @@ import java.util.List;
  */
 public class ListAdapter extends BaseAdapter {
 
-    private Context context;
+    private final Context context;
     private LayoutInflater inflater;
-    private List<EpubInfo> list;
+    private final List<EpubInfo> list;
 
     /**
      * Declare Constructor
@@ -72,7 +72,7 @@ public class ListAdapter extends BaseAdapter {
         // Here set the DEMO text color for 2 & 6 number epub for Tyre Information
         if (Values.ePubType == Values.TYRE_TYPE) {
             if (position == 2 || position == 6) {
-                String str = list.get(position).getTitle().toString().toUpperCase(); // output:eg 2.1. CHANGING FLAT TYRE (DEMO)
+                String str = list.get(position).getTitle().toUpperCase(); // output:eg 2.1. CHANGING FLAT TYRE (DEMO)
                 viewHolder.txtViewTitle.setTextColor(Color.parseColor("#C3002F")); // set the text color
                 String c = "(";
                 int p = str.indexOf(c); // you can find the c in str in 24 index
@@ -85,7 +85,7 @@ public class ListAdapter extends BaseAdapter {
                 }
                 SpannableString spanString1 = new SpannableString(s + " ");
                 spanString1.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString1.length(), 0); // set bold for this text: 2.1. CHANGING FLAT TYRE
-                SpannableString spanString = new SpannableString(str.substring(p, str.length()));
+                SpannableString spanString = new SpannableString(str.substring(p));
                 spanString.setSpan(new UnderlineSpan(), 0, spanString.length(), 0); // set underline for (DEMO)
                 spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0); // set BOLD for (DEMO)
                 viewHolder.txtViewTitle.setText(TextUtils.concat(spanString1, spanString)); // finally set the SpannableString in textView
@@ -104,7 +104,7 @@ public class ListAdapter extends BaseAdapter {
         TextView txtViewTitle;
 
         public ViewHolder(View view) {
-            txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
+            txtViewTitle = view.findViewById(R.id.txt_title);
         }
     }
 

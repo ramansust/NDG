@@ -6,16 +6,14 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.nissan.alldriverguide.utils.Values;
 
 import java.io.File;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class PDFOpenActivity extends AppCompatActivity {
-
-    private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +27,7 @@ public class PDFOpenActivity extends AppCompatActivity {
             return;
         }
 
-        webView = (WebView) findViewById(R.id.webView);
+        WebView webView = findViewById(R.id.webView);
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setAllowFileAccessFromFileURLs(true);

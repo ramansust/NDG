@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class CommonDao {
 
-    private static CommonDao instance = new CommonDao();
+    private static final CommonDao instance = new CommonDao();
     long newHeadId;
     int count;
 
@@ -575,7 +575,7 @@ public class CommonDao {
     }
 
     public ArrayList<SearchModel> getCountWiseList(Context context, int carType, String selectedLanguage) {
-        ArrayList<SearchModel> List = new ArrayList<SearchModel>();
+        ArrayList<SearchModel> List = new ArrayList<>();
         SQLiteDatabase db = getWritableDatabase(context, NissanDbHelper.class);
         String selectQuery = "SELECT * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.CARTYPE + " = '" + carType + "' AND " + SearchTagTableDirectory.LANGUAGE_TYPE + " = '" + selectedLanguage + "' ORDER BY " + SearchTagTableDirectory.COUNT + " DESC limit 10";
 
@@ -602,7 +602,7 @@ public class CommonDao {
     }
 
     public ArrayList<SearchModel> getDateWiseList(Context context, int carType, String selectedLanguage) {
-        ArrayList<SearchModel> List = new ArrayList<SearchModel>();
+        ArrayList<SearchModel> List = new ArrayList<>();
         SQLiteDatabase db = getWritableDatabase(context, NissanDbHelper.class);
         String selectQuery = "SELECT * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.CARTYPE + " = '" + carType + "' AND " + SearchTagTableDirectory.LANGUAGE_TYPE + " = '" + selectedLanguage + "' ORDER BY " + SearchTagTableDirectory.DATE + " DESC limit 10";
 
@@ -649,7 +649,7 @@ public class CommonDao {
 
 
     public ArrayList<SearchModel> getTotalList(Context context, int cartype) {
-        ArrayList<SearchModel> List = new ArrayList<SearchModel>();
+        ArrayList<SearchModel> List = new ArrayList<>();
         SQLiteDatabase db = getWritableDatabase(context, NissanDbHelper.class);
         String selectQuery = "SELECT * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.CARTYPE + "= " + cartype;
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -969,16 +969,7 @@ public class CommonDao {
         try {
             SQLiteOpenHelper helper = (SQLiteOpenHelper) helperClass.getConstructor(Context.class).newInstance(context);
             return helper.getWritableDatabase();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            return null;
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-            return null;
-        } catch (NoSuchMethodException e) {
+        } catch (InstantiationException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();
             return null;
         }

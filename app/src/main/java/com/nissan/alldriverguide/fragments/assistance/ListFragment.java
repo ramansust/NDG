@@ -14,10 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
@@ -33,14 +29,15 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 public class ListFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
-    private View view;
     private ListView lstView;
     private ImageButton btnBack;
     private LinearLayout linearBack;
-    private TextView txt_back_title;
-    private ListAdapter adapter;
     private List<EpubInfo> list;
     private TextView title;
     private static final String TITLE = "title";
@@ -57,7 +54,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         initViews(view);
         setListener();
@@ -160,7 +157,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
                 }
             }
 
-            adapter = new ListAdapter(getActivity().getApplicationContext(), list);
+            ListAdapter adapter = new ListAdapter(getActivity().getApplicationContext(), list);
             lstView.setAdapter(adapter);
         }
 
@@ -174,11 +171,11 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private void initViews(View view) {
         preferenceUtil = new PreferenceUtil(getActivity());
-        btnBack = (ImageButton) view.findViewById(R.id.btn_back);
-        lstView = (ListView) view.findViewById(R.id.lst_view);
-        linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
-        title = (TextView) view.findViewById(R.id.txt_title);
-        txt_back_title = (TextView) view.findViewById(R.id.txt_back_title);
+        btnBack = view.findViewById(R.id.btn_back);
+        lstView = view.findViewById(R.id.lst_view);
+        linearBack = view.findViewById(R.id.linear_back);
+        title = view.findViewById(R.id.txt_title);
+        TextView txt_back_title = view.findViewById(R.id.txt_back_title);
     }
 
     @Override
@@ -223,7 +220,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
         switch (v.getId()) {
             case R.id.btn_back:
             case R.id.linear_back:
-                ((MainActivity) getActivity()).onBackPressed();
+                getActivity().onBackPressed();
                 break;
             default:
                 break;
@@ -234,7 +231,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 
         final Dialog dialog = new DialogController(getActivity()).tyreDialog();
 
-        TextView tv = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView tv = dialog.findViewById(R.id.txt_title);
         if (index == 2) {
             String changingFlatTyre = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.CHANGING_FLAT_TYRE);
             tv.setText(changingFlatTyre.isEmpty() ? getResources().getString(R.string.alert_msg42) : changingFlatTyre);
@@ -248,28 +245,20 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 
         }
 
-        Button dialogButton = (Button) dialog.findViewById(R.id.btn_read);
+        Button dialogButton = dialog.findViewById(R.id.btn_read);
         String readIt = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.READ);
         dialogButton.setText(readIt.isEmpty() ? getResources().getString(R.string.alert_msg40) : readIt);
-        dialogButton.setOnClickListener(new android.view.View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        dialogButton.setOnClickListener(v -> dialog.dismiss());
 
-        Button dialogButton2 = (Button) dialog.findViewById(R.id.btn_already);
+        Button dialogButton2 = dialog.findViewById(R.id.btn_already);
         String alreadyReadIt = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.ALREADY_READ_IT);
         dialogButton2.setText(alreadyReadIt.isEmpty() ? getResources().getString(R.string.alert_msg41) : alreadyReadIt);
 
-        dialogButton2.setOnClickListener(new android.view.View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Intent i = new Intent(getActivity(), TyreTransitionActivity.class);
-                startActivity(i);
-                ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.TYRE + Analytics.DOT + tyre));
-            }
+        dialogButton2.setOnClickListener(v -> {
+            dialog.dismiss();
+            Intent i = new Intent(getActivity(), TyreTransitionActivity.class);
+            startActivity(i);
+            ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.TYRE + Analytics.DOT + tyre));
         });
         dialog.show();
     }

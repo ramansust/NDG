@@ -161,6 +161,9 @@ class CarDownloadHelper @JvmOverloads constructor(
 
                     }
 
+                    else -> {
+
+                    }
                 }
             }
         }
@@ -200,7 +203,7 @@ class CarDownloadHelper @JvmOverloads constructor(
 
             fileName.contains("button") -> "$langPath/.ar_button"
 
-            fileName.contains("tyre") -> "$langPath/.ar_tyre";
+            fileName.contains("tyre") -> "$langPath/.ar_tyre"
 
             fileName.contains("engine") -> "$langPath/.ar_engine"
 

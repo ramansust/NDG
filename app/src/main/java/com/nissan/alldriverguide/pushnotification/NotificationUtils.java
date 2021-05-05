@@ -18,8 +18,6 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.util.Patterns;
 
-import androidx.core.app.NotificationCompat;
-
 import com.nissan.alldriverguide.R;
 
 import java.io.IOException;
@@ -31,15 +29,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import androidx.core.app.NotificationCompat;
+
 /**
  * Created by nirob on 11/14/17.
  */
 
 public class NotificationUtils {
 
-    private static String TAG = NotificationUtils.class.getSimpleName();
+    private static final String TAG = NotificationUtils.class.getSimpleName();
 
-    private Context mContext;
+    private final Context mContext;
 
     public NotificationUtils(Context mContext) {
         this.mContext = mContext;

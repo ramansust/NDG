@@ -5,5 +5,5 @@ package com.nissan.alldriverguide.fragments.search.tab;
  */
 
 public interface DataPassing {
-    public void onDataPass(String data);
+    void onDataPass(String data);
 }

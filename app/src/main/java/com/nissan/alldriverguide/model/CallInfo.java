@@ -6,7 +6,6 @@ package com.nissan.alldriverguide.model;
 
 public class CallInfo {
     private String countryName;
-    private int flag;
     private String countryFlag;
 
     public String getPopupText() {
@@ -41,7 +40,6 @@ public class CallInfo {
 
     public CallInfo(String countryName, int flag, String nationalNumber, String internationalNumber) {
         this.countryName = countryName;
-        this.flag = flag;
         this.nationalNumber = nationalNumber;
         this.internationalNumber = internationalNumber;
     }

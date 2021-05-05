@@ -4,6 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.nissan.alldriverguide.R;
+import com.nissan.alldriverguide.adapter.WebDataAdapter;
+import com.nissan.alldriverguide.model.WebContent;
+
+import java.util.List;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,17 +17,9 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nissan.alldriverguide.R;
-import com.nissan.alldriverguide.adapter.WebDataAdapter;
-import com.nissan.alldriverguide.model.WebContent;
-
-import java.util.List;
-
 public class WebListActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private RecyclerView recyclerView;
-    private WebDataAdapter adapter;
     private List<WebContent> data;
 
     @Override
@@ -37,12 +35,12 @@ public class WebListActivity extends AppCompatActivity {
     }
 
     private void initializedAll() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        recyclerView = (RecyclerView) findViewById(R.id.rv_web);
+        toolbar = findViewById(R.id.toolbar);
+        RecyclerView recyclerView = findViewById(R.id.rv_web);
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new WebDataAdapter(this, data);
+        WebDataAdapter adapter = new WebDataAdapter(this, data);
         recyclerView.setAdapter(adapter);
     }
 
@@ -63,12 +61,7 @@ public class WebListActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.drawable.back);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
 
 }

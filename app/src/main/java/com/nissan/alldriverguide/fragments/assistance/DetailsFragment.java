@@ -25,10 +25,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
@@ -45,23 +41,23 @@ import com.nissan.alldriverguide.utils.Values;
 import java.io.File;
 import java.util.ArrayList;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 public class DetailsFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "DetailsFragment";
 
     private static final String EPUB_INDEX = "epub_index";
 
-    private View view;
     private WebView webView;
     private ImageButton btnBack;
     private LinearLayout linearBack;
-    private TextView title, txt_back_title;
-    private LinearLayout linearLayoutNoContent;
+    private TextView title;
     private ProgressBar progressBar;
     private int index = 0;
     private String htmlContent = "";
-    private ArrayList<EpubInfo> list;
     private static final String TITLE = "title";
-    private DisplayMetrics metrics;
     private Resources resources;
 
     public static Fragment newInstance(int index, String title) {
@@ -76,7 +72,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_details, container, false);
 
         initViews(view);
         setListener();
@@ -92,14 +88,14 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initViews(View view) {
-        webView = (WebView) view.findViewById(R.id.webViewDetailsFragment);
-        btnBack = (ImageButton) view.findViewById(R.id.btn_back);
-        title = (TextView) view.findViewById(R.id.txt_title);
-        txt_back_title = (TextView) view.findViewById(R.id.txt_back_title);
-        linearLayoutNoContent = (LinearLayout) view.findViewById(R.id.linearLayoutNoContent);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBarDetailsFragment);
-        linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
-        metrics = new DisplayMetrics();
+        webView = view.findViewById(R.id.webViewDetailsFragment);
+        btnBack = view.findViewById(R.id.btn_back);
+        title = view.findViewById(R.id.txt_title);
+        TextView txt_back_title = view.findViewById(R.id.txt_back_title);
+        LinearLayout linearLayoutNoContent = view.findViewById(R.id.linearLayoutNoContent);
+        progressBar = view.findViewById(R.id.progressBarDetailsFragment);
+        linearBack = view.findViewById(R.id.linear_back);
+        DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang()));
 
@@ -112,7 +108,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
 
     private void loadData() throws IndexOutOfBoundsException {
         try {
-            list = new ArrayList<>();
+            ArrayList<EpubInfo> list = new ArrayList<>();
             title.setText(getArguments().getString(TITLE)); // here set the title on top bar
             switch (Values.ePubType) { // compare with epub type
                 case Values.COMBIMETER_TYPE:
@@ -311,11 +307,11 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                 if (webView.canGoBack()) {
                     webView.goBack();
                 } else {
-                    ((MainActivity) getActivity()).onBackPressed();
+                    getActivity().onBackPressed();
                 }
                 break;
             case R.id.linear_back:
-                ((MainActivity) getActivity()).onBackPressed();
+                getActivity().onBackPressed();
                 break;
             default:
                 break;
@@ -397,23 +393,20 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
 
 
         // this method working for device back button
-        webView.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    WebView webView = (WebView) v;
+        webView.setOnKeyListener((v, keyCode, event) -> {
+            if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                WebView webView = (WebView) v;
 
-                    switch (keyCode) {
-                        case KeyEvent.KEYCODE_BACK:
-                            if (webView.canGoBack()) {
-                                webView.goBack();
-                                return true;
-                            }
-                            break;
-                    }
+                switch (keyCode) {
+                    case KeyEvent.KEYCODE_BACK:
+                        if (webView.canGoBack()) {
+                            webView.goBack();
+                            return true;
+                        }
+                        break;
                 }
-                return false;
             }
+            return false;
         });
 
     }
@@ -421,35 +414,26 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
     public void emptyWebVieLinkwAlert() {
         final Dialog dialog = new DialogController(getActivity()).langDialog();
 
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         String haveYouAlreadyText = NissanApp.getInstance().getAlertMessage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.HAVE_YOU_ALREADY_CONSULTED);
         txtViewTitle.setText(haveYouAlreadyText == null || haveYouAlreadyText.isEmpty() ? resources.getString(R.string.web_view_call_nissan_link_popup) : haveYouAlreadyText);
 
         String yesText = NissanApp.getInstance().getGlobalMessage(getActivity()).getYes();
         String noText = NissanApp.getInstance().getGlobalMessage(getActivity()).getNo();
 
-        Button btnYes = (Button) dialog.findViewById(R.id.btn_cancel);
+        Button btnYes = dialog.findViewById(R.id.btn_cancel);
         btnYes.setText(yesText == null || yesText.isEmpty() ? resources.getString(R.string.button_YES) : yesText);
 
-        Button btnNo = (Button) dialog.findViewById(R.id.btn_ok);
+        Button btnNo = dialog.findViewById(R.id.btn_ok);
         btnNo.setText(noText == null || noText.isEmpty() ? resources.getString(R.string.button_NO) : noText);
 
-        btnNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        btnNo.setOnClickListener(v -> dialog.dismiss());
 
 
-        btnYes.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                new PreferenceUtil(getActivity()).setCallNissan(false);
-                nissanCallFragment();
-            }
+        btnYes.setOnClickListener(v -> {
+            dialog.dismiss();
+            new PreferenceUtil(getActivity()).setCallNissan(false);
+            nissanCallFragment();
         });
 
         dialog.show();

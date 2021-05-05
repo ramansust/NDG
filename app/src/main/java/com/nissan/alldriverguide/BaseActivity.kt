@@ -22,7 +22,7 @@ open class BaseActivity : AppCompatActivity() {
                 is DOWNLOAD_PROGRESS ->
                     onDownloadProgress(context, carDownloadProgress, progressDialog, showCarName)
                 CarDownloadProgress.FAILED -> {
-                    showErrorDialog(context, "Error ! Unable to update content, Please try again.");
+                    showErrorDialog(context, "Error ! Unable to update content, Please try again.")
                     progressDialog?.dismiss()
                 }
 
@@ -48,7 +48,7 @@ open class BaseActivity : AppCompatActivity() {
                 }
 
                 else -> {
-                    showErrorDialog(context, "Error ! Unable to update content, Please try again.");
+                    showErrorDialog(context, "Error ! Unable to update content, Please try again.")
                     progressDialog?.dismiss()
                 }
             }

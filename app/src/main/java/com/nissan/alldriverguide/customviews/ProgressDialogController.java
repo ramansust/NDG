@@ -3,9 +3,9 @@ package com.nissan.alldriverguide.customviews;
 import android.app.Activity;
 import android.app.ProgressDialog;
 
-import androidx.appcompat.view.ContextThemeWrapper;
-
 import com.nissan.alldriverguide.R;
+
+import androidx.appcompat.view.ContextThemeWrapper;
 
 /**
  * Created by rohan on 3/22/17.
@@ -13,7 +13,7 @@ import com.nissan.alldriverguide.R;
 
 public class ProgressDialogController {
 
-    private Activity activity;
+    private final Activity activity;
     private ProgressDialog progressDialog;
 
     public ProgressDialogController(Activity activity) {

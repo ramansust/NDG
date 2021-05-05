@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.controller.ControllerListener;
@@ -24,17 +22,17 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
 
+import androidx.annotation.Nullable;
+
 /**
  * Created by raman on 1/19/17.
  */
 public class GridViewAdapter extends BaseAdapter {
 
-    private Context context;
+    private final Context context;
     private LayoutInflater inflater;
     private ArrayList<ExploreTabVideoModel> video_list;
-    private String device_density;
-    private String img_name = "";
-    private Uri uri;
+    private final String device_density;
 
     public GridViewAdapter(Context context, ArrayList<ExploreTabVideoModel> video_list, String device_density) {
         this.context = context;
@@ -88,6 +86,7 @@ public class GridViewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         //viewHolder.imageView.setBackgroundResource(thumbnil[position]);
+        String img_name = "";
         if (device_density.equalsIgnoreCase("xxxhdpi")) {
             img_name = video_list.get(position).getThumbXxxhdpi();
         } else if (device_density.equalsIgnoreCase("xxhdpi")) {
@@ -102,7 +101,7 @@ public class GridViewAdapter extends BaseAdapter {
             img_name = video_list.get(position).getThumbXhdpi();
         }
 
-        uri = Uri.parse(img_name);
+        Uri uri = Uri.parse(img_name);
 
         if (img_name.equalsIgnoreCase("")) {
             if (ExploreFragment.progress_bar != null) {
@@ -148,8 +147,8 @@ public class GridViewAdapter extends BaseAdapter {
         TextView txtViewTitle;
 
         public ViewHolder(View view) {
-            imageView = (SimpleDraweeView) view.findViewById(R.id.img_view);
-            txtViewTitle = (TextView) view.findViewById(R.id.txt_video_title);
+            imageView = view.findViewById(R.id.img_view);
+            txtViewTitle = view.findViewById(R.id.txt_video_title);
         }
     }
 

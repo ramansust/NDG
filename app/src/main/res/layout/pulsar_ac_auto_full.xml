@@ -41,7 +41,7 @@
             android:clickable="true"
             android:onClick="buttonEventInitial"
             android:orientation="vertical"
-            android:tag="40002"></LinearLayout>
+            android:tag="40002" />
 
         <LinearLayout
             android:layout_width="0dp"

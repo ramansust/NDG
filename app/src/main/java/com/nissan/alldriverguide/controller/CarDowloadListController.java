@@ -17,7 +17,7 @@ import retrofit2.Response;
 
 public class CarDowloadListController implements Callback<CarListResponse> {
 
-    private CarListACompleteAPI carListACompleteAPI;
+    private final CarListACompleteAPI carListACompleteAPI;
 
     public CarDowloadListController(CarListACompleteAPI carListACompleteAPI) {
         this.carListACompleteAPI = carListACompleteAPI;

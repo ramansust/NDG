@@ -6,9 +6,9 @@ package com.nissan.alldriverguide.database;
  */
 
 public interface BaseDbHelper {
-    static final String INTEGER_PRIMARY = " INTEGER PRIMARY KEY";
-    static final String TEXT_TYPE = " TEXT";
-    static final String INTEGER_TYPE = " INTEGER";
-    static final String FLOAT_TYPE = " REAL";
-    static final String COMMA_SEP = ", ";
+    String INTEGER_PRIMARY = " INTEGER PRIMARY KEY";
+    String TEXT_TYPE = " TEXT";
+    String INTEGER_TYPE = " INTEGER";
+    String FLOAT_TYPE = " REAL";
+    String COMMA_SEP = ", ";
 }

@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.fragments.search.WebviewLoadActivity;
 import com.nissan.alldriverguide.model.WebContent;
 
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by nirob on 11/1/17.
@@ -22,8 +22,8 @@ import java.util.List;
 
 public class WebDataAdapter extends RecyclerView.Adapter<WebDataAdapter.SimpleViewHolder> {
 
-    private Context mContext;
-    private List<WebContent> list;
+    private final Context mContext;
+    private final List<WebContent> list;
 
     public WebDataAdapter(Context mContext, List<WebContent> list) {
         this.mContext = mContext;
@@ -53,7 +53,7 @@ public class WebDataAdapter extends RecyclerView.Adapter<WebDataAdapter.SimpleVi
         public SimpleViewHolder(View itemView) {
             super(itemView);
 
-            textView = (TextView) itemView.findViewById(R.id.web_url);
+            textView = itemView.findViewById(R.id.web_url);
             itemView.setOnClickListener(this);
         }
 

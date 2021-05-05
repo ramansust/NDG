@@ -21,10 +21,10 @@ import java.util.List;
  */
 public class LanguageSelectionAdapter extends BaseAdapter {
 
-    private Context context;
+    private final Context context;
     private LayoutInflater inflater;
     private List<LanguageInfo> list;
-    private boolean isColor;
+    private final boolean isColor;
 
     /**
      * Declare constructor
@@ -98,9 +98,9 @@ public class LanguageSelectionAdapter extends BaseAdapter {
         CheckBox checkBox;
 
         public ViewHolder(View view) {
-            imageView = (SimpleDraweeView) view.findViewById(R.id.img_view); // use fresco to load image
-            txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
-            checkBox = (CheckBox) view.findViewById(R.id.check_box);
+            imageView = view.findViewById(R.id.img_view); // use fresco to load image
+            txtViewTitle = view.findViewById(R.id.txt_title);
+            checkBox = view.findViewById(R.id.check_box);
         }
     }
 

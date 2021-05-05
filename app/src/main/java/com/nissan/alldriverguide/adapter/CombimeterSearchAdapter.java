@@ -1,7 +1,7 @@
 package com.nissan.alldriverguide.adapter;
 
-/**
- * Created by shubha on 11/16/17.
+/*
+  Created by shubha on 11/16/17.
  */
 
 import android.content.Context;
@@ -14,10 +14,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.fragments.assistance.DetailsFragment;
 import com.nissan.alldriverguide.fragments.search.TabFragment;
@@ -26,11 +22,15 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSearchAdapter.SimpleViewHolder> {
 
-    private Context mContext;
-    private ArrayList<SearchCombimeterModel> warning_list;
+    private final Context mContext;
+    private final ArrayList<SearchCombimeterModel> warning_list;
 
     /**
      * Declare constructor
@@ -62,7 +62,7 @@ public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSear
             Drawable d = Drawable.createFromPath(Values.car_path + "/combimeter_button" + "/" + path);
             holder.itemSearch.setImageDrawable(d);
 
-            String[] tag = path.split("\\_");
+            String[] tag = path.split("_");
 
             holder.itemSearch.setTag(Integer.parseInt(tag[1]));
 
@@ -83,9 +83,9 @@ public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSear
 
         public SimpleViewHolder(View itemView) {
             super(itemView);
-            itemSearch = (ImageView) itemView.findViewById(R.id.search_item);
-            qRefGuide = (TextView) itemView.findViewById(R.id.quick_ref_guide);
-            rv = (RelativeLayout) itemView.findViewById(R.id.combimeter_item);
+            itemSearch = itemView.findViewById(R.id.search_item);
+            qRefGuide = itemView.findViewById(R.id.quick_ref_guide);
+            rv = itemView.findViewById(R.id.combimeter_item);
             itemSearch.setOnClickListener(this);
         }
 

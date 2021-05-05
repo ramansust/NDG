@@ -20,10 +20,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -57,6 +53,10 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
@@ -65,8 +65,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private Context context;
     public Resources resources;
     private String[] assistanceArray;
-    private int[] assistanceImage = {R.drawable.warning_light, R.drawable.quick_reference, R.drawable.tyre, R.drawable.engine_compartment, R.drawable.warranty, R.drawable.selled, R.drawable.calendar};
-    private View view;
+    private final int[] assistanceImage = {R.drawable.warning_light, R.drawable.quick_reference, R.drawable.tyre, R.drawable.engine_compartment, R.drawable.warranty, R.drawable.selled, R.drawable.calendar};
     private TextView txtViewCarName;
     private TextView txtViewDriverGuide;
     private SimpleDraweeView imageView;
@@ -102,7 +101,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_assistance, container, false);
+        View view = inflater.inflate(R.layout.fragment_assistance, container, false);
         initViews(view);
         loadResource();
         setListener();
@@ -197,16 +196,13 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
         final Dialog dialog = new DialogController(getActivity()).internetDialog();
         dialog.setCancelable(false);
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(msg);
 
-        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                getActivity().finish();
-            }
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(v -> {
+            dialog.dismiss();
+            getActivity().finish();
         });
 
         dialog.show();
@@ -302,15 +298,15 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private void initViews(View view) {
         context = getActivity().getApplicationContext();
         commonDao = CommonDao.getInstance();
-        txtViewCarName = (TextView) view.findViewById(R.id.txt_view_car_name);
-        txtView_loadTxt = (TextView) view.findViewById(R.id.txtView_loading);
-        txtViewDriverGuide = (TextView) view.findViewById(R.id.txt_view_driver_guide);
-        imageView = (SimpleDraweeView) view.findViewById(R.id.img_car_bg);
-        lstView = (ListView) view.findViewById(R.id.lst_view);
-        txt_title = (TextView) view.findViewById(R.id.txt_title);
+        txtViewCarName = view.findViewById(R.id.txt_view_car_name);
+        txtView_loadTxt = view.findViewById(R.id.txtView_loading);
+        txtViewDriverGuide = view.findViewById(R.id.txt_view_driver_guide);
+        imageView = view.findViewById(R.id.img_car_bg);
+        lstView = view.findViewById(R.id.lst_view);
+        txt_title = view.findViewById(R.id.txt_title);
 
-        progressBar = (ProgressBar) view.findViewById(R.id.prog_assistance);
-        tvNoContent = (TextView) view.findViewById(R.id.txt_assistance_data_not_found);
+        progressBar = view.findViewById(R.id.prog_assistance);
+        tvNoContent = view.findViewById(R.id.txt_assistance_data_not_found);
 
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -353,42 +349,35 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
                 final Dialog dialog = new DialogController(getActivity()).contentUpdateDialog();
 
-                TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+                TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
                 String updateMsg = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.UPDATE_MSG);
                 txtViewTitle.setText(updateMsg == null || updateMsg.isEmpty() ? getResources().getString(R.string.update_msg) : updateMsg);
 
                 String okText = NissanApp.getInstance().getGlobalMessage(getActivity()).getYes();
                 String cancelText = NissanApp.getInstance().getGlobalMessage(getActivity()).getNo();
 
-                Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+                Button btnOk = dialog.findViewById(R.id.btn_ok);
 //                btnOk.setText(resources.getString(R.string.button_YES));
                 btnOk.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_YES) : okText);
 
-                btnOk.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                btnOk.setOnClickListener(v -> {
 
-                        if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
-                            return;
-                        }
-                        doubleClickPopup = SystemClock.elapsedRealtime();
+                    if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
+                        return;
+                    }
+                    doubleClickPopup = SystemClock.elapsedRealtime();
 
-                        dialog.dismiss();
+                    dialog.dismiss();
 
-                        if (DetectConnection.checkInternetConnection(getActivity().getApplicationContext())) {
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    progressDialog = new ProgressDialogController(getActivity()).showDialog(getResources().getString(R.string.start_download));
-                                }
-                            });
+                    if (DetectConnection.checkInternetConnection(getActivity().getApplicationContext())) {
+                        getActivity().runOnUiThread(() -> progressDialog = new ProgressDialogController(getActivity()).showDialog(getResources().getString(R.string.start_download)));
 
-                            new ApiCall().postContentDownload("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()), "" + Values.ePubType, NissanApp.getInstance().getDeviceID(getActivity().getApplicationContext()), new CompleteAPI() {
-                                @Override
-                                public void onDownloaded(ResponseInfo responseInfo) {
+                        new ApiCall().postContentDownload("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()), "" + Values.ePubType, NissanApp.getInstance().getDeviceID(getActivity().getApplicationContext()), new CompleteAPI() {
+                            @Override
+                            public void onDownloaded(ResponseInfo responseInfo) {
 //                                Logger.error("status", "__________" + responseInfo.getStatusCode() + "____" + responseInfo.getMessage() + "____" + responseInfo.getUrl());;
 
-                                    if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getUrl())) {
+                                if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getUrl())) {
 //                                        new MADownloadManager(getActivity(), getActivity().getApplicationContext()).downloadLanguage(false, "Language", responseInfo.getUrl(), NissanApp.getInstance().getCarPath(Values.carType), new DownloaderStatus() {
 //                                            @Override
 //                                            public boolean onComplete(boolean b) {
@@ -503,42 +492,38 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 //                                                }
 //                                            }
 //                                        });
-                                        //TODO Integrate download manager
-                                    } else {
-                                        showErrorDialog("No content found.");
-                                        dismissDialogue();
-                                    }
+                                    //TODO Integrate download manager
+                                } else {
+                                    showErrorDialog("No content found.");
+                                    dismissDialogue();
                                 }
+                            }
 
-                                @Override
-                                public void onFailed(String failedReason) {
-                                    if (progressDialog != null) {
-                                        progressDialog.dismiss();
-                                    }
-                                    showErrorDialog(failedReason);
-                                    Logger.error("Single Content Downloading failed", "____________" + failedReason);
+                            @Override
+                            public void onFailed(String failedReason) {
+                                if (progressDialog != null) {
+                                    progressDialog.dismiss();
                                 }
-                            });
-                        } else {
+                                showErrorDialog(failedReason);
+                                Logger.error("Single Content Downloading failed", "____________" + failedReason);
+                            }
+                        });
+                    } else {
 
-                        }
                     }
                 });
 
-                Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
+                Button btnCancel = dialog.findViewById(R.id.btn_cancel);
                 btnCancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_NO) : cancelText);
 
-                btnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (SystemClock.elapsedRealtime() - doubleClickPopup < 1000) {
-                            return;
-                        }
-                        doubleClickPopup = SystemClock.elapsedRealtime();
-
-                        dialog.dismiss();
-                        loadDesireFragment(position);
+                btnCancel.setOnClickListener(v -> {
+                    if (SystemClock.elapsedRealtime() - doubleClickPopup < 1000) {
+                        return;
                     }
+                    doubleClickPopup = SystemClock.elapsedRealtime();
+
+                    dialog.dismiss();
+                    loadDesireFragment(position);
                 });
 
                 dialog.show();

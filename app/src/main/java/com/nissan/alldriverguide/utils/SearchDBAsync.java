@@ -7,10 +7,7 @@ import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.datasoft.downloadManager.epubUtils.ExtractedEpubLoader;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 
-import org.apache.commons.io.FileUtils;
-
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -54,12 +51,7 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
     protected Boolean doInBackground(Void... params) {
 
         // shorting the ArrayList
-        Collections.sort(listOfFiles, new java.util.Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                return s1.charAt(0) - s2.charAt(0);
-            }
-        });
+        Collections.sort(listOfFiles, (s1, s2) -> s1.charAt(0) - s2.charAt(0));
 
         // checking the ArrayList that contain epub form sdCard
         if (listOfFiles != null && listOfFiles.size() > 0) {
@@ -128,9 +120,9 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
         File directory = new File(path); // here select the language path
         File[] files = directory.listFiles(); // here get the 7 language epub list from sd card (that was downloaded). eg. button_pt.epub
         if (files != null && files.length > 0) {
-            for (int i = 0; i < files.length; i++) {
+            for (File file : files) {
                 // here add the epub name in arrayList
-                listOfFiles.add(files[i].getName());
+                listOfFiles.add(file.getName());
 //                Logger.error("file_name", "_______" + files[i].getName());
             }
         }

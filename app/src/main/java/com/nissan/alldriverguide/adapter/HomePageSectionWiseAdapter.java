@@ -24,8 +24,7 @@ import java.util.List;
  * This class not in used anymore
  */
 public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<HomePageSectionWiseAdapter.MainVH> {
-    private Context context;
-    private List<HomePageSectionInfo> allData;
+    private final List<HomePageSectionInfo> allData;
 
     public interface OnItemClickListener {
         void onClick(View view, int index);
@@ -38,7 +37,6 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
     }
 
     public HomePageSectionWiseAdapter(Context context, List<HomePageEpubInfo> data) {
-        this.context = context;
         this.allData = loadData(data);
     }
 
@@ -56,7 +54,7 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
     public void onBindHeaderViewHolder(MainVH holder, int section, boolean expanded) {
         // Setup header view
         String sectionName = allData.get(section).getSectionTitle();
-        HomePageSectionWiseAdapter.MainVH sectionViewHolder = (HomePageSectionWiseAdapter.MainVH) holder;
+        HomePageSectionWiseAdapter.MainVH sectionViewHolder = holder;
         sectionViewHolder.sectionTitle.setText(sectionName);
 
         sectionViewHolder.sectionTitle.setBackgroundColor(Color.parseColor("" + allData.get(section).getColorCode().trim()));
@@ -72,7 +70,7 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
 
         final EpubInfo epubInfo = allData.get(section).getEpublist().get(relativePosition);
 
-        HomePageSectionWiseAdapter.MainVH viewHolder = (HomePageSectionWiseAdapter.MainVH) holder;
+        HomePageSectionWiseAdapter.MainVH viewHolder = holder;
 
         if (allData.get(section).getEpublist().size() - 1 == relativePosition) {
             viewHolder.imageViewDivider.setVisibility(View.GONE);
@@ -106,7 +104,7 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
         return new MainVH(v, listener);
     }
 
-    public class MainVH extends SectionedViewHolder {
+    public static class MainVH extends SectionedViewHolder {
         final TextView sectionTitle;
         TextView txtViewTitle;
 
@@ -119,18 +117,15 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
             super(itemView);
             // Setup view holder. You'd want some views to be optional, e.g. the
             // header/footer will have views that normal item views do or do not have.
-            sectionTitle = (TextView) itemView.findViewById(R.id.txt_title_section);
-            txtViewTitle = (TextView) itemView.findViewById(R.id.txt_title);
+            sectionTitle = itemView.findViewById(R.id.txt_title_section);
+            txtViewTitle = itemView.findViewById(R.id.txt_title);
 
-            imageViewDivider = (ImageView) itemView.findViewById(R.id.img_view_divider);
+            imageViewDivider = itemView.findViewById(R.id.img_view_divider);
 
             if (itemView.getId() == R.id.relative_main) {
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (listener != null && itemView != null) {
-                            listener.onClick(itemView, index);
-                        }
+                itemView.setOnClickListener(view -> {
+                    if (listener != null && itemView != null) {
+                        listener.onClick(itemView, index);
                     }
                 });
             }

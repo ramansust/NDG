@@ -16,11 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 public class OnlineBookingFragment extends Fragment {
 
@@ -70,27 +70,16 @@ public class OnlineBookingFragment extends Fragment {
     }
 
     private void setListener() {
-        linearBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((MainActivity) getActivity()).onBackPressed();
-
-            }
-        });
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((MainActivity) getActivity()).onBackPressed();
-            }
-        });
+        linearBack.setOnClickListener(view -> getActivity().onBackPressed());
+        btnBack.setOnClickListener(view -> getActivity().onBackPressed());
     }
 
     private void initView() {
-        webView = (WebView) view.findViewById(R.id.webView_online_booking);
-        linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
-        btnBack = (ImageButton) view.findViewById(R.id.btn_back);
-        txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
-        progressBar = (ProgressBar) view.findViewById(R.id.prog_online);
+        webView = view.findViewById(R.id.webView_online_booking);
+        linearBack = view.findViewById(R.id.linear_back);
+        btnBack = view.findViewById(R.id.btn_back);
+        txtViewTitle = view.findViewById(R.id.txt_title);
+        progressBar = view.findViewById(R.id.prog_online);
     }
 
     private class MyWebViewClient extends WebViewClient {

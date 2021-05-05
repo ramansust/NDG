@@ -1,4 +1,3 @@
-
 package com.nissan.alldriverguide;
 
 import android.app.Activity;
@@ -21,12 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -64,6 +57,12 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
 public class ModelYearActivity extends AppCompatActivity implements CarListACompleteAPI, ModelYearItemClcikListener {
@@ -85,11 +84,10 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
     private String selectedLang = "";
     int parentCarId = -1;
     private ArrayList<Object> getList = new ArrayList<>();
-    private List<CarList> carListArrayList = new ArrayList<>();
+    private final List<CarList> carListArrayList = new ArrayList<>();
     private DisplayMetrics metrics;
-    private Tracker t;
     private ModelYearAdapter adapter;
-    private ArrayList<Object> childCars = new ArrayList<>();
+    private final ArrayList<Object> childCars = new ArrayList<>();
     private List<CarList> allCarList;
 
     @Override
@@ -226,7 +224,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 
                 final Dialog dialog = new DialogController(activity).pushRegistrationDialog();
 
-                TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+                TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
                 String pushTitle = NissanApp.getInstance().getAlertMessage(this, preferenceUtil.getSelectedLang(), Values.REGISTER_PUSH_MESSAGE);
                 txtViewTitle.setText(pushTitle.isEmpty() ? getResources().getString(R.string.register_push) : pushTitle);
 
@@ -234,27 +232,21 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
                 String okText = NissanApp.getInstance().getGlobalMessage(this).getOk();
                 String cancelText = NissanApp.getInstance().getGlobalMessage(this).getCancel();
 
-                Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
-                Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+                Button btnCancel = dialog.findViewById(R.id.btn_cancel);
+                Button btnOk = dialog.findViewById(R.id.btn_ok);
 
                 btnOk.setText(okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
                 btnCancel.setText(cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
 
-                btnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                        Toast.makeText(context, "Without registration you cannot download car", Toast.LENGTH_LONG).show();
-                    }
+                btnCancel.setOnClickListener(v -> {
+                    dialog.dismiss();
+                    Toast.makeText(context, "Without registration you cannot download car", Toast.LENGTH_LONG).show();
                 });
 
-                btnOk.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                        progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.register_push_dialog));
-                        registerForPush(position);
-                    }
+                btnOk.setOnClickListener(v -> {
+                    dialog.dismiss();
+                    progressDialog = new ProgressDialogController(activity).showDialog(resources.getString(R.string.register_push_dialog));
+                    registerForPush(position);
                 });
                 dialog.show();
 
@@ -452,39 +444,32 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 
         final Dialog dialog = new DialogController(this).contentUpdateDialog();
 
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(resources.getString(R.string.update_msg));
 
-        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
         btnOk.setText(resources.getString(R.string.button_YES));
 
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
-                    return;
-                }
-                doubleClickPopup = SystemClock.elapsedRealtime();
+        btnOk.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
+                return;
+            }
+            doubleClickPopup = SystemClock.elapsedRealtime();
 
-                dialog.dismiss();
+            dialog.dismiss();
 
-                if (DetectConnection.checkInternetConnection(ModelYearActivity.this)) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressDialog = new ProgressDialogController(activity).showDialog(getResources().getString(R.string.start_download));
-                        }
-                    });
+            if (DetectConnection.checkInternetConnection(ModelYearActivity.this)) {
+                runOnUiThread(() -> progressDialog = new ProgressDialogController(activity).showDialog(getResources().getString(R.string.start_download)));
 
-                    new ApiCall().postContentDownload("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(selectedLang), stringBuilder.toString(), NissanApp.getInstance().getDeviceID(getApplicationContext()), new CompleteAPI() {
-                        @Override
-                        public void onDownloaded(ResponseInfo responseInfo) {
+                new ApiCall().postContentDownload("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(selectedLang), stringBuilder.toString(), NissanApp.getInstance().getDeviceID(getApplicationContext()), new CompleteAPI() {
+                    @Override
+                    public void onDownloaded(ResponseInfo responseInfo) {
 
-                            Logger.error("Status " + responseInfo.getStatusCode(), "URL " + responseInfo.getUrl());
+                        Logger.error("Status " + responseInfo.getStatusCode(), "URL " + responseInfo.getUrl());
 
-                            if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getUrl())) {
+                        if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getUrl())) {
 
-                                Logger.error("content_url", "____________" + responseInfo.getUrl());
+                            Logger.error("content_url", "____________" + responseInfo.getUrl());
 
 //                                new MADownloadManager(activity, getApplicationContext()).downloadLanguage(false, "Language", responseInfo.getUrl(), NissanApp.getInstance().getCarPath(Values.carType), new DownloaderStatus() {
 //                                    @Override
@@ -610,39 +595,35 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 //                                    }
 //                                });
 
-                                //TODO Implement download
-                            } else {
-                                showErrorDialog("Status code OR URL not reachable");
-                                dismissDialog();
-                            }
+                            //TODO Implement download
+                        } else {
+                            showErrorDialog("Status code OR URL not reachable");
+                            dismissDialog();
                         }
+                    }
 
-                        @Override
-                        public void onFailed(String failedReason) {
-                            showErrorDialog(failedReason);
-                            Logger.error("Single Content Downloading failed", "____________" + failedReason);
-                        }
-                    });
-                } else {
+                    @Override
+                    public void onFailed(String failedReason) {
+                        showErrorDialog(failedReason);
+                        Logger.error("Single Content Downloading failed", "____________" + failedReason);
+                    }
+                });
+            } else {
 
-                }
             }
         });
 
-        Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
+        Button btnCancel = dialog.findViewById(R.id.btn_cancel);
         btnCancel.setText(resources.getString(R.string.button_NO));
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
-                    return;
-                }
-                doubleClickPopup = SystemClock.elapsedRealtime();
-
-                dialog.dismiss();
-                goToNextPage(position);
+        btnCancel.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - doubleClickPopup < DEFAULT_CLICK_TIMEOUT) {
+                return;
             }
+            doubleClickPopup = SystemClock.elapsedRealtime();
+
+            dialog.dismiss();
+            goToNextPage(position);
         });
 
         dialog.show();
@@ -654,16 +635,11 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 
         dialog.setCancelable(false);
 
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(msg);
 
-        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
     }
@@ -691,31 +667,20 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         btnOk.setText(okText == null || okText.isEmpty() ? resources.getString(R.string.button_OK) : okText);
         btnCancel.setText(cancelText == null || cancelText.isEmpty() ? resources.getString(R.string.button_CANCEL) : cancelText);
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
 
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
+        btnOk.setOnClickListener(v -> {
+            dialog.dismiss();
 
-                deleteCar(carType, position);
-            }
+            deleteCar(carType, position);
         });
 
         dialog.show();
     }
 
     private void deleteCar(final int carId, final int position) {
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                progressDialog = new ProgressDialogController(activity).showDialog("Car Deleting..."); //getResources().getString(R.string.start_car_delete));
-            }
+        activity.runOnUiThread(() -> {
+            progressDialog = new ProgressDialogController(activity).showDialog("Car Deleting..."); //getResources().getString(R.string.start_car_delete));
         });
 
         final int carIdFromList = ((CarInfo) NissanApp.getInstance().getCarList().get(position)).getId();
@@ -904,14 +869,14 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
     private void showCarDownloadDialog(final int carType) {
         final Dialog dialog = new DialogController(ModelYearActivity.this).carDialog();
 
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(getResources().getString(R.string.download_msg));
 
-        ImageButton btnEUR = (ImageButton) dialog.findViewById(R.id.btn_eur);
-        ImageButton btnRUS = (ImageButton) dialog.findViewById(R.id.btn_rus);
+        ImageButton btnEUR = dialog.findViewById(R.id.btn_eur);
+        ImageButton btnRUS = dialog.findViewById(R.id.btn_rus);
 
-        ImageButton imgBtnEur = (ImageButton) dialog.findViewById(R.id.img_btn_eur_delete_donwload);
-        ImageButton imgBtnRus = (ImageButton) dialog.findViewById(R.id.img_btn_rus_delete_donwload);
+        ImageButton imgBtnEur = dialog.findViewById(R.id.img_btn_eur_delete_donwload);
+        ImageButton imgBtnRus = dialog.findViewById(R.id.img_btn_rus_delete_donwload);
 
         imgBtnEur.setVisibility(View.GONE);
         imgBtnRus.setVisibility(View.GONE);
@@ -973,35 +938,29 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
             }
         }
 
-        btnEUR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();//click for eur/rus by rohan
+        btnEUR.setOnClickListener(v -> {
+            dialog.dismiss();//click for eur/rus by rohan
 
-                if (carType == 1 || carType == 4 || carType == 13 || carType == 12) {
-                    carDownloadCheck(carType);
-                }
+            if (carType == 1 || carType == 4 || carType == 13 || carType == 12) {
+                carDownloadCheck(carType);
             }
         });
 
-        btnRUS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();//click for eur/rus by rohan
+        btnRUS.setOnClickListener(v -> {
+            dialog.dismiss();//click for eur/rus by rohan
 
-                if (carType == 2 || carType == 5) {
-                    carDownloadCheck(carType);
-                } else if (carType == 13) {
-                    carDownloadCheck(carType + 2);
-                } else if (carType == 15) {
-                    carDownloadCheck(carType);
-                } else if (carType == 16) {
-                    carDownloadCheck(carType);
-                } else if (carType == 12) {
-                    carDownloadCheck(carType + 4);
-                } else {
-                    carDownloadCheck(carType + 1);
-                }
+            if (carType == 2 || carType == 5) {
+                carDownloadCheck(carType);
+            } else if (carType == 13) {
+                carDownloadCheck(carType + 2);
+            } else if (carType == 15) {
+                carDownloadCheck(carType);
+            } else if (carType == 16) {
+                carDownloadCheck(carType);
+            } else if (carType == 12) {
+                carDownloadCheck(carType + 4);
+            } else {
+                carDownloadCheck(carType + 1);
             }
         });
 
@@ -1367,7 +1326,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
                 .getTracker(MyApplication.TrackerName.APP_TRACKER);
 
         // Get tracker.
-        t = ((MyApplication) getApplication())
+        Tracker t = ((MyApplication) getApplication())
                 .getTracker(MyApplication.TrackerName.APP_TRACKER);
 
         // Set screen name.

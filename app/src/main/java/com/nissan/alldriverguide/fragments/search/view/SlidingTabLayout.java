@@ -26,11 +26,11 @@ import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
+import com.nissan.alldriverguide.R;
+
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-import com.nissan.alldriverguide.R;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
@@ -72,7 +72,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
     private static final int TAB_VIEW_PADDING_DIPS = 16;
     private static final int TAB_VIEW_TEXT_SIZE_SP = 15;
 
-    private int mTitleOffset;
+    private final int mTitleOffset;
 
     private int mTabViewLayoutId;
     private int mTabViewTextViewId;
@@ -210,14 +210,14 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 // If there is a custom tab view layout id set, try and inflate it
                 tabView = LayoutInflater.from(getContext()).inflate(mTabViewLayoutId, mTabStrip,
                         false);
-                tabTitleView = (TextView) tabView.findViewById(mTabViewTextViewId);
+                tabTitleView = tabView.findViewById(mTabViewTextViewId);
             }
 
             if (tabView == null) {
                 tabView = createDefaultTabView(getContext());
             }
 
-            if (tabTitleView == null && TextView.class.isInstance(tabView)) {
+            if (tabTitleView == null && tabView instanceof TextView) {
                 tabTitleView = (TextView) tabView;
             }
 
@@ -331,7 +331,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
     }
 
     private void setStyle(int position, int offWhite, float alpha) {
-        TextView tv = (TextView) mTabStrip.getChildAt(position).findViewById(R.id.text);
+        TextView tv = mTabStrip.getChildAt(position).findViewById(R.id.text);
         tv.setTextColor(getResources().getColor(offWhite));
         tv.setAlpha(alpha);
     }

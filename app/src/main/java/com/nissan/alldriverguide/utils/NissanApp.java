@@ -15,9 +15,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.datasoft.downloadManager.epubUtils.ExtractedEpubLoader;
 import com.google.gson.Gson;
@@ -51,6 +48,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 /**
  * Created by raman on 1/19/17.
  */
@@ -61,9 +61,8 @@ public class NissanApp {
     public AssistanceInfo assistanceInfo;
     //    public String Vuforia_key = "AZeJ28P/////AAAAAcTlmrGvj0ngjCcwQjIavJcqQvIaBitAo5eBTkG2cG4PyF+t82bIUefZWp/9apWQuelfAA08QuTLCad92KWOLHBY+d1EzDYRAVelFk0LDUkFeW7TrxowR1fPpEu1Axlxm9NA6j9YMSqfxxH/378ei+xhkeUqLJeSTThdQVIivZ2WjlE6hIhhwZS0nqh/0mHH92gbfzMcgdrLQ1uM5u0jIRn9yjbVw4/CzCtQzjYpRyqWRz+vhrGMFL9xKBqyTwRy2PKrR2/6T6xYER4ZyCddIGJD5zgrLxPkPp3dbFGslnmTU3ZZYijn2kMIROhcIZYmx8F59odWmfNh4lRcV91pK554tGieRVsWzFqB/APdo3Av"; // free
     // this key is used for vuforia sdk for AR
-    private String Vuforia_key = "ATZPXEj/////AAAAAK8J10rSI0dLr0sGOY7rQdUf20QxKpYGh6/JG14CkV1pjGLTF81OoLa/hx0u5+ZWxIO2Iufir6M2cEX2zz7GY3UGxAsJ6mmtoricZVrENjMjGhzYpIE6Rbuk62hcaRcrdy9dFM1CITHzbDPEE7cEcY99HHSSLHzsfLR9Zlo/WNzc5aTcOoWl+hewMmLfyZdwK/KN36FlvLy0j4hzM68fitZSgXvo+Ed1gCDDpSTT+yfF4r8h11emgrs68kLzUl4WWH/xwZbupVQj4cyGag2sC3vu2b2qSuyABHXfTViQjsIqUL8r3I7wF6Xkio8XN+a6b1Y3IArX4FJ9XlB3VR6QxCyFjUYbh96CSBEDA3Q8Q5wd"; // Paid key for NDG
+    private final String Vuforia_key = "ATZPXEj/////AAAAAK8J10rSI0dLr0sGOY7rQdUf20QxKpYGh6/JG14CkV1pjGLTF81OoLa/hx0u5+ZWxIO2Iufir6M2cEX2zz7GY3UGxAsJ6mmtoricZVrENjMjGhzYpIE6Rbuk62hcaRcrdy9dFM1CITHzbDPEE7cEcY99HHSSLHzsfLR9Zlo/WNzc5aTcOoWl+hewMmLfyZdwK/KN36FlvLy0j4hzM68fitZSgXvo+Ed1gCDDpSTT+yfF4r8h11emgrs68kLzUl4WWH/xwZbupVQj4cyGag2sC3vu2b2qSuyABHXfTViQjsIqUL8r3I7wF6Xkio8XN+a6b1Y3IArX4FJ9XlB3VR6QxCyFjUYbh96CSBEDA3Q8Q5wd"; // Paid key for NDG
     private ArrayList<VideoInfo> list;
-    private Configuration conf;
     private ArrayList<TabMenu> tabMenuArrayList;
     private ArrayList<Tutorial> tutorialArrayList;
     private List<AlertMessage> alertMessageGlobalArrayList, alertMessageCarWiseLangDownloadList;
@@ -375,26 +374,17 @@ public class NissanApp {
     }
 
     public boolean isFileExists(String path) {
-        if (new File(path).exists()) {
-            return true;
-        } else {
-            return false;
-        }
+        return new File(path).exists();
     }
 
     public boolean isEpubExists(String ePubPath, String lang) {
-        if (new File(ePubPath + "/" + Values.INFO).exists()
+        return new File(ePubPath + "/" + Values.INFO).exists()
                 && new File(ePubPath + "/" + Values.HOME_PAGE).exists()
                 && new File(ePubPath + "/" + Values.BUTTON).exists()
                 && new File(ePubPath + "/" + Values.COMBIMETER).exists()
                 && new File(ePubPath + "/" + Values.TYRE).exists()
                 && new File(ePubPath + "/" + Values.WARRANTY).exists()
-                && new File(ePubPath + "/" + Values.ENGINE).exists()) {
-
-            return true;
-        } else {
-            return false;
-        }
+                && new File(ePubPath + "/" + Values.ENGINE).exists();
     }
 
     /**
@@ -852,11 +842,7 @@ public class NissanApp {
             file.mkdirs();
         }
 
-        if (file.exists()) {
-            return true;
-        } else {
-            return false;
-        }
+        return file.exists();
 
     }
 
@@ -869,16 +855,11 @@ public class NissanApp {
     public void showInternetAlert(Activity activity, String msg) {
         final Dialog dialog = new DialogController(activity).internetDialog();
 
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(msg);
 
-        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
     }
@@ -1155,7 +1136,7 @@ public class NissanApp {
      */
     public Configuration changeLocalLanguage(Activity activity, String lang) {
 
-        conf = activity.getResources().getConfiguration();
+        Configuration conf = activity.getResources().getConfiguration();
         if (!lang.equals("")) {
 
             if (lang.contentEquals("en")) {
@@ -1204,8 +1185,7 @@ public class NissanApp {
     /*    */
 
     /**
-     * @param position  indicate the car id
-     * @param imageView set image by car id which display in list
+     *
      *//*
     public void setCarImage(int position, ImageView imageView) {
         switch (position) {
@@ -1403,10 +1383,7 @@ public class NissanApp {
             return true;
 
         searchResult = WarningLightFragment.searchForTag(new PreferenceUtil(mContext).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(mContext).getSelectedLang() + Values.UNDERSCORE + Values.WARRANTY_TYPE), keyWord);
-        if (searchResult != null && searchResult.size() > 0)
-            return true;
-
-        return false;
+        return searchResult != null && searchResult.size() > 0;
 
     }
 
@@ -1697,7 +1674,7 @@ public class NissanApp {
         return 0;
     }
 
-    public int getParentId(int childId){
+    public int getParentId(int childId) {
         if (carListWAP != null) {
             for (CarList carList : carListWAP) {
                 if (Integer.parseInt(carList.getId()) == childId && carList.getCar_model_version().contains("new")) {
@@ -1707,6 +1684,7 @@ public class NissanApp {
         }
         return -1;
     }
+
     public ArrayList<Object> getChildCars(int parentId) {
         ArrayList<Object> childCars = null;
         if (carListWAP != null) {

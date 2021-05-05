@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.RequiresApi;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.nissan.alldriverguide.SplashScreenActivity;
@@ -16,6 +13,9 @@ import com.nissan.alldriverguide.utils.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import androidx.annotation.RequiresApi;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import static android.text.TextUtils.isEmpty;
 

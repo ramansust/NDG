@@ -8,4 +8,4 @@
     android:dividerHeight="2dp"
     tools:listitem="@layout/assistance_row"
     android:scrollbars="none"
-    android:listSelector="@drawable/list_bg"></ListView>
+    android:listSelector="@drawable/list_bg" />

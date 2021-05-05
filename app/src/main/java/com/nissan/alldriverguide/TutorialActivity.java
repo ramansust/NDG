@@ -6,10 +6,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -25,14 +21,16 @@ import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 public class TutorialActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Tracker tracker;
     private ViewPager viewPager;
-    private PagerAdapter adapter;
     private ImageButton btnClose, btnNext;
     private TextView txtNext;
-    private int[] imageTutorials = {R.drawable.tutorial_1, R.drawable.tutorial_2, R.drawable.tutorial_3};
+    private final int[] imageTutorials = {R.drawable.tutorial_1, R.drawable.tutorial_2, R.drawable.tutorial_3};
     private String[] tutorialTitles = new String[10];
     private String[] tutorialDetails = new String[10];
     private DotsIndicator indicator;
@@ -95,7 +93,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
 
 //        tutorialTitles = getResources().getStringArray(R.array.tutorial_titles);
 //        tutorialDetails = getResources().getStringArray(R.array.tutorial_details);
-        adapter = new TutorialViewPagerAdapter(TutorialActivity.this, imageTutorials, tutorialTitles, tutorialDetails);
+        PagerAdapter adapter = new TutorialViewPagerAdapter(TutorialActivity.this, imageTutorials, tutorialTitles, tutorialDetails);
         viewPager.setAdapter(adapter);
         indicator.setViewPager(viewPager);
     }
@@ -169,7 +167,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
         ((MyApplication) getApplication())
                 .getTracker(MyApplication.TrackerName.APP_TRACKER);
 
-        tracker = ((MyApplication) getApplication())
+        Tracker tracker = ((MyApplication) getApplication())
                 .getTracker(MyApplication.TrackerName.APP_TRACKER);
 
         tracker.setScreenName(msgName.toLowerCase());

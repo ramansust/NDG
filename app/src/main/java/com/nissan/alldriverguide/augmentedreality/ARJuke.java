@@ -41,16 +41,15 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
 
     private static final String LOGTAG = "ImageTargetRenderer";
 
-    private SampleApplicationSession vuforiaAppSession;
-    private ImageTargetActivity mActivity;
+    private final SampleApplicationSession vuforiaAppSession;
+    private final ImageTargetActivity mActivity;
 
-    private Renderer mRenderer;
     public static ImageView iv;
 
     private LayoutInflater inflater;
-    private String drawables;
+    private final String drawables;
 
-    private SampleAppRenderer mSampleAppRenderer;
+    private final SampleAppRenderer mSampleAppRenderer;
 
     public ARJuke(ImageTargetActivity activity, SampleApplicationSession session) {
         mActivity = activity;
@@ -132,7 +131,7 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
     // Function for initializing the renderer.
     private void initRendering() {
 
-        mRenderer = Renderer.getInstance();
+        Renderer mRenderer = Renderer.getInstance();
 
         /*GLES20.glClearColor(0.0f, 0.0f, 0.0f, Vuforia.requiresAlpha() ? 0.0f
                 : 1.0f);*/
@@ -140,73 +139,60 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
         mActivity.loadingDialogHandler
                 .sendEmptyMessage(LoadingDialogHandler.HIDE_LOADING_DIALOG);
 
-        mActivity.layoutCameraView = (RelativeLayout) mActivity
+        mActivity.layoutCameraView = mActivity
                 .findViewById(R.id.camera_overlay_layout_2);
-        mActivity.layoutBackRefreshView = (ViewGroup) mActivity
+        mActivity.layoutBackRefreshView = mActivity
                 .findViewById(R.id.camera_overlay_layout);
 
-        ImageButton ibRefresh = (ImageButton) mActivity.layoutBackRefreshView
+        ImageButton ibRefresh = mActivity.layoutBackRefreshView
                 .findViewById(R.id.refresh);
 
-        ImageButton ibBack = (ImageButton) mActivity.layoutBackRefreshView
+        ImageButton ibBack = mActivity.layoutBackRefreshView
                 .findViewById(R.id.back);
 
-        ImageButton ibInfo = (ImageButton) mActivity.layoutBackRefreshView
+        ImageButton ibInfo = mActivity.layoutBackRefreshView
                 .findViewById(R.id.info);
 
-        ibRefresh.setOnClickListener(new View.OnClickListener() {
+        ibRefresh.setOnClickListener(v -> {
+            // TODO Auto-generated method stub
 
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
+            ImageTargetActivity.isDetected = false;
 
-                mActivity.isDetected = false;
+            mActivity.layoutCameraView.removeAllViews();
+            vuforiaAppSession.onResume();
+
+        });
+
+        ibInfo.setOnClickListener(v -> {
+            // TODO Auto-generated method stub
+//                mActivity.isDetected = true;
+            if (!ImageTargetActivity.isDetected) {
+                try {
+                    vuforiaAppSession.pauseAR();
+                } catch (SampleApplicationException e) {
+                    e.printStackTrace();
+                }
+            }
+            mActivity.showInfo();
+        });
+        ibBack.setOnClickListener(v -> {
+            // TODO Auto-generated method stub
+
+            if (ImageTargetActivity.inflatedLayout_second != null && ImageTargetActivity.inflatedLayout_second.isAttachedToWindow()) {
+
+                mActivity.layoutCameraView.removeView(ImageTargetActivity.inflatedLayout_second);
+                ImageTargetActivity.inflatedLayout_second = null;
+                mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+
+            } else if (ImageTargetActivity.inflatedLayout != null && ImageTargetActivity.inflatedLayout.isAttachedToWindow()) {
 
                 mActivity.layoutCameraView.removeAllViews();
+                ImageTargetActivity.isDetected = false;
                 vuforiaAppSession.onResume();
-
+            } else {
+                mActivity.backButtonAlert();
             }
-        });
 
-        ibInfo.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-//                mActivity.isDetected = true;
-                if (!mActivity.isDetected) {
-                    try {
-                        vuforiaAppSession.pauseAR();
-                    } catch (SampleApplicationException e) {
-                        e.printStackTrace();
-                    }
-                }
-                mActivity.showInfo();
-            }
-        });
-        ibBack.setOnClickListener(new View.OnClickListener() {
-
-            @SuppressLint("NewApi")
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-
-                if (mActivity.inflatedLayout_second != null && mActivity.inflatedLayout_second.isAttachedToWindow()) {
-
-                    mActivity.layoutCameraView.removeView(mActivity.inflatedLayout_second);
-                    mActivity.inflatedLayout_second = null;
-                    mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-
-                } else if (mActivity.inflatedLayout != null && mActivity.inflatedLayout.isAttachedToWindow()) {
-
-                    mActivity.layoutCameraView.removeAllViews();
-                    mActivity.isDetected = false;
-                    vuforiaAppSession.onResume();
-                } else {
-                    mActivity.backButtonAlert();
-                }
-
-            }
         });
         inflater = LayoutInflater.from(mActivity);
 
@@ -215,113 +201,110 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
     //Method for sub category image click
     public void buttonEventInitial(View img_view) {
 
-        img_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        img_view.setOnClickListener(v -> {
 
-                switch (v.getId()) {
-                    case R.id.btn_ac_full_left:
-                        mActivity.layoutCameraView.removeAllViews();
-                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_ac_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_ac_auto_left.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
-                        break;
+            switch (v.getId()) {
+                case R.id.btn_ac_full_left:
+                    mActivity.layoutCameraView.removeAllViews();
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_ac_left, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "juke_ac_auto_left.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
+                    break;
 
-                    case R.id.btn_ac_full_middle:
-                        mActivity.layoutCameraView.removeAllViews();
-                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_ac_mid, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_ac_auto_middle.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
-                        break;
+                case R.id.btn_ac_full_middle:
+                    mActivity.layoutCameraView.removeAllViews();
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_ac_mid, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "juke_ac_auto_middle.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
+                    break;
 
-                    case R.id.btn_ac_full_right:
-                        mActivity.layoutCameraView.removeAllViews();
-                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_ac_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_ac_auto_right.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
-                        break;
+                case R.id.btn_ac_full_right:
+                    mActivity.layoutCameraView.removeAllViews();
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_ac_right, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "juke_ac_auto_right.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
+                    break;
 
-                    case R.id.btn_radio_without_left:
-                        mActivity.layoutCameraView.removeAllViews();
-                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_navi_left.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
-                        break;
+                case R.id.btn_radio_without_left:
+                    mActivity.layoutCameraView.removeAllViews();
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_left, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "juke_radio_navi_left.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
+                    break;
 
-                    case R.id.btn_radio_without_right:
-                        mActivity.layoutCameraView.removeAllViews();
-                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_navi_right.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
-                        break;
+                case R.id.btn_radio_without_right:
+                    mActivity.layoutCameraView.removeAllViews();
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_right, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "juke_radio_navi_right.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
+                    break;
 
-                    case R.id.btn_steering_full_left:
-                        mActivity.layoutCameraView.removeAllViews();
-                        Values.ar_value = Analytics.STEERING_LEFT;
-                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_steering_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_steering_left.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
-                        break;
+                case R.id.btn_steering_full_left:
+                    mActivity.layoutCameraView.removeAllViews();
+                    Values.ar_value = Analytics.STEERING_LEFT;
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_steering_left, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "juke_steering_left.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
+                    break;
 
-                    case R.id.btn_steering_full_right:
-                        mActivity.layoutCameraView.removeAllViews();
-                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_steering_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_steering_right.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
-                        break;
+                case R.id.btn_steering_full_right:
+                    mActivity.layoutCameraView.removeAllViews();
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_steering_right, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "juke_steering_right.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
+                    break;
 
-                    case R.id.btn_radio_navi_full_left:
-                        mActivity.layoutCameraView.removeAllViews();
-                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_wo_navi_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_wo_navi_left.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
-                        break;
+                case R.id.btn_radio_navi_full_left:
+                    mActivity.layoutCameraView.removeAllViews();
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_wo_navi_left, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "juke_radio_wo_navi_left.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
+                    break;
 
-                    case R.id.btn_radio_navi_full_middle:
-                        mActivity.layoutCameraView.removeAllViews();
-                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_wo_navi_mid, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_wo_navi_middle.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
-                        break;
+                case R.id.btn_radio_navi_full_middle:
+                    mActivity.layoutCameraView.removeAllViews();
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_wo_navi_mid, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "juke_radio_wo_navi_middle.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
+                    break;
 
-                    case R.id.btn_radio_navi_full_right:
-                        mActivity.layoutCameraView.removeAllViews();
-                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_wo_navi_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_wo_navi_right.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
-                        break;
+                case R.id.btn_radio_navi_full_right:
+                    mActivity.layoutCameraView.removeAllViews();
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_wo_navi_right, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "juke_radio_wo_navi_right.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
+                    break;
 
-                    case R.id.btn_radio_manual_full_top:
-                        mActivity.layoutCameraView.removeAllViews();
-                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_manual_top, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_manual_top.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
-                        break;
+                case R.id.btn_radio_manual_full_top:
+                    mActivity.layoutCameraView.removeAllViews();
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_manual_top, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "juke_radio_manual_top.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
+                    break;
 
-                    case R.id.btn_radio_manual_full_left:
-                        mActivity.layoutCameraView.removeAllViews();
-                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_manual_left, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_manual_left.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
-                        break;
+                case R.id.btn_radio_manual_full_left:
+                    mActivity.layoutCameraView.removeAllViews();
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_manual_left, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "juke_radio_manual_left.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
+                    break;
 
-                    case R.id.btn_radio_manual_full_middle:
-                        mActivity.layoutCameraView.removeAllViews();
-                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_manual_middle, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_manual_middle.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
-                        break;
+                case R.id.btn_radio_manual_full_middle:
+                    mActivity.layoutCameraView.removeAllViews();
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_manual_middle, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "juke_radio_manual_middle.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
+                    break;
 
-                    case R.id.btn_radio_manual_full_right:
-                        mActivity.layoutCameraView.removeAllViews();
-                        mActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_manual_right, null, false);
-                        setBackground(mActivity.inflatedLayout_second, drawables + "juke_radio_manual_right.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout_second);
-                        break;
+                case R.id.btn_radio_manual_full_right:
+                    mActivity.layoutCameraView.removeAllViews();
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.juke_radio_manual_right, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "juke_radio_manual_right.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
+                    break;
 
-                    default:
-                        break;
-                }
+                default:
+                    break;
             }
         });
 
@@ -348,492 +331,490 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
             final String userDataToCompare = (String) trackable.getUserData();
 
             Handler handler = new Handler(mActivity.getMainLooper());
-            handler.post(new Runnable() {
-                public void run() {
-
-                    if (userDataToCompare.equalsIgnoreCase("ac_1")
-                            || userDataToCompare.equalsIgnoreCase("ac_2")
-                            || userDataToCompare.equalsIgnoreCase("ac_3")
-                    ) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-                        Values.ar_value = Analytics.AUTO_AC;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_ac_full, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_ac_auto_main.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        //send google analytics
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_ac_full_middle));
-                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_ac_full_left));
-                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_ac_full_right));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("ac_middle_1")
-                            || userDataToCompare.equalsIgnoreCase("ac_middle_2")
-                            || userDataToCompare.equalsIgnoreCase("ac_middle_3")
-                    ) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-                        Values.ar_value = Analytics.AUTO_AC;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_ac_mid, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_ac_auto_middle.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("ac_left_1")
-                            || userDataToCompare.equalsIgnoreCase("ac_left_2")
-                            || userDataToCompare.equalsIgnoreCase("ac_left_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.AUTO_AC;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_ac_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_ac_auto_left.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("ac_right_1")
-                            || userDataToCompare.equalsIgnoreCase("ac_right_2")
-                            || userDataToCompare.equalsIgnoreCase("ac_right_3")
-                    ) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.AUTO_AC;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_ac_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_ac_auto_right.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("combimeter_1")
-                            || userDataToCompare.equalsIgnoreCase("combimeter_2")
-                            || userDataToCompare.equalsIgnoreCase("combimeter_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-                        Values.ar_value = Analytics.COMBINATION_METER;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_combi, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_combimeter.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("switch_1")
-                            || userDataToCompare.equalsIgnoreCase("switch_2")
-                            || userDataToCompare.equalsIgnoreCase("switch_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-                        Values.ar_value = Analytics.SWITCH;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_switch, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_multi_switch.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-
-                    } else if (userDataToCompare.equalsIgnoreCase("radio_navi_1")
-                            || userDataToCompare.equalsIgnoreCase("radio_navi_2")
-                            || userDataToCompare.equalsIgnoreCase("radio_navi_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-                        Values.ar_value = Analytics.RADIO_W_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_radio_full, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_navi_main.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_without_left));
-                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_without_right));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("radio_navi_left_1")
-                            || userDataToCompare.equalsIgnoreCase("radio_navi_left_2")
-                            || userDataToCompare.equalsIgnoreCase("radio_navi_left_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.RADIO_W_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_radio_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_navi_left.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("radio_navi_right_1")
-                            || userDataToCompare.equalsIgnoreCase("radio_navi_right_2")
-                            || userDataToCompare.equalsIgnoreCase("radio_navi_right_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.RADIO_W_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_radio_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_navi_right.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("start_stop_ignition_1")
-                            || userDataToCompare.equalsIgnoreCase("start_stop_ignition_2")
-                            || userDataToCompare.equalsIgnoreCase("start_stop_ignition_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-                        Values.ar_value = Analytics.START_STOP_IGNITION;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_start_stop, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_start_stop_ignition.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("steering_1")
-                            || userDataToCompare.equalsIgnoreCase("steering_2")
-                            || userDataToCompare.equalsIgnoreCase("steering_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.STEERING_FULL;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_steering_full, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_steering_main.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_steering_full_left));
-                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_steering_full_right));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("steering_left_1")
-                            || userDataToCompare.equalsIgnoreCase("steering_left_2")
-                            || userDataToCompare.equalsIgnoreCase("steering_left_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.STEERING_LEFT;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_steering_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_steering_left.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("steering_right_1")
-                            || userDataToCompare.equalsIgnoreCase("steering_right_2")
-                            || userDataToCompare.equalsIgnoreCase("steering_right_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.STEERING_RIGHT;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_steering_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_steering_right.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("sunroof_mid_1")
-                            || userDataToCompare.equalsIgnoreCase("sunroof_mid_2")
-                            || userDataToCompare.equalsIgnoreCase("sunroof_mid_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.SUNROOF;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_sunroof_mid, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_sunroof.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_1")
-                            || userDataToCompare.equalsIgnoreCase("radio_wo_navi_2")
-                            || userDataToCompare.equalsIgnoreCase("radio_wo_navi_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.RADIO_WO_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_radio_wo_navi_full, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_wo_navi_main.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_navi_full_left));
-                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_navi_full_middle));
-                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_navi_full_right));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_middle_1")
-                            || userDataToCompare.equalsIgnoreCase("radio_wo_navi_middle_2")
-                            || userDataToCompare.equalsIgnoreCase("radio_wo_navi_middle_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.RADIO_WO_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_radio_wo_navi_mid, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_wo_navi_middle.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_right_1")
-                            || userDataToCompare.equalsIgnoreCase("radio_wo_navi_right_2")
-                            || userDataToCompare.equalsIgnoreCase("radio_wo_navi_right_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.RADIO_WO_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_radio_wo_navi_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_wo_navi_right.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("radio_man_1")
-                            || userDataToCompare.equalsIgnoreCase("radio_man_2")
-                            || userDataToCompare.equalsIgnoreCase("radio_man_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.RADIO_WO_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_radio_manual_full, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_manual_main.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_manual_full_top));
-                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_manual_full_left));
-                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_manual_full_middle));
-                        buttonEventInitial(mActivity.inflatedLayout.findViewById(R.id.btn_radio_manual_full_right));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("radio_man_left_1")
-                            || userDataToCompare.equalsIgnoreCase("radio_man_left_2")
-                            || userDataToCompare.equalsIgnoreCase("radio_man_left_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.RADIO_WO_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_radio_manual_left, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_manual_left.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("radio_man_middle_1")
-                            || userDataToCompare.equalsIgnoreCase("radio_man_middle_2")
-                            || userDataToCompare.equalsIgnoreCase("radio_man_middle_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.RADIO_WO_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_radio_manual_middle, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_manual_middle.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("radio_man_right_1")
-                            || userDataToCompare.equalsIgnoreCase("radio_man_right_2")
-                            || userDataToCompare.equalsIgnoreCase("radio_man_right_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.RADIO_WO_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_radio_manual_right, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_manual_right.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("radio_man_top_1")
-                            || userDataToCompare.equalsIgnoreCase("radio_man_top_2")
-                            || userDataToCompare.equalsIgnoreCase("radio_man_top_3")) {
-
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-
-                        Values.ar_value = Analytics.RADIO_WO_NAVI;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_radio_manual_top, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_radio_manual_top.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else if (userDataToCompare.equalsIgnoreCase("ac_man_1")
-                            || userDataToCompare.equalsIgnoreCase("ac_man_2")
-                            || userDataToCompare.equalsIgnoreCase("ac_man_3")) {
-
-                        try {
-                            mActivity.isDetected = true;
-                            vuforiaAppSession.pauseAR();
-                        } catch (SampleApplicationException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-
-                        Values.ar_value = Analytics.MANUAL_AC;
-                        mActivity.inflatedLayout = inflater.inflate(
-                                R.layout.juke_ac_manual, null, false);
-                        setBackground(mActivity.inflatedLayout, drawables + "juke_ac_manual_main.png");
-                        mActivity.layoutCameraView.addView(mActivity.inflatedLayout);
-                        mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-                    } else {
-                        mActivity.isDetected = false;
+            handler.post(() -> {
+
+                if (userDataToCompare.equalsIgnoreCase("ac_1")
+                        || userDataToCompare.equalsIgnoreCase("ac_2")
+                        || userDataToCompare.equalsIgnoreCase("ac_3")
+                ) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
                     }
 
+                    Values.ar_value = Analytics.AUTO_AC;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_ac_full, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_ac_auto_main.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    //send google analytics
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_ac_full_middle));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_ac_full_left));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_ac_full_right));
+
+                } else if (userDataToCompare.equalsIgnoreCase("ac_middle_1")
+                        || userDataToCompare.equalsIgnoreCase("ac_middle_2")
+                        || userDataToCompare.equalsIgnoreCase("ac_middle_3")
+                ) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+                    Values.ar_value = Analytics.AUTO_AC;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_ac_mid, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_ac_auto_middle.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("ac_left_1")
+                        || userDataToCompare.equalsIgnoreCase("ac_left_2")
+                        || userDataToCompare.equalsIgnoreCase("ac_left_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.AUTO_AC;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_ac_left, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_ac_auto_left.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("ac_right_1")
+                        || userDataToCompare.equalsIgnoreCase("ac_right_2")
+                        || userDataToCompare.equalsIgnoreCase("ac_right_3")
+                ) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.AUTO_AC;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_ac_right, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_ac_auto_right.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("combimeter_1")
+                        || userDataToCompare.equalsIgnoreCase("combimeter_2")
+                        || userDataToCompare.equalsIgnoreCase("combimeter_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+                    Values.ar_value = Analytics.COMBINATION_METER;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_combi, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_combimeter.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("switch_1")
+                        || userDataToCompare.equalsIgnoreCase("switch_2")
+                        || userDataToCompare.equalsIgnoreCase("switch_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+                    Values.ar_value = Analytics.SWITCH;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_switch, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_multi_switch.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+
+                } else if (userDataToCompare.equalsIgnoreCase("radio_navi_1")
+                        || userDataToCompare.equalsIgnoreCase("radio_navi_2")
+                        || userDataToCompare.equalsIgnoreCase("radio_navi_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+                    Values.ar_value = Analytics.RADIO_W_NAVI;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_radio_full, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_radio_navi_main.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_without_left));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_without_right));
+
+                } else if (userDataToCompare.equalsIgnoreCase("radio_navi_left_1")
+                        || userDataToCompare.equalsIgnoreCase("radio_navi_left_2")
+                        || userDataToCompare.equalsIgnoreCase("radio_navi_left_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.RADIO_W_NAVI;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_radio_left, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_radio_navi_left.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("radio_navi_right_1")
+                        || userDataToCompare.equalsIgnoreCase("radio_navi_right_2")
+                        || userDataToCompare.equalsIgnoreCase("radio_navi_right_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.RADIO_W_NAVI;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_radio_right, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_radio_navi_right.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("start_stop_ignition_1")
+                        || userDataToCompare.equalsIgnoreCase("start_stop_ignition_2")
+                        || userDataToCompare.equalsIgnoreCase("start_stop_ignition_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+                    Values.ar_value = Analytics.START_STOP_IGNITION;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_start_stop, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_start_stop_ignition.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("steering_1")
+                        || userDataToCompare.equalsIgnoreCase("steering_2")
+                        || userDataToCompare.equalsIgnoreCase("steering_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.STEERING_FULL;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_steering_full, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_steering_main.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_steering_full_left));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_steering_full_right));
+
+                } else if (userDataToCompare.equalsIgnoreCase("steering_left_1")
+                        || userDataToCompare.equalsIgnoreCase("steering_left_2")
+                        || userDataToCompare.equalsIgnoreCase("steering_left_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.STEERING_LEFT;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_steering_left, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_steering_left.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("steering_right_1")
+                        || userDataToCompare.equalsIgnoreCase("steering_right_2")
+                        || userDataToCompare.equalsIgnoreCase("steering_right_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.STEERING_RIGHT;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_steering_right, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_steering_right.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("sunroof_mid_1")
+                        || userDataToCompare.equalsIgnoreCase("sunroof_mid_2")
+                        || userDataToCompare.equalsIgnoreCase("sunroof_mid_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.SUNROOF;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_sunroof_mid, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_sunroof.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_1")
+                        || userDataToCompare.equalsIgnoreCase("radio_wo_navi_2")
+                        || userDataToCompare.equalsIgnoreCase("radio_wo_navi_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.RADIO_WO_NAVI;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_radio_wo_navi_full, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_radio_wo_navi_main.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_navi_full_left));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_navi_full_middle));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_navi_full_right));
+
+                } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_middle_1")
+                        || userDataToCompare.equalsIgnoreCase("radio_wo_navi_middle_2")
+                        || userDataToCompare.equalsIgnoreCase("radio_wo_navi_middle_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.RADIO_WO_NAVI;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_radio_wo_navi_mid, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_radio_wo_navi_middle.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_right_1")
+                        || userDataToCompare.equalsIgnoreCase("radio_wo_navi_right_2")
+                        || userDataToCompare.equalsIgnoreCase("radio_wo_navi_right_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.RADIO_WO_NAVI;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_radio_wo_navi_right, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_radio_wo_navi_right.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("radio_man_1")
+                        || userDataToCompare.equalsIgnoreCase("radio_man_2")
+                        || userDataToCompare.equalsIgnoreCase("radio_man_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.RADIO_WO_NAVI;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_radio_manual_full, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_radio_manual_main.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_manual_full_top));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_manual_full_left));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_manual_full_middle));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_manual_full_right));
+
+                } else if (userDataToCompare.equalsIgnoreCase("radio_man_left_1")
+                        || userDataToCompare.equalsIgnoreCase("radio_man_left_2")
+                        || userDataToCompare.equalsIgnoreCase("radio_man_left_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.RADIO_WO_NAVI;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_radio_manual_left, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_radio_manual_left.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("radio_man_middle_1")
+                        || userDataToCompare.equalsIgnoreCase("radio_man_middle_2")
+                        || userDataToCompare.equalsIgnoreCase("radio_man_middle_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.RADIO_WO_NAVI;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_radio_manual_middle, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_radio_manual_middle.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("radio_man_right_1")
+                        || userDataToCompare.equalsIgnoreCase("radio_man_right_2")
+                        || userDataToCompare.equalsIgnoreCase("radio_man_right_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.RADIO_WO_NAVI;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_radio_manual_right, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_radio_manual_right.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("radio_man_top_1")
+                        || userDataToCompare.equalsIgnoreCase("radio_man_top_2")
+                        || userDataToCompare.equalsIgnoreCase("radio_man_top_3")) {
+
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
+                    Values.ar_value = Analytics.RADIO_WO_NAVI;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_radio_manual_top, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_radio_manual_top.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("ac_man_1")
+                        || userDataToCompare.equalsIgnoreCase("ac_man_2")
+                        || userDataToCompare.equalsIgnoreCase("ac_man_3")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+                    Values.ar_value = Analytics.MANUAL_AC;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.juke_ac_manual, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_ac_manual_main.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else {
+                    ImageTargetActivity.isDetected = false;
                 }
+
             });
 
         }

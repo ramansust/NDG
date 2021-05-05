@@ -20,9 +20,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -70,6 +67,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import static com.nissan.alldriverguide.utils.Values.DATA_SYNCING;
 import static com.nissan.alldriverguide.utils.Values.STARTING_DOWNLOAD;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
@@ -86,17 +86,14 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private LanguageSelectionAdapter adapter;
     private PreferenceUtil preferenceUtil;
     private DisplayMetrics metrics;
-    private Tracker tracker;
     private CommonDao commonDao;
-    private String carName = "";
+    private final String carName = "";
     private Activity activity;
     private Context context;
     private ProgressDialog progressDialog;
     private String deviceDensity;
-    private String[] langFlagUri;
-    private LanguageInfo info;
-    private String msg_type = "";
-    private Object alertMessage = "";
+    private final String msg_type = "";
+    private final Object alertMessage = "";
     private LanguageList selectedLangModel = new LanguageList();
     private List<LanguageList> _languageLists = new ArrayList<>();
     private LanguageSelectionController controller;
@@ -128,7 +125,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
     private void setAdapterFromDB() {
 
-        adapter = new LanguageSelectionAdapter(this, new ArrayList<LanguageInfo>(), false);
+        adapter = new LanguageSelectionAdapter(this, new ArrayList<>(), false);
         lstView.setAdapter(adapter);
         lstView.setDivider(null);
         ColorDrawable sage = new ColorDrawable(this.getResources().getColor(R.color.line_color));
@@ -186,10 +183,10 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
         final Dialog dialog = new DialogController(activity).internetDialog();
 
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(msg);
 
-        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(view -> {
             dialog.dismiss();
             finish();
@@ -201,7 +198,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private void populateDataIntoList() {
 
         languageName = new String[_languageLists.size()];
-        langFlagUri = new String[_languageLists.size()];
+        String[] langFlagUri = new String[_languageLists.size()];
 
         for (int i = 0; i < _languageLists.size(); i++) {
             NissanApp.getInstance().setAlertMessageCarWiseLangDownloadList(_languageLists.get(i).getAlertMessage());
@@ -230,9 +227,9 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private void initViews() {
         activity = LanguageSelectionActivity.this;
         context = getApplicationContext();
-        tvNoContent = (TextView) findViewById(R.id.tvNoContent);
-        progressBar = (ProgressBar) findViewById(R.id.pbLanguageSelection);
-        lstView = (ListView) findViewById(R.id.lst_view);
+        tvNoContent = findViewById(R.id.tvNoContent);
+        progressBar = findViewById(R.id.pbLanguageSelection);
+        lstView = findViewById(R.id.lst_view);
         list = new ArrayList<>();
         preferenceUtil = new PreferenceUtil(getApplicationContext());
         commonDao = CommonDao.getInstance();
@@ -250,7 +247,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     /**
      * Load the initial data into list
      */
-    private void loadData(String FlagUrl[]) {
+    private void loadData(String[] FlagUrl) {
         for (int i = 0; i < languageName.length; i++) {
 
             LanguageInfo info = new LanguageInfo(i, languageName[i], false, FlagUrl[i]);
@@ -264,7 +261,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        info = (LanguageInfo) parent.getAdapter().getItem(position);
+        LanguageInfo info = (LanguageInfo) parent.getAdapter().getItem(position);
 
         selectedLangModel = getDataFromMainList(languageName[info.getId()]);
         preferenceUtil.setSelectedLang(selectedLangModel.getLanguageShortcode());
@@ -563,7 +560,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                 .getTracker(MyApplication.TrackerName.APP_TRACKER);
 
         // Get tracker.
-        tracker = ((MyApplication) getApplication())
+        Tracker tracker = ((MyApplication) getApplication())
                 .getTracker(MyApplication.TrackerName.APP_TRACKER);
 
         // Set screen name.
@@ -580,13 +577,13 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         controllerGlobalMsg = new GlobalMessageController(this);
         final Dialog dialog = new DialogController(LanguageSelectionActivity.this).carDownloadDialog();
 
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
 
         String downloadConfirmationText = getAlertMessage(Values.DOWNLOAD_CONFIRMATION);
         txtViewTitle.setText(downloadConfirmationText.isEmpty() ? resources.getString(R.string.alert_msg22) : downloadConfirmationText);
 
-        Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
-        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        Button btnCancel = dialog.findViewById(R.id.btn_cancel);
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
         btnCancel.setText(selectedLangModel.getCancel().isEmpty() ? resources.getString(R.string.button_CANCEL) : selectedLangModel.getCancel());
         btnOk.setText(selectedLangModel.getOk().isEmpty() ? resources.getString(R.string.button_OK) : selectedLangModel.getOk());
 

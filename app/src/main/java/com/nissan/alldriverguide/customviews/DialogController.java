@@ -14,7 +14,7 @@ import com.nissan.alldriverguide.utils.Values;
 
 public class DialogController {
 
-    private Activity activity;
+    private final Activity activity;
     private Dialog dialog;
 
     public DialogController(Activity activity) {

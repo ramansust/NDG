@@ -17,9 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.CallNumberAdapter;
@@ -35,16 +32,18 @@ import com.nissan.alldriverguide.utils.Values;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import static com.nissan.alldriverguide.utils.Values.REGISTERED_COUNTRY_NAME;
 
 public class CallNissanAssistanceFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
     private static final String TAG = "CallNissanAssistanceFra";
 
-    private String[] countryNameFR = {"l' Allemagne", "l' Autriche", "la Belgique", "le Danemark", "l' Espagne", "l' Estonie", "la Finlande", "la France", "la Grèce", "la Hongrie", "l' Italie", "la Lettonie", "la Lituanie", "la Norvège", "les Pays-Bas", "la Pologne", "le Portugal", "la République Tchèque", "le Royaume-Uni", "la Slovaquie", "la Suède", "la Suisse"};
+    private final String[] countryNameFR = {"l' Allemagne", "l' Autriche", "la Belgique", "le Danemark", "l' Espagne", "l' Estonie", "la Finlande", "la France", "la Grèce", "la Hongrie", "l' Italie", "la Lettonie", "la Lituanie", "la Norvège", "les Pays-Bas", "la Pologne", "le Portugal", "la République Tchèque", "le Royaume-Uni", "la Slovaquie", "la Suède", "la Suisse"};
     private String[] countryName;
     private String[] countrFlag;
     //    private int[] flag = {R.drawable.austria, R.drawable.belgium, R.drawable.czech_republic/*, R.drawable.denmark, R.drawable.estonia, R.drawable.finland, R.drawable.france, R.drawable.germany, R.drawable.greece, R.drawable.hungary, R.drawable.italy, R.drawable.latvia, R.drawable.lithuania, R.drawable.netherlands, R.drawable.norway, R.drawable.poland, R.drawable.portugal, R.drawable.slovakia, R.drawable.spain, R.drawable.sweden, R.drawable.switzerland, R.drawable.united_kingdom*/};
@@ -54,21 +53,17 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     //    private String[] internationalNumber = {"+43190577777", "+3238703401", "+3613715491"/*, "+4570140147", "+3726506043", "+358107705222", "+33172676914", "+492232572079", "+302103428600", "+3613715493", "+390690808777", "+3726064071", "+3705270940", "+31205162026", "+4781521310 ", "+3613715496", "+34932907526", "+3613715495", "+34932907515", "+46850103000", "+41447365550", "+441913352879"*/};
     private String[] phonePopupText;
 
-    private View view;
     private ListView lstView;
     private ImageButton btnBack;
     private LinearLayout linearBack;
-    private CallNumberAdapter adapter;
     private ArrayList<CallInfo> list;
 
     private PreferenceUtil preferenceUtil;
     private Configuration conf;
-    private Resources resources;
     private DisplayMetrics metrics;
     private TextView txtViewTitle;
     private TextView txtHeaderTitle;
     private static final String TITLE = "title";
-    private String headerTitle, call_assistance_title;
     private String deviceDensity;
     private String nationalText, internationalText, cancel;
 
@@ -83,7 +78,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_call_nissan_assistance, container, false);
+        View view = inflater.inflate(R.layout.fragment_call_nissan_assistance, container, false);
 
 //        countryName = getResources().getStringArray(R.array.country_for_call_array);
 
@@ -103,11 +98,11 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     }
 
     private void loadResource() {
-        resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
+        Resources resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
         txtViewTitle.setText(getArguments().getString(TITLE));
 //        txtViewTitle.setTypeface(tf);
 
-        call_assistance_title = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), REGISTERED_COUNTRY_NAME);
+        String call_assistance_title = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), REGISTERED_COUNTRY_NAME);
 
         txtHeaderTitle.setText(call_assistance_title == null || call_assistance_title.isEmpty() ? getActivity().getResources().getString(R.string.registered_country_name) : call_assistance_title);
 
@@ -139,7 +134,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
                             return;
 
                         if (childNodes.get(j).getIndex() == 2) {
-                            headerTitle = childNodes.get(j).getHeaderTitle();
+                            String headerTitle = childNodes.get(j).getHeaderTitle();
 
                             if (childNodes.get(j) == null || childNodes.get(j).getCountryList() == null)
                                 return;
@@ -194,14 +189,11 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         }
 
 
-        Collections.sort(list, new Comparator<CallInfo>() {
-            @Override
-            public int compare(CallInfo info1, CallInfo info2) {
+        Collections.sort(list, (info1, info2) -> {
 //                return info1.getCountryName().compareToIgnoreCase(info2.getCountryName());
-                Collator collator = Collator.getInstance(new Locale(preferenceUtil.getSelectedLang())); //Your locale here
-                collator.setStrength(Collator.PRIMARY);
-                return collator.compare(info1.getCountryName(), info2.getCountryName());
-            }
+            Collator collator = Collator.getInstance(new Locale(preferenceUtil.getSelectedLang())); //Your locale here
+            collator.setStrength(Collator.PRIMARY);
+            return collator.compare(info1.getCountryName(), info2.getCountryName());
         });
 
         if ("sv".equalsIgnoreCase(preferenceUtil.getSelectedLang())) {
@@ -210,7 +202,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
             list.add(11, info);
         }
 
-        adapter = new CallNumberAdapter(getActivity().getApplicationContext(), list);
+        CallNumberAdapter adapter = new CallNumberAdapter(getActivity().getApplicationContext(), list);
         lstView.setAdapter(adapter);
     }
 
@@ -222,12 +214,12 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
 
     private void initViews(View view) {
         deviceDensity = NissanApp.getInstance().getDensityName(getActivity());
-        btnBack = (ImageButton) view.findViewById(R.id.btn_back);
-        lstView = (ListView) view.findViewById(R.id.lst_view);
-        txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
-        txtHeaderTitle = (TextView) view.findViewById(R.id.txt_view_country_name);
+        btnBack = view.findViewById(R.id.btn_back);
+        lstView = view.findViewById(R.id.lst_view);
+        txtViewTitle = view.findViewById(R.id.txt_title);
+        txtHeaderTitle = view.findViewById(R.id.txt_view_country_name);
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
-        linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
+        linearBack = view.findViewById(R.id.linear_back);
     }
 
     @Override
@@ -246,58 +238,47 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         final Dialog dialog = new DialogController(getActivity()).callNumberDialog();
 
         if ("fr".equalsIgnoreCase(preferenceUtil.getSelectedLang())) {
-            TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+            TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
             txtViewTitle.setText(list.get(position).getPopupText() + " " + countryNameFR[position]);
         } else {
-            TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+            TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
             txtViewTitle.setText(list.get(position).getPopupText() + " " + list.get(position).getCountryName());
         }
 
-        TextView btnCancel = (TextView) dialog.findViewById(R.id.btn_cancel);
+        TextView btnCancel = dialog.findViewById(R.id.btn_cancel);
         btnCancel.setText(cancel);
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
 
-        TextView txtNational = (TextView) dialog.findViewById(R.id.txt_view_national);
+        TextView txtNational = dialog.findViewById(R.id.txt_view_national);
         txtNational.setText(nationalText);
 
-        TextView txtViewNational = (TextView) dialog.findViewById(R.id.txt_view_national_number);
+        TextView txtViewNational = dialog.findViewById(R.id.txt_view_national_number);
         txtViewNational.setText(" " + list.get(position).getNationalNumber());
-        txtViewNational.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Uri number = Uri.parse("tel:" + list.get(position).getNationalNumber());
-                Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
-                startActivity(callIntent);
-            }
+        txtViewNational.setOnClickListener(v -> {
+            dialog.dismiss();
+            Uri number = Uri.parse("tel:" + list.get(position).getNationalNumber());
+            Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+            startActivity(callIntent);
         });
 
-        TextView txtInternational = (TextView) dialog.findViewById(R.id.txt_view_international);
+        TextView txtInternational = dialog.findViewById(R.id.txt_view_international);
         txtInternational.setText(internationalText);
 
-        TextView txtViewInternational = (TextView) dialog.findViewById(R.id.txt_view_international_number);
+        TextView txtViewInternational = dialog.findViewById(R.id.txt_view_international_number);
         txtViewInternational.setText(" " + list.get(position).getInternationalNumber());
-        txtViewInternational.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Uri number = Uri.parse("tel:" + list.get(position).getInternationalNumber());
-                Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
-                startActivity(callIntent);
-            }
+        txtViewInternational.setOnClickListener(v -> {
+            dialog.dismiss();
+            Uri number = Uri.parse("tel:" + list.get(position).getInternationalNumber());
+            Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+            startActivity(callIntent);
         });
 
         if (list.get(position).getNationalNumber().isEmpty()) {
-            ((LinearLayout) dialog.findViewById(R.id.linear_national)).setVisibility(View.GONE);
+            dialog.findViewById(R.id.linear_national).setVisibility(View.GONE);
         }
 
         if (list.get(position).getInternationalNumber().isEmpty()) {
-            ((LinearLayout) dialog.findViewById(R.id.linear_international)).setVisibility(View.GONE);
+            dialog.findViewById(R.id.linear_international).setVisibility(View.GONE);
         }
 
         dialog.show();
@@ -308,7 +289,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         switch (v.getId()) {
             case R.id.btn_back:
             case R.id.linear_back:
-                ((MainActivity) getActivity()).onBackPressed();
+                getActivity().onBackPressed();
                 break;
 
             default:

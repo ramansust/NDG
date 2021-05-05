@@ -15,10 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
@@ -33,12 +29,15 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 public class NissanAssistanceFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     private static final String TAG = "NissanAssistanceFragmen";
-    private int[] nissanNssistanceImage = {R.drawable.pickup, R.drawable.phone, R.drawable.calendar};
+    private final int[] nissanNssistanceImage = {R.drawable.pickup, R.drawable.phone, R.drawable.calendar};
 
-    private View view;
     private TextView txtViewCarName;
     private TextView txtViewDriverGuide;
     private SimpleDraweeView imageView;
@@ -47,8 +46,6 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
 
     private ImageButton btnBack;
     private LinearLayout linearBack;
-
-    private AssistanceAdapter adapter;
 
     private DisplayMetrics metrics;
     public Resources resources;
@@ -72,7 +69,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_assistance, container, false);
+        View view = inflater.inflate(R.layout.fragment_assistance, container, false);
 
         initViews(view);
         loadResource();
@@ -129,7 +126,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
         txtViewDriverGuide.setText(NissanApp.getInstance().getAssistanceInfo().getAssistanceTitle());
         txtViewTitle.setText(getArguments().get(TITLE).toString());
 //        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.nissan_assistance_array), nissanNssistanceImage);
-        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), nissanAssistance, nissanNssistanceImage);
+        AssistanceAdapter adapter = new AssistanceAdapter(getActivity().getApplicationContext(), nissanAssistance, nissanNssistanceImage);
         lstView.setAdapter(adapter);
 
         txtViewCarName.setText(NissanApp.getInstance().assistanceInfo.getSelectedCar());
@@ -161,14 +158,14 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
     }
 
     private void initViews(View view) {
-        txtViewCarName = (TextView) view.findViewById(R.id.txt_view_car_name);
-        txtViewDriverGuide = (TextView) view.findViewById(R.id.txt_view_driver_guide);
-        imageView = (SimpleDraweeView) view.findViewById(R.id.img_car_bg);
-        lstView = (ListView) view.findViewById(R.id.lst_view);
-        txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
+        txtViewCarName = view.findViewById(R.id.txt_view_car_name);
+        txtViewDriverGuide = view.findViewById(R.id.txt_view_driver_guide);
+        imageView = view.findViewById(R.id.img_car_bg);
+        lstView = view.findViewById(R.id.lst_view);
+        txtViewTitle = view.findViewById(R.id.txt_title);
 
-        linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
-        btnBack = (ImageButton) view.findViewById(R.id.btn_back);
+        linearBack = view.findViewById(R.id.linear_back);
+        btnBack = view.findViewById(R.id.btn_back);
 
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -230,16 +227,13 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
 
         final Dialog dialog = new DialogController(getActivity()).internetDialog();
         dialog.setCancelable(false);
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(msg);
 
-        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                getActivity().finish();
-            }
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(v -> {
+            dialog.dismiss();
+            getActivity().finish();
         });
 
         dialog.show();
@@ -251,7 +245,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
         switch (v.getId()) {
             case R.id.btn_back:
             case R.id.linear_back:
-                ((MainActivity) getActivity()).onBackPressed();
+                getActivity().onBackPressed();
                 break;
 
             default:

@@ -11,7 +11,6 @@ public class SearchModel {
     String date;
     int count;
     int carType;
-    private String langType;
 
     public SearchModel() {
     }
@@ -21,7 +20,6 @@ public class SearchModel {
         this.date = date;
         this.count = count;
         this.carType = carType;
-        this.langType = langType;
     }
 
     public SearchModel(int id, String searchTag, String date, int count, int carType) {

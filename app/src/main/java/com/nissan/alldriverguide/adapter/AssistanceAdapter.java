@@ -15,7 +15,7 @@ import com.nissan.alldriverguide.R;
  */
 public class AssistanceAdapter extends BaseAdapter {
 
-    private Context context;
+    private final Context context;
     private LayoutInflater inflater;
     private String[] carName;
     private int[] carImage;
@@ -86,9 +86,9 @@ public class AssistanceAdapter extends BaseAdapter {
         TextView txtViewSubTitle;
 
         public ViewHolder(View view) {
-            imageView = (ImageView) view.findViewById(R.id.img_view);
-            txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
-            txtViewSubTitle = (TextView) view.findViewById(R.id.txt_subtitle);
+            imageView = view.findViewById(R.id.img_view);
+            txtViewTitle = view.findViewById(R.id.txt_title);
+            txtViewSubTitle = view.findViewById(R.id.txt_subtitle);
         }
     }
 }

@@ -19,7 +19,7 @@ public class AssistanceTabContentController implements Callback<AssistanceInfo> 
 
     public AssistanceTabContentController(CompleteAssistanceTabContent interfaceAssistance) {
 
-        this.listener = interfaceAssistance;
+        listener = interfaceAssistance;
     }
 
     public void callApi(String device_id, String language_id, String car_id, String epub_id, String tab_id) {
@@ -36,19 +36,19 @@ public class AssistanceTabContentController implements Callback<AssistanceInfo> 
             AssistanceInfo assistanceInfo = response.body();
 
             if (assistanceInfo != null) {
-                if (this.listener != null) this.listener.onDownloaded(assistanceInfo);
+                if (listener != null) listener.onDownloaded(assistanceInfo);
             } else {
-                if (this.listener != null) this.listener.onFailed("No content available.");
+                if (listener != null) listener.onFailed("No content available.");
             }
         } else {
-            if (this.listener != null) this.listener.onFailed(response.errorBody().toString());
+            if (listener != null) listener.onFailed(response.errorBody().toString());
         }
     }
 
     @Override
     public void onFailure(Call<AssistanceInfo> call, Throwable t) {
-        if (this.listener != null && t != null && t.getMessage() != null) {
-            this.listener.onFailed(t.getMessage());
+        if (listener != null && t != null && t.getMessage() != null) {
+            listener.onFailed(t.getMessage());
         }
     }
 }

@@ -23,10 +23,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nissan.alldriverguide.BaseActivity;
@@ -70,6 +66,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+
 import static com.nissan.alldriverguide.utils.Values.DATA_SYNCING;
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
@@ -82,7 +82,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     private String[] languageName; /*= {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};*/
     private String[] languageShortName; /*= {"en", "de", "fr", "it", "es", "nl", "ru", "sv", "no", "pl", "fi", "pt"};*/
     private int[] languageImage; /*= {R.drawable.united_kingdom, R.drawable.germany, R.drawable.france, R.drawable.italy, R.drawable.spain, R.drawable.netherlands, R.drawable.russia, R.drawable.sweden, R.drawable.norway, R.drawable.poland, R.drawable.finland, R.drawable.portugal};*/
-    private View view;
     private ListView lstView;
     private ImageButton btnBack;
     private LinearLayout linearBack;
@@ -101,7 +100,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     private LanguageListResponse languageListResponses;
 
     private String deviceDensity, lang_sort_name = "";
-    private String[] langFlagUri;
     private List<LanguageList> _languageLists = new ArrayList<>();
     private long mLastClickTime;
     private LanguageSelectionController controller;
@@ -118,15 +116,15 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        this.view = inflater.inflate(R.layout.fragment_language, container, false);
+        View view = inflater.inflate(R.layout.fragment_language, container, false);
         this.deviceDensity = NissanApp.getInstance().getDensityName(this.getActivity());
 
-        this.initViews(this.view);
+        this.initViews(view);
         this.loadResource();
         this.getDataCarWise();
         this.setListener();
 
-        return this.view;
+        return view;
     }
 
     @Override
@@ -149,7 +147,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     private void getDataCarWise() {
 
-        this.adapter = new LanguageSelectionAdapter(Objects.requireNonNull(this.getActivity()).getApplicationContext(), new ArrayList<LanguageInfo>(), true);
+        this.adapter = new LanguageSelectionAdapter(Objects.requireNonNull(this.getActivity()).getApplicationContext(), new ArrayList<>(), true);
         this.lstView.setAdapter(this.adapter);
 
         this._languageLists = this.getDataFromSP();
@@ -205,16 +203,13 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
         Dialog dialog = new DialogController(this.activity).internetDialog();
 
-        final TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        final TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(msg);
 
-        final Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                dialog.dismiss();
-                LanguageFragment.this.getActivity().onBackPressed();
-            }
+        final Button btnOk = dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(v -> {
+            dialog.dismiss();
+            LanguageFragment.this.getActivity().onBackPressed();
         });
 
         dialog.show();
@@ -224,27 +219,27 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
         this.languageName = new String[this._languageLists.size()];
         this.languageShortName = new String[this._languageLists.size()];
-        this.langFlagUri = new String[this._languageLists.size()];
+        String[] langFlagUri = new String[this._languageLists.size()];
 
         for (int i = 0; i < this._languageLists.size(); i++) {
             this.languageName[i] = (this._languageLists.get(i).getLanguageName());
             this.languageShortName[i] = (this._languageLists.get(i).getLanguageShortcode());
 
             if ("xxxhdpi".contains(this.deviceDensity)) {
-                this.langFlagUri[i] = this._languageLists.get(i).getLanguageFlag().getXxxhdpi();
+                langFlagUri[i] = this._languageLists.get(i).getLanguageFlag().getXxxhdpi();
             } else if ("xxhdpi".contains(this.deviceDensity)) {
-                this.langFlagUri[i] = this._languageLists.get(i).getLanguageFlag().getXxhdpi();
+                langFlagUri[i] = this._languageLists.get(i).getLanguageFlag().getXxhdpi();
             } else if ("xhdpi".contains(this.deviceDensity)) {
-                this.langFlagUri[i] = this._languageLists.get(i).getLanguageFlag().getXhdpi();
+                langFlagUri[i] = this._languageLists.get(i).getLanguageFlag().getXhdpi();
             } else if ("hdpi".contains(this.deviceDensity)) {
-                this.langFlagUri[i] = this._languageLists.get(i).getLanguageFlag().getHdpi();
+                langFlagUri[i] = this._languageLists.get(i).getLanguageFlag().getHdpi();
             } else if ("mdpi".contains(this.deviceDensity)) {
-                this.langFlagUri[i] = this._languageLists.get(i).getLanguageFlag().getHdpi();
+                langFlagUri[i] = this._languageLists.get(i).getLanguageFlag().getHdpi();
             } else if ("ldpi".contains(this.deviceDensity)) {
-                this.langFlagUri[i] = this._languageLists.get(i).getLanguageFlag().getLdpi();
+                langFlagUri[i] = this._languageLists.get(i).getLanguageFlag().getLdpi();
             }
         }
-        this.loadData(this.langFlagUri);
+        this.loadData(langFlagUri);
     }
 
     /**
@@ -308,15 +303,15 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     private void initViews(final View view) {
         this.activity = this.getActivity();
         this.context = this.getActivity().getApplicationContext();
-        this.btnBack = (ImageButton) view.findViewById(R.id.btn_back);
-        this.lstView = (ListView) view.findViewById(R.id.lst_view);
-        this.txt_title = (TextView) view.findViewById(R.id.txt_title);
-        this.txtBackTitle = (TextView) view.findViewById(R.id.txt_back_title);
-        this.tvNoContent = (TextView) view.findViewById(R.id.tvNoContent);
-        this.progressBar = (ProgressBar) view.findViewById(R.id.pbLanguageFragment);
+        this.btnBack = view.findViewById(R.id.btn_back);
+        this.lstView = view.findViewById(R.id.lst_view);
+        this.txt_title = view.findViewById(R.id.txt_title);
+        this.txtBackTitle = view.findViewById(R.id.txt_back_title);
+        this.tvNoContent = view.findViewById(R.id.tvNoContent);
+        this.progressBar = view.findViewById(R.id.pbLanguageFragment);
         this.preferenceUtil = new PreferenceUtil(this.getActivity().getApplicationContext());
         this.commonDao = CommonDao.getInstance();
-        this.linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
+        this.linearBack = view.findViewById(R.id.linear_back);
         this.dbHelper = new NissanDbHelper(this.getActivity());
         this.sqliteDB = this.dbHelper.getWritableDatabase();
         this.controller = new LanguageSelectionController(this);
@@ -408,7 +403,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     private void showDownloadAlert(String lang, int position) {
         Dialog dialog = new DialogController(this.getActivity()).carDownloadDialog();
 
-        final TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        final TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         final String downloadSureMsg = NissanApp.getInstance().getAlertMessage(this.getActivity(), this.preferenceUtil.getSelectedLang(), Values.DOWNLOAD_SURE_MSG);
         txtViewTitle.setText(downloadSureMsg.isEmpty() ? this.getResources().getString(R.string.download_lang) : downloadSureMsg);
 
@@ -417,27 +412,19 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         final String okText = NissanApp.getInstance().getGlobalMessage(this.getActivity()).getOk();
         final String cancelText = NissanApp.getInstance().getGlobalMessage(this.getActivity()).getCancel();
 
-        final Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
-        final Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
+        final Button btnCancel = dialog.findViewById(R.id.btn_cancel);
+        final Button btnOk = dialog.findViewById(R.id.btn_ok);
 
         btnOk.setText(okText == null || okText.isEmpty() ? this.resources.getString(R.string.button_OK) : okText);
         btnCancel.setText(cancelText == null || cancelText.isEmpty() ? this.resources.getString(R.string.button_CANCEL) : cancelText);
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                dialog.dismiss();
-            }
-        });
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
 
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                dialog.dismiss();
+        btnOk.setOnClickListener(v -> {
+            dialog.dismiss();
 //                changeGlobalAlertMsg(position);
-                LanguageFragment.this.startDownloadProcedure(lang, position);
-                LanguageFragment.this.controllerCarList.callApi(NissanApp.getInstance().getDeviceID(LanguageFragment.this.getActivity()), NissanApp.getInstance().getLanguageID(lang) + "");
-            }
+            LanguageFragment.this.startDownloadProcedure(lang, position);
+            LanguageFragment.this.controllerCarList.callApi(NissanApp.getInstance().getDeviceID(LanguageFragment.this.getActivity()), NissanApp.getInstance().getLanguageID(lang) + "");
         });
         dialog.show();
     }
@@ -446,13 +433,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
         String downloadingMsg = NissanApp.getInstance().getAlertMessage(this.context, this.preferenceUtil.getSelectedLang(), Values.DOWNLOADING);
         String startingToDownloadMessage = NissanApp.getInstance().getAlertMessage(this.context, this.preferenceUtil.getSelectedLang(), Values.STARTING_DOWNLOAD);
-        this.activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-
-                LanguageFragment.this.progressDialog = new ProgressDialogController(LanguageFragment.this.activity).showDialog(startingToDownloadMessage == null || startingToDownloadMessage.isEmpty() ? LanguageFragment.this.resources.getString(R.string.start_download) : startingToDownloadMessage);
-            }
-        });
+        this.activity.runOnUiThread(() -> LanguageFragment.this.progressDialog = new ProgressDialogController(LanguageFragment.this.activity).showDialog(startingToDownloadMessage == null || startingToDownloadMessage.isEmpty() ? LanguageFragment.this.resources.getString(R.string.start_download) : startingToDownloadMessage));
 
         new ApiCall().postLanguageDownload(Values.carType + "", "" + NissanApp.getInstance().getLanguageID(lang), "0", NissanApp.getInstance().getDeviceID(this.getActivity()), new CompleteAPI() {
             @Override
@@ -549,22 +530,19 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                     final CarDownloadHelper carDownloadHelper = new CarDownloadHelper(LanguageFragment.this.getContext(), "" + Values.carType,
                             responseInfo.getLangUrl(), null,
                             NissanApp.getInstance().getCarPath(Values.carType),
-                            NissanApp.getInstance().getCarPath(Values.carType),null,preferenceUtil,lang
+                            NissanApp.getInstance().getCarPath(Values.carType), null, preferenceUtil, lang
                     );
-                    carDownloadHelper.getDownloadProgress().observe(LanguageFragment.this.getViewLifecycleOwner(), new Observer<CarDownloadProgress>() {
-                        @Override
-                        public void onChanged(final CarDownloadProgress carDownloadProgress) {
-                            if (carDownloadProgress == null) return;
-                            if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE || carDownloadProgress == CarDownloadProgress.LANG_EXTRACT_COMPLETE.INSTANCE) {
-                                onDownloadCompleted(lang, position);
-                            } else {
-                                Log.e("DownloadError", carDownloadProgress.toString());
-                                BaseActivity.checkCarDownloadProgress(LanguageFragment.this.context,
-                                        carDownloadProgress,
-                                        progressDialog);
-                            }
-
+                    carDownloadHelper.getDownloadProgress().observe(LanguageFragment.this.getViewLifecycleOwner(), carDownloadProgress -> {
+                        if (carDownloadProgress == null) return;
+                        if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE || carDownloadProgress == CarDownloadProgress.LANG_EXTRACT_COMPLETE.INSTANCE) {
+                            onDownloadCompleted(lang, position);
+                        } else {
+                            Log.e("DownloadError", carDownloadProgress.toString());
+                            BaseActivity.checkCarDownloadProgress(LanguageFragment.this.context,
+                                    carDownloadProgress,
+                                    progressDialog);
                         }
+
                     });
                     carDownloadHelper.downloadAssetAndLang();
                 } else {
@@ -582,7 +560,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         });
     }
 
-    public void onDownloadCompleted(String lang, int position){
+    public void onDownloadCompleted(String lang, int position) {
         String dataSyncingMsg = NissanApp.getInstance().getAlertMessage(this.context, this.preferenceUtil.getSelectedLang(), DATA_SYNCING);
         if (progressDialog != null) {
             progressDialog.setMessage(dataSyncingMsg == null || dataSyncingMsg.isEmpty() ? activity.getResources().getString(R.string.data_syncing) : dataSyncingMsg);
@@ -621,11 +599,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
                                 // set selection for selected language
                                 for (int i = 0; i < list.size(); i++) {
-                                    if (i == position) {
-                                        list.get(i).setIsSelected(true);
-                                    } else {
-                                        list.get(i).setIsSelected(false);
-                                    }
+                                    list.get(i).setIsSelected(i == position);
                                 }
 
                                 adapter.notifyDataSetChanged();
@@ -670,14 +644,14 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                     return;
                 }
                 this.mLastClickTime = SystemClock.elapsedRealtime();
-                ((MainActivity) this.getActivity()).onBackPressed();
+                this.getActivity().onBackPressed();
 
             case R.id.linear_back:
                 if (SystemClock.elapsedRealtime() - this.mLastClickTime < 2000) {
                     return;
                 }
                 this.mLastClickTime = SystemClock.elapsedRealtime();
-                ((MainActivity) this.getActivity()).onBackPressed();
+                this.getActivity().onBackPressed();
                 break;
 
             default:

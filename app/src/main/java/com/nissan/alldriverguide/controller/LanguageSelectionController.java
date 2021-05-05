@@ -19,7 +19,7 @@ public class LanguageSelectionController implements Callback<LanguageListRespons
 
     public LanguageSelectionController(InterfaceLanguageListResponse interfaceLanguageListResponse) {
 
-        this.listener = interfaceLanguageListResponse;
+        listener = interfaceLanguageListResponse;
     }
 
     public void callApi(String device_id, String car_id) {
@@ -35,22 +35,22 @@ public class LanguageSelectionController implements Callback<LanguageListRespons
             LanguageListResponse languageListResponse = response.body();
 
             if (languageListResponse != null) {
-                if (this.listener != null)
-                    this.listener.languageListDownloaded(languageListResponse.getLanguageList());
+                if (listener != null)
+                    listener.languageListDownloaded(languageListResponse.getLanguageList());
             } else {
-                if (this.listener != null)
-                    this.listener.languageListFailed("No content available.");
+                if (listener != null)
+                    listener.languageListFailed("No content available.");
             }
         } else {
-            if (this.listener != null)
-                this.listener.languageListFailed(response.errorBody().toString());
+            if (listener != null)
+                listener.languageListFailed(response.errorBody().toString());
         }
     }
 
     @Override
     public void onFailure(Call<LanguageListResponse> call, Throwable t) {
-        if (this.listener != null && t != null && t.getMessage() != null) {
-            this.listener.languageListFailed(t.getMessage());
+        if (listener != null && t != null && t.getMessage() != null) {
+            listener.languageListFailed(t.getMessage());
         }
     }
 }

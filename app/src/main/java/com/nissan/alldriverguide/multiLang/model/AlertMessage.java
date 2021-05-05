@@ -3,6 +3,8 @@ package com.nissan.alldriverguide.multiLang.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 public class AlertMessage {
 
     @SerializedName("id")
@@ -26,7 +28,7 @@ public class AlertMessage {
 
         AlertMessage that = (AlertMessage) o;
 
-        return type != null ? type.equals(that.type) : that.type == null;
+        return Objects.equals(type, that.type);
     }
 
     @Override

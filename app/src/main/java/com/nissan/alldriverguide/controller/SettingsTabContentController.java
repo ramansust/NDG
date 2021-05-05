@@ -19,7 +19,7 @@ public class SettingsTabContentController implements Callback<SettingsTabModel> 
 
     public SettingsTabContentController(CompleteSettingTabContent interfaceSettings) {
 
-        this.listener = interfaceSettings;
+        listener = interfaceSettings;
     }
 
     public void callApi(String device_id, String language_id, String car_id, String epub_id, String tab_id) {
@@ -35,19 +35,19 @@ public class SettingsTabContentController implements Callback<SettingsTabModel> 
             SettingsTabModel settingsTabModel = response.body();
 
             if (settingsTabModel != null) {
-                if (this.listener != null) this.listener.onDownloaded(settingsTabModel);
+                if (listener != null) listener.onDownloaded(settingsTabModel);
             } else {
-                if (this.listener != null) this.listener.onFailed("No content available.");
+                if (listener != null) listener.onFailed("No content available.");
             }
         } else {
-            if (this.listener != null) this.listener.onFailed(response.errorBody().toString());
+            if (listener != null) listener.onFailed(response.errorBody().toString());
         }
     }
 
     @Override
     public void onFailure(Call<SettingsTabModel> call, Throwable t) {
-        if (this.listener != null && t != null && t.getMessage() != null) {
-            this.listener.onFailed(t.getMessage());
+        if (listener != null && t != null && t.getMessage() != null) {
+            listener.onFailed(t.getMessage());
         }
     }
 }

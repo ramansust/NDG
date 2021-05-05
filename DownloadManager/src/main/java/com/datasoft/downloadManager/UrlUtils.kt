@@ -11,7 +11,7 @@ import java.net.URL
 
 object UrlUtils {
 
-    fun isUrlValid(url: String) = URLUtil.isValidUrl(url);
+    fun isUrlValid(url: String) = URLUtil.isValidUrl(url)
 
     fun isUrlReachable(urlStr: String): Boolean {
         if (!isUrlValid(urlStr)) return false

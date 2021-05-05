@@ -7,10 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.DataGridAdapter;
 import com.nissan.alldriverguide.database.CommonDao;
@@ -23,6 +19,10 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 /**
  * Created by nirob on 9/12/17.
@@ -40,7 +40,7 @@ public class AllFragment extends Fragment {
 
     private CommonDao commondao;
 
-    private String drawable_folder = Values.car_path + "/combimeter_button";
+    private final String drawable_folder = Values.car_path + "/combimeter_button";
     private RecyclerView recyclerView;
     public static Map<String, List<Object>> dataMap;
     private ProgressBar progressBar;
@@ -63,12 +63,12 @@ public class AllFragment extends Fragment {
 
     // initialized all field
     private void initializeLayout(View layout) {
-        blankLayout = (TextView) layout.findViewById(R.id.blank_layout);
-        progressBar = (ProgressBar) layout.findViewById(R.id.progress_view);
+        blankLayout = layout.findViewById(R.id.blank_layout);
+        progressBar = layout.findViewById(R.id.progress_view);
         commondao = CommonDao.getInstance();
 
         dataMap = new LinkedHashMap<>();
-        recyclerView = (RecyclerView) layout.findViewById(R.id.recyclerView);
+        recyclerView = layout.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(NUM_COLUMNS,
                 StaggeredGridLayoutManager.VERTICAL));
@@ -113,9 +113,7 @@ public class AllFragment extends Fragment {
 
                 try {
                     if (list.size() <= 0) {
-                        if (dataMap.containsKey(epubModel.getEpubType())) {
-                            dataMap.remove(epubModel.getEpubType());
-                        }
+                        dataMap.remove(epubModel.getEpubType());
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -131,7 +129,7 @@ public class AllFragment extends Fragment {
     // set the adapter in recyclerView
     private void setAdapter() {
 
-        List<Object> items = new ArrayList<Object>();
+        List<Object> items = new ArrayList<>();
 
         int cumulativeSum = 0;
 
@@ -172,11 +170,11 @@ public class AllFragment extends Fragment {
     // adding data in map for warning light
     private void warningLight(EpubModel epubModel, List<Object> list) {
         File dir = new File(drawable_folder + "/");
-        String[] wl = epubModel.getLink().split("\\-");
+        String[] wl = epubModel.getLink().split("-");
 
         if (dir.isDirectory()) {
             for (File file : dir.listFiles()) {
-                String[] name = file.getName().split("\\_");
+                String[] name = file.getName().split("_");
 
                 if (name[1].equalsIgnoreCase(wl[wl.length - 1])) {
                     list.add(new CombimeterInfo(file.getName(), true));

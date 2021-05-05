@@ -19,9 +19,9 @@ import java.util.List;
  */
 public class CallNumberAdapter extends BaseAdapter {
 
-    private Context context;
+    private final Context context;
     private LayoutInflater inflater;
-    private List<CallInfo> list;
+    private final List<CallInfo> list;
     private boolean isColor;
 
     public CallNumberAdapter(Context context, List<CallInfo> list) {
@@ -72,9 +72,9 @@ public class CallNumberAdapter extends BaseAdapter {
         CheckBox checkBox;
 
         public ViewHolder(View view) {
-            imageView = (SimpleDraweeView) view.findViewById(R.id.img_view);
-            txtViewTitle = (TextView) view.findViewById(R.id.txt_title);
-            checkBox = (CheckBox) view.findViewById(R.id.check_box);
+            imageView = view.findViewById(R.id.img_view);
+            txtViewTitle = view.findViewById(R.id.txt_title);
+            checkBox = view.findViewById(R.id.check_box);
         }
     }
 

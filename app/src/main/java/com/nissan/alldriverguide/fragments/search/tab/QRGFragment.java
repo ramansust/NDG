@@ -8,8 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
-import androidx.fragment.app.Fragment;
-
 import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.DataGridAdapter;
@@ -18,6 +16,8 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
 
+import androidx.fragment.app.Fragment;
+
 /**
  * Created by shubha on 11/20/17.
  */
@@ -25,10 +25,7 @@ import java.util.ArrayList;
 public class QRGFragment extends Fragment {
 
     private ProgressBar progressBar;
-    private LinearLayout linearLayoutNoContent;
     private ListView listView;
-    private static ArrayList<EpubInfo> finalSearchResultList;
-    private DataGridAdapter adapter;
     public static int whichTab = -1;
 
     public static QRGFragment newInstance() {
@@ -49,9 +46,9 @@ public class QRGFragment extends Fragment {
 
 
     private void initializeView(View view) {
-        progressBar = (ProgressBar) view.findViewById(R.id.progress_view);
-        linearLayoutNoContent = (LinearLayout) view.findViewById(R.id.linearLayoutNoContent);
-        listView = (ListView) view.findViewById(R.id.listView);
+        progressBar = view.findViewById(R.id.progress_view);
+        LinearLayout linearLayoutNoContent = view.findViewById(R.id.linearLayoutNoContent);
+        listView = view.findViewById(R.id.listView);
     }
 
     private void addData() {
@@ -60,7 +57,7 @@ public class QRGFragment extends Fragment {
         }
         ArrayList<EpubInfo> list = new PreferenceUtil(getActivity().getApplicationContext()).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.UNDERSCORE + Values.HOMEPAGE_TYPE);
 
-        finalSearchResultList = WarningLightFragment.searchForTag(list, BaseTabFragmentActivity.keyword);
+        ArrayList<EpubInfo> finalSearchResultList = WarningLightFragment.searchForTag(list, BaseTabFragmentActivity.keyword);
         if (progressBar != null) {
             progressBar.setVisibility(View.GONE);
         }
@@ -74,7 +71,7 @@ public class QRGFragment extends Fragment {
     }
 
     private void setAdapter(ArrayList<EpubInfo> ePubInfoArrayList) {
-        adapter = new DataGridAdapter(getActivity(), ePubInfoArrayList, Values.HOMEPAGE_TYPE);
+        DataGridAdapter adapter = new DataGridAdapter(getActivity(), ePubInfoArrayList, Values.HOMEPAGE_TYPE);
         listView.setAdapter(adapter);
     }
 

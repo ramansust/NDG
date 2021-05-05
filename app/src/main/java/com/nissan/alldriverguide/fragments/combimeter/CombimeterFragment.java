@@ -11,10 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.nissan.alldriverguide.ImageTargetActivity;
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
@@ -29,17 +25,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 public class CombimeterFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "CombimeterFragment";
     private static final String TITLE = "title";
-    private View view;
     private ImageButton btnBack;
     private LinearLayout linearBack;
     private ScrollView scrollView;
     private int width = 0;
     private LinearLayout mainLinearLayout;
-    private TextView txt_title, txt_back_title;
-    private String drawable_folder = Values.car_path + "/combimeter_button"; // combimiter path from sdCard
+    private TextView txt_title;
+    private final String drawable_folder = Values.car_path + "/combimeter_button"; // combimiter path from sdCard
     // Combimeter color list
     private ArrayList<String> list_red;
     private ArrayList<String> list_orange;
@@ -59,7 +58,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_combimeter, container, false);
+        View view = inflater.inflate(R.layout.fragment_combimeter, container, false);
 
         initViews(view);
         setListener();
@@ -78,13 +77,13 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
     private void loadData() {
         txt_title.setText(getArguments().get(TITLE).toString());
 
-        list_red = new ArrayList<String>();
-        list_orange = new ArrayList<String>();
-        list_yellow = new ArrayList<String>();
-        list_green = new ArrayList<String>();
-        list_blue = new ArrayList<String>();
-        list_gray = new ArrayList<String>();
-        list_cyan = new ArrayList<String>();
+        list_red = new ArrayList<>();
+        list_orange = new ArrayList<>();
+        list_yellow = new ArrayList<>();
+        list_green = new ArrayList<>();
+        list_blue = new ArrayList<>();
+        list_gray = new ArrayList<>();
+        list_cyan = new ArrayList<>();
 
         width = NissanApp.getInstance().getWidth(getActivity());
 
@@ -132,11 +131,11 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
     }
 
     private void initViews(View view) {
-        btnBack = (ImageButton) view.findViewById(R.id.btn_back);
-        txt_back_title = (TextView) view.findViewById(R.id.txt_back_title);
-        txt_title = (TextView) view.findViewById(R.id.txt_title);
-        scrollView = (ScrollView) view.findViewById(R.id.scroll_view);
-        linearBack = (LinearLayout) view.findViewById(R.id.linear_back);
+        btnBack = view.findViewById(R.id.btn_back);
+        TextView txt_back_title = view.findViewById(R.id.txt_back_title);
+        txt_title = view.findViewById(R.id.txt_title);
+        scrollView = view.findViewById(R.id.scroll_view);
+        linearBack = view.findViewById(R.id.linear_back);
     }
 
     @Override
@@ -157,14 +156,14 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
                 if (ImageTargetActivity.isDetected) {
                     getActivity().finish();
                 } else {
-                    ((MainActivity) getActivity()).onBackPressed();
+                    getActivity().onBackPressed();
                 }
                 break;
             case R.id.linear_back:
                 if (ImageTargetActivity.isDetected) {
                     getActivity().finish();
                 } else {
-                    ((MainActivity) getActivity()).onBackPressed();
+                    getActivity().onBackPressed();
                 }
                 break;
             default:
@@ -286,7 +285,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
             }
             ImageButton button = new ImageButton(getActivity());
             Drawable d = Drawable.createFromPath(drawable_folder + "/" + list_combi.get(j));
-            final String[] output = list_combi.get(j).split("\\_");
+            final String[] output = list_combi.get(j).split("_");
 
             try {
                 counter = Integer.parseInt(output[1]);
@@ -302,7 +301,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            String[] last_value = list_combi.get(list_combi.size() - 1).split("\\_");
+            String[] last_value = list_combi.get(list_combi.size() - 1).split("_");
             //counter++;
 
             if (column == 3) {
@@ -342,9 +341,9 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
         }
 
         mainLinearLayout.addView(linearLayout);
-        /**
-         * here add the dotted dash line view in "mainLinearLayout" layout
-         * comparing with type argument
+        /*
+          here add the dotted dash line view in "mainLinearLayout" layout
+          comparing with type argument
          */
         if (type == Values.RED_TYPE) {
             if (!list_orange.isEmpty()) {
@@ -415,8 +414,8 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
         @Override
         public int compare(String weight1, String weight2) {
 
-            String[] output1 = weight1.split("\\_");
-            String[] output2 = weight2.split("\\_");
+            String[] output1 = weight1.split("_");
+            String[] output2 = weight2.split("_");
 
             // get only number form file name
             int value = Integer.parseInt(output1[1]);

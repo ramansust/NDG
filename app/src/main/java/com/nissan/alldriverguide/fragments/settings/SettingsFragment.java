@@ -18,10 +18,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.TutorialActivity;
@@ -42,17 +38,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
 public class SettingsFragment extends Fragment implements AdapterView.OnItemClickListener, CompleteSettingTabContent {
 
-    private int[] assistanceImage = {R.drawable.change_language, R.drawable.add_extra_car, R.drawable.tutorial, R.drawable.rate_app, R.drawable.send_feedback};
+    private final int[] assistanceImage = {R.drawable.change_language, R.drawable.add_extra_car, R.drawable.tutorial, R.drawable.rate_app, R.drawable.send_feedback};
 
     public Resources resources;
     private DisplayMetrics metrics;
     private PreferenceUtil preferenceUtil;
-    private View view;
     private ListView lstView;
     private TextView txt_title;
 
@@ -74,7 +73,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         initViews(view);
         loadResource();
@@ -94,12 +93,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         if (settingList != null && settingList.size() > 0) {
             progressBar.setVisibility(View.GONE);
             tvNoContent.setVisibility(View.GONE);
-            Collections.sort(settingList, new Comparator<SettingsTabListModel>() {
-                @Override
-                public int compare(SettingsTabListModel lhs, SettingsTabListModel rhs) {
-                    return lhs.getIndex().compareTo(rhs.getIndex());
-                }
-            });
+            Collections.sort(settingList, (lhs, rhs) -> lhs.getIndex().compareTo(rhs.getIndex()));
             setting_names = new String[settingList.size()];
             for (int i = 0; i < settingList.size(); i++) {
                 setting_names[i] = settingList.get(i).getTitle();
@@ -124,16 +118,13 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
 
         final Dialog dialog = new DialogController(getActivity()).internetDialog();
         dialog.setCancelable(false);
-        TextView txtViewTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
         txtViewTitle.setText(msg);
 
-        Button btnOk = (Button) dialog.findViewById(R.id.btn_ok);
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                getActivity().finish();
-            }
+        Button btnOk = dialog.findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(v -> {
+            dialog.dismiss();
+            getActivity().finish();
         });
 
         dialog.show();
@@ -188,12 +179,12 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     private void initViews(View view) {
-        lstView = (ListView) view.findViewById(R.id.lst_view);
-        txt_title = (TextView) view.findViewById(R.id.txt_title);
+        lstView = view.findViewById(R.id.lst_view);
+        txt_title = view.findViewById(R.id.txt_title);
 
-        progressBar = (ProgressBar) view.findViewById(R.id.prog_settings);
-        layoutDataNotFound = (LinearLayout) view.findViewById(R.id.layout_settings_data_not_found);
-        tvNoContent = (TextView) view.findViewById(R.id.txt_settings_data_not_found);
+        progressBar = view.findViewById(R.id.prog_settings);
+        layoutDataNotFound = view.findViewById(R.id.layout_settings_data_not_found);
+        tvNoContent = view.findViewById(R.id.txt_settings_data_not_found);
 
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -225,8 +216,8 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Fragment frag = null;
-        /**
-         * Here specify the fragment by the item position
+        /*
+          Here specify the fragment by the item position
          */
         switch (position) {
             case 0:

@@ -7,10 +7,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
 import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.CombimeterSearchAdapter;
@@ -25,6 +21,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 /**
  * Created by nirob on 9/12/17.
  */
@@ -36,18 +36,12 @@ public class WarningLightFragment extends Fragment {
         return frag;
     }
 
-    private String drawable_folder = Values.car_path + "/combimeter_button";
+    private final String drawable_folder = Values.car_path + "/combimeter_button";
     public static Map<String, List<Object>> dataMap;
-    private ArrayList<EpubInfo> newList = new ArrayList<>();
-    private static ArrayList<EpubInfo> epubInfoArrayList = new ArrayList<>();
     public Map<String, List<Object>> map;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private static final int NUM_COLUMNS = 3;
-    private CommonDao commonDao;
-    private CombimeterSearchAdapter adapter;
-
-    private LinearLayout linearLayoutNoContent;
 
 
     @Override
@@ -56,11 +50,11 @@ public class WarningLightFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_warning_lights, container, false);
 
         map = new LinkedHashMap<>();
-        commonDao = CommonDao.getInstance();
-        progressBar = (ProgressBar) layout.findViewById(R.id.progress_view);
+        CommonDao commonDao = CommonDao.getInstance();
+        progressBar = layout.findViewById(R.id.progress_view);
         dataMap = new LinkedHashMap<>();
-        recyclerView = (RecyclerView) layout.findViewById(R.id.recyclerView);
-        linearLayoutNoContent = (LinearLayout) layout.findViewById(R.id.linearLayoutNoContent);
+        recyclerView = layout.findViewById(R.id.recyclerView);
+        LinearLayout linearLayoutNoContent = layout.findViewById(R.id.linearLayoutNoContent);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(NUM_COLUMNS, StaggeredGridLayoutManager.VERTICAL));
 
@@ -73,11 +67,11 @@ public class WarningLightFragment extends Fragment {
      * Data added and display for WarningLightFragment
      */
     private void addData() {
-        epubInfoArrayList = new PreferenceUtil(getActivity().getApplicationContext()).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.UNDERSCORE + Values.COMBIMETER_TYPE);
+        ArrayList<EpubInfo> epubInfoArrayList = new PreferenceUtil(getActivity().getApplicationContext()).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.UNDERSCORE + Values.COMBIMETER_TYPE);
         if (epubInfoArrayList == null || epubInfoArrayList.size() == 0) {
             return;
         }
-        newList = searchForTag(epubInfoArrayList, BaseTabFragmentActivity.keyword);
+        ArrayList<EpubInfo> newList = searchForTag(epubInfoArrayList, BaseTabFragmentActivity.keyword);
 
         progressBar.setVisibility(View.GONE);
         if (newList == null || newList.size() == 0) {
@@ -101,11 +95,11 @@ public class WarningLightFragment extends Fragment {
         ArrayList<String> fileListNames = getFileNames();
         String[] colorArray = new String[]{"r", "org", "y", "grn", "c", "b", "g"};
 
-        for (int i = 0; i < colorArray.length; i++) {
+        for (String s : colorArray) {
             for (int j = 0; j < newList.size(); j++) {
                 for (int k = 0; k < fileListNames.size(); k++) {
                     int indexFromSearch = newList.get(j).getIndex() + 1;
-                    String firstPart = "combimeter_" + indexFromSearch + "_" + colorArray[i] + fileListNames.get(k).substring(fileListNames.get(k).length() - 4, fileListNames.get(k).length()); //".jpg";// + stringArray[k].split(".")[1];
+                    String firstPart = "combimeter_" + indexFromSearch + "_" + s + fileListNames.get(k).substring(fileListNames.get(k).length() - 4); //".jpg";// + stringArray[k].split(".")[1];
 
                     if (firstPart.equals(fileListNames.get(k))) {
                         SearchCombimeterModel searchCombimeterModel = new SearchCombimeterModel();
@@ -188,7 +182,7 @@ public class WarningLightFragment extends Fragment {
 
     // here set the adapter
     private void setAdapter(ArrayList<SearchCombimeterModel> searchCombimeterModelArrayList) {
-        adapter = new CombimeterSearchAdapter(getActivity(), searchCombimeterModelArrayList);
+        CombimeterSearchAdapter adapter = new CombimeterSearchAdapter(getActivity(), searchCombimeterModelArrayList);
         recyclerView.setAdapter(adapter);
     }
 

@@ -21,10 +21,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.TopRecentAdapter;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
@@ -43,6 +39,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
+
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
 public class SearchFragment extends Fragment {
@@ -54,10 +54,9 @@ public class SearchFragment extends Fragment {
 
     private EditText getSearchKeyword;
     private ImageView imageViewClear;
-    private TextView tvClearRecentSearch, tvSectionHeader;
+    private TextView tvClearRecentSearch;
     private RelativeLayout relativeLayoutSectionHeader;
     private CommonDao commonDao;
-    private String getKeyword = "";
 
     //this is from top recent search fragment
     private String[] sectionHeader;
@@ -95,12 +94,12 @@ public class SearchFragment extends Fragment {
         resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()));
 
         commonDao = CommonDao.getInstance();
-        getSearchKeyword = (EditText) layout.findViewById(R.id.input_search);
-        imageViewClear = (ImageView) layout.findViewById(R.id.imageViewClearButton);
-        tvClearRecentSearch = (TextView) layout.findViewById(R.id.tvClearSearch);
-        tvSectionHeader = (TextView) layout.findViewById(R.id.tvSectionHeader);
-        relativeLayoutSectionHeader = (RelativeLayout) layout.findViewById(R.id.rlSectionHeader);
-        recyclerView = (RecyclerView) layout.findViewById(R.id.rv_top_recent);
+        getSearchKeyword = layout.findViewById(R.id.input_search);
+        imageViewClear = layout.findViewById(R.id.imageViewClearButton);
+        tvClearRecentSearch = layout.findViewById(R.id.tvClearSearch);
+        TextView tvSectionHeader = layout.findViewById(R.id.tvSectionHeader);
+        relativeLayoutSectionHeader = layout.findViewById(R.id.rlSectionHeader);
+        recyclerView = layout.findViewById(R.id.rv_top_recent);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(null);
         recyclerView.setLayoutManager(new FlowLayoutManager().removeItemPerLineLimit());
@@ -182,13 +181,12 @@ public class SearchFragment extends Fragment {
             dateWise_ListString.add(dateWise_List.get(i).getSearchTag());
         }
 
-        Set<String> uniqueColorList = new HashSet<String>();
+        Set<String> uniqueColorList = new HashSet<>();
         for (String color : dateWise_ListString) {
             uniqueColorList.add(color.toLowerCase());
         }
 
-        List<String> mainList = new ArrayList<String>();
-        mainList.addAll(uniqueColorList);
+        List<String> mainList = new ArrayList<String>(uniqueColorList);
 
         adapter = new TopRecentAdapter(getActivity(), mainList);
         recyclerView.setAdapter(adapter);
@@ -206,7 +204,7 @@ public class SearchFragment extends Fragment {
     //end here
 
     private long mLastClickTime;
-    private View.OnClickListener clickListener = new View.OnClickListener() {
+    private final View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
@@ -235,7 +233,7 @@ public class SearchFragment extends Fragment {
     /**
      * This method for keyboard search action
      */
-    private TextView.OnEditorActionListener editorActionListener = new TextView.OnEditorActionListener() {
+    private final TextView.OnEditorActionListener editorActionListener = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
 
@@ -246,7 +244,7 @@ public class SearchFragment extends Fragment {
                 }
 
                 // get search keyword
-                getKeyword = getSearchKeyword.getText().toString().trim();
+                String getKeyword = getSearchKeyword.getText().toString().trim();
 
                 if (getKeyword.equalsIgnoreCase("")) {
                     Toast.makeText(getActivity(), "Please Input Search Keyword", Toast.LENGTH_SHORT).show();
@@ -290,7 +288,7 @@ public class SearchFragment extends Fragment {
     /**
      * Text watcher for editText clear icon Visible/InVisible
      */
-    private TextWatcher textWatcher = new TextWatcher() {
+    private final TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         }

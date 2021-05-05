@@ -13,8 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -27,18 +25,16 @@ import com.nissan.alldriverguide.utils.Values;
 import java.io.File;
 import java.util.ArrayList;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private final String EPUB_INDEX = "epub_index";
     private WebView webView;
     private ImageButton btnBack;
     private LinearLayout linearBack;
-    private TextView txt_back_title;
     private int index = 0;
     private String htmlContent = "";
-    private ArrayList<EpubInfo> list;
-    private Tracker tracker;
     private ProgressBar progressBar;
 
     @Override
@@ -46,6 +42,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_details);
 
+        String EPUB_INDEX = "epub_index";
         if (savedInstanceState == null) {
             Bundle args = getIntent().getExtras();
             index = args.getInt(EPUB_INDEX);
@@ -102,6 +99,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     private void loadData() throws IndexOutOfBoundsException {
         try {
             ((TextView) findViewById(R.id.txt_title)).setText(getIntent().getExtras().getString("epub_title"));
+            ArrayList<EpubInfo> list;
             switch (Values.ePubType) {
                 case Values.COMBIMETER_TYPE:
 
@@ -243,11 +241,11 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
      * here initialized all global variable
      */
     private void initViews() {
-        progressBar = (ProgressBar) findViewById(R.id.progressBarDetailsFragment);
-        webView = (WebView) findViewById(R.id.webViewDetailsFragment);
-        btnBack = (ImageButton) findViewById(R.id.btn_back);
-        linearBack = (LinearLayout) findViewById(R.id.linear_back);
-        txt_back_title = (TextView) findViewById(R.id.txt_back_title);
+        progressBar = findViewById(R.id.progressBarDetailsFragment);
+        webView = findViewById(R.id.webViewDetailsFragment);
+        btnBack = findViewById(R.id.btn_back);
+        linearBack = findViewById(R.id.linear_back);
+        TextView txt_back_title = findViewById(R.id.txt_back_title);
     }
 
     @Override
@@ -290,7 +288,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                 .getTracker(MyApplication.TrackerName.APP_TRACKER);
 
         // Get tracker.
-        tracker = ((MyApplication) getApplication())
+        Tracker tracker = ((MyApplication) getApplication())
                 .getTracker(MyApplication.TrackerName.APP_TRACKER);
 
         // Set screen name.

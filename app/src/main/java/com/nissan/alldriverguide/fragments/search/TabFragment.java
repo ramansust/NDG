@@ -2,7 +2,6 @@ package com.nissan.alldriverguide.fragments.search;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,12 +18,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.nissan.alldriverguide.MainActivity;
@@ -49,6 +42,12 @@ import com.nissan.alldriverguide.utils.Values;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
+
 import static android.text.TextUtils.isEmpty;
 
 /**
@@ -61,7 +60,7 @@ public class TabFragment extends Fragment {
     private static Context context;
     private CommonDao commondao;
     private TabLayout tabLayout;
-    private View fragmentView, shadowView;
+    private View fragmentView;
 
     public static String keyword;
     private DataPassing dataPassing;
@@ -132,15 +131,15 @@ public class TabFragment extends Fragment {
         context = getActivity();
         commondao = CommonDao.getInstance();
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
-        getSearchKeyword = (EditText) v.findViewById(R.id.input_search);
+        getSearchKeyword = v.findViewById(R.id.input_search);
         getSearchKeyword.setHint(getResources().getString(R.string.search_box_hint).toUpperCase());// set hint text  allCaps
 
-        cancel = (TextView) v.findViewById(R.id.cancel_search);
-        tabLayout = (TabLayout) v.findViewById(R.id.sliding_tabs);
-        imageViewBack = (ImageView) v.findViewById(R.id.imageViewBack);
-        imageViewClear = (ImageView) v.findViewById(R.id.imageViewClearButton);
-        shadowView = v.findViewById(R.id.shadowView);
-        txtViewUpdatedContent = (TextView) v.findViewById(R.id.txt_view_updated_content);
+        cancel = v.findViewById(R.id.cancel_search);
+        tabLayout = v.findViewById(R.id.sliding_tabs);
+        imageViewBack = v.findViewById(R.id.imageViewBack);
+        imageViewClear = v.findViewById(R.id.imageViewClearButton);
+        View shadowView = v.findViewById(R.id.shadowView);
+        txtViewUpdatedContent = v.findViewById(R.id.txt_view_updated_content);
         loadResources();
 
         //sdk support for shadowView
@@ -298,10 +297,9 @@ public class TabFragment extends Fragment {
     }
 
     private void setCustomFontForTabs() {
-        String tabs[] = resources.getStringArray(R.array.assistance_array_temp);
+        String[] tabs = resources.getStringArray(R.array.assistance_array_temp);
         //this is to set custom font for tabs
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            //noinspection ConstantConditions
             TextView tv = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.h_b_media_tab, null);
 //            tv.setTypeface(tf);
             tv.setText(tabs[i]);
@@ -311,17 +309,17 @@ public class TabFragment extends Fragment {
         }
     }
 
-    private View.OnClickListener clickListener = new View.OnClickListener() {
+    private final View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.cancel_search:
 //                    cancelButtonAction();
-                    ((MainActivity) getActivity()).onBackPressed();
+                    getActivity().onBackPressed();
                     break;
 
                 case R.id.imageViewBack:
-                    ((MainActivity) getActivity()).onBackPressed();
+                    getActivity().onBackPressed();
                     break;
 
                 case R.id.imageViewClearButton:
@@ -338,7 +336,7 @@ public class TabFragment extends Fragment {
     /**
      * This listener for keyboard search action
      */
-    private TextView.OnEditorActionListener editorActionListener = new TextView.OnEditorActionListener() {
+    private final TextView.OnEditorActionListener editorActionListener = new TextView.OnEditorActionListener() {
         @Override
         public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
 
@@ -436,13 +434,13 @@ public class TabFragment extends Fragment {
 
 
     private void setKey(String keyword) {
-        this.keyword = keyword;
+        TabFragment.keyword = keyword;
     }
 
 
-    public class ViewPagerMediaAdapter extends FragmentPagerAdapter {
+    public static class ViewPagerMediaAdapter extends FragmentPagerAdapter {
 
-        String tabs[] = resources.getStringArray(R.array.assistance_array_temp);
+        String[] tabs = resources.getStringArray(R.array.assistance_array_temp);
 
         public ViewPagerMediaAdapter(Context context, FragmentManager fm) {
             super(fm);
@@ -491,7 +489,7 @@ public class TabFragment extends Fragment {
 
     }
 
-    private TextWatcher textWatcher = new TextWatcher() {
+    private final TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         }

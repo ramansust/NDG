@@ -20,7 +20,7 @@
             android:clickable="true"
             android:onClick="buttonEvent"
             android:orientation="vertical"
-            android:tag="1000"></LinearLayout>
+            android:tag="1000" />
     </LinearLayout>
 
 </LinearLayout>
