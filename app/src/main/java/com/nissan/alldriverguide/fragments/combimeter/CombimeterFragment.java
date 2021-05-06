@@ -12,7 +12,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.nissan.alldriverguide.ImageTargetActivity;
-import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.assistance.DetailsFragment;
@@ -168,7 +167,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
                 break;
             default:
                 PreferenceUtil preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
-                int ePubIndex = 0;
+                int ePubIndex;
                 /*if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 //                if(Values.carType == 14) {
                     ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
@@ -261,7 +260,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
         int counter = 0;
         int column = 0;
         int max_column = 3;
-        int space = 0;
+        int space;
 
         LinearLayout.LayoutParams llp2 = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);

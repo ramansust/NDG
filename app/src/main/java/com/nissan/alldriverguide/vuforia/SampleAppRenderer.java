@@ -46,11 +46,11 @@ import java.lang.ref.WeakReference;
 public class SampleAppRenderer {
 
     private static final String LOGTAG = "SampleAppRenderer";
-    private WeakReference<Activity> mActivityRef = null;
+    private final WeakReference<Activity> mActivityRef;
     private RenderingPrimitives mRenderingPrimitives = null;
-    private SampleAppRendererControl mRenderingInterface = null;
+    private final SampleAppRendererControl mRenderingInterface;
 
-    private Renderer mRenderer = null;
+    private final Renderer mRenderer;
     private int currentView = VIEW.VIEW_SINGULAR;
     private float mNearPlane = -1.0f;
     private float mFarPlane = -1.0f;
@@ -303,7 +303,7 @@ public class SampleAppRenderer {
         config.setEnabled(true);
         config.setPosition(new Vec2I(0, 0));
 
-        int xSize = 0, ySize = 0;
+        int xSize, ySize;
         // We keep the aspect ratio to keep the video correctly rendered. If it is portrait we
         // preserve the height and scale width and vice versa if it is landscape, we preserve
         // the width and we check if the selected values fill the screen, otherwise we invert

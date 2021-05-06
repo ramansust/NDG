@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -124,7 +123,7 @@ public class TyreTransitionActivity extends Activity {
 
         Values.i = 0;
         Values.gif_names.clear();
-        String[] file_names = null;
+        String[] file_names;
         File f = new File(s);
         File[] file = f.listFiles();
 

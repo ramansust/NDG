@@ -75,8 +75,8 @@ public class VideoAdapter extends BaseAdapter {
      * Declare ViewHolder class for initialized item view
      */
     static class ViewHolder {
-        ImageView imgView;
-        TextView txtViewTitle;
+        final ImageView imgView;
+        final TextView txtViewTitle;
         TextView txtViewDescription;
         TextView txtViewCount;
 

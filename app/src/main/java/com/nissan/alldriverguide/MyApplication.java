@@ -42,7 +42,7 @@ public class MyApplication extends MultiDexApplication {
         MultiDex.install(this);
     }
 
-    HashMap<TrackerName, Tracker> mTrackers = new HashMap<>();
+    final HashMap<TrackerName, Tracker> mTrackers = new HashMap<>();
 
     public MyApplication() {
         super();

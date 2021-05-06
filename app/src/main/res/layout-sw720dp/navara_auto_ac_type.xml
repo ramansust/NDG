@@ -24,7 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:onClick="buttonEventInitial"
                 android:tag="40001" />
         </LinearLayout>
 
@@ -45,7 +44,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
-                    android:onClick="buttonEventInitial"
                     android:tag="40003" />
             </LinearLayout>
         </LinearLayout>
@@ -61,7 +59,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:onClick="buttonEventInitial"
                 android:tag="40002" />
         </LinearLayout>
 

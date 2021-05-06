@@ -17,7 +17,6 @@ import com.nissan.alldriverguide.utils.NissanApp;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
@@ -26,7 +25,7 @@ public class CarDownloadViewModel extends AndroidViewModel implements CarListACo
     private final Context context;
     private CarListContentController carListContentController;
 
-    public MutableLiveData<List<CarList>> carList = new MutableLiveData<>();
+    public final MutableLiveData<List<CarList>> carList = new MutableLiveData<>();
 
     public CarDownloadViewModel(Application application) {
         super(application);

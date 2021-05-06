@@ -108,7 +108,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
 
     private void loadData() throws IndexOutOfBoundsException {
         try {
-            ArrayList<EpubInfo> list = new ArrayList<>();
+            ArrayList<EpubInfo> list;
             title.setText(getArguments().getString(TITLE)); // here set the title on top bar
             switch (Values.ePubType) { // compare with epub type
                 case Values.COMBIMETER_TYPE:

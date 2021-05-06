@@ -86,7 +86,7 @@ public class GridViewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         //viewHolder.imageView.setBackgroundResource(thumbnil[position]);
-        String img_name = "";
+        String img_name;
         if (device_density.equalsIgnoreCase("xxxhdpi")) {
             img_name = video_list.get(position).getThumbXxxhdpi();
         } else if (device_density.equalsIgnoreCase("xxhdpi")) {
@@ -119,7 +119,7 @@ public class GridViewAdapter extends BaseAdapter {
         return convertView;
     }
 
-    ControllerListener listener = new BaseControllerListener<ImageInfo>() {
+    final ControllerListener listener = new BaseControllerListener<ImageInfo>() {
 
         @Override
         public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable animatable) {
@@ -143,8 +143,8 @@ public class GridViewAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        SimpleDraweeView imageView;
-        TextView txtViewTitle;
+        final SimpleDraweeView imageView;
+        final TextView txtViewTitle;
 
         public ViewHolder(View view) {
             imageView = view.findViewById(R.id.img_view);

@@ -157,8 +157,8 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
 
     public class HeaderViewHolder extends RecyclerView.ViewHolder {
 
-        LinearLayout relativeLayout;
-        TextView txtViewSection;
+        final LinearLayout relativeLayout;
+        final TextView txtViewSection;
 
         public HeaderViewHolder(View itemView) {
             super(itemView);
@@ -187,12 +187,12 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
 
     public class DownloadedViewHolder extends RecyclerView.ViewHolder {
 
-        RelativeLayout relativeLayout;
-        SimpleDraweeView imageView;
-        ImageView imageViewBorder;
-        TextView txtViewTitle;
-        TextView txtView_loading;
-        ImageButton imgDeleteOrDownload;
+        final RelativeLayout relativeLayout;
+        final SimpleDraweeView imageView;
+        final ImageView imageViewBorder;
+        final TextView txtViewTitle;
+        final TextView txtView_loading;
+        final ImageButton imgDeleteOrDownload;
 
 
         public DownloadedViewHolder(View itemView) {
@@ -225,12 +225,12 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     public class DefaultViewHolder extends RecyclerView.ViewHolder {
-        RelativeLayout relativeLayout;
-        SimpleDraweeView imageView;
-        ImageView imageViewBorder;
-        TextView txtViewTitle;
-        TextView txtView_loading;
-        ImageButton imgDeleteOrDownload;
+        final RelativeLayout relativeLayout;
+        final SimpleDraweeView imageView;
+        final ImageView imageViewBorder;
+        final TextView txtViewTitle;
+        final TextView txtView_loading;
+        final ImageButton imgDeleteOrDownload;
 
 
         public DefaultViewHolder(View itemView) {

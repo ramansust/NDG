@@ -101,7 +101,7 @@ public class NissanDbHelper extends SQLiteOpenHelper implements BaseDbHelper {
 
     private void checkColumnExists(SQLiteDatabase db) {
 
-        int columnIndex = 0;
+        int columnIndex;
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + CarInfoTableEntity.TABLE_NAME, null); // grab cursor for all data
 

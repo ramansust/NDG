@@ -17,8 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".75"
-            android:background="@android:color/transparent"
-            android:onClick="buttonEventInitial" />
+            android:background="@android:color/transparent" />
 
         <LinearLayout
 
@@ -32,8 +31,7 @@
                 android:id="@+id/xtrail_rus_ac_manual_main_middle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:onClick="buttonEventInitial" />
+                android:background="@android:color/transparent" />
 
         </LinearLayout>
 
@@ -42,9 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".75"
-            android:background="@android:color/transparent"
-            android:clickable="true"
-            android:onClick="buttonEventInitial" />
+            android:background="@android:color/transparent" />
     </LinearLayout>
 
 </LinearLayout>

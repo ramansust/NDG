@@ -32,8 +32,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".5"
-                android:clickable="true"
-                android:onClick="buttonEventInitial"
                 android:orientation="vertical"
                 android:tag="20001" />
 
@@ -42,8 +40,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".35"
-                android:clickable="true"
-                android:onClick="buttonEventInitial"
                 android:orientation="vertical"
                 android:tag="20002" />
 
@@ -52,8 +48,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".5"
-                android:clickable="true"
-                android:onClick="buttonEventInitial"
                 android:orientation="vertical"
                 android:tag="20003" />
         </LinearLayout>

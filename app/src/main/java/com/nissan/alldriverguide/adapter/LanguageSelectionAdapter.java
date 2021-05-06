@@ -93,9 +93,9 @@ public class LanguageSelectionAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        SimpleDraweeView imageView;
-        TextView txtViewTitle;
-        CheckBox checkBox;
+        final SimpleDraweeView imageView;
+        final TextView txtViewTitle;
+        final CheckBox checkBox;
 
         public ViewHolder(View view) {
             imageView = view.findViewById(R.id.img_view); // use fresco to load image

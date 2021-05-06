@@ -48,7 +48,7 @@ public class WebDataAdapter extends RecyclerView.Adapter<WebDataAdapter.SimpleVi
 
     public class SimpleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView textView;
+        final TextView textView;
 
         public SimpleViewHolder(View itemView) {
             super(itemView);

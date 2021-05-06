@@ -187,7 +187,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
         int counter = 0;
         int column = 0;
         int max_column = 3;
-        int space = 0;
+        int space;
 
         LinearLayout.LayoutParams llp2 = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);

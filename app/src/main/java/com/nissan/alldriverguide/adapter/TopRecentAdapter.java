@@ -63,7 +63,7 @@ public class TopRecentAdapter extends RecyclerView.Adapter<TopRecentAdapter.Simp
     }
 
     public class SimpleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView keyword;
+        final TextView keyword;
 
         public SimpleViewHolder(View itemView) {
             super(itemView);

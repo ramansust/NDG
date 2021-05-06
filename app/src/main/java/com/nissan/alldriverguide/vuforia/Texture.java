@@ -38,7 +38,7 @@ public class Texture {
     /* Factory function to load a texture from the APK. */
     public static Texture loadTextureFromApk(String fileName,
                                              AssetManager assets) {
-        InputStream inputStream = null;
+        InputStream inputStream;
         try {
             inputStream = assets.open(fileName, AssetManager.ACCESS_BUFFER);
 
@@ -88,8 +88,6 @@ public class Texture {
         texture.mData.rewind();
 
         // Cleans variables
-        dataBytes = null;
-        data = null;
 
         texture.mSuccess = true;
         return texture;

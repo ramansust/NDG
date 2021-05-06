@@ -18,7 +18,7 @@ import java.util.List;
 
 public class PreferenceUtil {
 
-    public SharedPreferences sharedPreferences;
+    public final SharedPreferences sharedPreferences;
     private SharedPreferences.Editor spEditor;
 
     private final String IS_FIRST_TIME = "is_first_time";
@@ -140,8 +140,7 @@ public class PreferenceUtil {
         String json = sharedPreferences.getString(id, null);
         Type type = new TypeToken<ArrayList<EpubInfo>>() {
         }.getType();
-        ArrayList<EpubInfo> arrayList = gson.fromJson(json, type);
-        return arrayList;
+        return gson.fromJson(json, type);
     }
 
     //this is for storing the exploretabList
@@ -158,8 +157,7 @@ public class PreferenceUtil {
         Gson gson = new Gson();
         String json = sharedPreferences.getString(id, null);
 
-        ExploreTabModel obj = gson.fromJson(json, ExploreTabModel.class);
-        return obj;
+        return gson.fromJson(json, ExploreTabModel.class);
         /*Type type = new TypeToken<ArrayList<ExploreTabVideoModel>>() {        }.getType();
         ArrayList<ExploreTabVideoModel> arrayList = gson.fromJson(json, type);
         return arrayList;*/
@@ -183,8 +181,7 @@ public class PreferenceUtil {
         return obj;*/
         Type type = new TypeToken<ArrayList<SettingsTabListModel>>() {
         }.getType();
-        ArrayList<SettingsTabListModel> arrayList = gson.fromJson(json, type);
-        return arrayList;
+        return gson.fromJson(json, type);
     }
 
     public String getPushRegistrationID() {
@@ -307,8 +304,7 @@ public class PreferenceUtil {
     public AssistanceInfo retrieveAssistanceData(String key) {
         Gson gson = new Gson();
         String json = sharedPreferences.getString(key, null);
-        AssistanceInfo obj = gson.fromJson(json, AssistanceInfo.class);
-        return obj;
+        return gson.fromJson(json, AssistanceInfo.class);
     }
 
     public boolean isCallNissan() {

@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 
 import androidx.annotation.Nullable;

@@ -24,8 +24,6 @@
             android:layout_marginBottom="30dp"
             android:layout_marginTop="70dp"
             android:layout_weight=".9"
-            android:clickable="true"
-            android:onClick="buttonEventInitial"
             android:tag="10001" />
 
         <TextView
@@ -35,8 +33,6 @@
             android:layout_marginBottom="30dp"
             android:layout_marginTop="30dp"
             android:layout_weight=".75"
-            android:clickable="true"
-            android:onClick="buttonEventInitial"
             android:tag="10002" />
 
         <TextView
@@ -46,8 +42,6 @@
             android:layout_marginBottom="30dp"
             android:layout_marginTop="70dp"
             android:layout_weight=".85"
-            android:clickable="true"
-            android:onClick="buttonEventInitial"
             android:tag="10003" />
 
         <TextView

@@ -68,7 +68,6 @@ import java.util.Objects;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 
 import static com.nissan.alldriverguide.utils.Values.DATA_SYNCING;
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
@@ -109,8 +108,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     private TextView tvNoContent;
 
     public static Fragment newInstance() {
-        final Fragment frag = new LanguageFragment();
-        return frag;
+        return new LanguageFragment();
     }
 
 

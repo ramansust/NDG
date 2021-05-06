@@ -32,8 +32,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 public class WarningLightFragment extends Fragment {
 
     public static Fragment newInstance() {
-        Fragment frag = new WarningLightFragment();
-        return frag;
+        return new WarningLightFragment();
     }
 
     private final String drawable_folder = Values.car_path + "/combimeter_button";

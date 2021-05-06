@@ -58,7 +58,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
                 if (!isEmpty(carId)) {
-                    if (!commonDao.checkIfCarInstalledBeforePush(getBaseContext(), Integer.parseInt(carId)))
+                    if (commonDao.checkIfCarInstalledBeforePush(getBaseContext(), Integer.parseInt(carId)))
                         return;
                 }
 
@@ -120,7 +120,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
                 if (!isEmpty(carId)) {
-                    if (!commonDao.checkIfCarInstalledBeforePush(getBaseContext(), Integer.parseInt(carId)))
+                    if (commonDao.checkIfCarInstalledBeforePush(getBaseContext(), Integer.parseInt(carId)))
                         return;
                 }
 
@@ -161,7 +161,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     private void handleNotification(RemoteMessage remoteMessage) {
-        if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {
+        if (NotificationUtils.isAppIsInBackground(getApplicationContext())) {
 
             // app is in background, show the notification in notification tray
             Intent resultIntent = new Intent(Config.PUSH_NOTIFICATION);
@@ -176,7 +176,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void handleDataMessage(String message) {
         try {
-            if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {
+            if (NotificationUtils.isAppIsInBackground(getApplicationContext())) {
                 // app is in foreground, broadcast the push message
                 Intent pushNotification = new Intent(Config.PUSH_NOTIFICATION);
                 pushNotification.putExtra("message", message);

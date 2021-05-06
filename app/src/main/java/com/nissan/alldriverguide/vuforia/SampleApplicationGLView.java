@@ -157,9 +157,9 @@ public class SampleApplicationGLView extends GLSurfaceView {
                                       EGLConfig[] configs) {
             for (EGLConfig config : configs) {
                 int d = findConfigAttrib(egl, display, config,
-                        EGL10.EGL_DEPTH_SIZE, 0);
+                        EGL10.EGL_DEPTH_SIZE);
                 int s = findConfigAttrib(egl, display, config,
-                        EGL10.EGL_STENCIL_SIZE, 0);
+                        EGL10.EGL_STENCIL_SIZE);
 
                 // We need at least mDepthSize and mStencilSize bits
                 if (d < mDepthSize || s < mStencilSize)
@@ -167,13 +167,13 @@ public class SampleApplicationGLView extends GLSurfaceView {
 
                 // We want an *exact* match for red/green/blue/alpha
                 int r = findConfigAttrib(egl, display, config,
-                        EGL10.EGL_RED_SIZE, 0);
+                        EGL10.EGL_RED_SIZE);
                 int g = findConfigAttrib(egl, display, config,
-                        EGL10.EGL_GREEN_SIZE, 0);
+                        EGL10.EGL_GREEN_SIZE);
                 int b = findConfigAttrib(egl, display, config,
-                        EGL10.EGL_BLUE_SIZE, 0);
+                        EGL10.EGL_BLUE_SIZE);
                 int a = findConfigAttrib(egl, display, config,
-                        EGL10.EGL_ALPHA_SIZE, 0);
+                        EGL10.EGL_ALPHA_SIZE);
 
                 if (r == mRedSize && g == mGreenSize && b == mBlueSize
                         && a == mAlphaSize)
@@ -185,21 +185,21 @@ public class SampleApplicationGLView extends GLSurfaceView {
 
 
         private int findConfigAttrib(EGL10 egl, EGLDisplay display,
-                                     EGLConfig config, int attribute, int defaultValue) {
+                                     EGLConfig config, int attribute) {
 
             if (egl.eglGetConfigAttrib(display, config, attribute, mValue))
                 return mValue[0];
 
-            return defaultValue;
+            return 0;
         }
 
         // Subclasses can adjust these values:
-        protected int mRedSize;
-        protected int mGreenSize;
-        protected int mBlueSize;
-        protected int mAlphaSize;
-        protected int mDepthSize;
-        protected int mStencilSize;
+        protected final int mRedSize;
+        protected final int mGreenSize;
+        protected final int mBlueSize;
+        protected final int mAlphaSize;
+        protected final int mDepthSize;
+        protected final int mStencilSize;
         private final int[] mValue = new int[1];
     }
 }

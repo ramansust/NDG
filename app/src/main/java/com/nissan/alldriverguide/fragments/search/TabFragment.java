@@ -20,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
-import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.PreferenceUtil;
@@ -440,7 +439,7 @@ public class TabFragment extends Fragment {
 
     public static class ViewPagerMediaAdapter extends FragmentPagerAdapter {
 
-        String[] tabs = resources.getStringArray(R.array.assistance_array_temp);
+        final String[] tabs = resources.getStringArray(R.array.assistance_array_temp);
 
         public ViewPagerMediaAdapter(Context context, FragmentManager fm) {
             super(fm);

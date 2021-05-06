@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.customviews.ProgressDialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
@@ -46,8 +45,7 @@ public class Feedback extends Fragment implements View.OnClickListener {
     private ProgressDialog progressDialog;
 
     public static Fragment newInstance() {
-        Fragment frag = new Feedback();
-        return frag;
+        return new Feedback();
     }
 
     @Override

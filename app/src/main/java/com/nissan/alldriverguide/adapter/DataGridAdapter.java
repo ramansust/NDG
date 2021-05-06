@@ -32,7 +32,7 @@ public class DataGridAdapter extends BaseAdapter {
     private final Context mContext;
     private ArrayList<EpubInfo> list;
     private final String drawable_folder = Values.car_path + "/combimeter_button";
-    private int _ePubType = 0;
+    private final int _ePubType;
 
     public DataGridAdapter(Context mContext, ArrayList<EpubInfo> list, int ePubType) {
         this.mContext = mContext;
@@ -74,7 +74,7 @@ public class DataGridAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        String finalText = "";
+        String finalText;
         int numbering = position + 1;
 
 
@@ -111,9 +111,9 @@ public class DataGridAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        ImageView itemSearch;
-        TextView qRefGuide;
-        RelativeLayout rv;
+        final ImageView itemSearch;
+        final TextView qRefGuide;
+        final RelativeLayout rv;
 
         public ViewHolder(View view) {
             itemSearch = view.findViewById(R.id.search_item);

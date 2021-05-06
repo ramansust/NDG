@@ -94,8 +94,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private DealerUrl dealerUrl;
 
     public static Fragment newInstance() {
-        Fragment frag = new AssistanceFragment();
-        return frag;
+        return new AssistanceFragment();
     }
 
 

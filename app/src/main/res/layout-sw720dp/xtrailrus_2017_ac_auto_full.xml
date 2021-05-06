@@ -19,7 +19,6 @@
             android:layout_height="match_parent"
             android:layout_weight=".8"
             android:background="@android:color/transparent"
-            android:onClick="buttonEventInitial"
             android:tag="10001" />
 
         <Button
@@ -28,7 +27,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1.4"
             android:background="@android:color/transparent"
-            android:onClick="buttonEventInitial"
             android:tag="10002" />
 
         <Button
@@ -37,7 +35,6 @@
             android:layout_height="match_parent"
             android:layout_weight=".8"
             android:background="@android:color/transparent"
-            android:onClick="buttonEventInitial"
             android:tag="10003" />
 
     </LinearLayout>

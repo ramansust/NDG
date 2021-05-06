@@ -86,7 +86,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     //childview
     public static View inflatedLayout_second;
     public static View inflatedLayout_third;
-    public LoadingDialogHandler loadingDialogHandler = new LoadingDialogHandler(this);
+    public final LoadingDialogHandler loadingDialogHandler = new LoadingDialogHandler(this);
 
     // Our renderer:
     //private ImageTargetRendererFerrari mRenderer;
@@ -223,12 +223,15 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
             case 17:
                 mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "leaf2019.xml");
                 break;
+
             case 18:
                 mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "jukef16.xml");
                 break;
+
             case 19:
                 mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "XtrailEur2020.xml");
                 break;
+
             default:
                 break;
         }
@@ -317,7 +320,6 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         }
 
         isFromShowInfo = true;
-
     }
 
     // The final call you receive before your activity is destroyed.
@@ -446,14 +448,17 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 mRendererLeaf2019 = new ARLeaf2019(this, vuforiaAppSession);
                 mGlView.setRenderer(mRendererLeaf2019);
                 break;
+
             case 18:
                 mRendererJuke2019 = new ARNewNissanJuke2019(this, vuforiaAppSession);
                 mGlView.setRenderer(mRendererJuke2019);
                 break;
+
             case 19:
                 mRendererXtrail2020Eur = new ARXtrail2020Eur(this, vuforiaAppSession);
                 mGlView.setRenderer(mRendererXtrail2020Eur);
                 break;
+
             default:
                 break;
         }
@@ -701,12 +706,12 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
         }
 
-        showProgressIndicator(false);
+        showProgressIndicator();
     }
 
-    private void showProgressIndicator(boolean show) {
+    private void showProgressIndicator() {
         if (loadingDialogHandler != null) {
-            if (show) {
+            if (false) {
                 loadingDialogHandler
                         .sendEmptyMessage(LoadingDialogHandler.SHOW_LOADING_DIALOG);
             } else {
@@ -813,8 +818,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     }
 
     boolean isExtendedTrackingActive() {
-        boolean mExtendedTracking = false;
-        return mExtendedTracking;
+        return false;
     }
 
     private void showToast(String text) {
@@ -884,7 +888,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 Values.ePubType = Values.BUTTON_TYPE;
                 PreferenceUtil preferenceUtil = new PreferenceUtil(getApplicationContext());
 
-                int ePubIndex = 0;
+                int ePubIndex;
 /*                if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 //                if (Values.carType == 14) {
                     ePubIndex = (Integer.parseInt(b.getTag().toString()) * 2) + 1;

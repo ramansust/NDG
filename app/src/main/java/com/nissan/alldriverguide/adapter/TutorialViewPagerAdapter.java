@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.nissan.alldriverguide.R;
 
 import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 public class TutorialViewPagerAdapter extends PagerAdapter {
 

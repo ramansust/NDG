@@ -71,7 +71,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import androidx.lifecycle.Observer;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
@@ -272,7 +271,7 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
             } else {
 
                 if (!DetectConnection.checkInternetConnection(context)) {
-                    showNoInternetDialogue("No Internet Connection. Please check your WIFI or cellular data network and try again.");
+                    showNoInternetDialogue();
                     return;
                 }
 
@@ -636,14 +635,14 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
 
     }
 
-    private void showNoInternetDialogue(String msg) {
+    private void showNoInternetDialogue() {
 
         final Dialog dialog = new DialogController(activity).internetDialog();
 
         dialog.setCancelable(false);
 
         TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
-        txtViewTitle.setText(msg);
+        txtViewTitle.setText("No Internet Connection. Please check your WIFI or cellular data network and try again.");
 
         Button btnOk = dialog.findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(v -> dialog.dismiss());
@@ -899,7 +898,7 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
             @Override
             public void onDownloaded(ResponseInfo responseInfo) {
                 if (Values.SUCCESS_STATUS.equals(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getAssetsUrl()) && !TextUtils.isEmpty(responseInfo.getLangUrl())) {
-                    startCarAssetsDownload(AppConfig.IS_APP_ONLINE ? responseInfo.getAssetsUrl() : NissanApp.getInstance().getAssetsURL(Values.carType), Values.PATH, AppConfig.IS_APP_ONLINE ? responseInfo.getLangUrl() : NissanApp.getInstance().getLanguageURL(Values.carType, selectedLang), NissanApp.getInstance().getCarPath(Values.carType));
+                    startCarAssetsDownload(AppConfig.IS_APP_ONLINE ? responseInfo.getAssetsUrl() : NissanApp.getInstance().getAssetsURL(Values.carType), AppConfig.IS_APP_ONLINE ? responseInfo.getLangUrl() : NissanApp.getInstance().getLanguageURL(Values.carType, selectedLang), NissanApp.getInstance().getCarPath(Values.carType));
                 } else {
                     showErrorDialog("No content found.");
                     dismissDialog();
@@ -1337,7 +1336,7 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
 
     private void setCarImageAccordingToDeviceResolution() {
 
-        String device_density = "", carImageURL = "";
+        String device_density, carImageURL;
         CarInfo info = new CarInfo();
 
         ArrayList<Object> mainList = NissanApp.getInstance().getCarList();
@@ -1372,11 +1371,11 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
         }
     }
 
-    private void startCarAssetsDownload(String assetsSource, String assetsDestination, String langSource, String langDestination) {
+    private void startCarAssetsDownload(String assetsSource, String langSource, String langDestination) {
         CarDownloadHelper carDownloadHelper = new CarDownloadHelper(CarDownloadActivity.this, "" + Values.carType,
                 langSource, assetsSource,
                 NissanApp.getInstance().getCarPath(Values.carType),
-                langDestination, assetsDestination
+                langDestination, Values.PATH
         );
         carDownloadHelper.downloadAssetAndLang();
         carDownloadHelper.getDownloadProgress().observe(this, carDownloadProgress -> {

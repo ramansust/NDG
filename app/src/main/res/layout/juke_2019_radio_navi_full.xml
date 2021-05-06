@@ -24,7 +24,6 @@
             android:layout_height="match_parent"
             android:layout_weight=".85"
             android:background="@android:color/transparent"
-            android:onClick="buttonEventInitial"
             android:tag="10001" />
 
         <TextView
@@ -39,7 +38,6 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:background="@android:color/transparent"
-            android:onClick="buttonEventInitial"
             android:tag="10003" />
 
         <TextView
@@ -54,7 +52,6 @@
             android:layout_height="match_parent"
             android:layout_weight=".95"
             android:background="@android:color/transparent"
-            android:onClick="buttonEventInitial"
             android:tag="10002" />
     </LinearLayout>
 

@@ -319,7 +319,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                     //call this after getting the asset link successfully
                     startCarAssetsDownload(AppConfig.IS_APP_ONLINE ? info.getAssetsUrl() :
                                     NissanApp.getInstance().getAssetsURL(Values.carType),
-                            Values.PATH,
                             AppConfig.IS_APP_ONLINE ? info.getLangUrl() : NissanApp.getInstance().getLanguageURL((Values.carType),
                                     preferenceUtil.getSelectedLang()),
                             NissanApp.getInstance().getCarPath(Values.carType));
@@ -339,7 +338,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         });
     }
 
-    private void startCarAssetsDownload(String assetsSource, String assetsDestination, final String langSource, String langDestination) {
+    private void startCarAssetsDownload(String assetsSource, final String langSource, String langDestination) {
         // downloadCarAssets method actually download car asset and language epub are both
 //        new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(Values.carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
 //            @Override
@@ -437,7 +436,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
                 assetsSource,
                 Values.PATH,
                 langDestination,
-                assetsDestination);
+                Values.PATH);
         carDownloadHelper.getDownloadProgress().observe(this, carDownloadProgress -> {
             if (carDownloadProgress == null) return;
             if (carDownloadProgress == CarDownloadProgress.COMPLETE.INSTANCE) {

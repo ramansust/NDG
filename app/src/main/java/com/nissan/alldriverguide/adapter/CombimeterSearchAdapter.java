@@ -77,9 +77,9 @@ public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSear
     }
 
     public class SimpleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView itemSearch;
-        TextView qRefGuide;
-        RelativeLayout rv;
+        final ImageView itemSearch;
+        final TextView qRefGuide;
+        final RelativeLayout rv;
 
         public SimpleViewHolder(View itemView) {
             super(itemView);
@@ -96,7 +96,7 @@ public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSear
                 case R.id.search_item:
                     // here set the epub type
                     Values.ePubType = Values.COMBIMETER_TYPE;
-                    int ePubIndex = 0;
+                    int ePubIndex;
                     /*if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
                         ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
                     } else {

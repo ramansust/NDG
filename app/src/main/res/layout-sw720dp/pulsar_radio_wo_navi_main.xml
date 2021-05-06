@@ -30,8 +30,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:clickable="true"
-                android:onClick="buttonEventInitial"
                 android:tag="50001" />
 
             <TextView
@@ -56,8 +54,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".85"
-                android:clickable="true"
-                android:onClick="buttonEventInitial"
                 android:tag="50002" />
 
             <TextView
@@ -77,8 +73,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1.2"
-                android:clickable="true"
-                android:onClick="buttonEventInitial"
                 android:tag="50003" />
 
             <TextView

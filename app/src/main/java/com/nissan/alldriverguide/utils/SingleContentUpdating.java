@@ -24,9 +24,9 @@ public abstract class SingleContentUpdating extends AsyncTask<Void, Void, Boolea
     private final ArrayList<String> folderNameUpdatedFolderList = new ArrayList<>();
     private final ArrayList<String> folderNameUpdatedFolderListAfterExtraction = new ArrayList<>();
     private final ArrayList<String> listOfFiles = new ArrayList<>();
-    private String langType = "";
+    private final String langType;
     private final String combimeterButton = "combimeter_button";
-    private int carType = 0;
+    private final int carType;
 
     public SingleContentUpdating(Activity activity, String lang, int carType) {
         this.activity = activity;
@@ -102,7 +102,7 @@ public abstract class SingleContentUpdating extends AsyncTask<Void, Void, Boolea
     }
 
     private boolean copyDirectory() {
-        String srcPath = "", destPath = "";
+        String srcPath, destPath;
 
         if (folderNameUpdatedFolderListAfterExtraction != null && folderNameUpdatedFolderListAfterExtraction.size() > 0) {
             for (int i = 0; i < folderNameUpdatedFolderListAfterExtraction.size(); i++) {

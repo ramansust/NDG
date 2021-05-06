@@ -20,7 +20,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:onClick="buttonEventInitial"
             android:tag="10001"
             android:text="" />
 
@@ -37,7 +36,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1.50"
             android:background="@android:color/transparent"
-            android:onClick="buttonEventInitial"
             android:tag="10003" />
 
         <TextView
@@ -52,7 +50,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:onClick="buttonEventInitial"
             android:tag="10002" />
     </LinearLayout>
 

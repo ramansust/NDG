@@ -74,7 +74,7 @@ public class CarDownloadAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        View view = convertView;
+        View view;
 
         if (list.get(position).getClass() == CarInfo.class || list.get(position).getClass() == Parent_car_list.class) {
             if (list.get(position).getClass() == CarInfo.class) {

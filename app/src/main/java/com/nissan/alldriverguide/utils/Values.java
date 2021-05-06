@@ -156,24 +156,24 @@ public class Values {
     public static String warranty = "/warranty_";
     public static String engine = "/engine_";
     public static String epub = ".epub";
-    public static String UNDERSCORE = "_";
-    public static String SLASH = "/";
-    public static String ASSETS = "/assets/";
+    public static final String UNDERSCORE = "_";
+    public static final String SLASH = "/";
+    public static final String ASSETS = "/assets/";
     public static String ar_value = "";
     // Tyre Transition Info
     public static int gif_index = 0;
-    public static ArrayList<String> gif_names = new ArrayList<>();
+    public static final ArrayList<String> gif_names = new ArrayList<>();
     public static int gif_count = 0;
     public static String tyre_gif_folder = "";
     public static int i = 0;
     public static int videoIndex = 0;
-    public static String tabExplore = "Explore";
-    public static String tabAssistance = "Assistance";
-    public static String tabSearch = "Search";
-    public static String tabSettings = "Settings";
-    public static String tabSearchChildFragment = "tabSearchFragment";
+    public static final String tabExplore = "Explore";
+    public static final String tabAssistance = "Assistance";
+    public static final String tabSearch = "Search";
+    public static final String tabSettings = "Settings";
+    public static final String tabSearchChildFragment = "tabSearchFragment";
     public static String keyWord = "";
-    public static String epubTypeExploreVideo = "video";
+    public static final String epubTypeExploreVideo = "video";
     public static String epubTypeExploreEpub = "epub";
 
 }

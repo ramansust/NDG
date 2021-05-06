@@ -54,10 +54,9 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
     public void onBindHeaderViewHolder(MainVH holder, int section, boolean expanded) {
         // Setup header view
         String sectionName = allData.get(section).getSectionTitle();
-        HomePageSectionWiseAdapter.MainVH sectionViewHolder = holder;
-        sectionViewHolder.sectionTitle.setText(sectionName);
+        holder.sectionTitle.setText(sectionName);
 
-        sectionViewHolder.sectionTitle.setBackgroundColor(Color.parseColor("" + allData.get(section).getColorCode().trim()));
+        holder.sectionTitle.setBackgroundColor(Color.parseColor("" + allData.get(section).getColorCode().trim()));
     }
 
     @Override
@@ -70,16 +69,14 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
 
         final EpubInfo epubInfo = allData.get(section).getEpublist().get(relativePosition);
 
-        HomePageSectionWiseAdapter.MainVH viewHolder = holder;
-
         if (allData.get(section).getEpublist().size() - 1 == relativePosition) {
-            viewHolder.imageViewDivider.setVisibility(View.GONE);
+            holder.imageViewDivider.setVisibility(View.GONE);
         } else {
-            viewHolder.imageViewDivider.setVisibility(View.VISIBLE);
+            holder.imageViewDivider.setVisibility(View.VISIBLE);
         }
 
-        viewHolder.txtViewTitle.setText((relativePosition + 1) + ". " + epubInfo.getTitle());
-        viewHolder.bindDataWithViewHolder(epubInfo, epubInfo.getIndex());
+        holder.txtViewTitle.setText((relativePosition + 1) + ". " + epubInfo.getTitle());
+        holder.bindDataWithViewHolder(epubInfo, epubInfo.getIndex());
     }
 
     @Override
@@ -106,9 +103,9 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
 
     public static class MainVH extends SectionedViewHolder {
         final TextView sectionTitle;
-        TextView txtViewTitle;
+        final TextView txtViewTitle;
 
-        ImageView imageViewDivider;
+        final ImageView imageViewDivider;
 
         EpubInfo epubInfo;
         int index;

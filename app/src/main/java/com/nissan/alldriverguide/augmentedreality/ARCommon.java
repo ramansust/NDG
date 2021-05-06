@@ -6,7 +6,6 @@
 
 package com.nissan.alldriverguide.augmentedreality;
 
-import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -34,12 +33,12 @@ public abstract class ARCommon implements GLSurfaceView.Renderer, SampleAppRende
 
     private static final String LOG_TAG = "AR_COMMON";
 
-    protected SampleApplicationSession vuforiaAppSession;
-    protected SampleAppRenderer mSampleAppRenderer;
-    protected ImageTargetActivity mActivity;
+    protected final SampleApplicationSession vuforiaAppSession;
+    protected final SampleAppRenderer mSampleAppRenderer;
+    protected final ImageTargetActivity mActivity;
     protected Renderer mRenderer;
     protected LayoutInflater inflater;
-    protected String drawables;
+    protected final String drawables;
 
     protected ARCommon(ImageTargetActivity activity, SampleApplicationSession session) {
         mActivity = activity;
@@ -156,8 +155,8 @@ public abstract class ARCommon implements GLSurfaceView.Renderer, SampleAppRende
     }
 
     protected void detectImage(int layout_id, String imageName) {
+        ImageTargetActivity.isDetected = true;
         try {
-            ImageTargetActivity.isDetected = true;
             vuforiaAppSession.pauseAR();
         } catch (SampleApplicationException e) {
             e.printStackTrace();

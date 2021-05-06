@@ -12,14 +12,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.nissan.alldriverguide.adapter.CarDownloadAdapterNew;
-import com.nissan.alldriverguide.multiLang.model.CarList;
 import com.nissan.alldriverguide.viewmodel.CarDownloadViewModel;
-
-import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;

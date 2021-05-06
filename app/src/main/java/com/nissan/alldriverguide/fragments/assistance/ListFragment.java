@@ -190,7 +190,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Fragment frag = null;
+        Fragment frag;
 
         // here for display demo popup for tyre information
         if (Values.ePubType == Values.TYRE_TYPE) {

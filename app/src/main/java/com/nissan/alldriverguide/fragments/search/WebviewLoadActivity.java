@@ -1,7 +1,6 @@
 package com.nissan.alldriverguide.fragments.search;
 
 import android.os.Bundle;
-import android.view.View;
 import android.webkit.WebView;
 
 import com.nissan.alldriverguide.R;

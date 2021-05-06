@@ -1,6 +1,5 @@
 package com.nissan.alldriverguide.augmentedreality;
 
-import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -8,10 +7,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.nissan.alldriverguide.ImageTargetActivity;
 import com.nissan.alldriverguide.R;
@@ -160,7 +157,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
 
             mActivity.layoutCameraView.removeAllViews();
             vuforiaAppSession.onResume();
-
         });
 
         ibInfo.setOnClickListener(v -> {
@@ -195,7 +191,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
 
         });
         inflater = LayoutInflater.from(mActivity);
-
     }
 
     //Method for sub category image click

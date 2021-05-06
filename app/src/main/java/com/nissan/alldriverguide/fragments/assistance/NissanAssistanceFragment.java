@@ -16,7 +16,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.nissan.alldriverguide.MainActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.AssistanceAdapter;
 import com.nissan.alldriverguide.customviews.DialogController;
@@ -201,7 +200,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
 
             case 2:
                 if (!DetectConnection.checkInternetConnection(getActivity())) {
-                    showNoInternetDialogue("No Internet Connection. Please check your WIFI or cellular data network and try again.");
+                    showNoInternetDialogue();
                     return;
                 }
                 if (!getArguments().getString(ONLINE_BOOKING_URL).isEmpty()) {
@@ -223,12 +222,12 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
         }
     }
 
-    private void showNoInternetDialogue(String msg) {
+    private void showNoInternetDialogue() {
 
         final Dialog dialog = new DialogController(getActivity()).internetDialog();
         dialog.setCancelable(false);
         TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
-        txtViewTitle.setText(msg);
+        txtViewTitle.setText("No Internet Connection. Please check your WIFI or cellular data network and try again.");
 
         Button btnOk = dialog.findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(v -> {

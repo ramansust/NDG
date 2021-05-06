@@ -22,8 +22,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2.25"
-                android:clickable="true"
-                android:onClick="buttonEventInitial"
                 android:orientation="vertical"
                 android:tag="40001" />
 
@@ -38,8 +36,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.4"
-            android:clickable="true"
-            android:onClick="buttonEventInitial"
             android:orientation="vertical"
             android:tag="40002" />
 
@@ -54,8 +50,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2.25"
-                android:clickable="true"
-                android:onClick="buttonEventInitial"
                 android:orientation="vertical"
                 android:tag="40003" />
 

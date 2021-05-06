@@ -67,7 +67,7 @@ public class ModelYearAdapter extends RecyclerView.Adapter<ModelYearAdapter.Mode
 
     public static class ModelYearViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txt_title;
+        final TextView txt_title;
         //SimpleDraweeView imageView;
 
         public ModelYearViewHolder(View view) {

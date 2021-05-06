@@ -101,7 +101,7 @@ public class ListAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        TextView txtViewTitle;
+        final TextView txtViewTitle;
 
         public ViewHolder(View view) {
             txtViewTitle = view.findViewById(R.id.txt_title);

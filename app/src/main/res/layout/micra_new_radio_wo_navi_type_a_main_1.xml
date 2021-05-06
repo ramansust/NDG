@@ -22,8 +22,6 @@
                 android:id="@+id/micra_new_radio_wo_navi_type_a_main_left"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="true"
-                android:onClick="buttonEventInitial"
                 android:tag="50001" />
 
         </LinearLayout>
@@ -37,8 +35,6 @@
                 android:id="@+id/micra_new_radio_wo_navi_type_a_main_middle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="true"
-                android:onClick="buttonEventInitial"
                 android:tag="50001" />
         </LinearLayout>
 
@@ -51,8 +47,6 @@
                 android:id="@+id/micra_new_radio_wo_navi_type_a_main_right"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="true"
-                android:onClick="buttonEventInitial"
                 android:tag="50001" />
         </LinearLayout>
 

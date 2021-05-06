@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -70,11 +69,9 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -1732,9 +1729,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             }
 
             if (info.getStatus().equals("1") && info.getId() == 14) {
-                leaf2017Info = info;
-                leaf2017Index = k;
-                leaf2017Downloaded = true;
             }
         }
 
@@ -1863,12 +1857,12 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
     }
 
     static class ViewHolder {
-        SimpleDraweeView imageView;
-        ImageView imageViewBorder;
-        TextView txtViewTitle;
-        ImageButton imgDeleteOrDownload;
-        RelativeLayout relativeLayoutSection;
-        RelativeLayout relativeLayout;
+        final SimpleDraweeView imageView;
+        final ImageView imageViewBorder;
+        final TextView txtViewTitle;
+        final ImageButton imgDeleteOrDownload;
+        final RelativeLayout relativeLayoutSection;
+        final RelativeLayout relativeLayout;
 
         public ViewHolder(View view) {
             imageView = view.findViewById(R.id.ivMainCarImage);

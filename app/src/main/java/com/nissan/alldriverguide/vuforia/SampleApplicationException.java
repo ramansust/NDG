@@ -24,8 +24,8 @@ public class SampleApplicationException extends Exception {
     public static final int SET_FOCUS_MODE_FAILURE = 7;
     public static final int ACTIVATE_FLASH_FAILURE = 8;
 
-    private int mCode = -1;
-    private String mString = "";
+    private final int mCode;
+    private final String mString;
 
 
     public SampleApplicationException(int code, String description) {

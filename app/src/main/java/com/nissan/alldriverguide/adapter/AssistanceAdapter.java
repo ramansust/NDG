@@ -81,9 +81,9 @@ public class AssistanceAdapter extends BaseAdapter {
      * this class for list item view initialization
      */
     static class ViewHolder {
-        ImageView imageView;
-        TextView txtViewTitle;
-        TextView txtViewSubTitle;
+        final ImageView imageView;
+        final TextView txtViewTitle;
+        final TextView txtViewSubTitle;
 
         public ViewHolder(View view) {
             imageView = view.findViewById(R.id.img_view);

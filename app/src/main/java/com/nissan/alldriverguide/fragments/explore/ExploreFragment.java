@@ -3,7 +3,6 @@ package com.nissan.alldriverguide.fragments.explore;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -63,10 +62,8 @@ import com.nissan.alldriverguide.view.ScrollableGridView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
@@ -861,8 +858,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         setFrontImageExploreMiddleTab(exploretabSliderModel, exploretabSliderModel.getFrontImg());
 
-        final ViewGroup finalLayout = layout;
-        ImageView front_image_view = finalLayout.findViewById(R.id.txt_map);
+        ImageView front_image_view = layout.findViewById(R.id.txt_map);
         if (front_image_url != null) {
             Glide.with(this).asBitmap().load(front_image_url).into(new CustomTarget<Bitmap>() {
                 @Override
@@ -880,7 +876,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 }
             });
         }
-        ImageView back_image_view = finalLayout.findViewById(R.id.drawee_view_map_1);
+        ImageView back_image_view = layout.findViewById(R.id.drawee_view_map_1);
 
         if (back_image_url != null) {
             Glide.with(this).asBitmap().load(back_image_url).fitCenter().into(back_image_view);
@@ -952,7 +948,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             }*/
         });
 
-        return finalLayout;
+        return layout;
     }
 
     //layout for map layout for explore slider part
@@ -962,9 +958,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         setFrontImageExploreMiddleTab(exploretabSliderModel, exploretabSliderModel.getFrontImg());
 
-        final ViewGroup finalLayout = layout;
-
-        ImageView front_image_view = finalLayout.findViewById(R.id.drawee_view_map_2);
+        ImageView front_image_view = layout.findViewById(R.id.drawee_view_map_2);
 
         if (front_image_url != null) {
             Glide.with(this).asBitmap().load(front_image_url).into(new CustomTarget<Bitmap>() {
@@ -983,7 +977,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             });
         }
 
-        ImageView back_image_view = finalLayout.findViewById(R.id.ivMap);
+        ImageView back_image_view = layout.findViewById(R.id.ivMap);
 
         if (back_image_url != null) {
             Glide.with(this).asBitmap().load(back_image_url).into(back_image_view);
@@ -1004,7 +998,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     setTextToViews(tvNissanDoorToDoor, doorToDoorText == null || doorToDoorText.isEmpty() ? resources.getString(R.string.nissan_door_to_door_nav_text) : doorToDoorText, R.color.white);
                     setTextToViews(tvSetUpGuide, setUpGuideText == null || setUpGuideText.isEmpty() ? resources.getString(R.string.set_up_guide_text) : setUpGuideText, R.color.black);*/
 
-        finalLayout.findViewById(R.id.ivMap).setOnClickListener(view -> {
+        layout.findViewById(R.id.ivMap).setOnClickListener(view -> {
             // here start the playing video for grid view item click
 
             if (DetectConnection.checkInternetConnection(getActivity())) {
@@ -1043,7 +1037,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             }
         });
 
-        return finalLayout;
+        return layout;
     }
 
     @Override

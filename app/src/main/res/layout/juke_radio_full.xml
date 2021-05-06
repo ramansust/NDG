@@ -18,9 +18,6 @@
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:layout_weight="1.25"
-
-            android:clickable="true"
-            android:onClick="buttonEventInitial"
             android:tag="20003" />
 
         <TextView
@@ -34,8 +31,6 @@
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_weight="1.4"
-            android:clickable="true"
-            android:onClick="buttonEventInitial"
             android:tag="30001" />
     </LinearLayout>
 

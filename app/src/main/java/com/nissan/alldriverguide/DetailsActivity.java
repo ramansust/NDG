@@ -27,6 +27,8 @@ import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.nissan.alldriverguide.utils.NissanApp.*;
+
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -103,13 +105,13 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             switch (Values.ePubType) {
                 case Values.COMBIMETER_TYPE:
 
-                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.COMBIMETER + Values.TOC_DIRECTORY).exists()) {
-                        list = new NissanApp().getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.COMBIMETER);
+                    if (new File(getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.COMBIMETER + Values.TOC_DIRECTORY).exists()) {
+                        list = getInstance().parseePub(getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.COMBIMETER);
                         //list = new MAePubParser(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.combimeter + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.epub).parseePub();
 
                         if (list != null) {
                             htmlContent = "file://"
-                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang()
+                                    + getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang()
                                     + Values.COMBIMETER
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(index).getHtmlLink());
@@ -120,12 +122,12 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                     break;
 
                 case Values.HOMEPAGE_TYPE:
-                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
+                    if (new File(getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
                         //list = new MAePubParser(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.homepage + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.epub).parseePub();
-                        list = new NissanApp().getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
+                        list = getInstance().parseePub(getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
                         if (list != null) {
                             htmlContent = "file://"
-                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang()
+                                    + getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang()
                                     + Values.HOME_PAGE
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(index).getHtmlLink());
@@ -135,13 +137,13 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                     break;
 
                 case Values.TYRE_TYPE:
-                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.TYRE + Values.TOC_DIRECTORY).exists()) {
-                        list = new NissanApp().getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.TYRE);
+                    if (new File(getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.TYRE + Values.TOC_DIRECTORY).exists()) {
+                        list = getInstance().parseePub(getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.TYRE);
                         //list = new MAePubParser(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.tyre + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.epub).parseePub();
 
                         if (list != null) {
                             htmlContent = "file://"
-                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang()
+                                    + getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang()
                                     + Values.TYRE
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(index).getHtmlLink());
@@ -151,13 +153,13 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                     break;
 
                 case Values.ENGINE_TYPE:
-                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.ENGINE + Values.TOC_DIRECTORY).exists()) {
-                        list = new NissanApp().getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.ENGINE);
+                    if (new File(getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.ENGINE + Values.TOC_DIRECTORY).exists()) {
+                        list = getInstance().parseePub(getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.ENGINE);
                         //list = new MAePubParser(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.engine + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.epub).parseePub();
 
                         if (list != null) {
                             htmlContent = "file://"
-                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang()
+                                    + getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang()
                                     + Values.ENGINE
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(index).getHtmlLink());
@@ -167,13 +169,13 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                     break;
 
                 case Values.WARRANTY_TYPE:
-                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.WARRANTY + Values.TOC_DIRECTORY).exists()) {
-                        list = new NissanApp().getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.WARRANTY);
+                    if (new File(getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.WARRANTY + Values.TOC_DIRECTORY).exists()) {
+                        list = getInstance().parseePub(getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.WARRANTY);
                         //list = new MAePubParser(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.warranty + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.epub).parseePub();
 
                         if (list != null) {
                             htmlContent = "file://"
-                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang()
+                                    + getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang()
                                     + Values.WARRANTY
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(index).getHtmlLink());
@@ -184,13 +186,13 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
                 case Values.BUTTON_TYPE:
 
-                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.BUTTON + Values.TOC_DIRECTORY).exists()) {
-                        list = new NissanApp().getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.BUTTON);
+                    if (new File(getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.BUTTON + Values.TOC_DIRECTORY).exists()) {
+                        list = getInstance().parseePub(getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.BUTTON);
                         //list = new MAePubParser(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.button + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.epub).parseePub();
 
                         if (list != null) {
                             htmlContent = "file://"
-                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang()
+                                    + getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang()
                                     + Values.BUTTON
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(index).getHtmlLink());
@@ -200,13 +202,13 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                     break;
 
                 case Values.INFO_TYPE:
-                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.INFO + Values.TOC_DIRECTORY).exists()) {
-                        list = new NissanApp().getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.INFO);
+                    if (new File(getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.INFO + Values.TOC_DIRECTORY).exists()) {
+                        list = getInstance().parseePub(getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.INFO);
                         //list = new MAePubParser(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.info + new PreferenceUtil(getApplicationContext()).getSelectedLang() + Values.epub).parseePub();
 
                         if (list != null) {
                             htmlContent = "file://"
-                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang()
+                                    + getInstance().getCarPath(Values.carType) + getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getApplicationContext()).getSelectedLang()
                                     + Values.INFO
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(index).getHtmlLink());
@@ -299,6 +301,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     public String getAnalytics(String details) {
-        return NissanApp.getInstance().getCarName(Values.carType) + Analytics.DOT + Values.tabExplore + details + Analytics.DOT + NissanApp.getInstance().getLanguageName(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + Analytics.DOT + Analytics.PLATFORM + "";
+        return getInstance().getCarName(Values.carType) + Analytics.DOT + Values.tabExplore + details + Analytics.DOT + getInstance().getLanguageName(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + Analytics.DOT + Analytics.PLATFORM + "";
     }
 }
