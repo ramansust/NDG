@@ -181,7 +181,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
             title.setText("NEW NISSAN LEAF");
             RecyclerView recyclerView = childViews[v].findViewById(R.id.rv_model_year_list);
 
-            adapter = new ModelYearAdapter(ModelYearActivity.this, carLists, this);
+            adapter = new ModelYearAdapter(carLists, this);
 
             LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
             DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),

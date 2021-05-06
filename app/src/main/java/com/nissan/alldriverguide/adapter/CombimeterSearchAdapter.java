@@ -4,6 +4,7 @@ package com.nissan.alldriverguide.adapter;
   Created by shubha on 11/16/17.
  */
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -22,6 +23,7 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,8 +46,9 @@ public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSear
     }
 
 
+    @NonNull
     @Override
-    public SimpleViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+    public SimpleViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, final int viewType) {
         final View view = LayoutInflater.from(mContext).inflate(R.layout.all_search_item, parent, false);
         SimpleViewHolder s = new SimpleViewHolder(view);
         s.setIsRecyclable(false);
@@ -53,7 +56,7 @@ public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSear
     }
 
     @Override
-    public void onBindViewHolder(final SimpleViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final SimpleViewHolder holder, int position) {
 
         if (holder instanceof SimpleViewHolder) {
             holder.rv.setBackgroundColor(Color.BLACK);
@@ -89,33 +92,27 @@ public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSear
             itemSearch.setOnClickListener(this);
         }
 
+        @SuppressLint("NonConstantResourceId")
         @Override
         public void onClick(View v) {
 
-            switch (v.getId()) {
-                case R.id.search_item:
-                    // here set the epub type
-                    Values.ePubType = Values.COMBIMETER_TYPE;
-                    int ePubIndex;
+            if (v.getId() == R.id.search_item) {// here set the epub type
+                Values.ePubType = Values.COMBIMETER_TYPE;
+                int ePubIndex;
                     /*if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
                         ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
                     } else {
                         ePubIndex = Integer.parseInt(v.getTag().toString());
                     }*/
 
-                    ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
+                ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
 
-                    // here redirect the fragment to display details data
-                    FragmentTransaction fragmentTransaction = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
-                    fragmentTransaction.replace(R.id.container, DetailsFragment.newInstance(ePubIndex - 1, TabFragment.getTitleName(Values.COMBIMETER_TYPE)));
-                    fragmentTransaction.addToBackStack(Values.tabSearch);
-                    fragmentTransaction.commit();
-                    break;
-
-                default:
-                    break;
-
+                // here redirect the fragment to display details data
+                FragmentTransaction fragmentTransaction = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
+                fragmentTransaction.replace(R.id.container, DetailsFragment.newInstance(ePubIndex - 1, TabFragment.getTitleName(Values.COMBIMETER_TYPE)));
+                fragmentTransaction.addToBackStack(Values.tabSearch);
+                fragmentTransaction.commit();
             }
         }
     }

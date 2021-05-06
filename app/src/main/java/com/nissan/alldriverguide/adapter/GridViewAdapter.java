@@ -119,7 +119,7 @@ public class GridViewAdapter extends BaseAdapter {
         return convertView;
     }
 
-    final ControllerListener listener = new BaseControllerListener<ImageInfo>() {
+    final ControllerListener<ImageInfo> listener = new BaseControllerListener<ImageInfo>() {
 
         @Override
         public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable animatable) {

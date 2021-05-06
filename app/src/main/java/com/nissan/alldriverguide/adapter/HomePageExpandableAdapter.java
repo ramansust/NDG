@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -175,6 +176,7 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         if (convertView == null) {

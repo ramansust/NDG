@@ -77,14 +77,10 @@ public class VideoAdapter extends BaseAdapter {
     static class ViewHolder {
         final ImageView imgView;
         final TextView txtViewTitle;
-        TextView txtViewDescription;
-        TextView txtViewCount;
 
         public ViewHolder(View view) {
             imgView = view.findViewById(R.id.img_view);
             txtViewTitle = view.findViewById(R.id.txt_video_title);
-//            txtViewDescription = (TextView) view.findViewById(R.id.txt_video_description);
-//            txtViewCount = (TextView) view.findViewById(R.id.txt_video_count);
         }
     }
 

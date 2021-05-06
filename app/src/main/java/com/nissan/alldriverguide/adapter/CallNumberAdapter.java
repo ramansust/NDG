@@ -22,12 +22,10 @@ public class CallNumberAdapter extends BaseAdapter {
     private final Context context;
     private LayoutInflater inflater;
     private final List<CallInfo> list;
-    private boolean isColor;
 
     public CallNumberAdapter(Context context, List<CallInfo> list) {
         this.context = context;
         this.list = list;
-        this.isColor = isColor;
         inflater = LayoutInflater.from(this.context);
     }
 

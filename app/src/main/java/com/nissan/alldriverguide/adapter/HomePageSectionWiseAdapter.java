@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ import com.nissan.alldriverguide.model.HomePageSectionInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * @author Sourav
@@ -59,6 +62,7 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
         holder.sectionTitle.setBackgroundColor(Color.parseColor("" + allData.get(section).getColorCode().trim()));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(MainVH holder, int section, int relativePosition, int absolutePosition) {
         // Setup non-header view.
@@ -84,17 +88,15 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
         // Setup footer view, if footers are enabled (see the next section)
     }
 
+    @NonNull
     @Override
-    public MainVH onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MainVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Change inflated layout based on type
         int layoutRes;
-        switch (viewType) {
-            case VIEW_TYPE_HEADER:
-                layoutRes = R.layout.list_section_row;
-                break;
-            default:
-                layoutRes = R.layout.homepage_row;
-                break;
+        if (viewType == VIEW_TYPE_HEADER) {
+            layoutRes = R.layout.list_section_row;
+        } else {
+            layoutRes = R.layout.homepage_row;
         }
         View v = LayoutInflater.from(parent.getContext()).inflate(layoutRes, parent, false);
 

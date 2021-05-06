@@ -14,6 +14,7 @@ import com.nissan.alldriverguide.model.WebContent;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -30,8 +31,9 @@ public class WebDataAdapter extends RecyclerView.Adapter<WebDataAdapter.SimpleVi
         this.list = list;
     }
 
+    @NonNull
     @Override
-    public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SimpleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.web_data_model, parent, false);
         return new SimpleViewHolder(v);
     }

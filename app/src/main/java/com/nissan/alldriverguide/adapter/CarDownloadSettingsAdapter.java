@@ -56,7 +56,6 @@ import com.nissan.alldriverguide.multiLang.model.LanguageList;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.AppConfig;
-import com.nissan.alldriverguide.utils.DialogErrorFragment;
 import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.SearchDBAsync;
@@ -71,7 +70,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -125,7 +123,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         commonDao = CommonDao.getInstance();
         preferenceUtil = new PreferenceUtil(context);
         loadResource();
-        String deviceDensity = NissanApp.getInstance().getDensityName(this.activity);
         getDataFromSP();
     }
 
@@ -271,69 +268,58 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         return convertView;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.img_btn_delete_or_download:
+        if (v.getId() == R.id.img_btn_delete_or_download) {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
 
-                if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
+            position = Integer.parseInt(v.getTag().toString());
 
-                position = Integer.parseInt(v.getTag().toString());
-
-                // for downloaded car deleted action
-                if ("1".equalsIgnoreCase(list.get(position).getStatus())) {
-                    if (DetectConnection.checkInternetConnection(activity.getApplicationContext())) {
+            // for downloaded car deleted action
+            if ("1".equalsIgnoreCase(list.get(position).getStatus())) {
+                if (DetectConnection.checkInternetConnection(activity.getApplicationContext())) {
 //                        startCarDeleteProcedure();
-                        showCarDownloadDialogForSingleCar(list.get(position).getId(), false);
-                    } else {
+                    showCarDownloadDialogForSingleCar(list.get(position).getId(), false);
+                } else {
 
-                        NissanApp.getInstance().showInternetAlert(activity, internetCheckMessage.isEmpty() ? context.getResources().getString(R.string.internet_connect) : internetCheckMessage);
-                    }
+                    NissanApp.getInstance().showInternetAlert(activity, internetCheckMessage.isEmpty() ? context.getResources().getString(R.string.internet_connect) : internetCheckMessage);
+                }
 
-                } else { // for downloading car action
-                    if (NissanApp.getInstance().createPath(Values.PATH)) {
-                        if (DetectConnection.checkInternetConnection(activity.getApplicationContext())) {
-                            selectedCarType = list.get(position).getId();
-                            if (list.get(position).getId() == 1 || list.get(position).getId() == 2
-                                    || list.get(position).getId() == 4 || list.get(position).getId() == 5
-                                    || list.get(position).getId() == 12 || list.get(position).getId() == 16) {
-                                showCarDownloadDialog(list.get(position).getId());
-                            } else if (list.get(position).getId() == 14 || list.get(position).getId() == 17
-                                    || list.get(position).getId() == 13 || list.get(position).getId() == 15
+            } else { // for downloading car action
+                if (NissanApp.getInstance().createPath(Values.PATH)) {
+                    if (DetectConnection.checkInternetConnection(activity.getApplicationContext())) {
+                        selectedCarType = list.get(position).getId();
+                        if (list.get(position).getId() == 1 || list.get(position).getId() == 2
+                                || list.get(position).getId() == 4 || list.get(position).getId() == 5
+                                || list.get(position).getId() == 12 || list.get(position).getId() == 16) {
+                            showCarDownloadDialog(list.get(position).getId());
+                        } else if (list.get(position).getId() == 14 || list.get(position).getId() == 17
+                                || list.get(position).getId() == 13 || list.get(position).getId() == 15
+                                || list.get(position).getId() == 19) {
+                            Log.e(CarDownloadSettingsAdapter.class.getSimpleName(), "onClick: ParentCarID " + NissanApp.getInstance().getParentId(list.get(position).getId()));
+                            if (list.get(position).getId() == 13 || list.get(position).getId() == 15
                                     || list.get(position).getId() == 19) {
-                                Log.e(CarDownloadSettingsAdapter.class.getSimpleName(), "onClick: ParentCarID " + NissanApp.getInstance().getParentId(list.get(position).getId()));
-                                if (list.get(position).getId() == 13 || list.get(position).getId() == 15
-                                        || list.get(position).getId() == 19) {
-                                    showCarDownloadDialog(13);
-                                } else
-                                    modelYearFeatureDialog(NissanApp.getInstance().getParentId(list.get(position).getId()));
-                            } else {
-                                LanguageSelectionDialog(list.get(position).getId());
-                            }
+                                showCarDownloadDialog(13);
+                            } else
+                                modelYearFeatureDialog(NissanApp.getInstance().getParentId(list.get(position).getId()));
                         } else {
-//                            NissanApp.getInstance().showInternetAlert(activity, context.getResources().getString(R.string.internet_connect));
-                            NissanApp.getInstance().showInternetAlert(activity, internetCheckMessage.isEmpty() ? context.getResources().getString(R.string.internet_connect) : internetCheckMessage);
+                            LanguageSelectionDialog(list.get(position).getId());
                         }
                     } else {
-
+//                            NissanApp.getInstance().showInternetAlert(activity, context.getResources().getString(R.string.internet_connect));
+                        NissanApp.getInstance().showInternetAlert(activity, internetCheckMessage.isEmpty() ? context.getResources().getString(R.string.internet_connect) : internetCheckMessage);
                     }
                 }
-
-                break;
-
-            default:
-                break;
+            }
         }
     }
 
     private void modelYearFeatureDialog(int parentCarId) {
-
         loadChildCars(parentCarId);
-
-
     }
 
     private void loadChildCars(int parentCarId) {
@@ -345,19 +331,19 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         }
         Logger.error("parentCarId", "________" + parentCarId);
         for (CarList carList : NissanApp.getInstance().getCarListWAP()) {
-            if (Integer.valueOf(carList.getParent_car_id()) == parentCarId &&
+            if (Integer.parseInt(carList.getParent_car_id()) == parentCarId &&
                     carList.getCar_model_version().equals("new") &&
                     !carList.getId().equals("15")) //skip Xtrail 2017 Rus Version
             {
                 CarInfo carInfo = new CarInfo();
                 Logger.error("car_id_child", "________" + carList.getId() + "_____" + carList.getCarName());
-                carInfo.setId(Integer.valueOf(carList.getId()));
+                carInfo.setId(Integer.parseInt(carList.getId()));
                 carInfo.setName(carList.getCarName());
-                carInfo.setStatus(String.valueOf(commonDao.getStatus(context, Integer.valueOf(carList.getId()))));
+                carInfo.setStatus(String.valueOf(commonDao.getStatus(context, Integer.parseInt(carList.getId()))));
                 carInfo.setDateTime(NissanApp.getInstance().getDateTime());
                 carInfo.setCarModelVersion(carList.getCar_model_version());
                 carInfo.setCarImg(carList.getCarImg());
-                carInfo.setParentCarId(Integer.valueOf(carList.getParent_car_id()));
+                carInfo.setParentCarId(Integer.parseInt(carList.getParent_car_id()));
 //                if (Integer.valueOf(carInfo.getStatus()) != 1)
                 childCarsList.add(carInfo);
             }
@@ -385,12 +371,12 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             RecyclerView recyclerView = childViews[v].findViewById(R.id.rv_model_year_list);
 
 
-            ModelYearAdapter adapter = new ModelYearAdapter(activity.getApplicationContext(), childCarsList, this);
+            ModelYearAdapter adapter = new ModelYearAdapter(childCarsList, this);
 
 
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
+            LinearLayoutManager mLayoutManager = new LinearLayoutManager(context);
             DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                    ((LinearLayoutManager) mLayoutManager).getOrientation());
+                    mLayoutManager.getOrientation());
             recyclerView.addItemDecoration(dividerItemDecoration);
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -398,7 +384,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             //carAdapter.notifyDataSetChanged();
 
             container.addView(childViews[v]);
-
         }
 
         dialogModelYearFeature.show();
@@ -806,87 +791,9 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 }
             }
         }.execute();
-
-
-        //        new MADownloadManager(activity, context).downloadCarAssets(false, NissanApp.getInstance().getCarName(carType), assetsSource, assetsDestination, langSource, langDestination, new DownloaderStatus() {
-//            @Override
-//            public boolean onComplete(boolean status) {
-//                if (status) {
-//                    activity.runOnUiThread(new Runnable() {
-//                        @SuppressLint("StaticFieldLeak")
-//                        @Override
-//                        public void run() {
-//                } else {
-//                    if (progressDialog != null && progressDialog.isShowing()) {
-//                        progressDialog.dismiss();
-//                    }
-//                }
-//                return false;
-//            }
-//
-//            @Override
-//            public int onError(int i) {
-//                errorFileDelete(carType);
-//                showErrorDialog(context.getResources().getString(R.string.internet_connection_interruption));
-//                return 0;
-//            }
-//
-//            @Override
-//            public boolean internetConnection(boolean b) {
-//                errorFileDelete(carType);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean urlReachable(boolean b) {
-//                errorFileDelete(carType);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean destinationExists(boolean b) {
-//                errorFileDelete(carType);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean sourcePath(boolean b) {
-//                errorFileDelete(carType);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean destinationPath(boolean b) {
-//                errorFileDelete(carType);
-//                return false;
-//            }
-//
-//            @Override
-//            public void downloadCompletion(Float aFloat) {
-//
-//                String formattedString = String.format("%.02f", aFloat);
-//                if (progressDialog != null) {
-//                    progressDialog.setMessage(carNames[carType - 1] + "\n" + (downloadingMsg == null || downloadingMsg.isEmpty() ? activity.getResources().getString(R.string.alert_downloading) : downloadingMsg) + formattedString + "%");
-//                }
-//            }
-//
-//            @Override
-//            public void init() {
-//                if (progressDialog == null) {
-//                    progressDialog = new ProgressDialogController(activity).downloadProgress(carNames[carType - 1] + "\n" + activity.getResources().getString(R.string.alert_downloading));
-//                }
-//            }
-//        });
-        //TODO Implement download
-    }
-
-    private void showErrorDialog(String msg) {
-        DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
-        dialogFragment.show(((FragmentActivity) activity).getSupportFragmentManager(), "error_fragment");
     }
 
     private void showCarDownloadDialogForSingleCar(final int carType, final boolean isCarDownload) {
-
         controller = new GlobalMessageController(this);
 
         Logger.error("showCarDownloadDialogForSingleCar", "_________" + carType);
@@ -1542,7 +1449,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
     public void loadResource() {
         resources = new Resources(activity.getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(activity, preferenceUtil.getSelectedLang()));
-        String[] carNames = activity.getResources().getStringArray(R.array.car_names);
         internetCheckMessage = NissanApp.getInstance().getAlertMessage(context, preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
        /* boolean leaf17IsDownloaded =false;
         for (int i = 0; i < list.size(); i++) {
@@ -1624,8 +1530,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         Collections.sort(list, (ideaVal1, ideaVal2) -> {
             // avoiding NullPointerException in case name is null
-            Long idea1 = Long.valueOf(ideaVal1.getIndex());
-            Long idea2 = Long.valueOf(ideaVal2.getIndex());
+            Long idea1 = (long) ideaVal1.getIndex();
+            Long idea2 = (long) ideaVal2.getIndex();
             return idea2.compareTo(idea1);
         });
 
@@ -1693,8 +1599,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                     list.get(i).setSection(false);
                 }
 
-            } else {
-
             }
         }
 
@@ -1704,74 +1608,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
         } else {
             frag.lstView.smoothScrollBy(2, 10);
         }
-    }
-
-    private ArrayList<CarInfo> swapXtrailEurRusIfBothDownloaded(ArrayList<CarInfo> getList) {
-        CarInfo xtrailEuroInfo = new CarInfo();
-        CarInfo xtrailRusInfo = new CarInfo();
-        CarInfo leaf2017Info = new CarInfo();
-        int xtrailEuroIndex = -1, xtrailRusIndex = -1, leaf2017Index = -1;
-        boolean xtrailRusDownloaded = false, xtrailEuroDownloaded = false, leaf2017Downloaded = false;
-
-        for (int k = 0; k < getList.size(); k++) {
-            CarInfo info = getList.get(k);
-
-            if (info.getStatus().equals("1") && info.getId() == 13) {
-                xtrailEuroInfo = info;
-                xtrailEuroIndex = k;
-                xtrailEuroDownloaded = true;
-            }
-
-            if (info.getStatus().equals("1") && info.getId() == 15) {
-                xtrailRusInfo = info;
-                xtrailRusIndex = k;
-                xtrailRusDownloaded = true;
-            }
-
-            if (info.getStatus().equals("1") && info.getId() == 14) {
-            }
-        }
-
-
-        if (xtrailEuroDownloaded && xtrailRusDownloaded) {
-            getList.set(xtrailEuroIndex, xtrailRusInfo);
-            getList.set(xtrailRusIndex, xtrailEuroInfo);
-        }
-
-//        NissanApp.getInstance().setCarAllList(getList);
-        return getList;
-    }
-
-    private ArrayList<CarInfo> swapXtrailRusleaf2017IfBothDownloaded(ArrayList<CarInfo> getList) {
-        CarInfo xtrailEuroInfo = new CarInfo();
-        CarInfo xtrailRusInfo = new CarInfo();
-        CarInfo leaf2017Info = new CarInfo();
-        int xtrailEuroIndex = -1, xtrailRusIndex = -1, leaf2017Index = -1;
-        boolean xtrailRusDownloaded = false, xtrailEuroDownloaded = false, leaf2017Downloaded = false;
-
-        for (int k = 0; k < getList.size(); k++) {
-            CarInfo info = getList.get(k);
-
-            if (info.getStatus().equals("1") && info.getId() == 15) {
-                xtrailRusInfo = info;
-                xtrailRusIndex = k;
-                xtrailRusDownloaded = true;
-            }
-
-            if (info.getStatus().equals("1") && info.getId() == 14) {
-                leaf2017Info = info;
-                leaf2017Index = k;
-                leaf2017Downloaded = true;
-            }
-        }
-
-
-        if (leaf2017Downloaded && xtrailRusDownloaded) {
-            getList.set(leaf2017Index, xtrailRusInfo);
-            getList.set(xtrailRusIndex, leaf2017Info);
-        }
-//        NissanApp.getInstance().setCarAllList(getList);
-        return getList;
     }
 
     private void replaceTheCarNamesAndImages() {
@@ -1829,26 +1665,6 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 }
             }
         }
-    }
-
-    private boolean xtrailLeafAvailableForDownload(ArrayList<CarInfo> getList) {
-
-
-        boolean isFifteenIdAvailable = false;
-
-        for (int k = 0; k < getList.size(); k++) {
-            CarInfo info = getList.get(k);
-            if (info.getStatus().equals("0") && info.getId() == 14) {
-                if (isFifteenIdAvailable)
-                    return true;
-            }
-
-            if (info.getStatus().equals("0") && info.getId() == 15) {
-                isFifteenIdAvailable = true;
-            }
-
-        }
-        return false;
     }
 
     public void setList(ArrayList<CarInfo> list) {

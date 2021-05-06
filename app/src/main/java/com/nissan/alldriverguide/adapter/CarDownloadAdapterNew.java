@@ -66,7 +66,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
 
         orderedCarList.add(AVAILABE_CAR);
         for (CarList carList : carLists) {
-            if (Integer.valueOf(carList.getId()) == 15 || Integer.valueOf(carList.getId()) == 16)
+            if (Integer.parseInt(carList.getId()) == 15 || Integer.parseInt(carList.getId()) == 16)
                 continue;
             if (!previousCarList.contains(Integer.valueOf(carList.getId())) && !downloadedCarList.contains(carList.getCarUniqueName()))
                 orderedCarList.add(carList);
@@ -75,7 +75,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
         orderedCarList.add(PREVIOUS_CAR);
         for (CarList carList : carLists) {
             if (previousCarList.contains(Integer.valueOf(carList.getId()))) {
-                if (Integer.valueOf(carList.getId()) == 2 || Integer.valueOf(carList.getId()) == 5)
+                if (Integer.parseInt(carList.getId()) == 2 || Integer.parseInt(carList.getId()) == 5)
                     continue;
                 orderedCarList.add(carList);
             }
@@ -85,7 +85,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         if (viewType == ViewType.DEFAULT.ordinal()) {
             view = LayoutInflater.from(context).inflate(R.layout.car_download_row, parent, false);
@@ -102,7 +102,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         if (getItemViewType(position) == ViewType.HEADER.ordinal()) {
             ((HeaderViewHolder) holder).setDetails(orderedCarList.get(position));
@@ -111,7 +111,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
             ((DownloadedViewHolder) holder).setDetails(orderedCarList.get(position), position);
         }
         if (getItemViewType(position) == ViewType.DEFAULT.ordinal()) {
-            ((DefaultViewHolder) holder).setDetails(orderedCarList.get(position), position);
+            ((DefaultViewHolder) holder).setDetails(orderedCarList.get(position));
         }
     }
 
@@ -218,7 +218,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.orange));
                 txtViewTitle.setText(carList.getCarName());
 
-                imgDeleteOrDownload.setOnClickListener(view -> listener.onItemClick(Integer.valueOf(carList.getId()), position));
+                imgDeleteOrDownload.setOnClickListener(view -> listener.onItemClick(Integer.parseInt(carList.getId()), position));
             }
 
         }
@@ -246,7 +246,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
             imgDeleteOrDownload.setVisibility(View.GONE);
         }
 
-        public void setDetails(Object o, final int position) {
+        public void setDetails(Object o) {
 
             final CarList carList;
             if (o.getClass() == CarList.class) {
@@ -257,7 +257,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
                 relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
                 txtViewTitle.setText(carList.getCarName());
 
-                int carID = Integer.valueOf(carList.getId());
+                int carID = Integer.parseInt(carList.getId());
                 if (carID == 13 || carID == 15) {
                     txtViewTitle.setText("NISSAN X-TRAIL");
                 }

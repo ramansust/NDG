@@ -14,6 +14,7 @@ import com.nissan.alldriverguide.utils.Values;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,8 +46,9 @@ public class TopRecentAdapter extends RecyclerView.Adapter<TopRecentAdapter.Simp
         list3.addAll(list2);
     }
 
+    @NonNull
     @Override
-    public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SimpleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.top_recent_item, parent, false);
         return new SimpleViewHolder(view);
     }

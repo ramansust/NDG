@@ -129,8 +129,7 @@ public class CarDownloadAdapter extends BaseAdapter {
                     // set the car name for available downloaded car
                     txtViewTitle.setText(info.getName());
                     if (info.getId() == 13 || info.getId() == 15) {
-                        //Set fixed name for both this car == NEW X-TRAIL  (EUR/RUS)
-                        String[] name = info.getName().split(" ");
+//                        Set fixed name for both this car == NEW X-TRAIL  (EUR/RUS)
 //                    txtViewTitle.setText(info.getName() == null || info.getName().isEmpty() ? "NEW NISSAN X-TRAIL" : name[1] + " " + name[2]);
                         txtViewTitle.setText("NISSAN X-TRAIL");
                     }
@@ -152,7 +151,6 @@ public class CarDownloadAdapter extends BaseAdapter {
                 // initialized list view item id
                 RelativeLayout relativeLayout = view.findViewById(R.id.relative_car_download);
                 imageView = view.findViewById(R.id.ivMainCarImage);
-                ImageView imageViewBorder = view.findViewById(R.id.img_view_border);
                 TextView txtViewTitle = view.findViewById(R.id.txt_title);
                 txtView_loading = view.findViewById(R.id.txtView_loading);
                 ImageButton imgDeleteOrDownload = view.findViewById(R.id.img_btn_delete_or_download);

@@ -1,6 +1,7 @@
 package com.nissan.alldriverguide.adapter;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,6 @@ import com.nissan.alldriverguide.fragments.assistance.DetailsFragment;
 import com.nissan.alldriverguide.fragments.search.TabFragment;
 import com.nissan.alldriverguide.utils.Values;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import androidx.fragment.app.Fragment;
@@ -31,7 +31,6 @@ public class DataGridAdapter extends BaseAdapter {
 
     private final Context mContext;
     private ArrayList<EpubInfo> list;
-    private final String drawable_folder = Values.car_path + "/combimeter_button";
     private final int _ePubType;
 
     public DataGridAdapter(Context mContext, ArrayList<EpubInfo> list, int ePubType) {
@@ -60,6 +59,7 @@ public class DataGridAdapter extends BaseAdapter {
         return i;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(final int position, View convertView, ViewGroup viewGroup) {
 
@@ -120,23 +120,5 @@ public class DataGridAdapter extends BaseAdapter {
             qRefGuide = view.findViewById(R.id.quick_ref_guide);
             rv = view.findViewById(R.id.combimeter_item);
         }
-    }
-
-    // adding data in map for warning light
-    private String warningLight(EpubInfo epubInfo) {
-        File dir = new File(drawable_folder + "/");
-        String[] wl = epubInfo.getHtmlLink().split("-");
-
-        if (dir.isDirectory()) {
-            for (File file : dir.listFiles()) {
-                String[] name = file.getName().split("_");
-
-                if (name[1].equalsIgnoreCase(wl[wl.length - 1])) {
-//                    list.add(new CombimeterInfo(file.getName(), true));
-                    return file.getName();
-                }
-            }
-        }
-        return "";
     }
 }

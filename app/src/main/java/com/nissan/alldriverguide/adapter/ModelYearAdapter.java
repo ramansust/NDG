@@ -1,6 +1,5 @@
 package com.nissan.alldriverguide.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,19 +16,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ModelYearAdapter extends RecyclerView.Adapter<ModelYearAdapter.ModelYearViewHolder> {
-    private final Context context;
     public ArrayList<Object> list;
     ModelYearItemClcikListener itemClcikListener;
 
-    public ModelYearAdapter(Context context, ArrayList<Object> list, ModelYearItemClcikListener itemClickListener) {
-        this.context = context;
+    public ModelYearAdapter(ArrayList<Object> list, ModelYearItemClcikListener itemClickListener) {
         this.list = list;
         this.itemClcikListener = itemClickListener;
-    }
-
-    public ModelYearAdapter(Context context, ArrayList<Object> list) {
-        this.context = context;
-        this.list = list;
     }
 
     @NonNull
@@ -41,7 +33,7 @@ public class ModelYearAdapter extends RecyclerView.Adapter<ModelYearAdapter.Mode
     }
 
     @Override
-    public void onBindViewHolder(final ModelYearViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ModelYearViewHolder holder, final int position) {
         if (list.get(position).getClass() == CarInfo.class) {
             final CarInfo carInfo = (CarInfo) list.get(position);
             holder.txt_title.setText(carInfo.getName());
