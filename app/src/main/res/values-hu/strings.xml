@@ -109,7 +109,6 @@
 
     <string name="alert_status">Státusz</string>
     <string name="alert_download_complete">Download complete..</string>
-    <string name="alert_downloading">Downloading..</string>
     <string name="no_content_found_top_recent_search">No Search Keyword Found</string>
 
     <string-array name="tutorial_titles">

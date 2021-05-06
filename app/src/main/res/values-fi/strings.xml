@@ -99,7 +99,6 @@
     <string name="warning_lights">VAROITUSVALOT</string>
     <string name="alert_status">Tila</string>
     <string name="alert_download_complete">Lataus valmis..</string>
-    <string name="alert_downloading">Lataa..</string>
     <string name="no_content_found">Ei tuloksia</string>
     <string name="no_content_found_top_recent_search">Haun avansanoja ei löytynyt</string>
     <string-array name="tutorial_titles">

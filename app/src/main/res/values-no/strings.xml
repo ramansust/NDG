@@ -98,7 +98,6 @@
     <string name="warning_lights">VARSELLAMPER</string>
     <string name="alert_status">Status</string>
     <string name="alert_download_complete">Nedlasting fullført.</string>
-    <string name="alert_downloading">Laster ned …</string>
     <string-array name="tutorial_titles">
         <item>Utforsk bilen din </item>
         <item>Varsellamper </item>

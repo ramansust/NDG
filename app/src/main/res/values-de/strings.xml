@@ -79,7 +79,6 @@
 
     <string name="alert_status">Status</string>
     <string name="alert_download_complete">Download abgeschlossen..</string>
-    <string name="alert_downloading">Herunterladen..</string>
 
     <string-array name="tutorial_titles">
         <item>

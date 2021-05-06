@@ -81,7 +81,6 @@
 
     <string name="alert_status">Status</string>
     <string name="alert_download_complete">Hämtningen avslutad..</string>
-    <string name="alert_downloading">Hämtar..</string>
 
     <string-array name="tutorial_titles">
         <item>

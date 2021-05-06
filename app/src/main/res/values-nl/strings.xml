@@ -82,7 +82,6 @@
     <!--string language-->
     <string name="alert_status">Status</string>
     <string name="alert_download_complete">Downloaden voltooid..</string>
-    <string name="alert_downloading">Downloaden..</string>
 
     <string-array name="tutorial_titles">
         <item>

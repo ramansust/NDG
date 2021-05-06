@@ -99,7 +99,6 @@
     <string name="warning_lights">LAMPKI OSTRZEGAWCZE</string>
     <string name="alert_status">Stan</string>
     <string name="alert_download_complete">Ukończono pobieranie.</string>
-    <string name="alert_downloading">Pobieranie…</string>
     <string name="no_content_found">Brak wyników</string>
     <string name="no_content_found_top_recent_search">Nie znaleziono wyszukiwanego słowa</string>
     <string-array name="tutorial_titles">
