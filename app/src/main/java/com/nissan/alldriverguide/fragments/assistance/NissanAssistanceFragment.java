@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.assistance;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
@@ -28,13 +29,13 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class NissanAssistanceFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
-    private static final String TAG = "NissanAssistanceFragmen";
     private final int[] nissanNssistanceImage = {R.drawable.pickup, R.drawable.phone, R.drawable.calendar};
 
     private TextView txtViewCarName;
@@ -79,7 +80,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         new PreferenceUtil(getActivity()).setOpenCountForRateApp();
     }
@@ -132,7 +133,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
 
         txtViewCarName.setBackgroundResource(R.color.black);
         // set image background according to car type
-        setCarBackground(Values.carType);
+        setCarBackground();
     }
 
     private void loadResource() {
@@ -146,7 +147,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
     }
 
     // set image background for assistance
-    private void setCarBackground(int index) {
+    private void setCarBackground() {
         if (getArguments().get(IMG_URL).toString().isEmpty())
             imageView.setBackgroundResource(R.drawable.car_download_place_holder);
         else
@@ -172,12 +173,12 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
@@ -239,6 +240,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

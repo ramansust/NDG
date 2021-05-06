@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.assistance;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
@@ -9,7 +10,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,13 +41,13 @@ import com.nissan.alldriverguide.utils.Values;
 import java.io.File;
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class DetailsFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "DetailsFragment";
-
     private static final String EPUB_INDEX = "epub_index";
 
     private WebView webView;
@@ -82,7 +82,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         new PreferenceUtil(getActivity()).setOpenCountForRateApp();
     }
@@ -91,14 +91,11 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
         webView = view.findViewById(R.id.webViewDetailsFragment);
         btnBack = view.findViewById(R.id.btn_back);
         title = view.findViewById(R.id.txt_title);
-        TextView txt_back_title = view.findViewById(R.id.txt_back_title);
-        LinearLayout linearLayoutNoContent = view.findViewById(R.id.linearLayoutNoContent);
         progressBar = view.findViewById(R.id.progressBarDetailsFragment);
         linearBack = view.findViewById(R.id.linear_back);
         DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang()));
-
     }
 
     private void setListener() {
@@ -276,7 +273,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         if (savedInstanceState == null) {
@@ -295,10 +292,11 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -397,13 +395,11 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
             if (event.getAction() == KeyEvent.ACTION_DOWN) {
                 WebView webView = (WebView) v;
 
-                switch (keyCode) {
-                    case KeyEvent.KEYCODE_BACK:
-                        if (webView.canGoBack()) {
-                            webView.goBack();
-                            return true;
-                        }
-                        break;
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    if (webView.canGoBack()) {
+                        webView.goBack();
+                        return true;
+                    }
                 }
             }
             return false;
@@ -485,11 +481,5 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
 
             }
         });
-    }
-
-
-    private int dp2px(Context context, float dpVal) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                dpVal, context.getResources().getDisplayMetrics());
     }
 }

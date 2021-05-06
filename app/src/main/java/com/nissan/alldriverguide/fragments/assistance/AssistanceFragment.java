@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.assistance;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -39,7 +40,6 @@ import com.nissan.alldriverguide.fragments.combimeter.CombimeterFragment;
 import com.nissan.alldriverguide.interfaces.CompleteAPI;
 import com.nissan.alldriverguide.interfaces.CompleteAssistanceTabContent;
 import com.nissan.alldriverguide.internetconnection.DetectConnection;
-import com.nissan.alldriverguide.model.DealerUrl;
 import com.nissan.alldriverguide.model.PushContentInfo;
 import com.nissan.alldriverguide.model.ResponseInfo;
 import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
@@ -53,6 +53,7 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -91,7 +92,9 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     private String url;
     private String bookingUrl = "";
-    private DealerUrl dealerUrl;
+
+    public AssistanceFragment() {
+    }
 
     public static Fragment newInstance() {
         return new AssistanceFragment();
@@ -209,6 +212,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     }
 
     // here load the initial data
+    @SuppressLint("SetTextI18n")
     private void loadData() {
         if (assistanceInfo != null && assistanceInfo.getAssistanceTitle() != null) {
             txtViewDriverGuide.setText(assistanceInfo.getAssistanceTitle().isEmpty() ? resources.getString(R.string.driver_guide) : assistanceInfo.getAssistanceTitle());
@@ -314,18 +318,18 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         new PreferenceUtil(getActivity().getApplicationContext()).setOpenCountForRateApp();
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
@@ -376,126 +380,11 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                             public void onDownloaded(ResponseInfo responseInfo) {
 //                                Logger.error("status", "__________" + responseInfo.getStatusCode() + "____" + responseInfo.getMessage() + "____" + responseInfo.getUrl());;
 
-                                if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getUrl())) {
-//                                        new MADownloadManager(getActivity(), getActivity().getApplicationContext()).downloadLanguage(false, "Language", responseInfo.getUrl(), NissanApp.getInstance().getCarPath(Values.carType), new DownloaderStatus() {
-//                                            @Override
-//                                            public boolean onComplete(boolean b) {
-//                                                Logger.error("downloadManager", "__________" + b);
-//                                                if (b) {
-//                                                    getActivity().runOnUiThread(new Runnable() {
-//                                                        @Override
-//                                                        public void run() {
-//                                                            if (progressDialog != null) {
-//                                                                progressDialog.setMessage(getResources().getString(R.string.data_syncing));
-//                                                            }
-//
-//                                                            new SingleContentUpdating(getActivity(), preferenceUtil.getSelectedLang(), Values.carType) {
-//                                                                @Override
-//                                                                public void onComplete(boolean status) {
-//                                                                    Logger.error("status_here", "__________" + status);
-//
-//                                                                    if (status) {
-//                                                                        new ApiCall().postContentDownloadConfirmation("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()), "" + Values.ePubType, NissanApp.getInstance().getDeviceID(getActivity().getApplicationContext()), new CompleteAPI() {
-//                                                                            @Override
-//                                                                            public void onDownloaded(ResponseInfo responseInfo) {
-//                                                                                Logger.error("confirmation", "__________" + responseInfo.getStatusCode() + "____" + responseInfo.getMessage() + "____" + responseInfo.getUrl());
-//
-//                                                                                if (SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
-//                                                                                    ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));
-//
-//                                                                                    commonDao.updateLanguageStatus(getActivity().getBaseContext(), Values.carType, preferenceUtil.getSelectedLang());
-//                                                                                    commonDao.deleteSingleCarEpub(getActivity(), Values.carType);
-//                                                                                    commonDao.updatePushContentStatus(getActivity().getApplicationContext(), Values.carType, NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang()), Values.ePubType);
-//
-//                                                                                    if (progressDialog != null)
-//                                                                                        progressDialog.dismiss();
-//
-//                                                                                    loadDesireFragment(position);
-//                                                                                } else {
-//                                                                                    dismissDialogue();
-//                                                                                    showErrorDialog("Confirmation send failed error!");
-//                                                                                }
-//
-//                                                                            }
-//
-//                                                                            @Override
-//                                                                            public void onFailed(String failedReason) {
-//                                                                                Logger.error("onFailed", "__________" + failedReason);
-//                                                                                dismissDialogue();
-//                                                                                showErrorDialog(failedReason);
-//                                                                            }
-//                                                                        });
-//
-//                                                                    } else {
-//                                                                        dismissDialogue();
-//                                                                    }
-//
-//                                                                }
-//                                                            }.execute();
-//                                                        }
-//                                                    });
-//
-//                                                } else {
-//                                                    Logger.error("problem", "______assetDownload-LanguageFragment");
-//                                                }
-//                                                return false;
-//                                            }
-//
-//                                            @Override
-//                                            public int onError(int i) {
-//                                                showErrorDialog("Error ! Unable to update content, Please try again.");
-//                                                dismissDialogue();
-//                                                return 0;
-//                                            }
-//
-//                                            @Override
-//                                            public boolean internetConnection(boolean b) {
-//                                                showErrorDialog("No internet connection, please try again");
-//                                                dismissDialogue();
-//                                                return false;
-//                                            }
-//
-//                                            @Override
-//                                            public boolean urlReachable(boolean b) {
-//                                                dismissDialogue();
-//                                                return false;
-//                                            }
-//
-//                                            @Override
-//                                            public boolean destinationExists(boolean b) {
-//                                                return false;
-//                                            }
-//
-//                                            @Override
-//                                            public boolean sourcePath(boolean b) {
-//                                                return false;
-//                                            }
-//
-//                                            @Override
-//                                            public boolean destinationPath(boolean b) {
-//                                                return false;
-//                                            }
-//
-//                                            @Override
-//                                            public void downloadCompletion(Float aFloat) {
-//                                                String formattedString = String.format("%.02f", aFloat);
-//                                                if (progressDialog != null) {
-//                                                    progressDialog.setMessage(getActivity().getResources().getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + getResources().getString(R.string.alert_download_complete) + formattedString + "%");
-//                                                }
-//                                            }
-//
-//                                            @Override
-//                                            public void init() {
-//                                                if (progressDialog == null) {
-//                                                    progressDialog = new ProgressDialogController(getActivity()).downloadProgress(getActivity().getResources().getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + getResources().getString(R.string.alert_download_complete));
-//                                                }
-//                                            }
-//                                        });
-                                    //TODO Integrate download manager
-                                } else {
+                                if (!SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) || TextUtils.isEmpty(responseInfo.getUrl())) {
                                     showErrorDialog("No content found.");
                                     dismissDialogue();
-                                }
+                                }  //
+                                //TODO Integrate download manager
                             }
 
                             @Override
@@ -507,8 +396,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                                 Logger.error("Single Content Downloading failed", "____________" + failedReason);
                             }
                         });
-                    } else {
-
                     }
                 });
 

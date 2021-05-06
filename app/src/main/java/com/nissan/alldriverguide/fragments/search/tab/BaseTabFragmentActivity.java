@@ -21,12 +21,6 @@ public class BaseTabFragmentActivity extends SearchActivity implements DataPassi
         this.tabFragment = media;
     }
 
-    public void setAllFragment(AllFragment allFragment) {
-    }
-
-    public void setWarningLightFragment(WarningLightFragment warningLightFragment) {
-    }
-
     // this view set in MainActivity inside onCreate
     public void setView(int view) {
         this.contentView = view;

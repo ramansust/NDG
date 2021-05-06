@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.assistance;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +30,7 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -69,12 +71,12 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         new PreferenceUtil(getActivity()).setOpenCountForRateApp();
     }
 
-    private void loadData() throws Exception {
+    private void loadData() {
         title.setText(getArguments().get(TITLE).toString()); // here set the title on top bar
         switch (Values.ePubType) {// compare with epub type
 
@@ -175,16 +177,15 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
         lstView = view.findViewById(R.id.lst_view);
         linearBack = view.findViewById(R.id.linear_back);
         title = view.findViewById(R.id.txt_title);
-        TextView txt_back_title = view.findViewById(R.id.txt_back_title);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
@@ -215,6 +216,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -241,8 +243,6 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
             String usingTyrePuncture = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.USING_TYRE_PUNCTURE);
             tv.setText(usingTyrePuncture.isEmpty() ? getResources().getString(R.string.alert_msg39) : usingTyrePuncture);
             tyre = "repair kit";
-        } else {
-
         }
 
         Button dialogButton = dialog.findViewById(R.id.btn_read);

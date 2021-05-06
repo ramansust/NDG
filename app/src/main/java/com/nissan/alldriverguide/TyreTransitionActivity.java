@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -21,9 +22,12 @@ import com.nissan.alldriverguide.utils.Values;
 import java.io.File;
 import java.util.Arrays;
 
+import androidx.annotation.NonNull;
+
 public class TyreTransitionActivity extends Activity {
     private GestureDetector mGestureDetector;
 
+    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,6 +153,7 @@ public class TyreTransitionActivity extends Activity {
     }
 
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        @SuppressLint("ShowToast")
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
 
@@ -210,7 +215,7 @@ public class TyreTransitionActivity extends Activity {
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {

@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -99,6 +100,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -114,7 +116,6 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
                 break;
 
             case R.id.btnNext:
-
             case R.id.txtNext:
                 try {
                     if (viewPager.getCurrentItem() == TUTORIAL_COUNT) {

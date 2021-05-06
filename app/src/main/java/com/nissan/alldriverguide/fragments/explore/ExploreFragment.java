@@ -1,7 +1,7 @@
 package com.nissan.alldriverguide.fragments.explore;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -64,10 +64,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.PagerAdapter;
@@ -77,8 +77,6 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
 public class ExploreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, CompleteExploreTabContent, ViewPager.OnPageChangeListener {
-
-    private static final String TAG = "ExploreFragment";
 
     private Context mContext;
     private Button btnAR;
@@ -90,14 +88,12 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private Resources resources;
     private DisplayMetrics metrics;
-    private TextView tvNoContent, tvPageTitle, textViewMap2, tvAugmentedReality, tvExploreYourCar,
-            tvAugmentedRealityOldCar, tvExploreYourCarOldCar, tvDiscoverYourVehicle, simple_drawee_view_explore, simple_drawee_view_ar;
+    private TextView tvNoContent, tvPageTitle, simple_drawee_view_explore, simple_drawee_view_ar;
     private RelativeLayout infoImageButton;
     private ImageButton infoImageBtn;
     private RelativeLayout infoImageOldButton;
     private ImageButton infoImageOldBtn;
     private TextView txtViewVideolistTitle;
-    private TextView textViewNissanConnect, textViewUpdateYourMap, tvNissanDoorToDoor, tvSetUpGuide;
     private ProgressBar progressBar;
     private String sharedpref_key;
     private ArrayList<ExploreTabVideoModel> videoList = null;
@@ -107,19 +103,19 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private String back_image_url;
     private ExploreTabModel exploreModel;
     private String device_density, internetCheckMessage = "";
+    @SuppressLint("StaticFieldLeak")
     public static ProgressBar progress_bar;
     private ExploreTabContentController controller;
     private LinearLayout layoutDataNotFound, llLeftArrow, llRightArrow;
     private List<EpubInfo> list;
     private CustomViewPager viewPager;
     private ImageView ivRight, ivLeft;
-    private final ProgressDialog progressDialog = null;
-    private final int width = 250;
-    private final int height = 50;
     private int exploreSlidedItems = 0;
-    private int currentPage;
     ViewGroup layout;
     private int languageid;
+
+    public ExploreFragment() {
+    }
 
     /**
      * Creating instance for this fragment
@@ -151,10 +147,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         /*String discoverYourTechText = NissanApp.getInstance().getAlertMessage(mContext,new PreferenceUtil(getActivity()).getSelectedLang(), Values.DISCOVER_YOUR_VEHICLE_TECH);
         tvDiscoverYourVehicle.setText(discoverYourTechText == null || discoverYourTechText.isEmpty() ? resources.getString(R.string.discover_your_vehicle) : discoverYourTechText);*/
-    }
-
-    private int convertToPX(int dips) {
-        return (int) (dips * getActivity().getResources().getDisplayMetrics().density + 0.5f);
     }
 
     private void getExploreTabContent() {
@@ -190,7 +182,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
         controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1");
         languageid = language_ID;
-
     }
 
     private void showNoInternetDialogue(String msg) {
@@ -206,7 +197,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         });
 
         dialog.show();
-
     }
 
     public void check_density() {
@@ -277,9 +267,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             //set pager data
             viewPager.setAdapter(new MyPagerAdapter());
             viewPager.disableScroll(false);
-
         }
-
     }
 
     @Override
@@ -342,11 +330,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
                     @Override
-                    public void onResourceReady(Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                         Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                            simple_drawee_view_explore.setBackground(drawable);
-                        }
+                        simple_drawee_view_explore.setBackground(drawable);
                     }
 
                 });
@@ -402,9 +388,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 @Override
                 public void onResourceReady(Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        simple_drawee_view_ar.setBackground(drawable);
-                    }
+                    simple_drawee_view_ar.setBackground(drawable);
                 }
 
             });
@@ -430,11 +414,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         if (header_text != null) {
             Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
                 @Override
-                public void onResourceReady(Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        simple_drawee_view_explore.setBackground(drawable);
-                    }
+                    simple_drawee_view_explore.setBackground(drawable);
                 }
 
             });
@@ -452,11 +434,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
 
                 @Override
-                public void onResourceReady(Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        simple_drawee_view_ar.setBackground(drawable);
-                    }
+                    simple_drawee_view_ar.setBackground(drawable);
                 }
 
             });
@@ -509,25 +489,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
      * @param view for find fragment layout id
      */
     private void initViews(View view) {
-
         mContext = getActivity();
-        PreferenceUtil preferenceUtil = new PreferenceUtil(mContext);
         simple_drawee_view_explore = view.findViewById(R.id.simple_drawee_view_blind_spot_ar);
         simple_drawee_view_ar = view.findViewById(R.id.simple_drawee_view_ar);
-  /*      typefaceBold = Typeface.createFromAsset(mContext.getAssets(),  "font/nissan_brand_bold.otf");
-        typefaceRegular = Typeface.createFromAsset(mContext.getAssets(),  "font/nissan_brand_regular.otf");
-
-        tvAugmentedReality = (TextView) view.findViewById(R.id.tvAugmentedReality);
-        tvAugmentedReality.setTypeface(typefaceRegular);
-        tvExploreYourCar = (TextView) view.findViewById(R.id.tvExploreYourCar);
-        tvExploreYourCar.setTypeface(typefaceBold);
-        tvAugmentedRealityOldCar = (TextView) view.findViewById(R.id.tvAugmentedRealityOldCar);
-        tvAugmentedRealityOldCar.setTypeface(typefaceRegular);
-        tvExploreYourCarOldCar = (TextView) view.findViewById(R.id.tvExploreYourCarOldCar);
-        tvExploreYourCarOldCar.setTypeface(typefaceBold);
-
-        tvDiscoverYourVehicle = (TextView) view.findViewById(R.id.tvDiscoverYourVehicle);
-        tvDiscoverYourVehicle.setTypeface(typefaceBold);*/
 
         tvPageTitle = view.findViewById(R.id.txt_title_explore);
         relativeAR = view.findViewById(R.id.relative_ar);
@@ -567,14 +531,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         llRightArrow = view.findViewById(R.id.llRightArrow);
         ivRight = view.findViewById(R.id.ivRightArrow);
         ivLeft = view.findViewById(R.id.ivLeftArrow);
-
-        /*//commented for adding slider page on "NEW NISSAN CONNECT" viewpager for J11 MC(car type 12) : by Mostasim Billah
-        if (Values.carType == 10) {
-            viewPager.disableScroll(true);
-            llLeftArrow.setVisibility(View.GONE);
-            llRightArrow.setVisibility(View.GONE);
-        }*/
-
     }
 
     // load resources for language localized
@@ -583,21 +539,22 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         new PreferenceUtil(getActivity()).setOpenCountForRateApp();
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -635,24 +592,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 }
                 break;
 
-/*
-            case R.id.map_view:
-                if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
-                    list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
-                }
-                Values.ePubType = Values.HOMEPAGE_TYPE;
-
-                if(list == null || list.size() == 0)
-                    return;
-
-                Fragment frag = DetailsFragment.newInstance(list.get(52).getIndex(), resources.getString(R.string.updating_map_data));
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
-                ft.replace(R.id.container, frag);
-                ft.addToBackStack(Values.tabExplore);
-                ft.commit();
-                break;
-*/
             default:
                 break;
         }
@@ -834,9 +773,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     @Override
     public void onPageSelected(int position) {
-        if (viewPager.getAdapter().getCount() == 3) {
-            //Toast.makeText(getActivity(), "3", Toast.LENGTH_SHORT).show();
-        }
+        viewPager.getAdapter().getCount();//Toast.makeText(getActivity(), "3", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -847,9 +784,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.mapview_page_1,
                 collection, false);
-
-        ImageView imageViewEpubHeader = layout.findViewById(R.id.txt_map);
-        ImageView imageViewEpubBackground = layout.findViewById(R.id.drawee_view_map_1);
                   /*  textViewNissanConnect = (TextView) layout.findViewById(R.id.tvNewNissanConnect);
                     textViewNissanConnect.setTypeface(typefaceRegular);
                     textViewUpdateYourMap = (TextView) layout.findViewById(R.id.tvUpdateYourMap);
@@ -858,16 +792,14 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         setFrontImageExploreMiddleTab(exploretabSliderModel, exploretabSliderModel.getFrontImg());
 
-        ImageView front_image_view = layout.findViewById(R.id.txt_map);
+        @SuppressLint("CutPasteId") ImageView front_image_view = layout.findViewById(R.id.txt_map);
         if (front_image_url != null) {
             Glide.with(this).asBitmap().load(front_image_url).into(new CustomTarget<Bitmap>() {
                 @Override
-                public void onResourceReady(Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        front_image_view.setBackground(drawable);
-                        front_image_view.buildDrawingCache();
-                    }
+                    front_image_view.setBackground(drawable);
+                    front_image_view.buildDrawingCache();
                 }
 
                 @Override
@@ -876,7 +808,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 }
             });
         }
-        ImageView back_image_view = layout.findViewById(R.id.drawee_view_map_1);
+        @SuppressLint("CutPasteId") ImageView back_image_view = layout.findViewById(R.id.drawee_view_map_1);
 
         if (back_image_url != null) {
             Glide.with(this).asBitmap().load(back_image_url).fitCenter().into(back_image_view);
@@ -963,12 +895,10 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         if (front_image_url != null) {
             Glide.with(this).asBitmap().load(front_image_url).into(new CustomTarget<Bitmap>() {
                 @Override
-                public void onResourceReady(Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        front_image_view.setBackground(drawable);
-                        front_image_view.buildDrawingCache();
-                    }
+                    front_image_view.setBackground(drawable);
+                    front_image_view.buildDrawingCache();
                 }
 
                 @Override
@@ -1059,8 +989,9 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     private class MyPagerAdapter extends PagerAdapter {
         //view inflating..
+        @NonNull
         @Override
-        public Object instantiateItem(ViewGroup collection, int position) {
+        public Object instantiateItem(@NonNull ViewGroup collection, int position) {
 
             LayoutInflater inflater = LayoutInflater.from(mContext);
             layout = null;
@@ -1084,7 +1015,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         }
 
         @Override
-        public void destroyItem(ViewGroup collection, int position, Object view) {
+        public void destroyItem(ViewGroup collection, int position, @NonNull Object view) {
             collection.removeView((View) view);
         }
 
@@ -1094,31 +1025,10 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         }
 
         @Override
-        public boolean isViewFromObject(View view, Object object) {
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
             return view == object;
         }
 
-    }
-
-    private void openPDFFile(File file_pdf) {
-
-//        startActivity(new Intent(getActivity(), PDFOpenActivity.class));
-
-        Intent target = new Intent(Intent.ACTION_VIEW);
-        Uri uri = FileProvider.getUriForFile(getActivity(),
-                getActivity().getPackageName() + ".provider",
-                file_pdf);
-        target.setDataAndType(uri, "application/pdf");
-        target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-        Intent intent = Intent.createChooser(target, "Open File");
-        try {
-            startActivity(intent);
-        } catch (Exception e) {
-            // Instruct the user to install a PDF reader here, or something
-            e.printStackTrace();
-        }
     }
 
 }

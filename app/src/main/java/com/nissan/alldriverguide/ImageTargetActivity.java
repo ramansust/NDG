@@ -19,12 +19,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -34,7 +32,6 @@ import com.nissan.alldriverguide.augmentedreality.ARLeaf2017;
 import com.nissan.alldriverguide.augmentedreality.ARMicra;
 import com.nissan.alldriverguide.augmentedreality.ARMicraNew;
 import com.nissan.alldriverguide.augmentedreality.ARNavara;
-import com.nissan.alldriverguide.augmentedreality.ARNavara2019;
 import com.nissan.alldriverguide.augmentedreality.ARNote;
 import com.nissan.alldriverguide.augmentedreality.ARPulsar;
 import com.nissan.alldriverguide.augmentedreality.ARQashqai;
@@ -73,6 +70,7 @@ import com.vuforia.Vuforia;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
@@ -82,9 +80,12 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     public static boolean isFromShowInfo = false;
     public static boolean isDetected = false;
     //parentview
+    @SuppressLint("StaticFieldLeak")
     public static View inflatedLayout = null;
     //childview
+    @SuppressLint("StaticFieldLeak")
     public static View inflatedLayout_second;
+    @SuppressLint("StaticFieldLeak")
     public static View inflatedLayout_third;
     public final LoadingDialogHandler loadingDialogHandler = new LoadingDialogHandler(this);
 
@@ -137,7 +138,6 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     private ARLeaf2019 mRendererLeaf2019;
     private ARNewNissanJuke2019 mRendererJuke2019;
     private ARXtrail2020Eur mRendererXtrail2020Eur;
-    private ARNavara2019 mRendererNavara2019;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -288,7 +288,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     // Callback for configuration changes the activity handles itself
     @Override
-    public void onConfigurationChanged(Configuration config) {
+    public void onConfigurationChanged(@NonNull Configuration config) {
         Logger.debugging(LOG_TAG, "onConfigurationChanged");
         super.onConfigurationChanged(config);
 
@@ -312,11 +312,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         boolean mFlash = false;
         if (mFlashOptionView != null && mFlash) {
             // OnCheckedChangeListener is called upon changing the checked state
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                ((Switch) mFlashOptionView).setChecked(false);
-            } else {
-                ((CheckBox) mFlashOptionView).setChecked(false);
-            }
+            ((Switch) mFlashOptionView).setChecked(false);
         }
 
         isFromShowInfo = true;
@@ -699,11 +695,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                     CameraDevice.getInstance().setFocusMode(CameraDevice.FOCUS_MODE.FOCUS_MODE_NORMAL);
                 }
 
-            } else {
-
             }
-        } else {
-
         }
 
         showProgressIndicator();
@@ -821,39 +813,32 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         return false;
     }
 
-    private void showToast(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     public void onBackPressed() {
         Logger.error(LOG_TAG, "onBackPressed()");
         if (isDetected) {
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-
-                if (inflatedLayout_third != null && inflatedLayout_third.isAttachedToWindow()) {
+            if (inflatedLayout_third != null && inflatedLayout_third.isAttachedToWindow()) {
+                if (layoutCameraView != null) {
+                    layoutCameraView.removeView(inflatedLayout_third);
+                    inflatedLayout_third = null;
+                    layoutCameraView.addView(inflatedLayout_second);
+                }
+            } else if (inflatedLayout_second != null && inflatedLayout_second.isAttachedToWindow()) {
+                if (layoutCameraView != null) {
+                    layoutCameraView.removeView(inflatedLayout_second);
+                    inflatedLayout_second = null;
+                    layoutCameraView.addView(inflatedLayout);
+                }
+            } else {
+                if (inflatedLayout != null && inflatedLayout.isAttachedToWindow()) {
                     if (layoutCameraView != null) {
-                        layoutCameraView.removeView(inflatedLayout_third);
-                        inflatedLayout_third = null;
-                        layoutCameraView.addView(inflatedLayout_second);
+                        layoutCameraView.removeAllViews();
                     }
-                } else if (inflatedLayout_second != null && inflatedLayout_second.isAttachedToWindow()) {
-                    if (layoutCameraView != null) {
-                        layoutCameraView.removeView(inflatedLayout_second);
-                        inflatedLayout_second = null;
-                        layoutCameraView.addView(inflatedLayout);
-                    }
+                    vuforiaAppSession.onResume();
+                    isDetected = false;
                 } else {
-                    if (inflatedLayout != null && inflatedLayout.isAttachedToWindow()) {
-                        if (layoutCameraView != null) {
-                            layoutCameraView.removeAllViews();
-                        }
-                        vuforiaAppSession.onResume();
-                        isDetected = false;
-                    } else {
-                        backButtonAlert();
-                    }
+                    backButtonAlert();
                 }
             }
 
@@ -877,18 +862,14 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         }
         mLastClickTime = SystemClock.elapsedRealtime();
 
-        switch (Integer.parseInt(b.getTag().toString())) {
-            case 1000:
-                Values.ePubType = Values.COMBIMETER_TYPE;
-                Intent intent = new Intent(ImageTargetActivity.this, CombimeterActivity.class);
-                startActivity(intent);
-                break;
+        if (Integer.parseInt(b.getTag().toString()) == 1000) {
+            Values.ePubType = Values.COMBIMETER_TYPE;
+            Intent intent = new Intent(ImageTargetActivity.this, CombimeterActivity.class);
+            startActivity(intent);
+        } else {
+            Values.ePubType = Values.BUTTON_TYPE;
 
-            default:
-                Values.ePubType = Values.BUTTON_TYPE;
-                PreferenceUtil preferenceUtil = new PreferenceUtil(getApplicationContext());
-
-                int ePubIndex;
+            int ePubIndex;
 /*                if (Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
 //                if (Values.carType == 14) {
                     ePubIndex = (Integer.parseInt(b.getTag().toString()) * 2) + 1;
@@ -900,20 +881,13 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                     }
                 }
 */
-                ePubIndex = (Integer.parseInt(b.getTag().toString()) * 2) + 1;
+            ePubIndex = (Integer.parseInt(b.getTag().toString()) * 2) + 1;
 
-//                ePubIndex = (Integer.parseInt(b.getTag().toString()) * 2) + 1;
-
-                // here specify the DetailsActivity for loading epub data
-                Logger.error("________EPUB Index________", ePubIndex + Values.ar_value);
-                Logger.error("Xtrail________EPUB Index________", ePubIndex + Values.ar_value);
-                Logger.error("________EPUB TAG BUTTON_______", b.getTag().toString());
-                Intent intentButton = new Intent(ImageTargetActivity.this, DetailsActivity.class);
-                intentButton.putExtra("epub_index", ePubIndex);
-                intentButton.putExtra("epub_title", "DETAILS");
-                intentButton.putExtra("ar_name", Values.ar_value);
-                startActivity(intentButton);
-                break;
+            Intent intentButton = new Intent(ImageTargetActivity.this, DetailsActivity.class);
+            intentButton.putExtra("epub_index", ePubIndex);
+            intentButton.putExtra("epub_title", "DETAILS");
+            intentButton.putExtra("ar_name", Values.ar_value);
+            startActivity(intentButton);
         }
 
     }

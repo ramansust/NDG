@@ -8,7 +8,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nissan.alldriverguide.R;
-import com.nissan.alldriverguide.adapter.DataGridAdapter;
 import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.model.CombimeterInfo;
 import com.nissan.alldriverguide.model.EpubModel;
@@ -45,8 +44,6 @@ public class AllFragment extends Fragment {
     public static Map<String, List<Object>> dataMap;
     private ProgressBar progressBar;
     private static final int NUM_COLUMNS = 3;
-
-    private DataGridAdapter adapter;
     private TextView blankLayout;
 
     @Override
@@ -108,7 +105,6 @@ public class AllFragment extends Fragment {
                     list.add(epubModel);
                 } else if (String.valueOf(epubModel.getEpubType()).equalsIgnoreCase(Values.WARRANTY_TYPE + "")) {
                     list.add(epubModel);
-                } else {
                 }
 
                 try {
@@ -128,11 +124,7 @@ public class AllFragment extends Fragment {
 
     // set the adapter in recyclerView
     private void setAdapter() {
-
         List<Object> items = new ArrayList<>();
-
-        int cumulativeSum = 0;
-
         for (Map.Entry<String, List<Object>> entry : dataMap.entrySet()) {
             String key = entry.getKey();
             List<Object> list = dataMap.get(key);

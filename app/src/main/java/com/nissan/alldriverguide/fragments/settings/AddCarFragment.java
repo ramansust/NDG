@@ -1,8 +1,8 @@
 package com.nissan.alldriverguide.fragments.settings;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -52,6 +52,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -68,7 +69,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     private CarDownloadSettingsAdapter adapter;
 
     private PreferenceUtil preferenceUtil;
-    private Configuration conf;
     private Resources resources;
     private DisplayMetrics metrics;
     private CommonDao commonDao;
@@ -100,7 +100,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         new PreferenceUtil(getActivity()).setOpenCountForRateApp();
     }
@@ -148,15 +148,13 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
             } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 9) {
                 NissanApp.getInstance().getCarAllList().get(i).setIndex(2);
             }
-
-
         }
 
 
         Collections.sort(NissanApp.getInstance().getCarAllList(), (ideaVal1, ideaVal2) -> {
             // avoiding NullPointerException in case name is null
-            Long idea1 = Long.valueOf(ideaVal1.getIndex());
-            Long idea2 = Long.valueOf(ideaVal2.getIndex());
+            Long idea1 = (long) ideaVal1.getIndex();
+            Long idea2 = (long) ideaVal2.getIndex();
             return idea2.compareTo(idea1);
         });
 
@@ -178,7 +176,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                 } else {
                     NissanApp.getInstance().getCarAllList().get(i).setSection(false);
                 }
-
             } else if (NissanApp.getInstance().getCarAllList().get(i).getStatus().equalsIgnoreCase("2")) {
                 if (isPrevious) {
                     isPrevious = false;
@@ -186,9 +183,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                 } else {
                     NissanApp.getInstance().getCarAllList().get(i).setSection(false);
                 }
-
-            } else {
-
             }
         }
 
@@ -280,16 +274,10 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         String car_selection_title = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.CAR_SELECTION_TITLE);
         txt_title.setText(car_selection_title.isEmpty() ? resources.getString(R.string.add_extra_car) : car_selection_title);
         txt_back_title.setText(resources.getString(R.string.back));
+
         Logger.error("carType", "_________" + Values.carType);
-
-
-//        if (isFirstTime) {
-//            setPreviousCarSelection();
-        boolean isFirstTime = false;
-//        }
         getDataFromSP();
         replaceTheCarNamesAndImages();
-
     }
 
     private void initViews(View view) {
@@ -303,12 +291,12 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
@@ -332,6 +320,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -461,144 +450,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                             @Override
                                             public void onDownloaded(ResponseInfo responseInfo) {
                                                 if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getUrl())) {
-//                                                        new MADownloadManager(getActivity(), getActivity().getApplicationContext()).downloadLanguage(false, "Language", responseInfo.getUrl(), NissanApp.getInstance().getCarPath(position), new DownloaderStatus() {
-//                                                            @Override
-//                                                            public boolean onComplete(boolean b) {
-//                                                                if (b) {
-//                                                                    getActivity().runOnUiThread(new Runnable() {
-//                                                                        @Override
-//                                                                        public void run() {
-//
-//                                                                            if (adapter.progressDialog != null) {
-//                                                                                adapter.progressDialog.setMessage(getResources().getString(R.string.data_syncing));
-//                                                                            }
-//
-//                                                                            new SingleContentUpdating(getActivity(), commonDao.getLanguageStatus(getActivity().getApplicationContext(), position), position) {
-//                                                                                @Override
-//                                                                                public void onComplete(boolean status) {
-//                                                                                    Logger.error("Status code Data Syncing", "_________________" + status);
-//                                                                                    if (status) {
-//
-//                                                                                        new ApiCall().postContentDownloadConfirmation("" + position, "" + NissanApp.getInstance().getLanguageID(commonDao.getLanguageStatus(getActivity().getApplicationContext(), position)), "" + stringBuilder.toString(), NissanApp.getInstance().getDeviceID(getActivity().getApplicationContext()), new CompleteAPI() {
-//                                                                                            @Override
-//                                                                                            public void onDownloaded(ResponseInfo responseInfo) {
-//                                                                                                Logger.error("Status code ", "_________________" + responseInfo.getStatusCode());
-//                                                                                                if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode())) {
-//
-//                                                                                                    try {
-////                                                                                                    FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getApplicationContext(), Values.carType)));
-//
-////                                                                                                    ((MainActivity) getApplicationContext()).sendMsgToGoogleAnalytics(((MainActivity) getApplicationContext()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));
-//                                                                                                        commonDao.updateLanguageStatus(getActivity().getApplicationContext(), position, commonDao.getLanguageStatus(getActivity().getApplicationContext(), position));
-//                                                                                                        commonDao.deleteSingleCarEpub(getActivity().getApplicationContext(), position);
-//
-//                                                                                                        for (PushContentInfo pushContentInfo : list) {
-//                                                                                                            commonDao.updatePushContentStatus(getActivity().getApplicationContext(), Integer.parseInt(pushContentInfo.getCarId()), Integer.parseInt(pushContentInfo.getLangId()), Integer.parseInt(pushContentInfo.getePubId()));
-//                                                                                                        }
-//
-//                                                                                                    } catch (Exception e) {
-//                                                                                                        e.printStackTrace();
-//                                                                                                    } finally {
-//                                                                                                        dismissDialog();
-//
-//                                                                                                        for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
-//                                                                                                            if (NissanApp.getInstance().getCarAllList().get(i).getId() == position) {
-//                                                                                                                NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(1);
-//                                                                                                            } else {
-//                                                                                                                NissanApp.getInstance().getCarAllList().get(i).setSelectedCar(0);
-//                                                                                                            }
-//                                                                                                        }
-//                                                                                                        Values.carType = position;
-//                                                                                                        Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
-//                                                                                                        preferenceUtil.setSelectedLang(commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType));
-//                                                                                                        loadResource();
-//                                                                                                        ((MainActivity) getActivity()).setTabResources();
-//                                                                                                        adapter.loadResource();
-//                                                                                                        getDataFromSP();
-//                                                                                                        replaceTheCarNamesAndImages();
-//                                                                                                        adapter.notifyDataSetChanged();
-//                                                                                                    }
-//
-//                                                                                                } else {
-//                                                                                                    dismissDialog();
-//                                                                                                }
-//
-//                                                                                            }
-//
-//                                                                                            @Override
-//                                                                                            public void onFailed(String failedReason) {
-//                                                                                                showErrorDialog(failedReason);
-//                                                                                                dismissDialog();
-//                                                                                            }
-//                                                                                        });
-//
-//
-//                                                                                    } else {
-//                                                                                        dismissDialog();
-//                                                                                    }
-//                                                                                }
-//                                                                            }.execute();
-//
-//                                                                        }
-//                                                                    });
-//
-//                                                                } else {
-//                                                                    Logger.error("problem", "______assetDownload-LanguageFragment");
-//                                                                }
-//                                                                return false;
-//                                                            }
-//
-//                                                            @Override
-//                                                            public int onError(int i) {
-//                                                                dismissDialog();
-//                                                                showErrorDialog("Error ! Unable to update content, Please try again.");
-//                                                                return 0;
-//                                                            }
-//
-//                                                            @Override
-//                                                            public boolean internetConnection(boolean b) {
-//                                                                dismissDialog();
-//                                                                showErrorDialog("No internet connection, please try again");
-//                                                                return false;
-//                                                            }
-//
-//                                                            @Override
-//                                                            public boolean urlReachable(boolean b) {
-//                                                                return false;
-//                                                            }
-//
-//                                                            @Override
-//                                                            public boolean destinationExists(boolean b) {
-//                                                                return false;
-//                                                            }
-//
-//                                                            @Override
-//                                                            public boolean sourcePath(boolean b) {
-//                                                                return false;
-//                                                            }
-//
-//                                                            @Override
-//                                                            public boolean destinationPath(boolean b) {
-//                                                                return false;
-//                                                            }
-//
-//                                                            @Override
-//                                                            public void downloadCompletion(Float aFloat) {
-//                                                                String formattedString = String.format("%.02f", aFloat);
-//                                                                if (adapter.progressDialog != null) {
-//                                                                    adapter.progressDialog.setMessage(getActivity().getResources().getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + getResources().getString(R.string.alert_download_complete) + formattedString + "%");
-//                                                                }
-//                                                            }
-//
-//                                                            @Override
-//                                                            public void init() {
-//                                                                if (adapter.progressDialog == null) {
-//                                                                    adapter.progressDialog = new ProgressDialogController(getActivity()).downloadProgress(getActivity().getResources().getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + getResources().getString(R.string.alert_download_complete));
-//                                                                }
-//                                                            }
-//                                                        });
                                                     //Todo implement download
-
                                                     CarDownloadHelper carDownloadHelper = new CarDownloadHelper(getContext(), "" + Values.carType,
                                                             responseInfo.getLangUrl(), responseInfo.getAssetsUrl(),
                                                             NissanApp.getInstance().getCarPath(Values.carType)
@@ -618,8 +470,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                                 Logger.error("Single Content Downloading failed", "____________" + failedReason);
                                             }
                                         });
-
-                                    } else {
 
                                     }
                                 });
@@ -701,8 +551,6 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                             adapter.notifyDataSetChanged();
                         }
                     }
-                } else {
-
                 }
 
             } else {

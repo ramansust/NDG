@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.assistance;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -66,26 +68,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         }
 
         setListener();
-
-/*
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
-
-                Logger.error("index", "_______" + index);
-
-                parent.setItemChecked(index, true);
-                return true;
-            }
-        });
-*/
-
         return view;
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         new PreferenceUtil(getActivity()).setOpenCountForRateApp();
     }
@@ -146,7 +133,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                     if (stringArray.length > 2) {
                         info.setColorCodeItem(stringArray[2].trim());
                     }
-                } else {
                 }
 
                 homePageList.add(info); // here load the array list that provide for adapter
@@ -184,26 +170,23 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     // here initialized all variable
     private void initViews(View view) {
         btnBack = view.findViewById(R.id.btn_back);
-
         expandableListView = view.findViewById(R.id.exp_lst_view_homepage);
-
         progressBar = view.findViewById(R.id.progress_bar);
-
         linearBack = view.findViewById(R.id.linear_back);
         title = view.findViewById(R.id.txt_title);
-        TextView txt_back_title = view.findViewById(R.id.txt_back_title);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

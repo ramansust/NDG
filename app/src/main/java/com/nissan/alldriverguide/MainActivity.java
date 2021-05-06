@@ -47,6 +47,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.res.ResourcesCompat;
@@ -346,7 +347,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
@@ -424,11 +425,10 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
                 }
             }
         } else {
-            if (new PreferenceUtil(getApplicationContext()).getOpenCountForRateApp() >= Values.RATE_APP_DIVISOR) {
-//                rateOurApp();
-            } else {
+            if (new PreferenceUtil(getApplicationContext()).getOpenCountForRateApp() < Values.RATE_APP_DIVISOR) {
                 backAlert();
-            }
+            }  //                rateOurApp();
+
         }
     }
 
@@ -436,11 +436,10 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
         } else {
-            if (new PreferenceUtil(getApplicationContext()).getOpenCountForRateApp() % Values.RATE_APP_DIVISOR == 0) {
-//                rateOurApp();
-            } else {
+            if (new PreferenceUtil(getApplicationContext()).getOpenCountForRateApp() % Values.RATE_APP_DIVISOR != 0) {
                 backAlert();
-            }
+            }  //                rateOurApp();
+
         }
     }
 
@@ -614,9 +613,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         super.onStop();
         GoogleAnalytics.getInstance(this).reportActivityStop(this);
 
-        if (preferenceUtil.getIsFirstTimeGreatNotGreat()) {
-
-        } else {
+        if (!preferenceUtil.getIsFirstTimeGreatNotGreat()) {
             preferenceUtil.setSessionOne(true);
             preferenceUtil.setSessionThree(false);
             new PreferenceUtil(getApplicationContext()).resetUserNavigationCount();
@@ -644,7 +641,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE_ALL:
                 if (grantResults.length > 0) {
@@ -652,9 +649,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
                     boolean cameraAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
                     boolean storageAccepted = grantResults[2] == PackageManager.PERMISSION_GRANTED;
 
-                    if (locationAccepted && cameraAccepted && storageAccepted) {
-
-                    } else {
+                    if (!locationAccepted || !cameraAccepted || !storageAccepted) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)
                                     || shouldShowRequestPermissionRationale(CAMERA)
@@ -678,9 +673,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
             case PERMISSION_REQUEST_CODE_CAMERA:
                 if (grantResults.length > 0) {
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    if (cameraAccepted) {
-
-                    } else {
+                    if (!cameraAccepted) {
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             if (shouldShowRequestPermissionRationale(CAMERA)) {
@@ -701,9 +694,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
             case PERMISSION_REQUEST_CODE_STORAGE:
                 if (grantResults.length > 0) {
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    if (cameraAccepted) {
-
-                    } else {
+                    if (!cameraAccepted) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             if (shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE)) {
                                 showMessageOKCancel("You need to allow access to SD card.",
@@ -723,9 +714,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
             case PERMISSION_REQUEST_CODE_ACCESS_FINE_LOCATION:
                 if (grantResults.length > 0) {
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    if (cameraAccepted) {
-
-                    } else {
+                    if (!cameraAccepted) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)) {
                                 showMessageOKCancel("You need to allow access to location data",
@@ -770,10 +759,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
     public String getAnalyticsFromSettings(String assistance) {
         return NissanApp.getInstance().getCarName(Values.carType) + Analytics.DOT + Values.tabSettings + assistance + Analytics.DOT + NissanApp.getInstance().getLanguageName(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + Analytics.DOT + Analytics.PLATFORM + "";
-    }
-
-    public String getAnalyticsForDelete(String carname, String assistance) {
-        return carname + Analytics.DOT + Values.tabSettings + assistance + Analytics.DOT + NissanApp.getInstance().getLanguageName(new PreferenceUtil(getApplicationContext()).getSelectedLang()) + Analytics.DOT + Analytics.PLATFORM + "";
     }
 
     public String getAnalyticsForDownloadSection(String assistance) {

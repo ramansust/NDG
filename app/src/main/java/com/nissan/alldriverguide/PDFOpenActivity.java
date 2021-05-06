@@ -35,6 +35,5 @@ public class PDFOpenActivity extends AppCompatActivity {
         settings.setBuiltInZoomControls(true);
         webView.setWebChromeClient(new WebChromeClient());
         webView.loadUrl("file:///android_asset/pdfjs/web/viewer.html?file=" + file.getAbsolutePath());
-
     }
 }

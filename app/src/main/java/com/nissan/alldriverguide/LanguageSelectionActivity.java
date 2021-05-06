@@ -87,13 +87,10 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private PreferenceUtil preferenceUtil;
     private DisplayMetrics metrics;
     private CommonDao commonDao;
-    private final String carName = "";
     private Activity activity;
     private Context context;
     private ProgressDialog progressDialog;
     private String deviceDensity;
-    private final String msg_type = "";
-    private final Object alertMessage = "";
     private LanguageList selectedLangModel = new LanguageList();
     private List<LanguageList> _languageLists = new ArrayList<>();
     private LanguageSelectionController controller;

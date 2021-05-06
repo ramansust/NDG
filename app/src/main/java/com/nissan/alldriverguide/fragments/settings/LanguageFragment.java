@@ -1,10 +1,10 @@
 package com.nissan.alldriverguide.fragments.settings;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -49,7 +49,6 @@ import com.nissan.alldriverguide.multiLang.interfaces.InterfaceLanguageListRespo
 import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.multiLang.model.LanguageList;
-import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.retrofit.ApiCall;
 import com.nissan.alldriverguide.utils.Analytics;
 import com.nissan.alldriverguide.utils.DialogErrorFragment;
@@ -66,6 +65,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -80,14 +80,12 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     SQLiteDatabase sqliteDB;
     private String[] languageName; /*= {"English", "Deutsch", "Français", "Italiano", "Español", "Nederlands", "Русский", "Svenska", "Norsk", "Polski", "Suomi", "Português"};*/
     private String[] languageShortName; /*= {"en", "de", "fr", "it", "es", "nl", "ru", "sv", "no", "pl", "fi", "pt"};*/
-    private int[] languageImage; /*= {R.drawable.united_kingdom, R.drawable.germany, R.drawable.france, R.drawable.italy, R.drawable.spain, R.drawable.netherlands, R.drawable.russia, R.drawable.sweden, R.drawable.norway, R.drawable.poland, R.drawable.finland, R.drawable.portugal};*/
     private ListView lstView;
     private ImageButton btnBack;
     private LinearLayout linearBack;
     private LanguageSelectionAdapter adapter;
     private ArrayList<LanguageInfo> list;
     private PreferenceUtil preferenceUtil;
-    private Configuration conf;
     private Resources resources;
     private DisplayMetrics metrics;
     private TextView txt_title;
@@ -96,7 +94,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     private ProgressDialog progressDialog;
     private Activity activity;
     private Context context;
-    private LanguageListResponse languageListResponses;
 
     private String deviceDensity, lang_sort_name = "";
     private List<LanguageList> _languageLists = new ArrayList<>();
@@ -126,7 +123,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     @Override
-    public void onAttach(final Context context) {
+    public void onAttach(@NonNull final Context context) {
         super.onAttach(context);
         new PreferenceUtil(this.getActivity()).setOpenCountForRateApp();
     }
@@ -319,12 +316,12 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     @Override
-    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
-    public void onSaveInstanceState(final Bundle outState) {
+    public void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
@@ -429,7 +426,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     private void startDownloadProcedure(String lang, int position) {
 
-        String downloadingMsg = NissanApp.getInstance().getAlertMessage(this.context, this.preferenceUtil.getSelectedLang(), Values.DOWNLOADING);
         String startingToDownloadMessage = NissanApp.getInstance().getAlertMessage(this.context, this.preferenceUtil.getSelectedLang(), Values.STARTING_DOWNLOAD);
         this.activity.runOnUiThread(() -> LanguageFragment.this.progressDialog = new ProgressDialogController(LanguageFragment.this.activity).showDialog(startingToDownloadMessage == null || startingToDownloadMessage.isEmpty() ? LanguageFragment.this.resources.getString(R.string.start_download) : startingToDownloadMessage));
 
@@ -451,78 +447,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                     LanguageFragment.this.preferenceUtil.deleteMultiLangData(old_key_tutorial);
                     LanguageFragment.this.preferenceUtil.storeMultiLangData(responseInfo.getTutorials(), new_key_tutorial);
                     LanguageFragment.this.preferenceUtil.storeMultiLangData(responseInfo.getTabMenu(), new_key_tab);
-
-//                    new MADownloadManager(activity, context).downloadLanguage(false, "Language", AppConfig.IS_APP_ONLINE ? responseInfo.getLangUrl() : NissanApp.getInstance().getLanguageURL(Values.carType, lang), NissanApp.getInstance().getCarPath(Values.carType), new DownloaderStatus() {
-//                        @Override
-//                        public boolean onComplete(boolean b) {
-//                            if (b) {
-//                                getActivity().runOnUiThread(new Runnable() {
-//                                    @SuppressLint("StaticFieldLeak")
-//                                    @Override
-//                                    public void run() {
-//
-//
-//                                    }
-//                                });
-//
-//                            } else {
-//                                dismissDialog();
-//                                showErrorDialog("Parsing Error Occurred, Please try again later.");
-//                                Logger.error("problem", "______assetDownload-LanguageFragment");
-//                            }
-//                            return false;
-//                        }
-//
-//                        @Override
-//                        public int onError(int i) {
-//                            showErrorDialog(context.getResources().getString(R.string.internet_connection_interruption)); //"Hi Unknown Error Occurred, Please try again later.");
-//                            errorFileDelete(Values.carType);
-//                            return 0;
-//                        }
-//
-//                        @Override
-//                        public boolean internetConnection(boolean b) {
-//                            errorFileDelete(Values.carType);
-//                            return false;
-//                        }
-//
-//                        @Override
-//                        public boolean urlReachable(boolean b) {
-//                            errorFileDelete(Values.carType);
-//                            return false;
-//                        }
-//
-//                        @Override
-//                        public boolean destinationExists(boolean b) {
-//                            return false;
-//                        }
-//
-//                        @Override
-//                        public boolean sourcePath(boolean b) {
-//                            return false;
-//                        }
-//
-//                        @Override
-//                        public boolean destinationPath(boolean b) {
-//                            return false;
-//                        }
-//
-//                        @Override
-//                        public void downloadCompletion(Float aFloat) {
-//                            String formattedString = String.format("%.02f", aFloat);
-//                            if (progressDialog != null) {
-//                                progressDialog.setMessage((downloadingMsg == null || downloadingMsg.isEmpty() ? resources.getString(R.string.alert_download_complete) : downloadingMsg) + formattedString + "%");
-//                                //resources.getStringArray(R.array.car_names)[Values.carType - 1] + "\n" +
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void init() {
-//                            if (progressDialog == null) {
-//                                progressDialog = new ProgressDialogController(activity).downloadProgress(getActivity().getResources().getStringArray(R.array.car_names)[Values.carType - 1] + "\n" + getResources().getString(R.string.alert_download_complete));
-//                            }
-//                        }
-//                    });
 
                     //TODO Implement Download
                     final CarDownloadHelper carDownloadHelper = new CarDownloadHelper(LanguageFragment.this.getContext(), "" + Values.carType,
@@ -626,14 +550,13 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
                 } else {
                     showErrorDialog("Database Error Occurred, Please try again later.");
-                    errorFileDelete(Values.carType);
+                    errorFileDelete();
                 }
             }
         }.execute();
-
-
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(final View v) {
         switch (v.getId()) {
@@ -657,7 +580,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         }
     }
 
-    private void errorFileDelete(final int carType) {
+    private void errorFileDelete() {
         if (this.progressDialog != null && this.progressDialog.isShowing()) {
             this.progressDialog.dismiss();
         }

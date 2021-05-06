@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -130,7 +131,6 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
         btnBack = findViewById(R.id.btn_back);
         linearBack = findViewById(R.id.linear_back);
         scrollView = findViewById(R.id.scroll_view);
-        TextView txt_back_title = findViewById(R.id.txt_back_title);
         txt_title = findViewById(R.id.txt_title);
     }
 
@@ -218,7 +218,6 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
                 counter = Integer.parseInt(output[1]);
 
                 button.setBackgroundDrawable(d);
-
                 button.setLayoutParams(llp2);
 
                 button.setTag(Integer.parseInt(output[1]));
@@ -234,8 +233,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
             if (column == 3) {
                 column = 0;
                 linearLayout.addView(layoutHorizontal);
-                if (counter == Integer.parseInt(last_value[1])) {
-                } else {
+                if (counter != Integer.parseInt(last_value[1])) {
                     if (type == Values.RED_TYPE) {
                         linearLayout.addView(add_DashedLine(getApplicationContext(), R.drawable.red_dash_line, space));//dashed line added by Rohan
                     } else if (type == Values.ORANGE_TYPE) {
@@ -305,7 +303,6 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
         } else if (type == Values.BLUE_TYPE) {
             if (!list_gray.isEmpty()) {
                 mainLinearLayout.addView(add_DashedLine(getApplicationContext(), R.drawable.gray_dash_line, space));
-            } else if (type == Values.GRAY_TYPE) {
             }
         }
 
@@ -334,6 +331,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
     }
 
     //add dashed Line
+    @SuppressLint("UseCompatLoadingForDrawables")
     private View add_DashedLine(Context c, int drawables, int space) {
 
         LinearLayout colorLinearLayout = new LinearLayout(c);
@@ -348,6 +346,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
         return colorLinearLayout;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
 

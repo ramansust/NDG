@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -19,6 +20,7 @@ public class MyApplication extends MultiDexApplication {
     // The following line should be changed to include the correct property id.
     public static final String PROPERTY_ID = "UA-57902793-1";// UA-57795549-1 (Main)
     //    public static final String PROPERTY_ID = "UA-93701816-1";
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
 
     @Override

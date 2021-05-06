@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,15 +20,15 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.Analytics;
-import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.io.File;
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import static com.nissan.alldriverguide.utils.NissanApp.*;
+import static com.nissan.alldriverguide.utils.NissanApp.getInstance;
 
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -64,13 +65,14 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
     /**
      * here set the web view for display epub
      */
+    @SuppressLint("SetJavaScriptEnabled")
     private void setupWebView() {
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -247,9 +249,9 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         webView = findViewById(R.id.webViewDetailsFragment);
         btnBack = findViewById(R.id.btn_back);
         linearBack = findViewById(R.id.linear_back);
-        TextView txt_back_title = findViewById(R.id.txt_back_title);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

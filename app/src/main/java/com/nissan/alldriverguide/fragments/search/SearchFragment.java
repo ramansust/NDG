@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.search;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
@@ -39,6 +40,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,8 +48,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
 public class SearchFragment extends Fragment {
-    private static final String TAG = "SearchFragment";
-
     public static SearchFragment newInstance() {
         return new SearchFragment();
     }
@@ -66,7 +66,6 @@ public class SearchFragment extends Fragment {
 
     private TopRecentAdapter adapter;
     private ArrayList<SearchModel> dateWise_List;
-    List<SearchModel> searchTagDb;
 
     private String selectedLanguage = "";
 
@@ -90,7 +89,6 @@ public class SearchFragment extends Fragment {
      * @param layout need to fragment layout view
      */
     private void initAll(View layout) {
-
         resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()));
 
         commonDao = CommonDao.getInstance();
@@ -120,7 +118,7 @@ public class SearchFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         new PreferenceUtil(getActivity()).setOpenCountForRateApp();
     }
@@ -205,6 +203,7 @@ public class SearchFragment extends Fragment {
 
     private long mLastClickTime;
     private final View.OnClickListener clickListener = new View.OnClickListener() {
+        @SuppressLint("NonConstantResourceId")
         @Override
         public void onClick(View view) {
             switch (view.getId()) {

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -46,7 +45,6 @@ public class TyreInfoFragment extends Fragment {
 
     private void initializeView(View view) {
         progressBar = view.findViewById(R.id.progress_view);
-        LinearLayout linearLayoutNoContent = view.findViewById(R.id.linearLayoutNoContent);
         listView = view.findViewById(R.id.listView);
     }
 

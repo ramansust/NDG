@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
@@ -21,6 +22,7 @@ import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -78,7 +80,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
     }
 
@@ -188,6 +190,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
         homePageIndex = NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getTag();
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -301,7 +304,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         if (videoView != null) {
             position = videoView.getCurrentPosition();
@@ -311,7 +314,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     }
 
     @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
+    public void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
             position = savedInstanceState.getInt("position");

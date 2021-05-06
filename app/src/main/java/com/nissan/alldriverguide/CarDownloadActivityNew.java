@@ -53,7 +53,6 @@ public class CarDownloadActivityNew extends AppCompatActivity {
     }
 
     private void initUI() {
-
         rvCarList = findViewById(R.id.rv_car_list_new);
         pbLoader = findViewById(R.id.pb_loader_car_download);
     }

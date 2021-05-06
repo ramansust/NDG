@@ -3,7 +3,6 @@ package com.nissan.alldriverguide.fragments.assistance;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,6 +33,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -58,7 +58,6 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     private ArrayList<CallInfo> list;
 
     private PreferenceUtil preferenceUtil;
-    private Configuration conf;
     private DisplayMetrics metrics;
     private TextView txtViewTitle;
     private TextView txtHeaderTitle;
@@ -97,15 +96,12 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     }
 
     private void loadResource() {
-        Resources resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
+        new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
         txtViewTitle.setText(getArguments().getString(TITLE));
 //        txtViewTitle.setTypeface(tf);
 
         String call_assistance_title = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), REGISTERED_COUNTRY_NAME);
-
         txtHeaderTitle.setText(call_assistance_title == null || call_assistance_title.isEmpty() ? getActivity().getResources().getString(R.string.registered_country_name) : call_assistance_title);
-
-
 //        txtHeaderTitle.setText(headerTitle == null || headerTitle.isEmpty() ? resources.getString(R.string.registered_country_name) : headerTitle);
     }
 
@@ -133,7 +129,6 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
                             return;
 
                         if (childNodes.get(j).getIndex() == 2) {
-                            String headerTitle = childNodes.get(j).getHeaderTitle();
 
                             if (childNodes.get(j) == null || childNodes.get(j).getCountryList() == null)
                                 return;
@@ -222,12 +217,12 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
@@ -283,6 +278,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         dialog.show();
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

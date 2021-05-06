@@ -4,13 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.adapter.CombimeterSearchAdapter;
-import com.nissan.alldriverguide.database.CommonDao;
 import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.fragments.search.model.SearchCombimeterModel;
 import com.nissan.alldriverguide.utils.Values;
@@ -49,11 +47,9 @@ public class WarningLightFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_warning_lights, container, false);
 
         map = new LinkedHashMap<>();
-        CommonDao commonDao = CommonDao.getInstance();
         progressBar = layout.findViewById(R.id.progress_view);
         dataMap = new LinkedHashMap<>();
         recyclerView = layout.findViewById(R.id.recyclerView);
-        LinearLayout linearLayoutNoContent = layout.findViewById(R.id.linearLayoutNoContent);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(NUM_COLUMNS, StaggeredGridLayoutManager.VERTICAL));
 

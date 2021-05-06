@@ -37,6 +37,7 @@ import com.nissan.alldriverguide.utils.Values;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -192,18 +193,18 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         new PreferenceUtil(getActivity()).setOpenCountForRateApp();
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
@@ -268,9 +269,6 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
                 frag = Feedback.newInstance();
-                break;
-
-            case 5:
                 break;
 
             default:

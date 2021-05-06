@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.combimeter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -24,12 +25,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import static com.nissan.alldriverguide.utils.Logger.*;
+
 public class CombimeterFragment extends Fragment implements View.OnClickListener {
-    private static final String TAG = "CombimeterFragment";
     private static final String TITLE = "title";
     private ImageButton btnBack;
     private LinearLayout linearBack;
@@ -67,7 +70,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         new PreferenceUtil(getActivity()).setOpenCountForRateApp(); // this for rate our app click count
     }
@@ -131,33 +134,27 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
 
     private void initViews(View view) {
         btnBack = view.findViewById(R.id.btn_back);
-        TextView txt_back_title = view.findViewById(R.id.txt_back_title);
         txt_title = view.findViewById(R.id.txt_title);
         scrollView = view.findViewById(R.id.scroll_view);
         linearBack = view.findViewById(R.id.linear_back);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
 
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_back:
-                if (ImageTargetActivity.isDetected) {
-                    getActivity().finish();
-                } else {
-                    getActivity().onBackPressed();
-                }
-                break;
             case R.id.linear_back:
                 if (ImageTargetActivity.isDetected) {
                     getActivity().finish();
@@ -166,20 +163,8 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
                 }
                 break;
             default:
-                PreferenceUtil preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
                 int ePubIndex;
-                /*if(Values.carType == 11 || Values.carType == 12 || Values.carType == 13 || Values.carType == 14) {
-//                if(Values.carType == 14) {
-                    ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
-                } else {
-                    if(preferenceUtil.getSelectedLang().equalsIgnoreCase("pl") || preferenceUtil.getSelectedLang().equalsIgnoreCase("fi") || preferenceUtil.getSelectedLang().equalsIgnoreCase("pt")) {
-                        ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
-                    } else {
-                        ePubIndex = Integer.parseInt(v.getTag().toString());
-                    }
-                }*/
-
-                Logger.error("__MB__Tag__", v.getTag().toString());
+                error("__MB__Tag__", v.getTag().toString());
                 ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
 
 //                ePubIndex = Integer.parseInt(v.getTag().toString()) * 2;
@@ -306,8 +291,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
             if (column == 3) {
                 column = 0;
                 linearLayout.addView(layoutHorizontal);
-                if (counter == Integer.parseInt(last_value[1])) {
-                } else {
+                if (counter != Integer.parseInt(last_value[1])) {
                     if (type == Values.RED_TYPE) {
                         linearLayout.addView(add_DashedLine(getActivity(), R.drawable.red_dash_line, space));//dashed line added by Rohan
                     } else if (type == Values.ORANGE_TYPE) {
@@ -381,7 +365,6 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
         } else if (type == Values.BLUE_TYPE) {
             if (!list_gray.isEmpty()) {
                 mainLinearLayout.addView(add_DashedLine(getActivity(), R.drawable.gray_dash_line, space));
-            } else if (type == Values.GRAY_TYPE) {
             }
         }
 
@@ -393,6 +376,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
      * @param space     used for layout margin
      * @return view
      */
+    @SuppressLint("UseCompatLoadingForDrawables")
     private View add_DashedLine(Context c, int drawables, int space) {
 
         LinearLayout colorLinearLayout = new LinearLayout(c);

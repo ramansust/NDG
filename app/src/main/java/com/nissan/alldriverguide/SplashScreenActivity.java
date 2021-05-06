@@ -3,8 +3,6 @@ package com.nissan.alldriverguide;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,14 +35,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                         new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             }
         }*/
-    }
-
-    private View createDummyTextView(String text) {
-        TextView textView = new TextView(this);
-        textView.setText(text);
-        textView.setBackgroundResource(R.drawable.rectangle_shape);
-        textView.setPadding(5, 5, 5, 5);
-        return textView;
     }
 
     /**

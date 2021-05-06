@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.settings;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -116,8 +117,6 @@ public class Feedback extends Fragment implements View.OnClickListener {
                 if (etDescription.getText().toString().trim().length() > 0) {
                     etDescription.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.send_feedback_title_bg));
                 }
-            } else {
-
             }
         }
 
@@ -126,6 +125,7 @@ public class Feedback extends Fragment implements View.OnClickListener {
         }
     };
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -136,6 +136,7 @@ public class Feedback extends Fragment implements View.OnClickListener {
                 mLastClickTime = SystemClock.elapsedRealtime();
                 getActivity().onBackPressed();
                 break;
+
             case R.id.send_feedback_button:
                 if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
                     return;
@@ -168,7 +169,6 @@ public class Feedback extends Fragment implements View.OnClickListener {
                         NissanApp.getInstance().showInternetAlert(this.getActivity(), internetCheckMessage.isEmpty() ? getResources().getString(R.string.internet_connect) : internetCheckMessage);
                     }
                 }
-
                 break;
 
             default:

@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.fragments.search;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.GradientDrawable;
@@ -41,6 +42,7 @@ import com.nissan.alldriverguide.utils.Values;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -56,6 +58,7 @@ import static android.text.TextUtils.isEmpty;
 
 public class TabFragment extends Fragment {
 
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
     private CommonDao commondao;
     private TabLayout tabLayout;
@@ -82,13 +85,13 @@ public class TabFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         dataPassing = (DataPassing) context;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ((BaseTabFragmentActivity) getActivity()).setMedia(this);
 
         if (fragmentView != null) {
@@ -142,12 +145,7 @@ public class TabFragment extends Fragment {
         loadResources();
 
         //sdk support for shadowView
-        if (Build.VERSION.SDK_INT < 21) {
-            shadowView.setVisibility(View.VISIBLE);
-        } else {
-            shadowView.setVisibility(View.GONE);
-        }
-
+        shadowView.setVisibility(View.GONE);
         setCurrentTabFragment(0);
     }
 
@@ -265,50 +263,8 @@ public class TabFragment extends Fragment {
         linearLayout.setDividerDrawable(drawable);
     }
 
-    /**
-     * Adding custom view to tab
-     */
-    private void setupTabIcons() {
-        TextView tabOne = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.h_b_media_tab, null);
-//        tabOne.setText("ONE");
-        tabOne.setCompoundDrawablesWithIntrinsicBounds(R.drawable.warning_light, 0, 0, 0);
-        tabLayout.getTabAt(0).setCustomView(tabOne);
-
-        TextView tabTwo = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.h_b_media_tab, null);
-//        tabTwo.setText("TWO");
-        tabTwo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.quick_reference, 0, 0, 0);
-        tabLayout.getTabAt(1).setCustomView(tabTwo);
-
-        TextView tabThree = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.h_b_media_tab, null);
-//        tabThree.setText("THREE");
-        tabThree.setCompoundDrawablesWithIntrinsicBounds(R.drawable.tyre, 0, 0, 0);
-        tabLayout.getTabAt(2).setCustomView(tabThree);
-
-        TextView tabFour = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.h_b_media_tab, null);
-//        tabFour.setText("Four");
-        tabFour.setCompoundDrawablesWithIntrinsicBounds(R.drawable.engine_compartment, 0, 0, 0);
-        tabLayout.getTabAt(3).setCustomView(tabFour);
-
-        TextView tabFive = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.h_b_media_tab, null);
-//        tabFive.setText("Five");
-        tabFive.setCompoundDrawablesWithIntrinsicBounds(R.drawable.warranty, 0, 0, 0);
-        tabLayout.getTabAt(4).setCustomView(tabFive);
-    }
-
-    private void setCustomFontForTabs() {
-        String[] tabs = resources.getStringArray(R.array.assistance_array_temp);
-        //this is to set custom font for tabs
-        for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            TextView tv = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.h_b_media_tab, null);
-//            tv.setTypeface(tf);
-            tv.setText(tabs[i]);
-            if (tabLayout.getTabAt(i) != null) {
-                tabLayout.getTabAt(i).setCustomView(tv);
-            }
-        }
-    }
-
     private final View.OnClickListener clickListener = new View.OnClickListener() {
+        @SuppressLint("NonConstantResourceId")
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
@@ -368,7 +324,6 @@ public class TabFragment extends Fragment {
                         Logger.error("not found", "______search_result!");
                     }
 
-
                     BaseTabFragmentActivity.keyword = getKeyword;
 
                     setListener();
@@ -377,25 +332,6 @@ public class TabFragment extends Fragment {
                     transaction.addToBackStack(Values.tabSearchChildFragment);
                     transaction.commit();
                     isAnimation = true;
-
-/*
-                    viewPagerAdapter = new ViewPagerMediaAdapter(getActivity().getApplicationContext(), getChildFragmentManager());
-
-                    if (viewPager != null) {
-                        viewPager.setAdapter(viewPagerAdapter);
-                    }
-                    if (tabLayout != null) {
-                        tabLayout.setupWithViewPager(viewPager);
-                        setupTabIcons();
-                    }
-
-                    setCustomFontForTabs();
-
-                    if (pageSelected > -1) {
-                        viewPager.setCurrentItem(pageSelected);
-                    }
-*/
-
                 }
                 return true;
             }
@@ -422,70 +358,8 @@ public class TabFragment extends Fragment {
         return new Fragment();
     }
 
-    ViewPager.SimpleOnPageChangeListener pageChangeListener = new ViewPager.SimpleOnPageChangeListener() {
-        @Override
-        public void onPageSelected(int position) {
-            super.onPageSelected(position);
-//            pageSelected = position;
-            QRGFragment.whichTab = position + 1;
-        }
-    };
-
-
     private void setKey(String keyword) {
         TabFragment.keyword = keyword;
-    }
-
-
-    public static class ViewPagerMediaAdapter extends FragmentPagerAdapter {
-
-        final String[] tabs = resources.getStringArray(R.array.assistance_array_temp);
-
-        public ViewPagerMediaAdapter(Context context, FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return tabs[position];
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            Fragment f = new Fragment();
-
-            switch (position) {
-                case 0:
-                    f = WarningLightFragment.newInstance();
-                    break;
-
-                case 1:
-                    f = QRGFragment.newInstance(); //QuickRefGuideFragment.newInstance();
-                    break;
-
-                case 2:
-                    f = TyreInfoFragment.newInstance(); //QRGFragment.getInstance(Values.TYRE_TYPE); //TyreInfoFragment.newInstance();
-                    break;
-
-                case 3:
-                    f = EngineComponentFragment.newInstance(); //EngineCompartmentFragment.newInstance();
-                    break;
-
-                case 4:
-                    f = WarrantyFragment.newInstance(); //WarrantyFragment.newInstance();
-                    break;
-
-                default:
-                    break;
-            }
-            return f;
-        }
-
-        @Override
-        public int getCount() {
-            return tabs.length - 1;
-        }
-
     }
 
     private final TextWatcher textWatcher = new TextWatcher() {
@@ -508,16 +382,6 @@ public class TabFragment extends Fragment {
         }
     };
 
-    private void cancelButtonAction() {
-        getSearchKeyword.setText("");
-        getSearchKeyword.clearFocus();
-        // Check if no view has focus:
-        View view = getActivity().getCurrentFocus();
-        if (view != null) {
-            new NissanApp().hideKeyboard(getActivity(), view);
-        }
-    }
-
     public static String getTitleName(int _ePubType) {
 
         AssistanceInfo assistanceInfo = NissanApp.getInstance().getAssistanceInfo();
@@ -531,23 +395,6 @@ public class TabFragment extends Fragment {
             if (data.getIndex() == _ePubType)
                 return data.getTitle();
         }
-
-
-
-
-
-/*
-        if (_ePubType == Values.COMBIMETER_TYPE)
-            return resources.getString(R.string.warning_lights);
-        else if (_ePubType == Values.HOMEPAGE_TYPE)
-            return resources.getString(R.string.quick_reference_guide);
-        else if (_ePubType == Values.TYRE_TYPE)
-            return resources.getString(R.string.tyre_information);
-        else if (_ePubType == Values.ENGINE_TYPE)
-            return resources.getString(R.string.engine_compartment);
-        else if (_ePubType == Values.WARRANTY_TYPE)
-            return resources.getString(R.string.warranty);
-*/
 
         return "";
     }
