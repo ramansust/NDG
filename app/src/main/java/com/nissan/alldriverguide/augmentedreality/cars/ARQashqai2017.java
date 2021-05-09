@@ -6,6 +6,7 @@
 
 package com.nissan.alldriverguide.augmentedreality.cars;
 
+import android.annotation.SuppressLint;
 import android.opengl.GLES20;
 import android.os.Handler;
 import android.view.View;
@@ -26,6 +27,7 @@ public class ARQashqai2017 extends ARCommon {
         super(activity, session);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void buttonEventInitial(View img_view) {
         img_view.setOnClickListener(v -> {
@@ -118,7 +120,6 @@ public class ARQashqai2017 extends ARCommon {
         for (int tIdx = 0; tIdx < state.getNumTrackableResults(); tIdx++) {
             TrackableResult result = state.getTrackableResult(tIdx);
             Trackable trackable = result.getTrackable();
-            printUserData(trackable);
 
             final String userDataToCompare = (String) trackable.getUserData();
 

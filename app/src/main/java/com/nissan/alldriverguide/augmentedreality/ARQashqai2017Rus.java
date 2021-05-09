@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.augmentedreality;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -19,14 +20,10 @@ import com.nissan.alldriverguide.vuforia.SampleAppRenderer;
 import com.nissan.alldriverguide.vuforia.SampleAppRendererControl;
 import com.nissan.alldriverguide.vuforia.SampleApplicationException;
 import com.nissan.alldriverguide.vuforia.SampleApplicationSession;
-import com.nissan.alldriverguide.vuforia.Texture;
 import com.vuforia.Device;
-import com.vuforia.Renderer;
 import com.vuforia.State;
 import com.vuforia.Trackable;
 import com.vuforia.TrackableResult;
-
-import java.util.Vector;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -37,6 +34,7 @@ import javax.microedition.khronos.opengles.GL10;
 public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRendererControl, View.OnClickListener {
 
     private static final String LOGTAG = "ImageTargetRenderer";
+    @SuppressLint("StaticFieldLeak")
     public static ImageView iv;
     private final SampleApplicationSession vuforiaAppSession;
     private final ImageTargetActivity mActivity;
@@ -110,22 +108,10 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-    }
-
-
-    private void printUserData(Trackable trackable) {
-        String userData = (String) trackable.getUserData();
-    }
-
-    public void setTextures(Vector<Texture> textures) {
-//        mTextures = textures;
     }
 
     // Function for initializing the renderer.
     private void initRendering() {
-
-        Renderer mRenderer = Renderer.getInstance();
 
         /*GLES20.glClearColor(0.0f, 0.0f, 0.0f, Vuforia.requiresAlpha() ? 0.0f
                 : 1.0f);*/
@@ -153,7 +139,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
 
             mActivity.layoutCameraView.removeAllViews();
             vuforiaAppSession.onResume();
-
         });
 
         ibInfo.setOnClickListener(v -> {
@@ -186,10 +171,10 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
 
         });
         inflater = LayoutInflater.from(mActivity);
-
     }
 
     //Method for sub category image click
+    @SuppressLint({"NonConstantResourceId", "InflateParams"})
     public void buttonEventInitial(View img_view) {
 
         img_view.setOnClickListener(v -> {
@@ -269,6 +254,7 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
 
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public void renderFrame(State state, float[] projectionMatrix) {
         // Renders video background replacing Renderer.DrawVideoBackground()
@@ -285,7 +271,6 @@ public class ARQashqai2017Rus implements GLSurfaceView.Renderer, SampleAppRender
         for (int tIdx = 0; tIdx < state.getNumTrackableResults(); tIdx++) {
             TrackableResult result = state.getTrackableResult(tIdx);
             Trackable trackable = result.getTrackable();
-            printUserData(trackable);
 
             final String userDataToCompare = (String) trackable.getUserData();
 

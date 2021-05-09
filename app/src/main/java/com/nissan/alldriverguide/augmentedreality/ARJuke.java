@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.augmentedreality;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -19,14 +20,10 @@ import com.nissan.alldriverguide.vuforia.SampleAppRenderer;
 import com.nissan.alldriverguide.vuforia.SampleAppRendererControl;
 import com.nissan.alldriverguide.vuforia.SampleApplicationException;
 import com.nissan.alldriverguide.vuforia.SampleApplicationSession;
-import com.nissan.alldriverguide.vuforia.Texture;
 import com.vuforia.Device;
-import com.vuforia.Renderer;
 import com.vuforia.State;
 import com.vuforia.Trackable;
 import com.vuforia.TrackableResult;
-
-import java.util.Vector;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -41,6 +38,7 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
     private final SampleApplicationSession vuforiaAppSession;
     private final ImageTargetActivity mActivity;
 
+    @SuppressLint("StaticFieldLeak")
     public static ImageView iv;
 
     private LayoutInflater inflater;
@@ -116,20 +114,8 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
 
     }
 
-
-    private void printUserData(Trackable trackable) {
-        String userData = (String) trackable.getUserData();
-    }
-
-    public void setTextures(Vector<Texture> textures) {
-//        mTextures = textures;
-    }
-
     // Function for initializing the renderer.
     private void initRendering() {
-
-        Renderer mRenderer = Renderer.getInstance();
-
         /*GLES20.glClearColor(0.0f, 0.0f, 0.0f, Vuforia.requiresAlpha() ? 0.0f
                 : 1.0f);*/
         // Hide the Loading Dialog
@@ -194,6 +180,7 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
     }
 
     //Method for sub category image click
+    @SuppressLint({"NonConstantResourceId", "InflateParams"})
     public void buttonEventInitial(View img_view) {
 
         img_view.setOnClickListener(v -> {
@@ -305,6 +292,7 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
 
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public void renderFrame(State state, float[] projectionMatrix) {
         // Renders video background replacing Renderer.DrawVideoBackground()
@@ -321,7 +309,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
         for (int tIdx = 0; tIdx < state.getNumTrackableResults(); tIdx++) {
             TrackableResult result = state.getTrackableResult(tIdx);
             Trackable trackable = result.getTrackable();
-            printUserData(trackable);
 
             final String userDataToCompare = (String) trackable.getUserData();
 
@@ -406,7 +393,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                         e.printStackTrace();
                     }
 
-
                     Values.ar_value = Analytics.AUTO_AC;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.juke_ac_right, null, false);
@@ -451,8 +437,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                     setBackground(ImageTargetActivity.inflatedLayout, drawables + "juke_multi_switch.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
-
-
                 } else if (userDataToCompare.equalsIgnoreCase("radio_navi_1")
                         || userDataToCompare.equalsIgnoreCase("radio_navi_2")
                         || userDataToCompare.equalsIgnoreCase("radio_navi_3")) {
@@ -507,7 +491,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                         e.printStackTrace();
                     }
 
-
                     Values.ar_value = Analytics.RADIO_W_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.juke_radio_right, null, false);
@@ -546,7 +529,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                         e.printStackTrace();
                     }
 
-
                     Values.ar_value = Analytics.STEERING_FULL;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.juke_steering_full, null, false);
@@ -569,7 +551,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                         e.printStackTrace();
                     }
 
-
                     Values.ar_value = Analytics.STEERING_LEFT;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.juke_steering_left, null, false);
@@ -588,7 +569,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-
 
                     Values.ar_value = Analytics.STEERING_RIGHT;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
@@ -609,7 +589,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                         e.printStackTrace();
                     }
 
-
                     Values.ar_value = Analytics.SUNROOF;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.juke_sunroof_mid, null, false);
@@ -628,7 +607,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-
 
                     Values.ar_value = Analytics.RADIO_WO_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
@@ -653,7 +631,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                         e.printStackTrace();
                     }
 
-
                     Values.ar_value = Analytics.RADIO_WO_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.juke_radio_wo_navi_mid, null, false);
@@ -673,7 +650,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                         e.printStackTrace();
                     }
 
-
                     Values.ar_value = Analytics.RADIO_WO_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.juke_radio_wo_navi_right, null, false);
@@ -692,7 +668,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-
 
                     Values.ar_value = Analytics.RADIO_WO_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
@@ -718,7 +693,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                         e.printStackTrace();
                     }
 
-
                     Values.ar_value = Analytics.RADIO_WO_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.juke_radio_manual_left, null, false);
@@ -737,7 +711,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-
 
                     Values.ar_value = Analytics.RADIO_WO_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
@@ -778,7 +751,6 @@ public class ARJuke implements GLSurfaceView.Renderer, SampleAppRendererControl,
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-
 
                     Values.ar_value = Analytics.RADIO_WO_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(

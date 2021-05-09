@@ -6,6 +6,7 @@
 
 package com.nissan.alldriverguide.augmentedreality.cars;
 
+import android.annotation.SuppressLint;
 import android.opengl.GLES20;
 import android.os.Handler;
 import android.view.View;
@@ -29,6 +30,7 @@ public class ARXtrail2020Eur extends ARCommon {
         super(activity, session);
     }
 
+    @SuppressLint({"NonConstantResourceId", "InflateParams"})
     @Override
     public void buttonEventInitial(View img_view) {
 
@@ -128,6 +130,7 @@ public class ARXtrail2020Eur extends ARCommon {
         });
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public void renderFrame(State state, float[] projectionMatrix) {
 
@@ -137,7 +140,6 @@ public class ARXtrail2020Eur extends ARCommon {
         for (int tIdx = 0; tIdx < state.getNumTrackableResults(); tIdx++) {
             TrackableResult result = state.getTrackableResult(tIdx);
             Trackable trackable = result.getTrackable();
-            printUserData(trackable);
 
             final String userDataToCompare = (String) trackable.getUserData();
 
@@ -166,7 +168,6 @@ public class ARXtrail2020Eur extends ARCommon {
                         || userDataToCompare.equalsIgnoreCase("steering_right_2")
                         || userDataToCompare.equalsIgnoreCase("steering_right_3")
                 ) {
-
 
                     try {
                         ImageTargetActivity.isDetected = true;

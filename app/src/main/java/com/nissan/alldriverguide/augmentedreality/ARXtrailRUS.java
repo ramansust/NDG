@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.augmentedreality;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -41,6 +42,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
     private final SampleApplicationSession vuforiaAppSession;
     private final ImageTargetActivity mActivity;
 
+    @SuppressLint("StaticFieldLeak")
     public static ImageView iv;
 
     private LayoutInflater inflater;
@@ -116,19 +118,8 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
 
     }
 
-
-    private void printUserData(Trackable trackable) {
-        String userData = (String) trackable.getUserData();
-    }
-
-    public void setTextures(Vector<Texture> textures) {
-//        mTextures = textures;
-    }
-
     // Function for initializing the renderer.
     private void initRendering() {
-
-        Renderer mRenderer = Renderer.getInstance();
 
         /*GLES20.glClearColor(0.0f, 0.0f, 0.0f, Vuforia.requiresAlpha() ? 0.0f
                 : 1.0f);*/
@@ -157,7 +148,6 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
 
             mActivity.layoutCameraView.removeAllViews();
             vuforiaAppSession.onResume();
-
         });
 
         ibInfo.setOnClickListener(v -> {
@@ -192,10 +182,10 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
 
         });
         inflater = LayoutInflater.from(mActivity);
-
     }
 
     //Method for sub category image click
+    @SuppressLint({"NonConstantResourceId", "InflateParams"})
     public void buttonEventInitial(View img_view) {
 
         img_view.setOnClickListener(v -> {
@@ -292,6 +282,7 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
 
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public void renderFrame(State state, float[] projectionMatrix) {
         // Renders video background replacing Renderer.DrawVideoBackground()
@@ -308,7 +299,6 @@ public class ARXtrailRUS implements GLSurfaceView.Renderer, SampleAppRendererCon
         for (int tIdx = 0; tIdx < state.getNumTrackableResults(); tIdx++) {
             TrackableResult result = state.getTrackableResult(tIdx);
             Trackable trackable = result.getTrackable();
-            printUserData(trackable);
 
             final String userDataToCompare = (String) trackable.getUserData();
 

@@ -24,7 +24,6 @@ import com.nissan.alldriverguide.vuforia.SampleApplicationException;
 import com.nissan.alldriverguide.vuforia.SampleApplicationSession;
 import com.vuforia.Device;
 import com.vuforia.Renderer;
-import com.vuforia.Trackable;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -190,9 +189,5 @@ public abstract class ARCommon implements GLSurfaceView.Renderer, SampleAppRende
 
     public void updateConfiguration() {
         mSampleAppRenderer.onConfigurationChanged(mActivity.mIsActive);
-    }
-
-    protected void printUserData(Trackable trackable) {
-        String userData = (String) trackable.getUserData();
     }
 }
