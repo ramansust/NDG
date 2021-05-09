@@ -140,6 +140,18 @@
     <string name="feedback_text">Send tilbakemeldingen din direkte til oss. Din mening er viktig for oss.</string>
     <string name="send_feedback">Send tilbakemelding</string>
 
+    <string name="change_language_popup_title">Change Language</string>
+    <string name="sending_feedback">Sending feedback...</string>
+    <string name="search_delete_loader_message">Deleting your local searches...</string>
+    <string name="downloaded_car">Downloaded Car</string>
+    <string name="previous_car">Previous Car</string>
+    <string name="available_for_download_car">Available for Download</string>
+    <string name="pdf_open">PDF Open</string>
+    <string name="select_model_year">Select model year</string>
+    <string name="failed_to_connect_server">Failed to connect to server</string>
+    <string name="attention">Attention!</string>
+    <string name="internet_connection_interruption">Internet connection interrupted, Please try again later.</string>
+
     <string name="feedback">Tilbakemelding</string>
     <string name="send_feedback_title">Emne</string>
     <string name="send_feedback_description">Melding</string>

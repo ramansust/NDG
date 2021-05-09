@@ -2,15 +2,37 @@
 <resources>
 
     <string name="app_name">NISSAN Driver’s Guide</string>
+
+    <string name="title_activity_language_selection">LanguageSelectionActivity</string>
+    <string name="title_activity_tutorial">TutorialActivity</string>
+    <string name="title_activity_car_download">CarDownloadActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_details_main">DetailsActivity</string>
+    <string name="title_combimeter_main">CombimeterActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_image_target">ImageTargetActivity</string>
+
     <string name="alert_msg39">Прежде чем использовать комплект для ремонта проколотых шин, внимательно прочтите инструкции в разделе “РЕМОНТ СПУЩЕННОГО КОЛЕСА”.</string>
     <string name="alert_msg40">Читать</string>
     <string name="alert_msg41">Уже прочитано</string>
     <string name="alert_msg42">Прежде чем менять спущенное колесо, внимательно прочтите инструкции в разделе “ЗАМЕНА СПУЩЕННОГО КОЛЕСА”.</string>
 
-
     <!--//new msg text only for english-->
     <string name="alert_msg22">Загрузить содержание по этому автомобилю? Это может занять несколько минут в зависимости от скорости интернет-соединения. Оно будет загружено только один раз для каждого автомобиля.</string>
     <string name="alert_msg23">Удалить?</string>
+
+    // vuforia strings
+    <string name="INIT_ERROR">Error</string>
+    <string name="INIT_ERROR_DEVICE_NOT_SUPPORTED">Failed to initialize Vuforia. This device is not supported.</string>
+    <string name="INIT_ERROR_NO_CAMERA_ACCESS">Failed to initialize Vuforia. Camera not accessible</string>
+    <string name="INIT_LICENSE_ERROR_MISSING_KEY">Vuforia App key is missing. Please get a valid key, by logging into your account at developer.vuforia.com and creating a new project.</string>
+    <string name="INIT_LICENSE_ERROR_INVALID_KEY">Invalid Key used. Please make sure you are using a valid Vuforia App Key.</string>
+    <string name="INIT_LICENSE_ERROR_NO_NETWORK_TRANSIENT">Unable to contact server. Please try again later.</string>
+    <string name="INIT_LICENSE_ERROR_NO_NETWORK_PERMANENT">No network available. Please make sure you are connected to the Internet.</string>
+    <string name="INIT_LICENSE_ERROR_CANCELED_KEY">This app license key has been canceled and may no longer be used. Please get a new license key.</string>
+    <string name="INIT_LICENSE_ERROR_PRODUCT_TYPE_MISMATCH">Vuforia App key is not valid for this product. Please get a valid key, by logging into your account at developer.vuforia.com and choosing the right product type during project creation.</string>
+    <string name="INIT_LICENSE_ERROR_UNKNOWN_ERROR">Failed to initialize Vuforia.</string>
 
     <!--//warranty alert dialog message-->
 
@@ -26,6 +48,9 @@
     <string name="video_popup_msg">Хотите узнать больше?</string>
     <string name="video_watch_again">Смотреть снова</string>
     <string name="video_learn_more">Узнать больше</string>
+
+    <string name="register_push">Do you want register for push service ?</string>
+    <string name="recent_search">Recent Searches</string>
 
     <string-array name="car_names">
         <item>Qashqai EUR Specs</item>
@@ -63,6 +88,8 @@
         <item>Настройки</item>
     </string-array>
 
+    <string name="select_language_landing">Select Language</string>
+    <string name="select_your_car">Select Your Car</string>
     <string name="driver_guide">Руководство для водителя</string>
     <string name="select_language">Выбор языка</string>
 
@@ -141,7 +168,20 @@
     <string name="rate_our_app_yes">Да, оценить приложение</string>
 
     <string name="feedback_text">Пожалуйста, отправьте свой комментарий непосредственно нам. Ваше мнение очень важно для нас.</string>
-    <string name="send_feedback">Отправить комментарий</string>
+
+
+    <string name="change_language_popup_title">Change Language</string>
+    <string name="sending_feedback">Sending feedback...</string>
+    <string name="search_delete_loader_message">Deleting your local searches...</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="downloaded_car">Downloaded Car</string>
+    <string name="previous_car">Previous Car</string>
+    <string name="available_for_download_car">Available for Download</string>
+    <string name="pdf_open">PDF Open</string>
+    <string name="select_model_year">Select model year</string>
+    <string name="failed_to_connect_server">Failed to connect to server</string>
+    <string name="attention">Attention!</string>
+    <string name="internet_connection_interruption">Internet connection interrupted, Please try again later.</string>
 
     <string name="feedback">Комментарий</string>
     <string name="send_feedback_title">Заголовок</string>

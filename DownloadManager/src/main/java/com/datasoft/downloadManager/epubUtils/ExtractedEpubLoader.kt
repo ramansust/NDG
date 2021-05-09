@@ -32,8 +32,6 @@ class ExtractedEpubLoader(private val extractedEpubFolder: String) {
         val doc = readFromNcxString(xmlStr)
         val nl: NodeList = doc.getElementsByTagName("navPoint")
 
-        val baseUrl = getEpubBaseUrl()
-
         val epubInfos = ArrayList<EpubInfo>()
         for (i in 0 until nl.length) {
 
@@ -67,7 +65,7 @@ class ExtractedEpubLoader(private val extractedEpubFolder: String) {
         return stringBuilder.toString()
     }
 
-    private fun getValue(item: Element, str: String?): String? {
+    private fun getValue(item: Element, str: String?): String {
         val n = item.getElementsByTagName(str)
         return getElementValue(n.item(0))
     }

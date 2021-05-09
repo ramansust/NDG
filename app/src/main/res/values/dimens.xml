@@ -33,6 +33,11 @@
     <dimen name="width_365dp">365dp</dimen>
     <dimen name="width_730dp">730dp</dimen>
     <dimen name="width_352dp">352dp</dimen>
+    <dimen name="width_546dp">546dp</dimen>
+    <dimen name="width_528dp">528dp</dimen>
 
+
+    <dimen name="dialog_text_size">15sp</dimen>
+    <dimen name="dialog_text_size_title">20sp</dimen>
 
 </resources>

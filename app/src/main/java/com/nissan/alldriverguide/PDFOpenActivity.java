@@ -29,7 +29,6 @@ public class PDFOpenActivity extends AppCompatActivity {
 
         WebView webView = findViewById(R.id.webView);
         WebSettings settings = webView.getSettings();
-        settings.setJavaScriptEnabled(true);
         settings.setAllowFileAccessFromFileURLs(true);
         settings.setAllowUniversalAccessFromFileURLs(true);
         settings.setBuiltInZoomControls(true);

@@ -56,7 +56,6 @@ public class OnlineBookingFragment extends Fragment {
     private void webViewInstantiate() {
 
         txtViewTitle.setText(getArguments().getString(TITLE));
-        webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setBuiltInZoomControls(true);
