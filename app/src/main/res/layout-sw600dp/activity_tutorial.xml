@@ -67,7 +67,8 @@
             android:text="@string/button_next"
             android:textColor="@color/white"
             android:textSize="@dimen/dialog_text_size"
-            android:fontFamily="@font/nissan_brand_bold" />
+            android:fontFamily="@font/nissan_brand_bold"
+            android:focusable="true" />
 
         <ImageButton
             android:id="@+id/btnNext"

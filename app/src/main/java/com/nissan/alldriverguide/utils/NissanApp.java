@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
@@ -38,9 +37,6 @@ import com.nissan.alldriverguide.multiLang.model.TabMenu;
 import com.nissan.alldriverguide.multiLang.model.Tutorial;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -48,6 +44,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -59,9 +56,6 @@ public class NissanApp {
 
     public static NissanApp instance;
     public AssistanceInfo assistanceInfo;
-    //    public String Vuforia_key = "AZeJ28P/////AAAAAcTlmrGvj0ngjCcwQjIavJcqQvIaBitAo5eBTkG2cG4PyF+t82bIUefZWp/9apWQuelfAA08QuTLCad92KWOLHBY+d1EzDYRAVelFk0LDUkFeW7TrxowR1fPpEu1Axlxm9NA6j9YMSqfxxH/378ei+xhkeUqLJeSTThdQVIivZ2WjlE6hIhhwZS0nqh/0mHH92gbfzMcgdrLQ1uM5u0jIRn9yjbVw4/CzCtQzjYpRyqWRz+vhrGMFL9xKBqyTwRy2PKrR2/6T6xYER4ZyCddIGJD5zgrLxPkPp3dbFGslnmTU3ZZYijn2kMIROhcIZYmx8F59odWmfNh4lRcV91pK554tGieRVsWzFqB/APdo3Av"; // free
-    // this key is used for vuforia sdk for AR
-    private final String Vuforia_key = "ATZPXEj/////AAAAAK8J10rSI0dLr0sGOY7rQdUf20QxKpYGh6/JG14CkV1pjGLTF81OoLa/hx0u5+ZWxIO2Iufir6M2cEX2zz7GY3UGxAsJ6mmtoricZVrENjMjGhzYpIE6Rbuk62hcaRcrdy9dFM1CITHzbDPEE7cEcY99HHSSLHzsfLR9Zlo/WNzc5aTcOoWl+hewMmLfyZdwK/KN36FlvLy0j4hzM68fitZSgXvo+Ed1gCDDpSTT+yfF4r8h11emgrs68kLzUl4WWH/xwZbupVQj4cyGag2sC3vu2b2qSuyABHXfTViQjsIqUL8r3I7wF6Xkio8XN+a6b1Y3IArX4FJ9XlB3VR6QxCyFjUYbh96CSBEDA3Q8Q5wd"; // Paid key for NDG
     private ArrayList<VideoInfo> list;
     private ArrayList<TabMenu> tabMenuArrayList;
     private ArrayList<Tutorial> tutorialArrayList;
@@ -115,7 +109,6 @@ public class NissanApp {
     }
 
     public GlobalMessage getGlobalMessage(Context context) {
-
 
         if (globalMessageArrayList == null || globalMessageArrayList.size() == 0) {
             Type type = new TypeToken<ArrayList<GlobalMessage>>() {
@@ -188,10 +181,6 @@ public class NissanApp {
 
     public void setMapVideoUrl(String exploreMapVideoUrl) {
         this.exploreMapVideoUrl = exploreMapVideoUrl;
-    }
-
-    public void destroyInstance() {
-        instance = null;
     }
 
     public int getWidth(Activity activity) {
@@ -362,15 +351,10 @@ public class NissanApp {
      * @return Vuforia key
      */
     public String getVuforia_key() {
-        return Vuforia_key;
-    }
-
-    private void setLanguage(Activity activity, final String lang) {
-        Configuration conf = activity.getResources().getConfiguration();
-        DisplayMetrics metrics = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay()
-                .getMetrics(metrics);
-        Resources resources = new Resources(activity.getAssets(), metrics, conf);
+        //    public String Vuforia_key = "AZeJ28P/////AAAAAcTlmrGvj0ngjCcwQjIavJcqQvIaBitAo5eBTkG2cG4PyF+t82bIUefZWp/9apWQuelfAA08QuTLCad92KWOLHBY+d1EzDYRAVelFk0LDUkFeW7TrxowR1fPpEu1Axlxm9NA6j9YMSqfxxH/378ei+xhkeUqLJeSTThdQVIivZ2WjlE6hIhhwZS0nqh/0mHH92gbfzMcgdrLQ1uM5u0jIRn9yjbVw4/CzCtQzjYpRyqWRz+vhrGMFL9xKBqyTwRy2PKrR2/6T6xYER4ZyCddIGJD5zgrLxPkPp3dbFGslnmTU3ZZYijn2kMIROhcIZYmx8F59odWmfNh4lRcV91pK554tGieRVsWzFqB/APdo3Av"; // free
+        // this key is used for vuforia sdk for AR
+        // Paid key for NDG
+        return "ATZPXEj/////AAAAAK8J10rSI0dLr0sGOY7rQdUf20QxKpYGh6/JG14CkV1pjGLTF81OoLa/hx0u5+ZWxIO2Iufir6M2cEX2zz7GY3UGxAsJ6mmtoricZVrENjMjGhzYpIE6Rbuk62hcaRcrdy9dFM1CITHzbDPEE7cEcY99HHSSLHzsfLR9Zlo/WNzc5aTcOoWl+hewMmLfyZdwK/KN36FlvLy0j4hzM68fitZSgXvo+Ed1gCDDpSTT+yfF4r8h11emgrs68kLzUl4WWH/xwZbupVQj4cyGag2sC3vu2b2qSuyABHXfTViQjsIqUL8r3I7wF6Xkio8XN+a6b1Y3IArX4FJ9XlB3VR6QxCyFjUYbh96CSBEDA3Q8Q5wd";
     }
 
     public boolean isFileExists(String path) {
@@ -418,8 +402,6 @@ public class NissanApp {
                     url = UrlLinks.QASHQAI_FI;
                 } else if (lang.contains("pt")) {
                     url = UrlLinks.QASHQAI_PT;
-                } else {
-
                 }
                 break;
 
@@ -440,8 +422,6 @@ public class NissanApp {
                     url = UrlLinks.QASHQAI_RUS_RS;
                 } else if (lang.contains("sv")) {
                     url = UrlLinks.QASHQAI_RUS_SV;
-                } else {
-
                 }
                 break;
 
@@ -468,8 +448,6 @@ public class NissanApp {
                     url = UrlLinks.JUKE_FI;
                 } else if (lang.contains("pt")) {
                     url = UrlLinks.JUKE_PT;
-                } else {
-
                 }
                 break;
 
@@ -496,8 +474,6 @@ public class NissanApp {
                     url = UrlLinks.XTRAIL_FI;
                 } else if (lang.contains("pt")) {
                     url = UrlLinks.XTRAIL_PT;
-                } else {
-
                 }
                 break;
 
@@ -518,8 +494,6 @@ public class NissanApp {
                     url = UrlLinks.XTRAIL_RUS_RS;
                 } else if (lang.contains("sv")) {
                     url = UrlLinks.XTRAIL_RUS_SV;
-                } else {
-
                 }
                 break;
 
@@ -546,8 +520,6 @@ public class NissanApp {
                     url = UrlLinks.PULSAR_FI;
                 } else if (lang.contains("pt")) {
                     url = UrlLinks.PULSAR_PT;
-                } else {
-
                 }
                 break;
 
@@ -574,8 +546,6 @@ public class NissanApp {
                     url = UrlLinks.MICRA_FI;
                 } else if (lang.contains("pt")) {
                     url = UrlLinks.MICRA_PT;
-                } else {
-
                 }
                 break;
 
@@ -602,8 +572,6 @@ public class NissanApp {
                     url = UrlLinks.NOTE_FI;
                 } else if (lang.contains("pt")) {
                     url = UrlLinks.NOTE_PT;
-                } else {
-
                 }
                 break;
 
@@ -630,12 +598,12 @@ public class NissanApp {
                     url = UrlLinks.LEAF_FI;
                 } else if (lang.contains("pt")) {
                     url = UrlLinks.LEAF_PT;
-                } else {
-
                 }
                 break;
 
             case 10:
+            case 18:
+
                 if (lang.contains("en")) {
                     url = UrlLinks.NAVARA_EN;
                 } else if (lang.contains("de")) {
@@ -658,8 +626,6 @@ public class NissanApp {
                     url = UrlLinks.NAVARA_FI;
                 } else if (lang.contains("pt")) {
                     url = UrlLinks.NAVARA_PT;
-                } else {
-
                 }
                 break;
 
@@ -743,8 +709,6 @@ public class NissanApp {
                     url = UrlLinks.XTRAIL_2017_FI;
                 } else if (lang.contains("pt")) {
                     url = UrlLinks.XTRAIL_2017_PT;
-                } else {
-
                 }
                 break;
 
@@ -773,8 +737,6 @@ public class NissanApp {
                     url = UrlLinks.LEAF_2017_FI;
                 } else if (lang.contains("pt")) {
                     url = UrlLinks.LEAF_2017_PT;
-                } else {
-
                 }
                 break;
 
@@ -796,34 +758,6 @@ public class NissanApp {
                 }
                 break;
 
-            case 18:
-
-                if (lang.contains("en")) {
-                    url = UrlLinks.NAVARA_EN;
-                } else if (lang.contains("de")) {
-                    url = UrlLinks.NAVARA_DE;
-                } else if (lang.contains("es")) {
-                    url = UrlLinks.NAVARA_ES;
-                } else if (lang.contains("fr")) {
-                    url = UrlLinks.NAVARA_FR;
-                } else if (lang.contains("it")) {
-                    url = UrlLinks.NAVARA_IT;
-                } else if (lang.contains("nl")) {
-                    url = UrlLinks.NAVARA_NL;
-                } else if (lang.contains("ru")) {
-                    url = UrlLinks.NAVARA_RS;
-                } else if (lang.contains("sv")) {
-                    url = UrlLinks.NAVARA_SV;
-                } else if (lang.contains("pl")) {
-                    url = UrlLinks.NAVARA_PL;
-                } else if (lang.contains("fi")) {
-                    url = UrlLinks.NAVARA_FI;
-                } else if (lang.contains("pt")) {
-                    url = UrlLinks.NAVARA_PT;
-                } else {
-
-                }
-                break;
             default:
                 break;
         }
@@ -1134,7 +1068,7 @@ public class NissanApp {
      * @param lang     for localized language in Android configuration
      * @return Configuration by getting selected language
      */
-    public Configuration changeLocalLanguage(Activity activity, String lang) {
+    public Configuration changeLocalLanguage(@NonNull Activity activity, String lang) {
 
         Configuration conf = activity.getResources().getConfiguration();
         if (!lang.equals("")) {
@@ -1338,7 +1272,7 @@ public class NissanApp {
      * @return device id as a string
      */
     @SuppressLint("HardwareIds")
-    public String getDeviceID(Context context) {
+    public String getDeviceID(@NonNull Context context) {
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
@@ -1364,27 +1298,25 @@ public class NissanApp {
      */
     public boolean insertSearchDataIntoDatabase(Context mContext, String keyWord) {
 
-        ArrayList<EpubInfo> searchResult;
-        searchResult = new PreferenceUtil(mContext).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(mContext).getSelectedLang() + Values.UNDERSCORE + Values.COMBIMETER_TYPE);
+        ArrayList<EpubInfo> searchResult = new PreferenceUtil(mContext).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(mContext).getSelectedLang() + Values.UNDERSCORE + Values.COMBIMETER_TYPE);
         searchResult = WarningLightFragment.searchForTag(searchResult, keyWord);
-        if (searchResult != null && searchResult.size() > 0)
+        if (searchResult.size() > 0)
             return true;
 
         searchResult = WarningLightFragment.searchForTag(new PreferenceUtil(mContext).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(mContext).getSelectedLang() + Values.UNDERSCORE + Values.HOMEPAGE_TYPE), keyWord);
-        if (searchResult != null && searchResult.size() > 0)
+        if (searchResult.size() > 0)
             return true;
 
         searchResult = WarningLightFragment.searchForTag(new PreferenceUtil(mContext).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(mContext).getSelectedLang() + Values.UNDERSCORE + Values.TYRE_TYPE), keyWord);
-        if (searchResult != null && searchResult.size() > 0)
+        if (searchResult.size() > 0)
             return true;
 
         searchResult = WarningLightFragment.searchForTag(new PreferenceUtil(mContext).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(mContext).getSelectedLang() + Values.UNDERSCORE + Values.ENGINE_TYPE), keyWord);
-        if (searchResult != null && searchResult.size() > 0)
+        if (searchResult.size() > 0)
             return true;
 
         searchResult = WarningLightFragment.searchForTag(new PreferenceUtil(mContext).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(mContext).getSelectedLang() + Values.UNDERSCORE + Values.WARRANTY_TYPE), keyWord);
-        return searchResult != null && searchResult.size() > 0;
-
+        return searchResult.size() > 0;
     }
 
     public void hideKeyboard(Context context, View view) {
@@ -1396,42 +1328,6 @@ public class NissanApp {
     public ArrayList<EpubInfo> parseePub(String dest) {
 
         return new ExtractedEpubLoader(dest).parseNcxFile();
-    }
-
-    private String getFileContent(String targetFilePath) {
-        FileInputStream fileInputStream = null;
-        File file = new File(targetFilePath);
-
-        try {
-            fileInputStream = new FileInputStream(file);
-        } catch (FileNotFoundException var8) {
-            var8.printStackTrace();
-        }
-
-        StringBuilder sb = null;
-
-        try {
-            for (; fileInputStream.available() > 0; sb.append((char) fileInputStream.read())) {
-                if (sb == null) {
-                    sb = new StringBuilder();
-                }
-            }
-        } catch (IOException var9) {
-            var9.printStackTrace();
-        }
-
-        String fileContent = "";
-        if (sb != null) {
-            fileContent = sb.toString();
-        }
-
-        try {
-            fileInputStream.close();
-        } catch (Exception var7) {
-            var7.printStackTrace();
-        }
-
-        return fileContent;
     }
 
     public int getLanguageID(String language_short_code) {
@@ -1650,8 +1546,6 @@ public class NissanApp {
                 return model.getImgHdpi();
             }
         }
-
-
     }
 
     public int getePubType(String ePubName) {
@@ -1690,7 +1584,7 @@ public class NissanApp {
         if (carListWAP != null) {
             childCars = new ArrayList<>();
             for (CarList carList : carListWAP) {
-                if (Integer.valueOf(carList.getParent_car_id()) == parentId && carList.getCar_model_version().contains("new")) {
+                if (Integer.parseInt(carList.getParent_car_id()) == parentId && carList.getCar_model_version().contains("new")) {
                     childCars.add(carList);
                 }
             }
@@ -1704,16 +1598,16 @@ public class NissanApp {
 
         if (carListWAP != null) {
             for (CarList carList : carListWAP) {
-                if (Integer.valueOf(carList.getParent_car_id()) == parentId) {
+                if (Integer.parseInt(carList.getParent_car_id()) == parentId) {
                     CarInfo carInfo = new CarInfo();
-                    carInfo.setId(Integer.valueOf(carList.getId()));
+                    carInfo.setId(Integer.parseInt(carList.getId()));
                     carInfo.setName(carList.getCarName());
-                    carInfo.setStatus(String.valueOf(commonDao.getStatus(context, Integer.valueOf(carList.getId()))));
+                    carInfo.setStatus(String.valueOf(commonDao.getStatus(context, Integer.parseInt(carList.getId()))));
                     carInfo.setDateTime(NissanApp.getInstance().getDateTime());
                     carInfo.setCarModelVersion(carList.getCar_model_version());
                     carInfo.setCarImg(carList.getCarImg());
-                    carInfo.setParentCarId(Integer.valueOf(carList.getParent_car_id()));
-                    if (Integer.valueOf(carInfo.getStatus()) == 1)
+                    carInfo.setParentCarId(Integer.parseInt(carList.getParent_car_id()));
+                    if (Integer.parseInt(carInfo.getStatus()) == 1)
                         childCars.add(carInfo);
                 }
             }

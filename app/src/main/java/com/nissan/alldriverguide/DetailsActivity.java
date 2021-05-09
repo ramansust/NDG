@@ -24,6 +24,7 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,7 +49,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         String EPUB_INDEX = "epub_index";
         if (savedInstanceState == null) {
             Bundle args = getIntent().getExtras();
-            index = args.getInt(EPUB_INDEX);
+            index = Objects.requireNonNull(args).getInt(EPUB_INDEX);
         } else {
             index = savedInstanceState.getInt(EPUB_INDEX);
         }
@@ -102,7 +103,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
     private void loadData() throws IndexOutOfBoundsException {
         try {
-            ((TextView) findViewById(R.id.txt_title)).setText(getIntent().getExtras().getString("epub_title"));
+            ((TextView) findViewById(R.id.txt_title)).setText(Objects.requireNonNull(getIntent().getExtras()).getString("epub_title"));
             ArrayList<EpubInfo> list;
             switch (Values.ePubType) {
                 case Values.COMBIMETER_TYPE:

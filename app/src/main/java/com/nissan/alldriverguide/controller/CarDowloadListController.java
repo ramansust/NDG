@@ -11,6 +11,9 @@ import com.nissan.alldriverguide.multiLang.model.CarListResponse;
 import com.nissan.alldriverguide.retrofit.ApiService;
 import com.nissan.alldriverguide.retrofit.RetrofitClient;
 
+import java.util.Objects;
+
+import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,17 +34,17 @@ public class CarDowloadListController implements Callback<CarListResponse> {
     }
 
     @Override
-    public void onResponse(Call<CarListResponse> call, Response<CarListResponse> response) {
+    public void onResponse(@NonNull Call<CarListResponse> call, Response<CarListResponse> response) {
         if (response.isSuccessful()) {
             carListACompleteAPI.onDownloaded(response.body());
         } else {
-            carListACompleteAPI.onFailed(response.errorBody().toString());
+            carListACompleteAPI.onFailed(Objects.requireNonNull(response.errorBody()).toString());
         }
 
     }
 
     @Override
-    public void onFailure(Call<CarListResponse> call, Throwable t) {
+    public void onFailure(@NonNull Call<CarListResponse> call, @NonNull Throwable t) {
         carListACompleteAPI.onFailed(t.getMessage());
     }
 }

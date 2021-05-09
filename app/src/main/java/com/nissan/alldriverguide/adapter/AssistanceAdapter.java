@@ -38,7 +38,7 @@ public class AssistanceAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return carName != null ? carName.length > 6 ? 6 : carName.length : 0;
+        return carName != null ? Math.min(carName.length, 6) : 0;
     }
 
     @Override

@@ -58,20 +58,18 @@ public class CombimeterSearchAdapter extends RecyclerView.Adapter<CombimeterSear
     @Override
     public void onBindViewHolder(@NonNull final SimpleViewHolder holder, int position) {
 
-        if (holder instanceof SimpleViewHolder) {
-            holder.rv.setBackgroundColor(Color.BLACK);
-            String path = warning_list.get(position).getImagePath(); //warningLight(epubInfo);
+        holder.rv.setBackgroundColor(Color.BLACK);
+        String path = warning_list.get(position).getImagePath(); //warningLight(epubInfo);
 
-            Drawable d = Drawable.createFromPath(Values.car_path + "/combimeter_button" + "/" + path);
-            holder.itemSearch.setImageDrawable(d);
+        Drawable d = Drawable.createFromPath(Values.car_path + "/combimeter_button" + "/" + path);
+        holder.itemSearch.setImageDrawable(d);
 
-            String[] tag = path.split("_");
+        String[] tag = path.split("_");
 
-            holder.itemSearch.setTag(Integer.parseInt(tag[1]));
+        holder.itemSearch.setTag(Integer.parseInt(tag[1]));
 
-            holder.itemSearch.setVisibility(View.VISIBLE);
-            holder.qRefGuide.setVisibility(View.GONE);
-        }
+        holder.itemSearch.setVisibility(View.VISIBLE);
+        holder.qRefGuide.setVisibility(View.GONE);
     }
 
     @Override

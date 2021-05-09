@@ -38,6 +38,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import androidx.annotation.NonNull;
@@ -89,7 +90,7 @@ public class SearchFragment extends Fragment {
      * @param layout need to fragment layout view
      */
     private void initAll(View layout) {
-        resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()));
+        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()));
 
         commonDao = CommonDao.getInstance();
         getSearchKeyword = layout.findViewById(R.id.input_search);
@@ -133,7 +134,7 @@ public class SearchFragment extends Fragment {
 
     //this is from top recent fragment
     public void addData() {
-        dateWise_List = commonDao.getDateWiseList(getActivity().getApplicationContext(), Values.carType, selectedLanguage);
+        dateWise_List = commonDao.getDateWiseList(Objects.requireNonNull(getActivity()).getApplicationContext(), Values.carType, selectedLanguage);
 
         if (dateWise_List != null && dateWise_List.size() > 0 && dateWise_List.size() > 10) {
             dateWise_List = (ArrayList<SearchModel>) dateWise_List.subList(0, 9);
@@ -184,7 +185,7 @@ public class SearchFragment extends Fragment {
             uniqueColorList.add(color.toLowerCase());
         }
 
-        List<String> mainList = new ArrayList<String>(uniqueColorList);
+        List<String> mainList = new ArrayList<>(uniqueColorList);
 
         adapter = new TopRecentAdapter(getActivity(), mainList);
         recyclerView.setAdapter(adapter);
@@ -237,7 +238,7 @@ public class SearchFragment extends Fragment {
         public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
 
             if (actionId == EditorInfo.IME_ACTION_SEARCH) { // keyboard search
-                View view = getActivity().getCurrentFocus();
+                View view = Objects.requireNonNull(getActivity()).getCurrentFocus();
                 if (view != null) {
                     hideKeyboard(view);
                 }
@@ -261,7 +262,6 @@ public class SearchFragment extends Fragment {
                         } else {
                             SearchModel searchModel = new SearchModel(getKeyword, System.currentTimeMillis() + "", 1, Values.carType, lang_type);
                             new CommonDao().insertNewKeywordInSearchTable(getActivity().getApplicationContext(), searchModel, Values.carType, lang_type);
-
                         }
                     } else {
                         Logger.error("not found", "______search_result!");
@@ -309,6 +309,7 @@ public class SearchFragment extends Fragment {
 
 
     // delete recent search keyword in FlowLayout
+    @SuppressLint("StaticFieldLeak")
     private class deleteRecentSearches extends AsyncTask<Void, Void, Boolean> {
 
         private ProgressDialog progressDialog;
@@ -342,7 +343,7 @@ public class SearchFragment extends Fragment {
 
     // keyboard hide method
     protected void hideKeyboard(View view) {
-        InputMethodManager in = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager in = (InputMethodManager) Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
         if (in != null)
             in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }

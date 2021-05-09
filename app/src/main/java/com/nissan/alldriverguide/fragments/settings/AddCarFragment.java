@@ -51,6 +51,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -197,7 +198,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
             }
         }
 
-        adapter = new CarDownloadSettingsAdapter(AddCarFragment.this, getActivity(), getActivity().getApplicationContext(), NissanApp.getInstance().getCarAllList());
+        adapter = new CarDownloadSettingsAdapter(AddCarFragment.this, getActivity(), Objects.requireNonNull(getActivity()).getApplicationContext(), NissanApp.getInstance().getCarAllList());
         lstView.setAdapter(adapter);
         lstView.setDivider(null);
     }
@@ -218,7 +219,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                     continue;
                 if (carInfoArrayList.get(i).getId() == Integer.parseInt(carListModel.getId())) {
                     carInfoArrayList.get(i).setName(carListModel.getCarDisplayName());
-                    carInfoArrayList.get(i).setCarImg(NissanApp.getInstance().getURLAccordingToDensity(getActivity(), NissanApp.getInstance().getDensityName(getActivity()), carListModel));
+                    carInfoArrayList.get(i).setCarImg(NissanApp.getInstance().getURLAccordingToDensity(Objects.requireNonNull(getActivity()), NissanApp.getInstance().getDensityName(getActivity()), carListModel));
                 }
             }
 
@@ -269,7 +270,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     public void loadResource() {
-        ((MainActivity) getActivity()).setTabResources();
+        ((MainActivity) Objects.requireNonNull(getActivity())).setTabResources();
         resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
         String car_selection_title = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.CAR_SELECTION_TITLE);
         txt_title.setText(car_selection_title.isEmpty() ? resources.getString(R.string.add_extra_car) : car_selection_title);
@@ -286,7 +287,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         txt_title = view.findViewById(R.id.txt_title);
         txt_back_title = view.findViewById(R.id.txt_back_title);
         linearBack = view.findViewById(R.id.linear_back);
-        preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
+        preferenceUtil = new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext());
         commonDao = CommonDao.getInstance();
     }
 
@@ -312,7 +313,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         CarInfo info = (CarInfo) parent.getAdapter().getItem(position);
         if ("1".equalsIgnoreCase(info.getStatus())) {
             carDownloadCheck(info.getId());
-            ((MainActivity) getActivity())
+            ((MainActivity) Objects.requireNonNull(getActivity()))
                     .sendMsgToGoogleAnalytics(((MainActivity) getActivity())
                             .getAnalyticsForCarSection(Analytics.CAR_SELECTION));
         } else {
@@ -326,7 +327,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
         switch (v.getId()) {
             case R.id.btn_back:
             case R.id.linear_back:
-                getActivity().onBackPressed();
+                Objects.requireNonNull(getActivity()).onBackPressed();
                 break;
             default:
                 break;
@@ -337,7 +338,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
 
         if (NissanApp.getInstance().isFileExists(NissanApp.getInstance().getCarPath(position))) {
-            if (commonDao.getStatus(getActivity().getBaseContext(), position) == 1) {
+            if (commonDao.getStatus(Objects.requireNonNull(getActivity()).getBaseContext(), position) == 1) {
                 CarInfo info = commonDao.getCarInfo(getActivity().getApplicationContext(), position);
                 if (info != null) {
                     if (!NissanApp.getInstance().getVersionName().equalsIgnoreCase(info.getVersionName()) || info.getVersionCode() != NissanApp.getInstance().getVersionCode()) {
@@ -345,7 +346,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                             try {
                                 FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(position)));
                                 if (position == 2 || position == 5) {
-                                    if (commonDao.getStatus(getActivity().getApplicationContext(), position - 1) == 2) {
+                                    if (commonDao.getStatus(Objects.requireNonNull(getActivity()).getApplicationContext(), position - 1) == 2) {
                                         commonDao.updateDateAndStatus(getActivity().getApplicationContext(), position, "2", NissanApp.getInstance().getDateTime(), "RUS", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
 //                                        adapter.list.remove(selectedCarIndex);
                                         adapter.list.get(selectedCarIndex).setStatus("2");
@@ -356,7 +357,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
                                 } else {
                                     if (position == 1 || position == 4) {
-                                        CarInfo carInfo = commonDao.getCarInfo(getActivity().getApplicationContext(), position + 1);
+                                        CarInfo carInfo = commonDao.getCarInfo(Objects.requireNonNull(getActivity()).getApplicationContext(), position + 1);
 
                                         commonDao.updateDateAndStatus(getActivity().getApplicationContext(), position, "2", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                                         if (commonDao.getStatus(getActivity().getApplicationContext(), position + 1) == 2) {
@@ -369,10 +370,10 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                         }
                                     } else {
                                         if (position == 7 || position == 9) {
-                                            commonDao.updateDateAndStatus(getActivity().getApplicationContext(), position, "2", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                            commonDao.updateDateAndStatus(Objects.requireNonNull(getActivity()).getApplicationContext(), position, "2", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                                             adapter.list.get(selectedCarIndex).setStatus("2");
                                         } else {
-                                            commonDao.updateDateAndStatus(getActivity().getApplicationContext(), position, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
+                                            commonDao.updateDateAndStatus(Objects.requireNonNull(getActivity()).getApplicationContext(), position, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                                             adapter.list.get(selectedCarIndex).setStatus("0");
                                         }
                                     }
@@ -383,7 +384,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                             } finally {
                                 adapter.carType = position;
                                 adapter.position = selectedCarIndex;
-                                adapter.lang = commonDao.getLanguageStatus(getActivity().getApplicationContext(), position);
+                                adapter.lang = commonDao.getLanguageStatus(Objects.requireNonNull(getActivity()).getApplicationContext(), position);
                                 preferenceUtil.setSelectedLang(adapter.lang);
                                 resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), adapter.lang));
                                 startCarDownloadProcedure(position);
@@ -399,7 +400,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                 }
                             }
                             Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
-                            preferenceUtil.setSelectedLang(commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType));
+                            preferenceUtil.setSelectedLang(commonDao.getLanguageStatus(Objects.requireNonNull(getActivity()).getBaseContext(), Values.carType));
                             loadResource();
                             ((MainActivity) getActivity()).setTabResources();
                             adapter.loadResource();
@@ -451,7 +452,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                             public void onDownloaded(ResponseInfo responseInfo) {
                                                 if (Values.SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) && !TextUtils.isEmpty(responseInfo.getUrl())) {
                                                     //Todo implement download
-                                                    CarDownloadHelper carDownloadHelper = new CarDownloadHelper(getContext(), "" + Values.carType,
+                                                    CarDownloadHelper carDownloadHelper = new CarDownloadHelper(Objects.requireNonNull(getContext()), "" + Values.carType,
                                                             responseInfo.getLangUrl(), responseInfo.getAssetsUrl(),
                                                             NissanApp.getInstance().getCarPath(Values.carType)
                                                     );
@@ -524,7 +525,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                                 }
                                 Values.carType = position;
                                 Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
-                                preferenceUtil.setSelectedLang(commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType));
+                                preferenceUtil.setSelectedLang(commonDao.getLanguageStatus(Objects.requireNonNull(getActivity()).getBaseContext(), Values.carType));
                                 loadResource();
                                 ((MainActivity) getActivity()).setTabResources();
                                 adapter.loadResource();
@@ -542,7 +543,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
                             }
                             Values.carType = position;
                             Values.car_path = NissanApp.getInstance().getCarPath(Values.carType);
-                            preferenceUtil.setSelectedLang(commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType));
+                            preferenceUtil.setSelectedLang(commonDao.getLanguageStatus(Objects.requireNonNull(getActivity()).getBaseContext(), Values.carType));
                             loadResource();
                             ((MainActivity) getActivity()).setTabResources();
                             adapter.loadResource();
@@ -575,7 +576,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         adapter.progressDialog = new ProgressDialogController(getActivity()).showDialog(getResources().getString(R.string.start_download));
 
-        new ApiCall().postCarDownload("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(adapter.lang), "0", NissanApp.getInstance().getDeviceID(getActivity()), new CompleteAPI() {
+        new ApiCall().postCarDownload("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(adapter.lang), "0", NissanApp.getInstance().getDeviceID(Objects.requireNonNull(getActivity())), new CompleteAPI() {
             @Override
             public void onDownloaded(ResponseInfo responseInfo) {
 
@@ -604,7 +605,7 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     public void showErrorDialog(String msg) {
-        DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(getActivity().getApplicationContext(), msg);
+        DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(Objects.requireNonNull(getActivity()).getApplicationContext(), msg);
         dialogFragment.show(getActivity().getSupportFragmentManager(), "error_fragment");
     }
 

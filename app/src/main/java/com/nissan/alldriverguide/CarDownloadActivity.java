@@ -70,6 +70,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -135,8 +136,8 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                if (!intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
-                    if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
+                if (!Objects.equals(intent.getAction(), Config.REGISTRATION_COMPLETE)) {
+                    if (Objects.equals(intent.getAction(), Config.PUSH_NOTIFICATION)) {
                         String message = intent.getStringExtra("message");
                     }
                 }  /*FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);

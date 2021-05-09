@@ -5,6 +5,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.style.LineBackgroundSpan;
 
+import androidx.annotation.NonNull;
+
 public class PaddingBackgroundColorSpan implements LineBackgroundSpan {
     private final int mBackgroundColor;
     private final int mPadding;
@@ -19,7 +21,7 @@ public class PaddingBackgroundColorSpan implements LineBackgroundSpan {
     }
 
     @Override
-    public void drawBackground(Canvas c, Paint p, int left, int right, int top, int baseline, int bottom, CharSequence text, int start, int end, int lnum) {
+    public void drawBackground(Canvas c, Paint p, int left, int right, int top, int baseline, int bottom, @NonNull CharSequence text, int start, int end, int lnum) {
         final int textWidth = Math.round(p.measureText(text, start, end));
         final int paintColor = p.getColor();
         // Draw the background

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -41,13 +40,11 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
 
 import static android.text.TextUtils.isEmpty;
 
@@ -92,7 +89,7 @@ public class TabFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((BaseTabFragmentActivity) getActivity()).setMedia(this);
+        ((BaseTabFragmentActivity) Objects.requireNonNull(getActivity())).setMedia(this);
 
         if (fragmentView != null) {
             return fragmentView;
@@ -132,7 +129,7 @@ public class TabFragment extends Fragment {
     private void initializeView(View v) {
         context = getActivity();
         commondao = CommonDao.getInstance();
-        preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
+        preferenceUtil = new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext());
         getSearchKeyword = v.findViewById(R.id.input_search);
         getSearchKeyword.setHint(getResources().getString(R.string.search_box_hint).toUpperCase());// set hint text  allCaps
 
@@ -192,7 +189,7 @@ public class TabFragment extends Fragment {
      * Here check the content update
      */
     private void checkUpdatedContent() {
-        final ArrayList<PushContentInfo> list = commondao.getNotificationList(getActivity().getApplicationContext(), Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
+        final ArrayList<PushContentInfo> list = commondao.getNotificationList(Objects.requireNonNull(getActivity()).getApplicationContext(), Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
 
         if (list != null && list.size() > 0) {
             txtViewUpdatedContent.setVisibility(View.VISIBLE);
@@ -218,7 +215,7 @@ public class TabFragment extends Fragment {
     }
 
     private void loadResources() {
-        resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
+        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
     }
 
     /**
@@ -269,12 +266,9 @@ public class TabFragment extends Fragment {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.cancel_search:
-//                    cancelButtonAction();
-                    getActivity().onBackPressed();
-                    break;
-
                 case R.id.imageViewBack:
-                    getActivity().onBackPressed();
+                    //                    cancelButtonAction();
+                    Objects.requireNonNull(getActivity()).onBackPressed();
                     break;
 
                 case R.id.imageViewClearButton:
@@ -297,7 +291,7 @@ public class TabFragment extends Fragment {
 
             if (actionId == EditorInfo.IME_ACTION_SEARCH) { // here implement the keyboard search
 
-                View view = getActivity().getCurrentFocus();
+                View view = Objects.requireNonNull(getActivity()).getCurrentFocus();
                 if (view != null) {
                     new NissanApp().hideKeyboard(getActivity(), view);
                 }

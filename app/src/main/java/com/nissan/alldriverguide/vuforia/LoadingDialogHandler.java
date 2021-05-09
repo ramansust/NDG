@@ -16,6 +16,8 @@ import android.view.View;
 
 import java.lang.ref.WeakReference;
 
+import androidx.annotation.NonNull;
+
 
 public final class LoadingDialogHandler extends Handler {
     private final WeakReference<Activity> mActivity;
@@ -31,7 +33,7 @@ public final class LoadingDialogHandler extends Handler {
     }
 
 
-    public void handleMessage(Message msg) {
+    public void handleMessage(@NonNull Message msg) {
         Activity imageTargets = mActivity.get();
         if (imageTargets == null) {
             return;

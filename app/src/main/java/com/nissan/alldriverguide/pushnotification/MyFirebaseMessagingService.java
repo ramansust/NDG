@@ -14,6 +14,9 @@ import com.nissan.alldriverguide.utils.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -32,9 +35,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
-    public void onMessageReceived(RemoteMessage remoteMessage) {
-        if (remoteMessage == null)
-            return;
+    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
 
         Logger.error(TAG, "IDSERVICE: Refreshed token:__**msg***__" + remoteMessage.getData());
 
@@ -47,7 +48,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         // Check if message contains a data payload.
-        if (remoteMessage.getData() != null && remoteMessage.getData().size() > 0) {
+        remoteMessage.getData();
+        if (remoteMessage.getData().size() > 0) {
             try {
                 JSONObject object = new JSONObject(remoteMessage.getData());
                 Logger.error("Push Json ", "________" + remoteMessage.getData());
@@ -67,7 +69,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                }
 
 //                if("11".equalsIgnoreCase(carId) || "12".equalsIgnoreCase(carId) || "13".equalsIgnoreCase(carId) || "14".equalsIgnoreCase(carId)) {
-                if (array != null && array.length() > 0) {
+                if (array.length() > 0) {
                     for (int i = 0; i < array.length(); i++) {
                         String ePubId = array.get(i).toString();
                         if (!isEmpty(carId) && !isEmpty(languageId) && !isEmpty(ePubId)) {
@@ -82,8 +84,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                             Logger.error("Empty ID found", "_____________");
                         }
                     }
-                } else {
-
                 }
                 if (!isEmpty(object.getString("msg"))) {
                     handleDataMessage(object.getString("msg"));
@@ -107,7 +107,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
         // Check if message contains a data payload.
-        if (intent != null && intent.getExtras() != null) {
+        if (intent.getExtras() != null) {
             try {
                 Bundle extras = intent.getExtras();
                 String carId = extras.getString("car_id");
@@ -144,8 +144,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                             Logger.error("Empty ID found", "_____________");
                         }
                     }
-                } else {
-
                 }
                 if (!isEmpty(extras.getString("msg"))) {
                     handleDataMessage(extras.getString("msg"));
@@ -165,13 +163,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             // app is in background, show the notification in notification tray
             Intent resultIntent = new Intent(Config.PUSH_NOTIFICATION);
-            resultIntent.putExtra("message", remoteMessage.getNotification().getBody());
+            resultIntent.putExtra("message", Objects.requireNonNull(remoteMessage.getNotification()).getBody());
 
             showNotificationMessage(getApplicationContext(), remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody(), "timestamp", resultIntent);
 
-        } else {
-            // If the app is in background, firebase itself handles the notification
-        }
+        }  // If the app is in background, firebase itself handles the notification
+
     }
 
     private void handleDataMessage(String message) {

@@ -18,6 +18,7 @@ import com.nissan.alldriverguide.fragments.search.TabFragment;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -86,7 +87,7 @@ public class DataGridAdapter extends BaseAdapter {
         finalText = epubInfo.getTitle();
 
         if (_ePubType == Values.TYRE_TYPE) {
-            if (!finalText.isEmpty()) {
+            if (!Objects.requireNonNull(finalText).isEmpty()) {
                 finalText = finalText.substring(finalText.indexOf(" ") + 1);
             }
         }

@@ -20,6 +20,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -142,7 +143,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
         File dir = new File(drawable_folder + "/");
 
         if (dir.isDirectory()) {
-            for (File file : dir.listFiles()) {
+            for (File file : Objects.requireNonNull(dir.listFiles())) {
                 if (file.toString().contains("combimeter_")) {
 
                     if (file.getName().contains("_r")) {
@@ -223,7 +224,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
                 button.setTag(Integer.parseInt(output[1]));
                 button.setOnClickListener(this);
 
-                layoutHorizontal.addView(button);
+                Objects.requireNonNull(layoutHorizontal).addView(button);
             } catch (Exception e) {
                 e.printStackTrace();
             }

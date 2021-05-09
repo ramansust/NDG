@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -129,7 +130,8 @@ public class AllFragment extends Fragment {
             String key = entry.getKey();
             List<Object> list = dataMap.get(key);
 
-            items.addAll(list);
+            assert list != null;
+            items.addAll(Objects.requireNonNull(list));
         }
 
 //        adapter = new DataGridAdapter(getActivity(), items);
@@ -165,7 +167,7 @@ public class AllFragment extends Fragment {
         String[] wl = epubModel.getLink().split("-");
 
         if (dir.isDirectory()) {
-            for (File file : dir.listFiles()) {
+            for (File file : Objects.requireNonNull(dir.listFiles())) {
                 String[] name = file.getName().split("_");
 
                 if (name[1].equalsIgnoreCase(wl[wl.length - 1])) {

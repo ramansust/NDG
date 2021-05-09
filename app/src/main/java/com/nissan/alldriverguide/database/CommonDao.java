@@ -17,6 +17,7 @@ import com.nissan.alldriverguide.utils.NissanApp;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * @author Raman
@@ -42,7 +43,7 @@ public class CommonDao {
     public ArrayList<EpubModel> getEpubListByTag(Context context, String searchTag, int cartype) {
         ArrayList<EpubModel> listAllEpub = new ArrayList<>();
         SQLiteDatabase db = getWritableDatabase(context);
-        Cursor mCursor = db
+        Cursor mCursor = Objects.requireNonNull(db)
                 .query(true,
                         EpubInfoTableDirectory.TABLE_NAME,
                         new String[]{EpubInfoTableDirectory._ID, EpubInfoTableDirectory.TITLE, EpubInfoTableDirectory.TAG, EpubInfoTableDirectory.LINK, EpubInfoTableDirectory.CARTYPE, EpubInfoTableDirectory.EPUBTYPE, EpubInfoTableDirectory.INDEX},
@@ -59,7 +60,7 @@ public class CommonDao {
                 mCursor.moveToNext();
             }
         }
-        if (mCursor != null && !mCursor.isClosed()) {
+        if (!mCursor.isClosed()) {
             mCursor.close();
         }
         return listAllEpub;
@@ -80,7 +81,7 @@ public class CommonDao {
         ArrayList<Object> list = new ArrayList<>();
         SQLiteDatabase db = getWritableDatabase(context);
 
-        Cursor cursor = db.rawQuery("SELECT * FROM car_info WHERE region = 'EUR' AND status = '1' ORDER BY list_index ASC;", null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery("SELECT * FROM car_info WHERE region = 'EUR' AND status = '1' ORDER BY list_index ASC;", null);
         Cursor cursor2 = db.rawQuery("SELECT * FROM car_info WHERE region = 'EUR' AND status = '0' ORDER BY list_index ASC;", null);
         Cursor cursor3 = db.rawQuery("SELECT * FROM car_info WHERE region = 'EUR' AND status = '2' ORDER BY list_index ASC;", null);
 
@@ -149,7 +150,7 @@ public class CommonDao {
         int indexOfOldJuke = -1;
         for (Object info : list) {
             if (info instanceof CarInfo) {
-                if (((CarInfo) info).getId() == 3 && Integer.valueOf(((CarInfo) info).getStatus()) != 1) {
+                if (((CarInfo) info).getId() == 3 && Integer.parseInt(((CarInfo) info).getStatus()) != 1) {
                     indexOfOldJuke = list.indexOf(info);
                 }
             }
@@ -166,7 +167,7 @@ public class CommonDao {
 
         ArrayList<EpubModel> list = new ArrayList<>();
         SQLiteDatabase db = getWritableDatabase(context);
-        Cursor cursor = db.rawQuery("SELECT * FROM epub_info;", null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery("SELECT * FROM epub_info;", null);
         try {
             if (cursor.moveToFirst()) {
                 do {
@@ -194,7 +195,7 @@ public class CommonDao {
         ArrayList<EpubModel> list = new ArrayList<>();
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT  * FROM " + EpubInfoTableDirectory.TABLE_NAME + " WHERE " + EpubInfoTableDirectory.CARTYPE + "= " + cartype;
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null);
         try {
             if (cursor.moveToFirst()) {
                 do {
@@ -221,7 +222,7 @@ public class CommonDao {
         SQLiteDatabase libraryListDb = getWritableDatabase(context);
         String whereClause = EpubInfoTableDirectory.CARTYPE + " = ?";
         String[] whereArgs = {String.valueOf(carId)};
-        libraryListDb.delete(EpubInfoTableDirectory.TABLE_NAME, whereClause, whereArgs);
+        Objects.requireNonNull(libraryListDb).delete(EpubInfoTableDirectory.TABLE_NAME, whereClause, whereArgs);
     }
 
     private EpubModel getListFromCursor(Cursor aCursor) {
@@ -240,7 +241,7 @@ public class CommonDao {
 
         ArrayList<CarInfo> list = new ArrayList<>();
         SQLiteDatabase db = getWritableDatabase(context);
-        Cursor cursor = db.rawQuery("SELECT * FROM car_info WHERE region = 'EUR';", null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery("SELECT * FROM car_info WHERE region = 'EUR';", null);
         try {
             if (cursor.moveToFirst()) {
                 do {
@@ -270,7 +271,7 @@ public class CommonDao {
 
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT * FROM car_info WHERE _id = " + carID;
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null);
 
         try {
             if (cursor.moveToFirst()) {
@@ -292,7 +293,7 @@ public class CommonDao {
         return info;
     }
 
-    public int updateDateAndStatus(Context context, int id, String status, String dateTime, String region, String versionName, int versionCode) {
+    public void updateDateAndStatus(Context context, int id, String status, String dateTime, String region, String versionName, int versionCode) {
         SQLiteDatabase db = getWritableDatabase(context);
         ContentValues values = new ContentValues();
         values.put("status", status);
@@ -300,40 +301,37 @@ public class CommonDao {
         values.put("region", region);
         values.put("version_name", versionName);
         values.put("version_code", versionCode);
-        int result = db.update("car_info", values, "_id" + "=" + id, null);
+        int result = Objects.requireNonNull(db).update("car_info", values, "_id" + "=" + id, null);
         if (db.isOpen()) {
             db.close();
         }
-        return result;
     }
 
-    public int updateLanguageStatus(Context context, int id, String lang) {
+    public void updateLanguageStatus(Context context, int id, String lang) {
         SQLiteDatabase db = getWritableDatabase(context);
         ContentValues values = new ContentValues();
         values.put("language", lang);
-        int result = db.update("car_info", values, "_id" + "=" + id, null);
+        int result = Objects.requireNonNull(db).update("car_info", values, "_id" + "=" + id, null);
         if (db.isOpen()) {
             db.close();
         }
-        return result;
     }
 
-    public int updateCarStatus(Context context, int id, int status) {
+    public void updateCarStatus(Context context, int id, int status) {
         SQLiteDatabase db = getWritableDatabase(context);
         ContentValues values = new ContentValues();
         values.put("status", status);
-        int result = db.update("car_info", values, "_id" + "=" + id, null);
+        int result = Objects.requireNonNull(db).update("car_info", values, "_id" + "=" + id, null);
         if (db.isOpen()) {
             db.close();
         }
-        return result;
     }
 
     public String getLanguageStatus(Context context, int id) {
         String status = "";
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT " + "language" + " FROM " + "car_info" + " WHERE " + "_id" + "=" + id;
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null);
         try {
             if (cursor.moveToFirst()) {
                 for (int i = 0; i < cursor.getCount(); i++) {
@@ -444,15 +442,12 @@ public class CommonDao {
         return headValues;
     }
 
-    public long insertInCarInfoTable(Context context, CarInfo carInfo) {
+    public void insertInCarInfoTable(Context context, CarInfo carInfo) {
         ContentValues libraryListValues = prepareMyTableListContentValues(carInfo);
         SQLiteDatabase db = getWritableDatabase(context);
-        if (db.isOpen()) {
+        if (Objects.requireNonNull(db).isOpen()) {
             long newHeadId = db.insert(CarInfoTableEntity.TABLE_NAME, "null", libraryListValues);
             db.close();
-            return newHeadId;
-        } else {
-            return -1;
         }
 
     }
@@ -460,7 +455,7 @@ public class CommonDao {
     public long insertInEpubTable(Context context, ArrayList<EpubInfo> list, int cartype, int epub_type) {
         SQLiteDatabase db = getWritableDatabase(context);
         int size = list.size();
-        if (db.isOpen()) {
+        if (Objects.requireNonNull(db).isOpen()) {
             try {
                 for (int i = 0; i < size; i++) {
                     ContentValues cv = new ContentValues();
@@ -488,7 +483,7 @@ public class CommonDao {
         ArrayList<SearchModel> list = new ArrayList<>();
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT  * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.CARTYPE + "= " + cartype;
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null);
         try {
             if (cursor.moveToFirst()) {
                 do {
@@ -513,7 +508,7 @@ public class CommonDao {
     public long insertInSearchTable(Context context, ArrayList<SearchModel> list, int cartype) {
         SQLiteDatabase db = getWritableDatabase(context);
         int size = list.size();
-        if (db.isOpen()) {
+        if (Objects.requireNonNull(db).isOpen()) {
             try {
                 for (int i = 0; i < size; i++) {
                     ContentValues cv = new ContentValues();
@@ -541,7 +536,7 @@ public class CommonDao {
         ContentValues values = new ContentValues();
         values.put("date", date);
         values.put("count", count);
-        int result = db.update("search_info", values, "search" + " = '" + searchtag + "'", null);
+        int result = Objects.requireNonNull(db).update("search_info", values, "search" + " = '" + searchtag + "'", null);
         if (db.isOpen()) {
             db.close();
         }
@@ -553,7 +548,7 @@ public class CommonDao {
         int count = 0;
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT  * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.SEARCHTAG + " = '" + searchtag + "' AND " + SearchTagTableDirectory.CARTYPE + " = '" + carType + "' AND " + SearchTagTableDirectory.LANGUAGE_TYPE + " = '" + langType + "'";
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null);
         try {
             if (cursor.moveToFirst()) {
                 do {
@@ -579,7 +574,7 @@ public class CommonDao {
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.CARTYPE + " = '" + carType + "' AND " + SearchTagTableDirectory.LANGUAGE_TYPE + " = '" + selectedLanguage + "' ORDER BY " + SearchTagTableDirectory.COUNT + " DESC limit 10";
 
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null);
         try {
             if (cursor.moveToFirst()) {
                 do {
@@ -607,7 +602,7 @@ public class CommonDao {
         String selectQuery = "SELECT * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.CARTYPE + " = '" + carType + "' AND " + SearchTagTableDirectory.LANGUAGE_TYPE + " = '" + selectedLanguage + "' ORDER BY " + SearchTagTableDirectory.DATE + " DESC limit 10";
 
 //        String selectQuery = "SELECT * FROM search_info WHERE car_type = '13' ORDER BY datetime(date) ASC Limit 10";
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null);
         try {
             if (cursor.moveToFirst()) {
                 do {
@@ -652,7 +647,7 @@ public class CommonDao {
         ArrayList<SearchModel> List = new ArrayList<>();
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.CARTYPE + "= " + cartype;
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null);
         try {
             if (cursor.moveToFirst()) {
                 do {
@@ -678,7 +673,7 @@ public class CommonDao {
     public boolean isTagExists(Context context, String tag, int carType, String languageType) {
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.SEARCHTAG + " = '" + tag + "' AND " + SearchTagTableDirectory.CARTYPE + " = '" + carType + "' AND " + SearchTagTableDirectory.LANGUAGE_TYPE + " = '" + languageType + "'";
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null);
         try {
             if (cursor.getCount() > 0) {
                 return true;
@@ -701,7 +696,7 @@ public class CommonDao {
         String searchTag = "";
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT * FROM " + SearchTagTableDirectory.TABLE_NAME + " WHERE " + SearchTagTableDirectory.SEARCHTAG + " = '" + tag + "' AND " + SearchTagTableDirectory.CARTYPE + " = '" + carType + "' AND " + SearchTagTableDirectory.LANGUAGE_TYPE + " = '" + languageType + "'";
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null);
 
         try {
             if (cursor.moveToFirst()) {
@@ -722,25 +717,24 @@ public class CommonDao {
         return searchTag;
     }
 
-    public int updateSearchCountInSearchTable(Context context, int count, String date, String searchTag, int carType, String langType) {
+    public void updateSearchCountInSearchTable(Context context, int count, String date, String searchTag, int carType, String langType) {
         SQLiteDatabase db = getWritableDatabase(context);
         ContentValues values = new ContentValues();
         values.put(SearchTagTableDirectory.DATE, date);
         values.put(SearchTagTableDirectory.COUNT, count);
         String whereClause = SearchTagTableDirectory.SEARCHTAG + " = '" + searchTag + "' AND " + SearchTagTableDirectory.CARTYPE + " = '" + carType + "' AND " + SearchTagTableDirectory.LANGUAGE_TYPE + " = '" + langType + "'";
-        int result = db.update(SearchTagTableDirectory.TABLE_NAME, values, whereClause, null);
+        int result = Objects.requireNonNull(db).update(SearchTagTableDirectory.TABLE_NAME, values, whereClause, null);
         if (db.isOpen()) {
             db.close();
         }
-        return result;
     }
 
     /*
      * This method for insert search key into database
      */
-    public long insertNewKeywordInSearchTable(Context context, SearchModel searchModel, int carType, String langType) {
+    public void insertNewKeywordInSearchTable(Context context, SearchModel searchModel, int carType, String langType) {
         SQLiteDatabase db = getWritableDatabase(context);
-        if (db.isOpen()) {
+        if (Objects.requireNonNull(db).isOpen()) {
             try {
                 ContentValues cv = new ContentValues();
                 cv.put(SearchTagTableDirectory.SEARCHTAG, searchModel.getSearchTag());
@@ -756,9 +750,6 @@ public class CommonDao {
             } catch (Exception e) {
                 Logger.error("Problem Search ", e + " ");
             }
-            return newHeadId;
-        } else {
-            return -1;
         }
 
     }
@@ -769,19 +760,19 @@ public class CommonDao {
         String whereClause = CarInfoTableEntity._ID + " = ?";
         String[] whereArgs = {carId};
 
-        libraryListDb.delete(CarInfoTableEntity.TABLE_NAME, whereClause, whereArgs);
+        Objects.requireNonNull(libraryListDb).delete(CarInfoTableEntity.TABLE_NAME, whereClause, whereArgs);
     }
 
     public void deleteCarFromCarInfoTableByIds(Context context, String[] ids) {
         SQLiteDatabase playListDb = getWritableDatabase(context);
         String args = TextUtils.join(", ", ids);
-        playListDb.execSQL(String.format("DELETE FROM " + CarInfoTableEntity.TABLE_NAME + " WHERE " + CarInfoTableEntity._ID + " IN (%s);", args));
+        Objects.requireNonNull(playListDb).execSQL(String.format("DELETE FROM " + CarInfoTableEntity.TABLE_NAME + " WHERE " + CarInfoTableEntity._ID + " IN (%s);", args));
     }
 
-    public long insertNotificationData(Context context, String car_id, String lang_id, String epub_id) {
+    public void insertNotificationData(Context context, String car_id, String lang_id, String epub_id) {
         SQLiteDatabase db = getWritableDatabase(context);
 
-        if (db.isOpen()) {
+        if (Objects.requireNonNull(db).isOpen()) {
             ContentValues cv = new ContentValues();
             cv.put(PushNotificationTableEntity.CAR_ID, car_id);
             cv.put(PushNotificationTableEntity.LANGUAGE_ID, lang_id);
@@ -791,10 +782,8 @@ public class CommonDao {
             newHeadId = db.insert(PushNotificationTableEntity.TABLE_NAME, "null", cv);
 
             db.close();
-            return newHeadId;
 
         } else {
-            return -1;
         }
     }
 
@@ -805,7 +794,7 @@ public class CommonDao {
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT * FROM " + PushNotificationTableEntity.TABLE_NAME + " WHERE " + PushNotificationTableEntity.CAR_ID + " = '" + carID + "' AND " + PushNotificationTableEntity.LANGUAGE_ID + " = '" + langID + "' AND " + PushNotificationTableEntity.STATUS + " = '" + PushNotificationTableEntity.UPDATE_AVAILABLE + "'";
         Logger.error("query_push", "___________" + selectQuery);
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null);
 
         try {
             if (cursor.moveToFirst()) {
@@ -868,30 +857,28 @@ public class CommonDao {
         return info;
     }
 
-    public int updatePushContentStatus(Context context, int cardId, int langId, int ePubId) {
+    public void updatePushContentStatus(Context context, int cardId, int langId, int ePubId) {
         SQLiteDatabase db = getWritableDatabase(context);
         ContentValues values = new ContentValues();
         values.put(PushNotificationTableEntity.STATUS, PushNotificationTableEntity.UPDATE_UNAVAILABLE);
         String whereClause = PushNotificationTableEntity.CAR_ID + " = '" + cardId + "' AND " + PushNotificationTableEntity.LANGUAGE_ID + " = '" + langId + "' AND " + PushNotificationTableEntity.EPUB_ID + " = '" + ePubId + "'";
-        int result = db.update(PushNotificationTableEntity.TABLE_NAME, values, whereClause, null);
+        int result = Objects.requireNonNull(db).update(PushNotificationTableEntity.TABLE_NAME, values, whereClause, null);
         Logger.error("updatePushContent_query", "_______" + whereClause);
         if (db.isOpen()) {
             db.close();
         }
-        return result;
     }
 
-    public int updateAllPushContentStatusForSingleCar(Context context, int cardId, int langId) {
+    public void updateAllPushContentStatusForSingleCar(Context context, int cardId, int langId) {
         SQLiteDatabase db = getWritableDatabase(context);
         ContentValues values = new ContentValues();
         values.put(PushNotificationTableEntity.STATUS, PushNotificationTableEntity.UPDATE_UNAVAILABLE);
         String whereClause = PushNotificationTableEntity.CAR_ID + " = '" + cardId + "' AND " + PushNotificationTableEntity.LANGUAGE_ID + " = '" + langId + "'";
-        int result = db.update(PushNotificationTableEntity.TABLE_NAME, values, whereClause, null);
+        int result = Objects.requireNonNull(db).update(PushNotificationTableEntity.TABLE_NAME, values, whereClause, null);
         Logger.error("updateAllPushContentStatusForSingleCar_query", "_______" + whereClause);
         if (db.isOpen()) {
             db.close();
         }
-        return result;
     }
 
     public boolean checkIfCarInstalledBeforePush(Context context, int carId) {
@@ -900,7 +887,7 @@ public class CommonDao {
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT * FROM " + CarInfoTableEntity.TABLE_NAME + " WHERE " + CarInfoTableEntity.STATUS + " = '1'";
         Logger.error("select_query_car_info", "___________" + selectQuery);
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null);
 
         try {
             if (cursor.moveToFirst()) {
@@ -936,32 +923,31 @@ public class CommonDao {
         return true;
     }
 
-    public int makeAllPushEntryStatusChange(Context context, int carId, int langId, int ePubId) {
+    public void makeAllPushEntryStatusChange(Context context, int carId, int langId, int ePubId) {
         SQLiteDatabase db = getWritableDatabase(context);
         ContentValues values = new ContentValues();
         values.put(PushNotificationTableEntity.STATUS, PushNotificationTableEntity.UPDATE_UNAVAILABLE);
         String whereClause = PushNotificationTableEntity.CAR_ID + " = '" + carId + "' AND " + PushNotificationTableEntity.LANGUAGE_ID + " = '" + langId + "' AND " + PushNotificationTableEntity.EPUB_ID + " = '" + ePubId + "'";
+        assert db != null;
         int result = db.update(PushNotificationTableEntity.TABLE_NAME, values, whereClause, null);
         Logger.error("makeAllPushEntryStatusChange", "_______" + whereClause);
         if (db.isOpen()) {
             db.close();
         }
 
-        return result;
     }
 
-    public int makeAllPushEntryStatusChangeLangauge(Context context, int carId, int langId) {
+    public void makeAllPushEntryStatusChangeLangauge(Context context, int carId, int langId) {
         SQLiteDatabase db = getWritableDatabase(context);
         ContentValues values = new ContentValues();
         values.put(PushNotificationTableEntity.STATUS, PushNotificationTableEntity.UPDATE_UNAVAILABLE);
         String whereClause = PushNotificationTableEntity.CAR_ID + " = '" + carId + "' AND " + PushNotificationTableEntity.LANGUAGE_ID + " = '" + langId + "'";
-        int result = db.update(PushNotificationTableEntity.TABLE_NAME, values, whereClause, null);
+        int result = Objects.requireNonNull(db).update(PushNotificationTableEntity.TABLE_NAME, values, whereClause, null);
         Logger.error("makeAllPushEntryStatusChangeLanguage", "_______" + whereClause);
         if (db.isOpen()) {
             db.close();
         }
 
-        return result;
     }
 
     @SuppressWarnings("unchecked")

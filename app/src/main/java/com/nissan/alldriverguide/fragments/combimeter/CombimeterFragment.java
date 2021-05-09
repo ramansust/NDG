@@ -24,6 +24,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -77,7 +78,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
 
 
     private void loadData() {
-        txt_title.setText(getArguments().get(TITLE).toString());
+        txt_title.setText(Objects.requireNonNull(Objects.requireNonNull(getArguments()).get(TITLE)).toString());
 
         list_red = new ArrayList<>();
         list_orange = new ArrayList<>();
@@ -87,7 +88,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
         list_gray = new ArrayList<>();
         list_cyan = new ArrayList<>();
 
-        width = NissanApp.getInstance().getWidth(getActivity());
+        width = NissanApp.getInstance().getWidth(Objects.requireNonNull(getActivity()));
 
         mainLinearLayout = new LinearLayout(getActivity());
         LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(
@@ -157,11 +158,12 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
             case R.id.btn_back:
             case R.id.linear_back:
                 if (ImageTargetActivity.isDetected) {
-                    getActivity().finish();
+                    Objects.requireNonNull(getActivity()).finish();
                 } else {
-                    getActivity().onBackPressed();
+                    Objects.requireNonNull(getActivity()).onBackPressed();
                 }
                 break;
+
             default:
                 int ePubIndex;
                 error("__MB__Tag__", v.getTag().toString());
@@ -171,7 +173,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
 
                 // here redirect the DetailsFragment class for opening epub
                 // according to combimeter icon
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                 fragmentTransaction.replace(R.id.container, DetailsFragment.newInstance(ePubIndex - 1, getArguments().get(TITLE).toString()));
 //                fragmentTransaction.replace(R.id.container, DetailsFragment.newInstance(ePubIndex - 1, getResources().getString(R.string.warning_lights)));
@@ -194,7 +196,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
         if (dir.isDirectory()) {
 
             if (dir.listFiles() != null) {
-                for (File file : dir.listFiles()) { // get all of the file from file path
+                for (File file : Objects.requireNonNull(dir.listFiles())) { // get all of the file from file path
                     if (file.toString().contains("combimeter_")) {
 
                         Logger.error("___MB__", file.getName());
@@ -281,7 +283,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
                 button.setTag(Integer.parseInt(output[1]));
                 button.setOnClickListener(this);
 
-                layoutHorizontal.addView(button);
+                Objects.requireNonNull(layoutHorizontal).addView(button);
             } catch (Exception e) {
                 e.printStackTrace();
             }

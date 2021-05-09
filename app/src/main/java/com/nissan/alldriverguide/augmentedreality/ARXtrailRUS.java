@@ -20,14 +20,10 @@ import com.nissan.alldriverguide.vuforia.SampleAppRenderer;
 import com.nissan.alldriverguide.vuforia.SampleAppRendererControl;
 import com.nissan.alldriverguide.vuforia.SampleApplicationException;
 import com.nissan.alldriverguide.vuforia.SampleApplicationSession;
-import com.nissan.alldriverguide.vuforia.Texture;
 import com.vuforia.Device;
-import com.vuforia.Renderer;
 import com.vuforia.State;
 import com.vuforia.Trackable;
 import com.vuforia.TrackableResult;
-
-import java.util.Vector;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;

@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -96,8 +97,8 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     }
 
     private void loadResource() {
-        new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
-        txtViewTitle.setText(getArguments().getString(TITLE));
+        new Resources(Objects.requireNonNull(getActivity()).getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
+        txtViewTitle.setText(Objects.requireNonNull(getArguments()).getString(TITLE));
 //        txtViewTitle.setTypeface(tf);
 
         String call_assistance_title = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), REGISTERED_COUNTRY_NAME);
@@ -196,7 +197,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
             list.add(11, info);
         }
 
-        CallNumberAdapter adapter = new CallNumberAdapter(getActivity().getApplicationContext(), list);
+        CallNumberAdapter adapter = new CallNumberAdapter(Objects.requireNonNull(getActivity()).getApplicationContext(), list);
         lstView.setAdapter(adapter);
     }
 
@@ -207,7 +208,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     }
 
     private void initViews(View view) {
-        deviceDensity = NissanApp.getInstance().getDensityName(getActivity());
+        deviceDensity = NissanApp.getInstance().getDensityName(Objects.requireNonNull(getActivity()));
         btnBack = view.findViewById(R.id.btn_back);
         lstView = view.findViewById(R.id.lst_view);
         txtViewTitle = view.findViewById(R.id.txt_title);
@@ -284,7 +285,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         switch (v.getId()) {
             case R.id.btn_back:
             case R.id.linear_back:
-                getActivity().onBackPressed();
+                Objects.requireNonNull(getActivity()).onBackPressed();
                 break;
 
             default:

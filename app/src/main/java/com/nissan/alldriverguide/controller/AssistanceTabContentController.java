@@ -5,6 +5,7 @@ import com.nissan.alldriverguide.multiLang.model.AssistanceInfo;
 import com.nissan.alldriverguide.retrofit.ApiService;
 import com.nissan.alldriverguide.retrofit.RetrofitClient;
 
+import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,7 +32,7 @@ public class AssistanceTabContentController implements Callback<AssistanceInfo> 
 
 
     @Override
-    public void onResponse(Call<AssistanceInfo> call, Response<AssistanceInfo> response) {
+    public void onResponse(@NonNull Call<AssistanceInfo> call, Response<AssistanceInfo> response) {
         if (response.isSuccessful()) {
             AssistanceInfo assistanceInfo = response.body();
 
@@ -46,8 +47,8 @@ public class AssistanceTabContentController implements Callback<AssistanceInfo> 
     }
 
     @Override
-    public void onFailure(Call<AssistanceInfo> call, Throwable t) {
-        if (listener != null && t != null && t.getMessage() != null) {
+    public void onFailure(@NonNull Call<AssistanceInfo> call, @NonNull Throwable t) {
+        if (listener != null && t.getMessage() != null) {
             listener.onFailed(t.getMessage());
         }
     }

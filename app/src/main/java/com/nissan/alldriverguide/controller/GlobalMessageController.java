@@ -5,6 +5,7 @@ import com.nissan.alldriverguide.multiLang.model.GlobalMsgResponse;
 import com.nissan.alldriverguide.retrofit.ApiService;
 import com.nissan.alldriverguide.retrofit.RetrofitClient;
 
+import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,7 +31,7 @@ public class GlobalMessageController implements Callback<GlobalMsgResponse> {
     }
 
     @Override
-    public void onResponse(Call<GlobalMsgResponse> call, Response<GlobalMsgResponse> response) {
+    public void onResponse(@NonNull Call<GlobalMsgResponse> call, Response<GlobalMsgResponse> response) {
         if (response.isSuccessful()) {
             GlobalMsgResponse languageListResponse = response.body();
 
@@ -45,8 +46,8 @@ public class GlobalMessageController implements Callback<GlobalMsgResponse> {
     }
 
     @Override
-    public void onFailure(Call<GlobalMsgResponse> call, Throwable t) {
-        if (listener != null && t != null && t.getMessage() != null) {
+    public void onFailure(@NonNull Call<GlobalMsgResponse> call, @NonNull Throwable t) {
+        if (listener != null && t.getMessage() != null) {
             listener.onFailed(t.getMessage());
         }
     }

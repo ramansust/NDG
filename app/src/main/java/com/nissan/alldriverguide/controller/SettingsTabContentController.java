@@ -5,6 +5,7 @@ import com.nissan.alldriverguide.multiLang.model.SettingsTabModel;
 import com.nissan.alldriverguide.retrofit.ApiService;
 import com.nissan.alldriverguide.retrofit.RetrofitClient;
 
+import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,7 +31,7 @@ public class SettingsTabContentController implements Callback<SettingsTabModel> 
     }
 
     @Override
-    public void onResponse(Call<SettingsTabModel> call, Response<SettingsTabModel> response) {
+    public void onResponse(@NonNull Call<SettingsTabModel> call, Response<SettingsTabModel> response) {
         if (response.isSuccessful()) {
             SettingsTabModel settingsTabModel = response.body();
 
@@ -45,8 +46,8 @@ public class SettingsTabContentController implements Callback<SettingsTabModel> 
     }
 
     @Override
-    public void onFailure(Call<SettingsTabModel> call, Throwable t) {
-        if (listener != null && t != null && t.getMessage() != null) {
+    public void onFailure(@NonNull Call<SettingsTabModel> call, @NonNull Throwable t) {
+        if (listener != null && t.getMessage() != null) {
             listener.onFailed(t.getMessage());
         }
     }

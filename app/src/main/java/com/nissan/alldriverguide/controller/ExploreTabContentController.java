@@ -5,6 +5,7 @@ import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.retrofit.ApiService;
 import com.nissan.alldriverguide.retrofit.RetrofitClient;
 
+import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,7 +31,7 @@ public class ExploreTabContentController implements Callback<ExploreTabModel> {
     }
 
     @Override
-    public void onResponse(Call<ExploreTabModel> call, Response<ExploreTabModel> response) {
+    public void onResponse(@NonNull Call<ExploreTabModel> call, Response<ExploreTabModel> response) {
         if (response.isSuccessful()) {
             ExploreTabModel exploreTabModel = response.body();
             if (exploreTabModel != null) {
@@ -44,8 +45,8 @@ public class ExploreTabContentController implements Callback<ExploreTabModel> {
     }
 
     @Override
-    public void onFailure(Call<ExploreTabModel> call, Throwable t) {
-        if (listener != null && t != null && t.getMessage() != null) {
+    public void onFailure(@NonNull Call<ExploreTabModel> call, @NonNull Throwable t) {
+        if (listener != null && t.getMessage() != null) {
             listener.onFailed(t.getMessage());
         }
     }

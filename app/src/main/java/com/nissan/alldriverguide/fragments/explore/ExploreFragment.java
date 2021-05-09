@@ -63,6 +63,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -386,8 +387,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
 
                 @Override
-                public void onResourceReady(Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    Drawable drawable = new BitmapDrawable(Objects.requireNonNull(getActivity()).getResources(), resource);
                     simple_drawee_view_ar.setBackground(drawable);
                 }
 
@@ -614,7 +615,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
                         // permission is granted
-                        if (ContextCompat.checkSelfPermission(getActivity(), WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                        if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                             startActivity(new Intent(getActivity(), ImageTargetActivity.class));
                         } else {
                             Toast.makeText(getActivity(), "Turn on storage and camera permissions both", Toast.LENGTH_SHORT).show();
@@ -658,7 +659,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     // navigating user to app settings
     private void openSettings() {
         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
+        Uri uri = Uri.fromParts("package", Objects.requireNonNull(getActivity()).getPackageName(), null);
         intent.setData(uri);
         startActivityForResult(intent, 101);
     }
@@ -773,7 +774,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     @Override
     public void onPageSelected(int position) {
-        viewPager.getAdapter().getCount();//Toast.makeText(getActivity(), "3", Toast.LENGTH_SHORT).show();
+        Objects.requireNonNull(viewPager.getAdapter()).getCount();//Toast.makeText(getActivity(), "3", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -797,7 +798,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             Glide.with(this).asBitmap().load(front_image_url).into(new CustomTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                    Drawable drawable = new BitmapDrawable(Objects.requireNonNull(getActivity()).getResources(), resource);
                     front_image_view.setBackground(drawable);
                     front_image_view.buildDrawingCache();
                 }
@@ -815,7 +816,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         }
 
         mapView.setOnClickListener(view -> {
-            if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
+            if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
                 list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
             }
 
@@ -838,10 +839,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             }*/
 
             int epubIndex = 0;
-            if (exploretabSliderModel != null) {
-                Values.ePubType = exploretabSliderModel.getEpubType();
-                epubIndex = exploretabSliderModel.getEpubTag();
-            }
+            Values.ePubType = exploretabSliderModel.getEpubType();
+            epubIndex = exploretabSliderModel.getEpubTag();
 
             /*if (Values.carType == 12) {
                 epubIndex = 58;
@@ -896,7 +895,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             Glide.with(this).asBitmap().load(front_image_url).into(new CustomTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                    Drawable drawable = new BitmapDrawable(Objects.requireNonNull(getActivity()).getResources(), resource);
                     front_image_view.setBackground(drawable);
                     front_image_view.buildDrawingCache();
                 }
@@ -931,7 +930,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         layout.findViewById(R.id.ivMap).setOnClickListener(view -> {
             // here start the playing video for grid view item click
 
-            if (DetectConnection.checkInternetConnection(getActivity())) {
+            if (DetectConnection.checkInternetConnection(Objects.requireNonNull(getActivity()))) {
                 //just for rus
 
                 /*int index = -1;

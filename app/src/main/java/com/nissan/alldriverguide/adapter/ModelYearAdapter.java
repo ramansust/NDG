@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ModelYearAdapter extends RecyclerView.Adapter<ModelYearAdapter.ModelYearViewHolder> {
     public ArrayList<Object> list;
-    ModelYearItemClcikListener itemClcikListener;
+    final ModelYearItemClcikListener itemClcikListener;
 
     public ModelYearAdapter(ArrayList<Object> list, ModelYearItemClcikListener itemClickListener) {
         this.list = list;

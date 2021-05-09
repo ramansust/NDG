@@ -52,7 +52,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     private void orderingCarList() {
-        if (downloadedCarList != null && downloadedCarList.size() > 0) {
+        if (downloadedCarList.size() > 0) {
 
             orderedCarList.add(DOWNLOADED_CAR);
             for (String car : downloadedCarList) {

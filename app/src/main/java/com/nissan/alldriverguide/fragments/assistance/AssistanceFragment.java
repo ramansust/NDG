@@ -52,6 +52,7 @@ import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -113,7 +114,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     public void check_Data() {
 
-        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), assistanceArray, assistanceImage);
+        adapter = new AssistanceAdapter(Objects.requireNonNull(getActivity()).getApplicationContext(), assistanceArray, assistanceImage);
         lstView.setAdapter(adapter);
 
         sharedpref_key = Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
@@ -204,7 +205,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         Button btnOk = dialog.findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(v -> {
             dialog.dismiss();
-            getActivity().finish();
+            Objects.requireNonNull(getActivity()).finish();
         });
 
         dialog.show();
@@ -244,7 +245,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     }
 
     private void loadResource() {
-        resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
+        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
     }
 
     private void setListener() {
@@ -254,7 +255,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     // here set assistance car background according to car type
     private void setAssistanceCarBackgroundImage() {
 
-        url = getURLAccordingToDensity(NissanApp.getInstance().getDensityName(getActivity()));
+        url = getURLAccordingToDensity(NissanApp.getInstance().getDensityName(Objects.requireNonNull(getActivity())));
 
 
         DraweeController controller = Fresco.newDraweeControllerBuilder().setImageRequest(
@@ -299,7 +300,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     // here initialized all variable
     private void initViews(View view) {
-        context = getActivity().getApplicationContext();
+        context = Objects.requireNonNull(getActivity()).getApplicationContext();
         commonDao = CommonDao.getInstance();
         txtViewCarName = view.findViewById(R.id.txt_view_car_name);
         txtView_loadTxt = view.findViewById(R.id.txtView_loading);
@@ -344,7 +345,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         // here set the epub type for all assistance list item (eg. Warning Light, QRG, Tyre Information and more...)
         Values.ePubType = position + 1;
 
-        if (DetectConnection.checkInternetConnection(getActivity().getApplicationContext())) {
+        if (DetectConnection.checkInternetConnection(Objects.requireNonNull(getActivity()).getApplicationContext())) {
             PushContentInfo info = commonDao.getNotificationData(getActivity().getApplicationContext(), Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()), Values.ePubType);
 
             if (info != null && !TextUtils.isEmpty(info.getCarId()) && !TextUtils.isEmpty(info.getLangId()) && !TextUtils.isEmpty(info.getePubId())) {
@@ -372,31 +373,32 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
                     dialog.dismiss();
 
-                    if (DetectConnection.checkInternetConnection(getActivity().getApplicationContext())) {
-                        getActivity().runOnUiThread(() -> progressDialog = new ProgressDialogController(getActivity()).showDialog(getResources().getString(R.string.start_download)));
+                    if (!DetectConnection.checkInternetConnection(getActivity().getApplicationContext())) {
+                        return;
+                    }
+                    getActivity().runOnUiThread(() -> progressDialog = new ProgressDialogController(getActivity()).showDialog(getResources().getString(R.string.start_download)));
 
-                        new ApiCall().postContentDownload("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()), "" + Values.ePubType, NissanApp.getInstance().getDeviceID(getActivity().getApplicationContext()), new CompleteAPI() {
-                            @Override
-                            public void onDownloaded(ResponseInfo responseInfo) {
+                    new ApiCall().postContentDownload("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()), "" + Values.ePubType, NissanApp.getInstance().getDeviceID(getActivity().getApplicationContext()), new CompleteAPI() {
+                        @Override
+                        public void onDownloaded(ResponseInfo responseInfo) {
 //                                Logger.error("status", "__________" + responseInfo.getStatusCode() + "____" + responseInfo.getMessage() + "____" + responseInfo.getUrl());;
 
-                                if (!SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) || TextUtils.isEmpty(responseInfo.getUrl())) {
-                                    showErrorDialog("No content found.");
-                                    dismissDialogue();
-                                }  //
-                                //TODO Integrate download manager
-                            }
+                            if (!SUCCESS_STATUS.equalsIgnoreCase(responseInfo.getStatusCode()) || TextUtils.isEmpty(responseInfo.getUrl())) {
+                                showErrorDialog("No content found.");
+                                dismissDialogue();
+                            }  //
+                            //TODO Integrate download manager
+                        }
 
-                            @Override
-                            public void onFailed(String failedReason) {
-                                if (progressDialog != null) {
-                                    progressDialog.dismiss();
-                                }
-                                showErrorDialog(failedReason);
-                                Logger.error("Single Content Downloading failed", "____________" + failedReason);
+                        @Override
+                        public void onFailed(String failedReason) {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
                             }
-                        });
-                    }
+                            showErrorDialog(failedReason);
+                            Logger.error("Single Content Downloading failed", "____________" + failedReason);
+                        }
+                    });
                 });
 
                 Button btnCancel = dialog.findViewById(R.id.btn_cancel);
@@ -433,7 +435,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
         switch (position) {
             case 0:
-                ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.WARNING_LIGHT));
+                ((MainActivity) Objects.requireNonNull(getActivity())).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.WARNING_LIGHT));
                 frag = CombimeterFragment.newInstance(pageTitle);
                 break;
 
@@ -448,13 +450,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
                 break;
 
             case 2:
-                frag = ListFragment.newInstance(pageTitle);
-                break;
-
             case 3:
-                frag = ListFragment.newInstance(pageTitle);
-                break;
-
             case 4:
                 frag = ListFragment.newInstance(pageTitle);
                 break;
@@ -472,7 +468,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         }
 
         if (frag != null) {
-            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
             ft.replace(R.id.container, frag);
             ft.addToBackStack(Values.tabAssistance);
