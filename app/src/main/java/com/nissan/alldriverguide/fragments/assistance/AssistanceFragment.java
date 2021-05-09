@@ -326,7 +326,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        new PreferenceUtil(getActivity().getApplicationContext()).setOpenCountForRateApp();
+        new PreferenceUtil(Objects.requireNonNull(Objects.requireNonNull(getActivity())).getApplicationContext()).setOpenCountForRateApp();
     }
 
     @Override
@@ -494,7 +494,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     private void showErrorDialog(String msg) {
         DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
-        dialogFragment.show(getActivity().getSupportFragmentManager(), "error_fragment");
+        dialogFragment.show(Objects.requireNonNull(Objects.requireNonNull(getActivity())).getSupportFragmentManager(), "error_fragment");
     }
 
 }

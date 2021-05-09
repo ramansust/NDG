@@ -29,6 +29,7 @@ import com.nissan.alldriverguide.utils.Values;
 import java.io.File;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -77,19 +78,19 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     private void loadData() {
-        title.setText(getArguments().get(TITLE).toString()); // here set the title on top bar
+        title.setText(Objects.requireNonNull(Objects.requireNonNull(getArguments()).get(TITLE)).toString()); // here set the title on top bar
         switch (Values.ePubType) {// compare with epub type
 
             case Values.HOMEPAGE_TYPE:
                 // check the toc file exist or not
-                if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
+                if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
                     list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
                     ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.HOMEPAGE));
                 }
                 break;
 
             case Values.TYRE_TYPE:
-                if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.TYRE + Values.TOC_DIRECTORY).exists()) {
+                if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.TYRE + Values.TOC_DIRECTORY).exists()) {
                     list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.TYRE);
                     ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.TYRE));
 
@@ -97,14 +98,14 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
                 break;
 
             case Values.ENGINE_TYPE:
-                if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.ENGINE + Values.TOC_DIRECTORY).exists()) {
+                if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.ENGINE + Values.TOC_DIRECTORY).exists()) {
                     list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.ENGINE);
                     ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.ENGINE));
                 }
                 break;
 
             case Values.WARRANTY_TYPE:
-                if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.WARRANTY + Values.TOC_DIRECTORY).exists()) {
+                if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.WARRANTY + Values.TOC_DIRECTORY).exists()) {
                     list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.WARRANTY);
                     ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.WARRANTY));
                 }
@@ -148,7 +149,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 
                     for (Iterator<EpubInfo> iterator = list.listIterator(); iterator.hasNext(); ) {
                         EpubInfo info = iterator.next();
-                        if (info.getTitle().startsWith("3. ") || info.getTitle().startsWith("3.1. ") || info.getTitle().startsWith("3.2. ")) {
+                        if (Objects.requireNonNull(info.getTitle()).startsWith("3. ") || info.getTitle().startsWith("3.1. ") || info.getTitle().startsWith("3.2. ")) {
                             iterator.remove();
                         }
 
@@ -159,7 +160,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
                 }
             }
 
-            ListAdapter adapter = new ListAdapter(getActivity().getApplicationContext(), list);
+            ListAdapter adapter = new ListAdapter(Objects.requireNonNull(getActivity()).getApplicationContext(), list);
             lstView.setAdapter(adapter);
         }
 
@@ -200,7 +201,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
                 showSliderDialog(position);
             } else {
                 frag = DetailsFragment.newInstance(list.get(position).getIndex(), title.getText().toString().trim());
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                 ft.replace(R.id.container, frag);
                 ft.addToBackStack(Values.tabAssistance);
@@ -208,7 +209,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
             }
         } else {
             frag = DetailsFragment.newInstance(list.get(position).getIndex(), title.getText().toString().trim());
-            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
             ft.replace(R.id.container, frag);
             ft.addToBackStack(Values.tabAssistance);
@@ -222,7 +223,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
         switch (v.getId()) {
             case R.id.btn_back:
             case R.id.linear_back:
-                getActivity().onBackPressed();
+                Objects.requireNonNull(getActivity()).onBackPressed();
                 break;
             default:
                 break;
@@ -258,7 +259,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
             dialog.dismiss();
             Intent i = new Intent(getActivity(), TyreTransitionActivity.class);
             startActivity(i);
-            ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.TYRE + Analytics.DOT + tyre));
+            ((MainActivity) Objects.requireNonNull(getActivity())).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.TYRE + Analytics.DOT + tyre));
         });
         dialog.show();
     }

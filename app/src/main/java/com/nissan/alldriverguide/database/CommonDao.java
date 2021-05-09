@@ -357,21 +357,22 @@ public class CommonDao {
         int status = 0;
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT " + "status" + " FROM " + "car_info" + " WHERE " + "_id" + "=" + id;
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        try {
-            if (cursor.moveToFirst()) {
-                for (int i = 0; i < cursor.getCount(); i++) {
-                    status = cursor.getInt(i);
-                    cursor.moveToNext();
+        try (Cursor cursor = db.rawQuery(selectQuery, null)) {
+            try {
+                if (cursor.moveToFirst()) {
+                    for (int i = 0; i < cursor.getCount(); i++) {
+                        status = cursor.getInt(i);
+                        cursor.moveToNext();
+                    }
                 }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-                if (db.isOpen()) {
-                    db.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                    if (db.isOpen()) {
+                        db.close();
+                    }
                 }
             }
         }
@@ -382,21 +383,22 @@ public class CommonDao {
         int status = 0;
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT " + "_id" + " FROM " + "car_info" + " order by _id DESC limit 1";
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        try {
-            if (cursor.moveToFirst()) {
-                for (int i = 0; i < cursor.getCount(); i++) {
-                    status = cursor.getInt(i);
-                    cursor.moveToNext();
+        try (Cursor cursor = db.rawQuery(selectQuery, null)) {
+            try {
+                if (cursor.moveToFirst()) {
+                    for (int i = 0; i < cursor.getCount(); i++) {
+                        status = cursor.getInt(i);
+                        cursor.moveToNext();
+                    }
                 }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-                if (db.isOpen()) {
-                    db.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                    if (db.isOpen()) {
+                        db.close();
+                    }
                 }
             }
         }
@@ -407,21 +409,22 @@ public class CommonDao {
         String status = "";
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT " + "name" + " FROM " + "car_info" + " WHERE " + "_id" + "=" + id;
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        try {
-            if (cursor.moveToFirst()) {
-                for (int i = 0; i < cursor.getCount(); i++) {
-                    status = cursor.getString(i);
-                    cursor.moveToNext();
+        try (Cursor cursor = db.rawQuery(selectQuery, null)) {
+            try {
+                if (cursor.moveToFirst()) {
+                    for (int i = 0; i < cursor.getCount(); i++) {
+                        status = cursor.getString(i);
+                        cursor.moveToNext();
+                    }
                 }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-                if (db.isOpen()) {
-                    db.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                    if (db.isOpen()) {
+                        db.close();
+                    }
                 }
             }
         }
@@ -830,26 +833,27 @@ public class CommonDao {
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT * FROM " + PushNotificationTableEntity.TABLE_NAME + " WHERE " + PushNotificationTableEntity.CAR_ID + " = '" + carID + "' AND " + PushNotificationTableEntity.LANGUAGE_ID + " = '" + langID + "' AND " + PushNotificationTableEntity.STATUS + " = '" + PushNotificationTableEntity.UPDATE_AVAILABLE + "' AND " + PushNotificationTableEntity.EPUB_ID + " = '" + ePubId + "'";
         Logger.error("select_query_single_push", "___________" + selectQuery);
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        try (Cursor cursor = db.rawQuery(selectQuery, null)) {
 
-        try {
-            if (cursor.moveToFirst()) {
-                do {
-                    info.setCarId(cursor.getInt(1) + "");
-                    info.setLangId(cursor.getInt(2) + "");
-                    info.setePubId(cursor.getInt(3) + "");
-                    info.setStatus(cursor.getInt(4) + "");
-                    info.setDateTime(cursor.getInt(5) + "");
+            try {
+                if (cursor.moveToFirst()) {
+                    do {
+                        info.setCarId(cursor.getInt(1) + "");
+                        info.setLangId(cursor.getInt(2) + "");
+                        info.setePubId(cursor.getInt(3) + "");
+                        info.setStatus(cursor.getInt(4) + "");
+                        info.setDateTime(cursor.getInt(5) + "");
 
-                } while (cursor.moveToNext());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-                if (db.isOpen()) {
-                    db.close();
+                    } while (cursor.moveToNext());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                    if (db.isOpen()) {
+                        db.close();
+                    }
                 }
             }
         }

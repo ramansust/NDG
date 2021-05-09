@@ -36,6 +36,7 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -84,7 +85,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
 
     private void check_Data() {
 
-        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), setting_names, assistanceImage);
+        adapter = new AssistanceAdapter(Objects.requireNonNull(getActivity()).getApplicationContext(), setting_names, assistanceImage);
         lstView.setAdapter(adapter);
 
         sharedpref_key = Values.carType + "_" + Values.SETTING_OBJ_STORE_KEY;
@@ -124,7 +125,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         Button btnOk = dialog.findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(v -> {
             dialog.dismiss();
-            getActivity().finish();
+            Objects.requireNonNull(getActivity()).finish();
         });
 
         dialog.show();
@@ -171,7 +172,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     private void loadResource() {
-        resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
+        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
     }
 
     private void setListener() {
@@ -187,7 +188,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         tvNoContent = view.findViewById(R.id.txt_settings_data_not_found);
 
         metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay().getMetrics(metrics);
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
         controller = new SettingsTabContentController(this);
     }
@@ -226,7 +227,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
                 frag = LanguageFragment.newInstance();
-                ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsForDownloadSection(Analytics.CHANGE_LANGUAGE));
+                ((MainActivity) Objects.requireNonNull(getActivity())).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsForDownloadSection(Analytics.CHANGE_LANGUAGE));
                 break;
 
             case 1:
@@ -235,7 +236,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
                 frag = AddCarFragment.newInstance();
-                ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsForCarSection(Analytics.CAR_SELECTION));
+                ((MainActivity) Objects.requireNonNull(getActivity())).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsForCarSection(Analytics.CAR_SELECTION));
                 break;
 
             case 2:
@@ -244,7 +245,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
                 startActivity(new Intent(getActivity(), TutorialActivity.class).putExtra("from", "fragment"));
-                getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                Objects.requireNonNull(getActivity()).overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromSettings(Analytics.TUTORIAL));
                 new PreferenceUtil(getActivity()).setOpenCountForRateApp();
                 break;
@@ -260,7 +261,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 preferenceUtil.setIsFirstTimeGreatNotGreat(false);
                 new PreferenceUtil(getActivity()).resetUserNavigationCount();
                 // go to play store
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getActivity().getApplicationContext().getPackageName())));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Objects.requireNonNull(getActivity()).getApplicationContext().getPackageName())));
                 break;
 
             case 4:
@@ -276,7 +277,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         }
 
         if (frag != null) {
-            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
             ft.replace(R.id.container, frag);
             ft.addToBackStack(Values.tabSettings);

@@ -175,7 +175,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
                 // according to combimeter icon
                 FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
-                fragmentTransaction.replace(R.id.container, DetailsFragment.newInstance(ePubIndex - 1, getArguments().get(TITLE).toString()));
+                fragmentTransaction.replace(R.id.container, DetailsFragment.newInstance(ePubIndex - 1, Objects.requireNonNull(Objects.requireNonNull(getArguments()).get(TITLE)).toString()));
 //                fragmentTransaction.replace(R.id.container, DetailsFragment.newInstance(ePubIndex - 1, getResources().getString(R.string.warning_lights)));
                 fragmentTransaction.addToBackStack(Values.tabAssistance);
                 fragmentTransaction.commit();

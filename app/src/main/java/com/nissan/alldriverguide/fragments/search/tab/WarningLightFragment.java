@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,14 +63,14 @@ public class WarningLightFragment extends Fragment {
      * Data added and display for WarningLightFragment
      */
     private void addData() {
-        ArrayList<EpubInfo> epubInfoArrayList = new PreferenceUtil(getActivity().getApplicationContext()).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.UNDERSCORE + Values.COMBIMETER_TYPE);
+        ArrayList<EpubInfo> epubInfoArrayList = new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.UNDERSCORE + Values.COMBIMETER_TYPE);
         if (epubInfoArrayList == null || epubInfoArrayList.size() == 0) {
             return;
         }
         ArrayList<EpubInfo> newList = searchForTag(epubInfoArrayList, BaseTabFragmentActivity.keyword);
 
         progressBar.setVisibility(View.GONE);
-        if (newList == null || newList.size() == 0) {
+        if (newList.size() == 0) {
             recyclerView.setVisibility(View.GONE);
 //            linearLayoutNoContent.setVisibility(View.VISIBLE);
         } else {
@@ -162,8 +163,8 @@ public class WarningLightFragment extends Fragment {
                 int searchTagIndex = (i * 2) + 1;
 
                 // this condition remove the demo item from WarningLightFragment
-                if (!ePubInfoList.get(searchTagIndex - 1).getTitle().toLowerCase().contains("demo")) {
-                    if (ePubInfoList.get(searchTagIndex - 1).getTitle().toLowerCase().contains(keyWord.toLowerCase().trim()) || ePubInfoList.get(searchTagIndex).getTitle().toLowerCase().contains(keyWord.toLowerCase().trim())) {
+                if (!Objects.requireNonNull(ePubInfoList.get(searchTagIndex - 1).getTitle()).toLowerCase().contains("demo")) {
+                    if (Objects.requireNonNull(ePubInfoList.get(searchTagIndex - 1).getTitle()).toLowerCase().contains(keyWord.toLowerCase().trim()) || Objects.requireNonNull(ePubInfoList.get(searchTagIndex).getTitle()).toLowerCase().contains(keyWord.toLowerCase().trim())) {
                         ePubInfoList.get(searchTagIndex - 1).setIndex((searchTagIndex - 1) / 2); // need to check again
 
                         searchResultList.add(ePubInfoList.get(searchTagIndex - 1));
@@ -191,7 +192,7 @@ public class WarningLightFragment extends Fragment {
         File dir = new File(drawable_folder + "/");
 
         if (dir.isDirectory()) {
-            for (File file : dir.listFiles()) {
+            for (File file : Objects.requireNonNull(dir.listFiles())) {
                 fileNameList.add(file.getName());
             }
         }

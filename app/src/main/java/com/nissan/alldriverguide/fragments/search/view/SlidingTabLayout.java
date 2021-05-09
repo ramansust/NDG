@@ -28,6 +28,8 @@ import android.widget.TextView;
 
 import com.nissan.alldriverguide.R;
 
+import java.util.Objects;
+
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -202,7 +204,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         final PagerAdapter adapter = mViewPager.getAdapter();
         final OnClickListener tabClickListener = new TabClickListener();
 
-        for (int i = 0; i < adapter.getCount(); i++) {
+        for (int i = 0; i < Objects.requireNonNull(adapter).getCount(); i++) {
             View tabView = null;
             TextView tabTitleView = null;
 
@@ -221,7 +223,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabTitleView = (TextView) tabView;
             }
 
-            tabTitleView.setText(adapter.getPageTitle(i));
+            Objects.requireNonNull(tabTitleView).setText(adapter.getPageTitle(i));
             tabView.setTag(i);
             tabTitleView.setTag(i);
 

@@ -14,6 +14,7 @@ import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import androidx.fragment.app.Fragment;
 
@@ -52,13 +53,13 @@ public class EngineComponentFragment extends Fragment {
         if (progressBar != null) {
             progressBar.setVisibility(View.VISIBLE);
         }
-        ArrayList<EpubInfo> list = new PreferenceUtil(getActivity().getApplicationContext()).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.UNDERSCORE + Values.ENGINE_TYPE);
+        ArrayList<EpubInfo> list = new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.UNDERSCORE + Values.ENGINE_TYPE);
 
         ArrayList<EpubInfo> finalSearchResultList = WarningLightFragment.searchForTag(list, BaseTabFragmentActivity.keyword);
         if (progressBar != null) {
             progressBar.setVisibility(View.GONE);
         }
-        if (finalSearchResultList == null || finalSearchResultList.size() == 0) {
+        if (finalSearchResultList.size() == 0) {
             listView.setVisibility(View.GONE);
 //            linearLayoutNoContent.setVisibility(View.VISIBLE);
         } else {

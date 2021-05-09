@@ -162,7 +162,7 @@ public class SearchFragment extends Fragment {
         for (Map.Entry<String, List<Object>> entry : dataMap.entrySet()) {
             String key = entry.getKey();
             List<Object> list = dataMap.get(key);
-            items.addAll(list);
+            items.addAll(Objects.requireNonNull(list));
         }
 
 /*
@@ -269,7 +269,7 @@ public class SearchFragment extends Fragment {
 
                     Values.keyWord = getKeyword;
                     // here indicate TabFragment when user take action for keyboard search
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    FragmentTransaction transaction = Objects.requireNonNull(getFragmentManager()).beginTransaction();
                     transaction.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                     transaction.replace(R.id.container, TabFragment.newInstance(getKeyword));
                     transaction.addToBackStack(Values.tabSearch);
@@ -322,7 +322,7 @@ public class SearchFragment extends Fragment {
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-            return commonDao.deleteRecentSearchesFromSearchTable(getActivity().getApplicationContext(), Values.carType, selectedLanguage);
+            return commonDao.deleteRecentSearchesFromSearchTable(Objects.requireNonNull(getActivity()).getApplicationContext(), Values.carType, selectedLanguage);
         }
 
         @Override

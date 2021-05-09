@@ -132,7 +132,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         View view = inflater.inflate(R.layout.fragment_explore, container, false);
 
         initViews(view);
-        device_density = NissanApp.getInstance().getDensityName(getActivity());
+        device_density = NissanApp.getInstance().getDensityName(Objects.requireNonNull(getActivity()));
         loadResource();
         setListener();
         exploreSlidedItems = NissanApp.getInstance().getSlideItems(Values.carType);
@@ -153,7 +153,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private void getExploreTabContent() {
         videoList = new ArrayList<>();
         sliderModelArrayList = new ArrayList<>();
-        adapter = new GridViewAdapter(getActivity().getApplicationContext(), videoList, device_density);
+        adapter = new GridViewAdapter(Objects.requireNonNull(getActivity()).getApplicationContext(), videoList, device_density);
         gridView.setAdapter(adapter);
 
         sharedpref_key = Values.carType + "_" + Values.EXPLORE_OBJ_STORE_KEY;
@@ -194,7 +194,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         Button btnOk = dialog.findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(v -> {
             dialog.dismiss();
-            getActivity().finish();
+            Objects.requireNonNull(getActivity()).finish();
         });
 
         dialog.show();
@@ -250,7 +250,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 layoutDataNotFound.setVisibility(View.GONE);
                 tvNoContent.setVisibility(View.GONE);
             }
-            new PreferenceUtil(getActivity().getApplicationContext()).storeExploreDataList(responseInfo, sharedpref_key);
+            new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).storeExploreDataList(responseInfo, sharedpref_key);
             videoList = new ArrayList<>();
             exploreModel = responseInfo;
             check_density();
@@ -332,7 +332,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                        Drawable drawable = new BitmapDrawable(Objects.requireNonNull(getActivity()).getResources(), resource);
                         simple_drawee_view_explore.setBackground(drawable);
                     }
 
@@ -416,7 +416,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                    Drawable drawable = new BitmapDrawable(Objects.requireNonNull(getActivity()).getResources(), resource);
                     simple_drawee_view_explore.setBackground(drawable);
                 }
 
@@ -436,7 +436,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    Drawable drawable = new BitmapDrawable(getActivity().getResources(), resource);
+                    Drawable drawable = new BitmapDrawable(Objects.requireNonNull(getActivity()).getResources(), resource);
                     simple_drawee_view_ar.setBackground(drawable);
                 }
 
@@ -523,7 +523,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         tvNoContent = view.findViewById(R.id.txt_explore_data_not_found);
 
         metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay().getMetrics(metrics);
         controller = new ExploreTabContentController(this);
         viewPager = view.findViewById(R.id.viewPager);
         /*viewPager.setAdapter(new MyPagerAdapter());
@@ -536,7 +536,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     // load resources for language localized
     private void loadResource() {
-        resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()));
+        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()));
     }
 
     @Override
@@ -644,7 +644,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
      * NOTE: Keep proper title and message depending on your app
      */
     private void showSettingsDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
         builder.setTitle("Need Permissions");
         builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
         builder.setPositiveButton("GOTO SETTINGS", (dialog, which) -> {
@@ -669,7 +669,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         Values.videoIndex = position;
         // here start the playing video for grid view item click
 
-        if (DetectConnection.checkInternetConnection(getActivity())) {
+        if (DetectConnection.checkInternetConnection(Objects.requireNonNull(getActivity()))) {
 
             if (NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl() != null) {
                 startActivity(new Intent(getActivity(), VideoPlayerActivity.class));

@@ -112,7 +112,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_language, container, false);
-        this.deviceDensity = NissanApp.getInstance().getDensityName(this.getActivity());
+        this.deviceDensity = NissanApp.getInstance().getDensityName(Objects.requireNonNull(this.getActivity()));
 
         this.initViews(view);
         this.loadResource();
@@ -132,7 +132,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
      * Load the resources and set initialized text
      */
     private void loadResource() {
-        this.resources = new Resources(this.getActivity().getAssets(), this.metrics, NissanApp.getInstance().changeLocalLanguage(this.getActivity(), this.preferenceUtil.getSelectedLang()));
+        this.resources = new Resources(Objects.requireNonNull(this.getActivity()).getAssets(), this.metrics, NissanApp.getInstance().changeLocalLanguage(this.getActivity(), this.preferenceUtil.getSelectedLang()));
 
         final String changeLanguageTitle = NissanApp.getInstance().getAlertMessage(this.getActivity(), this.preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_CHANGE_LANGUAGE);
 
@@ -204,7 +204,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         final Button btnOk = dialog.findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(v -> {
             dialog.dismiss();
-            LanguageFragment.this.getActivity().onBackPressed();
+            Objects.requireNonNull(LanguageFragment.this.getActivity()).onBackPressed();
         });
 
         dialog.show();
@@ -297,7 +297,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
      */
     private void initViews(final View view) {
         this.activity = this.getActivity();
-        this.context = this.getActivity().getApplicationContext();
+        this.context = Objects.requireNonNull(this.getActivity()).getApplicationContext();
         this.btnBack = view.findViewById(R.id.btn_back);
         this.lstView = view.findViewById(R.id.lst_view);
         this.txt_title = view.findViewById(R.id.txt_title);
@@ -339,9 +339,9 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             this.lang_sort_name = this.languageShortName[this.list.get(position).getId()];
             this.loadResource();
 
-            ((MainActivity) this.getActivity()).setTabResources();
+            ((MainActivity) Objects.requireNonNull(this.getActivity())).setTabResources();
         } else {
-            if (DetectConnection.checkInternetConnection(this.getActivity().getApplicationContext())) {
+            if (DetectConnection.checkInternetConnection(Objects.requireNonNull(this.getActivity()).getApplicationContext())) {
                 this.lang_sort_name = this.languageShortName[this.list.get(position).getId()];
                 this.showDownloadAlert(this.languageShortName[this.list.get(position).getId()], position);
             } else {
@@ -419,7 +419,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             dialog.dismiss();
 //                changeGlobalAlertMsg(position);
             LanguageFragment.this.startDownloadProcedure(lang, position);
-            LanguageFragment.this.controllerCarList.callApi(NissanApp.getInstance().getDeviceID(LanguageFragment.this.getActivity()), NissanApp.getInstance().getLanguageID(lang) + "");
+            LanguageFragment.this.controllerCarList.callApi(NissanApp.getInstance().getDeviceID(Objects.requireNonNull(LanguageFragment.this.getActivity())), NissanApp.getInstance().getLanguageID(lang) + "");
         });
         dialog.show();
     }
@@ -429,7 +429,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
         String startingToDownloadMessage = NissanApp.getInstance().getAlertMessage(this.context, this.preferenceUtil.getSelectedLang(), Values.STARTING_DOWNLOAD);
         this.activity.runOnUiThread(() -> LanguageFragment.this.progressDialog = new ProgressDialogController(LanguageFragment.this.activity).showDialog(startingToDownloadMessage == null || startingToDownloadMessage.isEmpty() ? LanguageFragment.this.resources.getString(R.string.start_download) : startingToDownloadMessage));
 
-        new ApiCall().postLanguageDownload(Values.carType + "", "" + NissanApp.getInstance().getLanguageID(lang), "0", NissanApp.getInstance().getDeviceID(this.getActivity()), new CompleteAPI() {
+        new ApiCall().postLanguageDownload(Values.carType + "", "" + NissanApp.getInstance().getLanguageID(lang), "0", NissanApp.getInstance().getDeviceID(Objects.requireNonNull(this.getActivity())), new CompleteAPI() {
             @Override
             public void onDownloaded(final ResponseInfo responseInfo) {
 
@@ -449,7 +449,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                     LanguageFragment.this.preferenceUtil.storeMultiLangData(responseInfo.getTabMenu(), new_key_tab);
 
                     //TODO Implement Download
-                    final CarDownloadHelper carDownloadHelper = new CarDownloadHelper(LanguageFragment.this.getContext(), "" + Values.carType,
+                    final CarDownloadHelper carDownloadHelper = new CarDownloadHelper(Objects.requireNonNull(LanguageFragment.this.getContext()), "" + Values.carType,
                             responseInfo.getLangUrl(), null,
                             NissanApp.getInstance().getCarPath(Values.carType),
                             NissanApp.getInstance().getCarPath(Values.carType), null, preferenceUtil, lang
@@ -493,7 +493,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
             public void onComplete(boolean status) {
 
                 if (status) {
-                    new ApiCall().postLanguageDownloadConfirmation("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(lang), "0", NissanApp.getInstance().getDeviceID(getActivity().getApplicationContext()), new CompleteAPI() {
+                    new ApiCall().postLanguageDownloadConfirmation("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(lang), "0", NissanApp.getInstance().getDeviceID(Objects.requireNonNull(getActivity()).getApplicationContext()), new CompleteAPI() {
                         @Override
                         public void onDownloaded(ResponseInfo responseInfo) {
 
@@ -565,14 +565,14 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                     return;
                 }
                 this.mLastClickTime = SystemClock.elapsedRealtime();
-                this.getActivity().onBackPressed();
+                Objects.requireNonNull(this.getActivity()).onBackPressed();
 
             case R.id.linear_back:
                 if (SystemClock.elapsedRealtime() - this.mLastClickTime < 2000) {
                     return;
                 }
                 this.mLastClickTime = SystemClock.elapsedRealtime();
-                this.getActivity().onBackPressed();
+                Objects.requireNonNull(this.getActivity()).onBackPressed();
                 break;
 
             default:
@@ -594,6 +594,6 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
     private void showErrorDialog(final String msg) {
         final DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(this.context, msg);
-        dialogFragment.show(this.getActivity().getSupportFragmentManager(), "error_fragment");
+        dialogFragment.show(Objects.requireNonNull(this.getActivity()).getSupportFragmentManager(), "error_fragment");
     }
 }

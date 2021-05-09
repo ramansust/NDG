@@ -120,7 +120,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                                     + Uri.decode(list.get(index).getHtmlLink());
                         }
 
-                        sendMsgToGoogleAnalytics(getAnalytics(Analytics.AUGMENTED_REALITY + Analytics.WARNING_LIGHT + Analytics.DOT + list.get(index).getTitle()));
+                        sendMsgToGoogleAnalytics(getAnalytics(Analytics.AUGMENTED_REALITY + Analytics.WARNING_LIGHT + Analytics.DOT + Objects.requireNonNull(list).get(index).getTitle()));
                     }
                     break;
 

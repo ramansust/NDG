@@ -19,6 +19,7 @@ import com.nissan.alldriverguide.model.HomePageSectionInfo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by mobioapp on 1/24/18.
@@ -112,7 +113,7 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return childList.get(listHeader.get(groupPosition).getSectionTitle()).size();
+        return Objects.requireNonNull(childList.get(listHeader.get(groupPosition).getSectionTitle())).size();
     }
 
     @Override
@@ -122,7 +123,7 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return childList.get(listHeader.get(groupPosition).getSectionTitle()).get(childPosition);
+        return Objects.requireNonNull(childList.get(listHeader.get(groupPosition).getSectionTitle())).get(childPosition);
     }
 
     @Override
@@ -186,11 +187,11 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
         }
 
         final TextView txtViewTitle = convertView.findViewById(R.id.txt_title);
-        txtViewTitle.setText("" + childList.get(listHeader.get(groupPosition).getSectionTitle()).get(childPosition).getTitle());
+        txtViewTitle.setText("" + Objects.requireNonNull(childList.get(listHeader.get(groupPosition).getSectionTitle())).get(childPosition).getTitle());
 
         ImageView imageViewDivider = convertView.findViewById(R.id.img_view_divider);
 
-        if (childList.get(listHeader.get(groupPosition).getSectionTitle()).size() - 1 == childPosition) {
+        if (Objects.requireNonNull(childList.get(listHeader.get(groupPosition).getSectionTitle())).size() - 1 == childPosition) {
             imageViewDivider.setVisibility(View.INVISIBLE);
         } else {
             imageViewDivider.setVisibility(View.VISIBLE);
@@ -203,8 +204,8 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
 
 
         txtViewTitle.setOnClickListener(v -> {
-            if (listener != null && txtViewTitle != null) {
-                listener.onClick(childList.get(listHeader.get(groupPosition).getSectionTitle()).get(childPosition).getIndex());
+            if (listener != null) {
+                listener.onClick(Objects.requireNonNull(childList.get(listHeader.get(groupPosition).getSectionTitle())).get(childPosition).getIndex());
             }
         });
 

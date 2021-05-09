@@ -120,7 +120,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
                 if (!isEmpty(carId)) {
-                    if (commonDao.checkIfCarInstalledBeforePush(getBaseContext(), Integer.parseInt(carId)))
+                    if (commonDao.checkIfCarInstalledBeforePush(getBaseContext(), Integer.parseInt(Objects.requireNonNull(carId))))
                         return;
                 }
 
@@ -129,12 +129,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                }
 
 //                if("11".equalsIgnoreCase(carId) || "12".equalsIgnoreCase(carId) || "13".equalsIgnoreCase(carId) || "14".equalsIgnoreCase(carId)) {
-                if (array != null && array.length() > 0) {
+                if (array.length() > 0) {
                     for (int i = 0; i < array.length(); i++) {
                         String ePubId = array.get(i).toString();
                         if (!isEmpty(carId) && !isEmpty(languageId) && !isEmpty(ePubId)) {
                             try {
-                                commonDao.makeAllPushEntryStatusChange(getBaseContext(), Integer.parseInt(carId), Integer.parseInt(languageId), Integer.parseInt(ePubId));
+                                commonDao.makeAllPushEntryStatusChange(getBaseContext(), Integer.parseInt(Objects.requireNonNull(carId)), Integer.parseInt(Objects.requireNonNull(languageId)), Integer.parseInt(ePubId));
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }

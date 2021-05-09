@@ -5,6 +5,8 @@ import com.nissan.alldriverguide.multiLang.model.ExploreTabModel;
 import com.nissan.alldriverguide.retrofit.ApiService;
 import com.nissan.alldriverguide.retrofit.RetrofitClient;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,7 +42,7 @@ public class ExploreTabContentController implements Callback<ExploreTabModel> {
                 if (listener != null) listener.onFailed("No content available.");
             }
         } else {
-            if (listener != null) listener.onFailed(response.errorBody().toString());
+            if (listener != null) listener.onFailed(Objects.requireNonNull(response.errorBody()).toString());
         }
     }
 

@@ -5,6 +5,8 @@ import com.nissan.alldriverguide.multiLang.model.LanguageListResponse;
 import com.nissan.alldriverguide.retrofit.ApiService;
 import com.nissan.alldriverguide.retrofit.RetrofitClient;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +46,7 @@ public class LanguageSelectionController implements Callback<LanguageListRespons
             }
         } else {
             if (listener != null)
-                listener.languageListFailed(response.errorBody().toString());
+                listener.languageListFailed(Objects.requireNonNull(response.errorBody()).toString());
         }
     }
 

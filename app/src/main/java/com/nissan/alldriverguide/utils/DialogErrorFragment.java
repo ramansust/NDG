@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.nissan.alldriverguide.R;
 
+import java.util.Objects;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
@@ -36,7 +38,7 @@ public class DialogErrorFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_error_fragment, container);
 
-        getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(getDialog().getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         getDialog().requestWindowFeature(STYLE_NO_TITLE);
@@ -50,7 +52,7 @@ public class DialogErrorFragment extends DialogFragment {
         TextView tvErrorMessage = view.findViewById(R.id.tvErrorMessage);
 
         Button btDismiss = view.findViewById(R.id.btDismiss);
-        btDismiss.setOnClickListener(view1 -> getDialog().dismiss());
+        btDismiss.setOnClickListener(view1 -> Objects.requireNonNull(getDialog()).dismiss());
 
         tvErrorMessage.setText(errorMsg);
     }

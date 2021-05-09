@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.nissan.alldriverguide.R;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -55,7 +57,7 @@ public class OnlineBookingFragment extends Fragment {
 
     private void webViewInstantiate() {
 
-        txtViewTitle.setText(getArguments().getString(TITLE));
+        txtViewTitle.setText(Objects.requireNonNull(getArguments()).getString(TITLE));
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setBuiltInZoomControls(true);
@@ -64,13 +66,13 @@ public class OnlineBookingFragment extends Fragment {
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new MyWebViewClient());
 
-        webView.loadUrl(getArguments().getString(IMG_URL));
+        webView.loadUrl(Objects.requireNonNull(getArguments().getString(IMG_URL)));
         webView.requestFocus();
     }
 
     private void setListener() {
-        linearBack.setOnClickListener(view -> getActivity().onBackPressed());
-        btnBack.setOnClickListener(view -> getActivity().onBackPressed());
+        linearBack.setOnClickListener(view -> Objects.requireNonNull(getActivity()).onBackPressed());
+        btnBack.setOnClickListener(view -> Objects.requireNonNull(getActivity()).onBackPressed());
     }
 
     private void initView() {

@@ -19,6 +19,7 @@ import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by raman on 1/19/17.
@@ -74,7 +75,7 @@ public class ListAdapter extends BaseAdapter {
         // Here set the DEMO text color for 2 & 6 number epub for Tyre Information
         if (Values.ePubType == Values.TYRE_TYPE) {
             if (position == 2 || position == 6) {
-                String str = list.get(position).getTitle().toUpperCase(); // output:eg 2.1. CHANGING FLAT TYRE (DEMO)
+                String str = Objects.requireNonNull(list.get(position).getTitle()).toUpperCase(); // output:eg 2.1. CHANGING FLAT TYRE (DEMO)
                 viewHolder.txtViewTitle.setTextColor(Color.parseColor("#C3002F")); // set the text color
                 String c = "(";
                 int p = str.indexOf(c); // you can find the c in str in 24 index
@@ -92,11 +93,11 @@ public class ListAdapter extends BaseAdapter {
                 spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0); // set BOLD for (DEMO)
                 viewHolder.txtViewTitle.setText(TextUtils.concat(spanString1, spanString)); // finally set the SpannableString in textView
             } else {
-                viewHolder.txtViewTitle.setText(list.get(position).getTitle().toUpperCase());
+                viewHolder.txtViewTitle.setText(Objects.requireNonNull(list.get(position).getTitle()).toUpperCase());
             }
 
         } else {
-            viewHolder.txtViewTitle.setText((position + 1) + ". " + list.get(position).getTitle().toUpperCase());
+            viewHolder.txtViewTitle.setText((position + 1) + ". " + Objects.requireNonNull(list.get(position).getTitle()).toUpperCase());
         }
 
         return convertView;

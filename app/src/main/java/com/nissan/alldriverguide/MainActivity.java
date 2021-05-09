@@ -46,6 +46,7 @@ import com.nissan.alldriverguide.utils.Values;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -369,7 +370,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             String tag = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
 
-            if (!tag.equalsIgnoreCase("")) {
+            if (!Objects.requireNonNull(tag).equalsIgnoreCase("")) {
                 selectFragment(tab.getPosition());
                 setTabIndicatorIconAndTextColor(tab.getPosition());
             }
@@ -588,13 +589,11 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
             Fragment frag = Feedback.newInstance();
 
-            if (frag != null) {
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
-                ft.replace(R.id.container, frag);
-                ft.addToBackStack(Values.tabSettings);
-                ft.commit();
-            }
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
+            ft.replace(R.id.container, frag);
+            ft.addToBackStack(Values.tabSettings);
+            ft.commit();
         });
 
         dialog.show();
@@ -679,9 +678,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
                             if (shouldShowRequestPermissionRationale(CAMERA)) {
                                 showMessageOKCancel("You need to allow access to CAMERA",
                                         (dialog, which) -> {
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                requestPermission(CAMERA, PERMISSION_REQUEST_CODE_CAMERA);
-                                            }
+                                            requestPermission(CAMERA, PERMISSION_REQUEST_CODE_CAMERA);
                                         });
                                 return;
                             }
@@ -699,9 +696,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
                             if (shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE)) {
                                 showMessageOKCancel("You need to allow access to SD card.",
                                         (dialog, which) -> {
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                requestPermission(WRITE_EXTERNAL_STORAGE, PERMISSION_REQUEST_CODE_STORAGE);
-                                            }
+                                            requestPermission(WRITE_EXTERNAL_STORAGE, PERMISSION_REQUEST_CODE_STORAGE);
                                         });
                                 return;
                             }
@@ -719,9 +714,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
                             if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)) {
                                 showMessageOKCancel("You need to allow access to location data",
                                         (dialog, which) -> {
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                requestPermission(ACCESS_FINE_LOCATION, PERMISSION_REQUEST_CODE_ACCESS_FINE_LOCATION);
-                                            }
+                                            requestPermission(ACCESS_FINE_LOCATION, PERMISSION_REQUEST_CODE_ACCESS_FINE_LOCATION);
                                         });
                                 return;
                             }

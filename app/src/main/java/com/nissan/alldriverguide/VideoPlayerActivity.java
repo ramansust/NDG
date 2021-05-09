@@ -316,8 +316,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     @Override
     public void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        if (savedInstanceState != null) {
-            position = savedInstanceState.getInt("position");
-        }
+        position = savedInstanceState.getInt("position");
     }
 }

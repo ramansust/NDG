@@ -3,6 +3,7 @@ package com.nissan.alldriverguide.utils;
 import com.nissan.alldriverguide.MyApplication;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by raman on 1/19/17.
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public class Values {
     //    public static final String PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/.AllDriverGuide";
-    public static final String PATH = MyApplication.getAppContext().getExternalFilesDir("./AllDriverGuide").getPath();
+    public static final String PATH = Objects.requireNonNull(MyApplication.getAppContext().getExternalFilesDir("./AllDriverGuide")).getPath();
     public static final String APK_VERSION = "2";
     //Folder Name of cars in sdcard
     public static final String qashqai_folder = "/qashqai";

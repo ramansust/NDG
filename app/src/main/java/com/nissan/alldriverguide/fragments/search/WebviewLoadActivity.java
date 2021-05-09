@@ -5,6 +5,8 @@ import android.webkit.WebView;
 
 import com.nissan.alldriverguide.R;
 
+import java.util.Objects;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,7 +24,7 @@ public class WebviewLoadActivity extends AppCompatActivity {
         initToolbar();
 
         WebView webView = findViewById(R.id.web_view_url);
-        webView.loadUrl(getIntent().getStringExtra("url"));
+        webView.loadUrl(Objects.requireNonNull(getIntent().getStringExtra("url")));
     }
 
     private void initToolbar() {

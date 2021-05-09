@@ -54,7 +54,7 @@ public abstract class SearchDBAsync extends AsyncTask<Void, Void, Boolean> {
         Collections.sort(listOfFiles, (s1, s2) -> s1.charAt(0) - s2.charAt(0));
 
         // checking the ArrayList that contain epub form sdCard
-        if (listOfFiles != null && listOfFiles.size() > 0) {
+        if (listOfFiles.size() > 0) {
             // looping the ArrayList
             for (int i = 0; i < listOfFiles.size(); i++) {
 

@@ -13,6 +13,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by shubha on 11/27/17.
@@ -60,7 +61,7 @@ public abstract class SingleContentUpdating extends AsyncTask<Void, Void, Boolea
                 ArrayList<EpubInfo> listOfePub = new ExtractedEpubLoader(NissanApp.getInstance().getCarPath(carType) + NissanApp.getInstance().getePubFolderPath(carType) + Values.UNDERSCORE + langType + Values.UNDERSCORE + Values.CONTENT_FOLDER_NAME + Values.SLASH + folderNameUpdatedFolderList.get(i))
                         .parseNcxFile();
 
-                if (listOfePub == null || listOfePub.size() < 1)
+                if (listOfePub.size() < 1)
                     return;
 
                 if (folderNameUpdatedFolderList.get(i).endsWith(".epub")) {
@@ -91,7 +92,7 @@ public abstract class SingleContentUpdating extends AsyncTask<Void, Void, Boolea
         File dirUpdatedContent = new File(extractedUpdatedContentDir);
 
         if (dirUpdatedContent.isDirectory()) {
-            for (File file : dirUpdatedContent.listFiles()) {
+            for (File file : Objects.requireNonNull(dirUpdatedContent.listFiles())) {
                 if (file.getName().endsWith(".epub")) {
                     folderNameUpdatedFolderList.add(file.getName());
                 }
@@ -143,7 +144,7 @@ public abstract class SingleContentUpdating extends AsyncTask<Void, Void, Boolea
         File dirUpdatedContent = new File(extractedUpdatedContentDir);
 
         if (dirUpdatedContent.isDirectory()) {
-            for (File file : dirUpdatedContent.listFiles()) {
+            for (File file : Objects.requireNonNull(dirUpdatedContent.listFiles())) {
                 if (file.getName().startsWith(".") || file.getName().equalsIgnoreCase(combimeterButton)) {
                     folderNameUpdatedFolderListAfterExtraction.add(file.getName());
                 }

@@ -26,6 +26,8 @@ import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
+import java.util.Objects;
+
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -63,13 +65,13 @@ public class Feedback extends Fragment implements View.OnClickListener {
 
     private void loadTextFromDatabase() {
         String pageTitle = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.FEEDBACK_TITLE);
-        tvTitle.setText(pageTitle.isEmpty() ? getActivity().getResources().getString(R.string.feedback) : pageTitle);
+        tvTitle.setText(pageTitle.isEmpty() ? Objects.requireNonNull(getActivity()).getResources().getString(R.string.feedback) : pageTitle);
         String titleField = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.TITLE_FIELD);
-        tvTitleField.setText(titleField.isEmpty() ? getActivity().getResources().getString(R.string.send_feedback_title) : titleField);
+        tvTitleField.setText(titleField.isEmpty() ? Objects.requireNonNull(getActivity()).getResources().getString(R.string.send_feedback_title) : titleField);
         String descriptionField = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.DESCRIPTION_FIELD);
-        tvDescriptionField.setText(descriptionField.isEmpty() ? getActivity().getResources().getString(R.string.send_feedback_description) : descriptionField);
+        tvDescriptionField.setText(descriptionField.isEmpty() ? Objects.requireNonNull(getActivity()).getResources().getString(R.string.send_feedback_description) : descriptionField);
         String send_feedback_button_text = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), Values.SEND_FEEDBACK_BUTTON_TEXT);
-        btnSendFeedback.setText(send_feedback_button_text.isEmpty() ? getActivity().getResources().getString(R.string.send_feedback_button) : send_feedback_button_text);
+        btnSendFeedback.setText(send_feedback_button_text.isEmpty() ? Objects.requireNonNull(getActivity()).getResources().getString(R.string.send_feedback_button) : send_feedback_button_text);
     }
 
     /**
@@ -111,11 +113,11 @@ public class Feedback extends Fragment implements View.OnClickListener {
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (etTitle.getText().hashCode() == s.hashCode()) {
                 if (etTitle.getText().toString().trim().length() > 0) {
-                    etTitle.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.send_feedback_title_bg));
+                    etTitle.setBackground(ContextCompat.getDrawable(Objects.requireNonNull(getActivity()), R.drawable.send_feedback_title_bg));
                 }
             } else if (etDescription.getText().hashCode() == s.hashCode()) {
                 if (etDescription.getText().toString().trim().length() > 0) {
-                    etDescription.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.send_feedback_title_bg));
+                    etDescription.setBackground(ContextCompat.getDrawable(Objects.requireNonNull(getActivity()), R.drawable.send_feedback_title_bg));
                 }
             }
         }
@@ -134,7 +136,7 @@ public class Feedback extends Fragment implements View.OnClickListener {
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
-                getActivity().onBackPressed();
+                Objects.requireNonNull(getActivity()).onBackPressed();
                 break;
 
             case R.id.send_feedback_button:
@@ -147,19 +149,19 @@ public class Feedback extends Fragment implements View.OnClickListener {
                 String description = etDescription.getText().toString().trim();
 
                 if (title.equalsIgnoreCase("") && description.equalsIgnoreCase("")) {
-                    etTitle.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.send_feedback_title_red_bg));
+                    etTitle.setBackground(ContextCompat.getDrawable(Objects.requireNonNull(getActivity()), R.drawable.send_feedback_title_red_bg));
                     etDescription.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.send_feedback_title_red_bg));
 
                 } else if (title.equalsIgnoreCase("")) {
-                    etDescription.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.send_feedback_title_bg));
+                    etDescription.setBackground(ContextCompat.getDrawable(Objects.requireNonNull(getActivity()), R.drawable.send_feedback_title_bg));
                     etTitle.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.send_feedback_title_red_bg));
 
                 } else if (description.equalsIgnoreCase("")) {
-                    etDescription.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.send_feedback_title_red_bg));
+                    etDescription.setBackground(ContextCompat.getDrawable(Objects.requireNonNull(getActivity()), R.drawable.send_feedback_title_red_bg));
                     etTitle.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.send_feedback_title_bg));
 
                 } else {
-                    etTitle.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.send_feedback_title_bg));
+                    etTitle.setBackground(ContextCompat.getDrawable(Objects.requireNonNull(getActivity()), R.drawable.send_feedback_title_bg));
                     etDescription.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.send_feedback_title_bg));
                     if (DetectConnection.checkInternetConnection(getActivity())) {
                         progressDialog = new ProgressDialogController(getActivity()).showDialog(getResources().getString(R.string.sending_feedback));
@@ -183,7 +185,7 @@ public class Feedback extends Fragment implements View.OnClickListener {
      * @param description for send feedback edit text description
      */
     private void sendFeedback(String title, String description) {
-        if (DetectConnection.checkInternetConnection(getActivity())) {
+        if (DetectConnection.checkInternetConnection(Objects.requireNonNull(getActivity()))) {
             new ApiCall().postAddFeedback(NissanApp.getInstance().getDeviceID(getActivity()), title, description, NissanApp.getInstance().getDeviceModel(), new CompleteAPI() {
                 @Override
                 public void onDownloaded(ResponseInfo responseInfo) {

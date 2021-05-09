@@ -310,10 +310,6 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         // Turn off the flash
         // Called when the activity first starts or the user navigates back to an activity.
         boolean mFlash = false;
-        if (mFlashOptionView != null && mFlash) {
-            // OnCheckedChangeListener is called upon changing the checked state
-            ((Switch) mFlashOptionView).setChecked(false);
-        }
 
         isFromShowInfo = true;
     }
@@ -703,13 +699,8 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
     private void showProgressIndicator() {
         if (loadingDialogHandler != null) {
-            if (false) {
-                loadingDialogHandler
-                        .sendEmptyMessage(LoadingDialogHandler.SHOW_LOADING_DIALOG);
-            } else {
-                loadingDialogHandler
-                        .sendEmptyMessage(LoadingDialogHandler.HIDE_LOADING_DIALOG);
-            }
+            loadingDialogHandler
+                    .sendEmptyMessage(LoadingDialogHandler.HIDE_LOADING_DIALOG);
         }
     }
 
@@ -771,7 +762,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         if (objectTracker != null)
             objectTracker.start();
 
-        return result;
+        return true;
     }
 
     @Override
@@ -786,7 +777,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         if (objectTracker != null)
             objectTracker.stop();
 
-        return result;
+        return true;
     }
 
     @Override
@@ -799,7 +790,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         TrackerManager tManager = TrackerManager.getInstance();
         tManager.deinitTracker(ObjectTracker.getClassType());
 
-        return result;
+        return true;
     }
 
     @Override

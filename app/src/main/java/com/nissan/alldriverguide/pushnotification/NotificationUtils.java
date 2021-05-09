@@ -28,6 +28,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.core.app.NotificationCompat;
 
@@ -187,7 +188,7 @@ public class NotificationUtils {
         } else {
             List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
             ComponentName componentInfo = taskInfo.get(0).topActivity;
-            if (componentInfo.getPackageName().equals(context.getPackageName())) {
+            if (Objects.requireNonNull(componentInfo).getPackageName().equals(context.getPackageName())) {
                 isInBackground = false;
             }
         }
@@ -205,7 +206,7 @@ public class NotificationUtils {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             Date date = format.parse(timeStamp);
-            return date.getTime();
+            return Objects.requireNonNull(date).getTime();
         } catch (ParseException e) {
             e.printStackTrace();
         }

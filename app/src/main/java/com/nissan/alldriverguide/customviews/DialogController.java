@@ -12,6 +12,8 @@ import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.NissanApp;
 import com.nissan.alldriverguide.utils.Values;
 
+import java.util.Objects;
+
 public class DialogController {
 
     private final Activity activity;
@@ -27,7 +29,7 @@ public class DialogController {
         dialog.setContentView(R.layout.download_lang_popup);
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
-        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         return dialog;
     }
@@ -38,7 +40,7 @@ public class DialogController {
         dialog.setContentView(R.layout.activity_model_year);
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
-        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         return dialog;
     }
 
@@ -49,7 +51,7 @@ public class DialogController {
         ((TextView) dialog.findViewById(R.id.txt_header)).setText(activity.getResources().getString(R.string.download));
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
-        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         return dialog;
     }
@@ -61,7 +63,7 @@ public class DialogController {
         dialog.setContentView(R.layout.download_car_popup);
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
-        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         return dialog;
     }
@@ -72,7 +74,7 @@ public class DialogController {
         dialog.setContentView(R.layout.internet_connection_popup);
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
-        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         return dialog;
     }
@@ -83,7 +85,7 @@ public class DialogController {
         dialog.setContentView(R.layout.tyre_dialog);
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
-        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         return dialog;
     }
@@ -94,7 +96,7 @@ public class DialogController {
         dialog.setContentView(R.layout.language_selection_dialog);
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
-        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         return dialog;
     }
 
@@ -104,7 +106,7 @@ public class DialogController {
         dialog.setContentView(R.layout.call_number_dialog);
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
-        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         return dialog;
     }
 
@@ -114,7 +116,7 @@ public class DialogController {
         dialog.setContentView(R.layout.download_lang_popup);
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
-        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         return dialog;
     }
 
@@ -124,7 +126,7 @@ public class DialogController {
         dialog.setContentView(R.layout.download_lang_popup);
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
-        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         return dialog;
     }
 
@@ -134,7 +136,7 @@ public class DialogController {
         dialog.setContentView(R.layout.rate_our_app_popup);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
-        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         String rate_this_app_yes_text = NissanApp.getInstance().getAlertMessage(activity, new PreferenceUtil(activity).getSelectedLang(), Values.RATE_OUR_APP_YES);
         String rate_ask_me_later_text = NissanApp.getInstance().getAlertMessage(activity, new PreferenceUtil(activity).getSelectedLang(), Values.RATE_ASK_ME_LATER);
@@ -153,7 +155,7 @@ public class DialogController {
         dialog.setContentView(R.layout.great_not_great_popup);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
-        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         return dialog;
     }
@@ -164,7 +166,7 @@ public class DialogController {
         dialog.setContentView(R.layout.feedback_popup);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
-        dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         return dialog;
     }

@@ -21,6 +21,7 @@ import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
@@ -105,11 +106,11 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnClose:
-                if (getIntent().getExtras().get("from").equals("activity")) { // if car downloaded is first time
+                if (Objects.requireNonNull(getIntent().getExtras().get("from")).equals("activity")) { // if car downloaded is first time
                     startActivity(new Intent(TutorialActivity.this, MainActivity.class));
                     overridePendingTransition(R.anim.left_in, R.anim.left_out);
                     finish();
-                } else if (getIntent().getExtras().get("from").equals("fragment")) { // if start this activity form settingsFragment
+                } else if (Objects.requireNonNull(getIntent().getExtras().get("from")).equals("fragment")) { // if start this activity form settingsFragment
                     overridePendingTransition(R.anim.left_in, R.anim.left_out);
                     finish();
                 }
@@ -137,10 +138,10 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
      * indicate for the next movement action
      */
     private void gotoNextActivity() {
-        if (getIntent().getExtras().get("from").equals("activity")) {
+        if (Objects.requireNonNull(getIntent().getExtras().get("from")).equals("activity")) {
             startActivity(new Intent(TutorialActivity.this, MainActivity.class));
             finish();
-        } else if (getIntent().getExtras().get("from").equals("fragment")) {
+        } else if (Objects.requireNonNull(getIntent().getExtras().get("from")).equals("fragment")) {
             finish();
         }
     }

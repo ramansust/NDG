@@ -26,6 +26,7 @@ import com.nissan.alldriverguide.utils.Values;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -83,10 +84,10 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
      * @throws Exception
      */
     private void loadData() throws Exception {
-        title.setText(getArguments().get(TITLE).toString());
+        title.setText(Objects.requireNonNull(Objects.requireNonNull(getArguments()).get(TITLE)).toString());
 
         // here check the toc.ncx is exist or not in sdCard
-        if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
+        if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
             // parseePub need to destination path like: /storage/emulated/0/.AllDriverGuide/leaf2017/leaf2017_en/.ar_homepage
             list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
             ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.HOMEPAGE));
@@ -103,8 +104,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
                 String section = list.get(i + 1).getTitle(); // here get the even number title like: [CHARGING THE BATTERY, #669933, #E8F0E1]
 
-                section = section.substring(1, section.length() - 1); // here remove the third bracket [] from section
-                if (section != null && section.contains(",")) {
+                section = Objects.requireNonNull(section).substring(1, section.length() - 1); // here remove the third bracket [] from section
+                if (section.contains(",")) {
                     String[] stringArray = section.split(","); // split 1st part for title, 2nd part for header color and 3d part for headers child color
 
                     if (stringArray.length > 0) {
@@ -118,7 +119,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                     if (stringArray.length > 2) {
                         info.setColorCodeItem(stringArray[2].trim()); // here set the headers title color in HomePageEpubInfo class
                     }
-                } else if (section != null && section.contains(" ")) {
+                } else if (section.contains(" ")) {
                     String[] stringArray = section.split(" ");
 
                     if (stringArray.length > 0) {
@@ -138,7 +139,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 homePageList.add(info); // here load the array list that provide for adapter
             }
 
-            if (homePageList != null && homePageList.size() > 0) {
+            if (homePageList.size() > 0) {
                 adapter = new HomePageExpandableAdapter(getActivity().getApplicationContext(), homePageList);
 
                 expandableListView.setAdapter(adapter);
@@ -158,7 +159,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         if (adapter != null) {
             adapter.setOnClickListener(index -> {
                 Fragment frag = DetailsFragment.newInstance(list.get(index).getIndex(), title.getText().toString().trim());
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                 ft.replace(R.id.container, frag);
                 ft.addToBackStack(Values.tabAssistance);
@@ -192,7 +193,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btn_back:
             case R.id.linear_back:
-                getActivity().onBackPressed();
+                Objects.requireNonNull(getActivity()).onBackPressed();
                 break;
             default:
                 break;

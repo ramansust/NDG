@@ -123,7 +123,7 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
 
             if (itemView.getId() == R.id.relative_main) {
                 itemView.setOnClickListener(view -> {
-                    if (listener != null && itemView != null) {
+                    if (listener != null) {
                         listener.onClick(itemView, index);
                     }
                 });
