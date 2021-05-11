@@ -798,8 +798,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
         Logger.error("showCarDownloadDialogForSingleCar", "_________" + carType);
 
-        this.carType = carType;
-        Values.carType = carType;
+//        this.carType = carType;
+//        Values.carType = carType;
         final Dialog dialog = new DialogController(activity).carDownloadDialog();
 
         TextView txtViewTitle = dialog.findViewById(R.id.txt_title);
@@ -830,6 +830,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
             // if isCarDownload = true then start car downloading process
             if (isCarDownload) {
+                this.carType = carType;
+                Values.carType = carType;
 
                 if (dialogModelYearFeature != null && dialogModelYearFeature.isShowing())
                     dialogModelYearFeature.dismiss();
