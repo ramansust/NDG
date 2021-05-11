@@ -107,7 +107,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_left"
-                        android:layout_marginLeft="@dimen/margin_left"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:layout_marginEnd="@dimen/margin_left"
                         android:fontFamily="@font/nissan_brand_regular" />
