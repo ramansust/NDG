@@ -36,7 +36,6 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,7 +50,6 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     private final int[] assistanceImage = {R.drawable.change_language, R.drawable.add_extra_car, R.drawable.tutorial, R.drawable.rate_app, R.drawable.send_feedback};
 
     public Resources resources;
-    private DisplayMetrics metrics;
     private PreferenceUtil preferenceUtil;
     private ListView lstView;
     private TextView txt_title;
@@ -85,7 +83,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
 
     private void check_Data() {
 
-        adapter = new AssistanceAdapter(Objects.requireNonNull(getActivity()).getApplicationContext(), setting_names, assistanceImage);
+        adapter = new AssistanceAdapter(requireActivity().getApplicationContext(), setting_names, assistanceImage);
         lstView.setAdapter(adapter);
 
         sharedpref_key = Values.carType + "_" + Values.SETTING_OBJ_STORE_KEY;
@@ -102,7 +100,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
             loadData();
         } else {
             progressBar.setVisibility(View.VISIBLE);
-            if (!DetectConnection.checkInternetConnection(getActivity())) {
+            if (!DetectConnection.checkInternetConnection(requireActivity())) {
                 progressBar.setVisibility(View.GONE);
                 String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
                 showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
@@ -111,7 +109,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         }
 
         int language_ID = NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang());
-        controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "4");
+        controller.callApi(NissanApp.getInstance().getDeviceID(requireActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "4");
 
     }
 
@@ -125,7 +123,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         Button btnOk = dialog.findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(v -> {
             dialog.dismiss();
-            Objects.requireNonNull(getActivity()).finish();
+            requireActivity().finish();
         });
 
         dialog.show();
@@ -172,7 +170,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     private void loadResource() {
-        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
+        resources = new Resources(requireActivity().getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(requireActivity(), preferenceUtil.getSelectedLang()));
     }
 
     private void setListener() {
@@ -187,9 +185,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         layoutDataNotFound = view.findViewById(R.id.layout_settings_data_not_found);
         tvNoContent = view.findViewById(R.id.txt_settings_data_not_found);
 
-        metrics = new DisplayMetrics();
-        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
+        preferenceUtil = new PreferenceUtil(requireActivity().getApplicationContext());
         controller = new SettingsTabContentController(this);
     }
 
@@ -227,7 +223,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
                 frag = LanguageFragment.newInstance();
-                ((MainActivity) Objects.requireNonNull(getActivity())).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsForDownloadSection(Analytics.CHANGE_LANGUAGE));
+                ((MainActivity) requireActivity()).sendMsgToGoogleAnalytics(((MainActivity) requireActivity()).getAnalyticsForDownloadSection(Analytics.CHANGE_LANGUAGE));
                 break;
 
             case 1:
@@ -236,7 +232,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
                 frag = AddCarFragment.newInstance();
-                ((MainActivity) Objects.requireNonNull(getActivity())).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsForCarSection(Analytics.CAR_SELECTION));
+                ((MainActivity) requireActivity()).sendMsgToGoogleAnalytics(((MainActivity) requireActivity()).getAnalyticsForCarSection(Analytics.CAR_SELECTION));
                 break;
 
             case 2:
@@ -245,8 +241,8 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
                 startActivity(new Intent(getActivity(), TutorialActivity.class).putExtra("from", "fragment"));
-                Objects.requireNonNull(getActivity()).overridePendingTransition(R.anim.right_in, R.anim.left_out);
-                ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromSettings(Analytics.TUTORIAL));
+                requireActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                ((MainActivity) requireActivity()).sendMsgToGoogleAnalytics(((MainActivity) requireActivity()).getAnalyticsFromSettings(Analytics.TUTORIAL));
                 new PreferenceUtil(getActivity()).setOpenCountForRateApp();
                 break;
 
@@ -261,7 +257,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
                 preferenceUtil.setIsFirstTimeGreatNotGreat(false);
                 new PreferenceUtil(getActivity()).resetUserNavigationCount();
                 // go to play store
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Objects.requireNonNull(getActivity()).getApplicationContext().getPackageName())));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + requireActivity().getApplicationContext().getPackageName())));
                 break;
 
             case 4:
@@ -277,7 +273,7 @@ public class SettingsFragment extends Fragment implements AdapterView.OnItemClic
         }
 
         if (frag != null) {
-            FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
             ft.replace(R.id.container, frag);
             ft.addToBackStack(Values.tabSettings);

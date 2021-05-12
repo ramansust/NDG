@@ -16,12 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
             android:orientation="vertical"
             android:weightSum="2">
 
@@ -30,7 +24,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.8"
                 android:orientation="horizontal"
-                android:weightSum="4">
+                android:weightSum="4"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -42,7 +37,8 @@
                         android:layout_height="match_parent"
                         android:clickable="true"
                         android:onClick="buttonEvent"
-                        android:tag="6" />
+                        android:tag="6"
+                        android:focusable="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -55,7 +51,8 @@
                         android:layout_height="match_parent"
                         android:clickable="true"
                         android:onClick="buttonEvent"
-                        android:tag="7" />
+                        android:tag="7"
+                        android:focusable="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -68,7 +65,8 @@
                         android:layout_height="match_parent"
                         android:clickable="true"
                         android:onClick="buttonEvent"
-                        android:tag="8" />
+                        android:tag="8"
+                        android:focusable="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -81,7 +79,8 @@
                         android:layout_height="match_parent"
                         android:clickable="true"
                         android:onClick="buttonEvent"
-                        android:tag="9" />
+                        android:tag="9"
+                        android:focusable="true" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -91,7 +90,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1.2"
                 android:orientation="horizontal"
-                android:weightSum="4">
+                android:weightSum="4"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -103,7 +103,8 @@
                         android:layout_height="match_parent"
                         android:clickable="true"
                         android:onClick="buttonEvent"
-                        android:tag="10" />
+                        android:tag="10"
+                        android:focusable="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -116,7 +117,8 @@
                         android:layout_height="match_parent"
                         android:clickable="true"
                         android:onClick="buttonEvent"
-                        android:tag="11" />
+                        android:tag="11"
+                        android:focusable="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -129,7 +131,8 @@
                         android:layout_height="match_parent"
                         android:clickable="true"
                         android:onClick="buttonEvent"
-                        android:tag="13" />
+                        android:tag="13"
+                        android:focusable="true" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -142,7 +145,8 @@
                         android:layout_height="match_parent"
                         android:clickable="true"
                         android:onClick="buttonEvent"
-                        android:tag="12" />
+                        android:tag="12"
+                        android:focusable="true" />
                 </LinearLayout>
 
             </LinearLayout>

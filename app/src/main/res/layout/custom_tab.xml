@@ -16,7 +16,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:scaleType="fitXY" />
+        android:scaleType="fitXY"
+        android:contentDescription="TODO" />
     <!-- Tab title -->
     <TextView
         android:id="@+id/tab_title"

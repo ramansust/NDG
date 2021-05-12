@@ -48,7 +48,6 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
     private ImageButton btnBack;
     private LinearLayout linearBack;
 
-    private DisplayMetrics metrics;
     public Resources resources;
     private PreferenceUtil preferenceUtil;
     private static final String TITLE = "title";
@@ -94,7 +93,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
                 if (list.get(i).getIndex() == 6) {
                     childNodes = list.get(i).getChildNode();
                     if (nissanAssistance == null) {
-                        if (!(Objects.requireNonNull(getArguments().getString(ONLINE_BOOKING_URL)).isEmpty())) {
+                        if (!(Objects.requireNonNull(Objects.requireNonNull(getArguments()).getString(ONLINE_BOOKING_URL)).isEmpty())) {
 
                             nissanAssistance = new String[childNodes.size() + 1];
                             for (int j = 0; j < childNodes.size(); j++) {
@@ -125,7 +124,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
         linearBack.setVisibility(View.VISIBLE);
 //        txtViewDriverGuide.setText(resources.getString(R.string.driver_guide));
         txtViewDriverGuide.setText(NissanApp.getInstance().getAssistanceInfo().getAssistanceTitle());
-        txtViewTitle.setText(Objects.requireNonNull(getArguments().get(TITLE)).toString());
+        txtViewTitle.setText(Objects.requireNonNull(Objects.requireNonNull(getArguments()).get(TITLE)).toString());
 //        adapter = new AssistanceAdapter(getActivity().getApplicationContext(), resources.getStringArray(R.array.nissan_assistance_array), nissanNssistanceImage);
         AssistanceAdapter adapter = new AssistanceAdapter(Objects.requireNonNull(getActivity()).getApplicationContext(), nissanAssistance, nissanNssistanceImage);
         lstView.setAdapter(adapter);
@@ -138,7 +137,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
     }
 
     private void loadResource() {
-        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
+        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
     }
 
     private void setListener() {
@@ -149,9 +148,9 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
 
     // set image background for assistance
     private void setCarBackground() {
-        if (Objects.requireNonNull(getArguments().get(IMG_URL)).toString().isEmpty())
+        if (Objects.requireNonNull(Objects.requireNonNull(getArguments()).get(IMG_URL)).toString().isEmpty()) {
             imageView.setBackgroundResource(R.drawable.car_download_place_holder);
-        else
+        } else
             imageView.setImageURI(Objects.requireNonNull(getArguments().get(IMG_URL)).toString());
 
 //        imageView.setBackgroundResource(R.drawable.car_download_place_holder);
@@ -167,10 +166,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
 
         linearBack = view.findViewById(R.id.linear_back);
         btnBack = view.findViewById(R.id.btn_back);
-
-        metrics = new DisplayMetrics();
-        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
+        preferenceUtil = new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext());
     }
 
     @Override
@@ -205,7 +201,7 @@ public class NissanAssistanceFragment extends Fragment implements AdapterView.On
                     showNoInternetDialogue();
                     return;
                 }
-                if (!Objects.requireNonNull(getArguments().getString(ONLINE_BOOKING_URL)).isEmpty()) {
+                if (!Objects.requireNonNull(Objects.requireNonNull(getArguments()).getString(ONLINE_BOOKING_URL)).isEmpty()) {
                     frag = OnlineBookingFragment.newInstance(onlineBookingTItle, getArguments().getString(ONLINE_BOOKING_URL));
                 }
                 break;

@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -21,6 +22,7 @@ import java.util.Objects;
 
 public abstract class SingleContentUpdating extends AsyncTask<Void, Void, Boolean> {
 
+    @SuppressLint("StaticFieldLeak")
     private final Context activity;
     private final ArrayList<String> folderNameUpdatedFolderList = new ArrayList<>();
     private final ArrayList<String> folderNameUpdatedFolderListAfterExtraction = new ArrayList<>();

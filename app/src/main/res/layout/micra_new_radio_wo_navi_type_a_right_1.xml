@@ -24,7 +24,8 @@
                 android:layout_height="match_parent"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="4" />
+                android:tag="4"
+                android:focusable="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -38,7 +39,8 @@
                 android:layout_height="match_parent"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="5" />
+                android:tag="5"
+                android:focusable="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -52,7 +54,8 @@
                 android:layout_height="match_parent"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="1" />
+                android:tag="1"
+                android:focusable="true" />
         </LinearLayout>
 
     </LinearLayout>

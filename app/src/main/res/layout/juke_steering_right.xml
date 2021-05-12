@@ -31,7 +31,8 @@
                 android:layout_marginRight="115dp"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="44" />
+                android:tag="44"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -41,7 +42,8 @@
                 android:layout_marginRight="75dp"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="45" />
+                android:tag="45"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -73,7 +75,8 @@
             android:layout_weight="1.6"
             android:clickable="true"
             android:onClick="buttonEvent"
-            android:tag="46" />
+            android:tag="46"
+            android:focusable="true" />
 
         <TextView
             android:layout_width="match_parent"

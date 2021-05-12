@@ -15,12 +15,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.3"
-            android:orientation="vertical" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
             android:layout_weight="2"
             android:orientation="horizontal">
 
@@ -55,19 +49,14 @@
                 android:layout_weight="1.1"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="55" />
+                android:tag="55"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".9" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".5"
-            android:orientation="vertical" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,7 +75,8 @@
                 android:layout_weight=".75"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="54" />
+                android:tag="54"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="0dp"
@@ -99,7 +89,8 @@
                 android:layout_weight=".75"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="57" />
+                android:tag="57"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="0dp"
@@ -117,11 +108,6 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".8"
-            android:orientation="vertical" />
     </LinearLayout>
 
 </LinearLayout>

@@ -564,7 +564,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
         tracker.enableAdvertisingIdCollection(true);
 
         // Send a screen view.
-        tracker.send(new HitBuilders.AppViewBuilder().build());
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     private void showCarDownloadDialogForSingleCar() {
@@ -624,7 +624,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
      * On permanent denial opens settings dialog
      */
     private void requestStoragePermission() {
-        Dexter.withActivity(this)
+        Dexter.withContext(this)
                 .withPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new PermissionListener() {
                     @Override

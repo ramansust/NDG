@@ -218,7 +218,7 @@ public class CombimeterActivity extends AppCompatActivity implements View.OnClic
             try {
                 counter = Integer.parseInt(output[1]);
 
-                button.setBackgroundDrawable(d);
+                button.setBackground(d);
                 button.setLayoutParams(llp2);
 
                 button.setTag(Integer.parseInt(output[1]));

@@ -199,7 +199,7 @@ public class TabFragment extends Fragment {
     }
 
     public void replaceFragment(Fragment fragment) {
-        FragmentTransaction transaction = Objects.requireNonNull(getFragmentManager()).beginTransaction();
+        FragmentTransaction transaction = requireFragmentManager().beginTransaction();
 
         if (isAnimation) {
             if (currentTab > previousTab) {
@@ -321,7 +321,7 @@ public class TabFragment extends Fragment {
                     BaseTabFragmentActivity.keyword = getKeyword;
 
                     setListener();
-                    FragmentTransaction transaction = Objects.requireNonNull(getFragmentManager()).beginTransaction();
+                    FragmentTransaction transaction = requireFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_container, getFragment(currentTab));
                     transaction.addToBackStack(Values.tabSearchChildFragment);
                     transaction.commit();

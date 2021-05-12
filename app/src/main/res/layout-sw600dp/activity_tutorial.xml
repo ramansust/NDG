@@ -29,7 +29,8 @@
             android:background="@drawable/skip_tutorial"
             android:text="close"
             android:textColor="@color/black"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:contentDescription="TODO" />
 
         <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
             android:id="@+id/viewpager_indicator"
@@ -79,7 +80,8 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/next_tutorial"
             android:padding="5dp"
-            android:text="Next" />
+            android:text="Next"
+            android:contentDescription="TODO" />
 
     </RelativeLayout>
 

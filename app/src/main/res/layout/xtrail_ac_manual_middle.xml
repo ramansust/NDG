@@ -9,10 +9,11 @@
         android:id="@+id/popupLayout"
         android:layout_width="300dp"
         android:layout_height="110dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.50"
             android:orientation="vertical"
@@ -31,7 +32,8 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="46" />
+                    android:tag="46"
+                    android:focusable="true" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -40,7 +42,8 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="47" />
+                    android:tag="47"
+                    android:focusable="true" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -49,7 +52,8 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="48" />
+                    android:tag="48"
+                    android:focusable="true" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -58,7 +62,8 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="49" />
+                    android:tag="49"
+                    android:focusable="true" />
             </LinearLayout>
 
             <LinearLayout
@@ -74,7 +79,8 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="51" />
+                    android:tag="51"
+                    android:focusable="true" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -83,7 +89,8 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="52" />
+                    android:tag="52"
+                    android:focusable="true" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -92,7 +99,8 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="53" />
+                    android:tag="53"
+                    android:focusable="true" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

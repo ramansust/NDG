@@ -20,7 +20,8 @@
             android:id="@+id/imageViewBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/back" />
+            android:src="@drawable/back"
+            android:contentDescription="TODO" />
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -46,7 +47,8 @@
                 android:paddingRight="35dp"
                 android:textColor="#363636"
                 android:textColorHint="#a69f9f"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:importantForAutofill="no" />
 
             <ImageView
                 android:id="@+id/imageViewClearButton"
@@ -56,7 +58,8 @@
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:src="@drawable/close"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:contentDescription="TODO" />
 
         </RelativeLayout>
 
@@ -72,8 +75,7 @@
 
     </LinearLayout>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

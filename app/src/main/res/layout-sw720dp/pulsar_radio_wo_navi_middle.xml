@@ -15,12 +15,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".35"
-            android:orientation="vertical" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -35,19 +29,14 @@
                 android:layout_weight="2"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="13" />
+                android:tag="13"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".1" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".15"
-            android:orientation="vertical" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,7 +55,8 @@
                 android:layout_weight=".95"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="8" />
+                android:tag="8"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="0dp"
@@ -74,7 +64,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="9" />
+                android:tag="9"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="0dp"
@@ -82,7 +73,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="10" />
+                android:tag="10"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="0dp"
@@ -90,7 +82,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="11" />
+                android:tag="11"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="0dp"
@@ -98,7 +91,8 @@
                 android:layout_weight=".95"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="12" />
+                android:tag="12"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="0dp"

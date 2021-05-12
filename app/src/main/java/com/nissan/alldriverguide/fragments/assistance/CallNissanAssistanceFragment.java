@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,7 +40,6 @@ import androidx.fragment.app.Fragment;
 import static com.nissan.alldriverguide.utils.Values.REGISTERED_COUNTRY_NAME;
 
 public class CallNissanAssistanceFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
-    private static final String TAG = "CallNissanAssistanceFra";
 
     private final String[] countryNameFR = {"l' Allemagne", "l' Autriche", "la Belgique", "le Danemark", "l' Espagne", "l' Estonie", "la Finlande", "la France", "la Grèce", "la Hongrie", "l' Italie", "la Lettonie", "la Lituanie", "la Norvège", "les Pays-Bas", "la Pologne", "le Portugal", "la République Tchèque", "le Royaume-Uni", "la Slovaquie", "la Suède", "la Suisse"};
     private String[] countryName;
@@ -59,7 +57,6 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     private ArrayList<CallInfo> list;
 
     private PreferenceUtil preferenceUtil;
-    private DisplayMetrics metrics;
     private TextView txtViewTitle;
     private TextView txtHeaderTitle;
     private static final String TITLE = "title";
@@ -97,12 +94,12 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     }
 
     private void loadResource() {
-        new Resources(Objects.requireNonNull(getActivity()).getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
-        txtViewTitle.setText(Objects.requireNonNull(getArguments()).getString(TITLE));
+        new Resources(requireActivity().getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(requireActivity(), preferenceUtil.getSelectedLang()));
+        txtViewTitle.setText(requireArguments().getString(TITLE));
 //        txtViewTitle.setTypeface(tf);
 
         String call_assistance_title = NissanApp.getInstance().getAlertMessage(getActivity(), preferenceUtil.getSelectedLang(), REGISTERED_COUNTRY_NAME);
-        txtHeaderTitle.setText(call_assistance_title == null || call_assistance_title.isEmpty() ? getActivity().getResources().getString(R.string.registered_country_name) : call_assistance_title);
+        txtHeaderTitle.setText(call_assistance_title == null || call_assistance_title.isEmpty() ? requireActivity().getResources().getString(R.string.registered_country_name) : call_assistance_title);
 //        txtHeaderTitle.setText(headerTitle == null || headerTitle.isEmpty() ? resources.getString(R.string.registered_country_name) : headerTitle);
     }
 
@@ -197,7 +194,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
             list.add(11, info);
         }
 
-        CallNumberAdapter adapter = new CallNumberAdapter(Objects.requireNonNull(getActivity()).getApplicationContext(), list);
+        CallNumberAdapter adapter = new CallNumberAdapter(requireActivity().getApplicationContext(), list);
         lstView.setAdapter(adapter);
     }
 
@@ -208,12 +205,12 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
     }
 
     private void initViews(View view) {
-        deviceDensity = NissanApp.getInstance().getDensityName(Objects.requireNonNull(getActivity()));
+        deviceDensity = NissanApp.getInstance().getDensityName(requireActivity());
         btnBack = view.findViewById(R.id.btn_back);
         lstView = view.findViewById(R.id.lst_view);
         txtViewTitle = view.findViewById(R.id.txt_title);
         txtHeaderTitle = view.findViewById(R.id.txt_view_country_name);
-        preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
+        preferenceUtil = new PreferenceUtil(requireActivity().getApplicationContext());
         linearBack = view.findViewById(R.id.linear_back);
     }
 
@@ -285,7 +282,7 @@ public class CallNissanAssistanceFragment extends Fragment implements AdapterVie
         switch (v.getId()) {
             case R.id.btn_back:
             case R.id.linear_back:
-                Objects.requireNonNull(getActivity()).onBackPressed();
+                requireActivity().onBackPressed();
                 break;
 
             default:

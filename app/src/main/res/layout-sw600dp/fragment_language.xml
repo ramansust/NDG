@@ -20,7 +20,8 @@
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/back" />
+                android:background="@drawable/back"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:id="@+id/txt_back_title"
@@ -74,7 +75,8 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/back" />
+                android:background="@drawable/back"
+                android:contentDescription="TODO" />
 
         </LinearLayout>
 

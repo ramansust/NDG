@@ -18,7 +18,8 @@
             android:layout_height="match_parent"
             android:layout_weight=".75"
             android:background="@android:color/transparent"
-            android:clickable="true" />
+            android:clickable="true"
+            android:focusable="true" />
 
         <Button
             android:id="@+id/txt_view_ac_man_middle"
@@ -26,7 +27,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1.50"
             android:background="@android:color/transparent"
-            android:clickable="true" />
+            android:clickable="true"
+            android:focusable="true" />
 
         <Button
             android:id="@+id/txt_view_ac_man_right"
@@ -34,7 +36,8 @@
             android:layout_height="match_parent"
             android:layout_weight=".75"
             android:background="@android:color/transparent"
-            android:clickable="true" />
+            android:clickable="true"
+            android:focusable="true" />
     </LinearLayout>
 
 </LinearLayout>

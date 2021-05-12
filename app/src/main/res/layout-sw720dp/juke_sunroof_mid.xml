@@ -24,7 +24,8 @@
             android:layout_marginRight="70dp"
             android:clickable="true"
             android:onClick="buttonEvent"
-            android:tag="60" />
+            android:tag="60"
+            android:focusable="true" />
 
         <TextView
             android:layout_width="match_parent"

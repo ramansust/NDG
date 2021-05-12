@@ -28,7 +28,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="57" />
+                android:tag="57"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="0dp"
@@ -39,14 +40,9 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="58" />
+                android:tag="58"
+                android:focusable="true" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="4.5"
-            android:orientation="vertical" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,7 +58,8 @@
                 android:layout_marginRight="30dp"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="35" />
+                android:tag="35"
+                android:focusable="true" />
         </LinearLayout>
     </LinearLayout>
 

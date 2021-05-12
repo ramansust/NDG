@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide.database;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -103,7 +104,7 @@ public class NissanDbHelper extends SQLiteOpenHelper implements BaseDbHelper {
 
         int columnIndex;
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + CarInfoTableEntity.TABLE_NAME, null); // grab cursor for all data
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery("SELECT * FROM " + CarInfoTableEntity.TABLE_NAME, null); // grab cursor for all data
 
         columnIndex = cursor.getColumnIndex(CarInfoTableEntity.VERSION_NAME);  // see if the column is there
         if (columnIndex < 0) {

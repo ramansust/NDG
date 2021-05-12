@@ -83,6 +83,7 @@ public class CarDownloadAdapterNew extends RecyclerView.Adapter<RecyclerView.Vie
 
     }
 
+    @SuppressWarnings("ConstantConditions")
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

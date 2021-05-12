@@ -21,7 +21,8 @@
         android:roundIcon="@mipmap/nissan_round_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
 
         <activity
             android:name=".SplashScreenActivity"

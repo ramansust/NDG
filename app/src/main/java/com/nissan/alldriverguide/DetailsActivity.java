@@ -78,10 +78,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setBuiltInZoomControls(true);
         webView.clearCache(true);
-        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webView.getSettings().setDefaultTextEncodingName("utf-8");
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClient() {
@@ -300,7 +298,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         tracker.setScreenName(msgName.toLowerCase());
         tracker.enableAdvertisingIdCollection(true);
         // Send a screen view.
-        tracker.send(new HitBuilders.AppViewBuilder().build());
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     public String getAnalytics(String details) {

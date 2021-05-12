@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -48,7 +47,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class DetailsFragment extends Fragment implements View.OnClickListener {
-    private static final String TAG = "DetailsFragment";
     private static final String EPUB_INDEX = "epub_index";
 
     private WebView webView;
@@ -94,9 +92,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
         title = view.findViewById(R.id.txt_title);
         progressBar = view.findViewById(R.id.progressBarDetailsFragment);
         linearBack = view.findViewById(R.id.linear_back);
-        DisplayMetrics metrics = new DisplayMetrics();
-        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        resources = new Resources(getActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang()));
+        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang()));
     }
 
     private void setListener() {
@@ -322,10 +318,8 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
     private void setupWebView() {
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setBuiltInZoomControls(true);
         webView.clearCache(true);
-        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webView.setWebChromeClient(new WebChromeClient());
 //        webView.getSettings().setDefaultFontSize((int) (dp2px(getActivity().getApplicationContext(), 20) / webView.getScale()));
         webView.setWebViewClient(new WebViewClient() {
@@ -442,7 +436,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
             NissanApp.getInstance().setAssistanceInfo(assistanceInfo);
 
             Fragment frag = CallNissanAssistanceFragment.newInstance(resources.getStringArray(R.array.nissan_assistance_array)[1]);
-            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
             ft.replace(R.id.container, frag);
             ft.addToBackStack(Values.tabExplore);
@@ -463,7 +457,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                     NissanApp.getInstance().setAssistanceInfo(responseInfo);
 
                     Fragment frag = CallNissanAssistanceFragment.newInstance(resources.getStringArray(R.array.nissan_assistance_array)[1]);
-                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
                     ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                     ft.replace(R.id.container, frag);
                     ft.addToBackStack(Values.tabExplore);

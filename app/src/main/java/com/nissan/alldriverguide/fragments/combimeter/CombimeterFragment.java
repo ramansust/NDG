@@ -78,7 +78,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
 
 
     private void loadData() {
-        txt_title.setText(Objects.requireNonNull(Objects.requireNonNull(getArguments()).get(TITLE)).toString());
+        txt_title.setText(Objects.requireNonNull(requireArguments().get(TITLE)).toString());
 
         list_red = new ArrayList<>();
         list_orange = new ArrayList<>();
@@ -88,7 +88,7 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
         list_gray = new ArrayList<>();
         list_cyan = new ArrayList<>();
 
-        width = NissanApp.getInstance().getWidth(Objects.requireNonNull(getActivity()));
+        width = NissanApp.getInstance().getWidth(requireActivity());
 
         mainLinearLayout = new LinearLayout(getActivity());
         LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(
@@ -158,9 +158,9 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
             case R.id.btn_back:
             case R.id.linear_back:
                 if (ImageTargetActivity.isDetected) {
-                    Objects.requireNonNull(getActivity()).finish();
+                    requireActivity().finish();
                 } else {
-                    Objects.requireNonNull(getActivity()).onBackPressed();
+                    requireActivity().onBackPressed();
                 }
                 break;
 
@@ -173,9 +173,9 @@ public class CombimeterFragment extends Fragment implements View.OnClickListener
 
                 // here redirect the DetailsFragment class for opening epub
                 // according to combimeter icon
-                FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
-                fragmentTransaction.replace(R.id.container, DetailsFragment.newInstance(ePubIndex - 1, Objects.requireNonNull(Objects.requireNonNull(getArguments()).get(TITLE)).toString()));
+                fragmentTransaction.replace(R.id.container, DetailsFragment.newInstance(ePubIndex - 1, Objects.requireNonNull(requireArguments().get(TITLE)).toString()));
 //                fragmentTransaction.replace(R.id.container, DetailsFragment.newInstance(ePubIndex - 1, getResources().getString(R.string.warning_lights)));
                 fragmentTransaction.addToBackStack(Values.tabAssistance);
                 fragmentTransaction.commit();

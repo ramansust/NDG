@@ -70,8 +70,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface {
         SampleApplicationException vuforiaException = null;
         mActivity = activity;
 
-        if ((screenOrientation == ActivityInfo.SCREEN_ORIENTATION_SENSOR)
-                && (Build.VERSION.SDK_INT > Build.VERSION_CODES.FROYO))
+        if (screenOrientation == ActivityInfo.SCREEN_ORIENTATION_SENSOR)
             screenOrientation = ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR;
 
         // Use an OrientationChangeListener here to capture all orientation changes.  Android

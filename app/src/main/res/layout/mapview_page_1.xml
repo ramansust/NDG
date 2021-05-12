@@ -12,7 +12,8 @@
         <ImageView
             android:id="@+id/drawee_view_map_1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:contentDescription="TODO" />
 
         <!--  <TextView
               android:id="@+id/tvNewNissanConnect"
@@ -50,7 +51,8 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/margin_back"
             android:paddingRight="@dimen/margin_back"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:contentDescription="TODO" />
 
     </RelativeLayout>
 

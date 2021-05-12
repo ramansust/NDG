@@ -81,7 +81,6 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
 
     public int currentTab;
     public int previousTab;
-    private DisplayMetrics metrics;
     private Resources resources;
 
     private boolean isAnimation = false;
@@ -124,12 +123,9 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
      * Initialized All views
      */
     private void initViews() {
-        metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
         preferenceUtil = new PreferenceUtil(getApplicationContext());
 
-        resources = new Resources(getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(MainActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
+        resources = new Resources(getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(MainActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
 
         tabIndicator1 = findViewById(R.id.tab_indicator_1);
         tabIndicator2 = findViewById(R.id.tab_indicator_2);
@@ -163,9 +159,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
     }
 
     public void loadResource() {
-        metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        resources = new Resources(getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(MainActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
+        resources = new Resources(getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(MainActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
     }
 
     /**
@@ -632,7 +626,7 @@ public class MainActivity extends BaseTabFragmentActivity implements TabLayout.O
         tracker.setScreenName(msgName.toLowerCase());
         tracker.enableAdvertisingIdCollection(true);
         // Send a screen view.
-        tracker.send(new HitBuilders.AppViewBuilder().build());
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     private void requestPermission(final String PERMISSION_NAME, final int PERMISSION_CODE) {

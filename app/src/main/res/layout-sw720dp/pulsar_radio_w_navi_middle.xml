@@ -16,7 +16,8 @@
             android:layout_height="match_parent"
             android:clickable="true"
             android:onClick="buttonEvent"
-            android:tag="14" />
+            android:tag="14"
+            android:focusable="true" />
     </LinearLayout>
 
 </LinearLayout>

@@ -44,7 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:background="@drawable/car_border" />
+                android:background="@drawable/car_border"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:id="@+id/txt_title"
@@ -73,7 +74,8 @@
                 android:layout_marginRight="@dimen/margin_left"
                 android:layout_marginBottom="@dimen/margin_left"
                 android:background="@drawable/download_selector"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:contentDescription="TODO" />
         </RelativeLayout>
 
     </LinearLayout>

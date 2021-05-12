@@ -18,7 +18,8 @@
             android:layout_weight=".9"
             android:clickable="true"
             android:onClick="buttonEvent"
-            android:tag="21" />
+            android:tag="21"
+            android:focusable="true" />
 
         <TextView
             android:layout_width="match_parent"
@@ -28,7 +29,8 @@
             android:layout_weight=".7"
             android:clickable="true"
             android:onClick="buttonEvent"
-            android:tag="22" />
+            android:tag="22"
+            android:focusable="true" />
 
         <TextView
             android:layout_width="match_parent"
@@ -38,7 +40,8 @@
             android:layout_weight=".7"
             android:clickable="true"
             android:onClick="buttonEvent"
-            android:tag="23" />
+            android:tag="23"
+            android:focusable="true" />
 
         <TextView
             android:layout_width="match_parent"
@@ -48,7 +51,8 @@
             android:layout_weight=".75"
             android:clickable="true"
             android:onClick="buttonEvent"
-            android:tag="24" />
+            android:tag="24"
+            android:focusable="true" />
 
         <TextView
             android:layout_width="match_parent"
@@ -58,7 +62,8 @@
             android:layout_weight=".75"
             android:clickable="true"
             android:onClick="buttonEvent"
-            android:tag="25" />
+            android:tag="25"
+            android:focusable="true" />
 
         <TextView
             android:layout_width="match_parent"
@@ -73,7 +78,8 @@
             android:layout_weight="1.25"
             android:clickable="true"
             android:onClick="buttonEvent"
-            android:tag="26" />
+            android:tag="26"
+            android:focusable="true" />
 
         <TextView
             android:layout_width="match_parent"

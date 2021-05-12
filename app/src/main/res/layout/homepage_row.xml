@@ -32,7 +32,8 @@
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
         android:layout_marginRight="@dimen/margin_left"
-        android:background="@drawable/arrow" />
+        android:background="@drawable/arrow"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/img_view_divider"
@@ -42,6 +43,7 @@
         android:layout_alignRight="@+id/img_view"
         android:layout_below="@+id/txt_title"
         android:layout_marginTop="@dimen/margin_left"
-        android:background="@drawable/gray_dash_line_list_view" />
+        android:background="@drawable/gray_dash_line_list_view"
+        android:contentDescription="TODO" />
 
 </RelativeLayout>

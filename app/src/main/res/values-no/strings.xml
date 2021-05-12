@@ -67,14 +67,6 @@
         <item>Garanti</item>
         <item>Nissans veihjelp</item>
     </string-array>
-    <string-array name="assistance_array_temp">
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-    </string-array>
     <string-array name="tab_names">
         <item>Utforsk</item>
         <item>Hjelp</item>

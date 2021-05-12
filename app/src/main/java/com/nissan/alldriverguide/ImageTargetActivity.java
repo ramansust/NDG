@@ -12,6 +12,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.view.GestureDetector;
@@ -21,7 +22,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -146,11 +146,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         new PreferenceUtil(getApplicationContext()).setOpenCountForRateApp();
 
         vuforiaAppSession = new SampleApplicationSession(this);
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-        resources = new Resources(getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(ImageTargetActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
+        resources = new Resources(getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(ImageTargetActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
 
         startLoadingAnimation();
 
@@ -958,7 +954,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         tracker.enableAdvertisingIdCollection(true);
 
         // Send a screen view.
-        tracker.send(new HitBuilders.AppViewBuilder().build());
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     public String getGoogleAnalyticeName(String values) {
@@ -970,7 +966,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     private static class GestureListener extends
             GestureDetector.SimpleOnGestureListener {
         // Used to set autofocus one second after a manual focus is triggered
-        private final Handler autofocusHandler = new Handler();
+        private final Handler autofocusHandler = new Handler(Looper.getMainLooper());
 
         @Override
         public boolean onDown(MotionEvent e) {

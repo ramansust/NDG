@@ -9,7 +9,8 @@
         android:id="@+id/popupLayout"
         android:layout_width="300dp"
         android:layout_height="242dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -28,7 +29,8 @@
                 android:layout_weight=".65"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="34" />
+                android:tag="34"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -61,7 +63,8 @@
                     android:layout_weight=".65"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="40" />
+                    android:tag="40"
+                    android:focusable="true" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -69,7 +72,8 @@
                     android:layout_weight=".6"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="37" />
+                    android:tag="37"
+                    android:focusable="true" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -100,7 +104,8 @@
                 android:layout_weight=".65"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="33" />
+                android:tag="33"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="match_parent"

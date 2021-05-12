@@ -81,9 +81,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     /**
      * Here load the initialized data
      *
-     * @throws Exception
      */
-    private void loadData() throws Exception {
+    private void loadData() {
         title.setText(Objects.requireNonNull(Objects.requireNonNull(getArguments()).get(TITLE)).toString());
 
         // here check the toc.ncx is exist or not in sdCard

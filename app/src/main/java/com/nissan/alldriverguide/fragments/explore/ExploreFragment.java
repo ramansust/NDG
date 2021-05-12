@@ -29,7 +29,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.karumi.dexter.Dexter;
@@ -88,7 +87,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private GridViewAdapter adapter;
 
     private Resources resources;
-    private DisplayMetrics metrics;
     private TextView tvNoContent, tvPageTitle, simple_drawee_view_explore, simple_drawee_view_ar;
     private RelativeLayout infoImageButton;
     private ImageButton infoImageBtn;
@@ -132,7 +130,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         View view = inflater.inflate(R.layout.fragment_explore, container, false);
 
         initViews(view);
-        device_density = NissanApp.getInstance().getDensityName(Objects.requireNonNull(getActivity()));
+        device_density = NissanApp.getInstance().getDensityName(requireActivity());
         loadResource();
         setListener();
         exploreSlidedItems = NissanApp.getInstance().getSlideItems(Values.carType);
@@ -153,7 +151,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     private void getExploreTabContent() {
         videoList = new ArrayList<>();
         sliderModelArrayList = new ArrayList<>();
-        adapter = new GridViewAdapter(Objects.requireNonNull(getActivity()).getApplicationContext(), videoList, device_density);
+        adapter = new GridViewAdapter(requireActivity().getApplicationContext(), videoList, device_density);
         gridView.setAdapter(adapter);
 
         sharedpref_key = Values.carType + "_" + Values.EXPLORE_OBJ_STORE_KEY;
@@ -169,7 +167,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             Logger.error("Explore 1 ", " --- ");
         } else {
             progressBar.setVisibility(View.VISIBLE);
-            if (!DetectConnection.checkInternetConnection(getActivity())) {
+            if (!DetectConnection.checkInternetConnection(requireActivity())) {
                 progressBar.setVisibility(View.GONE);
                 internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), new PreferenceUtil(getActivity()).getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
                 showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
@@ -181,7 +179,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         Logger.error("Explore 3 ", " --- ");
 
         int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
-        controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1");
+        controller.callApi(NissanApp.getInstance().getDeviceID(requireActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1");
         languageid = language_ID;
     }
 
@@ -194,7 +192,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         Button btnOk = dialog.findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(v -> {
             dialog.dismiss();
-            Objects.requireNonNull(getActivity()).finish();
+            requireActivity().finish();
         });
 
         dialog.show();
@@ -250,7 +248,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 layoutDataNotFound.setVisibility(View.GONE);
                 tvNoContent.setVisibility(View.GONE);
             }
-            new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).storeExploreDataList(responseInfo, sharedpref_key);
+            new PreferenceUtil(requireActivity().getApplicationContext()).storeExploreDataList(responseInfo, sharedpref_key);
             videoList = new ArrayList<>();
             exploreModel = responseInfo;
             check_density();
@@ -329,11 +327,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 setTextToViews(tvExploreYourCar, exploreYourCarText == null || exploreYourCarText.isEmpty() ? resources.getString(R.string.explore_your_car) : exploreYourCarText, R.color.black);*/
 
 
-                Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
+                Glide.with(this).asBitmap().load(header_text).into(new CustomTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        Drawable drawable = new BitmapDrawable(Objects.requireNonNull(getActivity()).getResources(), resource);
+                        Drawable drawable = new BitmapDrawable(requireActivity().getResources(), resource);
                         simple_drawee_view_explore.setBackground(drawable);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
                     }
 
                 });
@@ -384,12 +387,17 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
            /* setTextToViews(tvAugmentedRealityOldCar, resources.getString(R.string.augmented_reality), R.color.white);
             setTextToViews(tvExploreYourCarOldCar, resources.getString(R.string.explore_your_car), R.color.black);*/
 
-            Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
+            Glide.with(this).asBitmap().load(header_text).into(new CustomTarget<Bitmap>() {
 
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    Drawable drawable = new BitmapDrawable(Objects.requireNonNull(getActivity()).getResources(), resource);
+                    Drawable drawable = new BitmapDrawable(requireActivity().getResources(), resource);
                     simple_drawee_view_ar.setBackground(drawable);
+                }
+
+                @Override
+                public void onLoadCleared(@Nullable Drawable placeholder) {
+
                 }
 
             });
@@ -413,11 +421,16 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         check_density();
         if (header_text != null) {
-            Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
+            Glide.with(this).asBitmap().load(header_text).into(new CustomTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    Drawable drawable = new BitmapDrawable(Objects.requireNonNull(getActivity()).getResources(), resource);
+                    Drawable drawable = new BitmapDrawable(requireActivity().getResources(), resource);
                     simple_drawee_view_explore.setBackground(drawable);
+                }
+
+                @Override
+                public void onLoadCleared(@Nullable Drawable placeholder) {
+
                 }
 
             });
@@ -432,12 +445,17 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         check_density();
         if (header_text != null) {
-            Glide.with(this).asBitmap().load(header_text).into(new SimpleTarget<Bitmap>() {
+            Glide.with(this).asBitmap().load(header_text).into(new CustomTarget<Bitmap>() {
 
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    Drawable drawable = new BitmapDrawable(Objects.requireNonNull(getActivity()).getResources(), resource);
+                    Drawable drawable = new BitmapDrawable(requireActivity().getResources(), resource);
                     simple_drawee_view_ar.setBackground(drawable);
+                }
+
+                @Override
+                public void onLoadCleared(@Nullable Drawable placeholder) {
+
                 }
 
             });
@@ -522,8 +540,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         layoutDataNotFound = view.findViewById(R.id.layout_explore_data_not_found);
         tvNoContent = view.findViewById(R.id.txt_explore_data_not_found);
 
-        metrics = new DisplayMetrics();
-        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay().getMetrics(metrics);
         controller = new ExploreTabContentController(this);
         viewPager = view.findViewById(R.id.viewPager);
         /*viewPager.setAdapter(new MyPagerAdapter());
@@ -536,7 +552,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
     // load resources for language localized
     private void loadResource() {
-        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()));
+        resources = new Resources(requireActivity().getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(requireActivity(), new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang()));
     }
 
     @Override
@@ -609,13 +625,13 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
      * On permanent denial opens settings dialog
      */
     private void requestCameraPermission() {
-        Dexter.withActivity(getActivity())
+        Dexter.withContext(requireActivity().getApplicationContext())
                 .withPermission(android.Manifest.permission.CAMERA)
                 .withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
                         // permission is granted
-                        if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                        if (ContextCompat.checkSelfPermission(requireActivity(), WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                             startActivity(new Intent(getActivity(), ImageTargetActivity.class));
                         } else {
                             Toast.makeText(getActivity(), "Turn on storage and camera permissions both", Toast.LENGTH_SHORT).show();
@@ -644,7 +660,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
      * NOTE: Keep proper title and message depending on your app
      */
     private void showSettingsDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         builder.setTitle("Need Permissions");
         builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
         builder.setPositiveButton("GOTO SETTINGS", (dialog, which) -> {
@@ -659,7 +675,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
     // navigating user to app settings
     private void openSettings() {
         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        Uri uri = Uri.fromParts("package", Objects.requireNonNull(getActivity()).getPackageName(), null);
+        Uri uri = Uri.fromParts("package", requireActivity().getPackageName(), null);
         intent.setData(uri);
         startActivityForResult(intent, 101);
     }
@@ -669,7 +685,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         Values.videoIndex = position;
         // here start the playing video for grid view item click
 
-        if (DetectConnection.checkInternetConnection(Objects.requireNonNull(getActivity()))) {
+        if (DetectConnection.checkInternetConnection(requireActivity())) {
 
             if (NissanApp.getInstance().getExploreVideoList().get(Values.videoIndex).getVideoUrl() != null) {
                 startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
@@ -798,7 +814,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             Glide.with(this).asBitmap().load(front_image_url).into(new CustomTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    Drawable drawable = new BitmapDrawable(Objects.requireNonNull(getActivity()).getResources(), resource);
+                    Drawable drawable = new BitmapDrawable(requireActivity().getResources(), resource);
                     front_image_view.setBackground(drawable);
                     front_image_view.buildDrawingCache();
                 }
@@ -816,8 +832,8 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         }
 
         mapView.setOnClickListener(view -> {
-            if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
-                list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
+            if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
+                list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
             }
 
 //                Values.ePubType = Values.HOMEPAGE_TYPE;
@@ -838,7 +854,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 epubIndex = 52;
             }*/
 
-            int epubIndex = 0;
+            int epubIndex;
             Values.ePubType = exploretabSliderModel.getEpubType();
             epubIndex = exploretabSliderModel.getEpubTag();
 
@@ -856,7 +872,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             Logger.error("Epub Tag " , " " + epubIndex);*/
 
             Fragment frag = DetailsFragment.newInstance(list.get(epubIndex * 2).getIndex(), resources.getString(R.string.updating_map_data));
-            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
             ft.replace(R.id.container, frag);
             ft.addToBackStack(Values.tabExplore);
@@ -895,7 +911,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             Glide.with(this).asBitmap().load(front_image_url).into(new CustomTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    Drawable drawable = new BitmapDrawable(Objects.requireNonNull(getActivity()).getResources(), resource);
+                    Drawable drawable = new BitmapDrawable(requireActivity().getResources(), resource);
                     front_image_view.setBackground(drawable);
                     front_image_view.buildDrawingCache();
                 }
@@ -930,7 +946,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
         layout.findViewById(R.id.ivMap).setOnClickListener(view -> {
             // here start the playing video for grid view item click
 
-            if (DetectConnection.checkInternetConnection(Objects.requireNonNull(getActivity()))) {
+            if (DetectConnection.checkInternetConnection(requireActivity())) {
                 //just for rus
 
                 /*int index = -1;

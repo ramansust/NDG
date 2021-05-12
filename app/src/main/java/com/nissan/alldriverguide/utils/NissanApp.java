@@ -5,11 +5,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Insets;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowInsets;
+import android.view.WindowMetrics;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
@@ -183,16 +186,18 @@ public class NissanApp {
         this.exploreMapVideoUrl = exploreMapVideoUrl;
     }
 
+    @SuppressWarnings("deprecation")
     public int getWidth(Activity activity) {
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        return displaymetrics.widthPixels;
-    }
-
-    public int getHeight(Activity activity) {
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        return displaymetrics.heightPixels;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowMetrics windowMetrics = activity.getWindowManager().getCurrentWindowMetrics();
+            Insets insets = windowMetrics.getWindowInsets()
+                    .getInsetsIgnoringVisibility(WindowInsets.Type.systemBars());
+            return windowMetrics.getBounds().width() - insets.left - insets.right;
+        } else {
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+            return displayMetrics.widthPixels;
+        }
     }
 
     /**
@@ -742,20 +747,12 @@ public class NissanApp {
 
             case 15:
 
-                if (lang.contains("en")) {
-                    url = UrlLinks.XTRAIL_2017_RUS_EN;
-                } else {
-                    url = UrlLinks.XTRAIL_2017_RUS_EN;
-                }
+                url = UrlLinks.XTRAIL_2017_RUS_EN;
                 break;
 
             case 17:
                 Log.e("Language Url ", " car id 17 " + UrlLinks.LEAF_2019_EN);
-                if (lang.contains("en")) {
-                    url = UrlLinks.LEAF_2019_EN;
-                } else {
-                    url = UrlLinks.LEAF_2019_EN;
-                }
+                url = UrlLinks.LEAF_2019_EN;
                 break;
 
             default:

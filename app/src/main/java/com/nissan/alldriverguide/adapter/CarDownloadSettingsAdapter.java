@@ -354,6 +354,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
     }
 
+    @SuppressLint("InflateParams")
     private void loadData() {
 
         dialogModelYearFeature = new DialogController(activity).modelYearFeatureDialog();

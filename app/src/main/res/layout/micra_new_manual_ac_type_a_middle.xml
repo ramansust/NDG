@@ -11,10 +11,10 @@
         android:layout_height="160dp"
         android:orientation="horizontal"
 
-        >
+        android:baselineAligned="false">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.50"
             android:orientation="vertical"
@@ -33,7 +33,8 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="36" />
+                    android:tag="36"
+                    android:focusable="true" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -42,7 +43,8 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="39" />
+                    android:tag="39"
+                    android:focusable="true" />
 
 
                 <TextView
@@ -52,7 +54,8 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="37" />
+                    android:tag="37"
+                    android:focusable="true" />
             </LinearLayout>
 
             <LinearLayout
@@ -68,7 +71,8 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="42" />
+                    android:tag="42"
+                    android:focusable="true" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -77,7 +81,8 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="39" />
+                    android:tag="39"
+                    android:focusable="true" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -86,7 +91,8 @@
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="38" />
+                    android:tag="38"
+                    android:focusable="true" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

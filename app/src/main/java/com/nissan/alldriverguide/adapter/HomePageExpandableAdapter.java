@@ -79,10 +79,6 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
 
                 if (title != null && info.getSectionTitle() != null && title.equalsIgnoreCase(info.getSectionTitle())) {
                     itemList.add(info);
-                    if (i == ePubList.size() - 1) {
-                        childList.put(title, itemList);
-                        listHeader.add(sectionInfo);
-                    }
                 } else {
                     childList.put(title, itemList);
                     listHeader.add(sectionInfo);
@@ -97,10 +93,10 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
                     itemList.add(info);
                     childList.put(title, itemList);
 
-                    if (i == ePubList.size() - 1) {
-                        childList.put(title, itemList);
-                        listHeader.add(sectionInfo);
-                    }
+                }
+                if (i == ePubList.size() - 1) {
+                    childList.put(title, itemList);
+                    listHeader.add(sectionInfo);
                 }
             }
         }
@@ -141,6 +137,7 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
         return false;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         if (convertView == null) {
@@ -177,7 +174,7 @@ public class HomePageExpandableAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "InflateParams"})
     @Override
     public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         if (convertView == null) {

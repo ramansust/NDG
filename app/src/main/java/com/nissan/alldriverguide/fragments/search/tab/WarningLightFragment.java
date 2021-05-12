@@ -63,7 +63,7 @@ public class WarningLightFragment extends Fragment {
      * Data added and display for WarningLightFragment
      */
     private void addData() {
-        ArrayList<EpubInfo> epubInfoArrayList = new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.UNDERSCORE + Values.COMBIMETER_TYPE);
+        ArrayList<EpubInfo> epubInfoArrayList = new PreferenceUtil(requireActivity().getApplicationContext()).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.UNDERSCORE + Values.COMBIMETER_TYPE);
         if (epubInfoArrayList == null || epubInfoArrayList.size() == 0) {
             return;
         }

@@ -16,7 +16,7 @@ import com.nissan.alldriverguide.viewmodel.CarDownloadViewModel;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,7 +32,7 @@ public class CarDownloadActivityNew extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.car_download_activity_new);
 
-        carDownloadViewModel = ViewModelProviders.of(this).get(CarDownloadViewModel.class);
+        carDownloadViewModel = new ViewModelProvider(this).get(CarDownloadViewModel.class);
 
         initUI();
         loadData();

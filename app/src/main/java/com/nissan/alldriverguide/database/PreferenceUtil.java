@@ -2,7 +2,7 @@ package com.nissan.alldriverguide.database;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 
 import com.datasoft.downloadManager.epubUtils.EpubInfo;
 import com.google.gson.Gson;
@@ -314,7 +314,7 @@ public class PreferenceUtil {
     public void setCallNissan(boolean isCallNissan) {
         spEditor = sharedPreferences.edit();
         spEditor.putBoolean(IS_CALL_NISSAN, isCallNissan);
-        spEditor.commit();
+        spEditor.apply();
     }
 
 }

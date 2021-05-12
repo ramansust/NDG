@@ -43,7 +43,8 @@
             android:layout_margin="@dimen/margin_left"
             android:background="@drawable/close_video"
             android:padding="@dimen/margin_left"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorAccent"
+            android:contentDescription="TODO" />
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -345,23 +345,7 @@ public class SampleAppRenderer {
     private void storeScreenDimensions() {
         // Query display dimensions:
         Point size = new Point();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            mActivityRef.get().getWindowManager().getDefaultDisplay().getRealSize(size);
-        } else {
-            WindowManager windowManager = (WindowManager) mActivityRef.get().getSystemService(Context.WINDOW_SERVICE);
-
-            if (windowManager != null) {
-                DisplayMetrics metrics = new DisplayMetrics();
-                Display display = windowManager.getDefaultDisplay();
-                display.getMetrics(metrics);
-
-                size.x = metrics.widthPixels;
-                size.y = metrics.heightPixels;
-            } else {
-                size.x = 0;
-                size.y = 0;
-            }
-        }
+        mActivityRef.get().getWindowManager().getDefaultDisplay().getRealSize(size);
 
         mScreenWidth = size.x;
         mScreenHeight = size.y;

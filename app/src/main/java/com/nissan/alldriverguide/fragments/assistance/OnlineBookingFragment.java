@@ -59,10 +59,8 @@ public class OnlineBookingFragment extends Fragment {
 
         txtViewTitle.setText(Objects.requireNonNull(getArguments()).getString(TITLE));
         webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setPluginState(WebSettings.PluginState.ON);
         webView.getSettings().setBuiltInZoomControls(true);
         webView.clearCache(true);
-        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new MyWebViewClient());
 

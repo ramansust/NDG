@@ -174,7 +174,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
 
         tracker.setScreenName(msgName.toLowerCase());
         tracker.enableAdvertisingIdCollection(true);
-        tracker.send(new HitBuilders.AppViewBuilder().build());
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

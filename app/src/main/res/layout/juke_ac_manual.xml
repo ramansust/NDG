@@ -10,13 +10,8 @@
         android:layout_width="300dp"
         android:layout_height="125dp"
         android:gravity="center"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".45"
-            android:orientation="vertical" />
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -36,7 +31,8 @@
                 android:layout_weight="2.6"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="31" />
+                android:tag="31"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -45,7 +41,8 @@
                 android:layout_weight=".8"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="30" />
+                android:tag="30"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -70,7 +67,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="29" />
+                android:tag="29"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -78,7 +76,8 @@
                 android:layout_weight="2.3"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="27" />
+                android:tag="27"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -104,7 +103,8 @@
                 android:layout_marginLeft="15dp"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="32" />
+                android:tag="32"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -113,7 +113,8 @@
                 android:layout_marginRight="50dp"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="28" />
+                android:tag="28"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -121,11 +122,6 @@
                 android:layout_weight="1.1" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".4"
-            android:orientation="vertical" />
     </LinearLayout>
 
 </LinearLayout>

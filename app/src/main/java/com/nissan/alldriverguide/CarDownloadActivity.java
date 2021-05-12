@@ -539,7 +539,7 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
         t.enableAdvertisingIdCollection(true);
 
         // Send a screen view.
-        t.send(new HitBuilders.AppViewBuilder().build());
+        t.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     private void carDownloadCheck(final int carId) {

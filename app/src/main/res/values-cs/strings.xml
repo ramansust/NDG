@@ -74,14 +74,6 @@
         <item>Warranty</item>
         <item>Nissan Assistance</item>
     </string-array>
-    <string-array name="assistance_array_temp">
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-    </string-array>
     <string-array name="tab_names">
         <item>PROZKOUMAT</item>
         <item>ASISTENCE</item>

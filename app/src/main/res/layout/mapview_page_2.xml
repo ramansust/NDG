@@ -14,7 +14,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            android:contentDescription="TODO" />
 
         <ImageView
             android:id="@+id/drawee_view_map_2"
@@ -23,7 +24,8 @@
             android:layout_marginTop="8dp"
             android:paddingLeft="@dimen/margin_back"
             android:paddingRight="@dimen/margin_back"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:contentDescription="TODO" />
         <!-- <TextView
             android:id="@+id/tvNewNissanDoorToDoor"
             android:layout_width="wrap_content"

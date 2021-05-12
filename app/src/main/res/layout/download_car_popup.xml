@@ -37,10 +37,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/white"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -58,7 +59,8 @@
                     android:layout_marginBottom="8dp"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/button_eur"
-                    android:textSize="@dimen/activity_horizontal_margin" />
+                    android:textSize="@dimen/activity_horizontal_margin"
+                    android:contentDescription="TODO" />
 
                 <ImageButton
                     android:id="@+id/img_btn_eur_delete_donwload"
@@ -70,7 +72,8 @@
                     android:layout_marginRight="@dimen/margin_back"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/delete_selector"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:contentDescription="TODO" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -89,7 +92,8 @@
                     android:layout_marginBottom="5dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/button_rus"
-                    android:textSize="@dimen/pop_up_ok_cancel_text_size" />
+                    android:textSize="@dimen/pop_up_ok_cancel_text_size"
+                    android:contentDescription="TODO" />
 
                 <ImageButton
                     android:id="@+id/img_btn_rus_delete_donwload"
@@ -100,7 +104,8 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginRight="@dimen/margin_back"
                     android:background="@drawable/delete_selector"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:contentDescription="TODO" />
             </RelativeLayout>
 
 

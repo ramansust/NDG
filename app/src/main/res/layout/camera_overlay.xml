@@ -31,7 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:src="@drawable/back_active" />
+            android:src="@drawable/back_active"
+            android:contentDescription="TODO" />
 
         <ImageButton
             android:id="@+id/info"
@@ -39,7 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:background="@android:color/transparent"
-            android:src="@drawable/info_active" />
+            android:src="@drawable/info_active"
+            android:contentDescription="TODO" />
 
         <ImageButton
             android:id="@+id/refresh"
@@ -48,7 +50,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:background="@android:color/transparent"
-            android:src="@drawable/refresh_active" />
+            android:src="@drawable/refresh_active"
+            android:contentDescription="TODO" />
     </RelativeLayout>
 
 </RelativeLayout>

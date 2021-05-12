@@ -78,7 +78,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     private TextView tvNoContent, txtView_loadTxt;
 
     private AssistanceAdapter adapter;
-    private DisplayMetrics metrics;
     private PreferenceUtil preferenceUtil;
     private AssistanceInfo assistanceInfo;
 
@@ -245,7 +244,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     }
 
     private void loadResource() {
-        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
+        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
     }
 
     private void setListener() {
@@ -312,8 +311,6 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         progressBar = view.findViewById(R.id.prog_assistance);
         tvNoContent = view.findViewById(R.id.txt_assistance_data_not_found);
 
-        metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
         controller = new AssistanceTabContentController(this);
     }

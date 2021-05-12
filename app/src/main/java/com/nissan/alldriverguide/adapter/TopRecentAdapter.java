@@ -26,7 +26,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class TopRecentAdapter extends RecyclerView.Adapter<TopRecentAdapter.SimpleViewHolder> {
 
     private final Context mContext;
-    private List<String> list1;
     private final List<String> list2;
     private final List<String> list3;
 
@@ -39,10 +38,8 @@ public class TopRecentAdapter extends RecyclerView.Adapter<TopRecentAdapter.Simp
 //    public TopRecentAdapter(Context mContext, List<SearchModel> list1, List<SearchModel> list2) {
     public TopRecentAdapter(Context mContext, List<String> list2) {
         this.mContext = mContext;
-//        this.list1 = list1;
         this.list2 = list2;
         list3 = new ArrayList<>();
-//        list3.addAll(list1);
         list3.addAll(list2);
     }
 
@@ -71,7 +68,6 @@ public class TopRecentAdapter extends RecyclerView.Adapter<TopRecentAdapter.Simp
             super(itemView);
             keyword = itemView.findViewById(R.id.top_recent_search_keyword);
             keyword.setOnClickListener(this);
-
         }
 
         @Override

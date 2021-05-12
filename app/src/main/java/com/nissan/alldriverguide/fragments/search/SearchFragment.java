@@ -90,7 +90,7 @@ public class SearchFragment extends Fragment {
      * @param layout need to fragment layout view
      */
     private void initAll(View layout) {
-        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()));
+        resources = new Resources(requireActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(requireActivity(), new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()));
 
         commonDao = CommonDao.getInstance();
         getSearchKeyword = layout.findViewById(R.id.input_search);
@@ -134,7 +134,7 @@ public class SearchFragment extends Fragment {
 
     //this is from top recent fragment
     public void addData() {
-        dateWise_List = commonDao.getDateWiseList(Objects.requireNonNull(getActivity()).getApplicationContext(), Values.carType, selectedLanguage);
+        dateWise_List = commonDao.getDateWiseList(requireActivity().getApplicationContext(), Values.carType, selectedLanguage);
 
         if (dateWise_List != null && dateWise_List.size() > 0 && dateWise_List.size() > 10) {
             dateWise_List = (ArrayList<SearchModel>) dateWise_List.subList(0, 9);
@@ -238,7 +238,7 @@ public class SearchFragment extends Fragment {
         public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
 
             if (actionId == EditorInfo.IME_ACTION_SEARCH) { // keyboard search
-                View view = Objects.requireNonNull(getActivity()).getCurrentFocus();
+                View view = requireActivity().getCurrentFocus();
                 if (view != null) {
                     hideKeyboard(view);
                 }
@@ -269,7 +269,7 @@ public class SearchFragment extends Fragment {
 
                     Values.keyWord = getKeyword;
                     // here indicate TabFragment when user take action for keyboard search
-                    FragmentTransaction transaction = Objects.requireNonNull(getFragmentManager()).beginTransaction();
+                    FragmentTransaction transaction = requireFragmentManager().beginTransaction();
                     transaction.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                     transaction.replace(R.id.container, TabFragment.newInstance(getKeyword));
                     transaction.addToBackStack(Values.tabSearch);
@@ -322,7 +322,7 @@ public class SearchFragment extends Fragment {
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-            return commonDao.deleteRecentSearchesFromSearchTable(Objects.requireNonNull(getActivity()).getApplicationContext(), Values.carType, selectedLanguage);
+            return commonDao.deleteRecentSearchesFromSearchTable(requireActivity().getApplicationContext(), Values.carType, selectedLanguage);
         }
 
         @Override
@@ -343,7 +343,7 @@ public class SearchFragment extends Fragment {
 
     // keyboard hide method
     protected void hideKeyboard(View view) {
-        InputMethodManager in = (InputMethodManager) Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager in = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (in != null)
             in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }

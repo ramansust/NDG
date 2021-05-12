@@ -13,19 +13,14 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".30"
-            android:orientation="vertical" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".45"
             android:clickable="true"
             android:onClick="buttonEvent"
-            android:tag="30" />
+            android:tag="30"
+            android:focusable="true" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,7 +39,8 @@
                 android:layout_weight=".75"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="27" />
+                android:tag="27"
+                android:focusable="true" />
 
             <TextView
                 android:layout_width="0dp"
@@ -52,11 +48,6 @@
                 android:layout_weight=".2" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".25"
-            android:orientation="vertical" />
     </LinearLayout>
 
 </LinearLayout>

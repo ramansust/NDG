@@ -154,10 +154,6 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
 
                 if (title.equalsIgnoreCase(info.getSectionTitle())) {
                     itemList.add(info);
-                    if (i == gameList.size() - 1) {
-                        sectionInfo.setEpublist(itemList);
-                        list.add(sectionInfo);
-                    }
                 } else {
                     sectionInfo.setEpublist(itemList);
                     list.add(sectionInfo);
@@ -171,10 +167,10 @@ public class HomePageSectionWiseAdapter extends SectionedRecyclerViewAdapter<Hom
                     itemList.add(info);
                     sectionInfo.setEpublist(itemList);
 
-                    if (i == gameList.size() - 1) {
-                        sectionInfo.setEpublist(itemList);
-                        list.add(sectionInfo);
-                    }
+                }
+                if (i == gameList.size() - 1) {
+                    sectionInfo.setEpublist(itemList);
+                    list.add(sectionInfo);
                 }
             }
         }

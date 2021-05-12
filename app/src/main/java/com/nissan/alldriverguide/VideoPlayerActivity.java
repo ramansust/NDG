@@ -45,10 +45,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     private RelativeLayout relativePopup;
 
     private int position = 0;
-
     private Resources resources;
-    private DisplayMetrics metrics;
-
     private boolean executeOnResume = true;
 
     private String from_where = "";
@@ -104,9 +101,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
         txtViewLearnMoreAlways = findViewById(R.id.txt_view_learn_more);
 
         txtViewTitle = findViewById(R.id.txt_title);
-
-        metrics = new DisplayMetrics();
-        VideoPlayerActivity.this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
     }
 
     /**
@@ -156,7 +150,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements MediaPlaye
     }
 
     private void loadResource() {
-        resources = new Resources(VideoPlayerActivity.this.getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(VideoPlayerActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
+        resources = new Resources(VideoPlayerActivity.this.getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(VideoPlayerActivity.this, new PreferenceUtil(getApplicationContext()).getSelectedLang()));
     }
 
     /**

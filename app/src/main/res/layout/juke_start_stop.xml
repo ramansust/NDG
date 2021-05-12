@@ -19,7 +19,8 @@
             android:clickable="true"
             android:gravity="center"
             android:onClick="buttonEvent"
-            android:tag="55" />
+            android:tag="55"
+            android:focusable="true" />
     </LinearLayout>
 
 </LinearLayout>

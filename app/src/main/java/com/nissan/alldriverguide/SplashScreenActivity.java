@@ -3,6 +3,7 @@ package com.nissan.alldriverguide;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,7 +43,7 @@ public class SplashScreenActivity extends AppCompatActivity {
      */
     private void createSplashScreen() {
         int SPLASH_TIME_OUT = 3000;
-        new Handler().postDelayed(() -> {
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
             startActivity(new Intent(SplashScreenActivity.this, CarDownloadActivity.class));
             finish();
         }, SPLASH_TIME_OUT);

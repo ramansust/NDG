@@ -24,7 +24,8 @@
                 android:layout_height="match_parent"
                 android:clickable="true"
 
-                android:tag="2" />
+                android:tag="2"
+                android:focusable="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -38,8 +39,9 @@
                 android:clickable="true"
                 android:onClick="buttonEvent"
                 android:tag="28"
-                android:layout_width="match_parent"
-                android:layout_weight="5" />
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:focusable="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -49,12 +51,13 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_weight="5"
                 android:layout_height="match_parent"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="29" />
+                android:tag="29"
+                android:focusable="true" />
 
         </LinearLayout>
 
@@ -73,12 +76,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_weight="5"
                     android:layout_height="match_parent"
                     android:clickable="true"
                     android:onClick="buttonEvent"
-                    android:tag="30" />
+                    android:tag="30"
+                    android:focusable="true" />
 
             </LinearLayout>
 
@@ -88,7 +92,8 @@
                 android:layout_weight="1.5"
                 android:clickable="true"
                 android:onClick="buttonEvent"
-                android:tag="31" />
+                android:tag="31"
+                android:focusable="true" />
 
             <TextView
                 android:clickable="true"
@@ -96,7 +101,8 @@
                 android:tag="24"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4" />
+                android:layout_weight="4"
+                android:focusable="true" />
         </LinearLayout>
 
     </LinearLayout>
