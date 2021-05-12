@@ -357,7 +357,7 @@ public class CommonDao {
         int status = 0;
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT " + "status" + " FROM " + "car_info" + " WHERE " + "_id" + "=" + id;
-        try (Cursor cursor = db.rawQuery(selectQuery, null)) {
+        try (Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null)) {
             try {
                 if (cursor.moveToFirst()) {
                     for (int i = 0; i < cursor.getCount(); i++) {
@@ -383,7 +383,7 @@ public class CommonDao {
         int status = 0;
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT " + "_id" + " FROM " + "car_info" + " order by _id DESC limit 1";
-        try (Cursor cursor = db.rawQuery(selectQuery, null)) {
+        try (Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null)) {
             try {
                 if (cursor.moveToFirst()) {
                     for (int i = 0; i < cursor.getCount(); i++) {
@@ -409,7 +409,7 @@ public class CommonDao {
         String status = "";
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT " + "name" + " FROM " + "car_info" + " WHERE " + "_id" + "=" + id;
-        try (Cursor cursor = db.rawQuery(selectQuery, null)) {
+        try (Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null)) {
             try {
                 if (cursor.moveToFirst()) {
                     for (int i = 0; i < cursor.getCount(); i++) {
@@ -833,7 +833,7 @@ public class CommonDao {
         SQLiteDatabase db = getWritableDatabase(context);
         String selectQuery = "SELECT * FROM " + PushNotificationTableEntity.TABLE_NAME + " WHERE " + PushNotificationTableEntity.CAR_ID + " = '" + carID + "' AND " + PushNotificationTableEntity.LANGUAGE_ID + " = '" + langID + "' AND " + PushNotificationTableEntity.STATUS + " = '" + PushNotificationTableEntity.UPDATE_AVAILABLE + "' AND " + PushNotificationTableEntity.EPUB_ID + " = '" + ePubId + "'";
         Logger.error("select_query_single_push", "___________" + selectQuery);
-        try (Cursor cursor = db.rawQuery(selectQuery, null)) {
+        try (Cursor cursor = Objects.requireNonNull(db).rawQuery(selectQuery, null)) {
 
             try {
                 if (cursor.moveToFirst()) {

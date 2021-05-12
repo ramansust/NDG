@@ -63,6 +63,7 @@ import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -502,14 +503,14 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
                                         if (!preferenceUtil.getSelectedLang().equals(lang)) {
                                             // delete previous language directory
                                             // eg. /storage/emulated/0/.AllDriverGuide/leaf2017/leaf2017_en
-                                            Logger.error("File Delete", "" + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType));
+                                            Logger.error("File Delete", "" + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(Objects.requireNonNull(getActivity()).getBaseContext(), Values.carType));
                                             FileUtils.deleteDirectory(new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + commonDao.getLanguageStatus(getActivity().getBaseContext(), Values.carType)));
                                         }
                                     }
 
 //************************(Here store the language short name after complete downloading language)*******************************************************************************************************************
                                     preferenceUtil.setSelectedLang(lang); // here store the language sort name
-                                    ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));
+                                    ((MainActivity) Objects.requireNonNull(getActivity())).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromSettings(Analytics.CHANGE_LANGUAGE + Analytics.DOWNLOAD));
                                     commonDao.updateLanguageStatus(getActivity().getBaseContext(), Values.carType, lang);
                                     commonDao.makeAllPushEntryStatusChangeLangauge(getActivity().getBaseContext(), Values.carType, NissanApp.getInstance().getLanguageID(lang));
                                     commonDao.deleteSingleCarEpub(getActivity(), Values.carType);
@@ -524,7 +525,7 @@ public class LanguageFragment extends Fragment implements AdapterView.OnItemClic
 
                                 adapter.notifyDataSetChanged();
                                 loadResource(); // load resource for change language
-                                ((MainActivity) getActivity()).loadResource();
+                                ((MainActivity) Objects.requireNonNull(getActivity())).loadResource();
                                 ((MainActivity) getActivity()).setTabResources();
 
                                 controllerGlobalMsg.callApi(NissanApp.getInstance().getDeviceID(getActivity()), NissanApp.getInstance().getLanguageID(lang_sort_name) + "");

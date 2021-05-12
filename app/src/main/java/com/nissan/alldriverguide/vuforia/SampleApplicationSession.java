@@ -13,7 +13,6 @@ package com.nissan.alldriverguide.vuforia;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.util.Log;
 import android.view.OrientationEventListener;
 import android.view.WindowManager;

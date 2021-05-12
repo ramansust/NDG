@@ -77,8 +77,6 @@ public class TyreTransitionActivity extends Activity {
                     e.printStackTrace();
                 }
 
-                txtView.setText(count + "/" + (Values.gif_names.size() - 1));
-
             } else {
                 overridePendingTransition(R.anim.right_in, R.anim.right_out);
                 try {
@@ -94,8 +92,8 @@ public class TyreTransitionActivity extends Activity {
                     e.printStackTrace();
                 }
 
-                txtView.setText(count + "/" + (Values.gif_names.size() - 1));
             }
+            txtView.setText(count + "/" + (Values.gif_names.size() - 1));
         } else {
 
             Values.i = 0;
@@ -145,11 +143,8 @@ public class TyreTransitionActivity extends Activity {
             Arrays.sort(file_names);
 
             Values.gif_names.addAll(Arrays.asList(file_names));
-            return size;
-        } else {
-            return size;
         }
-
+        return size;
     }
 
     class CustomGestureDetector extends GestureDetector.SimpleOnGestureListener {

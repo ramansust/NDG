@@ -14,6 +14,7 @@ import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import androidx.fragment.app.Fragment;
 
@@ -51,7 +52,7 @@ public class WarrantyFragment extends Fragment {
         if (progressBar != null) {
             progressBar.setVisibility(View.VISIBLE);
         }
-        ArrayList<EpubInfo> list = new PreferenceUtil(requireActivity().getApplicationContext()).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.UNDERSCORE + Values.WARRANTY_TYPE);
+        ArrayList<EpubInfo> list = new PreferenceUtil(requireActivity().getApplicationContext()).retrieveSearchEpubList(Values.carType + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.UNDERSCORE + Values.WARRANTY_TYPE);
 
         ArrayList<EpubInfo> finalSearchResultList = WarningLightFragment.searchForTag(list, BaseTabFragmentActivity.keyword);
         if (progressBar != null) {

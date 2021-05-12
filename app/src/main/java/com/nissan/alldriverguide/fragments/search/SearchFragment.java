@@ -90,7 +90,7 @@ public class SearchFragment extends Fragment {
      * @param layout need to fragment layout view
      */
     private void initAll(View layout) {
-        resources = new Resources(requireActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(requireActivity(), new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()));
+        resources = new Resources(requireActivity().getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(requireActivity(), new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang()));
 
         commonDao = CommonDao.getInstance();
         getSearchKeyword = layout.findViewById(R.id.input_search);
@@ -250,7 +250,7 @@ public class SearchFragment extends Fragment {
                     Toast.makeText(getActivity(), "Please Input Search Keyword", Toast.LENGTH_SHORT).show();
 
                 } else { // if search keyword is not empty
-                    if (new NissanApp().insertSearchDataIntoDatabase(getActivity().getApplicationContext(), getKeyword)) {
+                    if (new NissanApp().insertSearchDataIntoDatabase(Objects.requireNonNull(getActivity()).getApplicationContext(), getKeyword)) {
                         long currentTime = System.currentTimeMillis(); //Calendar.getInstance().getTime();
 
                         String lang_type = new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang();

@@ -10,16 +10,11 @@ countries.
 package com.nissan.alldriverguide.vuforia;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
-import android.os.Build;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
-import android.view.WindowManager;
 
 import com.nissan.alldriverguide.utils.Logger;
 import com.vuforia.CameraDevice;

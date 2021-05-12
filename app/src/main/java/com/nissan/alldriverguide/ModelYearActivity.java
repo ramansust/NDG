@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -726,7 +725,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
     private void setCarImageAccordingToDeviceResolution() {
 
         String device_density, carImageURL;
-        CarInfo info = new CarInfo();
+        CarInfo info;
 
         ArrayList<Object> mainList = NissanApp.getInstance().getCarList();
 
