@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
@@ -73,10 +72,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     /**
      * here set the web view for display epub
      */
-    @SuppressLint("SetJavaScriptEnabled")
     private void setupWebView() {
         webView.getSettings().setAllowFileAccess(true);
-        webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setBuiltInZoomControls(true);
         webView.clearCache(true);

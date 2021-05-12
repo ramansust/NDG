@@ -106,7 +106,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnClose:
-                if (Objects.requireNonNull(getIntent().getExtras().get("from")).equals("activity")) { // if car downloaded is first time
+                if (Objects.requireNonNull(Objects.requireNonNull(getIntent().getExtras()).get("from")).equals("activity")) { // if car downloaded is first time
                     startActivity(new Intent(TutorialActivity.this, MainActivity.class));
                     overridePendingTransition(R.anim.left_in, R.anim.left_out);
                     finish();
@@ -138,7 +138,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
      * indicate for the next movement action
      */
     private void gotoNextActivity() {
-        if (Objects.requireNonNull(getIntent().getExtras().get("from")).equals("activity")) {
+        if (Objects.requireNonNull(Objects.requireNonNull(getIntent().getExtras()).get("from")).equals("activity")) {
             startActivity(new Intent(TutorialActivity.this, MainActivity.class));
             finish();
         } else if (Objects.requireNonNull(getIntent().getExtras().get("from")).equals("fragment")) {

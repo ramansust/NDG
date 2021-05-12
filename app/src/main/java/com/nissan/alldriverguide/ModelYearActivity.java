@@ -1,5 +1,6 @@
 package com.nissan.alldriverguide;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -59,15 +60,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 
 public class ModelYearActivity extends AppCompatActivity implements CarListACompleteAPI, ModelYearItemClcikListener {
-    private static final String TAG = "ModelYearActivity";
 
+    private static final String TAG = "ModelYearActivity";
 
     private Activity activity;
     private Context context;
     private Resources resources;
     private PreferenceUtil preferenceUtil;
     private ProgressDialog progressDialog;
-    private ProgressBar pbCarDownload;
     private long mLastClickTime = 0;
     private long doubleClickPopup = 0;
     private CommonDao commonDao;
@@ -92,10 +92,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
 
         initViews();
         loadResource(preferenceUtil.getSelectedLang());
-
-        if (parentCarId != -1) {
-            //new ApiCall().getChildCarList(NissanApp.getInstance().getDeviceID(this),"1",String.valueOf(parentCarId),this);
-        }
         allCarList = NissanApp.getInstance().getCarListWAP();
 
         loadChildCarList(allCarList, parentCarId);
@@ -165,6 +161,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
         loadData(modifiedCarList);
     }
 
+    @SuppressLint("InflateParams")
     private void loadData(ArrayList<Object> carLists) {
         View[] childViews = new View[1]; //we can have multiple child views
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -199,9 +196,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
     @Override
     public void onItemClicked(RecyclerView.ViewHolder vh, Object item, final int position) {
 
-        CarInfo carInfo = null;
-        if (item.getClass() == CarInfo.class) {
-        }
         // TODO: 2019-04-25 Copy the code from CarDownloadActivity to handle the car download  procedure
         if (SystemClock.elapsedRealtime() - mLastClickTime < DEFAULT_CLICK_TIMEOUT) {
             return;
@@ -463,8 +457,6 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
                         Logger.error("Single Content Downloading failed", "____________" + failedReason);
                     }
                 });
-            } else {
-
             }
         });
 
@@ -657,7 +649,7 @@ public class ModelYearActivity extends AppCompatActivity implements CarListAComp
             setCarImageAccordingToDeviceResolution();
         }
 
-        ArrayList<Object> getList = NissanApp.getInstance().getCarList();
+        ArrayList<Object> getList;
 
         boolean xtrailRus = false, xtrailEur = false;
         CarInfo xtrailRusInfo = new CarInfo();

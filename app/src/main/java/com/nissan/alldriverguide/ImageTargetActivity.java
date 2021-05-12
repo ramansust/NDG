@@ -103,9 +103,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     private GestureDetector mGestureDetector;
     // The textures we will use for rendering:
     private Vector<Texture> mTextures;
-    private final boolean mSwitchDatasetAsap = false;
     private boolean mContAutofocus = false;
-    private View mFlashOptionView;
     private RelativeLayout mUILayout;
     // Alert Dialog used to display SDK errors
     private AlertDialog mErrorDialog;
@@ -305,7 +303,6 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
         // Turn off the flash
         // Called when the activity first starts or the user navigates back to an activity.
-        boolean mFlash = false;
 
         isFromShowInfo = true;
     }
@@ -751,7 +748,6 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doStartTrackers()");
 
         // Indicate if the trackers were started correctly
-        boolean result = true;
 
         Tracker objectTracker = TrackerManager.getInstance().getTracker(
                 ObjectTracker.getClassType());
@@ -766,7 +762,6 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         Logger.debugging(LOG_TAG, "SampleApplicationControl override method:    doStopTrackers()");
 
         // Indicate if the trackers were stopped correctly
-        boolean result = true;
 
         Tracker objectTracker = TrackerManager.getInstance().getTracker(
                 ObjectTracker.getClassType());
@@ -781,7 +776,6 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
         Logger.error(LOG_TAG, "SampleApplicationControl override method:    doDeinitTrackers()");
 
         // Indicate if the trackers were deinitialized correctly
-        boolean result = true;
 
         TrackerManager tManager = TrackerManager.getInstance();
         tManager.deinitTracker(ObjectTracker.getClassType());

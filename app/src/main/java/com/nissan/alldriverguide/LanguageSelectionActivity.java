@@ -85,7 +85,6 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
     private ArrayList<LanguageInfo> list;
     private LanguageSelectionAdapter adapter;
     private PreferenceUtil preferenceUtil;
-    private DisplayMetrics metrics;
     private CommonDao commonDao;
     private Activity activity;
     private Context context;
@@ -289,7 +288,7 @@ public class LanguageSelectionActivity extends AppCompatActivity implements Adap
 
 
     private void loadResource() {
-        resources = new Resources(getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(LanguageSelectionActivity.this, preferenceUtil.getSelectedLang()));
+        resources = new Resources(getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(LanguageSelectionActivity.this, preferenceUtil.getSelectedLang()));
     }
 
     /**

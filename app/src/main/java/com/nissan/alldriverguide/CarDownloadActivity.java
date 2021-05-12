@@ -81,11 +81,7 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
         InterfaceGlobalMessageResponse, CarListACompleteAPI {
 
     private static final String TAG = "CarDownloadActivity";
-    // Start------------ For permission related constants
-    private static final int PERMISSION_REQUEST_CODE_ALL = 200;
-    private static final int PERMISSION_REQUEST_CODE_STORAGE = 201;
-    private static final int PERMISSION_REQUEST_CODE_CAMERA = 202;
-    private static final int PERMISSION_REQUEST_CODE_ACCESS_FINE_LOCATION = 203;
+
     public Resources resources;
     private ListView lstView;
     private TextView txtView_title;
@@ -108,7 +104,6 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
     private ProgressDialog progressDialog;
     private ProgressBar pbCarDownload;
     private int selectedCarIndex = 0;
-    private DisplayMetrics metrics;
     private String selectedLang = "";
 
     private Activity activity;
@@ -839,7 +834,6 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
 
 
     private void getRegIdForPush() {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
 //        String regId = pref.getString("regId", null);
 
         new ApiCall().postDeviceRegistrationForPush(NissanApp.getInstance().getDeviceID(getApplicationContext()), null, Values.DEVICE_TYPE, new CompleteAPI() {
@@ -1084,7 +1078,7 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
     private void setCarImageAccordingToDeviceResolution() {
 
         String device_density, carImageURL;
-        CarInfo info = new CarInfo();
+        CarInfo info;
 
         ArrayList<Object> mainList = NissanApp.getInstance().getCarList();
 
@@ -1152,8 +1146,6 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
                                         // here update the car when download car number 4
                                         commonDao.updateDateAndStatus(getBaseContext(), Values.carType + 1, "0", NissanApp.getInstance().getDateTime(), "EUR", carInfo.getVersionName(), carInfo.getVersionCode());
                                     }
-                                } else {
-
                                 }
                             }
                             commonDao.updateLanguageStatus(getBaseContext(), Values.carType, preferenceUtil.getSelectedLang());
@@ -1194,7 +1186,7 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
     }
 
     private void loadResource(String lang) {
-        resources = new Resources(getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(CarDownloadActivity.this, lang));
+        resources = new Resources(getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(CarDownloadActivity.this, lang));
     }
 
     private void dismissDialog() {
@@ -1289,7 +1281,6 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
             //For support Parent Car by Mostasim Billah
             if (parent_car_lists != null) {
                 int firstCarindexForReplaceCarInfo = -1;
-                int childCarSize = 0;
                 for (int i = 0; i < parent_car_lists.size(); i++) {
                     Parent_car_list parentCar = parent_car_lists.get(i);
                     if (parentCar.getChild_car_support()) {
@@ -1311,7 +1302,6 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
                                     if (firstChildCarPosition == -1)
                                         firstChildCarPosition = carList.indexOf(obj);
                                     iterator.remove();
-                                    childCarSize++;
 
                                 }
                             }
