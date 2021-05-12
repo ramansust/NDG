@@ -113,7 +113,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     public void check_Data() {
 
-        adapter = new AssistanceAdapter(Objects.requireNonNull(getActivity()).getApplicationContext(), assistanceArray, assistanceImage);
+        adapter = new AssistanceAdapter(requireActivity().getApplicationContext(), assistanceArray, assistanceImage);
         lstView.setAdapter(adapter);
 
         sharedpref_key = Values.carType + "_" + Values.ASSISTANCE_OBJ_STORE_KEY;
@@ -134,7 +134,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         } else {
             progressBar.setVisibility(View.VISIBLE);
 
-            if (!DetectConnection.checkInternetConnection(getActivity())) {
+            if (!DetectConnection.checkInternetConnection(requireActivity())) {
                 progressBar.setVisibility(View.GONE);
                 String internetCheckMessage = NissanApp.getInstance().getAlertMessage(this.getActivity(), preferenceUtil.getSelectedLang(), Values.ALERT_MSG_TYPE_INTERNET);
                 showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
@@ -144,7 +144,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         }
 
         int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
-        controller.callApi(NissanApp.getInstance().getDeviceID(getActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2");
+        controller.callApi(NissanApp.getInstance().getDeviceID(requireActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2");
 
    /*     try{
             Call<DealerUrl> dealerUrlCall=RetrofitClient.getApiService().getFindADealer(""+language_ID);
@@ -204,7 +204,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         Button btnOk = dialog.findViewById(R.id.btn_ok);
         btnOk.setOnClickListener(v -> {
             dialog.dismiss();
-            Objects.requireNonNull(getActivity()).finish();
+            requireActivity().finish();
         });
 
         dialog.show();
@@ -244,7 +244,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     }
 
     private void loadResource() {
-        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
+        resources = new Resources(requireActivity().getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(requireActivity(), preferenceUtil.getSelectedLang()));
     }
 
     private void setListener() {
@@ -254,7 +254,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     // here set assistance car background according to car type
     private void setAssistanceCarBackgroundImage() {
 
-        url = getURLAccordingToDensity(NissanApp.getInstance().getDensityName(Objects.requireNonNull(getActivity())));
+        url = getURLAccordingToDensity(NissanApp.getInstance().getDensityName(requireActivity()));
 
 
         DraweeController controller = Fresco.newDraweeControllerBuilder().setImageRequest(
@@ -299,7 +299,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     // here initialized all variable
     private void initViews(View view) {
-        context = Objects.requireNonNull(getActivity()).getApplicationContext();
+        context = requireActivity().getApplicationContext();
         commonDao = CommonDao.getInstance();
         txtViewCarName = view.findViewById(R.id.txt_view_car_name);
         txtView_loadTxt = view.findViewById(R.id.txtView_loading);
@@ -311,7 +311,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         progressBar = view.findViewById(R.id.prog_assistance);
         tvNoContent = view.findViewById(R.id.txt_assistance_data_not_found);
 
-        preferenceUtil = new PreferenceUtil(getActivity().getApplicationContext());
+        preferenceUtil = new PreferenceUtil(requireActivity().getApplicationContext());
         controller = new AssistanceTabContentController(this);
     }
 
@@ -323,7 +323,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        new PreferenceUtil(Objects.requireNonNull(Objects.requireNonNull(getActivity())).getApplicationContext()).setOpenCountForRateApp();
+        new PreferenceUtil(Objects.requireNonNull(requireActivity()).getApplicationContext()).setOpenCountForRateApp();
     }
 
     @Override
@@ -342,8 +342,8 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         // here set the epub type for all assistance list item (eg. Warning Light, QRG, Tyre Information and more...)
         Values.ePubType = position + 1;
 
-        if (DetectConnection.checkInternetConnection(Objects.requireNonNull(getActivity()).getApplicationContext())) {
-            PushContentInfo info = commonDao.getNotificationData(getActivity().getApplicationContext(), Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()), Values.ePubType);
+        if (DetectConnection.checkInternetConnection(requireActivity().getApplicationContext())) {
+            PushContentInfo info = commonDao.getNotificationData(requireActivity().getApplicationContext(), Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()), Values.ePubType);
 
             if (info != null && !TextUtils.isEmpty(info.getCarId()) && !TextUtils.isEmpty(info.getLangId()) && !TextUtils.isEmpty(info.getePubId())) {
                 Logger.error("You have a update", "Do you want ?");
@@ -370,12 +370,12 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
                     dialog.dismiss();
 
-                    if (!DetectConnection.checkInternetConnection(getActivity().getApplicationContext())) {
+                    if (!DetectConnection.checkInternetConnection(requireActivity().getApplicationContext())) {
                         return;
                     }
-                    getActivity().runOnUiThread(() -> progressDialog = new ProgressDialogController(getActivity()).showDialog(getResources().getString(R.string.start_download)));
+                    requireActivity().runOnUiThread(() -> progressDialog = new ProgressDialogController(getActivity()).showDialog(getResources().getString(R.string.start_download)));
 
-                    new ApiCall().postContentDownload("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()), "" + Values.ePubType, NissanApp.getInstance().getDeviceID(getActivity().getApplicationContext()), new CompleteAPI() {
+                    new ApiCall().postContentDownload("" + Values.carType, "" + NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()), "" + Values.ePubType, NissanApp.getInstance().getDeviceID(requireActivity().getApplicationContext()), new CompleteAPI() {
                         @Override
                         public void onDownloaded(ResponseInfo responseInfo) {
 //                                Logger.error("status", "__________" + responseInfo.getStatusCode() + "____" + responseInfo.getMessage() + "____" + responseInfo.getUrl());;
@@ -432,7 +432,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
         switch (position) {
             case 0:
-                ((MainActivity) Objects.requireNonNull(getActivity())).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.WARNING_LIGHT));
+                ((MainActivity) requireActivity()).sendMsgToGoogleAnalytics(((MainActivity) requireActivity()).getAnalyticsFromAssistance(Analytics.WARNING_LIGHT));
                 frag = CombimeterFragment.newInstance(pageTitle);
                 break;
 
@@ -465,7 +465,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
         }
 
         if (frag != null) {
-            FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
             ft.replace(R.id.container, frag);
             ft.addToBackStack(Values.tabAssistance);
@@ -491,7 +491,7 @@ public class AssistanceFragment extends Fragment implements AdapterView.OnItemCl
 
     private void showErrorDialog(String msg) {
         DialogErrorFragment dialogFragment = DialogErrorFragment.getInstance(context, msg);
-        dialogFragment.show(Objects.requireNonNull(Objects.requireNonNull(getActivity())).getSupportFragmentManager(), "error_fragment");
+        dialogFragment.show(Objects.requireNonNull(requireActivity()).getSupportFragmentManager(), "error_fragment");
     }
 
 }

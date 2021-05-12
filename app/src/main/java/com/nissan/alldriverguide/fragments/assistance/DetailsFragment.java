@@ -92,7 +92,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
         title = view.findViewById(R.id.txt_title);
         progressBar = view.findViewById(R.id.progressBarDetailsFragment);
         linearBack = view.findViewById(R.id.linear_back);
-        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(getActivity(), new PreferenceUtil(getActivity()).getSelectedLang()));
+        resources = new Resources(requireActivity().getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(requireActivity(), new PreferenceUtil(getActivity()).getSelectedLang()));
     }
 
     private void setListener() {
@@ -103,24 +103,24 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
     private void loadData() throws IndexOutOfBoundsException {
         try {
             ArrayList<EpubInfo> list;
-            title.setText(Objects.requireNonNull(getArguments()).getString(TITLE)); // here set the title on top bar
+            title.setText(requireArguments().getString(TITLE)); // here set the title on top bar
             switch (Values.ePubType) { // compare with epub type
                 case Values.COMBIMETER_TYPE:
                     // check the toc file exist or not
-                    File ncxFile = new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.COMBIMETER + Values.TOC_DIRECTORY);
+                    File ncxFile = new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.COMBIMETER + Values.TOC_DIRECTORY);
 
                     if (ncxFile.exists()) {
-                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.COMBIMETER);
+                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.COMBIMETER);
 
                         if (list != null) {
                             htmlContent = "file://"
-                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()
+                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang()
                                     + Values.COMBIMETER
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(index).getHtmlLink());
                             Logger.error("loadData: ", htmlContent);
 
-                            ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.WARNING_LIGHT + Analytics.DOT + list.get(index).getTitle()));
+                            ((MainActivity) requireActivity()).sendMsgToGoogleAnalytics(((MainActivity) requireActivity()).getAnalyticsFromAssistance(Analytics.WARNING_LIGHT + Analytics.DOT + list.get(index).getTitle()));
                         }
                     }
                     break;
@@ -128,8 +128,8 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                 case Values.HOMEPAGE_TYPE:
 
                     Logger.error("Epub type ", " Home  " + index);
-                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
-                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
+                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
+                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
 
                         for (EpubInfo info : list
                         ) {
@@ -138,110 +138,110 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                         }
 
                         htmlContent = "file://"
-                                + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()
+                                + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang()
                                 + Values.HOME_PAGE
                                 .trim() + "/OEBPS/"
                                 + Uri.decode(list.get(index).getHtmlLink());
 
 
                         Logger.error("Epub type ", " content  " + htmlContent);
-                        ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.HOMEPAGE + Analytics.DOT + list.get(index).getTitle()));
+                        ((MainActivity) requireActivity()).sendMsgToGoogleAnalytics(((MainActivity) requireActivity()).getAnalyticsFromAssistance(Analytics.HOMEPAGE + Analytics.DOT + list.get(index).getTitle()));
                     }
                     break;
 
                 case Values.TYRE_TYPE:
-                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.TYRE + Values.TOC_DIRECTORY).exists()) {
-                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.TYRE);
+                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.TYRE + Values.TOC_DIRECTORY).exists()) {
+                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.TYRE);
 
                         if (list != null) {
                             htmlContent = "file://"
-                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()
+                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang()
                                     + Values.TYRE
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(index).getHtmlLink());
 
-                            ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.TYRE + Analytics.DOT + list.get(index).getTitle()));
+                            ((MainActivity) requireActivity()).sendMsgToGoogleAnalytics(((MainActivity) requireActivity()).getAnalyticsFromAssistance(Analytics.TYRE + Analytics.DOT + list.get(index).getTitle()));
                         }
                     }
                     break;
 
                 case Values.ENGINE_TYPE:
-                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.ENGINE + Values.TOC_DIRECTORY).exists()) {
-                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.ENGINE);
+                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.ENGINE + Values.TOC_DIRECTORY).exists()) {
+                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.ENGINE);
 
                         if (list != null) {
                             htmlContent = "file://"
-                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()
+                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang()
                                     + Values.ENGINE
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(index).getHtmlLink());
 
-                            ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.ENGINE + Analytics.DOT + list.get(index).getTitle()));
+                            ((MainActivity) requireActivity()).sendMsgToGoogleAnalytics(((MainActivity) requireActivity()).getAnalyticsFromAssistance(Analytics.ENGINE + Analytics.DOT + list.get(index).getTitle()));
                         }
                     }
                     break;
 
                 case Values.WARRANTY_TYPE:
-                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.WARRANTY + Values.TOC_DIRECTORY).exists()) {
-                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.WARRANTY);
+                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.WARRANTY + Values.TOC_DIRECTORY).exists()) {
+                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.WARRANTY);
 
                         if (list != null) {
                             htmlContent = "file://"
-                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()
+                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang()
                                     + Values.WARRANTY
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(index).getHtmlLink());
 
-                            ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.WARRANTY + Analytics.DOT + list.get(index).getTitle()));
+                            ((MainActivity) requireActivity()).sendMsgToGoogleAnalytics(((MainActivity) requireActivity()).getAnalyticsFromAssistance(Analytics.WARRANTY + Analytics.DOT + list.get(index).getTitle()));
                         }
                     }
                     break;
 
                 case Values.BUTTON_TYPE:
-                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.BUTTON + Values.TOC_DIRECTORY).exists()) {
-                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.BUTTON);
+                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.BUTTON + Values.TOC_DIRECTORY).exists()) {
+                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.BUTTON);
 
                         if (list != null) {
                             htmlContent = "file://"
-                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()
+                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang()
                                     + Values.BUTTON
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(index).getHtmlLink());
 
-                            ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.AUGMENTED_REALITY + Analytics.DOT + list.get(index).getTitle()));
+                            ((MainActivity) requireActivity()).sendMsgToGoogleAnalytics(((MainActivity) requireActivity()).getAnalyticsFromAssistance(Analytics.AUGMENTED_REALITY + Analytics.DOT + list.get(index).getTitle()));
                         }
                     }
                     break;
 
                 case Values.INFO_TYPE:
-                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.INFO + Values.TOC_DIRECTORY).exists()) {
-                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.INFO);
+                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.INFO + Values.TOC_DIRECTORY).exists()) {
+                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.INFO);
 
                         if (list != null) {
                             htmlContent = "file://"
-                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()
+                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang()
                                     + Values.INFO
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(index).getHtmlLink());
 
-                            ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.INFO));
+                            ((MainActivity) requireActivity()).sendMsgToGoogleAnalytics(((MainActivity) requireActivity()).getAnalyticsFromAssistance(Analytics.INFO));
                         }
                     }
                     break;
 
                 case Values.ASSISTANCE_TYPE:
-                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.WARRANTY + Values.TOC_DIRECTORY).exists()) {
+                    if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.WARRANTY + Values.TOC_DIRECTORY).exists()) {
                         // parse toc.ncx file and added into list(added like: Text/DG_ZE1_WARRANTY_QR17xx-0ZE1E0EUR_November_2017-4.xhtml#_idParaDest-10)
-                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.WARRANTY);
+                        list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.WARRANTY);
 
                         if (list != null) {
                             htmlContent = "file://"
-                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang()
+                                    + NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang()
                                     + Values.WARRANTY
                                     .trim() + "/OEBPS/"
                                     + Uri.decode(list.get(list.size() - 1).getHtmlLink());
 
-                            ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.WARRANTY + Analytics.DOT + list.get(index).getTitle()));
+                            ((MainActivity) requireActivity()).sendMsgToGoogleAnalytics(((MainActivity) requireActivity()).getAnalyticsFromAssistance(Analytics.WARRANTY + Analytics.DOT + list.get(index).getTitle()));
                         }
                     }
                     break;
@@ -300,11 +300,11 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                 if (webView.canGoBack()) {
                     webView.goBack();
                 } else {
-                    Objects.requireNonNull(getActivity()).onBackPressed();
+                    requireActivity().onBackPressed();
                 }
                 break;
             case R.id.linear_back:
-                Objects.requireNonNull(getActivity()).onBackPressed();
+                requireActivity().onBackPressed();
                 break;
             default:
                 break;
@@ -436,7 +436,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
             NissanApp.getInstance().setAssistanceInfo(assistanceInfo);
 
             Fragment frag = CallNissanAssistanceFragment.newInstance(resources.getStringArray(R.array.nissan_assistance_array)[1]);
-            FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
             ft.replace(R.id.container, frag);
             ft.addToBackStack(Values.tabExplore);
@@ -448,7 +448,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
 
     public void postAssistanceData() {
         int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
-        new ApiCall().postAssistanceTabContent(NissanApp.getInstance().getDeviceID(Objects.requireNonNull(getActivity())), "" + language_ID, "" + Values.carType, Values.EPUBID, "2", new CompleteAssistanceTabContent() {
+        new ApiCall().postAssistanceTabContent(NissanApp.getInstance().getDeviceID(requireActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "2", new CompleteAssistanceTabContent() {
             @Override
             public void onDownloaded(AssistanceInfo responseInfo) {
 
@@ -457,7 +457,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener {
                     NissanApp.getInstance().setAssistanceInfo(responseInfo);
 
                     Fragment frag = CallNissanAssistanceFragment.newInstance(resources.getStringArray(R.array.nissan_assistance_array)[1]);
-                    FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                    FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
                     ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                     ft.replace(R.id.container, frag);
                     ft.addToBackStack(Values.tabExplore);

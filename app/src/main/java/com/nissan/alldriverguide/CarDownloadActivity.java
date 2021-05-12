@@ -1206,6 +1206,7 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
         return new Gson().fromJson(preferenceUtil.retrieveMultiLangData(carType + "_" + Values.CAR_LANGUAGE_LIST), type);
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class LoadDataBase extends AsyncTask<String, Void, String> {
 
         @Override

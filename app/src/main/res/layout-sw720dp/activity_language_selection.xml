@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_size"
         android:layout_alignParentTop="true"
-        android:gravity="center|left"
+        android:gravity="center|start"
         android:orientation="horizontal">
 
         <TextView

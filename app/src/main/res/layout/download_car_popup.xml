@@ -53,13 +53,12 @@
                     android:layout_width="@dimen/ok_cancel_popup_width"
                     android:layout_height="@dimen/ok_cancel_popup_height"
                     android:layout_marginEnd=".2dp"
-                    android:layout_marginRight=".2dp"
                     android:background="@color/background"
                     android:scaleType="fitCenter"
                     android:layout_marginBottom="8dp"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/button_eur"
-                    android:textSize="@dimen/activity_horizontal_margin"
+                    android:textSize="@dimen/tutorial_detail"
                     android:contentDescription="TODO" />
 
                 <ImageButton
@@ -67,9 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginRight="@dimen/margin_back"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/delete_selector"
                     android:visibility="gone"
@@ -85,7 +82,6 @@
                     android:id="@+id/btn_rus"
                     android:layout_width="@dimen/ok_cancel_popup_width"
                     android:layout_height="@dimen/ok_cancel_popup_height"
-                    android:layout_marginLeft=".2dp"
                     android:layout_marginStart=".2dp"
                     android:background="@color/background"
                     android:layout_centerHorizontal="true"
@@ -100,9 +96,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginRight="@dimen/margin_back"
+                    android:layout_marginEnd="@dimen/margin_back"
                     android:background="@drawable/delete_selector"
                     android:visibility="gone"
                     android:contentDescription="TODO" />

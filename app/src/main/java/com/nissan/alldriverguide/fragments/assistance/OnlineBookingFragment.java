@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
@@ -57,20 +56,20 @@ public class OnlineBookingFragment extends Fragment {
 
     private void webViewInstantiate() {
 
-        txtViewTitle.setText(Objects.requireNonNull(getArguments()).getString(TITLE));
+        txtViewTitle.setText(requireArguments().getString(TITLE));
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setBuiltInZoomControls(true);
         webView.clearCache(true);
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new MyWebViewClient());
 
-        webView.loadUrl(Objects.requireNonNull(getArguments().getString(IMG_URL)));
+        webView.loadUrl(Objects.requireNonNull(requireArguments().getString(IMG_URL)));
         webView.requestFocus();
     }
 
     private void setListener() {
-        linearBack.setOnClickListener(view -> Objects.requireNonNull(getActivity()).onBackPressed());
-        btnBack.setOnClickListener(view -> Objects.requireNonNull(getActivity()).onBackPressed());
+        linearBack.setOnClickListener(view -> requireActivity().onBackPressed());
+        btnBack.setOnClickListener(view -> requireActivity().onBackPressed());
     }
 
     private void initView() {

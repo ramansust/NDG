@@ -16,7 +16,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -28,7 +28,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight=".65"
                 android:clickable="true"
                 android:onClick="buttonEvent"
@@ -38,7 +38,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_weight=".7"
                 android:clickable="true"
                 android:onClick="buttonEvent"
@@ -48,7 +48,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_weight=".7"
                 android:clickable="true"
                 android:onClick="buttonEvent"
@@ -58,7 +58,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_weight=".65"
                 android:clickable="true"
                 android:onClick="buttonEvent"
@@ -85,8 +85,8 @@
             <TextView
                 android:layout_width="55dp"
                 android:layout_height="0dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="80dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="80dp"
                 android:layout_weight="1.49"
                 android:clickable="true"
                 android:gravity="center"
@@ -112,7 +112,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -124,7 +124,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight=".65"
                 android:clickable="true"
                 android:onClick="buttonEvent"
@@ -134,7 +134,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_weight=".7"
                 android:clickable="true"
                 android:onClick="buttonEvent"
@@ -144,7 +144,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_weight=".7"
                 android:clickable="true"
                 android:onClick="buttonEvent"
@@ -154,7 +154,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_weight=".65"
                 android:clickable="true"
                 android:onClick="buttonEvent"
@@ -181,8 +181,8 @@
             <TextView
                 android:layout_width="58dp"
                 android:layout_height="0dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="80dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="80dp"
                 android:layout_weight="1.49"
                 android:clickable="true"
                 android:gravity="center"

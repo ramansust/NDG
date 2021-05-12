@@ -40,7 +40,6 @@ import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -69,7 +68,6 @@ public class TabFragment extends Fragment {
     private TextView txtViewUpdatedContent;
     private ImageView imageViewBack, imageViewClear;
     private static Resources resources;
-    private DisplayMetrics metrics;
     private PreferenceUtil preferenceUtil;
     private boolean isAnimation = false;
     public int currentTab;
@@ -89,7 +87,7 @@ public class TabFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((BaseTabFragmentActivity) Objects.requireNonNull(getActivity())).setMedia(this);
+        ((BaseTabFragmentActivity) requireActivity()).setMedia(this);
 
         if (fragmentView != null) {
             return fragmentView;
@@ -129,7 +127,7 @@ public class TabFragment extends Fragment {
     private void initializeView(View v) {
         context = getActivity();
         commondao = CommonDao.getInstance();
-        preferenceUtil = new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext());
+        preferenceUtil = new PreferenceUtil(requireActivity().getApplicationContext());
         getSearchKeyword = v.findViewById(R.id.input_search);
         getSearchKeyword.setHint(getResources().getString(R.string.search_box_hint).toUpperCase());// set hint text  allCaps
 
@@ -189,7 +187,7 @@ public class TabFragment extends Fragment {
      * Here check the content update
      */
     private void checkUpdatedContent() {
-        final ArrayList<PushContentInfo> list = commondao.getNotificationList(Objects.requireNonNull(getActivity()).getApplicationContext(), Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
+        final ArrayList<PushContentInfo> list = commondao.getNotificationList(requireActivity().getApplicationContext(), Values.carType, NissanApp.getInstance().getLanguageID(preferenceUtil.getSelectedLang()));
 
         if (list != null && list.size() > 0) {
             txtViewUpdatedContent.setVisibility(View.VISIBLE);
@@ -215,7 +213,7 @@ public class TabFragment extends Fragment {
     }
 
     private void loadResources() {
-        resources = new Resources(Objects.requireNonNull(getActivity()).getAssets(), metrics, NissanApp.getInstance().changeLocalLanguage(getActivity(), preferenceUtil.getSelectedLang()));
+        resources = new Resources(requireActivity().getAssets(), new DisplayMetrics(), NissanApp.getInstance().changeLocalLanguage(requireActivity(), preferenceUtil.getSelectedLang()));
     }
 
     /**
@@ -268,7 +266,7 @@ public class TabFragment extends Fragment {
                 case R.id.cancel_search:
                 case R.id.imageViewBack:
                     //                    cancelButtonAction();
-                    Objects.requireNonNull(getActivity()).onBackPressed();
+                    requireActivity().onBackPressed();
                     break;
 
                 case R.id.imageViewClearButton:
@@ -291,9 +289,9 @@ public class TabFragment extends Fragment {
 
             if (actionId == EditorInfo.IME_ACTION_SEARCH) { // here implement the keyboard search
 
-                View view = Objects.requireNonNull(getActivity()).getCurrentFocus();
+                View view = requireActivity().getCurrentFocus();
                 if (view != null) {
-                    new NissanApp().hideKeyboard(getActivity(), view);
+                    new NissanApp().hideKeyboard(requireActivity(), view);
                 }
 
                 String getKeyword = getSearchKeyword.getText().toString().trim();
@@ -301,18 +299,18 @@ public class TabFragment extends Fragment {
                 if (getKeyword.equalsIgnoreCase("")) {
                     Toast.makeText(getActivity(), "Please Input Search Keyword", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (new NissanApp().insertSearchDataIntoDatabase(getActivity().getApplicationContext(), getKeyword)) {
+                    if (new NissanApp().insertSearchDataIntoDatabase(requireActivity().getApplicationContext(), getKeyword)) {
                         long currentTime = System.currentTimeMillis();
 
-                        String lang_type = new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang();
-                        boolean isTagExists = commondao.isTagExists(getActivity().getApplicationContext(), getKeyword, Values.carType, lang_type);
+                        String lang_type = new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang();
+                        boolean isTagExists = commondao.isTagExists(requireActivity().getApplicationContext(), getKeyword, Values.carType, lang_type);
 
                         if (isTagExists) {
-                            int check_count = commondao.getCountForSpecificTag(getActivity().getApplicationContext(), getKeyword, Values.carType, lang_type);
-                            commondao.updateSearchCountInSearchTable(getActivity().getApplicationContext(), check_count + 1, currentTime + "", getKeyword, Values.carType, lang_type);
+                            int check_count = commondao.getCountForSpecificTag(requireActivity().getApplicationContext(), getKeyword, Values.carType, lang_type);
+                            commondao.updateSearchCountInSearchTable(requireActivity().getApplicationContext(), check_count + 1, currentTime + "", getKeyword, Values.carType, lang_type);
                         } else {
                             SearchModel searchModel = new SearchModel(getKeyword, System.currentTimeMillis() + "", 1, Values.carType, lang_type);
-                            commondao.insertNewKeywordInSearchTable(getActivity().getApplicationContext(), searchModel, Values.carType, lang_type);
+                            commondao.insertNewKeywordInSearchTable(requireActivity().getApplicationContext(), searchModel, Values.carType, lang_type);
                         }
                     } else {
                         Logger.error("not found", "______search_result!");

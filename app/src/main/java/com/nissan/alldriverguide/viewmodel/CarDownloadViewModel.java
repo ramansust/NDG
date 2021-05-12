@@ -6,6 +6,7 @@
 
 package com.nissan.alldriverguide.viewmodel;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
@@ -22,6 +23,7 @@ import androidx.lifecycle.MutableLiveData;
 
 public class CarDownloadViewModel extends AndroidViewModel implements CarListACompleteAPI {
 
+    @SuppressLint("StaticFieldLeak")
     private final Context context;
     private CarListContentController carListContentController;
 

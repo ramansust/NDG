@@ -29,13 +29,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/img_view_border"
-                android:layout_alignRight="@+id/img_view_border"
                 android:layout_alignBottom="@+id/img_view_border"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="0dp"
-                android:layout_marginRight="0dp"
                 android:layout_marginBottom="0dp"
                 android:background="@drawable/car_download_place_holder" />
 
@@ -65,7 +63,7 @@
                 android:id="@+id/img_btn_delete_or_download"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/ivMainCarImage"
+                android:layout_alignEnd="@+id/ivMainCarImage"
                 android:layout_alignBottom="@+id/ivMainCarImage"
                 android:layout_marginStart="@dimen/margin_left"
                 android:layout_marginLeft="@dimen/margin_left"

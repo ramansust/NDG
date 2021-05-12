@@ -30,7 +30,7 @@
                 android:id="@+id/txt_back_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/margin_back"
+                android:layout_marginEnd="@dimen/margin_back"
                 android:fontFamily="@font/nissan_brand_regular"
                 android:text="@string/back"
                 android:textColor="@color/white"
@@ -44,8 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/relativelayout_back2"
-            android:layout_toRightOf="@+id/linear_back"
+            android:layout_toStartOf="@+id/relativelayout_back2"
+            android:layout_toEndOf="@+id/linear_back"
             android:ellipsize="end"
             android:fontFamily="@font/nissan_brand_bold"
             android:gravity="center"
@@ -60,7 +60,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:gravity="center"
             android:orientation="horizontal"
@@ -69,7 +68,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_back"
+                android:layout_marginStart="@dimen/margin_back"
                 android:fontFamily="@font/nissan_brand_regular"
                 android:text="@string/back"
                 android:textColor="@color/white"
@@ -91,7 +90,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -153,7 +152,7 @@
                     android:background="@drawable/send_feedback_title_bg"
                     android:cursorVisible="true"
                     android:fontFamily="@font/nissan_brand_regular"
-                    android:gravity="top|left"
+                    android:gravity="top|start"
                     android:inputType="textMultiLine"
                     android:maxLines="10"
                     android:minLines="10"

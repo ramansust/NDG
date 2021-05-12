@@ -27,8 +27,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".4"
-                android:layout_marginLeft="55dp"
-                android:layout_marginRight="115dp"
+                android:layout_marginStart="55dp"
+                android:layout_marginEnd="115dp"
                 android:clickable="true"
                 android:onClick="buttonEvent"
                 android:tag="44"
@@ -38,8 +38,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight=".9"
-                android:layout_marginLeft="80dp"
-                android:layout_marginRight="75dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="75dp"
                 android:clickable="true"
                 android:onClick="buttonEvent"
                 android:tag="45"
@@ -70,8 +70,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginRight="100dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="100dp"
             android:layout_weight="1.6"
             android:clickable="true"
             android:onClick="buttonEvent"
@@ -81,8 +81,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="70dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="70dp"
             android:layout_weight="1" />
     </LinearLayout>
 

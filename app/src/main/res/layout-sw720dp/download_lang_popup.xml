@@ -75,7 +75,6 @@
                     android:layout_width="@dimen/ok_cancel_popup_width_720dp"
                     android:layout_height="@dimen/ok_cancel_popup_height_720dp"
                     android:layout_marginStart=".2dp"
-                    android:layout_marginLeft=".2dp"
                     android:layout_marginTop=".2dp"
                     android:background="@color/background"
                     android:fontFamily="@font/nissan_brand_bold"

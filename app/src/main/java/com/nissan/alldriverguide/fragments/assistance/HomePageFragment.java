@@ -83,13 +83,13 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
      *
      */
     private void loadData() {
-        title.setText(Objects.requireNonNull(Objects.requireNonNull(getArguments()).get(TITLE)).toString());
+        title.setText(Objects.requireNonNull(requireArguments().get(TITLE)).toString());
 
         // here check the toc.ncx is exist or not in sdCard
-        if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(Objects.requireNonNull(getActivity()).getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
+        if (new File(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE + Values.TOC_DIRECTORY).exists()) {
             // parseePub need to destination path like: /storage/emulated/0/.AllDriverGuide/leaf2017/leaf2017_en/.ar_homepage
-            list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(getActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
-            ((MainActivity) getActivity()).sendMsgToGoogleAnalytics(((MainActivity) getActivity()).getAnalyticsFromAssistance(Analytics.HOMEPAGE));
+            list = NissanApp.getInstance().parseePub(NissanApp.getInstance().getCarPath(Values.carType) + NissanApp.getInstance().getePubFolderPath(Values.carType) + Values.UNDERSCORE + new PreferenceUtil(requireActivity().getApplicationContext()).getSelectedLang() + Values.HOME_PAGE);
+            ((MainActivity) requireActivity()).sendMsgToGoogleAnalytics(((MainActivity) requireActivity()).getAnalyticsFromAssistance(Analytics.HOMEPAGE));
         }
 
         if (list != null && list.size() > 0) {
@@ -139,7 +139,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             }
 
             if (homePageList.size() > 0) {
-                adapter = new HomePageExpandableAdapter(getActivity().getApplicationContext(), homePageList);
+                adapter = new HomePageExpandableAdapter(requireContext().getApplicationContext(), homePageList);
 
                 expandableListView.setAdapter(adapter);
             }
@@ -158,7 +158,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         if (adapter != null) {
             adapter.setOnClickListener(index -> {
                 Fragment frag = DetailsFragment.newInstance(list.get(index).getIndex(), title.getText().toString().trim());
-                FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out);
                 ft.replace(R.id.container, frag);
                 ft.addToBackStack(Values.tabAssistance);
@@ -192,7 +192,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btn_back:
             case R.id.linear_back:
-                Objects.requireNonNull(getActivity()).onBackPressed();
+                requireActivity().onBackPressed();
                 break;
             default:
                 break;

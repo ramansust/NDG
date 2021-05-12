@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginRight="@dimen/margin_left"
-        android:layout_toLeftOf="@+id/img_view"
+        android:layout_marginEnd="@dimen/margin_left"
+        android:layout_toStartOf="@+id/img_view"
         android:fontFamily="@font/nissan_brand_bold"
         android:text="demo_text"
         android:textColor="@color/black" />
@@ -23,7 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
         android:background="@drawable/arrow"
         android:contentDescription="TODO" />

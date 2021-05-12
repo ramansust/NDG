@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_toLeftOf="@+id/img_view"
+        android:layout_toStartOf="@+id/img_view"
         android:ellipsize="end"
         android:fontFamily="@font/nissan_brand_bold"
         android:gravity="center_vertical|center"
@@ -26,7 +26,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:contentDescription="TODO" />
 

@@ -16,7 +16,7 @@
         android:layout_height="@dimen/height_size"
         android:layout_alignParentTop="true"
         android:background="@color/orange"
-        android:gravity="center|left"
+        android:gravity="center|start"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
