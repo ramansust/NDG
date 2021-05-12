@@ -174,17 +174,14 @@ public abstract class ARCommon implements GLSurfaceView.Renderer, SampleAppRende
         mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
     }
 
-    @SuppressWarnings("deprecation")
     public void setBackground(View v, String image) {
         try {
-
             Drawable d = Drawable.createFromPath(image);
-            v.setBackgroundDrawable(d);
+            v.setBackground(d);
             System.out.println("PopUpImage::" + image);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void updateConfiguration() {

@@ -101,17 +101,14 @@ public class ARNavara implements GLSurfaceView.Renderer, SampleAppRendererContro
 
     }
 
-    @SuppressWarnings("deprecation")
     public void setBackground(View v, String image) {
         try {
-
             Drawable d = Drawable.createFromPath(image);
-            v.setBackgroundDrawable(d);
+            v.setBackground(d);
             System.out.println("POP:::" + image);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     // Function for initializing the renderer.

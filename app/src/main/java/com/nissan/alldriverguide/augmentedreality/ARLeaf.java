@@ -101,17 +101,14 @@ public class ARLeaf implements GLSurfaceView.Renderer, SampleAppRendererControl,
 
     }
 
-    @SuppressWarnings("deprecation")
     public void setBackground(View v, String image) {
         try {
-
             Drawable d = Drawable.createFromPath(image);
-            v.setBackgroundDrawable(d);
+            v.setBackground(d);
             System.out.println("POP:::" + image);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     // Function for initializing the renderer.
@@ -143,7 +140,6 @@ public class ARLeaf implements GLSurfaceView.Renderer, SampleAppRendererControl,
 
             mActivity.layoutCameraView.removeAllViews();
             vuforiaAppSession.onResume();
-
         });
 
         ibInfo.setOnClickListener(v -> {
@@ -178,7 +174,6 @@ public class ARLeaf implements GLSurfaceView.Renderer, SampleAppRendererControl,
 
         });
         inflater = LayoutInflater.from(mActivity);
-
     }
 
     //Method for sub category image click
