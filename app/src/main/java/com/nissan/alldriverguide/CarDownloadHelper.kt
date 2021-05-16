@@ -170,7 +170,7 @@ class CarDownloadHelper @JvmOverloads constructor(
 
     }
 
-    fun extractEpubs() {
+    private fun extractEpubs() {
 
         val langPath = (langSavePath
                 ?: return) + "/" + File(langSavePath).name + "_" + selectedLang

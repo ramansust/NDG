@@ -54,9 +54,9 @@ open class BaseActivity : AppCompatActivity() {
             }
         }
 
-        internal fun onDownloadProgress(context: Context, progress: DOWNLOAD_PROGRESS,
-                                        progressDialog: ProgressDialog?,
-                                        showCarName: Boolean) {
+        private fun onDownloadProgress(context: Context, progress: DOWNLOAD_PROGRESS,
+                                       progressDialog: ProgressDialog?,
+                                       showCarName: Boolean) {
 
 
             val resources = context.resources
@@ -73,7 +73,7 @@ open class BaseActivity : AppCompatActivity() {
             }
         }
 
-        internal fun showErrorDialog(context: Context, msg: String) {
+        private fun showErrorDialog(context: Context, msg: String) {
             val dialogFragment = DialogErrorFragment.getInstance(context, msg)
             if (context is AppCompatActivity)
                 dialogFragment.show(context.supportFragmentManager, "error_fragment")

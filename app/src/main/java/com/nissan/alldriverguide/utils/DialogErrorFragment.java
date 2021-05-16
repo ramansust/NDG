@@ -39,7 +39,7 @@ public class DialogErrorFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.dialog_error_fragment, container);
 
         Objects.requireNonNull(Objects.requireNonNull(getDialog()).getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        Objects.requireNonNull(getDialog().getWindow()).setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         getDialog().requestWindowFeature(STYLE_NO_TITLE);
         setCancelable(false);

@@ -785,8 +785,6 @@ public class CommonDao {
             newHeadId = db.insert(PushNotificationTableEntity.TABLE_NAME, "null", cv);
 
             db.close();
-
-        } else {
         }
     }
 
