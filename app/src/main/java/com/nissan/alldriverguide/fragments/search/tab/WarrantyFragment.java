@@ -14,7 +14,6 @@ import com.nissan.alldriverguide.database.PreferenceUtil;
 import com.nissan.alldriverguide.utils.Values;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import androidx.fragment.app.Fragment;
 

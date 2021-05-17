@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -18,7 +19,8 @@
             android:layout_height="match_parent"
             android:layout_weight=".65"
             android:background="@android:color/transparent"
-            android:tag="20001" />
+            android:tag="20001"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/micra_new_radio_w_navi_type_b_main_middle"
@@ -26,7 +28,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1.7"
             android:background="@android:color/transparent"
-            android:tag="20002" />
+            android:tag="20002"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/micra_new_radio_w_navi_type_b_main_right"
@@ -34,7 +37,8 @@
             android:layout_height="match_parent"
             android:layout_weight=".65"
             android:background="@android:color/transparent"
-            android:tag="20003" />
+            android:tag="20003"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
 </LinearLayout>

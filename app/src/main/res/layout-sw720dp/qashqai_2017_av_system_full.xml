@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,7 +20,8 @@
             android:layout_height="match_parent"
             android:layout_weight="0.7"
             android:background="@android:color/transparent"
-            android:tag="12001" />
+            android:tag="12001"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btn_av_system_full_middle"
@@ -27,7 +29,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1.6"
             android:background="@android:color/transparent"
-            android:tag="12002" />
+            android:tag="12002"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btn_av_system_full_right"
@@ -35,7 +38,8 @@
             android:layout_height="match_parent"
             android:layout_weight="0.7"
             android:background="@android:color/transparent"
-            android:tag="12003" />
+            android:tag="12003"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
 

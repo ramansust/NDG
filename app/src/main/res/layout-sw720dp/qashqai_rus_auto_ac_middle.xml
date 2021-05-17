@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -24,21 +25,24 @@
                 android:layout_height="match_parent"
                 android:layout_weight=".90"
                 android:background="@android:color/transparent"
-                android:tag="59" />
+                android:tag="59"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.30"
                 android:background="@android:color/transparent"
-                android:tag="58" />
+                android:tag="58"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".80"
                 android:background="@android:color/transparent"
-                android:tag="54" />
+                android:tag="54"
+                tools:ignore="ButtonStyle" />
 
         </LinearLayout>
 
@@ -55,7 +59,8 @@
                 android:layout_weight=".90"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="59" />
+                android:tag="59"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:layout_width="0dp"
@@ -63,7 +68,8 @@
                 android:layout_weight="1.30"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="58" />
+                android:tag="58"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:layout_width="0dp"
@@ -71,7 +77,8 @@
                 android:layout_weight=".80"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="54" />
+                android:tag="54"
+                tools:ignore="ButtonStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -87,7 +94,8 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="57" />
+                android:tag="57"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:layout_width="0dp"
@@ -95,7 +103,8 @@
                 android:layout_weight="1.20"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="63" />
+                android:tag="63"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:layout_width="0dp"
@@ -103,7 +112,8 @@
                 android:layout_weight=".80"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="61" />
+                android:tag="61"
+                tools:ignore="ButtonStyle" />
         </LinearLayout>
     </LinearLayout>
 

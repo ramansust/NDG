@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -18,7 +19,8 @@
             android:layout_height="match_parent"
             android:layout_weight=".85"
             android:background="@android:color/transparent"
-            android:tag="40001" />
+            android:tag="40001"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btn_manual_ac_middle"
@@ -26,7 +28,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1.35"
             android:background="@android:color/transparent"
-            android:tag="40002" />
+            android:tag="40002"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btn_manual_ac_right"
@@ -34,7 +37,8 @@
             android:layout_height="match_parent"
             android:layout_weight=".80"
             android:background="@android:color/transparent"
-            android:tag="40003" />
+            android:tag="40003"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
 </LinearLayout>

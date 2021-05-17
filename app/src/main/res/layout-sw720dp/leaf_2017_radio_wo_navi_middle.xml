@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -25,7 +26,8 @@
                 android:layout_weight="1.2"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="19" />
+                android:tag="19"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:layout_width="0dp"
@@ -33,7 +35,8 @@
                 android:layout_weight=".9"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="20" />
+                android:tag="20"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:layout_width="0dp"
@@ -41,7 +44,8 @@
                 android:layout_weight=".9"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="21" />
+                android:tag="21"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:layout_width="0dp"
@@ -49,7 +53,8 @@
                 android:layout_weight=".9"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="22" />
+                android:tag="22"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:layout_width="0dp"
@@ -57,7 +62,8 @@
                 android:layout_weight="1.1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="23" />
+                android:tag="23"
+                tools:ignore="ButtonStyle" />
         </LinearLayout>
 
         <LinearLayout

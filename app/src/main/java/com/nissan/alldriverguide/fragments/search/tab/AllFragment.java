@@ -110,7 +110,7 @@ public class AllFragment extends Fragment {
 
                 try {
                     if (list.size() <= 0) {
-                        dataMap.remove(epubModel.getEpubType());
+                        dataMap.remove(headerTitle(epubModel.getEpubType()));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

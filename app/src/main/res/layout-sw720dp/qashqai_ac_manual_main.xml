@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -19,7 +20,8 @@
             android:layout_weight=".75"
             android:background="@android:color/transparent"
             android:clickable="true"
-            android:focusable="true" />
+            android:focusable="true"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/txt_view_ac_man_middle"
@@ -28,7 +30,8 @@
             android:layout_weight="1.50"
             android:background="@android:color/transparent"
             android:clickable="true"
-            android:focusable="true" />
+            android:focusable="true"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/txt_view_ac_man_right"
@@ -37,7 +40,8 @@
             android:layout_weight=".75"
             android:background="@android:color/transparent"
             android:clickable="true"
-            android:focusable="true" />
+            android:focusable="true"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
 </LinearLayout>

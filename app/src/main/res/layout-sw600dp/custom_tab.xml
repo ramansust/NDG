@@ -15,7 +15,6 @@
         android:id="@+id/iv_tab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:scaleType="fitXY"
         android:contentDescription="TODO" />
     <!-- Tab title -->
@@ -23,7 +22,6 @@
         android:id="@+id/tab_title"
         android:layout_width="500dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:maxLines="1"
         android:text="TAB"
         android:fontFamily="@font/nissan_brand_regular"

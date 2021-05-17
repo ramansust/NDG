@@ -33,7 +33,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="10dp"
-                android:layout_weight="1"
                 android:background="@drawable/search_bg"
                 android:cursorVisible="true"
                 android:drawableStart="@drawable/search"

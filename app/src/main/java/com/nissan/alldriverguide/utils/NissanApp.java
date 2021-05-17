@@ -774,7 +774,6 @@ public class NissanApp {
         }
 
         return file.exists();
-
     }
 
     /**

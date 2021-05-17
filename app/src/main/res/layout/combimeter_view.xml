@@ -6,9 +6,9 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/popupLayout"
         android:layout_width="350dp"
         android:layout_height="150dp"
-        android:id="@+id/popupLayout"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -18,8 +18,8 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:text=""
-            android:tag="1000" />
+            android:tag="1000"
+            android:text="" />
 
     </LinearLayout>
 

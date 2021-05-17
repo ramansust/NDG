@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -19,7 +20,8 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="69" />
+            android:tag="69"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:layout_width="0dp"
@@ -27,7 +29,8 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="70" />
+            android:tag="70"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
 

@@ -9,7 +9,6 @@
         android:id="@+id/top_recent_search_keyword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/rectangle_shape"
         android:ellipsize="end"
         android:fontFamily="@font/nissan_brand_regular"
