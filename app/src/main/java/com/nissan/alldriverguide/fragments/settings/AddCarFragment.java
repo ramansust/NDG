@@ -110,9 +110,11 @@ public class AddCarFragment extends Fragment implements AdapterView.OnItemClickL
 
         for (int i = 0; i < NissanApp.getInstance().getCarAllList().size(); i++) {
 
-            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 19) {
+            if (NissanApp.getInstance().getCarAllList().get(i).getId() == 20) {
+                NissanApp.getInstance().getCarAllList().get(i).setIndex(19);
+            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 19) {
                 NissanApp.getInstance().getCarAllList().get(i).setIndex(18);
-            } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 18) {
+            }else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 18) {
                 NissanApp.getInstance().getCarAllList().get(i).setIndex(17);
             } else if (NissanApp.getInstance().getCarAllList().get(i).getId() == 14) {
                 NissanApp.getInstance().getCarAllList().get(i).setIndex(16);

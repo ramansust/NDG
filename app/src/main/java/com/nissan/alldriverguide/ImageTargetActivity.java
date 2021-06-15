@@ -44,6 +44,7 @@ import com.nissan.alldriverguide.augmentedreality.ARXtrailRUS;
 import com.nissan.alldriverguide.augmentedreality.cars.ARLeaf2019;
 import com.nissan.alldriverguide.augmentedreality.cars.ARNewNissanJuke2019;
 import com.nissan.alldriverguide.augmentedreality.cars.ARQashqai2017;
+import com.nissan.alldriverguide.augmentedreality.cars.ARQashqai2021;
 import com.nissan.alldriverguide.augmentedreality.cars.ARXtrail2020Eur;
 import com.nissan.alldriverguide.customviews.DialogController;
 import com.nissan.alldriverguide.database.PreferenceUtil;
@@ -136,6 +137,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
     private ARLeaf2019 mRendererLeaf2019;
     private ARNewNissanJuke2019 mRendererJuke2019;
     private ARXtrail2020Eur mRendererXtrail2020Eur;
+    private ARQashqai2021 mRendererQashqai2021Eur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -224,6 +226,10 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
 
             case 19:
                 mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "XtrailEur2020.xml");
+                break;
+
+            case 20:
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "xtrail2017.xml");
                 break;
 
             default:
@@ -442,6 +448,11 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
             case 19:
                 mRendererXtrail2020Eur = new ARXtrail2020Eur(this, vuforiaAppSession);
                 mGlView.setRenderer(mRendererXtrail2020Eur);
+                break;
+
+            case 20:
+                mRendererQashqai2021Eur = new ARQashqai2021(this, vuforiaAppSession);
+                mGlView.setRenderer(mRendererQashqai2021Eur);
                 break;
 
             default:
@@ -671,6 +682,9 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 break;
             case 19:
                 mRendererXtrail2020Eur.updateConfiguration();
+                break;
+            case 20:
+                mRendererQashqai2021Eur.updateConfiguration();
                 break;
             default:
                 break;

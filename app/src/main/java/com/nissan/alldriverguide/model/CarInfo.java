@@ -17,6 +17,27 @@ public class CarInfo {
     private int index;
     private String versionName;
     private int versionCode;
+
+    @Override
+    public String toString() {
+        return "CarInfo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
+                ", dateTime='" + dateTime + '\'' +
+                ", region='" + region + '\'' +
+                ", selectedLanguage='" + selectedLanguage + '\'' +
+                ", selectedCar=" + selectedCar +
+                ", isSection=" + isSection +
+                ", carImg='" + carImg + '\'' +
+                ", index=" + index +
+                ", versionName='" + versionName + '\'' +
+                ", versionCode=" + versionCode +
+                ", parentCarId=" + parentCarId +
+                ", carModelVersion='" + carModelVersion + '\'' +
+                '}';
+    }
+
     private int parentCarId;
     private String carModelVersion;
 

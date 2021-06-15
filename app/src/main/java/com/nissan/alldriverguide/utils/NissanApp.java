@@ -874,6 +874,9 @@ public class NissanApp {
             case 19:
                 carPath = Values.PATH + Values.xtrail2020;
                 break;
+            case 20:
+                carPath = Values.PATH + Values.qashqai2021;
+                break;
 
             default:
                 break;
@@ -960,6 +963,9 @@ public class NissanApp {
                 break;
             case 19:
                 path = Values.xtrail2020;
+                break;
+            case 20:
+                path = Values.qashqai2021;
                 break;
 
             default:

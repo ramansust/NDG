@@ -33,6 +33,7 @@ public class Values {
     public static final String leaf_2019 = "/leaf2019";
     public static final String juke_2019 = "/jukef16";
     public static final String xtrail2020 = "/xtrail2020";
+    public static final String qashqai2021 = "/j12qashqai";
     public static final String HOME_PAGE = "/.ar_homepage";
     public static final String BUTTON = "/.ar_button";
     public static final String INFO = "/.ar_info";

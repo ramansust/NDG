@@ -25,6 +25,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -72,8 +74,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import static com.nissan.alldriverguide.utils.Values.DEFAULT_CLICK_TIMEOUT;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
@@ -96,8 +96,8 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
     private ArrayList<Object> getList = new ArrayList<>();
     private final String[] carNames = {"Qashqai EUR Specs", "Qashqai RUS Specs", "Juke", "X-Trail EUR Specs", "X-Trail RUS Specs",
             "Pulsar", "Micra", "Note", "Leaf", "Navara", "All New Nissan Micra", "New Nissan QASHQAI", "Nissan X-TRAIL",
-            "New Nissan LEAF", "New Nissan X-TRAIL RUS", "New Nissan QASHQAI RUS", "Leaf 2019", "New Nissan Juke", "X-TRAIL EUR 2020"};
-    private final int[] indices = {1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11, 16, 17, 18};
+            "New Nissan LEAF", "New Nissan X-TRAIL RUS", "New Nissan QASHQAI RUS", "Leaf 2019", "New Nissan Juke", "X-TRAIL EUR 2020", "NEW NISSAN QASHQAI"};
+    private final int[] indices = {1, 0, 2, 4, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15, 13, 11, 16, 17, 18, 19};
     private final int[] previousCarArray = {1, 2, 4, 5, 7, 9, 3};
 
     private List<Parent_car_list> parent_car_lists = null;
