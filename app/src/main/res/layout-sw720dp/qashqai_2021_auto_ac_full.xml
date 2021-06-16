@@ -8,15 +8,14 @@
 
     <LinearLayout
         android:id="@+id/popupLayout"
-        android:layout_width="350dp"
-        android:layout_height="167dp"
+        android:layout_width="@dimen/width_500dp"
+        android:layout_height="@dimen/width_100dp"
         android:layout_gravity="center"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
             android:weightSum="3">
 
@@ -24,7 +23,7 @@
                 android:id="@+id/btn_auto_ac_full_left"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".7"
+                android:layout_weight="0.6"
                 android:background="@android:color/transparent"
                 android:tag="11001"
                 tools:ignore="ButtonStyle" />
@@ -33,7 +32,7 @@
                 android:id="@+id/btn_auto_ac_full_middle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.6"
+                android:layout_weight="1.8"
                 android:background="@android:color/transparent"
                 android:tag="11002"
                 tools:ignore="ButtonStyle" />
@@ -42,7 +41,7 @@
                 android:id="@+id/btn_auto_ac_full_right"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".7"
+                android:layout_weight="0.6"
                 android:background="@android:color/transparent"
                 android:tag="11003"
                 tools:ignore="ButtonStyle" />

@@ -13,13 +13,18 @@
     <dimen name="tutorial_title">20sp</dimen>
     <dimen name="tutorial_detail">22sp</dimen>
     <dimen name="tab_title">18sp</dimen>
+    <dimen name="width_80dp">80dp</dimen>
+    <dimen name="width_100dp">100dp</dimen>
     <dimen name="width_350dp">350dp</dimen>
+    <dimen name="width_150dp">150dp</dimen>
     <dimen name="width_175dp">175dp</dimen>
     <dimen name="width_700dp">700dp</dimen>
     <dimen name="width_200dp">200dp</dimen>
+    <dimen name="width_250dp">250dp</dimen>
     <dimen name="width_300dp">300dp</dimen>
     <dimen name="width_400dp">400dp</dimen>
     <dimen name="width_500dp">500dp</dimen>
+    <dimen name="width_600dp">600dp</dimen>
     <dimen name="width_730dp">730dp</dimen>
 
 </resources>

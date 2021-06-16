@@ -50,6 +50,9 @@ public class Analytics {
     public static final String PARK_ASSIST = "park assist";
     public static final String INTELLIGENT_PARK_ASSIST = "intelligent park assist";
     public static final String ALL_MODE = "all mode";
+    public static final String ADP = "driving position memory system";
+    public static final String HAZARD_LIGHT = "hazard light";
+    public static final String GEAR_MODE = "gear mode";
 
     public static final String PLATFORM = "a";
 

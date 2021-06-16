@@ -7,16 +7,17 @@
 
     <LinearLayout
         android:id="@+id/popupLayout"
-        android:layout_width="@dimen/width_300dp"
-        android:layout_height="@dimen/width_300dp"
-        android:orientation="vertical">
+        android:layout_width="@dimen/width_350dp"
+        android:layout_height="@dimen/width_150dp">
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:onClick="buttonEvent"
-            android:tag="14" />
+            android:tag="1000"
+            android:text="" />
+
     </LinearLayout>
 
 </LinearLayout>

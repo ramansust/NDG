@@ -229,7 +229,7 @@ public class ImageTargetActivity extends AppCompatActivity implements SampleAppl
                 break;
 
             case 20:
-                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "xtrail2017.xml");
+                mDatasetStrings.add(NissanApp.getInstance().getCarPath(Values.carType) + Values.ASSETS + "j12qashqai.xml");
                 break;
 
             default:

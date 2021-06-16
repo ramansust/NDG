@@ -7,10 +7,18 @@
 
     <LinearLayout
         android:id="@+id/popupLayout"
-        android:layout_width="@dimen/width_500dp"
-        android:layout_height="@dimen/width_400dp"
+        android:layout_width="@dimen/width_400dp"
+        android:layout_height="@dimen/width_350dp"
         android:orientation="horizontal"
         android:weightSum="2">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.4"
+            android:background="@android:color/transparent"
+            android:onClick="buttonEvent"
+            android:tag="71" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -29,13 +37,6 @@
 
         </LinearLayout>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.4"
-            android:background="@android:color/transparent"
-            android:onClick="buttonEvent"
-            android:tag="70" />
 
     </LinearLayout>
 
