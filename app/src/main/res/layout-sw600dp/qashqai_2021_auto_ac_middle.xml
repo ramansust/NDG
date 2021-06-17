@@ -7,8 +7,8 @@
 
     <LinearLayout
         android:id="@+id/popupLayout"
-        android:layout_width="@dimen/width_300dp"
-        android:layout_height="@dimen/width_100dp"
+        android:layout_width="@dimen/width_400dp"
+        android:layout_height="@dimen/width_120dp"
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="3">

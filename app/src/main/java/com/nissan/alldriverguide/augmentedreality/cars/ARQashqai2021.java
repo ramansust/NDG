@@ -37,23 +37,24 @@ public class ARQashqai2021 extends ARCommon {
         img_view.setOnClickListener(v -> {
 
             switch (v.getId()) {
-                case R.id.btn_ac_manual_full_left:
+                //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  drawable name change korte hobe
+                case R.id.btn_manual_ac_full_left:
                     mActivity.layoutCameraView.removeAllViews();
-                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_2017_ac_manual_left, null, false);
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.qashqai_2021_manual_ac_left, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "xtrail_2020_ac_manual_left.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
                     break;
 
-                case R.id.btn_ac_manual_full_middle:
+                case R.id.btn_manual_ac_full_middle:
                     mActivity.layoutCameraView.removeAllViews();
-                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_2017_ac_manual_middle, null, false);
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.qashqai_2021_manual_ac_middle, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "xtrail_2020_ac_manual_middle.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
                     break;
 
-                case R.id.btn_ac_manual_full_right:
+                case R.id.btn_manual_ac_full_right:
                     mActivity.layoutCameraView.removeAllViews();
-                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_2017_ac_manual_right, null, false);
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.qashqai_2021_manual_ac_right, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "xtrail_2020_ac_manual_right.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
                     break;
@@ -78,24 +79,24 @@ public class ARQashqai2021 extends ARCommon {
                     setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "xtrail_2020_radio_wo_navi_right.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
                     break;
-
-                case R.id.btn_radio_full_left:
+//aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  drawable name change korte hobe
+                case R.id.btn_navi_full_left:
                     mActivity.layoutCameraView.removeAllViews();
-                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_2017_radio_navi_left, null, false);
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.qashqai_2021_navi_left, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "xtrail_2020_radio_navi_left.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
                     break;
 
-                case R.id.btn_radio_full_middle:
+                case R.id.btn_navi_full_middle:
                     mActivity.layoutCameraView.removeAllViews();
-                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_2017_radio_navi_middle, null, false);
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.qashqai_2021_navi_middle, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "xtrail_2020_radio_navi_middle.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
                     break;
 
-                case R.id.btn_radio_full_right:
+                case R.id.btn_navi_full_right:
                     mActivity.layoutCameraView.removeAllViews();
-                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_2017_radio_navi_right, null, false);
+                    ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.qashqai_2021_navi_right, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "xtrail_2020_radio_navi_right.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
                     break;
@@ -183,7 +184,7 @@ public class ARQashqai2021 extends ARCommon {
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                } else if (userDataToCompare.equalsIgnoreCase("trip_reset_1")
+                } else if (userDataToCompare.equalsIgnoreCase("sos")
                         || userDataToCompare.equalsIgnoreCase("trip_reset_2")
                         || userDataToCompare.equalsIgnoreCase("trip_reset_3")
                 ) {
@@ -194,10 +195,10 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-
-                    Values.ar_value = Analytics.TRIP_RESET;
+//done-----------------------------complete  sos drawable,vuforia key change
+                    Values.ar_value = Analytics.SOS;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
-                            R.layout.xtrail_2017_tripreset_switch, null, false);
+                            R.layout.qashqai_2021_sos, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout, drawables + "xtrail_2020_tripreset_switch.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
@@ -242,7 +243,7 @@ public class ARQashqai2021 extends ARCommon {
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                } else if (userDataToCompare.equalsIgnoreCase("switch_1")
+                } else if (userDataToCompare.equalsIgnoreCase("multiswitch")
                         || userDataToCompare.equalsIgnoreCase("switch_2")
                         || userDataToCompare.equalsIgnoreCase("switch_3")
                         || userDataToCompare.equalsIgnoreCase("switch_4")
@@ -255,10 +256,10 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-
+//done-----------------------------complete drawable vuforia add
                     Values.ar_value = Analytics.MIXED_PANEL;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
-                            R.layout.xtrail_2017_multi_switch, null, false);
+                            R.layout.qashqai_2021_multi_switch, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout, drawables + "xtrail_2020_multi_switch.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
@@ -354,11 +355,11 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-
+//////////////////////////////done complete//////////////////////
 
                     Values.ar_value = Analytics.MANUAL_AC;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
-                            R.layout.xtrail_2017_ac_manual_middle, null, false);
+                            R.layout.qashqai_2021_manual_ac_middle, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout, drawables + "xtrail_2020_ac_manual_middle.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
@@ -376,10 +377,10 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-
+//////////////////////////////done complete//////////////////////
                     Values.ar_value = Analytics.MANUAL_AC;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
-                            R.layout.xtrail_2017_ac_manual_left, null, false);
+                            R.layout.qashqai_2021_manual_ac_left, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout, drawables + "xtrail_2020_ac_manual_left.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
@@ -395,10 +396,10 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-
+//////////////////////////////done complete//////////////////////
                     Values.ar_value = Analytics.MANUAL_AC;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
-                            R.layout.xtrail_2017_ac_manual_right, null, false);
+                            R.layout.qashqai_2021_manual_ac_right, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout, drawables + "xtrail_2020_ac_manual_right.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
@@ -412,17 +413,20 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-
+//////////////////////////////done complete//////////////////////
                     Values.ar_value = Analytics.MANUAL_AC;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
-                            R.layout.xtrail_2017_ac_manual_full, null, false);
+                            R.layout.qashqai_2021_manual_ac_full, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout, drawables + "xtrail_2020_ac_manual_full.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_ac_manual_full_left));
-                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_ac_manual_full_middle));
-                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_ac_manual_full_right));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_manual_ac_full_left));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_manual_ac_full_middle));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_manual_ac_full_right));
+
+
+                    ///////done///////////////////////////////////////////complete draawble,vuforia value change korte hobe
 
                 } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_01")
                         || userDataToCompare.equalsIgnoreCase("radio_wo_navi_02")
@@ -436,15 +440,16 @@ public class ARQashqai2021 extends ARCommon {
                         e.printStackTrace();
                     }
 
+                    Values.ar_value = Analytics.RADIO_W_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
-                            R.layout.xtrail_2017_radio_wo_navi_full, null, false);
+                            R.layout.qashqai_2021_navi_full, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout, drawables + "xtrail_2020_radio_wo_navi_full.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_wo_navi_full_left));
-                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_wo_navi_full_middle));
-                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_radio_wo_navi_full_right));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_navi_full_left));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_navi_full_middle));
+                    buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_navi_full_right));
 
                 } else if (userDataToCompare.equalsIgnoreCase("radio_wo_navi_left_01")
                         || userDataToCompare.equalsIgnoreCase("radio_wo_navi_left_02")
@@ -458,10 +463,10 @@ public class ARQashqai2021 extends ARCommon {
                         e.printStackTrace();
                     }
 
-
-                    Values.ar_value = Analytics.RADIO_WO_NAVI;
+///////done///////////////////////////////////////////complete draawble,vuforia value change korte hobe
+                    Values.ar_value = Analytics.RADIO_W_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
-                            R.layout.xtrail_2017_radio_wo_navi_left, null, false);
+                            R.layout.qashqai_2021_navi_left, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout, drawables + "xtrail_2020_radio_wo_navi_left.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
@@ -477,10 +482,10 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-
-                    Values.ar_value = Analytics.RADIO_WO_NAVI;
+///////done///////////////////////////////////////////complete draawble,vuforia value change korte hobe
+                    Values.ar_value = Analytics.RADIO_W_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
-                            R.layout.xtrail_2017_radio_wo_navi_right, null, false);
+                            R.layout.qashqai_2021_navi_right, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout, drawables + "xtrail_2020_radio_wo_navi_right.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
@@ -497,10 +502,10 @@ public class ARQashqai2021 extends ARCommon {
                         e.printStackTrace();
                     }
 
-
-                    Values.ar_value = Analytics.RADIO_WO_NAVI;
+///////done///////////////////////////////////////////complete draawble,vuforia value change korte hobe
+                    Values.ar_value = Analytics.RADIO_W_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
-                            R.layout.xtrail_2017_radio_wo_navi_middle, null, false);
+                            R.layout.qashqai_2021_navi_middle, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout, drawables + "xtrail_2020_radio_wo_navi_middle.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
@@ -593,12 +598,7 @@ public class ARQashqai2021 extends ARCommon {
                         || userDataToCompare.equalsIgnoreCase("parking_brake_3")
                         || userDataToCompare.equalsIgnoreCase("parking_brake_4")
                         || userDataToCompare.equalsIgnoreCase("parking_brake_5")
-                        || userDataToCompare.equalsIgnoreCase("parking_brake_6")
-                        || userDataToCompare.equalsIgnoreCase("parking_brake_7")
-                        || userDataToCompare.equalsIgnoreCase("parking_brake_8")) {
-
-                    Logger.error("Xtrail EUR parking", "------------------");
-
+                        || userDataToCompare.equalsIgnoreCase("parking_brake_6")) {
 
                     try {
                         ImageTargetActivity.isDetected = true;
@@ -606,16 +606,62 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-
+////////////////////////////done complete ...............................
                     Values.ar_value = Analytics.PARKING_BRAKE;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
-                            R.layout.xtrail_2017_parking_brake, null, false);
-                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "xtrail_2020_parking_brake.png");
+                            R.layout.qashqai_2021_parking_brake, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "j12qashqai_parking_brake.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                } else if (userDataToCompare.equalsIgnoreCase("all_mode_1")
-                        || userDataToCompare.equalsIgnoreCase("all_mode_2")) {
+                } else if (userDataToCompare.equalsIgnoreCase("qi_charger")
+                        || userDataToCompare.equalsIgnoreCase("parking_brake_2")
+                        || userDataToCompare.equalsIgnoreCase("parking_brake_3")
+                        || userDataToCompare.equalsIgnoreCase("parking_brake_4")
+                        || userDataToCompare.equalsIgnoreCase("parking_brake_5")
+                        || userDataToCompare.equalsIgnoreCase("parking_brake_6")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        e.printStackTrace();
+                    }
+////////////////////////////done complete ...............................
+                    Values.ar_value = Analytics.QI_CHARGER;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.qashqai_2021_qi_charger, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "j12qashqai_parking_brake.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("seat_heat")
+                        || userDataToCompare.equalsIgnoreCase("parking_brake_2")
+                        || userDataToCompare.equalsIgnoreCase("parking_brake_3")
+                        || userDataToCompare.equalsIgnoreCase("parking_brake_4")
+                        || userDataToCompare.equalsIgnoreCase("parking_brake_5")
+                        || userDataToCompare.equalsIgnoreCase("parking_brake_6")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        e.printStackTrace();
+                    }
+////////////////////////////done complete ...............................
+                    Values.ar_value = Analytics.SEAT_HEAT;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.qashqai_2021_seat_heat, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "j12qashqai_parking_brake.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                }else if (userDataToCompare.equalsIgnoreCase("d_mode_1")
+                        || userDataToCompare.equalsIgnoreCase("d_mode_2")
+                        || userDataToCompare.equalsIgnoreCase("d_mode_3")
+                        || userDataToCompare.equalsIgnoreCase("d_mode_4")
+                        || userDataToCompare.equalsIgnoreCase("d_mode_5")
+                        || userDataToCompare.equalsIgnoreCase("d_mode_6")) {
 
 
                     try {
@@ -624,11 +670,11 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-
-                    Values.ar_value = Analytics.PARKING_BRAKE;
+////////////////////////////done complete ...............................
+                    Values.ar_value = Analytics.D_MODE;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
-                            R.layout.xtrail_2017_all_mode, null, false);
-                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "xtrail_2020_all_mode.png");
+                            R.layout.qashqai_2021_d_mode, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "j12qashqai_d_mode.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
@@ -649,6 +695,27 @@ public class ARQashqai2021 extends ARCommon {
                     Values.ar_value = Analytics.HAZARD_LIGHT;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_hazard_light, null, false);
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "j12qashqai_hazard.png");
+                    mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
+                    mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
+
+                } else if (userDataToCompare.equalsIgnoreCase("power_window")
+                        || userDataToCompare.equalsIgnoreCase("hazard_2")
+                        || userDataToCompare.equalsIgnoreCase("hazard_3")
+                        || userDataToCompare.equalsIgnoreCase("hazard_4")
+                        || userDataToCompare.equalsIgnoreCase("hazard_5")
+                        || userDataToCompare.equalsIgnoreCase("hazard_6")) {
+
+                    try {
+                        ImageTargetActivity.isDetected = true;
+                        vuforiaAppSession.pauseAR();
+                    } catch (SampleApplicationException e) {
+                        e.printStackTrace();
+                    }
+//Done---------------------------complete  drawable vuforia
+                    Values.ar_value = Analytics.POWER_WINDOW;
+                    ImageTargetActivity.inflatedLayout = inflater.inflate(
+                            R.layout.qashqai_2021_power_window, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout, drawables + "j12qashqai_hazard.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));

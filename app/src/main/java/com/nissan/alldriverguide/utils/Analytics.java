@@ -52,7 +52,11 @@ public class Analytics {
     public static final String ALL_MODE = "all mode";
     public static final String ADP = "driving position memory system";
     public static final String HAZARD_LIGHT = "hazard light";
+    public static final String POWER_WINDOW = "power window control";
     public static final String GEAR_MODE = "gear mode";
+    public static final String D_MODE = "d mode";
+    public static final String QI_CHARGER = "qi charger";
+    public static final String SEAT_HEAT = "seat heat";
 
     public static final String PLATFORM = "a";
 
