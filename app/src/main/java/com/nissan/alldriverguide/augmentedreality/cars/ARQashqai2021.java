@@ -235,7 +235,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-
+//////////////////////////have to add it sunday
                     Values.ar_value = Analytics.START_STOP_IGNITION;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.xtrail_2017_start_stop_ignition, null, false);
