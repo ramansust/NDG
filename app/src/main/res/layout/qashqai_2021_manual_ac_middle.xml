@@ -9,8 +9,8 @@
         android:id="@+id/popupLayout"
         android:layout_width="@dimen/width_300dp"
         android:layout_height="@dimen/width_100dp"
-        android:orientation="vertical"
         android:layout_gravity="center"
+        android:orientation="vertical"
         android:weightSum="2">
 
         <LinearLayout
@@ -26,7 +26,7 @@
                 android:layout_weight="0.95"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="64" />
+                android:tag="58" />
 
             <Button
                 android:layout_width="0dp"
@@ -34,7 +34,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="64" />
+                android:tag="59" />
 
             <Button
                 android:layout_width="0dp"
@@ -42,7 +42,7 @@
                 android:layout_weight="1.1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="64" />
+                android:tag="60" />
 
             <Button
                 android:layout_width="0dp"
@@ -50,7 +50,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="64" />
+                android:tag="61" />
 
             <Button
                 android:layout_width="0dp"
@@ -73,7 +73,7 @@
                 android:layout_weight="1.2"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="64" />
+                android:tag="62" />
 
             <Button
                 android:layout_width="0dp"
@@ -81,7 +81,7 @@
                 android:layout_weight="0.6"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="64" />
+                android:tag="62" />
 
             <Button
                 android:layout_width="0dp"
@@ -89,7 +89,7 @@
                 android:layout_weight="1.2"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="64" />
+                android:tag="62" />
 
         </LinearLayout>
 
