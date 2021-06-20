@@ -35,13 +35,16 @@
     <dimen name="width_200dp">200dp</dimen>
     <dimen name="width_300dp">300dp</dimen>
     <dimen name="width_400dp">400dp</dimen>
+    <dimen name="width_450dp">450dp</dimen>
     <dimen name="width_500dp">500dp</dimen>
     <dimen name="width_365dp">365dp</dimen>
     <dimen name="width_730dp">730dp</dimen>
     <dimen name="width_352dp">352dp</dimen>
     <dimen name="width_546dp">546dp</dimen>
     <dimen name="width_600dp">600dp</dimen>
+    <dimen name="width_650dp">650dp</dimen>
     <dimen name="width_528dp">528dp</dimen>
+    <dimen name="width_800dp">800dp</dimen>
 
 
     <dimen name="dialog_text_size">15sp</dimen>
