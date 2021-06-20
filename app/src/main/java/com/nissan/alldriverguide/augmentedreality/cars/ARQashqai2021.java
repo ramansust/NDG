@@ -36,7 +36,7 @@ public class ARQashqai2021 extends ARCommon {
         img_view.setOnClickListener(v -> {
 
             switch (v.getId()) {
-                //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  drawable name change korte hobe
+
                 case R.id.btn_manual_ac_full_left:
                     mActivity.layoutCameraView.removeAllViews();
                     ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.qashqai_2021_manual_ac_left, null, false);
@@ -58,7 +58,7 @@ public class ARQashqai2021 extends ARCommon {
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
                     break;
 
-                case R.id.btn_radio_wo_navi_full_left:
+                /*case R.id.btn_radio_wo_navi_full_left:
                     mActivity.layoutCameraView.removeAllViews();
                     ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_2017_radio_wo_navi_left, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "xtrail_2020_radio_wo_navi_left.png");
@@ -77,8 +77,8 @@ public class ARQashqai2021 extends ARCommon {
                     ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.xtrail_2017_radio_wo_navi_right, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "xtrail_2020_radio_wo_navi_right.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
-                    break;
-//aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  done
+                    break;*/
+
                 case R.id.btn_navi_full_left:
                     mActivity.layoutCameraView.removeAllViews();
                     ImageTargetActivity.inflatedLayout_second = inflater.inflate(R.layout.qashqai_2021_navi_left, null, false);
@@ -99,7 +99,7 @@ public class ARQashqai2021 extends ARCommon {
                     setBackground(ImageTargetActivity.inflatedLayout_second, drawables + "j12qashqai_navi_right.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout_second);
                     break;
-//aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
                 case R.id.btn_auto_ac_full_left:
                     mActivity.layoutCameraView.removeAllViews();
                     ImageTargetActivity.inflatedLayout_second = inflater.inflate(
@@ -168,7 +168,7 @@ public class ARQashqai2021 extends ARCommon {
                         || userDataToCompare.equalsIgnoreCase("steering_right_2")
                         || userDataToCompare.equalsIgnoreCase("steering_right_3")
                 ) {
-
+//raman
                     try {
                         ImageTargetActivity.isDetected = true;
                         vuforiaAppSession.pauseAR();
@@ -194,7 +194,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//done-----------------------------complete  sos drawable,vuforia key change
+//raman
                     Values.ar_value = Analytics.SOS;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_sos, null, false);
@@ -214,7 +214,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//done-----------------------------complete
+
                     Values.ar_value = Analytics.COMBINATION_METER;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_combimeter_view, null, false);
@@ -235,7 +235,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//////////////////////////have to add it sunday
+
                     Values.ar_value = Analytics.START_STOP_IGNITION;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_start_stop_ignition, null, false);
@@ -256,7 +256,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//done-----------------------------complete drawable vuforia add
+//raman
                     Values.ar_value = Analytics.MIXED_PANEL;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_multi_switch, null, false);
@@ -357,7 +357,6 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//////////////////////////////done complete//////////////////////
 
                     Values.ar_value = Analytics.MANUAL_AC;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
@@ -380,7 +379,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//////////////////////////////done complete//////////////////////
+
                     Values.ar_value = Analytics.MANUAL_AC;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_manual_ac_left, null, false);
@@ -401,7 +400,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//////////////////////////////done complete//////////////////////
+
                     Values.ar_value = Analytics.MANUAL_AC;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_manual_ac_right, null, false);
@@ -418,7 +417,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//////////////////////////////done complete//////////////////////
+
                     Values.ar_value = Analytics.MANUAL_AC;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_manual_ac_full, null, false);
@@ -430,8 +429,6 @@ public class ARQashqai2021 extends ARCommon {
                     buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_manual_ac_full_middle));
                     buttonEventInitial(ImageTargetActivity.inflatedLayout.findViewById(R.id.btn_manual_ac_full_right));
 
-
-                    ///////done///////////////////////////////////////////complete
 
                 } else if (userDataToCompare.equalsIgnoreCase("navi_full_1")
                         || userDataToCompare.equalsIgnoreCase("navi_full_2")
@@ -446,7 +443,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-///////done///////////////////////////////////////////complete
+
                     Values.ar_value = Analytics.RADIO_W_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_navi_full, null, false);
@@ -472,7 +469,7 @@ public class ARQashqai2021 extends ARCommon {
                         e.printStackTrace();
                     }
 
-///////done///////////////////////////////////////////complete
+
                     Values.ar_value = Analytics.RADIO_W_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_navi_left, null, false);
@@ -494,7 +491,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-///////done///////////////////////////////////////////complete
+
                     Values.ar_value = Analytics.RADIO_W_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_navi_right, null, false);
@@ -515,7 +512,6 @@ public class ARQashqai2021 extends ARCommon {
                         e.printStackTrace();
                     }
 
-///////done///////////////////////////////////////////complete
                     Values.ar_value = Analytics.RADIO_W_NAVI;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_navi_middle, null, false);
@@ -532,8 +528,6 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-
-                    //done-----------------------------complete
 
                     Values.ar_value = Analytics.AUTO_AC;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
@@ -559,7 +553,6 @@ public class ARQashqai2021 extends ARCommon {
                         e.printStackTrace();
                     }
 
-//done-----------------------------complete
                     Values.ar_value = Analytics.AUTO_AC;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_auto_ac_left, null, false);
@@ -579,7 +572,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//done-----------------------------complete
+
                     Values.ar_value = Analytics.AUTO_AC;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_auto_ac_right, null, false);
@@ -598,7 +591,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//done----------------------------- complete
+
                     Values.ar_value = Analytics.AUTO_AC;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_auto_ac_middle, null, false);
@@ -619,7 +612,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-////////////////////////////done complete ...............................
+
                     Values.ar_value = Analytics.PARKING_BRAKE;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_parking_brake, null, false);
@@ -637,7 +630,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-////////////////////////////done complete ...............................
+
                     Values.ar_value = Analytics.QI_CHARGER;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_qi_charger, null, false);
@@ -655,7 +648,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-////////////////////////////done complete ...............................
+
                     Values.ar_value = Analytics.SEAT_HEAT;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_seat_heat, null, false);
@@ -673,7 +666,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-////////////////////////////done complete ...............................
+
                     Values.ar_value = Analytics.TRUNK;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_trunk, null, false);
@@ -690,7 +683,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-////////////////////////////done complete ...............................
+
                     Values.ar_value = Analytics.USB;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_usb, null, false);
@@ -712,7 +705,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-////////////////////////////done complete ...............................
+
                     Values.ar_value = Analytics.D_MODE;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_d_mode, null, false);
@@ -733,7 +726,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//Done---------------------------complete
+
                     Values.ar_value = Analytics.HAZARD_LIGHT;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_hazard_light, null, false);
@@ -754,7 +747,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//Done---------------------------complete  drawable vuforia
+//raman
                     Values.ar_value = Analytics.POWER_WINDOW;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_power_window, null, false);
@@ -778,7 +771,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//Done---------------------------complete
+
                     Values.ar_value = Analytics.GEAR_SELECTOR;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_gear_paddle, null, false);
@@ -797,7 +790,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//Done---------------------------complete
+
                     Values.ar_value = Analytics.GEAR_MODE;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_gear_mode, null, false);
@@ -818,7 +811,7 @@ public class ARQashqai2021 extends ARCommon {
                     } catch (SampleApplicationException e) {
                         e.printStackTrace();
                     }
-//completely Done---------------------------complete
+
                     Values.ar_value = Analytics.ADP;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_driver_position, null, false);
