@@ -15,7 +15,6 @@ import com.nissan.alldriverguide.ImageTargetActivity;
 import com.nissan.alldriverguide.R;
 import com.nissan.alldriverguide.augmentedreality.ARCommon;
 import com.nissan.alldriverguide.utils.Analytics;
-import com.nissan.alldriverguide.utils.Logger;
 import com.nissan.alldriverguide.utils.Values;
 import com.nissan.alldriverguide.vuforia.SampleApplicationException;
 import com.nissan.alldriverguide.vuforia.SampleApplicationSession;
@@ -259,7 +258,7 @@ public class ARQashqai2021 extends ARCommon {
 //done-----------------------------complete drawable vuforia add
                     Values.ar_value = Analytics.MIXED_PANEL;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
-                            R.layout.qashqai_2021_multi_switch, null, false);
+                            R.layout.qashqai_2021_multi_switch_left, null, false);
                     setBackground(ImageTargetActivity.inflatedLayout, drawables + "xtrail_2020_multi_switch.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
