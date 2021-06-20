@@ -7,10 +7,9 @@
 
     <LinearLayout
         android:id="@+id/popupLayout"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_width="@dimen/width_200dp"
+        android:layout_height="@dimen/width_200dp"
+        android:layout_gravity="center">
 
         <Button
             android:layout_width="match_parent"

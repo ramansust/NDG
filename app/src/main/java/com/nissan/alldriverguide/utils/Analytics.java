@@ -57,6 +57,8 @@ public class Analytics {
     public static final String D_MODE = "d mode";
     public static final String QI_CHARGER = "qi charger";
     public static final String SEAT_HEAT = "seat heat";
+    public static final String TRUNK = "trunk";
+    public static final String USB = "usb";
 
     public static final String PLATFORM = "a";
 

@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/popupLayout"
         android:layout_width="@dimen/width_300dp"
-        android:layout_height="@dimen/width_175dp"
+        android:layout_height="@dimen/width_60dp"
         android:layout_gravity="center"
         android:orientation="vertical">
 
@@ -23,7 +23,7 @@
                 android:id="@+id/btn_manual_ac_full_left"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_weight="0.6"
                 android:background="@android:color/transparent"
                 tools:ignore="ButtonStyle" />
 
@@ -31,7 +31,7 @@
                 android:id="@+id/btn_manual_ac_full_middle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.9"
+                android:layout_weight="1.8"
                 android:background="@android:color/transparent"
                 tools:ignore="ButtonStyle" />
 

@@ -25,6 +25,8 @@
     <dimen name="width_400dp">400dp</dimen>
     <dimen name="width_500dp">500dp</dimen>
     <dimen name="width_600dp">600dp</dimen>
+    <dimen name="width_650dp">650dp</dimen>
     <dimen name="width_730dp">730dp</dimen>
+    <dimen name="width_800dp">800dp</dimen>
 
 </resources>
