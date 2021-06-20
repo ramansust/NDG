@@ -206,10 +206,10 @@ public class ARQashqai2021 extends ARCommon {
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
-                } else if (userDataToCompare.equalsIgnoreCase("lighiting_controls_sos_1")
-                        || userDataToCompare.equalsIgnoreCase("lighiting_controls_sos_2")
-                        || userDataToCompare.equalsIgnoreCase("lighiting_controls_sos_3")
-                        || userDataToCompare.equalsIgnoreCase("lighiting_controls_sos_4")
+                } else if (userDataToCompare.equalsIgnoreCase("ligthing_control_sos_1")
+                        || userDataToCompare.equalsIgnoreCase("ligthing_control_sos_2")
+                        || userDataToCompare.equalsIgnoreCase("ligthing_control_sos_3")
+                        || userDataToCompare.equalsIgnoreCase("ligthing_control_sos_4")
                 ) {
 
                     try {
@@ -405,7 +405,7 @@ public class ARQashqai2021 extends ARCommon {
                     Values.ar_value = Analytics.MANUAL_AC;
                     ImageTargetActivity.inflatedLayout = inflater.inflate(
                             R.layout.qashqai_2021_manual_ac_middle, null, false);
-                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "j12qashqai_manual_ac_center.png");
+                    setBackground(ImageTargetActivity.inflatedLayout, drawables + "j12qashqai_manual_ac_middle.png");
                     mActivity.layoutCameraView.addView(ImageTargetActivity.inflatedLayout);
                     mActivity.sendMsgToGoogleAnalytics(mActivity.getGoogleAnalyticeName(Values.ar_value));
 
