@@ -27,6 +27,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
@@ -63,15 +72,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
@@ -290,11 +290,11 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 txtViewVideolistTitle.setText(exploreModel.getVideoHeaderTitle());
             } else llTitleVideo.setVisibility(View.GONE);
         }
-        //old static Rohan
+
         if (Values.carType == 11 || Values.carType == 12
                 || Values.carType == 16 || Values.carType == 13
-                || Values.carType == 14 || Values.carType == 15 || Values.carType == 17 || Values.carType == 18) {
-
+                || Values.carType == 14 || Values.carType == 15 || Values.carType == 17 || Values.carType == 18
+                || Values.carType == 20) {
             btnAR.setBackgroundResource(R.drawable.ar_selector_new_car);
         } else {
             btnAR.setBackgroundResource(R.drawable.ar_selector);
