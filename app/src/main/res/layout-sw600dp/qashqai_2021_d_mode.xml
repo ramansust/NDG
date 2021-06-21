@@ -9,6 +9,7 @@
         android:id="@+id/popupLayout"
         android:layout_width="@dimen/width_400dp"
         android:layout_height="@dimen/width_350dp"
+        android:layout_gravity="center"
         android:orientation="vertical">
 
         <Button

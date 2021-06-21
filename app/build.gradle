@@ -18,8 +18,8 @@ android {
         applicationId "com.nissan.alldriverguide"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 97
-        versionName "2.3.9"
+        versionCode 98
+        versionName "2.4.0"
         multiDexEnabled true
         ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
     }
