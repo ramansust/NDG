@@ -164,7 +164,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             sliderModelArrayList = exploreModel.getMapImageList();
             NissanApp.getInstance().setExploreVideoList(videoList);
             loadData();
-            Logger.error("Explore 1 ", " --- ");
         } else {
             progressBar.setVisibility(View.VISIBLE);
             if (!DetectConnection.checkInternetConnection(requireActivity())) {
@@ -173,11 +172,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
                 showNoInternetDialogue(internetCheckMessage.isEmpty() ? resources.getString(R.string.internet_connect) : internetCheckMessage);
                 return;
             }
-            Logger.error("Explore 2 ", " --- ");
         }
-
-        Logger.error("Explore 3 ", " --- ");
-
         int language_ID = NissanApp.getInstance().getLanguageID(new PreferenceUtil(getActivity()).getSelectedLang());
         controller.callApi(NissanApp.getInstance().getDeviceID(requireActivity()), "" + language_ID, "" + Values.carType, Values.EPUBID, "1");
         languageid = language_ID;
@@ -253,7 +248,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
             exploreModel = responseInfo;
             check_density();
             videoList = exploreModel.getVideoList();
-            Logger.error("Explore Video List ", " -- " + videoList.size());
             sliderModelArrayList = exploreModel.getMapImageList();
             NissanApp.getInstance().setExploreVideoList(videoList);
 
@@ -283,7 +277,7 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
      */
     private void loadData() {
 
-        //videp title load from backend
+        //video title load from backend
         if (exploreModel != null) {
             if (exploreModel.getVideoHeaderTitle() != null) {
                 llTitleVideo.setVisibility(View.VISIBLE);
@@ -293,9 +287,11 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
         if (Values.carType == 11 || Values.carType == 12
                 || Values.carType == 16 || Values.carType == 13
-                || Values.carType == 14 || Values.carType == 15 || Values.carType == 17 || Values.carType == 18
-                || Values.carType == 20) {
+                || Values.carType == 14 || Values.carType == 15 || Values.carType == 17 || Values.carType == 18) {
             btnAR.setBackgroundResource(R.drawable.ar_selector_new_car);
+        } else if (Values.carType == 20) {
+            //for j12 qashqai 2021 car drawable is different
+            btnAR.setBackgroundResource(R.drawable.ar_selector_j12);
         } else {
             btnAR.setBackgroundResource(R.drawable.ar_selector);
         }
@@ -1010,10 +1006,6 @@ public class ExploreFragment extends Fragment implements View.OnClickListener, A
 
             LayoutInflater inflater = LayoutInflater.from(mContext);
             layout = null;
-            /*Log.e("Slider Tab Model " , " " + sliderModelArrayList.size());
-            Log.e("Slider Tab Position " , " " + position);
-            Log.e("Slider Tab Model Value " , " " + sliderModelArrayList.get(0).getType());
-            Log.e("Slider Tab Model Value " , " " + sliderModelArrayList.get(1).getType());*/
             if (sliderModelArrayList != null) {
                 if (sliderModelArrayList.size() > 0) {
                     if (sliderModelArrayList.get(position).getType() != null && !sliderModelArrayList.get(position).getType().isEmpty()) {
