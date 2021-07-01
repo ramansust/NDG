@@ -324,6 +324,11 @@ public class ARXtrail2017Rus implements GLSurfaceView.Renderer, SampleAppRendere
                 } else if (userDataToCompare.equalsIgnoreCase("steering_wheel_right_1")
                         || userDataToCompare.equalsIgnoreCase("steering_wheel_right_2")
                         || userDataToCompare.equalsIgnoreCase("steering_wheel_right_3")
+                        || userDataToCompare.equalsIgnoreCase("v2_steering_wheel_right_1")
+                        || userDataToCompare.equalsIgnoreCase("v2_steering_wheel_right_2")
+                        || userDataToCompare.equalsIgnoreCase("v2_steering_wheel_right_3")
+                        || userDataToCompare.equalsIgnoreCase("v2_steering_wheel_right_4")
+                        || userDataToCompare.equalsIgnoreCase("v2_steering_wheel_right_5")
                 ) {
 
 

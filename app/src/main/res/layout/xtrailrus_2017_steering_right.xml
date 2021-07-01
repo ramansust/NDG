@@ -8,178 +8,259 @@
 
     <LinearLayout
         android:id="@+id/popupLayout"
-        android:layout_width="270dp"
-        android:layout_height="233dp"
+        android:layout_width="@dimen/width_300dp"
+        android:layout_height="@dimen/width_365dp"
+        android:background="@drawable/xtrail2017"
         android:orientation="vertical"
-        android:weightSum="3">
+        android:weightSum="2">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
-            android:weightSum="2"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="2">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.2"
-                android:orientation="vertical"
-                android:weightSum="4">
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.3"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
                 <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1.6"
-                    android:background="@android:color/transparent" />
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.9"
+                    android:background="@android:color/transparent"
+                    tools:ignore="ButtonStyle" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight=".8"
-                    android:orientation="horizontal">
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.9"
+                    android:orientation="vertical"
+                    android:weightSum="4">
 
                     <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".8"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.4"
                         android:background="@android:color/transparent"
                         tools:ignore="ButtonStyle" />
 
                     <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".8"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.1"
                         android:background="@android:color/transparent"
                         android:onClick="buttonEvent"
-                        android:tag="60"
+                        android:tag=""
+                        tools:ignore="ButtonStyle" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.7"
+                        android:background="@android:color/transparent"
+                        android:onClick="buttonEvent"
+                        android:tag=""
+                        tools:ignore="ButtonStyle" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.8"
+                        android:background="@android:color/transparent"
+                        android:onClick="buttonEvent"
+                        android:tag=""
                         tools:ignore="ButtonStyle" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight=".8"
-                    android:orientation="horizontal">
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:orientation="vertical"
+                    android:weightSum="3">
 
                     <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".8"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.4"
                         android:background="@android:color/transparent"
                         tools:ignore="ButtonStyle" />
 
                     <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".8"
-                        android:background="@android:color/transparent"
-                        android:onClick="buttonEvent"
-                        android:tag="59"
-                        tools:ignore="ButtonStyle" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight=".8"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".8"
-                        android:background="@android:color/transparent"
-                        tools:ignore="ButtonStyle" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".8"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.8"
                         android:background="@android:color/transparent"
                         android:onClick="buttonEvent"
-                        android:tag="60"
+                        android:tag=""
                         tools:ignore="ButtonStyle" />
 
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.8"
+                        android:background="@android:color/transparent"
+                        android:onClick="buttonEvent"
+                        android:tag=""
+                        tools:ignore="ButtonStyle" />
                 </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".8"
-                android:weightSum="2"
-                android:orientation="vertical">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                android:background="@android:color/transparent"
+                android:onClick="buttonEvent"
+                android:tag="46"
+                tools:ignore="ButtonStyle" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:weightSum="3"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".4"
-                        android:background="@android:color/transparent"
-                        tools:ignore="ButtonStyle" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.7"
-                        android:background="@android:color/transparent"
-                        android:onClick="buttonEvent"
-                        android:tag="61"
-                        tools:ignore="ButtonStyle" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".9"
-                        android:background="@android:color/transparent"
-                        tools:ignore="ButtonStyle" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"
+                android:background="@android:color/transparent"
+                tools:ignore="ButtonStyle" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".5"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.3"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.9"
+                    android:background="@android:color/transparent"
+                    tools:ignore="ButtonStyle" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:orientation="vertical"
+                    android:weightSum="4">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:background="@android:color/transparent"
+                        tools:ignore="ButtonStyle" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.0"
+                        android:background="@android:color/transparent"
+                        android:onClick="buttonEvent"
+                        android:tag=""
+                        tools:ignore="ButtonStyle" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.7"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.0"
+                            android:background="@android:color/transparent"
+                            android:onClick="buttonEvent"
+                            android:tag=""
+                            tools:ignore="ButtonStyle" />
+
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.0"
+                            android:background="@android:color/transparent"
+                            android:onClick="buttonEvent"
+                            android:tag=""
+                            tools:ignore="ButtonStyle" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.8"
+                        android:background="@android:color/transparent"
+                        android:onClick="buttonEvent"
+                        android:tag=""
+                        tools:ignore="ButtonStyle" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:orientation="vertical"
+                    android:weightSum="3">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.4"
+                        android:background="@android:color/transparent"
+                        tools:ignore="ButtonStyle" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.8"
+                        android:background="@android:color/transparent"
+                        android:onClick="buttonEvent"
+                        android:tag=""
+                        tools:ignore="ButtonStyle" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.8"
+                        android:background="@android:color/transparent"
+                        android:onClick="buttonEvent"
+                        android:tag=""
+                        tools:ignore="ButtonStyle" />
+                </LinearLayout>
+
+            </LinearLayout>
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.5"
-                android:background="@android:color/transparent"
-                tools:ignore="ButtonStyle" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
                 android:background="@android:color/transparent"
                 android:onClick="buttonEvent"
-                android:tag="48"
+                android:tag="46"
                 tools:ignore="ButtonStyle" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"
                 android:background="@android:color/transparent"
                 tools:ignore="ButtonStyle" />
 
