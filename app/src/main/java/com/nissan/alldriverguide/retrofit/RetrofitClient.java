@@ -24,7 +24,6 @@ public class RetrofitClient {
 //    private static final String ROOT_URL = "http://cdnuat.maruboshi.nl/m2/api/"; // Remote server second instance//dev url
     private static final String ROOT_URL = "http://cdn.maruboshi.nl/api/"; // Remote server second instance//prod url
 
-
     /**
      * Get Retrofit Instance
      */

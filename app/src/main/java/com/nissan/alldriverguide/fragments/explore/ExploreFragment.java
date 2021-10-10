@@ -1,5 +1,8 @@
 package com.nissan.alldriverguide.fragments.explore;
 
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -72,9 +75,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-import static com.nissan.alldriverguide.utils.Values.SUCCESS_STATUS;
 
 public class ExploreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, CompleteExploreTabContent, ViewPager.OnPageChangeListener {
 

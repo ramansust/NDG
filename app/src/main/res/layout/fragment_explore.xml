@@ -75,8 +75,8 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/info_black"
-                        android:contentDescription="TODO" />
+                        android:contentDescription="TODO"
+                        android:src="@drawable/info_black" />
                 </RelativeLayout>
 
             </RelativeLayout>
@@ -123,8 +123,8 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:background="@android:color/transparent"
-                            android:src="@drawable/info_black"
-                            android:contentDescription="TODO" />
+                            android:contentDescription="TODO"
+                            android:src="@drawable/info_black" />
                     </RelativeLayout>
 
                 </RelativeLayout>
@@ -154,8 +154,8 @@
                             android:id="@+id/ivLeftArrow"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/left_arrow_map"
-                            android:contentDescription="TODO" />
+                            android:contentDescription="TODO"
+                            android:src="@drawable/left_arrow_map" />
 
                     </LinearLayout>
 
@@ -163,6 +163,7 @@
                         android:id="@+id/llRightArrow"
                         android:layout_width="40dp"
                         android:layout_height="70dp"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
                         android:orientation="horizontal"
@@ -172,8 +173,8 @@
                             android:id="@+id/ivRightArrow"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/right_arrow_map"
-                            android:contentDescription="TODO" />
+                            android:contentDescription="TODO"
+                            android:src="@drawable/right_arrow_map" />
 
                     </LinearLayout>
 
