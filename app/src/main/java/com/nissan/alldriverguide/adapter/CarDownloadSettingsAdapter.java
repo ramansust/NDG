@@ -224,14 +224,17 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
             viewHolder.txtViewTitle.setText(list.get(position).getName());
         } else if ("0".equalsIgnoreCase(list.get(position).getStatus())) {
             viewHolder.imageView.setImageURI(list.get(position).getCarImg());
-
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
             if (list.get(position).getId() == 1 || list.get(position).getId() == 2 || list.get(position).getId() == 4 || list.get(position).getId() == 5) {
                 String[] name = list.get(position).getName().split(" "); //(carNames[list.get(position).getId() - 1]).split(" ");
                 viewHolder.txtViewTitle.setText(name[0]);
 //                viewHolder.txtViewTitle.setText(list.get(position).getName());
-            } else if (list.get(position).getId() == 13 || list.get(position).getId() == 15) {
+            } else if (list.get(position).getId() == 13 || list.get(position).getId() == 15 || list.get(position).getId() == 19) {
                 viewHolder.txtViewTitle.setText("NISSAN X-TRAIL");
+            } else if (list.get(position).getId() == 18) {
+                viewHolder.txtViewTitle.setText("NISSAN JUKE");
+            } else if (list.get(position).getId() == 14 || list.get(position).getId() == 17) {
+                viewHolder.txtViewTitle.setText("NISSAN LEAF");
             } else if (list.get(position).getId() == 12 || list.get(position).getId() == 16) {
                 viewHolder.txtViewTitle.setText("NISSAN QASHQAI");
             } else {

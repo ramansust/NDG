@@ -52,7 +52,10 @@
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/ivMainCarImage"
             android:layout_alignBottom="@+id/ivMainCarImage"
-            android:layout_margin="@dimen/margin_left"
+            android:layout_marginStart="@dimen/margin_left"
+            android:layout_marginTop="@dimen/margin_left"
+            android:layout_marginEnd="@dimen/margin_left"
+            android:layout_marginBottom="@dimen/margin_left"
             android:background="@drawable/download_selector"
             android:contentDescription="TODO"
             android:visibility="visible" />
