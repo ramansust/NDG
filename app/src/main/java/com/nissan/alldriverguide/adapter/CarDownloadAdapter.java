@@ -128,7 +128,8 @@ public class CarDownloadAdapter extends BaseAdapter {
                     relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.white));
                     // set the car name for available downloaded car
                     txtViewTitle.setText(info.getName());
-                    if (info.getId() == 13 || info.getId() == 15) {
+//                    if (info.getId() == 13 || info.getId() == 15) {
+                    if (info.getId() == 13 || info.getId() == 15 || info.getId() == 19) { // Added By Raman - 21.10.2021
 //                        Set fixed name for both this car == NEW X-TRAIL  (EUR/RUS)
 //                    txtViewTitle.setText(info.getName() == null || info.getName().isEmpty() ? "NEW NISSAN X-TRAIL" : name[1] + " " + name[2]);
                         txtViewTitle.setText("NISSAN X-TRAIL");
