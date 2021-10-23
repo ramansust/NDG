@@ -1216,7 +1216,7 @@ public class CarDownloadActivity extends BaseActivity implements AdapterView.OnI
                 for (int i = 0; i < carNames.length; i++) {
                     CarInfo carInfo;
                     //click for eur/rus by rohan
-                    if (i == 1 || i == 4 || i == 14 || i == 15 || i == 16) { // this logic actually work for car id (2 & 5) since i start from 0
+                    if (i == 1 || i == 4 || i == 14 || i == 15 || i == 16 || i == 18) { // this logic actually work for car id (2 & 5) since i start from 0
                         carInfo = new CarInfo((i + 1), carNames[i], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "RUS", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), indices[i]);
                     } else {
                         carInfo = new CarInfo((i + 1), carNames[i], Values.AVAILABLE_FOR_DOWNLOAD, NissanApp.getInstance().getDateTime(), "EUR", "en", Values.CAR_NOT_SELECTED, NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode(), indices[i]);
