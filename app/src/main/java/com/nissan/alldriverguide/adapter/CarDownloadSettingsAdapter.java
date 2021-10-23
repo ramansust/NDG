@@ -655,7 +655,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
 
 
                                 }
-                                /*else if (carType == 13 || carType == 15) {
+                                else if (carType == 13 || carType == 15) {
 
                                     if (carType == 13) {
                                         if (commonDao.getStatus(context, carType + 2) == 1) {
@@ -706,10 +706,10 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                                             }
                                         }
                                     }
-                                }*/
+                                }
 
 
-                                // Added By Raman - 21.10.2021
+                                /*// Added By Raman - 21.10.2021
 
                                 else if (carType == 13 || carType == 15 || carType == 19) {
 
@@ -846,7 +846,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                                             }
                                         }
                                     }
-                                } // Ended - Raman
+                                } // Ended - Raman*/
 
                                 else if (carType == 12 || carType == 16) {
 
@@ -1028,7 +1028,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                                     }
                                 }
 
-                                /*if (carIdFromList == 15) {
+                                if (carIdFromList == 15) {
 
                                     if (commonDao.getStatus(context, carIdFromList - 2) == 0) {
                                         commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
@@ -1051,10 +1051,10 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                                         commonDao.updateDateAndStatus(context, carIdFromList + 2, "1", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
                                         list.get(position).setStatus("0");
                                     }
-                                }*/
+                                }
 
 
-                                // Added by Raman - 19.10.2021 for 15, 13 and 19 ----Temporary solutions
+                                /*// Added by Raman - 19.10.2021 for 15, 13 and 19 ----Temporary solutions
 
                                 if (carIdFromList == 15) {
                                     commonDao.updateDateAndStatus(context, carIdFromList, "0", NissanApp.getInstance().getDateTime(), "EUR", NissanApp.getInstance().getVersionName(), NissanApp.getInstance().getVersionCode());
@@ -1088,7 +1088,7 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                                         list.remove(position);
                                 }
 
-                                // Ended -- By Raman
+                                // Ended -- By Raman*/
 
                                 if (list.get(position).getId() == 2 || list.get(position).getId() == 5) {
                                     if (commonDao.getStatus(context, list.get(position).getId() - 1) == 2) {
@@ -1684,8 +1684,8 @@ public class CarDownloadSettingsAdapter extends BaseAdapter implements View.OnCl
                 if (info.getName().contains("2019") && info.getId() == 17 && info.getStatus().equals(Values.AVAILABLE_FOR_DOWNLOAD))
                     list.remove(info);
             }
-//            if (info.getId() == 19 && info.getStatus().equals(Values.AVAILABLE_FOR_DOWNLOAD))
-//                list.remove(info);
+            if (info.getId() == 19 && info.getStatus().equals(Values.AVAILABLE_FOR_DOWNLOAD))
+                list.remove(info);
 
         }
 
